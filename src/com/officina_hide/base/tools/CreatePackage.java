@@ -22,13 +22,18 @@ public class CreatePackage {
 		 * 3.ベース情報の登録
 		 */
 		//環境情報のPathを設定する。
+		FD_EnvData env = null;
 		try {
 			String propPath = new File(".").getCanonicalPath()+"\\data\\base.properties";
 			//環境情報の取込
-			FD_EnvData env = new FD_EnvData(propPath);
+			env = new FD_EnvData(propPath);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		//テーブル情報
+		FDTable table = new FDTable();
+		table.createTable(env);
 	}
 
 }
