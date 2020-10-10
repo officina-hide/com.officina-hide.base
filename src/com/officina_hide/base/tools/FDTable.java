@@ -34,17 +34,39 @@ public class FDTable extends FD_DB implements I_FD_Table {
 		//既に登録されているテーフル情報を削除する。
 		sql.append("DROP TABLE IF EXISTS ").append(Table_Name);
 		DBexecute(env, sql.toString());
+		//テーブル情報の再構築
+		sql = new StringBuffer();
+		sql.append("CREATE TABLE IF NOT EXISTS ").append(Table_Name).append(" (");
+		sql.append(COLUMNNAME_FD_Table_ID).append(" INT UNSIGNED NOT NULL PRIMARY KEY COMMENT ")
+			.append(FD_SQ).append(NAME_FD_Table_ID).append(FD_SQ).append(",");
+		sql.append(COLUMNNAME_Table_Name).append(" Varchar(100) COMMENT ")
+			.append(FD_SQ).append(NAME_Table_Name).append(FD_SQ).append(",");
+		sql.append(COLUMNNAME_FD_Comment).append(" Text COMMENT ")
+			.append(FD_SQ).append(NAME_FD_Comment).append(FD_SQ).append(",");
+		sql.append(COLUMNNAME_FD_CREATE).append(" DATETIME COMMENT ")
+			.append(FD_SQ).append(NAME_FD_CREATE).append(FD_SQ).append(",");
+		sql.append(COLUMNNAME_FD_CREATED).append(" INT UNSIGNED COMMENT ")
+			.append(FD_SQ).append(NAME_FD_CREATED).append(FD_SQ).append(",");
+		sql.append(COLUMNNAME_FD_UPDATE).append(" DATETIME COMMENT ")
+			.append(FD_SQ).append(NAME_FD_UPDATE).append(FD_SQ).append(",");
+		sql.append(COLUMNNAME_FD_UPDATED).append(" INT UNSIGNED COMMENT ")
+			.append(FD_SQ).append(NAME_FD_UPDATED).append(FD_SQ).append(" ");
+		sql.append(") ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=").append(FD_SQ).append(NAME).append(FD_SQ);
+		DBexecute(env, sql.toString());
 	}
 
 	/**
-	 * DB更新<br>
-	 * @author officine-hide.com
-	 * @since 2020/10/08
-	 * @param env 環境情報
-	 * @param sql SQL文
+	 * テーブル情報登録<br>
+	 * @author officina-hide.com
+	 * @since 1.00 2020/10/10
+	 * @param tableId テーブル情報ID
+	 * @param tableName テーブル名
+	 * @param name テーブル論理名
+	 * @param comment テーブル説明
 	 */
-	private void DBexecute(FD_EnvData env, String sql) {
-		connection(env);
+	public void addData(int tableId, String tableName, String name, String comment) {
+		StringBuffer sql = new StringBuffer();
+		sql.append("INSERT INTO ").append(Table_Name);
 	}
 
 }

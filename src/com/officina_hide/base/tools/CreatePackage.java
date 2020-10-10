@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.model.I_FD_Table;
 
 /**
  * パッケージ構築クラス<br>
@@ -31,9 +32,10 @@ public class CreatePackage {
 			e.printStackTrace();
 		}
 		
-		//テーブル情報
+		//テーブル情報構築
 		FDTable table = new FDTable();
 		table.createTable(env);
+		table.addData(I_FD_Table.FD_TABLE_ID, I_FD_Table.Table_Name, I_FD_Table.NAME, I_FD_Table.COMMENT);
 	}
 
 }
