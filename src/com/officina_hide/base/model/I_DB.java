@@ -31,4 +31,21 @@ public interface I_DB {
 	public final String COLUMNNAME_FD_UPDATED = "FD_Updated";
 	public final String NAME_FD_UPDATED = "更新者";
 	public final String COMMENT_FD_UPDATED = "情報の更新者ID";
+	
+	/** 項目種別 : 情報ID */
+	public static final String COLUMNTYPE_FD_Information_ID = "FD_Information_ID";
+	/** 項目種別 : テキスト */
+	public static final String COLUMNTYPE_FD_Text = "FD_Text";
+	/** 項目種別 : 複数行テキスト */
+	public static final String COLUMNTYPE_FD_Field_Text = "FD_Field_Text";
+	/** 項目種別 : 日付 */
+	public static final String COLUMNTYPE_FD_Date = "FD_Date";
+	/** 項目種別 : 自然数 */
+	public static final String COLUMNTYPE_FD_Number = "FD_Number";
+	/** 項目種別 : YESNO */
+	public static final String COLUMNTYPE_FD_YesNo = "FD_YesNo";
+	/** 項目種別 : リスト */
+	public static final String COLUMNTYPE_FD_Lis = "FD_List";
+	public static final String COLUMNYPENAME_FD_List = "リスト";
+
 }
