@@ -3,6 +3,7 @@ package com.officina_hide.base.tools;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Table;
+import com.officina_hide.base.model.X_FD_Table;
 
 /**
  * テーブル情報クラス<br>
@@ -59,14 +60,14 @@ public class FDTable extends FD_DB implements I_FD_Table {
 	 * テーブル情報登録<br>
 	 * @author officina-hide.com
 	 * @since 1.00 2020/10/10
+	 * @param env 環境情報
 	 * @param tableId テーブル情報ID
 	 * @param tableName テーブル名
 	 * @param name テーブル論理名
 	 * @param comment テーブル説明
 	 */
-	public void addData(int tableId, String tableName, String name, String comment) {
-		StringBuffer sql = new StringBuffer();
-		sql.append("INSERT INTO ").append(Table_Name);
+	public void addData(FD_EnvData env, int tableId, String tableName, String name, String comment) {
+		X_FD_Table table = new X_FD_Table(env);
 	}
 
 }

@@ -35,7 +35,7 @@ public class CreatePackage {
 		//テーブル情報構築
 		FDTable table = new FDTable();
 		table.createTable(env);
-		table.addData(I_FD_Table.FD_TABLE_ID, I_FD_Table.Table_Name, I_FD_Table.NAME, I_FD_Table.COMMENT);
+		table.addData(env, I_FD_Table.FD_TABLE_ID, I_FD_Table.Table_Name, I_FD_Table.NAME, I_FD_Table.COMMENT);
 	}
 
 }

@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.officina_hide.base.common.FD_EnvData;
 
@@ -17,6 +19,8 @@ import com.officina_hide.base.common.FD_EnvData;
 public class FD_DB implements I_DB {
 	/** データベース接続情報	 */
 	protected static Connection conn;
+	/** 項目リスト */
+	protected List<FD_Item> itemList = new ArrayList<>();
 
 	public void createDBTable(FD_EnvData env, String tableName) {
 		
