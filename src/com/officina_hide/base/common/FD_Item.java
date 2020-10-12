@@ -1,4 +1,4 @@
-package com.officina_hide.base.model;
+package com.officina_hide.base.common;
 
 /**
  * 項目情報<br>

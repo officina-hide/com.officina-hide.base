@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_Items;
 
 /**
  * データベース操作クラス<br>
@@ -20,7 +20,9 @@ public class FD_DB implements I_DB {
 	/** データベース接続情報	 */
 	protected static Connection conn;
 	/** 項目リスト */
-	protected List<FD_Item> itemList = new ArrayList<>();
+	protected FD_Items  itemList = new FD_Items();
+	/** 日付フォーマッ */
+	protected SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
 	public void createDBTable(FD_EnvData env, String tableName) {
 		
