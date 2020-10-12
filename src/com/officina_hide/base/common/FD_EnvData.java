@@ -41,8 +41,8 @@ public class FD_EnvData implements I_FD_EnvData {
 		setDB_Name(prop.getProperty(DB_NAME));
 		setDB_User(prop.getProperty(DB_USER));
 		setDB_Password(prop.getProperty(DB_PASWORD));
-//		setSystemUserID(Integer.parseInt(prop.getProperty(SYSTEM_USER_ID)));
-//		setLoginUserID(Integer.parseInt(prop.getProperty(LOGIN_USER_ID)));
+		setSystem_User_ID(Integer.parseInt(prop.getProperty(SYSTEM_USER_ID)));
+		setLogin_User_ID(Integer.parseInt(prop.getProperty(LOGIN_USER_ID)));
 //		String logPath = prop.getProperty(LOG_FILE_PATH);
 	}
 
@@ -50,6 +50,24 @@ public class FD_EnvData implements I_FD_EnvData {
 	private String DB_Host;
 	private String DB_User;
 	private String DB_Password;
+	private int System_User_ID;
+	private int Login_User_ID;
+	public int getSystem_User_ID() {
+		return System_User_ID;
+	}
+
+	public void setSystem_User_ID(int system_User_ID) {
+		System_User_ID = system_User_ID;
+	}
+
+	public int getLogin_User_ID() {
+		return Login_User_ID;
+	}
+
+	public void setLogin_User_ID(int login_User_ID) {
+		Login_User_ID = login_User_ID;
+	}
+
 	public String getDB_Name() {
 		return DB_Name;
 	}

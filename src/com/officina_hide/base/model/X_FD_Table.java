@@ -3,7 +3,6 @@ package com.officina_hide.base.model;
 import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
-import com.officina_hide.base.common.FD_Item;
 
 /**
  * テーブル情報I/Oクラス<br>
@@ -74,17 +73,24 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 		StringBuffer sql = new StringBuffer();
 		StringBuffer setItem = new StringBuffer();
 		
+		//登録日、更新日設定
+		if(itemList.getValueOfItem(COLUMNNAME_FD_CREATE) == null) {
+			itemList.setData(COLUMNNAME_FD_CREATE, new Date());
+			itemList.setData(COLUMNNAME_FD_UPDATE, new Date());
+			itemList.setData(COLUMNNAME_FD_CREATED, env.getLogin_User_ID());
+			itemList.setData(COLUMNNAME_FD_UPDATED, env.getLogin_User_ID());
+		} else {
+			itemList.setData(COLUMNNAME_FD_UPDATE, new Date());
+			itemList.setData(COLUMNNAME_FD_UPDATED, env.getLogin_User_ID());
+		}
+
 		sql.append("INSERT INTO ").append(Table_Name).append(" SET ");
 		
 		for(String columnName : itemList.getNameList()) {
 			if(setItem.length() > 0) {
 				setItem.append(",");
 			}
-			if(itemList.getValueOfItem(columnName) != null) {
-				
-			} else {
-				
-			}
+			setItem.append(itemList.getSQLString(columnName));
 		}
 		
 		

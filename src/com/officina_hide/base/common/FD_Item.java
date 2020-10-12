@@ -1,5 +1,7 @@
 package com.officina_hide.base.common;
 
+import java.util.Date;
+
 /**
  * 項目情報<br>
  * @author officina-hide.com
@@ -46,6 +48,48 @@ public class FD_Item {
 	}
 	public void setItemType(String itemType) {
 		this.itemType = itemType;
+	}
+	
+	/**
+	 * 項目情報を文字列で返す。<br>
+	 * @author officina-hide.com
+	 * @since 1.00 2020/10/12
+	 * @return 項目情報
+	 */
+	public String getStringOfValue() {
+		return (String) itemData;
+	}
+	
+	/**
+	 * 項目情報をintで返す<br>
+	 * @author officina-hide.com
+	 * @since 1.00 2020/10/12
+	 * @return 項目情報
+	 */
+	public int getIntOfValue() {
+		try {
+			int data = 0;
+			if(getItemData() != null) {
+				data = (int) getItemData();
+			}
+			return data;
+		} catch (ClassCastException e) {
+			try {
+				int data = Integer.parseInt((String) getItemData());
+				return data;
+			} catch (NumberFormatException | ClassCastException e1) {
+				return 0;
+			}
+		}
+	}
+	/**
+	 * 項目情報を日付で返す。<br>
+	 * @author officina-hide.com
+	 * @since 1.00 2020/10/12
+	 * @return 項目情報
+	 */
+	public Date getDateOfValue() {
+		return (Date) getItemData();
 	}
 
 }
