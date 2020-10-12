@@ -36,6 +36,10 @@ public class CreatePackage {
 		FDTable table = new FDTable();
 		table.createTable(env);
 		table.addData(env, I_FD_Table.FD_TABLE_ID, I_FD_Table.Table_Name, I_FD_Table.NAME, I_FD_Table.COMMENT);
+		//採番情報構築
+		FDNumbering num = new FDNumbering();
+		num.createTable(env);
+		
 	}
 
 }

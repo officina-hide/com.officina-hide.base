@@ -47,17 +47,6 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 	 */
 	public void setValueByName(FD_EnvData env, String columnName, Object columnData) {
 		if(itemList.setData(columnName, columnData) == false) {
-//		//項目名チェック
-//		boolean chk = false;
-//		for(FD_Item item : itemList) {
-//			if(item.getItemName().equals(columnName)) {
-//				item.setItemData(columnData);
-//				chk = true;
-//				break;
-//			}
-//		}
-//		
-//		if(chk == false) {
 			System.out.println(new Date()+" : "+"Column Name Not Found!! ["+columnName+"]");
 			new Exception();
 		}
@@ -93,29 +82,10 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 			setItem.append(itemList.getSQLString(columnName));
 		}
 		
+		sql.append(setItem.toString());
 		
-//		for(FD_Item item : itemList) {
-//			if(setItem.length() > 0) {
-//				setItem.append(",");
-//			}
-//			if(item.getItemData() != null) {
-//				switch(item.getItemType()) {
-//				case COLUMNTYPE_FD_Information_ID:
-//				case COLUMNTYPE_FD_Number:
-//					setItem.append(item.getItemName()).append(" = ").append(getIntOfValue(item.getItemName()));
-//					break;
-//				case COLUMNTYPE_FD_Text:
-//				case COLUMNTYPE_FD_Field_Text:
-//					setItem.append(item.getItemName()).append(" = ").append(FD_SQ).append(getStringOfValue(item.getItemName())).append(FD_SQ);
-//					break;
-//				case COLUMNNAME_FD_UPDATE:
-//					setItem.append(item.getItemName()).append(" = ")
-//						.append(FD_SQ).append(dateFormat.format(getDateOfValue(item.getItemName()).getTime())).append(FD_SQ);
-//					break;
-//				}
-//				}
-//			}
-//		}
+		DBexecute(env, sql.toString());
+		System.out.println(new Date()+" : "+"テーブル情報新規追加");
 	}
 
 }

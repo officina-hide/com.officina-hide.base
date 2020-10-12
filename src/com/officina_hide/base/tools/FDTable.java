@@ -42,8 +42,11 @@ public class FDTable extends FD_DB implements I_FD_Table {
 			.append(FD_SQ).append(NAME_FD_Table_ID).append(FD_SQ).append(",");
 		sql.append(COLUMNNAME_Table_Name).append(" Varchar(100) COMMENT ")
 			.append(FD_SQ).append(NAME_Table_Name).append(FD_SQ).append(",");
+		sql.append(COLUMNNAME_FD_Name).append(" Varchar(100) COMMENT ")
+			.append(FD_SQ).append(NAME_FD_Name).append(FD_SQ).append(",");
 		sql.append(COLUMNNAME_FD_Comment).append(" Text COMMENT ")
 			.append(FD_SQ).append(NAME_FD_Comment).append(FD_SQ).append(",");
+		
 		sql.append(COLUMNNAME_FD_CREATE).append(" DATETIME COMMENT ")
 			.append(FD_SQ).append(NAME_FD_CREATE).append(FD_SQ).append(",");
 		sql.append(COLUMNNAME_FD_CREATED).append(" INT UNSIGNED COMMENT ")

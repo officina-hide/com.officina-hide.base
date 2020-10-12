@@ -63,7 +63,7 @@ public class FD_DB implements I_DB {
 						.append(":3306/")
 						.append(env.getDB_Name());
 				conn = DriverManager.getConnection(url.toString(), env.getDB_User(), env.getDB_Password());
-				System.out.println(new Date() + "Database Connected.");
+				System.out.println(new Date() + " : "+"Database Connected.");
 //				env.getLog().add(env, FD_Logging.TYPE_MESSAGE, FD_Logging.MODE_DEBAG, "Database Connected.");
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
