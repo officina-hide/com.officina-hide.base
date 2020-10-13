@@ -5,6 +5,7 @@ import java.util.Date;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Numbering;
+import com.officina_hide.base.model.X_FD_Numbering;
 
 /**
  * 採番情報クラス<br>
@@ -63,6 +64,25 @@ public class FDNumbering extends FD_DB implements I_FD_Numbering {
 		DBexecute(env, sql.toString());
 		
 		System.out.println(new Date() + " : " + "採番情報テーブル生成完了");
+	}
+
+	/**
+	 * 採番情報登録<br>
+	 * @author officine-hide.com
+	 * @since 1.00 2020/10/13
+	 * @param env 環境情報
+	 * @param numberingId 採番情報ID
+	 * @param tableId テーブル情報ID
+	 * @param initNo 初期値
+	 * @param currentNo 現在値
+	 */
+	public void addData(FD_EnvData env, int numberingId, String tableId, int initNo, int currentNo) {
+		X_FD_Numbering num = new X_FD_Numbering(env);
+		num.setValueByName(env, COLUMNNAME_FD_Numbering_ID, numberingId);
+		num.setValueByName(env, COLUMNNAME_FD_Table_ID, tableId);
+		num.setValueByName(env, COLUMNNAME_Current_Number, currentNo);
+		num.setValueByName(env, COLUMNNAME_Initial_Number, initNo);
+		num.save(env);
 	}
 
 }

@@ -89,5 +89,33 @@ public class FD_DB implements I_DB {
 			}
 		}
 	}
+	public void save(FD_EnvData env, String tableName) {
+		StringBuffer sql = new StringBuffer();
+		StringBuffer setItem = new StringBuffer();
+		
+		//登録日、更新日設定
+		if(itemList.getValueOfItem(COLUMNNAME_FD_CREATE) == null) {
+			itemList.setData(COLUMNNAME_FD_CREATE, new Date());
+			itemList.setData(COLUMNNAME_FD_UPDATE, new Date());
+			itemList.setData(COLUMNNAME_FD_CREATED, env.getLogin_User_ID());
+			itemList.setData(COLUMNNAME_FD_UPDATED, env.getLogin_User_ID());
+		} else {
+			itemList.setData(COLUMNNAME_FD_UPDATE, new Date());
+			itemList.setData(COLUMNNAME_FD_UPDATED, env.getLogin_User_ID());
+		}
+
+		sql.append("INSERT INTO ").append(tableName).append(" SET ");
+		
+		for(String columnName : itemList.getNameList()) {
+			if(setItem.length() > 0) {
+				setItem.append(",");
+			}
+			setItem.append(itemList.getSQLString(columnName));
+		}
+		
+		sql.append(setItem.toString());
+		
+		DBexecute(env, sql.toString());
+	}
 	
 }

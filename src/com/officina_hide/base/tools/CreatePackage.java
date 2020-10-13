@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.model.I_FD_Numbering;
 import com.officina_hide.base.model.I_FD_Table;
 
 /**
@@ -39,6 +40,9 @@ public class CreatePackage {
 		//採番情報構築
 		FDNumbering num = new FDNumbering();
 		num.createTable(env);
+		table.addData(env, I_FD_Numbering.FD_TABLE_ID, I_FD_Numbering.Table_Name
+				, I_FD_Numbering.NAME, I_FD_Numbering.COMMENT);
+		num.addData(env,1000001, I_FD_Numbering.COLUMNNAME_FD_Table_ID, 0, 1000001);
 		
 	}
 
