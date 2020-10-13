@@ -13,9 +13,9 @@ public interface I_FD_Table {
 	
 	//テーブル項目情報
 	/** テーブル情報ID */
-	public final String COLUMNNAME_FD_Table_ID = "FD_Table_ID";
+	public final String COLUMNNAME_FD_Table_ID = Table_Name + "_ID";
 	public final String NAME_FD_Table_ID = "テーブル情報ID";
-	public final String COMMENT_FD_Table_ID = "テーブル情報を設定識別するための情報ID";
+	public final String COMMENT_FD_Table_ID = "テーブル情報を識別するための情報ID";
 	/** テーブル名 */
 	public final String COLUMNNAME_Table_Name = "Table_Name";
 	public final String NAME_Table_Name = "テーブル名";

@@ -1,5 +1,7 @@
 package com.officina_hide.base.tools;
 
+import java.util.Date;
+
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Table;
@@ -57,6 +59,8 @@ public class FDTable extends FD_DB implements I_FD_Table {
 			.append(FD_SQ).append(NAME_FD_UPDATED).append(FD_SQ).append(" ");
 		sql.append(") ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=").append(FD_SQ).append(NAME).append(FD_SQ);
 		DBexecute(env, sql.toString());
+		
+		System.out.println(new Date() + " : " + "テーブル情報テーブル生成完了");
 	}
 
 	/**
