@@ -36,14 +36,14 @@ public class CreatePackage {
 		//テーブル情報構築
 		FDTable table = new FDTable();
 		table.createTable(env);
-		table.addData(env, I_FD_Table.FD_TABLE_ID, I_FD_Table.Table_Name, I_FD_Table.NAME, I_FD_Table.COMMENT);
+		table.addData(env, I_FD_Table.TABLE_ID, I_FD_Table.Table_Name, I_FD_Table.NAME, I_FD_Table.COMMENT);
 		//採番情報構築
 		FDNumbering num = new FDNumbering();
 		num.createTable(env);
-		table.addData(env, I_FD_Numbering.FD_TABLE_ID, I_FD_Numbering.Table_Name
+		table.addData(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.Table_Name
 				, I_FD_Numbering.NAME, I_FD_Numbering.COMMENT);
-		num.addData(env,1000001, I_FD_Numbering.COLUMNNAME_FD_Table_ID, 0, 1000001);
-		
+		num.addData(env,I_FD_Table.TABLE_ID, I_FD_Table.COLUMNNAME_FD_Table_ID, 0, 1000001);
+		num.addData(env,I_FD_Numbering.TABLE_ID, I_FD_Numbering.COLUMNNAME_FD_Table_ID, 0, 1000001);
 	}
 
 }

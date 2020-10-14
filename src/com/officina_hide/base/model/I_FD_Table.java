@@ -9,7 +9,7 @@ public interface I_FD_Table {
 	/** テーブル情報 : テーブル説明 */
 	public final String COMMENT = "テーブルを管理する為の情報";
 	/** テーブル情報 : テーブル情報ID */
-	public final int FD_TABLE_ID = 101;
+	public final int TABLE_ID = 101;
 	
 	//テーブル項目情報
 	/** テーブル情報ID */
