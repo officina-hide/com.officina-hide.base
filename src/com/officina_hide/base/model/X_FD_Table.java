@@ -37,20 +37,20 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 		itemList.add(COLUMNNAME_FD_UPDATE, null, COLUMNTYPE_FD_Date);
 		itemList.add(COLUMNNAME_FD_UPDATED, null, COLUMNTYPE_FD_Information_ID);
 	}
-
-	/**
-	 * 項目リストセット<br>
-	 * <p>項目リストの指定された項目名を持つ情報に対して、指定された項目情報をセットする。</p>
-	 * @param env 環境情報
-	 * @param columnName テーブル項目名
-	 * @param columnData テーブル項目情報
-	 */
-	public void setValueByName(FD_EnvData env, String columnName, Object columnData) {
-		if(itemList.setData(columnName, columnData) == false) {
-			System.out.println(new Date()+" : "+"Column Name Not Found!! ["+columnName+"]");
-			new Exception();
-		}
-	}
+//
+//	/**
+//	 * 項目リストセット<br>
+//	 * <p>項目リストの指定された項目名を持つ情報に対して、指定された項目情報をセットする。</p>
+//	 * @param env 環境情報
+//	 * @param columnName テーブル項目名
+//	 * @param columnData テーブル項目情報
+//	 */
+//	public void setValueByName(FD_EnvData env, String columnName, Object columnData) {
+//		if(itemList.setData(columnName, columnData) == false) {
+//			System.out.println(new Date()+" : "+"Column Name Not Found!! ["+columnName+"]");
+//			new Exception();
+//		}
+//	}
 
 	/**
 	 * 情報保存<br>

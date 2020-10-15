@@ -47,6 +47,8 @@ public class CreatePackage {
 		//リファレンス情報構築
 		FDReference ref = new FDReference();
 		ref.createDBTable(env);
+		ref.addColumnTypeReference(env);
+		
 	}
 
 }

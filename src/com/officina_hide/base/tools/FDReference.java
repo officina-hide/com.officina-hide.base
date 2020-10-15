@@ -5,6 +5,7 @@ import java.util.Date;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Referecne;
+import com.officina_hide.base.model.X_FD_Reference;
 
 /**
  * リファレンス情報クラス<br>
@@ -46,8 +47,42 @@ public class FDReference extends FD_DB implements I_FD_Referecne {
 		sql.append(") ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=").append(FD_SQ).append(NAME).append(FD_SQ);
 		DBexecute(env, sql.toString());
 		
+		//テーブル情報登録
+		FDTable table = new FDTable();
+		table.addData(env, TABLE_ID, Table_Name, NAME, COMMENT);
+		
+		//採番情報登録
+		FDNumbering num = new FDNumbering();
+		num.addData(env, TABLE_ID, COLUMNNAME_FD_Reference_ID, 0, 1000001);
+		
 		System.out.println(new Date() + " : " + NAME + "テーブル生成完了");
 
+	}
+
+	/**
+	 * テーブル項目情報用リファレンス情報登録<br>
+	 * @author officine-hide.com
+	 * @since 1.00 2020/10/15
+	 * @param env 環境情報
+	 */
+	public void addColumnTypeReference(FD_EnvData env) {
+		addData(env, COLUMNTYPE_FD_Information_ID, COLUMNYPENAME_FD_Information_ID);
+	}
+
+	/**
+	 * リファレンス情報登録<br>
+	 * @author officine-hide.com
+	 * @since 1.00 2020/10/15
+	 * @param env 環境情報
+	 * @param referenceName リファレンス名
+	 * @param name リファレンス表示名
+	 */
+	public void addData(FD_EnvData env, String referenceName, String name) {
+		X_FD_Reference ref = new X_FD_Reference(env);
+		ref.setValueByName(env, COLUMNNAME_FD_Reference_ID, 0);
+		ref.setValueByName(env, COLUMNNAME_Reference_Name, referenceName);
+		ref.setValueByName(env, COLUMNNAME_FD_Name, name);
+		ref.save(env);
 	}
 
 }

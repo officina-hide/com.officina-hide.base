@@ -89,9 +89,35 @@ public class FD_DB implements I_DB {
 			}
 		}
 	}
+
+	/**
+	 * 項目リストセット<br>
+	 * <p>項目リストの指定された項目名を持つ情報に対して、指定された項目情報をセットする。</p>
+	 * @author officine-hide.com
+	 * @since 1.00 2020/10/15
+	 * @param env 環境情報
+	 * @param columnName テーブル項目名
+	 * @param columnData テーブル項目情報
+	 */
+	public void setValueByName(FD_EnvData env, String columnName, Object columnData) {
+		if(itemList.setData(columnName, columnData) == false) {
+			System.out.println(new Date()+" : "+"Column Name Not Found!! ["+columnName+"]");
+			new Exception();
+		}
+	}
+	
+	/**
+	 * 情報保存<br>
+	 * @author officine-hide.com
+	 * @since 1.00 2020/10/15
+	 * @param env 環境情報
+	 * @param tableName テーブル名
+	 */
 	public void save(FD_EnvData env, String tableName) {
 		StringBuffer sql = new StringBuffer();
 		StringBuffer setItem = new StringBuffer();
+		
+		//情報IDチェック
 		
 		//登録日、更新日設定
 		if(itemList.getValueOfItem(COLUMNNAME_FD_CREATE) == null) {

@@ -34,6 +34,7 @@ public interface I_DB {
 	
 	/** 項目種別 : 情報ID */
 	public static final String COLUMNTYPE_FD_Information_ID = "FD_Information_ID";
+	public static final String COLUMNYPENAME_FD_Information_ID = "情報ID";
 	/** 項目種別 : テキスト */
 	public static final String COLUMNTYPE_FD_Text = "FD_Text";
 	/** 項目種別 : 複数行テキスト */

@@ -72,10 +72,17 @@ public class FD_Items {
 
 	/**
 	 * 項目データ取得<br>
+	 * @author officine-hide.com
+	 * @since 1.00 2020/10/15
 	 * @param columnName 項目名
-	 * @return
+	 * @return 項目情報
 	 */
 	public Object getValueOfItem(String columnName) {
+		for(FD_Item item : itemList) {
+			if(item.getItemName().equals(columnName)) {
+				return item.getItemData();
+			}
+		}
 		return null;
 	}
 
