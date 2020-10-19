@@ -26,7 +26,7 @@ public interface I_FD_Numbering {
 	public final String NAME_FD_Table_ID = "テーブル情報ID";
 	public final String COMMENT_FD_Table_ID = "採番の対象となるテーブル情報の情報ID";
 	/** 現在値 */
-	public final String COLUMNNAME_Current_Number = "Corrnet_Number";
+	public final String COLUMNNAME_Current_Number = "Current_Number";
 	public final String NAME_Current_Number = "現在値";
 	public final String COMMENT_Current_Number = "使用されている最大の値";
 	/** 初期値 */

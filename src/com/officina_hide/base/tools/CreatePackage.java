@@ -42,8 +42,8 @@ public class CreatePackage {
 		num.createTable(env);
 		table.addData(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.Table_Name
 				, I_FD_Numbering.NAME, I_FD_Numbering.COMMENT);
-		num.addData(env,I_FD_Table.TABLE_ID, I_FD_Table.COLUMNNAME_FD_Table_ID, 0, 1000001);
-		num.addData(env,I_FD_Numbering.TABLE_ID, I_FD_Numbering.COLUMNNAME_FD_Table_ID, 0, 1000001);
+		num.addData(env,I_FD_Table.TABLE_ID, I_FD_Table.TABLE_ID, 0, 1000001);
+		num.addData(env,I_FD_Numbering.TABLE_ID, I_FD_Numbering.TABLE_ID, 0, 1000001);
 		//リファレンス情報構築
 		FDReference ref = new FDReference();
 		ref.createDBTable(env);

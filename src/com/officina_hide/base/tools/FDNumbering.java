@@ -76,7 +76,7 @@ public class FDNumbering extends FD_DB implements I_FD_Numbering {
 	 * @param initNo 初期値
 	 * @param currentNo 現在値
 	 */
-	public void addData(FD_EnvData env, int numberingId, String tableId, int initNo, int currentNo) {
+	public void addData(FD_EnvData env, int numberingId, int tableId, int currentNo, int initNo) {
 		X_FD_Numbering num = new X_FD_Numbering(env);
 		num.setValueByName(env, COLUMNNAME_FD_Numbering_ID, numberingId);
 		num.setValueByName(env, COLUMNNAME_FD_Table_ID, tableId);

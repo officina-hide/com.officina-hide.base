@@ -53,7 +53,7 @@ public class FDReference extends FD_DB implements I_FD_Referecne {
 		
 		//採番情報登録
 		FDNumbering num = new FDNumbering();
-		num.addData(env, TABLE_ID, COLUMNNAME_FD_Reference_ID, 0, 1000001);
+		num.addData(env, TABLE_ID, TABLE_ID, 0, 1000001);
 		
 		System.out.println(new Date() + " : " + NAME + "テーブル生成完了");
 
@@ -66,7 +66,13 @@ public class FDReference extends FD_DB implements I_FD_Referecne {
 	 * @param env 環境情報
 	 */
 	public void addColumnTypeReference(FD_EnvData env) {
-		addData(env, COLUMNTYPE_FD_Information_ID, COLUMNYPENAME_FD_Information_ID);
+		addData(env, COLUMNTYPE_FD_Information_ID, COLUMNTYPENAME_FD_Information_ID);
+		addData(env, COLUMNTYPE_FD_Text, COLUMNTYPENAMEFD_Field_Text);
+		addData(env, COLUMNTYPE_FD_Field_Text, COLUMNTYPENAMEFD_Field_Text);
+		addData(env, COLUMNTYPENAMEFD_FD_Date, COLUMNTYPENAMEFD_FD_Date);
+		addData(env, COLUMNTYPE_FD_Number, COLUMNTYPENAMEFD_FD_Number);
+		addData(env, COLUMNTYPE_FD_YesNo, COLUMNTYPENAMEFD_FD_YesNo);
+		addData(env, COLUMNTYPE_FD_List, COLUMNTYPENAME_FD_List);
 	}
 
 	/**

@@ -122,4 +122,19 @@ public class FD_Items {
 		return sql.toString();
 	}
 
+	/**
+	 * 項目情報取得<br>
+	 * <p>指定された項目名を持つ項目情報を抽出する。</p>
+	 * @param itemName 項目名
+	 * @return 項目情報
+	 */
+	public FD_Item getItemByName(String itemName) {
+		for(FD_Item item : itemList) {
+			if(item.getItemName().equals(itemName)) {
+				return item;
+			}
+		}
+		return null;
+	}
+
 }
