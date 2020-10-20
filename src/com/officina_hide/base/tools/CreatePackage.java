@@ -33,6 +33,10 @@ public class CreatePackage {
 			e.printStackTrace();
 		}
 		
+		//ログ情報構築
+		FDLog log = new FDLog();
+		log.createTable(env);
+		
 		//テーブル情報構築
 		FDTable table = new FDTable();
 		table.createTable(env);
