@@ -37,19 +37,19 @@ public interface I_DB {
 	public static final String COLUMNTYPENAME_FD_Information_ID = "情報ID";
 	/** 項目種別 : テキスト */
 	public static final String COLUMNTYPE_FD_Text = "FD_Text";
-	public static final String COLUMNTYPENAMEFD_Text = "テキスト";
+	public static final String COLUMNTYPENAME_FD_Text = "テキスト";
 	/** 項目種別 : 複数行テキスト */
 	public static final String COLUMNTYPE_FD_Field_Text = "FD_Field_Text";
-	public static final String COLUMNTYPENAMEFD_Field_Text = "複数行テキスト";
+	public static final String COLUMNTYPENAME_FD_Field_Text = "複数行テキスト";
 	/** 項目種別 : 日付 */
 	public static final String COLUMNTYPE_FD_Date = "FD_Date";
-	public static final String COLUMNTYPENAMEFD_FD_Date = "日付";
+	public static final String COLUMNTYPENAME_FD_FD_Date = "日付";
 	/** 項目種別 : 自然数 */
 	public static final String COLUMNTYPE_FD_Number = "FD_Number";
-	public static final String COLUMNTYPENAMEFD_FD_Number = "自然数";
+	public static final String COLUMNTYPENAME_FD_FD_Number = "自然数";
 	/** 項目種別 : YESNO */
 	public static final String COLUMNTYPE_FD_YesNo = "FD_YesNo";
-	public static final String COLUMNTYPENAMEFD_FD_YesNo = "YESNO";
+	public static final String COLUMNTYPENAME_FD_FD_YesNo = "YESNO";
 	/** 項目種別 : リスト */
 	public static final String COLUMNTYPE_FD_List = "FD_List";
 	public static final String COLUMNTYPENAME_FD_List = "リスト";
