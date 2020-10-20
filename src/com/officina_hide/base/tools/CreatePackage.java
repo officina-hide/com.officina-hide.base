@@ -48,7 +48,9 @@ public class CreatePackage {
 		FDReference ref = new FDReference();
 		ref.createDBTable(env);
 		ref.addColumnTypeReference(env);
-		
+		//テーブル項目情報構築
+		FDTableColumn column = new FDTableColumn();
+		column.createTable(env);
 	}
 
 }
