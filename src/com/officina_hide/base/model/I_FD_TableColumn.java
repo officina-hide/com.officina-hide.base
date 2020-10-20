@@ -1,4 +1,4 @@
-package com.officina_hide.base.tools;
+package com.officina_hide.base.model;
 
 /**
  * テーブル項目情報インターフェース

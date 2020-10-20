@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
+import com.officina_hide.base.model.I_FD_TableColumn;
 
 /**
  * テーブル項目情報クラス
