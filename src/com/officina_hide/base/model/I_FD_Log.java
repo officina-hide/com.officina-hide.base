@@ -35,4 +35,12 @@ public interface I_FD_Log {
 	public final String COLUMNNAME_Log_Data = "Log_Data";
 	public final String NAME_Log_Data = "ログ内容";
 	public final String COMMENT_Log_Data = "ログの内容を格納する。";
+	
+	//ログ種別
+	/** DB */
+	public final int LOGTYPE_Info_ID = 201;
+	public final int LOGTYPE_DB_ID = 202;
+	
+	//ログ情報ID初期値
+	public final int INITIAL_LOG_ID = 10000001;
 }

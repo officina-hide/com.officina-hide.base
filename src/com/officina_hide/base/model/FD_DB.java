@@ -150,9 +150,8 @@ public class FD_DB implements I_DB {
 			}
 			setItem.append(itemList.getSQLString(columnName));
 		}
-		
 		sql.append(setItem.toString());
-		
+
 		DBexecute(env, sql.toString());
 	}
 
@@ -200,5 +199,20 @@ public class FD_DB implements I_DB {
 		}
 		
 		return tableId;
+	}
+
+	/**
+	 * エスケープ処理<br>
+	 * <p>SQLインジェクション対策の為、指定されたデータのコードを表示するエスケープ処理する。</p>
+	 * @author officine-hide.com
+	 * @since 1.00 2020/10/20
+	 * @param data 処理対象情報
+	 * @return エスケープ処理済情報
+	 */
+	public String changeEscape(String data) {
+		String out = data;
+		out = out.replaceAll("\'", "\"");
+		out = out.replaceAll("\\\\", "\\\\\\\\");
+		return out;
 	}
 }
