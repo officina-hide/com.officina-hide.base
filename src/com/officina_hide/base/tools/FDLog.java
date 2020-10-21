@@ -36,12 +36,12 @@ public class FDLog extends FD_DB implements I_FD_Log {
 	 * @param env 環境情報
 	 */
 	private void createDBTable(FD_EnvData env) {
-		StringBuffer sql = new StringBuffer();
+		StringBuffer sqlDrop = new StringBuffer();
 		//既に登録されているログ情報を削除する。
-		sql.append("DROP TABLE IF EXISTS ").append(Table_Name);
-		DBexecute(env, sql.toString());
+		sqlDrop.append("DROP TABLE IF EXISTS ").append(Table_Name);
+		DBexecute(env, sqlDrop.toString());
 		//ログ情報テーブル構築
-		sql = new StringBuffer();
+		StringBuffer sql = new StringBuffer();
 		sql.append("CREATE TABLE IF NOT EXISTS ").append(Table_Name).append(" (");
 		sql.append(COLUMNNAME_FD_Log_ID).append(" INT UNSIGNED NOT NULL PRIMARY KEY COMMENT ")
 			.append(FD_SQ).append(NAME_FD_Log_ID).append(FD_SQ).append(",");
@@ -62,6 +62,7 @@ public class FDLog extends FD_DB implements I_FD_Log {
 		DBexecute(env, sql.toString());
 		
 		//ログ情報の構築をログ情報に登録する。
+		addLog(env, LOGTYPE_DB_ID, changeEscape(sqlDrop.toString()));
 		addLog(env, LOGTYPE_DB_ID, changeEscape(sql.toString()));
 		
 		System.out.println(new Date() + " : " + NAME + "テーブル生成完了");
@@ -101,7 +102,9 @@ public class FDLog extends FD_DB implements I_FD_Log {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql.toString());
 			if(rs.next()) {
-				logId = rs.getInt("Max(FD_Log_ID)") + 1;
+				if(rs.getInt("Max(FD_Log_ID)") > 0) {
+					logId = rs.getInt("Max(FD_Log_ID)") + 1;
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
