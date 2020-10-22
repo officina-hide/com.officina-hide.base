@@ -29,6 +29,14 @@ public interface I_FD_TableColumn {
 	public final String COLUMNNAME_TableColumn_Name = "Talbe_Name";
 	public final String NAME_TableColumn_Name = "テーブル項目名";
 	public final String COMMENT_TableColumn_Name = "テーブル項目を識別する際に使用する名称";
+	/** テーブル項目表示名 */
+	public final String COLUMNNAME_FD_Name = "FD_Name";
+	public final String NAME_FD_Name = "テーブル項目表示名";
+	public final String COMMENT_FD_Name = "テーブル項目の論理名";
+	/** テーブル項目説明 */
+	public final String COLUMNNAME_FD_Comment = "FD_Comment";
+	public final String NAME_FD_Comment = "テーブル項目説明";
+	public final String COMMENT_FD_Comment = "テーブル項目の説明";
 	/** テーブル項目属性ID */
 	public final String COLUMNNAME_TableColumn_Type_ID = "TableColumn_Type_ID";
 	public final String NAME_TableColumn_Type_ID = "テーブル項目属性ID";

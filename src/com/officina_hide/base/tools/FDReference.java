@@ -66,13 +66,13 @@ public class FDReference extends FD_DB implements I_FD_Referecne {
 	 * @param env 環境情報
 	 */
 	public void addColumnTypeReference(FD_EnvData env) {
-		addData(env, COLUMNTYPE_FD_Information_ID, COLUMNTYPENAME_FD_Information_ID);
-		addData(env, COLUMNTYPE_FD_Text, COLUMNTYPENAME_FD_Field_Text);
-		addData(env, COLUMNTYPE_FD_Field_Text, COLUMNTYPENAME_FD_Field_Text);
-		addData(env, COLUMNTYPENAME_FD_FD_Date, COLUMNTYPENAME_FD_FD_Date);
-		addData(env, COLUMNTYPE_FD_Number, COLUMNTYPENAME_FD_FD_Number);
-		addData(env, COLUMNTYPE_FD_YesNo, COLUMNTYPENAME_FD_FD_YesNo);
-		addData(env, COLUMNTYPE_FD_List, COLUMNTYPENAME_FD_List);
+		addData(env, COLUMNTYPE_ID_FD_Information_ID, COLUMNTYPE_FD_Information_ID, COLUMNTYPENAME_FD_Information_ID);
+		addData(env, COLUMNTYPE_ID_FD_Text, COLUMNTYPE_FD_Text, COLUMNTYPENAME_FD_Field_Text);
+		addData(env, COLUMNTYPE_ID_FD_Field_Text, COLUMNTYPE_FD_Field_Text, COLUMNTYPENAME_FD_Field_Text);
+		addData(env, COLUMNTYPE_ID_FD_Date, COLUMNTYPE_FD_Date, COLUMNTYPENAME_FD_Date);
+		addData(env, COLUMNTYPE_ID_FD_Number, COLUMNTYPE_FD_Number, COLUMNTYPE_FD_Number);
+		addData(env, COLUMNTYPE_ID_FD_YesNo, COLUMNTYPE_FD_YesNo, COLUMNTYPENAME_FD_YesNo);
+		addData(env, COLUMNTYPE_ID_FD_List, COLUMNTYPE_FD_List, COLUMNTYPENAME_FD_List);
 	}
 
 	/**
@@ -80,12 +80,13 @@ public class FDReference extends FD_DB implements I_FD_Referecne {
 	 * @author officine-hide.com
 	 * @since 1.00 2020/10/15
 	 * @param env 環境情報
+	 * @param referenceId リファレンスId
 	 * @param referenceName リファレンス名
 	 * @param name リファレンス表示名
 	 */
-	public void addData(FD_EnvData env, String referenceName, String name) {
+	public void addData(FD_EnvData env, int referenceId, String referenceName, String name) {
 		X_FD_Reference ref = new X_FD_Reference(env);
-		ref.setValueByName(env, COLUMNNAME_FD_Reference_ID, 0);
+		ref.setValueByName(env, COLUMNNAME_FD_Reference_ID, referenceId);
 		ref.setValueByName(env, COLUMNNAME_Reference_Name, referenceName);
 		ref.setValueByName(env, COLUMNNAME_FD_Name, name);
 		ref.save(env);

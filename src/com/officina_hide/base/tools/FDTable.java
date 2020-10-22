@@ -82,4 +82,16 @@ public class FDTable extends FD_DB implements I_FD_Table {
 		table.save(env);
 	}
 
+	/**
+	 * テーブル項目情報登録
+	 * @author officine-hide.com
+	 * @since 1.00 2020/10/22
+	 * @param env 環境情報
+	 */
+	public void addTableColumn(FD_EnvData env) {
+		FDTableColumn column = new FDTableColumn();
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Table_ID, NAME_FD_Table_ID, COMMENT_FD_Table_ID
+				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 10, true, true);
+	}
+
 }

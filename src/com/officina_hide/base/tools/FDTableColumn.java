@@ -5,6 +5,7 @@ import java.util.Date;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_TableColumn;
+import com.officina_hide.base.model.X_FD_TableColumn;
 
 /**
  * テーブル項目情報クラス
@@ -75,6 +76,29 @@ public class FDTableColumn extends FD_DB implements I_FD_TableColumn {
 		DBexecute(env, sql.toString());
 		
 		System.out.println(new Date() + " : " + NAME +"テーブル生成完了");
+	}
+
+	/**
+	 * テーブル項目情報登録<br>
+	 * @author officine-hide.com
+	 * @since 1.00 2020/10/22
+	 * @param env 環境情報
+	 * @param columnId テーブル項目情報ID
+	 * @param tableId テーブル情報ID
+	 * @param columnName テーブル項目名
+	 * @param name テーブル項目表示名
+	 * @param comment テーブル項目説明
+	 * @param typeId テーブル項目属性ID
+	 * @param defaultData 初期値
+	 * @param size 桁数
+	 * @param sortOrder 並び順
+	 * @param idNull notNull判定
+	 * @param isPrimary PrimaryKey判定
+	 */
+	public void addData(FD_EnvData env, int columnId, int tableId, String columnName, String name,
+			String comment, int typeId, String defaultData, int size, int sortOrder, boolean idNull, boolean isPrimary) {
+		X_FD_TableColumn column = new X_FD_TableColumn(env);
+		column.setValueByName(env, COLUMNNAME_FD_TableColumn_ID, columnId);
 	}
 
 }

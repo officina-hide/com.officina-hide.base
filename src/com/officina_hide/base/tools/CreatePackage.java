@@ -55,6 +55,8 @@ public class CreatePackage {
 		//テーブル項目情報構築
 		FDTableColumn column = new FDTableColumn();
 		column.createTable(env);
+		//テーブル項目情報登録
+		table.addTableColumn(env);
 	}
 
 }
