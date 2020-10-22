@@ -91,7 +91,7 @@ public class FDTable extends FD_DB implements I_FD_Table {
 	public void addTableColumn(FD_EnvData env) {
 		FDTableColumn column = new FDTableColumn();
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Table_ID, NAME_FD_Table_ID, COMMENT_FD_Table_ID
-				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 10, true, true);
+				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 10, "Y", "Y");
 	}
 
 }

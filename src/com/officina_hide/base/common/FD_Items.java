@@ -103,6 +103,7 @@ public class FD_Items {
 					switch(item.getItemType()) {
 					case I_DB.COLUMNTYPE_FD_Text:
 					case I_DB.COLUMNTYPE_FD_Field_Text:
+					case I_DB.COLUMNTYPE_FD_YesNo:
 						sql.append(item.getItemName()).append(" = ")
 							.append(I_DB.FD_SQ).append(item.getStringOfValue()).append(I_DB.FD_SQ);
 						break;

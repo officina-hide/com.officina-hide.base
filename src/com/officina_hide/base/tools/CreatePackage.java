@@ -6,6 +6,7 @@ import java.io.IOException;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.I_FD_Numbering;
 import com.officina_hide.base.model.I_FD_Table;
+import com.officina_hide.base.model.I_FD_TableColumn;
 
 /**
  * パッケージ構築クラス<br>
@@ -55,6 +56,9 @@ public class CreatePackage {
 		//テーブル項目情報構築
 		FDTableColumn column = new FDTableColumn();
 		column.createTable(env);
+		table.addData(env, I_FD_TableColumn.TABLE_ID, I_FD_TableColumn.Table_Name
+				, I_FD_TableColumn.NAME, I_FD_TableColumn.COMMENT);
+		num.addData(env,I_FD_TableColumn.TABLE_ID, I_FD_TableColumn.TABLE_ID, 0, 1000001);
 		//テーブル項目情報登録
 		table.addTableColumn(env);
 	}

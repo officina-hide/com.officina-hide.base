@@ -47,6 +47,10 @@ public class FDTableColumn extends FD_DB implements I_FD_TableColumn {
 			.append(FD_SQ).append(NAME_FD_Table_ID).append(FD_SQ).append(",");
 		sql.append(COLUMNNAME_TableColumn_Name).append(" VARCHAR(100) COMMENT ")
 			.append(FD_SQ).append(NAME_TableColumn_Name).append(FD_SQ).append(",");
+		sql.append(COLUMNNAME_FD_Name).append(" VARCHAR(100) ")
+			.append(" COMMENT ").append(FD_SQ).append(NAME_FD_Name).append(FD_SQ).append(",");
+		sql.append(COLUMNNAME_FD_Comment).append(" TEXT ")
+			.append(" COMMENT ").append(FD_SQ).append(NAME_FD_Comment).append(FD_SQ).append(",");
 		sql.append(COLUMNNAME_TableColumn_Type_ID).append(" INT UNSIGNED COMMENT ")
 			.append(FD_SQ).append(NAME_TableColumn_Type_ID).append(FD_SQ).append(",");
 		sql.append(COLUMNNAME_TableColumn_Size).append(" INT UNSIGNED COMMENT ")
@@ -96,9 +100,20 @@ public class FDTableColumn extends FD_DB implements I_FD_TableColumn {
 	 * @param isPrimary PrimaryKey判定
 	 */
 	public void addData(FD_EnvData env, int columnId, int tableId, String columnName, String name,
-			String comment, int typeId, String defaultData, int size, int sortOrder, boolean idNull, boolean isPrimary) {
+			String comment, int typeId, String defaultData, int size, int sortOrder, String isNull, String isPrimary) {
 		X_FD_TableColumn column = new X_FD_TableColumn(env);
 		column.setValueByName(env, COLUMNNAME_FD_TableColumn_ID, columnId);
+		column.setValueByName(env, COLUMNNAME_FD_Table_ID, tableId);
+		column.setValueByName(env, COLUMNNAME_TableColumn_Name, columnName);
+		column.setValueByName(env, COLUMNNAME_FD_Name, name);
+		column.setValueByName(env, COLUMNNAME_FD_Comment, comment);
+		column.setValueByName(env, COLUMNNAME_TableColumn_Type_ID, typeId);
+		column.setValueByName(env, COLUMNNAME_Defualt_Data, defaultData);
+		column.setValueByName(env, COLUMNNAME_TableColumn_Size, size);
+		column.setValueByName(env, COLUMNNAME_Column_Sort_Order, sortOrder);
+		column.setValueByName(env, COLUMNNAME_Is_Null, isNull);
+		column.setValueByName(env, COLUMNNAME_Is_Primary, isPrimary);
+		column.save(env);
 	}
 
 }
