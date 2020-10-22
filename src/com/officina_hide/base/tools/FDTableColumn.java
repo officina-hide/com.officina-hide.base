@@ -44,8 +44,24 @@ public class FDTableColumn extends FD_DB implements I_FD_TableColumn {
 			.append(FD_SQ).append(NAME_FD_TableColumn_ID).append(FD_SQ).append(",");
 		sql.append(COLUMNNAME_FD_Table_ID).append(" INT UNSIGNED COMMENT ")
 			.append(FD_SQ).append(NAME_FD_Table_ID).append(FD_SQ).append(",");
-		sql.append(COMMENT_TableColumn_Name).append(" VARCHAR(100) COMMENT ")
+		sql.append(COLUMNNAME_TableColumn_Name).append(" VARCHAR(100) COMMENT ")
 			.append(FD_SQ).append(NAME_TableColumn_Name).append(FD_SQ).append(",");
+		sql.append(COLUMNNAME_TableColumn_Type_ID).append(" INT UNSIGNED COMMENT ")
+			.append(FD_SQ).append(NAME_TableColumn_Type_ID).append(FD_SQ).append(",");
+		sql.append(COLUMNNAME_TableColumn_Size).append(" INT UNSIGNED COMMENT ")
+			.append(FD_SQ).append(NAME_TableColumn_Size).append(FD_SQ).append(",");
+		sql.append(COLUMNNAME_Defualt_Data).append(" VARCHAR(100) COMMENT ")
+			.append(FD_SQ).append(NAME_Defualt_Data).append(FD_SQ).append(",");
+		sql.append(COLUMNNAME_Column_Sort_Order).append(" INT UNSIGNED COMMENT ")
+			.append(FD_SQ).append(NAME_Column_Sort_Order).append(FD_SQ).append(",");
+		sql.append(COLUMNNAME_Is_Null).append(" ENUM (")
+			.append(FD_SQ).append("Y").append(FD_SQ).append(",")
+			.append(FD_SQ).append("N").append(FD_SQ).append(")  ")
+			.append("COMMENT ").append(FD_SQ).append(NAME_Is_Null).append(FD_SQ).append(",");
+		sql.append(COLUMNNAME_Is_Primary).append(" ENUM(")
+			.append(FD_SQ).append("Y").append(FD_SQ).append(",")
+			.append(FD_SQ).append("N").append(FD_SQ).append(")  ")
+			.append("COMMENT ").append(FD_SQ).append(NAME_Is_Primary).append(FD_SQ).append(",");
 		
 		sql.append(COLUMNNAME_FD_CREATE).append(" DATETIME COMMENT ")
 			.append(FD_SQ).append(NAME_FD_CREATE).append(FD_SQ).append(",");
