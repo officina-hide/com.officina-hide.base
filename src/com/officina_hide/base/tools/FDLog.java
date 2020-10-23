@@ -61,11 +61,12 @@ public class FDLog extends FD_DB implements I_FD_Log {
 		sql.append(") ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=").append(FD_SQ).append(NAME).append(FD_SQ);
 		DBexecute(env, sql.toString());
 		
+		System.out.println(new Date() + " : " + NAME + "テーブル生成完了");
+
 		//ログ情報の構築をログ情報に登録する。
 		addLog(env, LOGTYPE_DB_ID, changeEscape(sqlDrop.toString()));
 		addLog(env, LOGTYPE_DB_ID, changeEscape(sql.toString()));
 		
-		System.out.println(new Date() + " : " + NAME + "テーブル生成完了");
 	}
 
 	/**
