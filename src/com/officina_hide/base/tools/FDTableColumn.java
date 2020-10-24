@@ -116,4 +116,21 @@ public class FDTableColumn extends FD_DB implements I_FD_TableColumn {
 		column.save(env);
 	}
 
+	/**
+	 * テーブル項目のテーブル項目情報登録<br>
+	 * @author officine-hide.com
+	 * @since 1.00 2020/10/24
+	 * @param env 環境情報
+	 */
+	public void addTableColumn(FD_EnvData env) {
+		addData(env, 0, TABLE_ID, COLUMNNAME_FD_CREATE, NAME_FD_CREATE, COMMENT_FD_CREATE
+				, COLUMNTYPE_ID_FD_Date, null, 0, 900, "N", "N");
+		addData(env, 0, TABLE_ID, COLUMNNAME_FD_CREATED, NAME_FD_CREATED, COMMENT_FD_CREATED
+				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 910, "N", "N");
+		addData(env, 0, TABLE_ID, COLUMNNAME_FD_UPDATE, NAME_FD_UPDATE, COMMENT_FD_UPDATE
+				, COLUMNTYPE_ID_FD_Date, null, 0, 920, "N", "N");
+		addData(env, 0, TABLE_ID, COLUMNNAME_FD_UPDATED, NAME_FD_UPDATED, COMMENT_FD_UPDATED
+				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 930, "N", "N");
+	}
+
 }

@@ -17,7 +17,7 @@ public class FD_Items {
 	/** 項目リスト */
 	protected List<FD_Item> itemList = new ArrayList<>();
 	/** 日付フォーマッ */
-	protected SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	protected SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
 	/**
 	 * 項目リストクリア<br>
@@ -113,7 +113,7 @@ public class FD_Items {
 						break;
 					case I_DB.COLUMNTYPE_FD_Date:
 						sql.append(item.getItemName()).append(" = ")
-							.append(I_DB.FD_SQ).append(dateFormat.format(item.getDateOfValue().getTime())).append(I_DB.FD_SQ);
+							.append(I_DB.FD_SQ).append(df.format(item.getDateOfValue().getTime())).append(I_DB.FD_SQ);
 						break;
 					}
 				}

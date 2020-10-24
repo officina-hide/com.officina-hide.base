@@ -162,6 +162,8 @@ public class FD_DB implements I_DB {
 		}
 		sql.append(setItem.toString());
 
+		addLog(env, I_FD_Log.LOGTYPE_Data_Update, changeEscape(sql.toString()));
+		
 		DBexecute(env, sql.toString());
 	}
 
@@ -224,5 +226,72 @@ public class FD_DB implements I_DB {
 		out = out.replaceAll("\'", "\'\'");
 		out = out.replaceAll("\\\\", "\\\\\\\\");
 		return out;
+	}
+
+	/**
+	 * ログ情報追加<br>
+	 * @param env
+	 * @param logTypeId
+	 * @param logData
+	 */
+	public void addLog(FD_EnvData env, int logTypeId, String logData) {
+		/*
+		 * ログ情報の追加はDBExecuteメソッドを利用せず、循環処理を避けるために、直接ここでInsertを行う。
+		 */
+		Statement stmt = null;
+		StringBuffer sql = new StringBuffer();
+		int logId = getNewLogId(env);
+		try {
+			sql.append("INSERT INTO ").append(I_FD_Log.Table_Name).append(" SET ");
+			sql.append(I_FD_Log.COLUMNNAME_FD_Log_ID).append(" = ").append(logId).append(",");
+			sql.append(I_FD_Log.COLUMNNAME_Log_Type_ID).append(" = ").append(logTypeId).append(",");
+			sql.append(I_FD_Log.COLUMNNAME_Log_Data).append(" = ").append(FD_SQ).append(logData).append(FD_SQ).append(",");
+			sql.append(COLUMNNAME_FD_CREATE).append(" = ")
+				.append(FD_SQ).append(dateFormat.format(new Date().getTime())).append(FD_SQ).append(",");
+			sql.append(COLUMNNAME_FD_CREATED).append(" = ").append(env.getLogin_User_ID()).append(",");
+			sql.append(COLUMNNAME_FD_UPDATE).append(" = ")
+				.append(FD_SQ).append(dateFormat.format(new Date().getTime())).append(FD_SQ).append(",");
+			sql.append(COLUMNNAME_FD_UPDATED).append(" = ").append(env.getLogin_User_ID()).append(" ");
+			
+			connection(env);
+			stmt = conn.createStatement();
+			stmt.executeUpdate(sql.toString());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+		}
+	}
+
+	/**
+	 * 新規ログ情報ID取得<br>
+	 * <p>ログ情報IDは他の情報IDと違って採番情報から取得せずに、初期値からの増分で独自に付与する。</p>
+	 * @author officine-hide.com
+	 * @since 1.00 2020/10/20
+	 * @param env 環境情報
+	 * @return 新規ログ情報ID
+	 */
+	private int getNewLogId(FD_EnvData env) {
+		int logId = I_FD_Log.INITIAL_LOG_ID;
+		Statement stmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT MAX(FD_Log_ID) FROM FD_Log ");
+			connection(env);
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql.toString());
+			if(rs.next()) {
+				if(rs.getInt("Max(FD_Log_ID)") > 0) {
+					logId = rs.getInt("Max(FD_Log_ID)") + 1;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(stmt, rs);
+		}
+		
+		return logId;
 	}
 }

@@ -64,6 +64,7 @@ public class CreatePackage {
 		num.addData(env,I_FD_TableColumn.TABLE_ID, I_FD_TableColumn.TABLE_ID, 0, 1000001);
 		//テーブル項目情報登録
 		table.addTableColumn(env);
+		column.addTableColumn(env);
 	}
 
 }
