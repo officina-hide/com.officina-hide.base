@@ -8,7 +8,6 @@ import java.util.Date;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Log;
-import com.officina_hide.base.model.X_FD_Log;
 
 /**
  * ログ情報クラス<br>
@@ -64,8 +63,8 @@ public class FDLog extends FD_DB implements I_FD_Log {
 		System.out.println(new Date() + " : " + NAME + "テーブル生成完了");
 
 		//ログ情報の構築をログ情報に登録する。
-		addLog(env, LOGTYPE_DB_ID, changeEscape(sqlDrop.toString()));
-		addLog(env, LOGTYPE_DB_ID, changeEscape(sql.toString()));
+		addLog(env, LOGTYPE_DB_Drop_ID, changeEscape(sqlDrop.toString()));
+		addLog(env, LOGTYPE_DB_Create_ID, changeEscape(sql.toString()));
 		
 	}
 
@@ -76,12 +75,32 @@ public class FDLog extends FD_DB implements I_FD_Log {
 	 * @param logData
 	 */
 	private void addLog(FD_EnvData env, int logTypeId, String logData) {
-		X_FD_Log log = new X_FD_Log(env);
+		/*
+		 * ログ情報の追加はDBExecuteメソッドを利用せず、循環処理を避けるために、直接ここでInsertを行う。
+		 */
+		Statement stmt = null;
+		StringBuffer sql = new StringBuffer();
 		int logId = getNewLogId(env);
-		log.setValueByName(env, COLUMNNAME_FD_Log_ID, logId);
-		log.setValueByName(env, COLUMNNAME_Log_Type_ID, logTypeId);
-		log.setValueByName(env, COLUMNNAME_Log_Data, logData);
-		log.save(env);
+		try {
+			sql.append("INSERT INTO ").append(Table_Name).append(" SET ");
+			sql.append(COLUMNNAME_FD_Log_ID).append(" = ").append(logId).append(",");
+			sql.append(COLUMNNAME_Log_Type_ID).append(" = ").append(logTypeId).append(",");
+			sql.append(COLUMNNAME_Log_Data).append(" = ").append(FD_SQ).append(logData).append(FD_SQ).append(",");
+			sql.append(COLUMNNAME_FD_CREATE).append(" = ")
+				.append(FD_SQ).append(dateFormat.format(new Date().getTime())).append(FD_SQ).append(",");
+			sql.append(COLUMNNAME_FD_CREATED).append(" = ").append(env.getLogin_User_ID()).append(",");
+			sql.append(COLUMNNAME_FD_UPDATE).append(" = ")
+				.append(FD_SQ).append(dateFormat.format(new Date().getTime())).append(FD_SQ).append(",");
+			sql.append(COLUMNNAME_FD_UPDATED).append(" = ").append(env.getLogin_User_ID()).append(" ");
+			
+			connection(env);
+			stmt = conn.createStatement();
+			stmt.executeUpdate(sql.toString());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+		}
 	}
 
 	/**

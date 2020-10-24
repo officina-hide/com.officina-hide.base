@@ -39,7 +39,8 @@ public interface I_FD_Log {
 	//ログ種別
 	/** DB */
 	public final int LOGTYPE_Info_ID = 201;
-	public final int LOGTYPE_DB_ID = 202;
+	public final int LOGTYPE_DB_Drop_ID = 211;
+	public final int LOGTYPE_DB_Create_ID = 212;
 	
 	//ログ情報ID初期値
 	public final int INITIAL_LOG_ID = 10000001;

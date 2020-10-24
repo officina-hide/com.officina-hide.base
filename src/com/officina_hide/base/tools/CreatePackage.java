@@ -24,6 +24,7 @@ public class CreatePackage {
 		 * 1.環境情報の取込
 		 * 2.ベース情報の構築
 		 * 3.ベース情報の登録
+		 * 4.ベース情報のダンプ作成
 		 */
 		//環境情報のPathを設定する。
 		FD_EnvData env = null;

@@ -80,7 +80,7 @@ public class FD_DB implements I_DB {
 	 * @author officina-hide.com
 	 * @since 2020/10/10
 	 * @param stmt ステートメント
-	 * @param rs 
+	 * @param rs レザルトセット
 	 */
 	public void close(Statement stmt, ResultSet rs) {
 		if(stmt != null) {
@@ -97,6 +97,16 @@ public class FD_DB implements I_DB {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	/**
+	 * データベースクローズ(statement)<br>
+	 * @author officine-hide.com
+	 * @since 1.00 2020/10/24
+	 * @param stmt ステートメント
+	 */
+	public void close(Statement stmt) {
+		close(stmt, null);
 	}
 
 	/**
@@ -211,7 +221,7 @@ public class FD_DB implements I_DB {
 	 */
 	public String changeEscape(String data) {
 		String out = data;
-		out = out.replaceAll("\'", "\"");
+		out = out.replaceAll("\'", "\'\'");
 		out = out.replaceAll("\\\\", "\\\\\\\\");
 		return out;
 	}
