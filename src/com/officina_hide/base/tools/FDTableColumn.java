@@ -123,6 +123,29 @@ public class FDTableColumn extends FD_DB implements I_FD_TableColumn {
 	 * @param env 環境情報
 	 */
 	public void addTableColumn(FD_EnvData env) {
+		addData(env, 0, TABLE_ID, COLUMNNAME_FD_TableColumn_ID, NAME_FD_TableColumn_ID, COMMENT_FD_TableColumn_ID
+				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 10, "Y", "Y");
+		addData(env, 0, TABLE_ID, COLUMNNAME_FD_Table_ID, NAME_FD_Table_ID, COMMENT_FD_Table_ID
+				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 20, "Y", "N");
+		addData(env, 0, TABLE_ID, COLUMNNAME_TableColumn_Name, NAME_TableColumn_Name, COMMENT_TableColumn_Name
+				, COLUMNTYPE_ID_FD_Text, null, 100, 30, "N", "N");
+		addData(env, 0, TABLE_ID, COLUMNNAME_FD_Name, NAME_FD_Name, COMMENT_FD_Name
+				, COLUMNTYPE_ID_FD_Text, null, 100, 40, "N", "N");
+		addData(env, 0, TABLE_ID, COLUMNNAME_FD_Comment, NAME_FD_Comment, COMMENT_FD_Comment
+				, COLUMNTYPE_ID_FD_Field_Text, null, 0, 50, "N", "N");
+		addData(env, 0, TABLE_ID, COLUMNNAME_TableColumn_Type_ID, NAME_TableColumn_Type_ID, COMMENT_TableColumn_Type_ID
+				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 60, "N", "N");
+		addData(env, 0, TABLE_ID, COLUMNNAME_Defualt_Data, NAME_Defualt_Data, COMMENT_Defualt_Data
+				, COLUMNTYPE_ID_FD_Text, null, 100, 70, "N", "N");
+		addData(env, 0, TABLE_ID, COLUMNNAME_TableColumn_Size, NAME_TableColumn_Size, COMMENT_TableColumn_Size
+				, COLUMNTYPE_ID_FD_Number, "0", 0, 80, "N", "N");
+		addData(env, 0, TABLE_ID, COLUMNNAME_Column_Sort_Order, NAME_Column_Sort_Order, COMMENT_Column_Sort_Order
+				, COLUMNTYPE_ID_FD_Number, "0", 0, 90, "N", "N");
+		addData(env, 0, TABLE_ID, COLUMNNAME_Is_Null, NAME_Is_Null, COMMENT_Is_Null
+				, COLUMNTYPE_ID_FD_YesNo, "N", 0, 100, "N", "N");
+		addData(env, 0, TABLE_ID, COLUMNNAME_Is_Primary, NAME_Is_Primary, COMMENT_Is_Primary
+				, COLUMNTYPE_ID_FD_YesNo, "N", 0, 110, "N", "N");
+		
 		addData(env, 0, TABLE_ID, COLUMNNAME_FD_CREATE, NAME_FD_CREATE, COMMENT_FD_CREATE
 				, COLUMNTYPE_ID_FD_Date, null, 0, 900, "N", "N");
 		addData(env, 0, TABLE_ID, COLUMNNAME_FD_CREATED, NAME_FD_CREATED, COMMENT_FD_CREATED
