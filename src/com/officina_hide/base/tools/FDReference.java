@@ -1,9 +1,8 @@
 package com.officina_hide.base.tools;
 
-import java.util.Date;
-
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
+import com.officina_hide.base.model.I_FD_Log;
 import com.officina_hide.base.model.I_FD_Referecne;
 import com.officina_hide.base.model.X_FD_Reference;
 
@@ -22,6 +21,8 @@ public class FDReference extends FD_DB implements I_FD_Referecne {
 	 * @param env 環境情報
 	 */
 	public void createDBTable(FD_EnvData env) {
+		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築開始");
+
 		StringBuffer sql = new StringBuffer();
 		//既に登録されているテーフル情報を削除する。
 		sql.append("DROP TABLE IF EXISTS ").append(Table_Name);
@@ -55,8 +56,8 @@ public class FDReference extends FD_DB implements I_FD_Referecne {
 		FDNumbering num = new FDNumbering();
 		num.addData(env, TABLE_ID, TABLE_ID, 0, 1000001);
 		
-		System.out.println(new Date() + " : " + NAME + "テーブル生成完了");
-
+		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築開始");
+//		System.out.println(new Date() + " : " + NAME + "テーブル生成完了");
 	}
 
 	/**
@@ -90,6 +91,35 @@ public class FDReference extends FD_DB implements I_FD_Referecne {
 		ref.setValueByName(env, COLUMNNAME_Reference_Name, referenceName);
 		ref.setValueByName(env, COLUMNNAME_FD_Name, name);
 		ref.save(env);
+	}
+
+	/**
+	 * リファレンス情報の項目についてテーブル項目情報に登録する。<br>
+	 * @author officine-hide.com
+	 * @since 1.00 2020/10/26
+	 * @param env 環境情報
+	 */
+	public void addTableColumn(FD_EnvData env) {
+		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"のテーブル項目情報登録開始");
+		
+		FDTableColumn column = new FDTableColumn();
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Reference_ID, NAME_FD_Reference_ID, COMMENT_FD_Reference_ID
+				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 10, "Y", "Y");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_Reference_Name, NAME_Reference_Name, COMMENT_Reference_Name
+				, COLUMNTYPE_ID_FD_Text, null, 100, 20, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Name, NAME_FD_Name, COMMENT_FD_Name
+				, COLUMNTYPE_ID_FD_Text, null, 100, 30, "N", "N");
+		
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_CREATE, NAME_FD_CREATE, COMMENT_FD_CREATE
+				, COLUMNTYPE_ID_FD_Date, null, 0, 900, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_CREATED, NAME_FD_CREATED, COMMENT_FD_CREATED
+				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 910, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_UPDATE, NAME_FD_UPDATE, COMMENT_FD_UPDATE
+				, COLUMNTYPE_ID_FD_Date, null, 0, 920, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_UPDATED, NAME_FD_UPDATED, COMMENT_FD_UPDATED
+				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 930, "N", "N");
+
+		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"のテーブル項目情報登録終了");
 	}
 
 }

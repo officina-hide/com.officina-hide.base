@@ -1,7 +1,5 @@
 package com.officina_hide.base.tools;
 
-import java.util.Date;
-
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Log;
@@ -34,6 +32,8 @@ public class FDTable extends FD_DB implements I_FD_Table {
 	 * @param env 環境情報
 	 */
 	private void createDBTable(FD_EnvData env) {
+		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築開始");
+		
 		StringBuffer sqlDrop = new StringBuffer();
 		StringBuffer sql = new StringBuffer();
 		//既に登録されているテーフル情報を削除する。
@@ -61,10 +61,11 @@ public class FDTable extends FD_DB implements I_FD_Table {
 		sql.append(") ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=").append(FD_SQ).append(NAME).append(FD_SQ);
 		DBexecute(env, sql.toString());
 		
-		System.out.println(new Date() + " : " + NAME + "テーブル生成完了");
-		
 		addLog(env, I_FD_Log.LOGTYPE_Table_Drop_ID, changeEscape(sqlDrop.toString()));
 		addLog(env, I_FD_Log.LOGTYPE_Table_Create_ID, changeEscape(sql.toString()));
+		
+		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築完了");
+//		System.out.println(new Date() + " : " + NAME + "テーブル生成完了");
 
 	}
 
@@ -94,6 +95,8 @@ public class FDTable extends FD_DB implements I_FD_Table {
 	 * @param env 環境情報
 	 */
 	public void addTableColumn(FD_EnvData env) {
+		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"のテーブル項目情報登録開始");
+
 		FDTableColumn column = new FDTableColumn();
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Table_ID, NAME_FD_Table_ID, COMMENT_FD_Table_ID
 				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 10, "Y", "Y");
@@ -112,6 +115,9 @@ public class FDTable extends FD_DB implements I_FD_Table {
 				, COLUMNTYPE_ID_FD_Date, null, 0, 920, "N", "N");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_UPDATED, NAME_FD_UPDATED, COMMENT_FD_UPDATED
 				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 930, "N", "N");
+		
+		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"のテーブル項目情報登録終了");
+
 	}
 
 }

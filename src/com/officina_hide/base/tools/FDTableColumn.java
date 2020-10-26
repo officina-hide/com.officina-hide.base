@@ -36,11 +36,13 @@ public class FDTableColumn extends FD_DB implements I_FD_TableColumn {
 		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME +"テーブル構築開始");
 
 		StringBuffer sql = new StringBuffer();
+		StringBuffer sqlDrop = new StringBuffer();
+		
 		//既に登録されているテーフル情報を削除する。
-		sql.append("DROP TABLE IF EXISTS ").append(Table_Name);
-		DBexecute(env, sql.toString());
+		sqlDrop.append("DROP TABLE IF EXISTS ").append(Table_Name);
+		DBexecute(env, sqlDrop.toString());
+
 		//テーブル情報の再構築
-		sql = new StringBuffer();
 		sql.append("CREATE TABLE IF NOT EXISTS ").append(Table_Name).append(" (");
 		sql.append(COLUMNNAME_FD_TableColumn_ID).append(" INT UNSIGNED NOT NULL PRIMARY KEY COMMENT ")
 			.append(FD_SQ).append(NAME_FD_TableColumn_ID).append(FD_SQ).append(",");
@@ -78,7 +80,11 @@ public class FDTableColumn extends FD_DB implements I_FD_TableColumn {
 		sql.append(COLUMNNAME_FD_UPDATED).append(" INT UNSIGNED COMMENT ")
 			.append(FD_SQ).append(NAME_FD_UPDATED).append(FD_SQ).append(" ");
 		sql.append(") ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=").append(FD_SQ).append(NAME).append(FD_SQ);
+		
 		DBexecute(env, sql.toString());
+		
+		addLog(env, I_FD_Log.LOGTYPE_Table_Drop_ID, changeEscape(sqlDrop.toString()));
+		addLog(env, I_FD_Log.LOGTYPE_Table_Create_ID, changeEscape(sql.toString()));
 		
 		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME +"テーブル構築完了");
 	}
@@ -124,6 +130,8 @@ public class FDTableColumn extends FD_DB implements I_FD_TableColumn {
 	 * @param env 環境情報
 	 */
 	public void addTableColumn(FD_EnvData env) {
+		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"のテーブル項目情報登録開始");
+
 		addData(env, 0, TABLE_ID, COLUMNNAME_FD_TableColumn_ID, NAME_FD_TableColumn_ID, COMMENT_FD_TableColumn_ID
 				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 10, "Y", "Y");
 		addData(env, 0, TABLE_ID, COLUMNNAME_FD_Table_ID, NAME_FD_Table_ID, COMMENT_FD_Table_ID
@@ -155,6 +163,9 @@ public class FDTableColumn extends FD_DB implements I_FD_TableColumn {
 				, COLUMNTYPE_ID_FD_Date, null, 0, 920, "N", "N");
 		addData(env, 0, TABLE_ID, COLUMNNAME_FD_UPDATED, NAME_FD_UPDATED, COMMENT_FD_UPDATED
 				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 930, "N", "N");
+		
+		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"のテーブル項目情報登録開始");
+
 	}
 
 }

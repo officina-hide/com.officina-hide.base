@@ -1,7 +1,5 @@
 package com.officina_hide.base.tools;
 
-import java.util.Date;
-
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Log;
@@ -34,6 +32,8 @@ public class FDNumbering extends FD_DB implements I_FD_Numbering {
 	 * @param env 環境情報
 	 */
 	private void createDBTable(FD_EnvData env) {
+		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル生成開始");
+
 		StringBuffer sql = new StringBuffer();
 		//既に登録されているテーフル情報を削除する。
 		sql.append("DROP TABLE IF EXISTS ").append(Table_Name);
@@ -64,7 +64,8 @@ public class FDNumbering extends FD_DB implements I_FD_Numbering {
 
 		DBexecute(env, sql.toString());
 		
-		System.out.println(new Date() + " : " + "採番情報テーブル生成完了");
+		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル生成終了");
+//		System.out.println(new Date() + " : " + "採番情報テーブル生成完了");
 	}
 
 	/**
