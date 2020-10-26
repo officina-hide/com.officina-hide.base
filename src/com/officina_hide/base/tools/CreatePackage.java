@@ -65,6 +65,7 @@ public class CreatePackage {
 		//テーブル項目情報登録
 		table.addTableColumn(env);
 		column.addTableColumn(env);
+		num.addTableColumn(env);
 	}
 
 }

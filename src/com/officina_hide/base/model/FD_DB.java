@@ -230,11 +230,21 @@ public class FD_DB implements I_DB {
 
 	/**
 	 * ログ情報追加<br>
+	 * @author officine-hide.com
+	 * @since 1.00 2020/10/20
 	 * @param env
 	 * @param logTypeId
 	 * @param logData
 	 */
 	public void addLog(FD_EnvData env, int logTypeId, String logData) {
+		SimpleDateFormat msgDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		/*
+		 * ログ種別がインフォメーション[IDが200～209の時]はメッセージを出力する。
+		 */
+		if(logTypeId >= 201 && logTypeId <= 209) {
+			System.out.println(msgDateFormat.format(new Date())+" : "+logData);
+		}
+		
 		/*
 		 * ログ情報の追加はDBExecuteメソッドを利用せず、循環処理を避けるために、直接ここでInsertを行う。
 		 */

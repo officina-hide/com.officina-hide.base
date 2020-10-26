@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
+import com.officina_hide.base.model.I_FD_Log;
 import com.officina_hide.base.model.I_FD_Numbering;
 import com.officina_hide.base.model.X_FD_Numbering;
 
@@ -84,5 +85,36 @@ public class FDNumbering extends FD_DB implements I_FD_Numbering {
 		num.setValueByName(env, COLUMNNAME_Initial_Number, initNo);
 		num.save(env);
 	}
+
+	/**
+	 * 採番情報の項目をテーブル項目情報に登録する。<br>
+	 * @author officine-hide.com
+	 * @since 1.00 2020/10/26
+	 * @param env 環境情報
+	 */
+	public void addTableColumn(FD_EnvData env) {
+		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"のテーブル項目情報登録開始");
+		
+		FDTableColumn column = new FDTableColumn();
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Numbering_ID, NAME_FD_Numbering_ID, COMMENT_FD_Numbering_ID
+				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 10, "Y", "Y");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Table_ID, NAME_FD_Table_ID, COMMENT_FD_Table_ID
+				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 20, "Y", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_Current_Number, NAME_Current_Number, COMMENT_Current_Number
+				, COLUMNTYPE_ID_FD_Number, "0", 0, 30, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_Initial_Number, NAME_Initial_Number, COMMENT_Initial_Number
+				, COLUMNTYPE_ID_FD_Number, "0", 0, 40, "N", "N");
+		
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_CREATE, NAME_FD_CREATE, COMMENT_FD_CREATE
+				, COLUMNTYPE_ID_FD_Date, null, 0, 900, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_CREATED, NAME_FD_CREATED, COMMENT_FD_CREATED
+				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 910, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_UPDATE, NAME_FD_UPDATE, COMMENT_FD_UPDATE
+				, COLUMNTYPE_ID_FD_Date, null, 0, 920, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_UPDATED, NAME_FD_UPDATED, COMMENT_FD_UPDATED
+				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 930, "N", "N");
+
+		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"のテーブル項目情報登録終了");
+}
 
 }
