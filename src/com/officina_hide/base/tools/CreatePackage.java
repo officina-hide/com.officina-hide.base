@@ -67,7 +67,7 @@ public class CreatePackage {
 		column.addTableColumn(env);
 		num.addTableColumn(env);
 		ref.addTableColumn(env);
-		
+		log.addTabeColumn(env);
 	}
 
 }
