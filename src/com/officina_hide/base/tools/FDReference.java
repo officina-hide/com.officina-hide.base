@@ -23,13 +23,14 @@ public class FDReference extends FD_DB implements I_FD_Referecne {
 	public void createDBTable(FD_EnvData env) {
 		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築開始");
 
+		StringBuffer sqlDrop = new StringBuffer();
 		StringBuffer sql = new StringBuffer();
 		//既に登録されているテーフル情報を削除する。
-		sql.append("DROP TABLE IF EXISTS ").append(Table_Name);
-		DBexecute(env, sql.toString());
+		sqlDrop.append("DROP TABLE IF EXISTS ").append(Table_Name);
+		DBexecute(env, sqlDrop.toString());
 		//テーブル情報の再構築
-		sql = new StringBuffer();
 		sql.append("CREATE TABLE IF NOT EXISTS ").append(Table_Name).append(" (");
+
 		sql.append(COLUMNNAME_FD_Reference_ID).append(" INT UNSIGNED NOT NULL PRIMARY KEY COMMENT ")
 			.append(FD_SQ).append(NAME_FD_Reference_ID).append(FD_SQ).append(",");
 		sql.append(COLUMNNAME_Reference_Name).append(" Varchar(100) COMMENT ")
@@ -45,9 +46,14 @@ public class FDReference extends FD_DB implements I_FD_Referecne {
 			.append(FD_SQ).append(NAME_FD_UPDATE).append(FD_SQ).append(",");
 		sql.append(COLUMNNAME_FD_UPDATED).append(" INT UNSIGNED COMMENT ")
 			.append(FD_SQ).append(NAME_FD_UPDATED).append(FD_SQ).append(" ");
+		
 		sql.append(") ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=").append(FD_SQ).append(NAME).append(FD_SQ);
+		
 		DBexecute(env, sql.toString());
 		
+		addLog(env, I_FD_Log.LOGTYPE_Table_Drop_ID, changeEscape(sqlDrop.toString()));
+		addLog(env, I_FD_Log.LOGTYPE_Table_Create_ID, changeEscape(sql.toString()));
+
 		//テーブル情報登録
 		FDTable table = new FDTable();
 		table.addData(env, TABLE_ID, Table_Name, NAME, COMMENT);
@@ -57,7 +63,6 @@ public class FDReference extends FD_DB implements I_FD_Referecne {
 		num.addData(env, TABLE_ID, TABLE_ID, 0, 1000001);
 		
 		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築開始");
-//		System.out.println(new Date() + " : " + NAME + "テーブル生成完了");
 	}
 
 	/**

@@ -32,14 +32,14 @@ public class FDNumbering extends FD_DB implements I_FD_Numbering {
 	 * @param env 環境情報
 	 */
 	private void createDBTable(FD_EnvData env) {
-		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル生成開始");
+		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築開始");
 
+		StringBuffer sqlDrop = new StringBuffer();
 		StringBuffer sql = new StringBuffer();
 		//既に登録されているテーフル情報を削除する。
-		sql.append("DROP TABLE IF EXISTS ").append(Table_Name);
-		DBexecute(env, sql.toString());
+		sqlDrop.append("DROP TABLE IF EXISTS ").append(Table_Name);
+		DBexecute(env, sqlDrop.toString());
 		//テーブル情報の再構築
-		sql = new StringBuffer();
 		sql.append("CREATE TABLE IF NOT EXISTS ").append(Table_Name).append(" (");
 		
 		sql.append(COLUMNNAME_FD_Numbering_ID).append(" INT UNSIGNED NOT NULL PRIMARY KEY COMMENT ")
@@ -64,8 +64,10 @@ public class FDNumbering extends FD_DB implements I_FD_Numbering {
 
 		DBexecute(env, sql.toString());
 		
-		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル生成終了");
-//		System.out.println(new Date() + " : " + "採番情報テーブル生成完了");
+		addLog(env, I_FD_Log.LOGTYPE_Table_Drop_ID, changeEscape(sqlDrop.toString()));
+		addLog(env, I_FD_Log.LOGTYPE_Table_Create_ID, changeEscape(sql.toString()));
+		
+		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築終了");
 	}
 
 	/**
