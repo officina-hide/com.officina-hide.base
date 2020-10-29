@@ -16,5 +16,14 @@ public interface I_FD_Process {
 	public final String COMMENT = "プロセスを管理する為の情報";
 	/** プロセス情報 : テーブル情報ID */
 	public final int TABLE_ID = 106;
+	
+	/** プロセス情報ID */
+	public final String COLUMNNAME_FD_Process_ID = "FD_Process_ID";
+	public final String NAME_FD_Process_ID = "プロセス情報ID";
+	public final String COMMENT_FD_Process_ID = "プロセス情報を識別するための情報ID";
+	/** プロセス名 */
+	public final String COLUMNNAME_Process_Name = "Process_ID";
+	public final String NAME_Process_Name = "プロセス名";
+	public final String COMMENT_Process_Name = "プロセスの実行クラス名";
 
 }

@@ -16,21 +16,22 @@ public interface I_DB {
 	public final String COLUMNNAME_FD_CREATE = "FD_Create";
 	public final String NAME_FD_CREATE = "登録日";
 	public final String COMMENT_FD_CREATE = "情報の登録日";
-
 	/** 登録者ID	 */
 	public final String COLUMNNAME_FD_CREATED = "FD_Created";
 	public final String NAME_FD_CREATED = "登録者";
 	public final String COMMENT_FD_CREATED = "情報の登録者ID";
-
 	/** 更新日 */
 	public final String COLUMNNAME_FD_UPDATE = "FD_Update";
 	public final String NAME_FD_UPDATE = "更新日";
 	public final String COMMENT_FD_UPDATE = "情報の更新日";
-
 	/** 更新者ID	 */
 	public final String COLUMNNAME_FD_UPDATED = "FD_Updated";
 	public final String NAME_FD_UPDATED = "更新者";
 	public final String COMMENT_FD_UPDATED = "情報の更新者ID";
+	/** プロセス情報ID */
+	public final String COLUMNNAME_FD_Process_ID = "FD_Process_ID";
+	public final String NAME_FD_Process_ID = "プロセス情報ID";
+	public final String COMMENT_FD_Process_ID = "情報を作成したプロセスの情報ID";
 	
 	/** 項目種別 : 情報ID */
 	public static final String COLUMNTYPE_FD_Information_ID = "FD_Information_ID";
