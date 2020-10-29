@@ -21,11 +21,18 @@ public class CreatePackage {
 
 	public static void main(String[] args) {
 		/*
-		 * 1.環境情報の取込
-		 * 2.ベース情報の構築
-		 * 3.ベース情報の登録
-		 * 4.ベース情報のダンプ作成
+		 * 2020/10/29
+		 * ログ情報にプロセス情報を追加する。<br>
+		 * 本処理(CreatePackage)を1つのプロセスとする。(プロセス番号は101とする。)<br>
+		 * これにより次の処理でプロセス単位での情報の消去を可能とする。<br>
+		 * ※ここでの検討、他の情報にも追加プロセスが必要な場合は、共通化を検討する。<br>
 		 */
+		/*
+		 * 1.プロセス情報の構築<br>
+		 * 2.プロセスを共通情として各情報に追加する。<br>
+		 */
+		
+		
 		//環境情報のPathを設定する。
 		FD_EnvData env = null;
 		try {
@@ -39,7 +46,9 @@ public class CreatePackage {
 		//ログ情報構築
 		FDLog log = new FDLog();
 		log.createTable(env);
-		
+		//プロセス情報構築
+		FDProcess process = new FDProcess();
+		process.createTable(env);
 		//テーブル情報構築
 		FDTable table = new FDTable();
 		table.createTable(env);
