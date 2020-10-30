@@ -25,5 +25,13 @@ public interface I_FD_Process {
 	public final String COLUMNNAME_Process_Name = "Process_ID";
 	public final String NAME_Process_Name = "プロセス名";
 	public final String COMMENT_Process_Name = "プロセスの実行クラス名";
-
+	/** プロセス開始時刻 */
+	public final String COLUMNNAME_Process_StartTime = "Process_StartTime";
+	public final String NAME_Process_StartTime = "プロセス開始日時";
+	public final String COMMENT_Process_StartTime = "プロセスの開始時刻";
+	/** プロセス終了時刻 */
+	public final String COLUMNNAME_Process_EndTime = "Process_EndTime";
+	public final String NAME_Process_EndTime = "プロセス終了時刻";
+	public final String COMMENT_Process_EndTime = "プロセスの終了時間";
+	
 }

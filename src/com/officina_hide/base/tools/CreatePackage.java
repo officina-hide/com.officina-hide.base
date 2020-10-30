@@ -6,6 +6,7 @@ import java.io.IOException;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.I_FD_Log;
 import com.officina_hide.base.model.I_FD_Numbering;
+import com.officina_hide.base.model.I_FD_Process;
 import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.model.I_FD_TableColumn;
 
@@ -54,6 +55,7 @@ public class CreatePackage {
 		table.createTable(env);
 		table.addData(env, I_FD_Table.TABLE_ID, I_FD_Table.Table_Name, I_FD_Table.NAME, I_FD_Table.COMMENT);
 		table.addData(env, I_FD_Log.TABLE_ID, I_FD_Log.Table_Name, I_FD_Log.NAME, I_FD_Log.COMMENT);
+		table.addData(env, I_FD_Process.TABLE_ID, I_FD_Process.Table_Name, I_FD_Process.NAME, I_FD_Process.COMMENT);
 		//採番情報構築
 		FDNumbering num = new FDNumbering();
 		num.createTable(env);
@@ -61,6 +63,7 @@ public class CreatePackage {
 				, I_FD_Numbering.NAME, I_FD_Numbering.COMMENT);
 		num.addData(env,I_FD_Table.TABLE_ID, I_FD_Table.TABLE_ID, 0, 1000001);
 		num.addData(env,I_FD_Numbering.TABLE_ID, I_FD_Numbering.TABLE_ID, 0, 1000001);
+		num.addData(env, I_FD_Process.TABLE_ID, I_FD_Process.TABLE_ID, 0, 1000001);
 		//リファレンス情報構築
 		FDReference ref = new FDReference();
 		ref.createDBTable(env);
@@ -77,6 +80,7 @@ public class CreatePackage {
 		num.addTableColumn(env);
 		ref.addTableColumn(env);
 		log.addTabeColumn(env);
+		process.addTableColumn(env);
 	}
 
 }
