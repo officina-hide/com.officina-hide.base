@@ -231,7 +231,8 @@ public class FD_DB implements I_DB {
 	/**
 	 * ログ情報追加<br>
 	 * @author officine-hide.com
-	 * @since 1.00 2020/10/20
+	 * @since 1.00 2020/10/20 新規作成
+	 * @since 1.10 2020/10/31 プロセス情報項目追加
 	 * @param env
 	 * @param logTypeId
 	 * @param logData
@@ -256,6 +257,8 @@ public class FD_DB implements I_DB {
 			sql.append(I_FD_Log.COLUMNNAME_FD_Log_ID).append(" = ").append(logId).append(",");
 			sql.append(I_FD_Log.COLUMNNAME_Log_Type_ID).append(" = ").append(logTypeId).append(",");
 			sql.append(I_FD_Log.COLUMNNAME_Log_Data).append(" = ").append(FD_SQ).append(logData).append(FD_SQ).append(",");
+			
+			sql.append(COLUMNNAME_FD_Process_ID).append(" = ").append(env.getActiveProcessID()).append(",");
 			sql.append(COLUMNNAME_FD_CREATE).append(" = ")
 				.append(FD_SQ).append(dateFormat.format(new Date().getTime())).append(FD_SQ).append(",");
 			sql.append(COLUMNNAME_FD_CREATED).append(" = ").append(env.getLogin_User_ID()).append(",");

@@ -20,6 +20,8 @@ import com.officina_hide.base.model.I_FD_TableColumn;
  */
 public class CreatePackage {
 
+	private final static int ThisProcess_ID = 101;
+	
 	public static void main(String[] args) {
 		/*
 		 * 2020/10/29
@@ -43,6 +45,8 @@ public class CreatePackage {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//プロセス情報IDセット
+		env.setActiveProcessID(ThisProcess_ID);
 		
 		//ログ情報構築
 		FDLog log = new FDLog();

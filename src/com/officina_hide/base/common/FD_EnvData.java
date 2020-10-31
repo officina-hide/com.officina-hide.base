@@ -8,7 +8,8 @@ import java.util.Properties;
 /**
  * 環境情報<br>
  * @author officine-hide.com
- * @version 1.00
+ * @version 1.00 新規作成
+ * @version 1.10 プロセス情報ID追加
  * @since 2020/10/08
  */
 public class FD_EnvData implements I_FD_EnvData {
@@ -52,6 +53,12 @@ public class FD_EnvData implements I_FD_EnvData {
 	private String DB_Password;
 	private int System_User_ID;
 	private int Login_User_ID;
+	/** 
+	 * 実行プロセスID
+	 * @since 1.10 2020/10/31
+	 */
+	private int activeProcessID;
+	
 	public int getSystem_User_ID() {
 		return System_User_ID;
 	}
@@ -98,5 +105,19 @@ public class FD_EnvData implements I_FD_EnvData {
 
 	public void setDB_Password(String dB_Password) {
 		DB_Password = dB_Password;
+	}
+
+	/**
+	 * @return activeProcessID
+	 */
+	public int getActiveProcessID() {
+		return activeProcessID;
+	}
+
+	/**
+	 * @param activeProcessID セットする activeProcessID
+	 */
+	public void setActiveProcessID(int activeProcessID) {
+		this.activeProcessID = activeProcessID;
 	}
 }
