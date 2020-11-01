@@ -1,9 +1,12 @@
 package com.officina_hide.base.tools;
 
+import java.util.Date;
+
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Log;
 import com.officina_hide.base.model.I_FD_Process;
+import com.officina_hide.base.model.X_FD_Process;
 
 /**
  * プロセス情報クラス<br>
@@ -89,6 +92,23 @@ public class FDProcess extends FD_DB implements I_FD_Process {
 				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 930, "N", "N");
 
 		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"のテーブル項目情報登録完了");
+	}
+
+	/**
+	 * プロセス情報登録<br>
+	 * <p>プロセス情報IDが0の時は採番する。<br>
+	 * 開始時間がnullの時は現在システム時間をセットする。</p>
+	 * @author officine-hide.com
+	 * @since 1.10 2020/10/31
+	 * @param env 環境情報
+	 * @param processID プロセス情報ID
+	 * @param startCal 開始時間
+	 */
+	public void addData(FD_EnvData env, int processID, Date startCal) {
+		X_FD_Process process = new X_FD_Process(env);
+		process.setValueByName(env, I_FD_Process.COLUMNNAME_FD_Process_ID, processID);
+		process.setValueByName(env, COLUMNNAME_Process_StartTime, startCal);
+		process.save(env);
 	}
 
 }

@@ -22,7 +22,7 @@ public interface I_FD_Process {
 	public final String NAME_FD_Process_ID = "プロセス情報ID";
 	public final String COMMENT_FD_Process_ID = "プロセス情報を識別するための情報ID";
 	/** プロセス名 */
-	public final String COLUMNNAME_Process_Name = "Process_ID";
+	public final String COLUMNNAME_Process_Name = "Process_Name";
 	public final String NAME_Process_Name = "プロセス名";
 	public final String COMMENT_Process_Name = "プロセスの実行クラス名";
 	/** プロセス開始時刻 */

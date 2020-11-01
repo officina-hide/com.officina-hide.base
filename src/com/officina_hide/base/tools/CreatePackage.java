@@ -2,6 +2,10 @@ package com.officina_hide.base.tools;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.I_FD_Log;
@@ -35,7 +39,9 @@ public class CreatePackage {
 		 * 2.プロセスを共通情として各情報に追加する。<br>
 		 */
 		
-		
+		//開始時刻保存
+		Calendar startCal = new GregorianCalendar(new Locale("ja", "JP"));
+		startCal.setTime(new Date());
 		//環境情報のPathを設定する。
 		FD_EnvData env = null;
 		try {
@@ -54,6 +60,8 @@ public class CreatePackage {
 		//プロセス情報構築
 		FDProcess process = new FDProcess();
 		process.createTable(env);
+		process.addData(env, ThisProcess_ID, startCal.getTime());
+		
 		//テーブル情報構築
 		FDTable table = new FDTable();
 		table.createTable(env);
