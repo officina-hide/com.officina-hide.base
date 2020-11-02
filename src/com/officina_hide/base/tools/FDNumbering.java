@@ -51,6 +51,8 @@ public class FDNumbering extends FD_DB implements I_FD_Numbering {
 		sql.append(COLUMNNAME_Initial_Number).append(" INT UNSIGNED DEFAULT 0 COMMENT ")
 			.append(FD_SQ).append(NAME_Initial_Number).append(FD_SQ).append(",");
 
+		sql.append(COLUMNNAME_FD_Process_ID).append("  INT UNSIGNED ")
+			.append("COMMENT ").append(FD_SQ).append(NAME_FD_Process_ID).append(FD_SQ).append(",");
 		sql.append(COLUMNNAME_FD_CREATE).append(" DATETIME COMMENT ")
 			.append(FD_SQ).append(NAME_FD_CREATE).append(FD_SQ).append(",");
 		sql.append(COLUMNNAME_FD_CREATED).append(" INT UNSIGNED COMMENT ")
@@ -108,14 +110,16 @@ public class FDNumbering extends FD_DB implements I_FD_Numbering {
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_Initial_Number, NAME_Initial_Number, COMMENT_Initial_Number
 				, COLUMNTYPE_ID_FD_Number, "0", 0, 40, "N", "N");
 		
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Process_ID, NAME_FD_Process_ID, COMMENT_FD_Process_ID
+				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 900, "N", "N");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_CREATE, NAME_FD_CREATE, COMMENT_FD_CREATE
-				, COLUMNTYPE_ID_FD_Date, null, 0, 900, "N", "N");
+				, COLUMNTYPE_ID_FD_Date, null, 0, 91, "N", "N");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_CREATED, NAME_FD_CREATED, COMMENT_FD_CREATED
-				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 910, "N", "N");
+				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 920, "N", "N");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_UPDATE, NAME_FD_UPDATE, COMMENT_FD_UPDATE
-				, COLUMNTYPE_ID_FD_Date, null, 0, 920, "N", "N");
+				, COLUMNTYPE_ID_FD_Date, null, 0, 930, "N", "N");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_UPDATED, NAME_FD_UPDATED, COMMENT_FD_UPDATED
-				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 930, "N", "N");
+				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 940, "N", "N");
 
 		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"のテーブル項目情報登録終了");
 }

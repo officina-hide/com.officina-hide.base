@@ -50,6 +50,8 @@ public class FDTable extends FD_DB implements I_FD_Table {
 		sql.append(COLUMNNAME_FD_Comment).append(" Text COMMENT ")
 			.append(FD_SQ).append(NAME_FD_Comment).append(FD_SQ).append(",");
 		
+		sql.append(COLUMNNAME_FD_Process_ID).append("  INT UNSIGNED ")
+			.append("COMMENT ").append(FD_SQ).append(NAME_FD_Process_ID).append(FD_SQ).append(",");
 		sql.append(COLUMNNAME_FD_CREATE).append(" DATETIME COMMENT ")
 			.append(FD_SQ).append(NAME_FD_CREATE).append(FD_SQ).append(",");
 		sql.append(COLUMNNAME_FD_CREATED).append(" INT UNSIGNED COMMENT ")
@@ -65,7 +67,6 @@ public class FDTable extends FD_DB implements I_FD_Table {
 		addLog(env, I_FD_Log.LOGTYPE_Table_Create_ID, changeEscape(sql.toString()));
 		
 		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築完了");
-//		System.out.println(new Date() + " : " + NAME + "テーブル生成完了");
 
 	}
 
@@ -107,14 +108,16 @@ public class FDTable extends FD_DB implements I_FD_Table {
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Comment, NAME_FD_Comment, COMMENT_FD_Comment
 				, COLUMNTYPE_ID_FD_Field_Text, null, 0, 40, "N", "N");
 
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Process_ID, NAME_FD_Process_ID, COMMENT_FD_Process_ID
+				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 900, "N", "N");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_CREATE, NAME_FD_CREATE, COMMENT_FD_CREATE
-				, COLUMNTYPE_ID_FD_Date, null, 0, 900, "N", "N");
+				, COLUMNTYPE_ID_FD_Date, null, 0, 910, "N", "N");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_CREATED, NAME_FD_CREATED, COMMENT_FD_CREATED
-				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 910, "N", "N");
+				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 920, "N", "N");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_UPDATE, NAME_FD_UPDATE, COMMENT_FD_UPDATE
-				, COLUMNTYPE_ID_FD_Date, null, 0, 920, "N", "N");
+				, COLUMNTYPE_ID_FD_Date, null, 0, 930, "N", "N");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_UPDATED, NAME_FD_UPDATED, COMMENT_FD_UPDATED
-				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 930, "N", "N");
+				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 940, "N", "N");
 		
 		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"のテーブル項目情報登録終了");
 

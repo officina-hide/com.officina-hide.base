@@ -1,7 +1,5 @@
 package com.officina_hide.base.model;
 
-import java.util.Date;
-
 import com.officina_hide.base.common.FD_EnvData;
 
 /**
@@ -42,6 +40,8 @@ public class X_FD_TableColumn extends FD_DB implements I_FD_TableColumn {
 		itemList.add(COLUMNNAME_Column_Sort_Order, null, COLUMNTYPE_FD_Number);
 		itemList.add(COLUMNNAME_Is_Null, null, COLUMNTYPE_FD_YesNo);
 		itemList.add(COLUMNNAME_Is_Primary, null, COLUMNTYPE_FD_YesNo);
+		
+		itemList.add(COLUMNNAME_FD_Process_ID, null, COLUMNTYPE_FD_Information_ID);
 		itemList.add(COLUMNNAME_FD_CREATE, null, COLUMNTYPE_FD_Date);
 		itemList.add(COLUMNNAME_FD_CREATED, null, COLUMNTYPE_FD_Information_ID);
 		itemList.add(COLUMNNAME_FD_UPDATE, null, COLUMNTYPE_FD_Date);
@@ -56,7 +56,6 @@ public class X_FD_TableColumn extends FD_DB implements I_FD_TableColumn {
 	 */
 	public void save(FD_EnvData env) {
 		save(env, Table_Name);
-		System.out.println(new Date()+" : "+NAME+"新規追加");
 	}
 
 }

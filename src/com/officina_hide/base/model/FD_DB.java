@@ -143,11 +143,13 @@ public class FD_DB implements I_DB {
 		
 		//登録日、更新日設定
 		if(itemList.getValueOfItem(COLUMNNAME_FD_CREATE) == null) {
+			itemList.setData(COLUMNNAME_FD_Process_ID, env.getActiveProcessID());
 			itemList.setData(COLUMNNAME_FD_CREATE, new Date());
 			itemList.setData(COLUMNNAME_FD_UPDATE, new Date());
 			itemList.setData(COLUMNNAME_FD_CREATED, env.getLogin_User_ID());
 			itemList.setData(COLUMNNAME_FD_UPDATED, env.getLogin_User_ID());
 		} else {
+			itemList.setData(COLUMNNAME_FD_Process_ID, env.getActiveProcessID());
 			itemList.setData(COLUMNNAME_FD_UPDATE, new Date());
 			itemList.setData(COLUMNNAME_FD_UPDATED, env.getLogin_User_ID());
 		}

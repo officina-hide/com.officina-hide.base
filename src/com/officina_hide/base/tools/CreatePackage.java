@@ -60,8 +60,7 @@ public class CreatePackage {
 		//プロセス情報構築
 		FDProcess process = new FDProcess();
 		process.createTable(env);
-		process.addData(env, ThisProcess_ID, startCal.getTime());
-		
+		process.addData(env, ThisProcess_ID,  CreatePackage.class.getSimpleName(), startCal.getTime());
 		//テーブル情報構築
 		FDTable table = new FDTable();
 		table.createTable(env);
@@ -80,6 +79,7 @@ public class CreatePackage {
 		FDReference ref = new FDReference();
 		ref.createDBTable(env);
 		ref.addColumnTypeReference(env);
+		
 		//テーブル項目情報構築
 		FDTableColumn column = new FDTableColumn();
 		column.createTable(env);

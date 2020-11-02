@@ -71,6 +71,8 @@ public class FDTableColumn extends FD_DB implements I_FD_TableColumn {
 			.append(FD_SQ).append("N").append(FD_SQ).append(")  ")
 			.append("COMMENT ").append(FD_SQ).append(NAME_Is_Primary).append(FD_SQ).append(",");
 		
+		sql.append(COLUMNNAME_FD_Process_ID).append("  INT UNSIGNED ")
+			.append("COMMENT ").append(FD_SQ).append(NAME_FD_Process_ID).append(FD_SQ).append(",");
 		sql.append(COLUMNNAME_FD_CREATE).append(" DATETIME COMMENT ")
 			.append(FD_SQ).append(NAME_FD_CREATE).append(FD_SQ).append(",");
 		sql.append(COLUMNNAME_FD_CREATED).append(" INT UNSIGNED COMMENT ")
@@ -155,6 +157,8 @@ public class FDTableColumn extends FD_DB implements I_FD_TableColumn {
 		addData(env, 0, TABLE_ID, COLUMNNAME_Is_Primary, NAME_Is_Primary, COMMENT_Is_Primary
 				, COLUMNTYPE_ID_FD_YesNo, "N", 0, 110, "N", "N");
 		
+		addData(env, 0, TABLE_ID, COLUMNNAME_FD_Process_ID, NAME_FD_Process_ID, COMMENT_FD_Process_ID
+				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 900, "N", "N");
 		addData(env, 0, TABLE_ID, COLUMNNAME_FD_CREATE, NAME_FD_CREATE, COMMENT_FD_CREATE
 				, COLUMNTYPE_ID_FD_Date, null, 0, 900, "N", "N");
 		addData(env, 0, TABLE_ID, COLUMNNAME_FD_CREATED, NAME_FD_CREATED, COMMENT_FD_CREATED
