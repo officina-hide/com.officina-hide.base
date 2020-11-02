@@ -113,4 +113,17 @@ public class FDProcess extends FD_DB implements I_FD_Process {
 		process.save(env);
 	}
 
+	/**
+	 * プロセス終了登録<br>
+	 * @author officine-hide.com
+	 * @since 1.10 2020/11/02
+	 * @param env 環境情報
+	 * @param date 終了時刻
+	 */
+	public void endProcess(FD_EnvData env, Date date) {
+		X_FD_Process process = new X_FD_Process(env, env.getActiveProcessID());
+		process.setValueByName(env, COLUMNNAME_Process_EndTime, date);
+		process.save(env);
+	}
+
 }

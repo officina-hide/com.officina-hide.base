@@ -15,9 +15,9 @@ import com.officina_hide.base.model.I_DB;
  */
 public class FD_Items {
 	/** 項目リスト */
-	protected List<FD_Item> itemList = new ArrayList<>();
+	private List<FD_Item> itemList = new ArrayList<>();
 	/** 日付フォーマッ */
-	protected SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	private SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
 	/**
 	 * 項目リストクリア<br>
@@ -138,4 +138,13 @@ public class FD_Items {
 		return null;
 	}
 
+	/**
+	 * 項目リスト取得<br>
+	 * @author officine-hide.com
+	 * @since 1.10 2020/11/02
+	 * @return 項目リスト
+	 */
+	public List<FD_Item> getItemList() {
+		return itemList;
+	}
 }

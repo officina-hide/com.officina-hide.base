@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_Item;
 import com.officina_hide.base.common.FD_Items;
 
 /**
@@ -65,7 +66,6 @@ public class FD_DB implements I_DB {
 						.append(env.getDB_Name());
 				conn = DriverManager.getConnection(url.toString(), env.getDB_User(), env.getDB_Password());
 				System.out.println(new Date() + " : "+"Database Connected.");
-//				env.getLog().add(env, FD_Logging.TYPE_MESSAGE, FD_Logging.MODE_DEBAG, "Database Connected.");
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			} catch (SQLException e) {
@@ -135,10 +135,21 @@ public class FD_DB implements I_DB {
 	public void save(FD_EnvData env, String tableName) {
 		StringBuffer sql = new StringBuffer();
 		StringBuffer setItem = new StringBuffer();
+		StringBuffer where = new StringBuffer();
 		
 		//情報IDチェック
-		if(itemList.getItemByName(tableName+"_ID").getIntOfValue() == 0) {
+		int id = itemList.getItemByName(tableName+"_ID").getIntOfValue();
+		if(id == 0) {
 			itemList.setData(tableName+"_ID",  getNewID(env, tableName));
+			sql.append("INSERT INTO ").append(tableName).append(" SET ");
+		} else {
+			if(existsId(env, tableName, id)) {
+				sql.append("UPDATE ").append(tableName).append(" SET ");
+				where.append("WHERE ").append(tableName).append("_ID = ")
+					.append(itemList.getItemByName(tableName+"_ID").getIntOfValue());
+			} else {
+				sql.append("INSERT INTO ").append(tableName).append(" SET ");
+			}
 		}
 		
 		//登録日、更新日設定
@@ -154,19 +165,51 @@ public class FD_DB implements I_DB {
 			itemList.setData(COLUMNNAME_FD_UPDATED, env.getLogin_User_ID());
 		}
 
-		sql.append("INSERT INTO ").append(tableName).append(" SET ");
-		
 		for(String columnName : itemList.getNameList()) {
 			if(setItem.length() > 0) {
 				setItem.append(",");
 			}
 			setItem.append(itemList.getSQLString(columnName));
 		}
-		sql.append(setItem.toString());
+		sql.append(setItem.toString()).append(" ");
+		if(where != null && where.length() > 9) {
+			sql.append(where.toString());
+		}
 
 		addLog(env, I_FD_Log.LOGTYPE_Data_Update, changeEscape(sql.toString()));
 		
 		DBexecute(env, sql.toString());
+	}
+
+	/**
+	 * テーブル中に情報IDの存在チェックを行う。<br>
+	 * @author officine-hide.com
+	 * @since 1.10 2020/11/02
+	 * @param env 環境情報
+	 * @param tableName テーブル名
+	 * @param id 情報ID
+	 * @return true - 存在、false - 未登録
+	 */
+	private boolean existsId(FD_EnvData env, String tableName, int id) {
+		boolean chk = false;
+		Statement stmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT * FROM ").append(tableName).append(" ");
+			sql.append("WHERE ").append(tableName).append("_ID = ").append(id);
+			connection(env);
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql.toString());
+			if(rs.next()) {
+				chk = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(stmt, rs);
+		}
+		return chk;
 	}
 
 	/**
@@ -308,5 +351,53 @@ public class FD_DB implements I_DB {
 		}
 		
 		return logId;
+	}
+	
+	/**
+	 * 情報抽出<br>
+	 * @author officine-hide.com
+	 * @since 1.10 2020/11/02
+	 * @param env 環境情報
+	 * @param TableName テーブル名
+	 * @param Id 情報ID
+	 */
+	public void load(FD_EnvData env, String TableName, int Id) {
+		Statement stmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT * FROM ").append(TableName).append(" ");
+			sql.append("WHERE ").append(TableName).append("_ID = ").append(Id);
+			connection(env);
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql.toString());
+			if(rs.next()) {
+				for(FD_Item item : itemList.getItemList()) {
+					switch(item.getItemType()) {
+					case I_DB.COLUMNTYPE_FD_Text:
+					case I_DB.COLUMNTYPE_FD_Field_Text:
+					case I_DB.COLUMNTYPE_FD_YesNo:
+						item.setItemData(rs.getString(item.getItemName()));
+						break;
+					case I_DB.COLUMNTYPE_FD_Information_ID:
+					case I_DB.COLUMNTYPE_FD_Number:
+						item.setItemData(rs.getInt(item.getItemName()));
+						break;
+					case I_DB.COLUMNTYPE_FD_Date:
+						if(rs.getTimestamp(item.getItemName()) != null) {
+							item.setItemData(new Date(rs.getTimestamp(item.getItemName()).getTime()));
+						} else {
+							item.setItemData(null);
+						}
+						break;
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(stmt, rs);
+		}
+		
 	}
 }

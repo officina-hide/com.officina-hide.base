@@ -2,12 +2,10 @@ package com.officina_hide.base.tools;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Log;
 import com.officina_hide.base.model.I_FD_Numbering;
 import com.officina_hide.base.model.I_FD_Process;
@@ -40,8 +38,7 @@ public class CreatePackage {
 		 */
 		
 		//開始時刻保存
-		Calendar startCal = new GregorianCalendar(new Locale("ja", "JP"));
-		startCal.setTime(new Date());
+		Date startDate = new Date();
 		//環境情報のPathを設定する。
 		FD_EnvData env = null;
 		try {
@@ -60,7 +57,7 @@ public class CreatePackage {
 		//プロセス情報構築
 		FDProcess process = new FDProcess();
 		process.createTable(env);
-		process.addData(env, ThisProcess_ID,  CreatePackage.class.getSimpleName(), startCal.getTime());
+		process.addData(env, ThisProcess_ID,  CreatePackage.class.getSimpleName(), startDate);
 		//テーブル情報構築
 		FDTable table = new FDTable();
 		table.createTable(env);
@@ -93,6 +90,11 @@ public class CreatePackage {
 		ref.addTableColumn(env);
 		log.addTabeColumn(env);
 		process.addTableColumn(env);
+	
+		process.endProcess(env, new Date());
+		FD_DB DB = new FD_DB();
+		DB.addLog(env, I_FD_Log.LOGTYPE_Info_ID, "ベース情報の構築完了【CreatePackage】");
+		
 	}
 
 }
