@@ -1,7 +1,5 @@
 package com.officina_hide.base.model;
 
-import java.util.Date;
-
 import com.officina_hide.base.common.FD_EnvData;
 
 /**
