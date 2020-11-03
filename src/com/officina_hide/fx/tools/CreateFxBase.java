@@ -20,7 +20,9 @@ public class CreateFxBase {
 		 * 当面は、ここからCreatePakageを呼び出す。<br>
 		 * 実際には常に起動する必要はなく、Packageベースに変更があった時に起動させる。<br>
 		 */
-		CreatePackage.main(null);
+//		CreatePackage.main(null);
+		//プロセス情報登録
+		
 		
 		//環境情報のPathを設定する。
 		FD_EnvData env = null;
