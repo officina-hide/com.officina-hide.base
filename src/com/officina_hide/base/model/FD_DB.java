@@ -400,4 +400,56 @@ public class FD_DB implements I_DB {
 		}
 		
 	}
+	
+	/**
+	 * DBステートメント生成<br>
+	 * @author officine-hide.com ueno
+	 * @since 1.10 2020/09/01
+	 * @return DBステートメント
+	 */
+	public Statement createStatement() {
+		Statement stmt = null;
+		try {
+			stmt = conn.createStatement();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return stmt;
+	}
+
+	/**
+	 * 項目の文字列情報を返す<br>
+	 * @author officine-hide.com
+	 * @since 1.10 2020/11/02
+	 * @param columnName 項目名
+	 * @return 文字列情報
+	 */
+	public String getValueOfString(String columnName) {
+		FD_Item item = itemList.getItemByName(columnName);
+		return item.getStringOfValue();
+	}
+
+	/**
+	 * 項目の日付情報を返す<br>
+	 * @author officine-hide.com
+	 * @since 1.10 2020/11/02
+	 * @param columnName 項目名
+	 * @return 日付情報
+	 */
+	public Date getDateOfValue(String columnName) {
+		FD_Item item = itemList.getItemByName(columnName);
+		return item.getDateOfValue();
+	}
+
+	/**
+	 * 項目の数値情報を返す。<br>
+	 * @author officine-hide.com
+	 * @since 1.10 2020/11/03
+	 * @param columnName 項目名
+	 * @return 数値情報
+	 */
+	public int getintOfValue(String columnName) {
+		FD_Item item = itemList.getItemByName(columnName);
+		return item.getIntOfValue();
+	}
 }

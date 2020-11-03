@@ -104,13 +104,16 @@ public class FDProcess extends FD_DB implements I_FD_Process {
 	 * @param processID プロセス情報ID
 	 * @param processName プロセス名
 	 * @param startCal 開始時間
+	 * @return プロセス情報ID
 	 */
-	public void addData(FD_EnvData env, int processID, String processName, Date startCal) {
+	public int addData(FD_EnvData env, int processID, String processName, Date startCal) {
 		X_FD_Process process = new X_FD_Process(env);
 		process.setValueByName(env, I_FD_Process.COLUMNNAME_FD_Process_ID, processID);
 		process.setValueByName(env, COLUMNNAME_Process_Name, processName);
 		process.setValueByName(env, COLUMNNAME_Process_StartTime, startCal);
 		process.save(env);
+		
+		return process.getintOfValue(I_FD_Process.COLUMNNAME_FD_Process_ID);
 	}
 
 	/**

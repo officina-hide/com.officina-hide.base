@@ -64,41 +64,41 @@ public class X_FD_Process extends FD_DB implements I_FD_Process {
 	public void save(FD_EnvData env) {
 		save(env, Table_Name);
 	}
-
-	/**
-	 * 項目の文字列情報を返す<br>
-	 * @author officine-hide.com
-	 * @since 1.10 2020/11/02
-	 * @param columnName 項目名
-	 * @return 文字列情報
-	 */
-	public String getValueOfString(String columnName) {
-		FD_Item item = itemList.getItemByName(columnName);
-		return item.getStringOfValue();
-	}
-
-	/**
-	 * 項目の日付情報を返す<br>
-	 * @author officine-hide.com
-	 * @since 1.10 2020/11/02
-	 * @param columnName 項目名
-	 * @return 日付情報
-	 */
-	public Date getDateOfValue(String columnName) {
-		FD_Item item = itemList.getItemByName(columnName);
-		return item.getDateOfValue();
-	}
-
-	/**
-	 * 項目の数値情報を返す。<br>
-	 * @author officine-hide.com
-	 * @since 1.10 2020/11/03
-	 * @param columnName 項目名
-	 * @return 数値情報
-	 */
-	public int getintOfValue(String columnName) {
-		FD_Item item = itemList.getItemByName(columnName);
-		return item.getIntOfValue();
-	}
+//
+//	/**
+//	 * 項目の文字列情報を返す<br>
+//	 * @author officine-hide.com
+//	 * @since 1.10 2020/11/02
+//	 * @param columnName 項目名
+//	 * @return 文字列情報
+//	 */
+//	public String getValueOfString(String columnName) {
+//		FD_Item item = itemList.getItemByName(columnName);
+//		return item.getStringOfValue();
+//	}
+//
+//	/**
+//	 * 項目の日付情報を返す<br>
+//	 * @author officine-hide.com
+//	 * @since 1.10 2020/11/02
+//	 * @param columnName 項目名
+//	 * @return 日付情報
+//	 */
+//	public Date getDateOfValue(String columnName) {
+//		FD_Item item = itemList.getItemByName(columnName);
+//		return item.getDateOfValue();
+//	}
+//
+//	/**
+//	 * 項目の数値情報を返す。<br>
+//	 * @author officine-hide.com
+//	 * @since 1.10 2020/11/03
+//	 * @param columnName 項目名
+//	 * @return 数値情報
+//	 */
+//	public int getintOfValue(String columnName) {
+//		FD_Item item = itemList.getItemByName(columnName);
+//		return item.getIntOfValue();
+//	}
 
 }

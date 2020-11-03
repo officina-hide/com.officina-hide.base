@@ -2,11 +2,17 @@ package com.officina_hide.fx.tools;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
-import com.officina_hide.base.model.X_FD_Process;
+import com.officina_hide.base.model.FD_DB;
+import com.officina_hide.base.model.I_FD_Process;
+import com.officina_hide.base.model.I_FD_Table;
+import com.officina_hide.base.model.I_FD_TableColumn;
 import com.officina_hide.base.tools.CreatePackage;
+import com.officina_hide.base.tools.FDProcess;
 
 /**
  * Fx情報のベースクラスを構築する。<br>
@@ -15,6 +21,9 @@ import com.officina_hide.base.tools.CreatePackage;
  * @since 2020/10/28
  */
 public class CreateFxBase {
+	
+	/** 実行プロセス情報ID */
+	private final static int ThisProcess_ID = 102;
 
 	public static void main(String[] args) {
 		/*
@@ -23,7 +32,6 @@ public class CreateFxBase {
 		 * 実際には常に起動する必要はなく、Packageベースに変更があった時に起動させる。<br>
 		 */
 //		CreatePackage.main(null);
-		
 		Date startDate = new Date();
 		
 		//環境情報のPathを設定する。
@@ -32,16 +40,61 @@ public class CreateFxBase {
 			String propPath = new File(".").getCanonicalPath()+"\\data\\base.properties";
 			//環境情報の取込
 			env = new FD_EnvData(propPath);
+			env.setActiveProcessID(ThisProcess_ID);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
+		//関連情報リセット処理
+		resetFxBaseData(env);
+		
 		//プロセス情報登録
-		X_FD_Process process = new X_FD_Process(env);
+		FDProcess process = new FDProcess();
+		process.addData(env, ThisProcess_ID,  CreatePackage.class.getSimpleName(), startDate);
 		
 		//Fx画面情報構築
 		FXView view = new FXView();
 		view.createTable(env);
+	}
+
+	/**
+	 * Fxベースクラス登録用情報リセット<br>
+	 * <p>実行プロセス情報IDを持つベース情報を削除して、ベース構築処理をリセットする。</p>
+	 * @author officine-hide.com
+	 * @since 1.10 2020/11/03
+	 * @param env 環境情報
+	 */
+	private static void resetFxBaseData(FD_EnvData env) {
+		//プロセス情報削除
+		deleteDataByProcessId(env, I_FD_Process.Table_Name, ThisProcess_ID);
+		deleteDataByProcessId(env, I_FD_Table.Table_Name, ThisProcess_ID);
+		deleteDataByProcessId(env, I_FD_TableColumn.Table_Name, ThisProcess_ID);
+	}
+
+	/**
+	 * テーブル情報削除<br>
+	 * <p>指定されたテーブルに保管されている情報の内、指定されてプロセス情報IDを持つ情報を削除する。</p>
+	 * @author officine-hide.com
+	 * @since 1.10 2020/11/03
+	 * @param env 環境情報
+	 * @param tableName テーブル名
+	 * @param processId プロセス情報ID
+	 */
+	private static void deleteDataByProcessId(FD_EnvData env, String tableName, int processId) {	
+		Statement stmt = null;
+		StringBuffer sql = new StringBuffer();
+		FD_DB DB = new FD_DB();
+		try {
+			sql.append("DELETE FROM ").append(tableName).append(" ");
+			sql.append("WHERE ").append(I_FD_Process.COLUMNNAME_FD_Process_ID).append(" = ").append(processId);
+			DB.connection(env);
+			stmt = DB.createStatement();
+			stmt.executeUpdate(sql.toString());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(stmt);
+		}
 	}
 
 }
