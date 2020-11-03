@@ -125,5 +125,4 @@ public class FDProcess extends FD_DB implements I_FD_Process {
 		process.setValueByName(env, COLUMNNAME_Process_EndTime, date);
 		process.save(env);
 	}
-
 }

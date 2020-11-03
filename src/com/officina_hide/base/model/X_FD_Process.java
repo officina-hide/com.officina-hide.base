@@ -89,4 +89,16 @@ public class X_FD_Process extends FD_DB implements I_FD_Process {
 		return item.getDateOfValue();
 	}
 
+	/**
+	 * 項目の数値情報を返す。<br>
+	 * @author officine-hide.com
+	 * @since 1.10 2020/11/03
+	 * @param columnName 項目名
+	 * @return 数値情報
+	 */
+	public int getintOfValue(String columnName) {
+		FD_Item item = itemList.getItemByName(columnName);
+		return item.getIntOfValue();
+	}
+
 }

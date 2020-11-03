@@ -2,8 +2,10 @@ package com.officina_hide.fx.tools;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.model.X_FD_Process;
 import com.officina_hide.base.tools.CreatePackage;
 
 /**
@@ -21,8 +23,8 @@ public class CreateFxBase {
 		 * 実際には常に起動する必要はなく、Packageベースに変更があった時に起動させる。<br>
 		 */
 //		CreatePackage.main(null);
-		//プロセス情報登録
 		
+		Date startDate = new Date();
 		
 		//環境情報のPathを設定する。
 		FD_EnvData env = null;
@@ -33,6 +35,9 @@ public class CreateFxBase {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		//プロセス情報登録
+		X_FD_Process process = new X_FD_Process(env);
 		
 		//Fx画面情報構築
 		FXView view = new FXView();
