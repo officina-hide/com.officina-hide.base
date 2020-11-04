@@ -8,6 +8,7 @@ import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
+import com.officina_hide.base.model.I_FD_Log;
 import com.officina_hide.base.model.I_FD_Process;
 import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.model.I_FD_TableColumn;
@@ -67,6 +68,7 @@ public class CreateFxBase {
 	private static void resetFxBaseData(FD_EnvData env) {
 		//プロセス情報削除
 		deleteDataByProcessId(env, I_FD_Process.Table_Name, ThisProcess_ID);
+		deleteDataByProcessId(env, I_FD_Log.Table_Name, ThisProcess_ID);
 		deleteDataByProcessId(env, I_FD_Table.Table_Name, ThisProcess_ID);
 		deleteDataByProcessId(env, I_FD_TableColumn.Table_Name, ThisProcess_ID);
 	}
