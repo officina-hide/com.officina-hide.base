@@ -1,5 +1,7 @@
 package com.officina_hide.project.tools;
 
+import com.officina_hide.base.tools.FDProcess;
+
 /**
  * プロジェクトパッケージのベースを構築する。<br>
  * @author officine-hide.com
@@ -9,7 +11,9 @@ package com.officina_hide.project.tools;
 public class CreateProjectPackage {
 
 	public static void main(String[] args) {
-		
+
+		//プロセス情報登録
+		FDProcess process = new FDProcess();
 	}
 
 }
