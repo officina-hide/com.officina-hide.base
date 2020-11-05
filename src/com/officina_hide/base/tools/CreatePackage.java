@@ -95,6 +95,12 @@ public class CreatePackage {
 		FD_DB DB = new FD_DB();
 		DB.addLog(env, I_FD_Log.LOGTYPE_Info_ID, "ベース情報の構築完了【CreatePackage】");
 		
+//		
+//		/*
+//		 * プロセス生成用メソッド構築 2020/11/05 
+//		 */
+//		int processId = process.createProcess(env, "test");
+//		System.out.println(processId);
 	}
 
 }
