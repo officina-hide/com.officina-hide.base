@@ -46,6 +46,9 @@ public class FXView extends FD_DB implements I_FX_View {
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_UPDATED, NAME_FD_UPDATED, COMMENT_FD_UPDATED
 				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 940, "N", "N");
 
+		//テーブル構築
+		createDBTable(env, TABLE_ID);
+		
 		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築完了");
 	}
 

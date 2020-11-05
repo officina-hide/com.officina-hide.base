@@ -6,7 +6,7 @@ package com.officina_hide.base.model;
  * @version 1.00 新規作成
  * @since 2020/10/15
  */
-public interface I_FD_Referecne {
+public interface I_FD_Reference {
 
 	/** リファレンス情報 : テーブル名 */
 	public final String Table_Name = "FD_Reference";

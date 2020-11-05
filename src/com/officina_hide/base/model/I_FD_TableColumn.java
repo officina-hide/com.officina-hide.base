@@ -57,8 +57,12 @@ public interface I_FD_TableColumn {
 	public final String COLUMNNAME_Is_Null = "Is_Null";
 	public final String NAME_Is_Null = "Not Null必須判定";
 	public final String COMMENT_Is_Null = "テーブル項目がNotNull必須の時にYESとする。";
+	public final String IS_NULL_Yes = "Y";
+	public final String IS_NULL_No = "N";
 	/** プライマリーKey判定 */
 	public final String COLUMNNAME_Is_Primary = "Is_Primary";
 	public final String NAME_Is_Primary = "プライマリーKey判定";
 	public final String COMMENT_Is_Primary = "テーブル項目がPrimary　Keyの時にYESとする。";
+	public final String IS_PRIMARY_Yes = "Y";
+	public final String IS_PRIMARY_No = "N";	
 }

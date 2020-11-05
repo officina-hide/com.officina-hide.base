@@ -20,6 +20,20 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 	}
 
 	/**
+	 * コンストラクター<br>
+	 * @author officine-hide.com
+	 * @since 1.10 2020/11/05
+	 * @param env 環境情報
+	 * @param tableId テーブル情報ID
+	 */
+	public X_FD_Table(FD_EnvData env, int tableId) {
+		//項目の初期化
+		initializeItemList();
+		//情報読み取り
+		load(env, Table_Name, tableId);
+	}
+
+	/**
 	 * 項目リスト初期化<br>
 	 * @author officina-hide.com
 	 * @since 1.00 2020/10/12

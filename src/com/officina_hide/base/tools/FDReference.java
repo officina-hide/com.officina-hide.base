@@ -3,7 +3,7 @@ package com.officina_hide.base.tools;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Log;
-import com.officina_hide.base.model.I_FD_Referecne;
+import com.officina_hide.base.model.I_FD_Reference;
 import com.officina_hide.base.model.X_FD_Reference;
 
 /**
@@ -12,7 +12,7 @@ import com.officina_hide.base.model.X_FD_Reference;
  * @version 1.00
  * @since 2020/10/15
  */
-public class FDReference extends FD_DB implements I_FD_Referecne {
+public class FDReference extends FD_DB implements I_FD_Reference {
 
 	/**
 	 * リファレンス情報テーブル構築

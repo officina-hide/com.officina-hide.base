@@ -1,9 +1,6 @@
 package com.officina_hide.base.model;
 
-import java.util.Date;
-
 import com.officina_hide.base.common.FD_EnvData;
-import com.officina_hide.base.common.FD_Item;
 
 /**
  * プロセス情報I/Oクラス<br>

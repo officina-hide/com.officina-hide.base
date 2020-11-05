@@ -8,7 +8,7 @@ import com.officina_hide.base.common.FD_EnvData;
  * @version 1.00
  * @since 2020/10/15
  */
-public class X_FD_Reference extends FD_DB implements I_FD_Referecne {
+public class X_FD_Reference extends FD_DB implements I_FD_Reference {
 
 	/**
 	 * コンストラクター<br>
