@@ -132,20 +132,42 @@ public class FDProcess extends FD_DB implements I_FD_Process {
 	/**
 	 * プロセス生成<br>
 	 * <p>プロセス情報を生成し、プロセス情報IDを返す。</p>
+	 * @author officine-hide.com
+	 * @since 1.20 2020/11/05
 	 * @param processName プロセス名
 	 * @param env 　環境情報
 	 * @return プロセス情報ID
 	 */
 	public int createProcess(FD_EnvData env, String processName) {
-		int processId = 0;
+//		int processId = 0;
+//		X_FD_Process process = new X_FD_Process(env);
+//		process.setValueByName(env, I_FD_Process.COLUMNNAME_FD_Process_ID, 0);
+//		process.setValueByName(env, COLUMNNAME_Process_Name, processName);
+//		process.setValueByName(env, COLUMNNAME_Process_StartTime, new Date());
+//		process.save(env);
+//		
+//		processId = process.getintOfValue(I_FD_Process.COLUMNNAME_FD_Process_ID);
+		
+		return createProcess(env, 0, processName);
+	}
+
+	/**
+	 * プロセス生成<br>
+	 * <p>プロセス情報を生成し、プロセス情報IDを返す。</p>
+	 * @author officine-hide.com
+	 * @since 1.20 2020/11/05
+	 * @param env 環境情報
+	 * @param processId プロセス情報ID
+	 * @param processName プロセス名
+	 * @return プロセス情報ID
+	 */
+	public int createProcess(FD_EnvData env, int processId, String processName) {
 		X_FD_Process process = new X_FD_Process(env);
-		process.setValueByName(env, I_FD_Process.COLUMNNAME_FD_Process_ID, 0);
+		process.setValueByName(env, I_FD_Process.COLUMNNAME_FD_Process_ID, processId);
 		process.setValueByName(env, COLUMNNAME_Process_Name, processName);
 		process.setValueByName(env, COLUMNNAME_Process_StartTime, new Date());
 		process.save(env);
 		
-		processId = process.getintOfValue(I_FD_Process.COLUMNNAME_FD_Process_ID);
-		
-		return processId;
+		return process.getintOfValue(I_FD_Process.COLUMNNAME_FD_Process_ID);
 	}
 }
