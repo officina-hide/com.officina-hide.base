@@ -51,7 +51,7 @@ public class CreateFxBase {
 		
 		//プロセス情報登録
 		FDProcess process = new FDProcess();
-		process.addData(env, ThisProcess_ID,  CreatePackage.class.getSimpleName(), startDate);
+		process.addData(env, ThisProcess_ID,  CreatePackage.class.getSimpleName(), startDate);	
 		
 		//Fx画面情報構築
 		FXView view = new FXView();
