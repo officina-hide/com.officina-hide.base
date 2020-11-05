@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.tools.FDProcess;
 
 /**
  * プロジェクトパッケージのベースを構築する。<br>
@@ -28,11 +29,9 @@ public class CreateProjectPackage {
 			e.printStackTrace();
 		}
 
-		//プロセス情報ID付きのプロセス生成メソッド作成
-//		//プロセス情報登録
-//		FDProcess process = new FDProcess();
-//		int processId = process.createProcess(env, CreateProjectPackage.class.getSimpleName());
-//		env.setActiveProcessID(processId);
+		//プロセス情報登録
+		FDProcess process = new FDProcess();
+		process.createProcess(env, thisPorcessId, CreateProjectPackage.class.getSimpleName());
 	}
 
 }
