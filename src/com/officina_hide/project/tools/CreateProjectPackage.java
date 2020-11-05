@@ -3,7 +3,11 @@ package com.officina_hide.project.tools;
 import java.io.File;
 import java.io.IOException;
 
+import com.officina_hide.base.common.FD_DB_Utility;
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.model.I_FD_Log;
+import com.officina_hide.base.model.I_FD_Process;
+import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.tools.FDProcess;
 
 /**
@@ -28,10 +32,32 @@ public class CreateProjectPackage {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		//関連情報リセット処理
+		resetFxBaseData(env);
 
 		//プロセス情報登録
 		FDProcess process = new FDProcess();
 		process.createProcess(env, thisPorcessId, CreateProjectPackage.class.getSimpleName());
+		
+		//プロジェクト情報構築
+		FDProject project = new FDProject();
+		project.createTable(env);
+	}
+
+	/**
+	 * Fxベースクラス登録用情報リセット<br>
+	 * <p>実行プロセス情報IDを持つベース情報を削除して、ベース構築処理をリセットする。</p>
+	 * @author officine-hide.com
+	 * @since 1.10 2020/11/03
+	 * @param env 環境情報
+	 */
+	private static void resetFxBaseData(FD_EnvData env) {
+		//プロセス情報削除
+		FD_DB_Utility dbutil = new FD_DB_Utility();
+		dbutil.deleteDataByProcessId(env, I_FD_Process.Table_Name, thisPorcessId);
+		dbutil.deleteDataByProcessId(env, I_FD_Log.Table_Name, thisPorcessId);
+		dbutil.deleteDataByProcessId(env, I_FD_Table.Table_Name, thisPorcessId);
 	}
 
 }
