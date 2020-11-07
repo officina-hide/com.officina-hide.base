@@ -29,6 +29,12 @@ public class FDProject extends FD_DB implements I_FD_Project {
 		table.addData(env, TABLE_ID, Table_Name, NAME, COMMENT);
 		//テーブル項目情報登録
 		FDTableColumn column = new FDTableColumn();
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Project_ID, NAME_FD_Project_ID, COMMENT_FD_Project_ID
+				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 10, "Y", "Y");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_Project_Name, NAME_Project_Name, COMMENT_Project_Name
+				, COLUMNTYPE_ID_FD_Text, null, 100, 20, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Name, NAME_FD_Name, COMMENT_FD_Name
+				, COLUMNTYPE_ID_FD_Text, null, 100, 30, "N", "N");
 		
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Process_ID, NAME_FD_Process_ID, COMMENT_FD_Process_ID
 				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 900, "N", "N");
@@ -40,6 +46,10 @@ public class FDProject extends FD_DB implements I_FD_Project {
 				, COLUMNTYPE_ID_FD_Date, null, 0, 930, "N", "N");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_UPDATED, NAME_FD_UPDATED, COMMENT_FD_UPDATED
 				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 940, "N", "N");
+		//テーブル構築
+		createDBTable(env, TABLE_ID);
+		
+		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築完了");
 	}
 
 }

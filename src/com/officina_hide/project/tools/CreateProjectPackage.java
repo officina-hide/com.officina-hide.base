@@ -8,6 +8,7 @@ import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.I_FD_Log;
 import com.officina_hide.base.model.I_FD_Process;
 import com.officina_hide.base.model.I_FD_Table;
+import com.officina_hide.base.model.I_FD_TableColumn;
 import com.officina_hide.base.tools.FDProcess;
 
 /**
@@ -58,6 +59,7 @@ public class CreateProjectPackage {
 		dbutil.deleteDataByProcessId(env, I_FD_Process.Table_Name, thisPorcessId);
 		dbutil.deleteDataByProcessId(env, I_FD_Log.Table_Name, thisPorcessId);
 		dbutil.deleteDataByProcessId(env, I_FD_Table.Table_Name, thisPorcessId);
+		dbutil.deleteDataByProcessId(env, I_FD_TableColumn.Table_Name, thisPorcessId);
 	}
 
 }
