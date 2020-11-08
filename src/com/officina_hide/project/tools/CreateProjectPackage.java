@@ -6,6 +6,7 @@ import java.io.IOException;
 import com.officina_hide.base.common.FD_DB_Utility;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.I_FD_Log;
+import com.officina_hide.base.model.I_FD_Numbering;
 import com.officina_hide.base.model.I_FD_Process;
 import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.model.I_FD_TableColumn;
@@ -44,6 +45,10 @@ public class CreateProjectPackage {
 		//プロジェクト情報構築
 		FDProject project = new FDProject();
 		project.createTable(env);
+		//タスク情報構築
+		FDTask task = new FDTask();
+		task.createTable(env);
+		
 		//プロジェクトサンプル登録処理
 		LoadProjectSample lps = new LoadProjectSample();
 		lps.createData(env);
@@ -63,6 +68,7 @@ public class CreateProjectPackage {
 		dbutil.deleteDataByProcessId(env, I_FD_Log.Table_Name, thisPorcessId);
 		dbutil.deleteDataByProcessId(env, I_FD_Table.Table_Name, thisPorcessId);
 		dbutil.deleteDataByProcessId(env, I_FD_TableColumn.Table_Name, thisPorcessId);
+		dbutil.deleteDataByProcessId(env, I_FD_Numbering.Table_Name, thisPorcessId);
 	}
 
 }
