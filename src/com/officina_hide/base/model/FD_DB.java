@@ -119,7 +119,7 @@ public class FD_DB implements I_DB {
 			sql.append(items.toString()).append(" ) ");
 			if(table.getValueOfString(I_FD_TableColumn.COLUMNNAME_FD_Name).length() > 0) {
 				sql.append(" COMMENT ")
-					.append(FD_SQ).append(table.getValueOfString(I_FD_Table.COLUMNNAME_FD_Comment)).append(FD_SQ).append(" ");
+					.append(FD_SQ).append(table.getValueOfString(I_FD_Table.COLUMNNAME_FD_Name)).append(FD_SQ).append(" ");
 			}
 			
 			DBexecute(env, sql.toString());

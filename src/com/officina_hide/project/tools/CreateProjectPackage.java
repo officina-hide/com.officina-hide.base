@@ -44,6 +44,9 @@ public class CreateProjectPackage {
 		//プロジェクト情報構築
 		FDProject project = new FDProject();
 		project.createTable(env);
+		//プロジェクトサンプル登録処理
+		LoadProjectSample lps = new LoadProjectSample();
+		lps.createData(env);
 	}
 
 	/**
