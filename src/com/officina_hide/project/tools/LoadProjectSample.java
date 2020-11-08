@@ -12,6 +12,13 @@ import com.officina_hide.base.common.FD_EnvData;
  */
 public class LoadProjectSample {
 
+	/*
+	 * プロジェクト情報を生成する登録し、関連するタスク情報を登録する。<br>
+	 * Fx画面では、プロジェクトでタスク一覧を表示する。ことができるようにする。<br>
+	 * すべて登録後に、登録した情報をバックアップする。
+	 */
+	
+	
 	/**
 	 * 情報を生成する<br>
 	 * TODO 本メソッドは変更される予定
