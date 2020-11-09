@@ -40,6 +40,7 @@ public class X_FD_Project extends FD_DB implements I_FD_Project {
 		itemList.add(COLUMNNAME_FD_CREATED, null, COLUMNTYPE_FD_Information_ID);
 		itemList.add(COLUMNNAME_FD_UPDATE, null, COLUMNTYPE_FD_Date);
 		itemList.add(COLUMNNAME_FD_UPDATED, null, COLUMNTYPE_FD_Information_ID);
+		initializeItemList(env, TABLE_ID);
 	}
 
 	/**

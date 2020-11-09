@@ -64,7 +64,7 @@ public class FDReference extends FD_DB implements I_FD_Reference {
 		FDNumbering num = new FDNumbering();
 		num.addData(env, TABLE_ID, TABLE_ID, 0, 1000001);
 		
-		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築開始");
+		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築完了");
 	}
 
 	/**
