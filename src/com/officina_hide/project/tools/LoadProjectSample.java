@@ -27,10 +27,10 @@ public class LoadProjectSample {
 	public void createData(FD_EnvData env) {
 		//プロジェクト情報登録
 		FDProject project = new FDProject();
-		int projectId = project.addData(env, "SDSS", "システム開発支援プロジェクト");
+		int projectId = project.addData(env, "SDSS", "システム開発支援プロジェクト", "SDSS_0000");
 		//タスク情報登録
 		FDTask task = new FDTask();
-		task.addData(env, projectId);		
+		task.addData(env, projectId);	
 	}
 
 }

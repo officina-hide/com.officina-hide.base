@@ -33,6 +33,7 @@ public class X_FD_Project extends FD_DB implements I_FD_Project {
 		itemList.add(COLUMNNAME_FD_Project_ID, null, COLUMNTYPE_FD_Information_ID);
 		itemList.add(COLUMNNAME_Project_Name, null, COLUMNTYPE_FD_Text);
 		itemList.add(COLUMNNAME_FD_Name, null, COLUMNTYPE_FD_Text);
+		itemList.add(COLUMNNAME_Task_Number_Form, null, COLUMNTYPE_FD_Text);
 		
 		itemList.add(COLUMNNAME_FD_Process_ID, null, COLUMNTYPE_FD_Information_ID);
 		itemList.add(COLUMNNAME_FD_CREATE, null, COLUMNTYPE_FD_Date);

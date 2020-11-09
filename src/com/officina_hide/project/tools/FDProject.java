@@ -65,14 +65,16 @@ public class FDProject extends FD_DB implements I_FD_Project {
 	 * @since 1.20 2020/11/08
 	 * @param env 環境情報
 	 * @param projectName プロジェクト名
+	 * @param form 
 	 * @param name　プロジェクト表示名
 	 * @return 
 	 */
-	public int addData(FD_EnvData env, String projectName, String name) {
+	public int addData(FD_EnvData env, String projectName, String name, String form) {
 		X_FD_Project project = new X_FD_Project(env);
 		project.setValueByName(env, COLUMNNAME_FD_Project_ID, 0);
 		project.setValueByName(env, COLUMNNAME_Project_Name, projectName);
 		project.setValueByName(env, COLUMNNAME_FD_Name, name);
+		project.setValueByName(env, COLUMNNAME_Task_Number_Form, changeEscape(form));
 		project.save(env);
 		
 		return project.getintOfValue(COLUMNNAME_FD_Project_ID);
