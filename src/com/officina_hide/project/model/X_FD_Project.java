@@ -20,25 +20,7 @@ public class X_FD_Project extends FD_DB implements I_FD_Project {
 	 */
 	public X_FD_Project(FD_EnvData env) {
 		//項目初期化
-		initializeItemList();
-	}
-	
-	/**
-	 * 項目リスト初期化<br>
-	 * @author officina-hide.com
-	 * @since 1.20 2020/11/08
-	 */
-	private void initializeItemList() {
-		itemList.clear();
-		itemList.add(COLUMNNAME_FD_Project_ID, null, COLUMNTYPE_FD_Information_ID);
-		itemList.add(COLUMNNAME_Project_Name, null, COLUMNTYPE_FD_Text);
-		itemList.add(COLUMNNAME_FD_Name, null, COLUMNTYPE_FD_Text);
-		
-		itemList.add(COLUMNNAME_FD_Process_ID, null, COLUMNTYPE_FD_Information_ID);
-		itemList.add(COLUMNNAME_FD_CREATE, null, COLUMNTYPE_FD_Date);
-		itemList.add(COLUMNNAME_FD_CREATED, null, COLUMNTYPE_FD_Information_ID);
-		itemList.add(COLUMNNAME_FD_UPDATE, null, COLUMNTYPE_FD_Date);
-		itemList.add(COLUMNNAME_FD_UPDATED, null, COLUMNTYPE_FD_Information_ID);
+		initializeItemList(env, TABLE_ID);
 	}
 
 	/**

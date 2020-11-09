@@ -33,8 +33,7 @@ public class CreatePackage {
 		 * ※ここでの検討、他の情報にも追加プロセスが必要な場合は、共通化を検討する。<br>
 		 */
 		/*
-		 * 1.プロセス情報の構築<br>
-		 * 2.プロセスを共通情報として各情報に追加する。<br>
+		 * テーブル項目情報から項目初期化を行う。(FD_DBに追加)
 		 */
 		
 		//開始時刻保存
@@ -95,12 +94,14 @@ public class CreatePackage {
 		FD_DB DB = new FD_DB();
 		DB.addLog(env, I_FD_Log.LOGTYPE_Info_ID, "ベース情報の構築完了【CreatePackage】");
 		
-//		
-//		/*
-//		 * プロセス生成用メソッド構築 2020/11/05 
-//		 */
-//		int processId = process.createProcess(env, "test");
-//		System.out.println(processId);
+//
+//		//プロジェクト情報で項目追加メソッドのテストを追加行う。
+//		FDProject pro = new FDProject();
+//		pro.createTable(env);
+//		X_FD_Project project = new X_FD_Project(env);
+//		project.setValueByName(env, I_FD_Project.COLUMNNAME_FD_Project_ID, 0);
+//		project.setValueByName(env, I_FD_Project.COLUMNNAME_Project_Name, "TestProject");
+//		project.save(env);
 	}
 
 }

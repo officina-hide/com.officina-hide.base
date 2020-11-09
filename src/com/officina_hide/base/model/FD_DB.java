@@ -280,6 +280,8 @@ public class FD_DB implements I_DB {
 		if(where != null && where.length() > 9) {
 			sql.append(where.toString());
 		}
+		
+//		System.out.println(sql.toString());
 
 		addLog(env, I_FD_Log.LOGTYPE_Data_Update, changeEscape(sql.toString()));
 		
@@ -556,5 +558,38 @@ public class FD_DB implements I_DB {
 	public int getintOfValue(String columnName) {
 		FD_Item item = itemList.getItemByName(columnName);
 		return item.getIntOfValue();
+	}
+	
+	/**
+	 * 項目リスト初期化<br>
+	 * @author officina-hide.com
+	 * @since 1.20 2020/11/08
+	 * @param env 環境情報
+	 * @param tableId テーブル情報ID
+	 * TODO 本メソッドは汎用化予定(2020/11/09 ueno)
+	 */
+	public void initializeItemList(FD_EnvData env, int tableId) {
+		itemList.clear();
+		Statement stmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT * FROM ").append(I_FD_TableColumn.Table_Name).append(" ");
+			sql.append("LEFT JOIN ").append(I_FD_Reference.Table_Name).append(" ON ")
+				.append(I_FD_Reference.COLUMNNAME_FD_Reference_ID).append(" = ")
+				.append(I_FD_TableColumn.COLUMNNAME_TableColumn_Type_ID).append(" ");
+			sql.append("WHERE ").append(I_FD_TableColumn.COLUMNNAME_FD_Table_ID).append(" = ").append(tableId).append(" ");
+			connection(env);
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql.toString());
+			while(rs.next()) {
+				itemList.add(rs.getString(I_FD_TableColumn.COLUMNNAME_TableColumn_Name)
+						, null, rs.getString(I_FD_Reference.Table_Name+"."+I_FD_Reference.COLUMNNAME_Reference_Name));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(stmt, rs);
+		}
 	}
 }
