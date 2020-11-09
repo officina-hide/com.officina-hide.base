@@ -3,9 +3,11 @@ package com.officina_hide.fx.tools;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Log;
+import com.officina_hide.base.tools.FDNumbering;
 import com.officina_hide.base.tools.FDTable;
 import com.officina_hide.base.tools.FDTableColumn;
 import com.officina_hide.fx.model.I_FX_View;
+import com.officina_hide.fx.model.X_FX_View;
 
 /**
  * Fx画面情報クラス<br>
@@ -45,11 +47,31 @@ public class FXView extends FD_DB implements I_FX_View {
 				, COLUMNTYPE_ID_FD_Date, null, 0, 930, "N", "N");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_UPDATED, NAME_FD_UPDATED, COMMENT_FD_UPDATED
 				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 940, "N", "N");
+		
+		//採番情報登録
+		FDNumbering num = new FDNumbering();
+		num.addData(env, TABLE_ID, TABLE_ID, 0, 1000001);
 
 		//テーブル構築
 		createDBTable(env, TABLE_ID);
 		
 		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築完了");
+	}
+
+	/**
+	 * Fx画面情報登録<br>
+	 * @author officine-hide.com
+	 * @since 1.20 2020/11/10
+	 * @param env 環境情報
+	 * @param viewName 画面名
+	 * @param name 画面表示名
+	 */
+	public void addData(FD_EnvData env, String viewName, String name) { 
+		X_FX_View view = new X_FX_View(env);
+		view.setValueByName(env, COLUMNNAME_FX_View_ID, 0);
+		view.setValueByName(env, COLUMNNAME_View_Name, viewName);
+		view.setValueByName(env, COLUMNNAME_FD_Name, name);
+		view.save(env);
 	}
 
 }

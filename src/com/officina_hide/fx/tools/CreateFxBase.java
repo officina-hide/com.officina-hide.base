@@ -30,7 +30,6 @@ public class CreateFxBase {
 		 * 当面は、ここからCreatePakageを呼び出す。<br>
 		 * 実際には常に起動する必要はなく、Packageベースに変更があった時に起動させる。<br>
 		 */
-//		CreatePackage.main(null);
 		Date startDate = new Date();
 		
 		//環境情報のPathを設定する。
@@ -54,6 +53,11 @@ public class CreateFxBase {
 		//Fx画面情報構築
 		FXView view = new FXView();
 		view.createTable(env);
+//		
+//		//機能テスト用
+//		//Fx画面情報登録用
+//		view.addData(env, "FX_Task_List", "タスク情報一覧");
+		
 	}
 
 	/**
