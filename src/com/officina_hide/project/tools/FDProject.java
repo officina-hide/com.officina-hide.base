@@ -37,6 +37,8 @@ public class FDProject extends FD_DB implements I_FD_Project {
 				, COLUMNTYPE_ID_FD_Text, null, 100, 20, "N", "N");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Name, NAME_FD_Name, COMMENT_FD_Name
 				, COLUMNTYPE_ID_FD_Text, null, 100, 30, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_Task_Number_Form, NAME_Task_Number_Form, COMMENT_Task_Number_Form
+				, COLUMNTYPE_ID_FD_Text, null, 100, 40, "N", "N");
 		
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Process_ID, NAME_FD_Process_ID, COMMENT_FD_Process_ID
 				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 900, "N", "N");
@@ -64,13 +66,16 @@ public class FDProject extends FD_DB implements I_FD_Project {
 	 * @param env 環境情報
 	 * @param projectName プロジェクト名
 	 * @param name　プロジェクト表示名
+	 * @return 
 	 */
-	public void addData(FD_EnvData env, String projectName, String name) {
+	public int addData(FD_EnvData env, String projectName, String name) {
 		X_FD_Project project = new X_FD_Project(env);
 		project.setValueByName(env, COLUMNNAME_FD_Project_ID, 0);
 		project.setValueByName(env, COLUMNNAME_Project_Name, projectName);
 		project.setValueByName(env, COLUMNNAME_FD_Name, name);
 		project.save(env);
+		
+		return project.getintOfValue(COLUMNNAME_FD_Project_ID);
 	}
 
 }

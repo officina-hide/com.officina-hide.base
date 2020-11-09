@@ -29,4 +29,8 @@ public interface I_FD_Project {
 	public final String COLUMNNAME_FD_Name = "FD_Name";
 	public final String NAME_FD_Name = "プロジェクト表示名";
 	public final String COMMENT_FD_Name = "プロジェクトの論理名称";
+	/** タスク番号書式 */
+	public final String COLUMNNAME_Task_Number_Form = "Task_Number_Form";
+	public final String NAME_Task_Number_Form = "タスク番号書式";
+	public final String COMMENT_Task_Number_Form = "タスク番号を採番する際の書式";
 }

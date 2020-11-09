@@ -25,8 +25,12 @@ public class LoadProjectSample {
 	 * @param env 環境情報
 	 */
 	public void createData(FD_EnvData env) {
+		//プロジェクト情報登録
 		FDProject project = new FDProject();
-		project.addData(env, "SDSS", "システム開発支援プロジェクト");
+		int projectId = project.addData(env, "SDSS", "システム開発支援プロジェクト");
+		//タスク情報登録
+		FDTask task = new FDTask();
+		task.addData(env, projectId);		
 	}
 
 }

@@ -26,8 +26,10 @@ public class FDTask extends FD_DB implements I_FD_Task {
 		FDTableColumn column = new FDTableColumn();
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Task_ID, NAME_FD_Task_ID, COMMENT_FD_Task_ID
 				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 10, "Y", "Y");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Project_ID, COLUMNNAME_FD_Project_ID, COMMENT_FD_Project_ID
+				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 20, "N", "N");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_Task_Number, NAME_Task_Number, COMMENT_Task_Number
-				, COLUMNTYPE_ID_FD_Text, null, 80, 20, "N", "N");
+				, COLUMNTYPE_ID_FD_Text, null, 32, 30, "N", "N");
 		
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Process_ID, NAME_FD_Process_ID, COMMENT_FD_Process_ID
 				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 900, "N", "N");
@@ -46,6 +48,17 @@ public class FDTask extends FD_DB implements I_FD_Task {
 		num.addData(env, TABLE_ID, TABLE_ID, 0, 1000001);
 
 		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築完了");
+	}
+
+	/**
+	 * タスク情報登録<br>
+	 * @author officine-hide.com
+	 * @since 1.20 2020/11/09
+	 * @param env 環境情報
+	 * @param projectId プロジェクト情報ID
+	 */
+	public void addData(FD_EnvData env, int projectId) {
+		
 	}
 
 }

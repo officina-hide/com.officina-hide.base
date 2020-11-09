@@ -21,8 +21,12 @@ public interface I_FD_Task {
 	public final String COLUMNNAME_FD_Task_ID = Table_Name + "_ID";
 	public final String NAME_FD_Task_ID = "タスク情報ID";
 	public final String COMMENT_FD_Task_ID = "タスク情報を識別する為の情報ID";
+	/** プロジェクト情報ID */
+	public final String COLUMNNAME_FD_Project_ID = I_FD_Project.Table_Name + "_ID";
+	public final String NAME_FD_Project_ID = "プロジェクト情報ID";
+	public final String COMMENT_FD_Project_ID = "タスクを管理するプロジェクト情報の情報ID";
 	/** タスク番号 */
 	public final String COLUMNNAME_Task_Number = "Task_Number";
 	public final String NAME_Task_Number = "タスク番号";
-	public final String COMMENT_Task_Number = "タスクを識別する為の表示番号（書式はシステムコンフィグで設定する）";
+	public final String COMMENT_Task_Number = "タスクを識別する為の表示番号（書式はタスク情報で設定する。）";
 }
