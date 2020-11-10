@@ -69,9 +69,9 @@ public class CreatePackage {
 		num.createTable(env);
 		table.addData(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.Table_Name
 				, I_FD_Numbering.NAME, I_FD_Numbering.COMMENT);
-		num.addData(env,I_FD_Table.TABLE_ID, I_FD_Table.TABLE_ID, 0, 1000001);
-		num.addData(env,I_FD_Numbering.TABLE_ID, I_FD_Numbering.TABLE_ID, 0, 1000001);
-		num.addData(env, I_FD_Process.TABLE_ID, I_FD_Process.TABLE_ID, 0, 1000001);
+		num.addData(env,I_FD_Table.TABLE_ID, I_FD_Table.TABLE_ID, 0, 1000001, 0, null);
+		num.addData(env,I_FD_Numbering.TABLE_ID, I_FD_Numbering.TABLE_ID, 0, 1000001, 0, null);
+		num.addData(env, I_FD_Process.TABLE_ID, I_FD_Process.TABLE_ID, 0, 1000001, 0, null);
 		//リファレンス情報構築
 		FDReference ref = new FDReference();
 		ref.createDBTable(env);
@@ -82,7 +82,7 @@ public class CreatePackage {
 		column.createTable(env);
 		table.addData(env, I_FD_TableColumn.TABLE_ID, I_FD_TableColumn.Table_Name
 				, I_FD_TableColumn.NAME, I_FD_TableColumn.COMMENT);
-		num.addData(env,I_FD_TableColumn.TABLE_ID, I_FD_TableColumn.TABLE_ID, 0, 1000001);
+		num.addData(env,I_FD_TableColumn.TABLE_ID, I_FD_TableColumn.TABLE_ID, 0, 1000001, 0, null);
 		//テーブル項目情報登録
 		table.addTableColumn(env);
 		column.addTableColumn(env);
