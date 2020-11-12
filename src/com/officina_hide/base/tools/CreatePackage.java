@@ -95,14 +95,6 @@ public class CreatePackage {
 		FD_DB DB = new FD_DB();
 		DB.addLog(env, I_FD_Log.LOGTYPE_Info_ID, "ベース情報の構築完了【CreatePackage】");
 		
-//
-//		//プロジェクト情報で項目追加メソッドのテストを追加行う。
-//		FDProject pro = new FDProject();
-//		pro.createTable(env);
-//		X_FD_Project project = new X_FD_Project(env);
-//		project.setValueByName(env, I_FD_Project.COLUMNNAME_FD_Project_ID, 0);
-//		project.setValueByName(env, I_FD_Project.COLUMNNAME_Project_Name, "TestProject");
-//		project.save(env);
 	}
 
 }
