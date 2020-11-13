@@ -95,6 +95,8 @@ public class CreatePackage {
 		FDUniqueIndex uidx = new FDUniqueIndex();
 		uidx.createTable(env);
 		uidx.addData(env, 0, I_FD_Numbering.TABLE_ID, I_FD_Numbering.Unique_Index_Name);
+		FDUniqueColumn uclm = new FDUniqueColumn();
+		uclm.createTable(env);
 		
 		process.endProcess(env, new Date());
 		FD_DB DB = new FD_DB();
