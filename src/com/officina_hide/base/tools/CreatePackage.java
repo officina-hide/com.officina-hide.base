@@ -17,7 +17,8 @@ import com.officina_hide.base.model.I_FD_TableColumn;
  * <p>本パッケージを初期状態から構築するための機能を提供する。<br>
  * 将来的には、ウィザード形式でシステムが構築できるようにしていく。</p>
  * @author officine-hide.com
- * @version 1.00
+ * @version 1.00 新規作成
+ * @version 1.20 ユニーク制約情報構築
  * @since 2020/10/08
  */
 public class CreatePackage {
@@ -33,8 +34,7 @@ public class CreatePackage {
 		 * ※ここでの検討、他の情報にも追加プロセスが必要な場合は、共通化を検討する。<br>
 		 */
 		/*
-		 * 採番情報の拡張<br>
-		 * テーブル情報IDとテーブル項目情報IDとKey項目の組み合わせで採番を行う。
+		 * ユニーク制約情報の追加
 		 */
 		
 		//開始時刻保存
@@ -91,6 +91,10 @@ public class CreatePackage {
 		log.addTabeColumn(env);
 		process.addTableColumn(env);
 	
+		//ユニーク制約情報構築
+		FDUniqueIndex uidx = new FDUniqueIndex();
+		uidx.createTable(env);
+		
 		process.endProcess(env, new Date());
 		FD_DB DB = new FD_DB();
 		DB.addLog(env, I_FD_Log.LOGTYPE_Info_ID, "ベース情報の構築完了【CreatePackage】");

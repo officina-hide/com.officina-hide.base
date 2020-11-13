@@ -15,7 +15,7 @@ public interface I_FD_Reference {
 	/** リファレンス情報 : テーブル説明 */
 	public final String COMMENT = "リファレンスを管理する為の情報";
 	/**リファレンス情報 : テーブル情報ID */
-	public final int TABLE_ID = 104;
+	public final int TABLE_ID = 106;
 	
 	//テーブル項目情報
 	/** リファレンス情報ID */
