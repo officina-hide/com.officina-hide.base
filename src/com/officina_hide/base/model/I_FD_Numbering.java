@@ -41,4 +41,7 @@ public interface I_FD_Numbering {
 	public final String COLUMNNAME_Numbering_Key = "Numbering_Key";
 	public final String NAME_Numbering_Key = "採番Key";
 	public final String COMMENT_Numbering_Key = "採番の対象となるKey情報";
+	
+	/** ユニーク制約インデックス名 */
+	public final String Unique_Index_Name = "採番Key";
 }

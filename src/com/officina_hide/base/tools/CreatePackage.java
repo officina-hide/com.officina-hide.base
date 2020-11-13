@@ -94,6 +94,7 @@ public class CreatePackage {
 		//ユニーク制約情報構築
 		FDUniqueIndex uidx = new FDUniqueIndex();
 		uidx.createTable(env);
+		uidx.addData(env, 0, I_FD_Numbering.TABLE_ID, I_FD_Numbering.Unique_Index_Name);
 		
 		process.endProcess(env, new Date());
 		FD_DB DB = new FD_DB();
