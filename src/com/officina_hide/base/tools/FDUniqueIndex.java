@@ -35,6 +35,8 @@ public class FDUniqueIndex extends FD_DB implements I_FD_UniqueIndex {
 				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 20, "N", "N");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_Index_Name, NAME_Index_Name, COMMENT_Index_Name
 				, COLUMNTYPE_ID_FD_Text, null, 100, 30, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Name, NAME_FD_Name, COMMENT_FD_Name
+				, COLUMNTYPE_ID_FD_Text, null, 100, 40, "N", "N");
 		
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Process_ID, NAME_FD_Process_ID, COMMENT_FD_Process_ID
 				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 900, "N", "N");
@@ -57,12 +59,15 @@ public class FDUniqueIndex extends FD_DB implements I_FD_UniqueIndex {
 		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築完了");
 	}
 
-	public void addData(FD_EnvData env, int uniqueInexId, int tableId, String indexName) {
+	public int addData(FD_EnvData env, int uniqueInexId, int tableId, String indexName, String name) {
 		X_FD_UniqueIndex uidx = new X_FD_UniqueIndex(env);
 		uidx.setValueByName(env, COLUMNNAME_FD_UniqueIndex_ID, uniqueInexId);
 		uidx.setValueByName(env, COLUMNNAME_FD_Table_ID, tableId);
 		uidx.setValueByName(env, COLUMNNAME_Index_Name, indexName);
+		uidx.setValueByName(env, COLUMNNAME_FD_Name, name);
 		uidx.save(env);
+		
+		return uidx.getintOfValue(COLUMNNAME_FD_UniqueIndex_ID);
 	}
 
 }

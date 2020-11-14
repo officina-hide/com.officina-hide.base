@@ -29,4 +29,8 @@ public interface I_FD_UniqueIndex {
 	public final String COLUMNNAME_Index_Name = "Index_Name";
 	public final String NAME_Index_Name = "インデックス名";
 	public final String COMMENT_Index_Name = "ユニーク制約を識別する為のインデックス名";
+	/** インデックス表示名 */
+	public final String COLUMNNAME_FD_Name = "FD_Name";
+	public final String NAME_FD_Name = "インデックス表示名";
+	public final String COMMENT_FD_Name = "ユニーク制約のインデックスの論理名称";
 }

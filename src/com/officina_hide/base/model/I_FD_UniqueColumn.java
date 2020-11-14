@@ -21,6 +21,10 @@ public interface I_FD_UniqueColumn {
 	public final String COLUMNNAME_FD_UniqueColumn_ID = Table_Name + "_ID";
 	public final String NAME_FD_UniqueColumn_ID = "ユニーク制約項目情報ID";
 	public final String COMMENT_FD_UniqueColumn_ID = "ユニーク制約項目を識別する為の情報ID";
+	/** ユニーク制約インデックス情報ID */
+	public final String COLUMNNAME_FD_UniqueIndex_ID = I_FD_UniqueIndex.Table_Name + "_ID";
+	public final String NAME_FD_UniqueIndex_ID = I_FD_UniqueIndex.NAME_FD_UniqueIndex_ID;
+	public final String COMMENT_FD_UniqueIndex_ID = "ユニーク制約項目が紐づくユニーク制約インデックスの情報ID";
 	/** テーブル項目情報ID */
 	public final String COLUMNNAME_FD_TableColumn_ID = I_FD_TableColumn.Table_Name + "_ID";
 	public final String NAME_FD_TableColumn_ID = I_FD_TableColumn.NAME_FD_TableColumn_ID;
