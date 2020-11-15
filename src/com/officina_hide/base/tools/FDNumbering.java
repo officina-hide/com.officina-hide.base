@@ -50,6 +50,10 @@ public class FDNumbering extends FD_DB implements I_FD_Numbering {
 			.append(FD_SQ).append(NAME_Current_Number).append(FD_SQ).append(",");
 		sql.append(COLUMNNAME_Initial_Number).append(" INT UNSIGNED DEFAULT 0 COMMENT ")
 			.append(FD_SQ).append(NAME_Initial_Number).append(FD_SQ).append(",");
+		sql.append(COLUMNNAME_FD_TableColumn_ID).append(" INT UNSIGNED")
+			.append(" COMMENT ").append(FD_SQ).append(NAME_FD_TableColumn_ID).append(FD_SQ).append(",");
+		sql.append(COLUMNNAME_Numbering_Key).append(" VARCHAR(100) ")
+			.append(" COMMENT ").append(FD_SQ).append(NAME_Numbering_Key).append(FD_SQ).append(",");
 
 		sql.append(COLUMNNAME_FD_Process_ID).append("  INT UNSIGNED ")
 			.append("COMMENT ").append(FD_SQ).append(NAME_FD_Process_ID).append(FD_SQ).append(",");
@@ -81,13 +85,17 @@ public class FDNumbering extends FD_DB implements I_FD_Numbering {
 	 * @param tableId テーブル情報ID
 	 * @param initNo 初期値
 	 * @param currentNo 現在値
+	 * @param columnId テーブル項目情報ID
+	 * @param key 採番Key
 	 */
-	public void addData(FD_EnvData env, int numberingId, int tableId, int currentNo, int initNo) {
+	public void addData(FD_EnvData env, int numberingId, int tableId, int currentNo, int initNo, int columnId, String  key) {
 		X_FD_Numbering num = new X_FD_Numbering(env);
 		num.setValueByName(env, COLUMNNAME_FD_Numbering_ID, numberingId);
 		num.setValueByName(env, COLUMNNAME_FD_Table_ID, tableId);
 		num.setValueByName(env, COLUMNNAME_Current_Number, currentNo);
 		num.setValueByName(env, COLUMNNAME_Initial_Number, initNo);
+		num.setValueByName(env, COLUMNNAME_FD_TableColumn_ID, columnId);
+		num.setValueByName(env, COLUMNNAME_Numbering_Key, key);
 		num.save(env);
 	}
 
@@ -109,6 +117,10 @@ public class FDNumbering extends FD_DB implements I_FD_Numbering {
 				, COLUMNTYPE_ID_FD_Number, "0", 0, 30, "N", "N");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_Initial_Number, NAME_Initial_Number, COMMENT_Initial_Number
 				, COLUMNTYPE_ID_FD_Number, "0", 0, 40, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_TableColumn_ID, NAME_FD_TableColumn_ID, COMMENT_FD_TableColumn_ID
+				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 50, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_Numbering_Key, NAME_Numbering_Key, COMMENT_Numbering_Key
+				, COLUMNTYPE_ID_FD_Text, null, 100, 60, "N", "N");
 		
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Process_ID, NAME_FD_Process_ID, COMMENT_FD_Process_ID
 				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 900, "N", "N");

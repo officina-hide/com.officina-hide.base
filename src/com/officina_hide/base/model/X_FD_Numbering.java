@@ -34,6 +34,8 @@ public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 		itemList.add(COLUMNNAME_FD_Table_ID, null, COLUMNTYPE_FD_Information_ID);
 		itemList.add(COLUMNNAME_Current_Number, null, COLUMNTYPE_FD_Number);
 		itemList.add(COLUMNNAME_Initial_Number, null, COLUMNTYPE_FD_Number);
+		itemList.add(COLUMNNAME_FD_TableColumn_ID, null, COLUMNTYPE_FD_Information_ID);
+		itemList.add(COLUMNNAME_Numbering_Key, null, COLUMNTYPE_FD_Text);
 		
 		itemList.add(COLUMNNAME_FD_Process_ID, null, COLUMNTYPE_FD_Information_ID);
 		itemList.add(COLUMNNAME_FD_CREATE, null, COLUMNTYPE_FD_Date);

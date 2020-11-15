@@ -17,7 +17,8 @@ import com.officina_hide.base.model.I_FD_TableColumn;
  * <p>本パッケージを初期状態から構築するための機能を提供する。<br>
  * 将来的には、ウィザード形式でシステムが構築できるようにしていく。</p>
  * @author officine-hide.com
- * @version 1.00
+ * @version 1.00 新規作成
+ * @version 1.20 ユニーク制約情報構築
  * @since 2020/10/08
  */
 public class CreatePackage {
@@ -33,7 +34,7 @@ public class CreatePackage {
 		 * ※ここでの検討、他の情報にも追加プロセスが必要な場合は、共通化を検討する。<br>
 		 */
 		/*
-		 * テーブル項目情報から項目初期化を行う。(FD_DBに追加)
+		 * ユニーク制約情報の追加
 		 */
 		
 		//開始時刻保存
@@ -68,9 +69,9 @@ public class CreatePackage {
 		num.createTable(env);
 		table.addData(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.Table_Name
 				, I_FD_Numbering.NAME, I_FD_Numbering.COMMENT);
-		num.addData(env,I_FD_Table.TABLE_ID, I_FD_Table.TABLE_ID, 0, 1000001);
-		num.addData(env,I_FD_Numbering.TABLE_ID, I_FD_Numbering.TABLE_ID, 0, 1000001);
-		num.addData(env, I_FD_Process.TABLE_ID, I_FD_Process.TABLE_ID, 0, 1000001);
+		num.addData(env,I_FD_Table.TABLE_ID, I_FD_Table.TABLE_ID, 0, 1000001, 0, null);
+		num.addData(env,I_FD_Numbering.TABLE_ID, I_FD_Numbering.TABLE_ID, 0, 1000001, 0, null);
+		num.addData(env, I_FD_Process.TABLE_ID, I_FD_Process.TABLE_ID, 0, 1000001, 0, null);
 		//リファレンス情報構築
 		FDReference ref = new FDReference();
 		ref.createDBTable(env);
@@ -81,7 +82,7 @@ public class CreatePackage {
 		column.createTable(env);
 		table.addData(env, I_FD_TableColumn.TABLE_ID, I_FD_TableColumn.Table_Name
 				, I_FD_TableColumn.NAME, I_FD_TableColumn.COMMENT);
-		num.addData(env,I_FD_TableColumn.TABLE_ID, I_FD_TableColumn.TABLE_ID, 0, 1000001);
+		num.addData(env,I_FD_TableColumn.TABLE_ID, I_FD_TableColumn.TABLE_ID, 0, 1000001, 0, null);
 		//テーブル項目情報登録
 		table.addTableColumn(env);
 		column.addTableColumn(env);
@@ -90,18 +91,23 @@ public class CreatePackage {
 		log.addTabeColumn(env);
 		process.addTableColumn(env);
 	
+		//ユニーク制約情報構築
+		FDUniqueIndex uidx = new FDUniqueIndex();
+		uidx.createTable(env);
+		FDUniqueColumn uclm = new FDUniqueColumn();
+		uclm.createTable(env);
+		//採番情報にユニーク制約付与
+		int uiId = uidx.addData(env, 0, I_FD_Numbering.TABLE_ID
+				, I_FD_Numbering.Unique_Index_Name, I_FD_Numbering.Unique_Index_FD_Name);
+		uclm.addData(env, 0, uiId, column.getColumnId(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.COLUMNNAME_FD_Table_ID));
+		uclm.addData(env, 0, uiId, column.getColumnId(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.COLUMNNAME_FD_TableColumn_ID));
+		uclm.addData(env, 0, uiId, column.getColumnId(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.COLUMNNAME_Numbering_Key));
+		uidx.createUniqueKey(env, uiId);
+		
 		process.endProcess(env, new Date());
 		FD_DB DB = new FD_DB();
 		DB.addLog(env, I_FD_Log.LOGTYPE_Info_ID, "ベース情報の構築完了【CreatePackage】");
 		
-//
-//		//プロジェクト情報で項目追加メソッドのテストを追加行う。
-//		FDProject pro = new FDProject();
-//		pro.createTable(env);
-//		X_FD_Project project = new X_FD_Project(env);
-//		project.setValueByName(env, I_FD_Project.COLUMNNAME_FD_Project_ID, 0);
-//		project.setValueByName(env, I_FD_Project.COLUMNNAME_Project_Name, "TestProject");
-//		project.save(env);
 	}
 
 }

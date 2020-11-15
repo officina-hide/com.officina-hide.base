@@ -14,7 +14,7 @@ public interface I_FD_Numbering {
 	/** 採番情報 : テーブル説明 */
 	public final String COMMENT = "テーブル毎に情報IDの採番を管理する為の情報";
 	/** 採番情報 : テーブル情報ID */
-	public final int TABLE_ID = 103;
+	public final int TABLE_ID = 109;
 	
 	//テーブル項目情報
 	/** 採番情報ID */
@@ -33,4 +33,16 @@ public interface I_FD_Numbering {
 	public final String COLUMNNAME_Initial_Number = "Initial_Number";
 	public final String NAME_Initial_Number = "初期値";
 	public final String COMMENT_Initial_Number = "最初に付与される値";
+	/** テーブル項目情報ID */
+	public final String COLUMNNAME_FD_TableColumn_ID = I_FD_TableColumn.Table_Name + "_ID";
+	public final String NAME_FD_TableColumn_ID = "テーブル項目情報ID";
+	public final String COMMENT_FD_TableColumn_ID = "採番の対象となるテーブル項目の情報ID";
+	/** 採番Key */
+	public final String COLUMNNAME_Numbering_Key = "Numbering_Key";
+	public final String NAME_Numbering_Key = "採番Key";
+	public final String COMMENT_Numbering_Key = "採番の対象となるKey情報";
+	
+	/** ユニーク制約インデックス名 */
+	public final String Unique_Index_Name = "numbringKey";
+	public final String Unique_Index_FD_Name = "採番用Key";
 }

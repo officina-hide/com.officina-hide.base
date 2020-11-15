@@ -1,5 +1,9 @@
 package com.officina_hide.base.tools;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Log;
@@ -170,6 +174,41 @@ public class FDTableColumn extends FD_DB implements I_FD_TableColumn {
 		
 		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"のテーブル項目情報登録開始");
 
+	}
+
+	/**
+	 * テーブル項目情報ID取得
+	 * @author officine-hide.com
+	 * @since 1.20 2020/11/11
+	 * @param env 環境情報
+	 * @param tableId テーブル情報ID
+	 * @param columnName テーブル項目名
+	 * @return テーブル項目情報ID
+	 */
+	public int getColumnId(FD_EnvData env, int tableId, String columnName) {
+		int columnId = 0;
+		
+		Statement stmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT ").append(COLUMNNAME_FD_TableColumn_ID).append(" FROM ").append(Table_Name).append(" ");
+			sql.append("WHERE ").append(COLUMNNAME_FD_Table_ID).append(" = ").append(tableId).append(" ");
+			sql.append("AND ").append(COLUMNNAME_TableColumn_Name).append(" = ")
+				.append(FD_SQ).append(columnName).append(FD_SQ).append(" ");
+			connection(env);
+			stmt = conn.createStatement();
+			rs =stmt.executeQuery(sql.toString());
+			if(rs.next()) {
+				columnId = rs.getInt(COLUMNNAME_FD_TableColumn_ID);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(stmt, rs);
+		}
+		
+		return columnId;
 	}
 
 }

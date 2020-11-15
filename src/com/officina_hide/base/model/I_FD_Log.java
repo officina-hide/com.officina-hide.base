@@ -15,7 +15,7 @@ public interface I_FD_Log {
 	/** ログ情報 : テーブル説明 */
 	public final String COMMENT = "ログを管理する為の情報";
 	/** ログ情報 : テーブル情報ID */
-	public final int TABLE_ID = 105;
+	public final int TABLE_ID = 108;
 
 	//テーブル項目情報
 	/** ログ情報ID */
