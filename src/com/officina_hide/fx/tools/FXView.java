@@ -50,7 +50,7 @@ public class FXView extends FD_DB implements I_FX_View {
 		
 		//採番情報登録
 		FDNumbering num = new FDNumbering();
-		num.addData(env, TABLE_ID, TABLE_ID, 0, 1000001);
+		num.addData(env, TABLE_ID, TABLE_ID, 0, 1000001, 0, null);
 
 		//テーブル構築
 		createDBTable(env, TABLE_ID);
