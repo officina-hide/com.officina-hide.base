@@ -320,52 +320,6 @@ public class FD_DB implements I_DB {
 	}
 
 	/**
-	 * 新規情報ID取得<br>
-	 * @author officine-hide.com
-	 * @since 1.00 2020/10/16
-	 * @param env 環境情報
-	 * @param tableName テーブル名
-	 */
-	private int getNewID(FD_EnvData env, String tableName) {
-		int tableId = 0;
-		Statement stmt = null;
-		ResultSet rs = null;
-		StringBuffer sql = new StringBuffer();
-		try {
-			sql.append("SELECT Current_Number, Initial_Number, FD_Table.FD_Table_ID FROM ").append(I_FD_Numbering.Table_Name).append(" ");
-			sql.append("LEFT JOIN FD_Table ON FD_Table.FD_Table_ID = FD_Numbering.FD_Table_ID ");
-			sql.append("WHERE FD_Table.Table_Name = ").append(FD_SQ).append(tableName).append(FD_SQ).append(" ");
-			sql.append("FOR UPDATE");
-			connection(env);
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql.toString());
-			if(rs.next()) {
-				if(rs.getInt(I_FD_Numbering.COLUMNNAME_Current_Number) == 0) {
-					tableId = rs.getInt(I_FD_Numbering.COLUMNNAME_Initial_Number);
-				} else {
-					tableId = rs.getInt(I_FD_Numbering.COLUMNNAME_Current_Number) + 1;
-				}
-				//現在値の更新
-				sql = new StringBuffer();
-				sql.append("UPDATE ").append(I_FD_Numbering.Table_Name).append(" SET ");
-				sql.append(I_FD_Numbering.COLUMNNAME_Current_Number).append(" = ").append(tableId).append(" ");
-				sql.append("WHERE FD_Table_ID = ").append(rs.getInt(I_FD_Table.COLUMNNAME_FD_Table_ID));
-				DBexecute(env, sql.toString());
-			} else {
-				System.out.println(new Date()+" : "+"ERROR!! Numbering Data Not Found!!");
-				// TODO エラー処理方法要件等(2020/10/19 ueno)
-				new Exception();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(stmt, rs);
-		}
-		
-		return tableId;
-	}
-
-	/**
 	 * エスケープ処理<br>
 	 * <p>SQLインジェクション対策の為、指定されたデータのコードを表示するエスケープ処理する。</p>
 	 * @author officine-hide.com
@@ -591,5 +545,125 @@ public class FD_DB implements I_DB {
 		} finally {
 			close(stmt, rs);
 		}
+	}
+
+	/**
+	 * 新規情報ID取得<br>
+	 * @author officine-hide.com
+	 * @since 1.00 2020/10/16
+	 * @param env 環境情報
+	 * @param tableName テーブル名
+	 */
+	public int getNewID(FD_EnvData env, String tableName) {
+		int tableId = getNewID(env, tableName, 0, null);
+//		
+//		
+//		
+//		
+//		
+//		Statement stmt = null;
+//		ResultSet rs = null;
+//		StringBuffer sql = new StringBuffer();
+//		try {
+//			sql.append("SELECT Current_Number, Initial_Number, FD_Table.FD_Table_ID FROM ").append(I_FD_Numbering.Table_Name).append(" ");
+//			sql.append("LEFT JOIN FD_Table ON FD_Table.FD_Table_ID = FD_Numbering.FD_Table_ID ");
+//			sql.append("WHERE FD_Table.Table_Name = ").append(FD_SQ).append(tableName).append(FD_SQ).append(" ");
+//			sql.append("AND ").append(I_FD_TableColumn.COLUMNNAME_FD_TableColumn_ID).append(" = 0 ");
+//			sql.append("FOR UPDATE");
+//			connection(env);
+//			stmt = conn.createStatement();
+//			rs = stmt.executeQuery(sql.toString());
+//			if(rs.next()) {
+//				if(rs.getInt(I_FD_Numbering.COLUMNNAME_Current_Number) == 0) {
+//					tableId = rs.getInt(I_FD_Numbering.COLUMNNAME_Initial_Number);
+//				} else {
+//					tableId = rs.getInt(I_FD_Numbering.COLUMNNAME_Current_Number) + 1;
+//				}
+//				//現在値の更新
+//				sql = new StringBuffer();
+//				sql.append("UPDATE ").append(I_FD_Numbering.Table_Name).append(" SET ");
+//				sql.append(I_FD_Numbering.COLUMNNAME_Current_Number).append(" = ").append(tableId).append(" ");
+//				sql.append("WHERE FD_Table_ID = ").append(rs.getInt(I_FD_Table.COLUMNNAME_FD_Table_ID)).append(" ");
+//				sql.append("AND ").append(I_FD_TableColumn.COLUMNNAME_FD_TableColumn_ID).append(" = 0 ");
+//				System.out.println(sql.toString());
+//				DBexecute(env, sql.toString());
+//			} else {
+//				System.out.println(new Date()+" : "+"ERROR!! Numbering Data Not Found!!");
+//				// TODO エラー処理方法要件等(2020/10/19 ueno)
+//				new Exception();
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(stmt, rs);
+//		}
+		
+		return tableId;
+	}
+
+	/**
+	 * 新規採番<br>
+	 * @author officine-hide.com
+	 * @since 1.20 2020/11/12
+	 * @param env 環境情報
+	 * @param tableName テーブル名
+	 * @param columnId テーブル項目情報ID
+	 * @param key 採番Key
+	 */
+	public int getNewID(FD_EnvData env, String tableName, int columnId, String key) {
+		int id = 0;
+		
+		Statement stmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT ");
+			sql.append(I_FD_Numbering.COLUMNNAME_Current_Number).append(",");
+			sql.append(I_FD_Numbering.COLUMNNAME_Initial_Number).append(",");
+			sql.append(I_FD_Numbering.Table_Name).append(".").append(I_FD_Numbering.COLUMNNAME_FD_Table_ID).append(" ");
+			sql.append("FROM ").append(I_FD_Numbering.Table_Name).append(" ");
+			sql.append("LEFT JOIN ").append(I_FD_Table.Table_Name).append(" ON ")
+				.append(I_FD_Table.Table_Name).append(".").append(I_FD_Table.COLUMNNAME_FD_Table_ID)
+				.append(" = ")
+				.append(I_FD_Numbering.Table_Name).append(".").append(I_FD_Table.COLUMNNAME_FD_Table_ID).append(" ");
+			sql.append("WHERE ").append(I_FD_Table.COLUMNNAME_Table_Name).append(" = ")
+				.append(FD_SQ).append(tableName).append(FD_SQ).append(" ");
+			if(columnId > 0) {
+				sql.append("AND ").append(I_FD_Numbering.COLUMNNAME_FD_TableColumn_ID).append(" = ").append(columnId).append(" ");
+			}
+			if(key != null) {
+				sql.append("AND ").append(I_FD_Numbering.COLUMNNAME_Numbering_Key).append(" = ")
+					.append(FD_SQ).append(key).append(FD_SQ).append(" ");
+			}
+			connection(env);
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql.toString());
+			if(rs.next()) {
+				if(rs.getInt(I_FD_Numbering.COLUMNNAME_Current_Number) == 0) {
+					id = rs.getInt(I_FD_Numbering.COLUMNNAME_Initial_Number);
+				} else {
+					id = rs.getInt(I_FD_Numbering.COLUMNNAME_Current_Number) + 1;
+				}
+				//現在値の更新
+				sql = new StringBuffer();
+				sql.append("UPDATE ").append(I_FD_Numbering.Table_Name).append(" SET ");
+				sql.append(I_FD_Numbering.COLUMNNAME_Current_Number).append(" = ").append(id).append(" ");
+				sql.append("WHERE FD_Table_ID = ").append(rs.getInt(I_FD_Table.COLUMNNAME_FD_Table_ID)).append(" ");
+				if(columnId > 0) {
+					sql.append("AND ").append(I_FD_Numbering.COLUMNNAME_FD_TableColumn_ID).append(" = ").append(columnId).append(" ");
+				}
+				if(key != null) {
+					sql.append("AND ").append(I_FD_Numbering.COLUMNNAME_Numbering_Key).append(" = ")
+						.append(FD_SQ).append(key).append(FD_SQ).append(" ");
+				}
+				DBexecute(env, sql.toString());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(stmt, rs);
+		}
+		
+		return id;
 	}
 }
