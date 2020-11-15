@@ -94,13 +94,15 @@ public class CreatePackage {
 		//ユニーク制約情報構築
 		FDUniqueIndex uidx = new FDUniqueIndex();
 		uidx.createTable(env);
-		int uiId = uidx.addData(env, 0, I_FD_Numbering.TABLE_ID
-				, I_FD_Numbering.Unique_Index_Name, I_FD_Numbering.Unique_Index_FD_Name);
 		FDUniqueColumn uclm = new FDUniqueColumn();
 		uclm.createTable(env);
+		//採番情報にユニーク制約付与
+		int uiId = uidx.addData(env, 0, I_FD_Numbering.TABLE_ID
+				, I_FD_Numbering.Unique_Index_Name, I_FD_Numbering.Unique_Index_FD_Name);
 		uclm.addData(env, 0, uiId, column.getColumnId(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.COLUMNNAME_FD_Table_ID));
 		uclm.addData(env, 0, uiId, column.getColumnId(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.COLUMNNAME_FD_TableColumn_ID));
 		uclm.addData(env, 0, uiId, column.getColumnId(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.COLUMNNAME_Numbering_Key));
+		uidx.createUniqueKey(env, uiId);
 		
 		process.endProcess(env, new Date());
 		FD_DB DB = new FD_DB();
