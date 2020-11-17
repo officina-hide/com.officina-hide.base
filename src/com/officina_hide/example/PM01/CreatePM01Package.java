@@ -42,7 +42,6 @@ public class CreatePM01Package {
 		//ベース環境構築
 		CreateBaseEnvironment cbe = new CreateBaseEnvironment();
 		cbe.create(env);
-		
 	}
 
 }
