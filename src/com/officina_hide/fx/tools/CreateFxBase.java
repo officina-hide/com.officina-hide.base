@@ -18,6 +18,7 @@ import com.officina_hide.base.tools.FDProcess;
  * @author officine-hide.com
  * @version 1.10
  * @since 2020/10/28
+ * @deprecated 2020/11/17 CreateBaseEnvironmentクラスに移管
  */
 public class CreateFxBase {
 	

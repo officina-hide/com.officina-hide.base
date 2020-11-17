@@ -7,10 +7,6 @@ import java.util.Date;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Log;
-import com.officina_hide.base.model.I_FD_Numbering;
-import com.officina_hide.base.model.I_FD_Process;
-import com.officina_hide.base.model.I_FD_Table;
-import com.officina_hide.base.model.I_FD_TableColumn;
 
 /**
  * パッケージ構築クラス<br>
@@ -20,6 +16,7 @@ import com.officina_hide.base.model.I_FD_TableColumn;
  * @version 1.00 新規作成
  * @version 1.20 ユニーク制約情報構築
  * @since 2020/10/08
+ * @deprecated 2020/11/17 CreateBaseEnvironmentに移管
  */
 public class CreatePackage {
 
@@ -51,58 +48,58 @@ public class CreatePackage {
 		//プロセス情報IDセット
 		env.setActiveProcessID(ThisProcess_ID);
 		
-		//ログ情報構築
+//		//ログ情報構築
 		FDLog log = new FDLog();
-		log.createTable(env);
+//		log.createTable(env);
 		//プロセス情報構築
 		FDProcess process = new FDProcess();
-		process.createTable(env);
-		process.addData(env, ThisProcess_ID,  CreatePackage.class.getSimpleName(), startDate);
+//		process.createTable(env);
+//		process.addData(env, ThisProcess_ID,  CreatePackage.class.getSimpleName(), startDate);
 		//テーブル情報構築
 		FDTable table = new FDTable();
-		table.createTable(env);
-		table.addData(env, I_FD_Table.TABLE_ID, I_FD_Table.Table_Name, I_FD_Table.NAME, I_FD_Table.COMMENT);
-		table.addData(env, I_FD_Log.TABLE_ID, I_FD_Log.Table_Name, I_FD_Log.NAME, I_FD_Log.COMMENT);
-		table.addData(env, I_FD_Process.TABLE_ID, I_FD_Process.Table_Name, I_FD_Process.NAME, I_FD_Process.COMMENT);
+//		table.createTable(env);
+//		table.addData(env, I_FD_Table.TABLE_ID, I_FD_Table.Table_Name, I_FD_Table.NAME, I_FD_Table.COMMENT);
+//		table.addData(env, I_FD_Log.TABLE_ID, I_FD_Log.Table_Name, I_FD_Log.NAME, I_FD_Log.COMMENT);
+//		table.addData(env, I_FD_Process.TABLE_ID, I_FD_Process.Table_Name, I_FD_Process.NAME, I_FD_Process.COMMENT);
 		//採番情報構築
 		FDNumbering num = new FDNumbering();
-		num.createTable(env);
-		table.addData(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.Table_Name
-				, I_FD_Numbering.NAME, I_FD_Numbering.COMMENT);
-		num.addData(env,I_FD_Table.TABLE_ID, I_FD_Table.TABLE_ID, 0, 1000001, 0, null);
-		num.addData(env,I_FD_Numbering.TABLE_ID, I_FD_Numbering.TABLE_ID, 0, 1000001, 0, null);
-		num.addData(env, I_FD_Process.TABLE_ID, I_FD_Process.TABLE_ID, 0, 1000001, 0, null);
+//		num.createTable(env);
+//		table.addData(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.Table_Name
+//				, I_FD_Numbering.NAME, I_FD_Numbering.COMMENT);
+//		num.addData(env,I_FD_Table.TABLE_ID, I_FD_Table.TABLE_ID, 0, 1000001, 0, null);
+//		num.addData(env,I_FD_Numbering.TABLE_ID, I_FD_Numbering.TABLE_ID, 0, 1000001, 0, null);
+//		num.addData(env, I_FD_Process.TABLE_ID, I_FD_Process.TABLE_ID, 0, 1000001, 0, null);
 		//リファレンス情報構築
 		FDReference ref = new FDReference();
-		ref.createDBTable(env);
-		ref.addColumnTypeReference(env);
+//		ref.createDBTable(env);
+//		ref.addColumnTypeReference(env);
 		
 		//テーブル項目情報構築
 		FDTableColumn column = new FDTableColumn();
-		column.createTable(env);
-		table.addData(env, I_FD_TableColumn.TABLE_ID, I_FD_TableColumn.Table_Name
-				, I_FD_TableColumn.NAME, I_FD_TableColumn.COMMENT);
-		num.addData(env,I_FD_TableColumn.TABLE_ID, I_FD_TableColumn.TABLE_ID, 0, 1000001, 0, null);
-		//テーブル項目情報登録
-		table.addTableColumn(env);
-		column.addTableColumn(env);
-		num.addTableColumn(env);
-		ref.addTableColumn(env);
-		log.addTabeColumn(env);
-		process.addTableColumn(env);
+//		column.createTable(env);
+//		table.addData(env, I_FD_TableColumn.TABLE_ID, I_FD_TableColumn.Table_Name
+//				, I_FD_TableColumn.NAME, I_FD_TableColumn.COMMENT);
+//		num.addData(env,I_FD_TableColumn.TABLE_ID, I_FD_TableColumn.TABLE_ID, 0, 1000001, 0, null);
+//		//テーブル項目情報登録
+//		table.addTableColumn(env);
+//		column.addTableColumn(env);
+//		num.addTableColumn(env);
+//		ref.addTableColumn(env);
+//		log.addTabeColumn(env);
+//		process.addTableColumn(env);
 	
 		//ユニーク制約情報構築
 		FDUniqueIndex uidx = new FDUniqueIndex();
-		uidx.createTable(env);
-		FDUniqueColumn uclm = new FDUniqueColumn();
-		uclm.createTable(env);
-		//採番情報にユニーク制約付与
-		int uiId = uidx.addData(env, 0, I_FD_Numbering.TABLE_ID
-				, I_FD_Numbering.Unique_Index_Name, I_FD_Numbering.Unique_Index_FD_Name);
-		uclm.addData(env, 0, uiId, column.getColumnId(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.COLUMNNAME_FD_Table_ID));
-		uclm.addData(env, 0, uiId, column.getColumnId(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.COLUMNNAME_FD_TableColumn_ID));
-		uclm.addData(env, 0, uiId, column.getColumnId(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.COLUMNNAME_Numbering_Key));
-		uidx.createUniqueKey(env, uiId);
+//		uidx.createTable(env);
+//		FDUniqueColumn uclm = new FDUniqueColumn();
+//		uclm.createTable(env);
+//		//採番情報にユニーク制約付与
+//		int uiId = uidx.addData(env, 0, I_FD_Numbering.TABLE_ID
+//				, I_FD_Numbering.Unique_Index_Name, I_FD_Numbering.Unique_Index_FD_Name);
+//		uclm.addData(env, 0, uiId, column.getColumnId(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.COLUMNNAME_FD_Table_ID));
+//		uclm.addData(env, 0, uiId, column.getColumnId(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.COLUMNNAME_FD_TableColumn_ID));
+//		uclm.addData(env, 0, uiId, column.getColumnId(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.COLUMNNAME_Numbering_Key));
+//		uidx.createUniqueKey(env, uiId);
 		
 		process.endProcess(env, new Date());
 		FD_DB DB = new FD_DB();

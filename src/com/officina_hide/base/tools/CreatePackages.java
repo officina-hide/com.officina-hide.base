@@ -2,7 +2,6 @@ package com.officina_hide.base.tools;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
 
@@ -15,18 +14,16 @@ import com.officina_hide.base.common.FD_EnvData;
  * @since 2020/11/16
  */
 public class CreatePackages {
-	
-	//プロセスID
-	private final static int ThisProcess_ID = 101;
 
 	public static void main(String[] args) {
 		/*
 		 * 環境情報は[base.properties]を使用する。
 		 */
-		//開始時刻保存
-		Date startDate = new Date();
 		//環境情報のPathを設定する。
 		FD_EnvData env = createEnv();
+		//ベース環境構築
+		CreateBaseEnvironment cbe = new CreateBaseEnvironment();
+		cbe.create(env);
 	}
 
 	/**
@@ -44,8 +41,6 @@ public class CreatePackages {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		//プロセス情報IDセット
-		env.setActiveProcessID(ThisProcess_ID);
 		return env;
 	}
 
