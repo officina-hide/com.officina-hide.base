@@ -9,6 +9,8 @@ import com.officina_hide.base.model.I_FD_Numbering;
 import com.officina_hide.base.model.I_FD_Process;
 import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.fx.tools.FXView;
+import com.officina_hide.project.tools.FDProject;
+import com.officina_hide.project.tools.FDTask;
 
 /**
  * パッケージベース環境構築クラス<br>
@@ -93,6 +95,14 @@ public class CreateBaseEnvironment {
 		FXView view = new FXView();
 		view.createTable(env);
 
+		//プロジェクト情報構築
+		FDProject project = new FDProject();
+		project.createTable(env);
+		
+		//タスク情報構築
+		FDTask task = new FDTask();
+		task.createTable(env);
+		
 		//終了メッセージ
 		FD_DB DB = new FD_DB();
 		DB.addLog(env, I_FD_Log.LOGTYPE_Info_ID, "パッケージベース環境の構築完了【CreateBaseEnvironment】");
