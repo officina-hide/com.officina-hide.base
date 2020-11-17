@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import com.officina_hide.base.common.FD_EnvData;
-import com.officina_hide.base.model.FD_DB;
+import com.officina_hide.base.tools.CreateBaseEnvironment;
 
 /**
  * パッケージ管理環境構築<br>
@@ -16,6 +16,8 @@ public class CreatePM01Package {
 
 	/**
 	 * パッケージ管理環境構築実行<br>
+	 * @author officine-hide.com
+	 * @since 2020/11/16
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -37,8 +39,9 @@ public class CreatePM01Package {
 			e.printStackTrace();
 		}
 		
-		FD_DB DB = new FD_DB();
-		DB.connection(env);
+		//ベース環境構築
+		CreateBaseEnvironment cbe = new CreateBaseEnvironment();
+		cbe.create(env);
 		
 	}
 
