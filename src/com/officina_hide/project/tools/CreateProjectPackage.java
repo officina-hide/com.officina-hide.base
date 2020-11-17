@@ -17,6 +17,7 @@ import com.officina_hide.base.tools.FDProcess;
  * @author officine-hide.com
  * @version 1.20
  * @since 2020/11/05
+ * @deprecated 2020/11/17 CreateBaseEnvironmentクラスに移管
  */
 public class CreateProjectPackage {
 
@@ -49,9 +50,9 @@ public class CreateProjectPackage {
 		FDTask task = new FDTask();
 		task.createTable(env);
 		
-		//プロジェクトサンプル登録処理
-		LoadProjectSample lps = new LoadProjectSample();
-		lps.createData(env);
+//		//プロジェクトサンプル登録処理
+//		LoadProjectSample lps = new LoadProjectSample();
+//		lps.createData(env);
 	}
 
 	/**

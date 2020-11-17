@@ -66,6 +66,9 @@ public class FDTable extends FD_DB implements I_FD_Table {
 		addLog(env, I_FD_Log.LOGTYPE_Table_Drop_ID, changeEscape(sqlDrop.toString()));
 		addLog(env, I_FD_Log.LOGTYPE_Table_Create_ID, changeEscape(sql.toString()));
 		
+		//テーブル情報登録
+		addData(env, TABLE_ID, Table_Name, NAME, COMMENT);
+
 		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築完了");
 
 	}

@@ -92,6 +92,14 @@ public class FDTableColumn extends FD_DB implements I_FD_TableColumn {
 		addLog(env, I_FD_Log.LOGTYPE_Table_Drop_ID, changeEscape(sqlDrop.toString()));
 		addLog(env, I_FD_Log.LOGTYPE_Table_Create_ID, changeEscape(sql.toString()));
 		
+		//テーブル情報登録
+		FDTable table = new FDTable();
+		table.addData(env, TABLE_ID, Table_Name, NAME, COMMENT);
+		
+		//採番情報登録
+		FDNumbering num = new FDNumbering();
+		num.addData(env,TABLE_ID, TABLE_ID, 0, 1000001, 0, null);
+	
 		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME +"テーブル構築完了");
 	}
 
