@@ -7,6 +7,7 @@ import com.officina_hide.base.tools.FDNumbering;
 import com.officina_hide.base.tools.FDTable;
 import com.officina_hide.base.tools.FDTableColumn;
 import com.officina_hide.project.model.I_FD_Task;
+import com.officina_hide.project.model.X_FD_Task;
 
 /**
  * タスク情報クラス<br>
@@ -58,7 +59,26 @@ public class FDTask extends FD_DB implements I_FD_Task {
 	 * @param projectId プロジェクト情報ID
 	 */
 	public void addData(FD_EnvData env, int projectId) {
-		
+		X_FD_Task task = new X_FD_Task(env);
+		task.setValueByName(env, COLUMNNAME_FD_Task_ID, 0);
+		task.setValueByName(env, COLUMNNAME_FD_Process_ID, projectId);
+		System.out.println(getTaskNumber(env, projectId));
+	}
+
+	/**
+	 * タスク伝票番号生成<br>
+	 * @author officine-hide.com
+	 * @since 1.20 2020/11/18
+	 * @param env 環境情報
+	 * @param projectId プロジェクト情報ID
+	 * @return タスク伝票番号
+	 */
+	private String getTaskNumber(FD_EnvData env, int projectId) {
+		/*
+		 * プロジェクト情報から様式を取得する。
+		 * 様式をKeｙとして採番する。
+		 */
+		return null;
 	}
 
 }
