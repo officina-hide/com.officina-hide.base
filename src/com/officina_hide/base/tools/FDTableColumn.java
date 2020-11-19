@@ -13,7 +13,8 @@ import com.officina_hide.base.model.X_FD_TableColumn;
 /**
  * テーブル項目情報クラス
  * @author officine-hide.com
- * @version 1.00
+ * @version 1.00 新規作成
+ * @version 1.21 テーブル項目に採番属性を入れる。
  * @since 2020/10/20
  */
 public class FDTableColumn extends FD_DB implements I_FD_TableColumn {
@@ -31,7 +32,7 @@ public class FDTableColumn extends FD_DB implements I_FD_TableColumn {
 	}
 
 	/**
-	 * テーブル項目情報テーブル生成
+	 * テーブル項目情報テーブル生成<br>
 	 * @author officine-hide.com
 	 * @since 1.00 2020/10/20
 	 * @param env 環境情報

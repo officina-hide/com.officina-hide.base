@@ -9,7 +9,8 @@ import com.officina_hide.base.model.X_FD_Reference;
 /**
  * リファレンス情報クラス<br>
  * @author officine-hide.com
- * @version 1.00
+ * @version 1.00 新規作成
+ * @version 1.21 採番用リファレンス定義
  * @since 2020/10/15
  */
 public class FDReference extends FD_DB implements I_FD_Reference {
@@ -69,6 +70,7 @@ public class FDReference extends FD_DB implements I_FD_Reference {
 
 	/**
 	 * テーブル項目情報用リファレンス情報登録<br>
+	 * <p>1.21 テーブル項目用リファレンスに「採番項目」を追加</p>
 	 * @author officine-hide.com
 	 * @since 1.00 2020/10/15
 	 * @param env 環境情報
@@ -81,6 +83,7 @@ public class FDReference extends FD_DB implements I_FD_Reference {
 		addData(env, COLUMNTYPE_ID_FD_Number, COLUMNTYPE_FD_Number, COLUMNTYPE_FD_Number);
 		addData(env, COLUMNTYPE_ID_FD_YesNo, COLUMNTYPE_FD_YesNo, COLUMNTYPENAME_FD_YesNo);
 		addData(env, COLUMNTYPE_ID_FD_List, COLUMNTYPE_FD_List, COLUMNTYPENAME_FD_List);
+		addData(env, COLUMNTYPE_ID_FD_Numbering, COLUMNTYPE_FD_Numbering, COLUMNTYPENAME_FD_Numbering);
 	}
 
 	/**
