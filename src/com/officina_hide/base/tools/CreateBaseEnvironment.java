@@ -5,7 +5,6 @@ import java.util.Date;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Log;
-import com.officina_hide.base.model.I_FD_Numbering;
 import com.officina_hide.base.model.I_FD_Process;
 import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.fx.tools.FXView;
@@ -76,20 +75,25 @@ public class CreateBaseEnvironment {
 		log.addTabeColumn(env);
 		process.addTableColumn(env);
 
-		//ユニーク制約情報構築
+		//ユニーク制約インデックス情報構築
 		FDUniqueIndex uidx = new FDUniqueIndex();
 		uidx.createTable(env);
 
-		//採番情報のユニーク制約を登録する。
+		//ユニーク制約情報構築
 		FDUniqueColumn uclm = new FDUniqueColumn();
 		uclm.createTable(env);
-		//採番情報にユニーク制約付与
-		int uiId = uidx.addData(env, 0, I_FD_Numbering.TABLE_ID
-				, I_FD_Numbering.Unique_Index_Name, I_FD_Numbering.Unique_Index_FD_Name);
-		uclm.addData(env, 0, uiId, column.getColumnId(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.COLUMNNAME_FD_Table_ID));
-		uclm.addData(env, 0, uiId, column.getColumnId(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.COLUMNNAME_FD_TableColumn_ID));
-		uclm.addData(env, 0, uiId, column.getColumnId(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.COLUMNNAME_Numbering_Key));
-		uidx.createUniqueKey(env, uiId);
+
+		//書式情報構築
+		FDColumnForm clmForm = new FDColumnForm();
+		clmForm.createTable(env);
+		
+//		//採番情報にユニーク制約付与
+//		int uiId = uidx.addData(env, 0, I_FD_Numbering.TABLE_ID
+//				, I_FD_Numbering.Unique_Index_Name, I_FD_Numbering.Unique_Index_FD_Name);
+//		uclm.addData(env, 0, uiId, column.getColumnId(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.COLUMNNAME_FD_Table_ID));
+//		uclm.addData(env, 0, uiId, column.getColumnId(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.COLUMNNAME_FD_TableColumn_ID));
+//		uclm.addData(env, 0, uiId, column.getColumnId(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.COLUMNNAME_Numbering_Key));
+//		uidx.createUniqueKey(env, uiId);
 
 		//Fx画面情報構築
 		FXView view = new FXView();

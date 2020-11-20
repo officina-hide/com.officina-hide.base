@@ -36,19 +36,23 @@ public class BaseTest {
 		env.setActiveProcessID(processId);
 
 		/*
+		 * 
+		 */
+		
+		/*
 		 * タスク登録テスト
 		 * ・プロジェクト情報を登録する。
 		 * ・タスク伝票の採番情報を登録する。
 		 * ・タスク情報を登録する。
 		 */
-		FDProject project = new FDProject();
-		int projectId = project.addData(env, "TEST Project", "タスク登録テスト用プロジェクト", "TEST-0000");
-		FDNumbering num = new FDNumbering();
-		FDTableColumn column = new FDTableColumn();
-		num.addData(env, 0, I_FD_Task.TABLE_ID, 0, 1
-				, column.getColumnId(env, I_FD_Task.TABLE_ID, I_FD_Task.COLUMNNAME_Task_Number), "TEST-0000");
-		FDTask task = new FDTask();
-		task.addData(env, projectId);
+//		FDProject project = new FDProject();
+//		int projectId = project.addData(env, "TEST Project", "タスク登録テスト用プロジェクト", "TEST-0000");
+//		FDNumbering num = new FDNumbering();
+//		FDTableColumn column = new FDTableColumn();
+//		num.addData(env, 0, I_FD_Task.TABLE_ID, 0, 1
+//				, column.getColumnId(env, I_FD_Task.TABLE_ID, I_FD_Task.COLUMNNAME_Task_Number), "TEST-0000");
+//		FDTask task = new FDTask();
+//		task.addData(env, projectId);
 		
 //		/*
 //		 * 特定の採番を行うための改良テスト

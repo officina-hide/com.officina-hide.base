@@ -12,7 +12,8 @@ import com.officina_hide.project.model.X_FD_Project;
 /**
  * プロジェクト情報クラス<br>
  * @author officine-hide.com
- * @version 1.20
+ * @version 1.20 新規作成
+ * @version 1.21 2020/11/20 書式設定を書式KeyIDに変更
  * @since 2020/11/06
  */
 public class FDProject extends FD_DB implements I_FD_Project {
@@ -37,8 +38,10 @@ public class FDProject extends FD_DB implements I_FD_Project {
 				, COLUMNTYPE_ID_FD_Text, null, 100, 20, "N", "N");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Name, NAME_FD_Name, COMMENT_FD_Name
 				, COLUMNTYPE_ID_FD_Text, null, 100, 30, "N", "N");
-		column.addData(env, 0, TABLE_ID, COLUMNNAME_Task_Number_Form, NAME_Task_Number_Form, COMMENT_Task_Number_Form
-				, COLUMNTYPE_ID_FD_Text, null, 100, 40, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_Task_Number_Key_ID, NAME_Task_Number_Key_ID, COMMENT_Task_Number_Key_ID
+				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 40, "N", "N");
+//		column.addData(env, 0, TABLE_ID, COLUMNNAME_Task_Number_Form, NAME_Task_Number_Form, COMMENT_Task_Number_Form
+//				, COLUMNTYPE_ID_FD_Text, null, 100, 40, "N", "N");
 		
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Process_ID, NAME_FD_Process_ID, COMMENT_FD_Process_ID
 				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 900, "N", "N");
@@ -65,16 +68,17 @@ public class FDProject extends FD_DB implements I_FD_Project {
 	 * @since 1.20 2020/11/08
 	 * @param env 環境情報
 	 * @param projectName プロジェクト名
-	 * @param form 
+	 * @param keyId タスク番号書式KeyId
 	 * @param name　プロジェクト表示名
 	 * @return 
 	 */
-	public int addData(FD_EnvData env, String projectName, String name, String form) {
+	public int addData(FD_EnvData env, String projectName, String name, int keyId) {
 		X_FD_Project project = new X_FD_Project(env);
 		project.setValueByName(env, COLUMNNAME_FD_Project_ID, 0);
 		project.setValueByName(env, COLUMNNAME_Project_Name, projectName);
 		project.setValueByName(env, COLUMNNAME_FD_Name, name);
-		project.setValueByName(env, COLUMNNAME_Task_Number_Form, changeEscape(form));
+		project.setValueByName(env, COLUMNNAME_Task_Number_Key_ID, keyId);
+//		project.setValueByName(env, COLUMNNAME_Task_Number_Form, changeEscape(form));
 		project.save(env);
 		
 		return project.getintOfValue(COLUMNNAME_FD_Project_ID);
