@@ -84,29 +84,6 @@ public class FDNumbering extends FD_DB implements I_FD_Numbering {
 	}
 
 	/**
-	 * 採番情報登録<br>
-	 * @author officine-hide.com
-	 * @since 1.00 2020/10/13
-	 * @param env 環境情報
-	 * @param numberingId 採番情報ID
-	 * @param tableId テーブル情報ID
-	 * @param initNo 初期値
-	 * @param currentNo 現在値
-	 * @param columnId テーブル項目情報ID
-	 * @param key 採番Key
-	 */
-	public void addData(FD_EnvData env, int numberingId, int tableId, int currentNo, int initNo, int columnId, String  key) {
-		X_FD_Numbering num = new X_FD_Numbering(env);
-		num.setValueByName(env, COLUMNNAME_FD_Numbering_ID, numberingId);
-		num.setValueByName(env, COLUMNNAME_FD_Table_ID, tableId);
-		num.setValueByName(env, COLUMNNAME_Current_Number, currentNo);
-		num.setValueByName(env, COLUMNNAME_Initial_Number, initNo);
-		num.setValueByName(env, COLUMNNAME_FD_TableColumn_ID, columnId);
-		num.setValueByName(env, COLUMNNAME_Numbering_Key, key);
-		num.save(env);
-	}
-
-	/**
 	 * 採番情報の項目をテーブル項目情報に登録する。<br>
 	 * @author officine-hide.com
 	 * @since 1.00 2020/10/26
@@ -142,5 +119,43 @@ public class FDNumbering extends FD_DB implements I_FD_Numbering {
 
 		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"のテーブル項目情報登録終了");
 }
+
+	/**
+	 * テーブル用採番情報登録<br>
+	 * @author officina-hide.com
+	 * @since 1.21 2020/11/21
+	 * @param env 環境情報
+	 * @param numberingId 採番情報ID
+	 * @param tableId テーブル情報ID
+	 * @param initNo 初期値
+	 * @param currentNo 現在値
+	 * @param initNo
+	 */
+	public void addData(FD_EnvData env, int numberingId, int tableId, int currentNo, int initNo) {
+		addData(env, numberingId, tableId, currentNo, initNo, 0, null);
+	}
+
+	/**
+	 * 採番情報登録<br>
+	 * @author officine-hide.com
+	 * @since 1.00 2020/10/13
+	 * @param env 環境情報
+	 * @param numberingId 採番情報ID
+	 * @param tableId テーブル情報ID
+	 * @param initNo 初期値
+	 * @param currentNo 現在値
+	 * @param columnId テーブル項目情報ID
+	 * @param key 採番Key
+	 */
+	public void addData(FD_EnvData env, int numberingId, int tableId, int currentNo, int initNo, int columnId, String  key) {
+		X_FD_Numbering num = new X_FD_Numbering(env);
+		num.setValueByName(env, COLUMNNAME_FD_Numbering_ID, numberingId);
+		num.setValueByName(env, COLUMNNAME_FD_Table_ID, tableId);
+		num.setValueByName(env, COLUMNNAME_Current_Number, currentNo);
+		num.setValueByName(env, COLUMNNAME_Initial_Number, initNo);
+		num.setValueByName(env, COLUMNNAME_FD_TableColumn_ID, columnId);
+		num.setValueByName(env, COLUMNNAME_Numbering_Key, key);
+		num.save(env);
+	}
 
 }

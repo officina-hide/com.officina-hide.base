@@ -16,7 +16,7 @@ public interface I_FD_Project {
 	/** プロジェクト情報 : テーブル説明 */
 	public final String COMMENT = "プロジェクトを管理する為の情報";
 	/** プロジェクト情報 : テーブル情報ID */
-	public final int TABLE_ID = 301;
+	public final int TABLE_ID = 110;
 	
 	/** プロジェクト情報ID */
 	public final String COLUMNNAME_FD_Project_ID = Table_Name + "_ID";
