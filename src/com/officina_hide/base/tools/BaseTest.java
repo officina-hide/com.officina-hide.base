@@ -8,9 +8,6 @@ import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.I_FD_Numbering;
 import com.officina_hide.base.model.I_FD_Process;
 import com.officina_hide.project.model.I_FD_Project;
-import com.officina_hide.project.model.I_FD_Task;
-import com.officina_hide.project.tools.FDProject;
-import com.officina_hide.project.tools.FDTask;
 
 public class BaseTest {
 

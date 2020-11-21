@@ -7,7 +7,6 @@ import java.sql.Statement;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Log;
-import com.officina_hide.base.model.I_FD_Numbering;
 import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.model.I_FD_TableColumn;
 import com.officina_hide.base.model.I_FD_UniqueColumn;
