@@ -75,6 +75,9 @@ public class CreateBaseEnvironment {
 		log.addTabeColumn(env);
 		process.addTableColumn(env);
 
+		//リファレンスリスト情報構築
+		FDReferenceList refList = new FDReferenceList();
+		
 		//ユニーク制約インデックス情報構築
 		FDUniqueIndex uidx = new FDUniqueIndex();
 		uidx.createTable(env);
@@ -86,6 +89,9 @@ public class CreateBaseEnvironment {
 		//書式情報構築
 		FDColumnForm clmForm = new FDColumnForm();
 		clmForm.createTable(env);
+		//書式配列情報構築
+		FDColumnFormArray clmFA = new FDColumnFormArray();
+		clmFA.createTable(env);
 		
 //		//採番情報にユニーク制約付与
 //		int uiId = uidx.addData(env, 0, I_FD_Numbering.TABLE_ID

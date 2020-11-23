@@ -5,9 +5,11 @@ import java.io.IOException;
 
 import com.officina_hide.base.common.FD_DB_Utility;
 import com.officina_hide.base.common.FD_EnvData;
-import com.officina_hide.base.model.I_FD_Numbering;
+import com.officina_hide.base.model.I_FD_ColumnForm;
+import com.officina_hide.base.model.I_FD_ColumnFormArray;
 import com.officina_hide.base.model.I_FD_Process;
 import com.officina_hide.project.model.I_FD_Project;
+import com.officina_hide.project.tools.FDProject;
 
 public class BaseTest {
 
@@ -33,17 +35,25 @@ public class BaseTest {
 		env.setActiveProcessID(processId);
 
 		/*
+		 * ・項目書式情報の登録
+		 * ・プロジェクト情報を登録する。
 		 * 
 		 */
+		//項目書式情報の登録
+		FDColumnForm clmForm = new FDColumnForm();
+		int clmFormId = clmForm.addData(env, "TaskNumber",  "タスク番号");
+		FDColumnFormArray ckmFAry = new FDColumnFormArray();
+		ckmFAry.addFixText(env, clmFormId, "SDSS");
+		ckmFAry.addConnectText(env, clmFormId, "-");
+		
+		FDProject project = new FDProject();
+		int projectId = project.addData(env, "TEST Project", "タスク登録テスト用プロジェクト", clmFormId);
 		
 		/*
 		 * タスク登録テスト
-		 * ・プロジェクト情報を登録する。
 		 * ・タスク伝票の採番情報を登録する。
 		 * ・タスク情報を登録する。
 		 */
-//		FDProject project = new FDProject();
-//		int projectId = project.addData(env, "TEST Project", "タスク登録テスト用プロジェクト", "TEST-0000");
 //		FDNumbering num = new FDNumbering();
 //		FDTableColumn column = new FDTableColumn();
 //		num.addData(env, 0, I_FD_Task.TABLE_ID, 0, 1
@@ -77,7 +87,8 @@ public class BaseTest {
 		FD_DB_Utility dbutil = new FD_DB_Utility();
 		dbutil.deleteDataByProcessId(env, I_FD_Process.Table_Name, processId);
 		dbutil.deleteDataByProcessId(env, I_FD_Project.Table_Name, processId);
-		dbutil.deleteDataByProcessId(env, I_FD_Numbering.Table_Name, processId);
+		dbutil.deleteDataByProcessId(env, I_FD_ColumnForm.Table_Name, processId);
+		dbutil.deleteDataByProcessId(env, I_FD_ColumnFormArray.Table_Name, processId);
 	}
 
 }

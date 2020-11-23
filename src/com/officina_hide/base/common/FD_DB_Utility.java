@@ -1,8 +1,5 @@
 package com.officina_hide.base.common;
 
-import java.sql.SQLException;
-import java.sql.Statement;
-
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Process;
 import com.officina_hide.base.tools.FDTableColumn;
@@ -25,20 +22,10 @@ public class FD_DB_Utility extends FD_DB {
 	 * @param processId プロセス情報ID
 	 */
 	public void deleteDataByProcessId(FD_EnvData env, String tableName, int processId) {	
-		Statement stmt = null;
 		StringBuffer sql = new StringBuffer();
-		FD_DB DB = new FD_DB();
-		try {
-			sql.append("DELETE FROM ").append(tableName).append(" ");
-			sql.append("WHERE ").append(I_FD_Process.COLUMNNAME_FD_Process_ID).append(" = ").append(processId);
-			DB.connection(env);
-			stmt = DB.createStatement();
-			stmt.executeUpdate(sql.toString());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DB.close(stmt);
-		}
+		sql.append("DELETE FROM ").append(tableName).append(" ");
+		sql.append("WHERE ").append(I_FD_Process.COLUMNNAME_FD_Process_ID).append(" = ").append(processId);
+		DBexecute(env, sql.toString());
 	}
 
 	/**

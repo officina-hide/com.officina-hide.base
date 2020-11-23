@@ -5,6 +5,7 @@ import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_ColumnForm;
 import com.officina_hide.base.model.I_FD_Log;
+import com.officina_hide.base.model.X_FD_ColumnForm;
 
 /**
  * 項目書式情報クラス<br>
@@ -44,9 +45,27 @@ public class FDColumnForm extends FD_DB implements I_FD_ColumnForm {
 		
 		//採番情報登録
 		FDNumbering num = new FDNumbering();
-		num.addData(env, 0, TABLE_ID, 0, 1000001);
+		num.addData(env, TABLE_ID, TABLE_ID, 0, 1000001);
 		
 		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME + "テーブル構築完了");
+	}
+
+	/**
+	 * 項目書式情報登録<br>
+	 * @author officina-hide.com
+	 * @since 1.20 2020/11/22
+	 * @param env 環境情報
+	 * @param columnFormName 項目書式名
+	 * @param name 項目書式表示名
+	 * @return 項目書式情報ID
+	 */
+	public int addData(FD_EnvData env, String columnFormName, String name) {
+		X_FD_ColumnForm clmForm = new X_FD_ColumnForm(env);
+		clmForm.setValueByName(env, COLUMNNAME_FD_ColumnForm_ID, 0);
+		clmForm.setValueByName(env, COLUMNNAME_ColumnForm_Name, columnFormName);
+		clmForm.setValueByName(env, COLUMNNAME_FD_Name, name);
+		clmForm.save(env);
+		return clmForm.getintOfValue(COLUMNNAME_FD_ColumnForm_ID);
 	}
 		
 }
