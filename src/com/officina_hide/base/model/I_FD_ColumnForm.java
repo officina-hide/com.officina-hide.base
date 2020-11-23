@@ -18,7 +18,7 @@ public interface I_FD_ColumnForm {
 	/** 項目書式情報 : テーブル説明 */
 	public final String COMMENT = "項目書式を管理する為の情報";
 	/** 項目書式情報 : テーブル情報ID */
-	public final int TABLE_ID = 112;
+	public final int TABLE_ID = 113;
 	
 	/** 項目書式情報ID */
 	public final String COLUMNNAME_FD_ColumnForm_ID = Table_Name + "_ID";

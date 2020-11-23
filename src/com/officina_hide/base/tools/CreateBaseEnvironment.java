@@ -77,6 +77,7 @@ public class CreateBaseEnvironment {
 
 		//リファレンスリスト情報構築
 		FDReferenceList refList = new FDReferenceList();
+		refList.createTable(env);
 		
 		//ユニーク制約インデックス情報構築
 		FDUniqueIndex uidx = new FDUniqueIndex();

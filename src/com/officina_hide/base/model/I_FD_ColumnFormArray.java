@@ -15,7 +15,7 @@ public interface I_FD_ColumnFormArray {
 	/** 書式配列情報 : テーブル説明 */
 	public final String COMMENT = "書式配列を管理する為の情報";
 	/** 書式配列情報 : テーブル情報ID */
-	public final int TABLE_ID = 113;
+	public final int TABLE_ID = 114;
 	
 	/** 書式配列情報ID */
 	public final String COLUMNNAME_FD_ColumnFormArray_ID = Table_Name + "_ID";
