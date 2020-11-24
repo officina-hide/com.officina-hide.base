@@ -43,6 +43,8 @@ public class FDColumnFormArray extends FD_DB implements I_FD_ColumnFormArray {
 				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 40, "N", "N");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Value, NAME_FD_Value, COMMENT_FD_Value
 				, COLUMNTYPE_ID_FD_Text, null, 100, 40, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Code, NAME_FD_Code, COLUMNNAME_FD_Code
+				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 60, "N", "N");
 		
 		FD_DB_Utility dutil = new FD_DB_Utility();
 		dutil.baseColumnEntry(env, TABLE_ID);
@@ -59,6 +61,9 @@ public class FDColumnFormArray extends FD_DB implements I_FD_ColumnFormArray {
 		ref.addData(env, FORMTYPE_ID_FixText_ID, FORMTYPE_REF_NAME_FixText, FORMTYPE_NAME_FixText);
 		ref.addData(env, FORMTYPE_ID_ConnextText_ID, FORMTYPE_REF_NAME_ConnextText, FORMTYPE_NAME_ConnextText);
 		ref.addData(env, FORMTYPE_ID_Numbering_ID, FORMTYPE_REF_NAME_Numbering, FORMTYPE_NAME_Numbering);
+		
+		//接続文字列用リファレンスリスト情報登録
+		FDReferenceList refList = new FDReferenceList();
 		
 		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME + "テーブル構築完了");
 	}
@@ -95,6 +100,13 @@ public class FDColumnFormArray extends FD_DB implements I_FD_ColumnFormArray {
 		cfa.setValueByName(env, COLUMNNAME_FD_ColumnForm_ID, columnFormId);
 		cfa.setValueByName(env, COLUMNNAME_Array_Number, getNewArrayNumber(env, columnFormId));
 		cfa.setValueByName(env, COLUMNNAME_FormType_ID, I_FD_ColumnFormArray.FORMTYPE_ID_ConnextText_ID);
+		
+		/*
+		 * 接続文字列からリファレンスリストを抽出する。
+		 * 
+		 */
+		
+		
 		cfa.save(env);
 	}
 

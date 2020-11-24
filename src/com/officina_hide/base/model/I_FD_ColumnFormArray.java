@@ -37,6 +37,10 @@ public interface I_FD_ColumnFormArray {
 	public final String COLUMNNAME_FD_Value = "FD_Value";
 	public final String NAME_FD_Value = "書式設定値";
 	public final String COMMENT_FD_Value = "書式として設定された値";
+	/** 書式コード */
+	public final String COLUMNNAME_FD_Code = "FD_Code";
+	public final String NAME_FD_Code = "書式コード";
+	public final String COMMENT_FD_Code = "接続書式のリファレンスリストに該当する情報ID";
 	
 	/** 書式種別 : 固定文字列 */
 	public final String FORMTYPE_REF_NAME_FixText = "FixText";
