@@ -25,4 +25,12 @@ public interface I_FD_ReferenceList {
 	public final String COLUMNNAME_FD_Reference_ID = I_FD_Reference.Table_Name + "_ID";
 	public final String NAME_FD_Reference_ID = I_FD_Reference.NAME+"ID";
 	public final String COMMENT_FD_Reference_ID = "リファレンスリスト情報の親となるリファレンスの情報ID";
+	/** リスト並び順 */
+	public final String COLUMNNAME_FD_Sequence = "FD_Sequence";
+	public final String NAME_FD_Sequence = "リスト並び順";
+	public final String COMMENT_FD_Sequence = "リスト表示の並び順";
+	/** リストコード */
+	public final String COLUMNNAME_FD_Code = "FD_Code";
+	public final String NAME_FD_Code = "リストコード";
+	public final String COMMENT_FD_Code = "リファレンスで使用する情報";
 }

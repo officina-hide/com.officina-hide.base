@@ -29,8 +29,24 @@ public class FDReferenceList extends FD_DB implements I_FD_ReferenceList {
 		
 		//テーブル項目情報登録
 		FDTableColumn column = new FDTableColumn();
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_ReferenceList_ID, NAME_FD_ReferenceList_ID, COMMENT_FD_ReferenceList_ID
+				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 10, "Y", "Y");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Reference_ID, NAME_FD_Reference_ID, COMMENT_FD_Reference_ID
+				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 20, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Sequence, NAME_FD_Sequence, COMMENT_FD_Sequence
+				, COLUMNTYPE_ID_FD_Number, "0", 0, 30, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Code, NAME_FD_Code, COMMENT_FD_Code
+				, COLUMNTYPE_ID_FD_Text, null, 100, 40, "N", "N");
+		
 		FD_DB_Utility dutil = new FD_DB_Utility();
 		dutil.baseColumnEntry(env, TABLE_ID);
+		
+		//テーブル生成
+		createDBTable(env, TABLE_ID);
+		
+		//採番情報登録
+		FDNumbering num = new FDNumbering();
+		num.addData(env, TABLE_ID, TABLE_ID, 0, 1000001);
 	
 		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME + "テーブル構築開始");
 }
