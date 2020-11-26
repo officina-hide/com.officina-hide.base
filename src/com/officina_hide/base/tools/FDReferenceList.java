@@ -5,6 +5,7 @@ import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Log;
 import com.officina_hide.base.model.I_FD_ReferenceList;
+import com.officina_hide.base.model.X_FD_ReferenceList;
 
 /**
  * リファレンスリスト情報クラス<br>
@@ -50,5 +51,23 @@ public class FDReferenceList extends FD_DB implements I_FD_ReferenceList {
 	
 		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME + "テーブル構築開始");
 }
+
+	/**
+	 * リファレンスリスト情報登録<br>
+	 * @author officine-hide.com
+	 * @since 2020/11/26
+	 * @param env 環境情報
+	 * @param referenceId リファレンス情報ID
+	 * @param seq リスト並び順
+	 * @param code リスト文字列
+	 */
+	public void addData(FD_EnvData env, int referenceId, int seq, String code) {
+		X_FD_ReferenceList refList = new X_FD_ReferenceList(env);
+		refList.setValueByName(env, COLUMNNAME_FD_ReferenceList_ID, 0);
+		refList.setValueByName(env, COLUMNNAME_FD_Reference_ID, referenceId);
+		refList.setValueByName(env, COLUMNNAME_FD_Sequence, seq);
+		refList.setValueByName(env, COLUMNNAME_FD_Code, code);
+		refList.save(env);
+	}
 
 }

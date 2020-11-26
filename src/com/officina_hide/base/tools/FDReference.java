@@ -94,13 +94,16 @@ public class FDReference extends FD_DB implements I_FD_Reference {
 	 * @param referenceId リファレンスId
 	 * @param referenceName リファレンス名
 	 * @param name リファレンス表示名
+	 * @return 
 	 */
-	public void addData(FD_EnvData env, int referenceId, String referenceName, String name) {
+	public int addData(FD_EnvData env, int referenceId, String referenceName, String name) {
 		X_FD_Reference ref = new X_FD_Reference(env);
 		ref.setValueByName(env, COLUMNNAME_FD_Reference_ID, referenceId);
 		ref.setValueByName(env, COLUMNNAME_Reference_Name, referenceName);
 		ref.setValueByName(env, COLUMNNAME_FD_Name, name);
 		ref.save(env);
+		
+		return ref.getintOfValue(COLUMNNAME_FD_Reference_ID);
 	}
 
 	/**
