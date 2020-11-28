@@ -99,7 +99,7 @@ public class FDTableColumn extends FD_DB implements I_FD_TableColumn {
 		
 		//採番情報登録
 		FDNumbering num = new FDNumbering();
-		num.addData(env,TABLE_ID, TABLE_ID, 0, 1000001, 0, null);
+		num.addData(env,TABLE_ID, TABLE_ID, 0, 1000001);
 	
 		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME +"テーブル構築完了");
 	}

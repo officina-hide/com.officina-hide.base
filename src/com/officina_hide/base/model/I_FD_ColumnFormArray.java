@@ -41,6 +41,10 @@ public interface I_FD_ColumnFormArray {
 	public final String COLUMNNAME_FD_Code = "FD_Code";
 	public final String NAME_FD_Code = "書式コード";
 	public final String COMMENT_FD_Code = "接続書式のリファレンスリストに該当する情報ID";
+	/** 数値桁数 */
+	public final String COLUMNNAME_FD_Length = "FD_Length";
+	public final String NAME_FD_Length = "数値桁数";
+	public final String COMMENT_FD_Length = "採番数値の桁数";
 	
 	/** 書式種別 : 固定文字列 */
 	public final String FORMTYPE_REF_NAME_FixText = "FixText";

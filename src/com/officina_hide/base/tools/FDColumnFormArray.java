@@ -45,6 +45,8 @@ public class FDColumnFormArray extends FD_DB implements I_FD_ColumnFormArray {
 				, COLUMNTYPE_ID_FD_Text, null, 100, 40, "N", "N");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Code, NAME_FD_Code, COMMENT_FD_Code
 				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 60, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Length, NAME_FD_Length, COMMENT_FD_Length
+				, COLUMNTYPE_ID_FD_Number, "0", 0, 70, "N", "N");
 		
 		FD_DB_Utility dutil = new FD_DB_Utility();
 		dutil.baseColumnEntry(env, TABLE_ID);
@@ -83,7 +85,7 @@ public class FDColumnFormArray extends FD_DB implements I_FD_ColumnFormArray {
 		cfa.setValueByName(env, COLUMNNAME_FD_ColumnFormArray_ID, 0);
 		cfa.setValueByName(env, COLUMNNAME_FD_ColumnForm_ID, columnFormId);
 		cfa.setValueByName(env, COLUMNNAME_Array_Number, getNewArrayNumber(env, columnFormId));
-		cfa.setValueByName(env, COLUMNNAME_FormType_ID, I_FD_ColumnFormArray.FORMTYPE_ID_FixText_ID);
+		cfa.setValueByName(env, COLUMNNAME_FormType_ID, FORMTYPE_ID_FixText_ID);
 		cfa.setValueByName(env, COLUMNNAME_FD_Value, text);
 		cfa.save(env);
 	}
@@ -101,14 +103,30 @@ public class FDColumnFormArray extends FD_DB implements I_FD_ColumnFormArray {
 		cfa.setValueByName(env, COLUMNNAME_FD_ColumnFormArray_ID, 0);
 		cfa.setValueByName(env, COLUMNNAME_FD_ColumnForm_ID, columnFormId);
 		cfa.setValueByName(env, COLUMNNAME_Array_Number, getNewArrayNumber(env, columnFormId));
-		cfa.setValueByName(env, COLUMNNAME_FormType_ID, I_FD_ColumnFormArray.FORMTYPE_ID_ConnextText_ID);
+		cfa.setValueByName(env, COLUMNNAME_FormType_ID, FORMTYPE_ID_ConnextText_ID);
 		
-		/*
-		 * 接続文字列からリファレンスリストを抽出する。
-		 * 
-		 */
+		FDReferenceList refList = new FDReferenceList();
+		int refListId = refList.getReferenceListId(env, FORMTYPE_ID_ConnextText_ID, code);
+		cfa.setValueByName(env, COLUMNNAME_FD_Code, refListId);
 		
-		
+		cfa.save(env);
+	}
+
+	/**
+	 * 採番数値登録<br>
+	 * @author officine-hide.com
+	 * @since 1.21 2020/11/26
+	 * @param env 環境情報
+	 * @param columnFormId 項目書式情報ID
+	 * @param length 数値桁数
+	 */
+	public void addNumbering(FD_EnvData env, int columnFormId, int length) {
+		X_FD_ColumnFormArray cfa = new X_FD_ColumnFormArray(env);
+		cfa.setValueByName(env, COLUMNNAME_FD_ColumnFormArray_ID, 0);
+		cfa.setValueByName(env, COLUMNNAME_FD_ColumnForm_ID, columnFormId);
+		cfa.setValueByName(env, COLUMNNAME_Array_Number, getNewArrayNumber(env, columnFormId));
+		cfa.setValueByName(env, COLUMNNAME_FormType_ID, FORMTYPE_ID_Numbering_ID);
+		cfa.setValueByName(env, COLUMNNAME_FD_Length, length);
 		cfa.save(env);
 	}
 

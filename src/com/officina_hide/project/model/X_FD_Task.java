@@ -22,4 +22,14 @@ public class X_FD_Task extends FD_DB implements I_FD_Task {
 		initializeItemList(env, TABLE_ID);
 	}
 
+	/**
+	 * タスク情報登録<br>
+	 * @author officine-hide.com
+	 * @since 1.21 2020/11/26
+	 * @param env 環境情報
+	 */
+	public void save(FD_EnvData env) {
+		save(env, Table_Name);
+	}
+
 }

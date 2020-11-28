@@ -54,8 +54,8 @@ public class CreateBaseEnvironment {
 		//採番情報構築
 		FDNumbering num = new FDNumbering();
 		num.createTable(env);
-		num.addData(env,I_FD_Table.TABLE_ID, I_FD_Table.TABLE_ID, 0, 1000001, 0, null);
-		num.addData(env, I_FD_Process.TABLE_ID, I_FD_Process.TABLE_ID, 0, 1000001, 0, null);
+		num.addData(env,I_FD_Table.TABLE_ID, I_FD_Table.TABLE_ID, 0, 1000001);
+		num.addData(env, I_FD_Process.TABLE_ID, I_FD_Process.TABLE_ID, 0, 1000001);
 		
 		//テーブル項目情報構築
 		FDTableColumn column = new FDTableColumn();

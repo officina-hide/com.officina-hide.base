@@ -39,6 +39,7 @@ public interface I_FD_Log {
 	//ログ種別
 	/** DB */
 	public final int LOGTYPE_Info_ID = 201;
+	public final int LOGTYPE_ERROR_ID = 209;
 	public final int LOGTYPE_Table_Drop_ID = 211;
 	public final int LOGTYPE_Table_Create_ID = 212;
 	public final int LOGTYPE_Data_Update = 213;

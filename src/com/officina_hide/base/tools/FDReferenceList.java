@@ -1,5 +1,9 @@
 package com.officina_hide.base.tools;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import com.officina_hide.base.common.FD_DB_Utility;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
@@ -68,6 +72,42 @@ public class FDReferenceList extends FD_DB implements I_FD_ReferenceList {
 		refList.setValueByName(env, COLUMNNAME_FD_Sequence, seq);
 		refList.setValueByName(env, COLUMNNAME_FD_Code, code);
 		refList.save(env);
+	}
+
+	/**
+	 * リファレンスリスト情報ID取得<br>
+	 * @author officine-hide.com
+	 * @since 1.21 2020/11/26
+	 * @param env 環境情報
+	 * @param referenceId リファレンス情報ID
+	 * @param code リファレンスリストコード
+	 * @return リファレンスリスト情報ID
+	 */
+	public int getReferenceListId(FD_EnvData env, int referenceId, String code) {
+		int id = 0;
+		Statement stmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT ").append(COLUMNNAME_FD_ReferenceList_ID).append(" ")
+				.append("FROM ").append(Table_Name).append(" ");
+			sql.append("WHERE ").append(COLUMNNAME_FD_Reference_ID).append(" = ").append(referenceId).append(" ");
+			sql.append("AND ").append(COLUMNNAME_FD_Code).append(" = ").append(FD_SQ).append(code).append(FD_SQ).append(" ");
+			connection(env);
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql.toString());
+			if(rs.next()) {
+				id = rs.getInt(COLUMNNAME_FD_ReferenceList_ID);
+			} else {
+				//エラー表示
+				addLog(env, I_FD_Log.LOGTYPE_ERROR_ID, "リファレンスリストに対象のコードが有りません。["+code+"]");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(stmt, rs);
+		}
+		return id;
 	}
 
 }

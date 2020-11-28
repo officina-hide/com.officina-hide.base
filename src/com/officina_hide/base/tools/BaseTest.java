@@ -10,6 +10,7 @@ import com.officina_hide.base.model.I_FD_ColumnFormArray;
 import com.officina_hide.base.model.I_FD_Process;
 import com.officina_hide.project.model.I_FD_Project;
 import com.officina_hide.project.tools.FDProject;
+import com.officina_hide.project.tools.FDTask;
 
 public class BaseTest {
 
@@ -37,7 +38,7 @@ public class BaseTest {
 		/*
 		 * ・項目書式情報の登録
 		 * ・プロジェクト情報を登録する。
-		 * 
+		 * ・タスク登録
 		 */
 		//項目書式情報の登録
 		FDColumnForm clmForm = new FDColumnForm();
@@ -45,9 +46,15 @@ public class BaseTest {
 		FDColumnFormArray ckmFAry = new FDColumnFormArray();
 		ckmFAry.addFixText(env, clmFormId, "SDSS");
 		ckmFAry.addConnectText(env, clmFormId, "-");
+		ckmFAry.addNumbering(env, clmFormId, 4);
 		
+		//プロジェクト登録
 		FDProject project = new FDProject();
 		int projectId = project.addData(env, "TEST Project", "タスク登録テスト用プロジェクト", clmFormId);
+		//タスク登録
+		FDTask task = new FDTask();
+		task.createTask(env, projectId);
+		
 		
 		/*
 		 * タスク登録テスト
