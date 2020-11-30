@@ -53,9 +53,27 @@ public class NumberingTest {
 			return;
 		}
 		
-		//関連情報リセット処理
-		resetBaseData(env, 0);
-		resetBaseData(env, processNo);
+		/*
+		 * テスト2 : 採番Keyをセットした場合の採番テスト
+		 */
+		id = num.getNewID(env, "numTest", "SSSS-0000");
+		if(id == 1) {
+			System.out.println("Test OK : "+id);
+		} else {
+			System.out.println("Test Error : "+id);
+			return;
+		}
+		id = num.getNewID(env, "numTest", "SSSS-0000");
+		if(id == 2) {
+			System.out.println("Test OK : "+id);
+		} else {
+			System.out.println("Test Error : "+id);
+			return;
+		}
+		
+//		//関連情報リセット処理
+//		resetBaseData(env, 0);
+//		resetBaseData(env, processNo);
 	}
 
 	/**

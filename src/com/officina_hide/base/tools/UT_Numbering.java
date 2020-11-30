@@ -43,6 +43,8 @@ public class UT_Numbering extends FD_DB {
 		int tableId = getTableId(env, tableName);
 		if(isExist(env, tableId, key)) {
 			num = numberUpdate(env, tableId, key);
+		} else {
+			num = numberCreate(env, tableId, key);
 		}
 		return num;
 	}
@@ -144,6 +146,19 @@ public class UT_Numbering extends FD_DB {
 			close(stmt, rs);
 		}
 		return num;
+	}
+
+	/**
+	 * 採番情報新規作成<br>
+	 * @author officine-hide.com
+	 * @since 1.21 2020/11/30
+	 * @param env 環境情報
+	 * @param tableId テーブル情報ID
+	 * @param key 採番Key
+	 * @return 採番数値
+	 */
+	private int numberCreate(FD_EnvData env, int tableId, String key) {
+		return 0;
 	}
 
 }
