@@ -37,7 +37,7 @@ public class NumberingTest {
 		 * テスト : テーブル情報を追加する際の採番テスト
 		 */
 		FDNumbering num = new FDNumbering();
-		num.addData(env, 999, 999, 0, 1000001);
+		num.addData(env, 0, 999, 0, 1000001);
 		int id = num.getNewID(env, "numTest");
 		if(id == 1000001) {
 			System.out.println("Test OK : "+id);
@@ -71,9 +71,9 @@ public class NumberingTest {
 			return;
 		}
 		
-//		//関連情報リセット処理
-//		resetBaseData(env, 0);
-//		resetBaseData(env, processNo);
+		//関連情報リセット処理
+		resetBaseData(env, 0);
+		resetBaseData(env, processNo);
 	}
 
 	/**

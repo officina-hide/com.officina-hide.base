@@ -158,7 +158,9 @@ public class UT_Numbering extends FD_DB {
 	 * @return 採番数値
 	 */
 	private int numberCreate(FD_EnvData env, int tableId, String key) {
-		return 0;
+		FDNumbering num = new FDNumbering();
+		num.addData(env, 0, tableId, 1, 1, key);
+		return 1;
 	}
 
 }
