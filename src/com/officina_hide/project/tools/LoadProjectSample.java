@@ -25,12 +25,13 @@ public class LoadProjectSample {
 	 * @param env 環境情報
 	 */
 	public void createData(FD_EnvData env) {
-		//プロジェクト情報登録
-		FDProject project = new FDProject();
-		int projectId = project.addData(env, "SDSS", "システム開発支援プロジェクト", "SDSS_0000");
-		//タスク情報登録
-		FDTask task = new FDTask();
-		task.addData(env, projectId);	
+		// TODO 書式設定方法の変更中(2020/11/20)
+//		//プロジェクト情報登録
+//		FDProject project = new FDProject();
+//		int projectId = project.addData(env, "SDSS", "システム開発支援プロジェクト", "SDSS_0000");
+//		//タスク情報登録
+//		FDTask task = new FDTask();
+//		task.addData(env, projectId);	
 	}
 
 }

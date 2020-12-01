@@ -14,7 +14,7 @@ public interface I_FD_Numbering {
 	/** 採番情報 : テーブル説明 */
 	public final String COMMENT = "テーブル毎に情報IDの採番を管理する為の情報";
 	/** 採番情報 : テーブル情報ID */
-	public final int TABLE_ID = 109;
+	public final int TABLE_ID = 110;
 	
 	//テーブル項目情報
 	/** 採番情報ID */

@@ -20,7 +20,7 @@ public interface I_FD_Reference {
 	//テーブル項目情報
 	/** リファレンス情報ID */
 	public final String COLUMNNAME_FD_Reference_ID = Table_Name + "_ID";
-	public final String NAME_FD_Reference_ID = "リファレンス情報ID";
+	public final String NAME_FD_Reference_ID = NAME+"ID";
 	public final String COMMENT_FD_Reference_ID = "リファレンス情報を識別する為の情報ID";
 	/** リファレンス名 */
 	public final String COLUMNNAME_Reference_Name = "Reference_Name";

@@ -15,7 +15,7 @@ public interface I_FD_Log {
 	/** ログ情報 : テーブル説明 */
 	public final String COMMENT = "ログを管理する為の情報";
 	/** ログ情報 : テーブル情報ID */
-	public final int TABLE_ID = 108;
+	public final int TABLE_ID = 109;
 
 	//テーブル項目情報
 	/** ログ情報ID */
@@ -39,6 +39,7 @@ public interface I_FD_Log {
 	//ログ種別
 	/** DB */
 	public final int LOGTYPE_Info_ID = 201;
+	public final int LOGTYPE_ERROR_ID = 209;
 	public final int LOGTYPE_Table_Drop_ID = 211;
 	public final int LOGTYPE_Table_Create_ID = 212;
 	public final int LOGTYPE_Data_Update = 213;

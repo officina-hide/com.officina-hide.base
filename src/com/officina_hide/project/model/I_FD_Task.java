@@ -15,7 +15,7 @@ public interface I_FD_Task {
 	/** タスク情報 : テーブル説明 */
 	public final String COMMENT = "タスクを管理する為の情報";
 	/** タスク情報 : テーブル情報ID */
-	public final int TABLE_ID = 302;
+	public final int TABLE_ID = 112;
 
 	/** タスク情報ID */
 	public final String COLUMNNAME_FD_Task_ID = Table_Name + "_ID";

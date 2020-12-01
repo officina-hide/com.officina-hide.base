@@ -3,7 +3,8 @@ package com.officina_hide.base.model;
 /**
  * データベース操作インタフェース<br>
  * @author officina-hide.com
- * @version 1.00
+ * @version 1.00 新規作成
+ * @version 1.21 テーブル項目種別に「採番項目」を追加。
  * @since 2020/10/10
  */
 public interface I_DB {
@@ -61,5 +62,8 @@ public interface I_DB {
 	public static final String COLUMNTYPE_FD_List = "FD_List";
 	public static final String COLUMNTYPENAME_FD_List = "リスト";
 	public static final int COLUMNTYPE_ID_FD_List = 107;
-
+	/** 項目種別 : 採番項目 */
+	public static final String COLUMNTYPE_FD_Numbering = "FD_Numbering";
+	public static final String COLUMNTYPENAME_FD_Numbering = "採番項目";
+	public static final int COLUMNTYPE_ID_FD_Numbering = 108;
 }
