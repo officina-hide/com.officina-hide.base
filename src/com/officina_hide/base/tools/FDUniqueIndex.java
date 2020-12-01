@@ -7,7 +7,6 @@ import java.sql.Statement;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Log;
-import com.officina_hide.base.model.I_FD_Numbering;
 import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.model.I_FD_TableColumn;
 import com.officina_hide.base.model.I_FD_UniqueColumn;
@@ -62,7 +61,7 @@ public class FDUniqueIndex extends FD_DB implements I_FD_UniqueIndex {
 		
 		//採番情報登録
 		FDNumbering num = new FDNumbering();
-		num.addData(env, TABLE_ID, TABLE_ID, 0, 1000001, 0, null);
+		num.addData(env, TABLE_ID, TABLE_ID, 0, 1000001);
 		
 		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築完了");
 	}

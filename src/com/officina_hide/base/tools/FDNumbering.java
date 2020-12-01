@@ -50,8 +50,8 @@ public class FDNumbering extends FD_DB implements I_FD_Numbering {
 			.append(FD_SQ).append(NAME_Current_Number).append(FD_SQ).append(",");
 		sql.append(COLUMNNAME_Initial_Number).append(" INT UNSIGNED DEFAULT 0 COMMENT ")
 			.append(FD_SQ).append(NAME_Initial_Number).append(FD_SQ).append(",");
-		sql.append(COLUMNNAME_FD_TableColumn_ID).append(" INT UNSIGNED")
-			.append(" COMMENT ").append(FD_SQ).append(NAME_FD_TableColumn_ID).append(FD_SQ).append(",");
+//		sql.append(COLUMNNAME_FD_TableColumn_ID).append(" INT UNSIGNED")
+//			.append(" COMMENT ").append(FD_SQ).append(NAME_FD_TableColumn_ID).append(FD_SQ).append(",");
 		sql.append(COLUMNNAME_Numbering_Key).append(" VARCHAR(100) ")
 			.append(" COMMENT ").append(FD_SQ).append(NAME_Numbering_Key).append(FD_SQ).append(",");
 
@@ -78,32 +78,9 @@ public class FDNumbering extends FD_DB implements I_FD_Numbering {
 		table.addData(env, TABLE_ID, Table_Name, NAME, COMMENT);
 		
 		//採番情報登録
-		addData(env,TABLE_ID, TABLE_ID, 0, 1000001, 0, null);
+		addData(env,TABLE_ID, TABLE_ID, 0, 1000001);
 		
 		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築終了");
-	}
-
-	/**
-	 * 採番情報登録<br>
-	 * @author officine-hide.com
-	 * @since 1.00 2020/10/13
-	 * @param env 環境情報
-	 * @param numberingId 採番情報ID
-	 * @param tableId テーブル情報ID
-	 * @param initNo 初期値
-	 * @param currentNo 現在値
-	 * @param columnId テーブル項目情報ID
-	 * @param key 採番Key
-	 */
-	public void addData(FD_EnvData env, int numberingId, int tableId, int currentNo, int initNo, int columnId, String  key) {
-		X_FD_Numbering num = new X_FD_Numbering(env);
-		num.setValueByName(env, COLUMNNAME_FD_Numbering_ID, numberingId);
-		num.setValueByName(env, COLUMNNAME_FD_Table_ID, tableId);
-		num.setValueByName(env, COLUMNNAME_Current_Number, currentNo);
-		num.setValueByName(env, COLUMNNAME_Initial_Number, initNo);
-		num.setValueByName(env, COLUMNNAME_FD_TableColumn_ID, columnId);
-		num.setValueByName(env, COLUMNNAME_Numbering_Key, key);
-		num.save(env);
 	}
 
 	/**
@@ -124,8 +101,6 @@ public class FDNumbering extends FD_DB implements I_FD_Numbering {
 				, COLUMNTYPE_ID_FD_Number, "0", 0, 30, "N", "N");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_Initial_Number, NAME_Initial_Number, COMMENT_Initial_Number
 				, COLUMNTYPE_ID_FD_Number, "0", 0, 40, "N", "N");
-		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_TableColumn_ID, NAME_FD_TableColumn_ID, COMMENT_FD_TableColumn_ID
-				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 50, "N", "N");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_Numbering_Key, NAME_Numbering_Key, COMMENT_Numbering_Key
 				, COLUMNTYPE_ID_FD_Text, null, 100, 60, "N", "N");
 		
@@ -142,5 +117,42 @@ public class FDNumbering extends FD_DB implements I_FD_Numbering {
 
 		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"のテーブル項目情報登録終了");
 }
+
+	/**
+	 * テーブル用採番情報登録<br>
+	 * @author officina-hide.com
+	 * @since 1.21 2020/11/21
+	 * @param env 環境情報
+	 * @param numberingId 採番情報ID
+	 * @param tableId テーブル情報ID
+	 * @param initNo 初期値
+	 * @param currentNo 現在値
+	 * @param initNo
+	 */
+	public void addData(FD_EnvData env, int numberingId, int tableId, int currentNo, int initNo) {
+		addData(env, numberingId, tableId, currentNo, initNo, null);
+	}
+
+	/**
+	 * 採番情報登録<br>
+	 * @author officine-hide.com
+	 * @since 1.00 2020/10/13
+	 * @param env 環境情報
+	 * @param numberingId 採番情報ID
+	 * @param tableId テーブル情報ID
+	 * @param initNo 初期値
+	 * @param currentNo 現在値
+	 * @param columnId テーブル項目情報ID
+	 * @param key 採番Key
+	 */
+	public void addData(FD_EnvData env, int numberingId, int tableId, int currentNo, int initNo,  String  key) {
+		X_FD_Numbering num = new X_FD_Numbering(env);
+		num.setValueByName(env, COLUMNNAME_FD_Numbering_ID, numberingId);
+		num.setValueByName(env, COLUMNNAME_FD_Table_ID, tableId);
+		num.setValueByName(env, COLUMNNAME_Current_Number, currentNo);
+		num.setValueByName(env, COLUMNNAME_Initial_Number, initNo);
+		num.setValueByName(env, COLUMNNAME_Numbering_Key, key);
+		num.save(env);
+	}
 
 }

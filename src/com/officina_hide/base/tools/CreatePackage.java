@@ -35,7 +35,7 @@ public class CreatePackage {
 		 */
 		
 		//開始時刻保存
-		Date startDate = new Date();
+//		Date startDate = new Date();
 		//環境情報のPathを設定する。
 		FD_EnvData env = null;
 		try {
@@ -49,20 +49,20 @@ public class CreatePackage {
 		env.setActiveProcessID(ThisProcess_ID);
 		
 //		//ログ情報構築
-		FDLog log = new FDLog();
+//		FDLog log = new FDLog();
 //		log.createTable(env);
 		//プロセス情報構築
 		FDProcess process = new FDProcess();
 //		process.createTable(env);
 //		process.addData(env, ThisProcess_ID,  CreatePackage.class.getSimpleName(), startDate);
 		//テーブル情報構築
-		FDTable table = new FDTable();
+//		FDTable table = new FDTable();
 //		table.createTable(env);
 //		table.addData(env, I_FD_Table.TABLE_ID, I_FD_Table.Table_Name, I_FD_Table.NAME, I_FD_Table.COMMENT);
 //		table.addData(env, I_FD_Log.TABLE_ID, I_FD_Log.Table_Name, I_FD_Log.NAME, I_FD_Log.COMMENT);
 //		table.addData(env, I_FD_Process.TABLE_ID, I_FD_Process.Table_Name, I_FD_Process.NAME, I_FD_Process.COMMENT);
 		//採番情報構築
-		FDNumbering num = new FDNumbering();
+//		FDNumbering num = new FDNumbering();
 //		num.createTable(env);
 //		table.addData(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.Table_Name
 //				, I_FD_Numbering.NAME, I_FD_Numbering.COMMENT);
@@ -70,12 +70,12 @@ public class CreatePackage {
 //		num.addData(env,I_FD_Numbering.TABLE_ID, I_FD_Numbering.TABLE_ID, 0, 1000001, 0, null);
 //		num.addData(env, I_FD_Process.TABLE_ID, I_FD_Process.TABLE_ID, 0, 1000001, 0, null);
 		//リファレンス情報構築
-		FDReference ref = new FDReference();
+//		FDReference ref = new FDReference();
 //		ref.createDBTable(env);
 //		ref.addColumnTypeReference(env);
 		
 		//テーブル項目情報構築
-		FDTableColumn column = new FDTableColumn();
+//		FDTableColumn column = new FDTableColumn();
 //		column.createTable(env);
 //		table.addData(env, I_FD_TableColumn.TABLE_ID, I_FD_TableColumn.Table_Name
 //				, I_FD_TableColumn.NAME, I_FD_TableColumn.COMMENT);
@@ -89,7 +89,7 @@ public class CreatePackage {
 //		process.addTableColumn(env);
 	
 		//ユニーク制約情報構築
-		FDUniqueIndex uidx = new FDUniqueIndex();
+//		FDUniqueIndex uidx = new FDUniqueIndex();
 //		uidx.createTable(env);
 //		FDUniqueColumn uclm = new FDUniqueColumn();
 //		uclm.createTable(env);
