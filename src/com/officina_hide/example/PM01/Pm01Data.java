@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.tools.FDColumnForm;
+import com.officina_hide.base.tools.FDColumnFormArray;
 import com.officina_hide.base.tools.FDProcess;
 import com.officina_hide.project.tools.FDProject;
 
@@ -37,9 +39,17 @@ public class Pm01Data {
 		int processId = process.createProcess(env,Pm01Data.class.getSimpleName());
 		env.setActiveProcessID(processId);
 		
+		//項目書式情報の登録
+		FDColumnForm clmForm = new FDColumnForm();
+		int clmFormId = clmForm.addData(env, "TaskNumber",  "タスク番号");
+		FDColumnFormArray ckmFAry = new FDColumnFormArray();
+		ckmFAry.addFixText(env, clmFormId, "SDSS");
+		ckmFAry.addConnectText(env, clmFormId, "-");
+		ckmFAry.addNumbering(env, clmFormId, 4);
+		
 		//プロジェクト情報登録
 		FDProject project = new FDProject();
-		project.addData(env, "PackageManagement", "パッケージ構築管理", "PM-0000");
+		project.addData(env, "PackageManagement", "パッケージ構築管理", clmFormId);
 
 		/*
 		 * タスクを登録し、一覧表示する。
