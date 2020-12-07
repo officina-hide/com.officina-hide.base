@@ -9,6 +9,11 @@ import com.officina_hide.base.common.FD_EnvData;
  * パッケージ生成[Package generation]<br>
  * <p>本クラスではパッケージの生成を行う。<br>
  * [This class creates a package.]</p>
+ * 
+ * CREATE DATABASE IF NOT EXISTS FDBASE DEFAULT CHARACTER SET = utf8;
+ * CREATE USER 'fdadmin'@'%' IDENTIFIED BY 'fdadminqAz*01';
+ * GRANT ALL ON FDBASE.* TO fdadmin;
+ * 
  * @author officine-hide.com
  * @version 1.30
  * @since 2020/12/05
@@ -32,7 +37,8 @@ public class CreatePackages {
 		/*
 		 * 基盤テーブルの構築[Building a base table]
 		 */
-//		CreateBaseInformation(env);
+		CreateBaseInformation cbi = new CreateBaseInformation();
+		cbi.execute(env);
 	}
 
 }
