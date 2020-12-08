@@ -13,6 +13,7 @@ import com.officina_hide.base.common.FD_EnvData;
  * CREATE DATABASE IF NOT EXISTS FDBASE DEFAULT CHARACTER SET = utf8;
  * CREATE USER 'fdadmin'@'%' IDENTIFIED BY 'fdadminqAz*01';
  * GRANT ALL ON FDBASE.* TO fdadmin;
+ * GRANT ALL PRIVILEGES ON FDBASE.* to 'fdadmin'@'%' with Grant option;
  * 
  * @author officine-hide.com
  * @version 1.30

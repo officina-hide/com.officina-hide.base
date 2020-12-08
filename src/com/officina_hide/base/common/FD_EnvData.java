@@ -30,9 +30,9 @@ public class FD_EnvData implements I_FD_EnvData  {
 		Properties prop = new Properties();
 		try {
 			prop.load(new FileInputStream(new File(propPath)));
+			setEnvData(prop);
 		} catch (IOException e) {
 			e.printStackTrace();
-			setEnvData(prop);
 		}
 	}
 	
