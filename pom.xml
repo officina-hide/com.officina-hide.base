@@ -3,4 +3,16 @@
   <groupId>com.officina-hide.base</groupId>
   <artifactId>com.officina-hide.base</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+  	<dependency>
+  		<groupId>mysql</groupId>
+  		<artifactId>mysql-connector-java</artifactId>
+  		<version>8.0.21</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.openjfx</groupId>
+  		<artifactId>javafx-controls</artifactId>
+  		<version>14.0.2</version>
+  	</dependency>
+  </dependencies>
 </project>
