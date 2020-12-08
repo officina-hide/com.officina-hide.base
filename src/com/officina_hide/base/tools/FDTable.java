@@ -9,7 +9,7 @@ import com.officina_hide.base.model.I_FD_Table;
  * @version 1.30
  * @since 2020/12/07
  */
-public class FDTable implements I_FD_Table {
+public class FDTable extends FD_DB implements I_FD_Table {
 
 	/**
 	 * テーブル生成[table creation]<br>
@@ -22,7 +22,7 @@ public class FDTable implements I_FD_Table {
 		StringBuffer sql = new StringBuffer();
 		//既に登録されているテーフル情報を削除する。
 		sqlDrop.append("DROP TABLE IF EXISTS ").append(Table_Name);
-//		DBexecute(env, sqlDrop.toString());
+		DBUpdateExecution(env, sqlDrop.toString());
 
 	}
 
