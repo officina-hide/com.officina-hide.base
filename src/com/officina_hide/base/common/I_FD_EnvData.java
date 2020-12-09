@@ -15,5 +15,8 @@ public interface I_FD_EnvData {
 	public static final String DB_USER = "DB_User";
 	/** データベース使用ユーザーパスワード */
 	public static final String DB_PASWORD = "DB_Passward";
+	/** ログインユーザーの情報ID */
+	public static final String LOGIN_USER_ID = "Login_User_ID";
+
 
 }

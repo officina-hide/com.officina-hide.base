@@ -1,4 +1,4 @@
-package com.officina_hide.base.tools;
+package com.officina_hide.base.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +15,7 @@ import com.officina_hide.base.common.FD_EnvData;
  * @version 1.30
  * @since 2020/12/08
  */
-public class FD_DB {
+public class FD_DB implements I_FD_DB {
 	/** データベース接続情報	 */
 	protected static Connection conn;
 
@@ -44,9 +44,19 @@ public class FD_DB {
 	 * @author officine-hide.com
 	 * @since 1.30 2020/12/09
 	 * @param stmt ステートメント
+	 */
+	public void DBclose(Statement stmt) {
+		DBclose(stmt, null);
+	}
+
+	/**
+	 * データベースクローズ[Database close]<br>
+	 * @author officine-hide.com
+	 * @since 1.30 2020/12/09
+	 * @param stmt ステートメント
 	 * @param rs 検索結果
 	 */
-	private void DBclose(Statement stmt, ResultSet rs) {
+	public void DBclose(Statement stmt, ResultSet rs) {
 		if(stmt != null) {
 			try {
 				stmt.close();
@@ -85,6 +95,22 @@ public class FD_DB {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	/**
+	 * エスケープ処理<br>
+	 * <p>SQLインジェクション対策の為、指定されたデータのコードをエスケープ処理する。<br>
+	 * Escape the code of the specified data to prevent SQL injection.</p>
+	 * @author officine-hide.com
+	 * @since 1.00 2020/10/20
+	 * @param data 処理対象情報
+	 * @return エスケープ処理済情報
+	 */
+	public String changeEscape(String data) {
+		String out = data;
+		out = out.replaceAll("\'", "\'\'");
+		out = out.replaceAll("\\\\", "\\\\\\\\");
+		return out;
 	}
 
 }

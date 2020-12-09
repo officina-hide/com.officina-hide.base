@@ -20,6 +20,10 @@ public class FD_EnvData implements I_FD_EnvData  {
 	private String DB_User;
 	/** データベースパスワード */
 	private String DB_Password;
+	/** 処理プロセス情報ID */
+	private int activeProcessID;
+	/** ログインユーザー情報ID */
+	private int loginUserID;
 
 	/**
 	 * コンストラクター[constructor]<br>
@@ -47,6 +51,7 @@ public class FD_EnvData implements I_FD_EnvData  {
 		setDB_Name(prop.getProperty(DB_NAME));
 		setDB_User(prop.getProperty(DB_USER));
 		setDB_Password(prop.getProperty(DB_PASWORD));
+		setLoginUserID(Integer.parseInt(prop.getProperty(LOGIN_USER_ID)));
 	}
 
 	public String getDB_Name() {
@@ -72,6 +77,18 @@ public class FD_EnvData implements I_FD_EnvData  {
 	}
 	public void setDB_Password(String dB_Password) {
 		DB_Password = dB_Password;
+	}
+	public int getActiveProcessID() {
+		return activeProcessID;
+	}
+	public void setActiveProcessID(int activeProcessID) {
+		this.activeProcessID = activeProcessID;
+	}
+	public int getLoginUserID() {
+		return loginUserID;
+	}
+	public void setLoginUserID(int loginUserID) {
+		this.loginUserID = loginUserID;
 	}
 
 }
