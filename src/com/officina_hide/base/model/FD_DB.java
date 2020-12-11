@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_Item;
+import com.officina_hide.base.common.FD_Items;
 
 /**
  * データベース操作クラス[Database operation class]<br>
@@ -18,6 +20,8 @@ import com.officina_hide.base.common.FD_EnvData;
 public class FD_DB implements I_FD_DB {
 	/** データベース接続情報	 */
 	protected static Connection conn;
+	/** 項目リスト */
+	protected FD_Items  itemList = new FD_Items();
 
 	/**
 	 * データベース更新実行[Database update execution]<br>
@@ -111,6 +115,93 @@ public class FD_DB implements I_FD_DB {
 		out = out.replaceAll("\'", "\'\'");
 		out = out.replaceAll("\\\\", "\\\\\\\\");
 		return out;
+	}
+
+	/**
+	 * 項目リストセット<br>
+	 * <p>項目リストの指定された項目名を持つ情報に対して、指定された項目情報をセットする。</p>
+	 * @author officine-hide.com
+	 * @since 1.00 2020/10/15
+	 * @param env 環境情報
+	 * @param columnName テーブル項目名
+	 * @param columnData テーブル項目情報
+	 */
+	public void setValueByName(FD_EnvData env, String columnName, Object columnData) {
+		if(itemList.setData(columnName, columnData) == false) {
+			System.out.println(new Date()+" : "+"Column Name Not Found!! ["+columnName+"]");
+			new Exception();
+		}
+	}
+	
+	/**
+	 * 情報保存<br>
+	 * @author officine-hide.com
+	 * @since 1.00 2020/10/15
+	 * @param env 環境情報
+	 * @param tableName テーブル名
+	 */
+	public void save(FD_EnvData env, String tableName) {
+		StringBuffer sql = new StringBuffer();
+		StringBuffer setItem = new StringBuffer();
+		StringBuffer where = new StringBuffer();
+		
+		//情報IDチェック
+		int id = itemList.getItemByName(tableName+"_ID").getIntOfValue();
+		if(id == 0) {
+//			itemList.setData(tableName+"_ID",  getNewID(env, tableName));
+//			sql.append("INSERT INTO ").append(tableName).append(" SET ");
+		} else {
+//			if(existsId(env, tableName, id)) {
+//				sql.append("UPDATE ").append(tableName).append(" SET ");
+//				where.append("WHERE ").append(tableName).append("_ID = ")
+//					.append(itemList.getItemByName(tableName+"_ID").getIntOfValue());
+//			} else {
+				sql.append("INSERT INTO ").append(tableName).append(" SET ");
+//			}
+		}
+		
+		//登録日、更新日設定
+		if(itemList.getItemByName(COLUMNNAME_FD_CREATE).isNullData()) {
+			itemList.setData(COLUMNNAME_FD_CREATE, new Date());
+			itemList.setData(COLUMNNAME_FD_UPDATE, new Date());
+			itemList.setData(COLUMNNAME_FD_CREATED, env.getLoginUserID());
+			itemList.setData(COLUMNNAME_FD_UPDATED, env.getLoginUserID());
+		} else {
+			itemList.setData(COLUMNNAME_FD_UPDATE, new Date());
+			itemList.setData(COLUMNNAME_FD_UPDATED, env.getLoginUserID());
+		}
+//		if(tableName.equals(I_FD_Process.Table_Name) == false) {
+//			itemList.setData(COLUMNNAME_FD_Process_ID, env.getActiveProcessID());
+//		}
+
+		for(String columnName : itemList.getNameList()) {
+			if(setItem.length() > 0) {
+				setItem.append(",");
+			}
+			setItem.append(itemList.getSQLString(columnName));
+		}
+		sql.append(setItem.toString()).append(" ");
+		if(where != null && where.length() > 9) {
+			sql.append(where.toString());
+		}
+
+		System.out.println(sql.toString());
+		
+		DBUpdateExecution(env, sql.toString());
+		FDLog log = new FDLog();
+		log.addLog(env, I_FD_Log.LOGTYPE_Data_Update, changeEscape(sql.toString()));
+	}
+
+	/**
+	 * 項目の数値情報を返す。<br>
+	 * @author officine-hide.com
+	 * @since 1.10 2020/11/03
+	 * @param columnName 項目名
+	 * @return 数値情報
+	 */
+	public int getintOfValue(String columnName) {
+		FD_Item item = itemList.getItemByName(columnName);
+		return item.getIntOfValue();
 	}
 
 }
