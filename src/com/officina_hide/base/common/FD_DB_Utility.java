@@ -1,6 +1,7 @@
 package com.officina_hide.base.common;
 
 import com.officina_hide.base.model.I_FD_DB;
+import com.officina_hide.base.model.I_FD_Process;
 
 /**
  * DB取扱汎用クラス[DB handling general class]<br>
@@ -20,8 +21,10 @@ public class FD_DB_Utility implements I_FD_DB {
 	public String getBaseSQLStrings(String name) {
 		StringBuffer sql = new StringBuffer();
 		
-		sql.append(COLUMNNAME_FD_Process_ID).append("  INT UNSIGNED ")
+		if(name.equals(I_FD_Process.NAME) == false) {
+			sql.append(COLUMNNAME_FD_Process_ID).append("  INT UNSIGNED ")
 			.append("COMMENT ").append(FD_SQ).append(NAME_FD_Process_ID).append(FD_SQ).append(",");
+		}
 		sql.append(COLUMNNAME_FD_CREATE).append(" DATETIME COMMENT ")
 			.append(FD_SQ).append(NAME_FD_CREATE).append(FD_SQ).append(",");
 		sql.append(COLUMNNAME_FD_CREATED).append(" INT UNSIGNED COMMENT ")

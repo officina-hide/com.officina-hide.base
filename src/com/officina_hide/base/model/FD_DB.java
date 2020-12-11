@@ -185,7 +185,7 @@ public class FD_DB implements I_FD_DB {
 			sql.append(where.toString());
 		}
 
-		System.out.println(sql.toString());
+//		System.out.println(sql.toString());
 		
 		DBUpdateExecution(env, sql.toString());
 		FDLog log = new FDLog();
