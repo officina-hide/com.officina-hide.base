@@ -38,4 +38,14 @@ public class X_FD_Process extends FD_DB implements I_FD_Process {
 		itemList.add(COLUMNNAME_FD_UPDATED, null, COLUMNTYPE_FD_Information_ID);
 	}
 
+	/**
+	 * 情報保存[Information storage]<br>
+	 * @author officine-hide.com
+	 * @since 1.30 2020/12/13
+	 * @param env 環境情報
+	 */
+	public void save(FD_EnvData env) {
+		save(env, Table_Name);
+	}
+
 }

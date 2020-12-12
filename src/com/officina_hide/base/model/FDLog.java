@@ -45,6 +45,9 @@ public class FDLog extends FD_DB implements I_FD_Log {
 		//ログ情報の構築をログ情報に登録する。
 		addLog(env, LOGTYPE_Table_Drop_ID, changeEscape(sqlDrop.toString()));
 		addLog(env, LOGTYPE_Table_Create_ID, changeEscape(sql.toString()));
+		
+		addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築完了");
+
 	}
 
 	/**
