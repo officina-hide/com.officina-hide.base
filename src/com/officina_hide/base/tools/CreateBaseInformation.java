@@ -6,9 +6,12 @@ import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FDLog;
 import com.officina_hide.base.model.FDNumbering;
 import com.officina_hide.base.model.FDProcess;
+import com.officina_hide.base.model.FDReference;
 import com.officina_hide.base.model.FDTable;
 import com.officina_hide.base.model.I_FD_Log;
+import com.officina_hide.base.model.I_FD_Numbering;
 import com.officina_hide.base.model.I_FD_Process;
+import com.officina_hide.base.model.I_FD_Reference;
 import com.officina_hide.base.model.I_FD_Table;
 
 /**
@@ -57,13 +60,21 @@ public class CreateBaseInformation {
 		//採番情報登録
 		FDNumbering num = new FDNumbering();
 		num.createTable(env);
+		//リファレンス情報構築
+		FDReference ref = new FDReference();
+		ref.createTable(env);
 		
 		//先行構築テーブルのテーブル情報登録
 		table.addData(env, I_FD_Log.TABLE_ID, I_FD_Log.Table_Name, I_FD_Log.NAME, I_FD_Log.COMMENT);
 		table.addData(env, I_FD_Process.TABLE_ID, I_FD_Process.Table_Name, I_FD_Process.NAME, I_FD_Process.COMMENT);
 		table.addData(env, I_FD_Table.TABLE_ID, I_FD_Table.Table_Name, I_FD_Table.NAME, I_FD_Table.COMMENT);
-		
-		
+		table.addData(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.Table_Name, I_FD_Numbering.NAME, I_FD_Numbering.COMMENT);
+		table.addData(env, I_FD_Reference.TABLE_ID, I_FD_Reference.Table_Name, I_FD_Reference.NAME, I_FD_Reference.COMMENT);
+		//先行構築テーブルの採番情報登録
+		num.addData(env,I_FD_Table.TABLE_ID, I_FD_Table.TABLE_ID, 0, 1000001);
+		num.addData(env, I_FD_Process.TABLE_ID, I_FD_Process.TABLE_ID, 0, 1000001);
+		num.addData(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.TABLE_ID, 0, 1000001);
+		num.addData(env, I_FD_Reference.TABLE_ID, I_FD_Reference.TABLE_ID, 0, 1000001);
 		
 		log.addLog(env, I_FD_Log.LOGTYPE_Info_ID, "基盤環境構築完了");
 	}
