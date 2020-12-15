@@ -48,4 +48,24 @@ public class FDReference extends FD_DB implements I_FD_Reference {
 		log.addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築完了");
 	}
 
+	/**
+	 * リファレンス情報登録<br>
+	 * @author officine-hide.com
+	 * @since 1.00 2020/10/15
+	 * @param env 環境情報
+	 * @param referenceId リファレンスId
+	 * @param referenceName リファレンス名
+	 * @param name リファレンス表示名
+	 * @return 
+	 */
+	public int addData(FD_EnvData env, int referenceId, String referenceName, String name) {
+		X_FD_Reference ref = new X_FD_Reference(env);
+		ref.setValueByName(env, COLUMNNAME_FD_Reference_ID, referenceId);
+		ref.setValueByName(env, COLUMNNAME_Reference_Name, referenceName);
+		ref.setValueByName(env, COLUMNNAME_FD_Name, name);
+		ref.save(env);
+		
+		return ref.getintOfValue(COLUMNNAME_FD_Reference_ID);
+	}
+
 }

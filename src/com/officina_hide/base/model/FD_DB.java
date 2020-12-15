@@ -170,9 +170,9 @@ public class FD_DB implements I_FD_DB {
 			itemList.setData(COLUMNNAME_FD_UPDATE, new Date());
 			itemList.setData(COLUMNNAME_FD_UPDATED, env.getLoginUserID());
 		}
-//		if(tableName.equals(I_FD_Process.Table_Name) == false) {
-//			itemList.setData(COLUMNNAME_FD_Process_ID, env.getActiveProcessID());
-//		}
+		if(tableName.equals(I_FD_Process.Table_Name) == false) {
+			itemList.setData(COLUMNNAME_FD_Process_ID, env.getActiveProcessID());
+		}
 
 		for(String columnName : itemList.getNameList()) {
 			if(setItem.length() > 0) {

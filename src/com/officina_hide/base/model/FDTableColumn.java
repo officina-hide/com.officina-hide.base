@@ -68,4 +68,23 @@ public class FDTableColumn extends FD_DB implements I_FD_TableColumn {
 		log.addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築完了");
 	}
 
+	/**
+	 * テーブル項目関連リファレンス情報登録[Registration of reference information related to table items]<br>
+	 * @author officine-hide.com
+	 * @since 1.30 2020/12/15
+	 * @param env 環境情報
+	 */
+	public void addRefData(FD_EnvData env) {	
+		FDReference ref = new FDReference();
+		ref.addData(env, COLUMNTYPE_ID_FD_Information_ID, COLUMNTYPE_FD_Information_ID, COLUMNTYPENAME_FD_Information_ID);
+		ref.addData(env, COLUMNTYPE_ID_FD_Text, COLUMNTYPE_FD_Text, COLUMNTYPENAME_FD_Field_Text);
+		ref.addData(env, COLUMNTYPE_ID_FD_Field_Text, COLUMNTYPE_FD_Field_Text, COLUMNTYPENAME_FD_Field_Text);
+		ref.addData(env, COLUMNTYPE_ID_FD_Date, COLUMNTYPE_FD_Date, COLUMNTYPENAME_FD_Date);
+		ref.addData(env, COLUMNTYPE_ID_FD_Number, COLUMNTYPE_FD_Number, COLUMNTYPE_FD_Number);
+		ref.addData(env, COLUMNTYPE_ID_FD_YesNo, COLUMNTYPE_FD_YesNo, COLUMNTYPENAME_FD_YesNo);
+		ref.addData(env, COLUMNTYPE_ID_FD_List, COLUMNTYPE_FD_List, COLUMNTYPENAME_FD_List);
+		ref.addData(env, COLUMNTYPE_ID_FD_Numbering, COLUMNTYPE_FD_Numbering, COLUMNTYPENAME_FD_Numbering);
+
+	}
+
 }
