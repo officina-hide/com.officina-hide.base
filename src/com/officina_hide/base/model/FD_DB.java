@@ -10,6 +10,7 @@ import java.util.Date;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_Item;
 import com.officina_hide.base.common.FD_Items;
+import com.officina_hide.base.common.FD_NumberingUtility;
 
 /**
  * データベース操作クラス[Database operation class]<br>
@@ -148,8 +149,9 @@ public class FD_DB implements I_FD_DB {
 		//情報IDチェック
 		int id = itemList.getItemByName(tableName+"_ID").getIntOfValue();
 		if(id == 0) {
-//			itemList.setData(tableName+"_ID",  getNewID(env, tableName));
-//			sql.append("INSERT INTO ").append(tableName).append(" SET ");
+			FD_NumberingUtility nutil = new FD_NumberingUtility();
+			itemList.setData(tableName+"_ID",  nutil.getNewID(env, tableName));
+			sql.append("INSERT INTO ").append(tableName).append(" SET ");
 		} else {
 //			if(existsId(env, tableName, id)) {
 //				sql.append("UPDATE ").append(tableName).append(" SET ");

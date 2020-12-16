@@ -129,4 +129,35 @@ public class FDLog extends FD_DB implements I_FD_Log {
 		return logId;
 	}
 
+	/**
+	 * ログ情報のテーブル項目情報登録<br>
+	 * @author officine-hide.com
+	 * @since 1.00 2020/10/27
+	 * @param env
+	 */
+	public void addTableColumn(FD_EnvData env) {
+		addLog(env, LOGTYPE_Info_ID, NAME+"のテーブル項目情報登録開始");
+		
+		FDTableColumn column = new FDTableColumn();
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Log_ID, NAME_FD_Log_ID, COMMENT_FD_Log_ID
+				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 10, "Y", "Y");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_Log_Type_ID, NAME_Log_Type_ID, COMMENT_Log_Type_ID
+				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 20, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_Log_Data, COLUMNNAME_Log_Data, COMMENT_Log_Data
+				, COLUMNTYPE_ID_FD_Field_Text, null, 0, 30, "N", "N");
+
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Process_ID, NAME_FD_Process_ID, COMMENT_FD_Process_ID
+				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 900, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_CREATE, NAME_FD_CREATE, COMMENT_FD_CREATE
+				, COLUMNTYPE_ID_FD_Date, null, 0, 910, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_CREATED, NAME_FD_CREATED, COMMENT_FD_CREATED
+				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 920, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_UPDATE, NAME_FD_UPDATE, COMMENT_FD_UPDATE
+				, COLUMNTYPE_ID_FD_Date, null, 0, 930, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_UPDATED, NAME_FD_UPDATED, COMMENT_FD_UPDATED
+				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 940, "N", "N");
+
+		addLog(env, LOGTYPE_Info_ID, NAME+"のテーブル項目情報登録終了");
+	}
+
 }

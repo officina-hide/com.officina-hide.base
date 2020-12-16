@@ -84,6 +84,13 @@ public class CreateBaseInformation {
 		num.addData(env, I_FD_Process.TABLE_ID, I_FD_Process.TABLE_ID, 0, 1000001);
 		num.addData(env, I_FD_Numbering.TABLE_ID, I_FD_Numbering.TABLE_ID, 0, 1000001);
 		num.addData(env, I_FD_Reference.TABLE_ID, I_FD_Reference.TABLE_ID, 0, 1000001);
+		//先行構築テーブルのテーブル項目情報登録
+		table.addTableColumn(env);
+		column.addTableColumn(env);
+		log.addTableColumn(env);
+		process.addTableColumn(env);
+		num.addTableColumn(env);
+		ref.addTableColumn(env);
 		
 		log.addLog(env, I_FD_Log.LOGTYPE_Info_ID, "基盤環境構築完了");
 	}

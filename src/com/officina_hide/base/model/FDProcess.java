@@ -12,6 +12,8 @@ import com.officina_hide.base.common.FD_EnvData;
  * @since 2020/12/11
  */
 public class FDProcess extends FD_DB implements I_FD_Process {
+	/** ログ情報 */
+	private FDLog log = new FDLog();
 
 	/**
 	 * プロセス情報テーブル構築[Process information table construction]<br>
@@ -23,7 +25,6 @@ public class FDProcess extends FD_DB implements I_FD_Process {
 		StringBuffer sqlDrop = new StringBuffer();
 		StringBuffer sql = new StringBuffer();
 		
-		FDLog log = new FDLog();
 		log.addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築開始");
 		
 		//既に登録されているプロセス情報を削除する。
@@ -70,6 +71,38 @@ public class FDProcess extends FD_DB implements I_FD_Process {
 		process.save(env);
 		
 		return process.getintOfValue(I_FD_Process.COLUMNNAME_FD_Process_ID);
+	}
+
+	/**
+	 * プロセス情報テーブル項目情報登録
+	 * @author officine-hide.com
+	 * @since 1.10 2020/10/30
+	 * @param env 環境情報
+	 */
+	public void addTableColumn(FD_EnvData env) {
+		log.addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"のテーブル項目情報登録開始");
+
+		FDTableColumn column = new FDTableColumn();
+		
+		column.addData(env, 0, TABLE_ID, I_FD_Process.COLUMNNAME_FD_Process_ID, I_FD_Process.NAME_FD_Process_ID
+				, I_FD_Process.COMMENT_FD_Process_ID, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 10, "Y", "Y");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_Process_Name, NAME_Process_Name, COMMENT_Process_Name
+				, COLUMNTYPE_ID_FD_Text, null, 100, 20, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_Process_StartTime, NAME_Process_StartTime, COMMENT_Process_StartTime
+				, COLUMNTYPE_ID_FD_Date, null, 0, 30, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_Process_EndTime, NAME_Process_EndTime, COMMENT_Process_EndTime
+				, COLUMNTYPE_ID_FD_Date, null, 0, 40, "N", "N");
+
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_CREATE, NAME_FD_CREATE, COMMENT_FD_CREATE
+				, COLUMNTYPE_ID_FD_Date, null, 0, 900, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_CREATED, NAME_FD_CREATED, COMMENT_FD_CREATED
+				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 910, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_UPDATE, NAME_FD_UPDATE, COMMENT_FD_UPDATE
+				, COLUMNTYPE_ID_FD_Date, null, 0, 920, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_UPDATED, NAME_FD_UPDATED, COMMENT_FD_UPDATED
+				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 930, "N", "N");
+
+		log.addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"のテーブル項目情報登録完了");
 	}
 
 }
