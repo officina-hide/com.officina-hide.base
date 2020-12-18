@@ -1,5 +1,7 @@
 package com.officina_hide.workshop.task.tasklist;
 
+import java.util.Calendar;
+
 /**
  * タスクリスト用情報クラス[Information class for task list]<br>
  * @author officine-hide.com
@@ -8,13 +10,13 @@ package com.officina_hide.workshop.task.tasklist;
  */
 public class TaskTableData {
 
-	public TaskTableData(String title, String startDate) {
+	public TaskTableData(String title, Calendar startDate) {
 		setTitle(title);
 		setStartDate(startDate);
 	}
 
 	private String title;
-	private String startDate;
+	private Calendar startDate;
 	/**
 	 * @return title
 	 */
@@ -31,12 +33,15 @@ public class TaskTableData {
 	 * @return startDate
 	 */
 	public String getStartDate() {
-		return startDate;
+		if(startDate == null) {
+			return "";
+		}
+		return null;
 	}
 	/**
 	 * @param startDate セットする startDate
 	 */
-	public void setStartDate(String startDate) {
+	public void setStartDate(Calendar startDate) {
 		this.startDate = startDate;
 	}
 }
