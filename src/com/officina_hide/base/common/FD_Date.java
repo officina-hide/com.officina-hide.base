@@ -20,10 +20,6 @@ public class FD_Date {
 	 * <p>初期値として「年月日時分秒」をセットする。</p>
 	 */
 	private String formatString = "yyyy/MM/dd HH:mm:ss";
-	
-	public FD_Date() {
-		
-	}
 
 	@Override
 	public String toString() {
