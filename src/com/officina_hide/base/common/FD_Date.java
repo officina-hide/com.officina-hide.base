@@ -32,5 +32,14 @@ public class FD_Date {
 		return df.format(cal.getTime());
 	}
 
+	/**
+	 * 日付をセットする（calendar型）<br>
+	 * @author officine-hide.com
+	 * @since 1.30 2020/12/19
+	 * @param date 日付
+	 */
+	public void setDate(Calendar date) {
+		this.cal = date;
+	}
 	
 }
