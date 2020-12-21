@@ -15,9 +15,10 @@ public class TaskTableData {
 	public TaskTableData(String title, Calendar start_Date) {
 		setTitle(title);
 		startDate.setDate(start_Date);
+		setCheck(true);
 	}
 
-	private boolean check;
+	private Boolean check;
 	private String status;
 	private String title;
 	private FD_Date startDate = new FD_Date();
@@ -38,18 +39,6 @@ public class TaskTableData {
 		return startDate;
 	}
 	/**
-	 * @return check
-	 */
-	public boolean isCheck() {
-		return check;
-	}
-	/**
-	 * @param check セットする check
-	 */
-	public void setCheck(boolean check) {
-		this.check = check;
-	}
-	/**
 	 * @return status
 	 */
 	public String getStatus() {
@@ -60,5 +49,11 @@ public class TaskTableData {
 	 */
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public Boolean getCheck() {
+		return check;
+	}
+	public void setCheck(Boolean check) {
+		this.check = check;
 	}
 }
