@@ -46,6 +46,7 @@ public class FX_TaskList extends Application {
 		
 		TableView<TaskTableData> table = new TableView<TaskTableData>();
 		TableColumn<TaskTableData, Boolean> checkCol = new TableColumn<TaskTableData, Boolean>("check");
+		checkCol.setStyle("-fx-alignment: center;");
 		TableColumn<TaskTableData, String> comboCol = new TableColumn<>("状況");
 		TableColumn<TaskTableData, String> titleCol = new TableColumn<TaskTableData, String>("タイトル");
 		TableColumn<TaskTableData, FD_Date> sdateCol = new TableColumn<TaskTableData, FD_Date>("開始日");
@@ -53,16 +54,6 @@ public class FX_TaskList extends Application {
 		ObservableList<String> list = FXCollections.observableArrayList("OK","ERROR");
 		
 		checkCol.setCellValueFactory(new PropertyValueFactory<TaskTableData, Boolean>("check"));
-//		checkCol.setCellFactory(CheckBoxTableCell.forTableColumn(checkCol));
-//		checkCol.setEditable(true);
-//		checkCol.setCellFactory(new Callback<TableColumn<TaskTableData, Boolean>, TableCell<TaskTableData, Boolean>>() {
-//			
-//			@Override
-//			public TableCell<TaskTableData, Boolean> call(TableColumn<TaskTableData, Boolean> param) {
-//				System.out.println(param);
-//				return new CheckBoxTableCell<TaskTableData, Boolean>();
-//			}
-//		});
 		checkCol.setCellFactory(column -> new TableCell<TaskTableData, Boolean>() {
 		        public void updateItem(Boolean check, boolean empty) {
 		            super.updateItem(check, empty);
@@ -70,10 +61,6 @@ public class FX_TaskList extends Application {
 		                setGraphic(null);
 		            } else {
 		                CheckBox box = new CheckBox();
-		                System.out.println(getIndex());
-//		                BooleanProperty checked = (BooleanProperty)column.getCellObservableValue(getIndex());
-//		                box.setSelected(checked.get());
-//		                box.selectedProperty().bindBidirectional(checked);
 		                box.setSelected(column.getCellData(getIndex()));
 		                box.setOnAction(event->{
 		                	System.out.println(box.isSelected());
@@ -89,6 +76,8 @@ public class FX_TaskList extends Application {
 		comboCol.setPrefWidth(100);
 		comboCol.setOnEditCommit(event->{
 			System.out.println(event.getNewValue());
+			TaskTableData tdata = event.getTableView().getItems().get(1);
+			tdata.setStatus(event.getNewValue());
 		});
 		
 		titleCol.setCellValueFactory(new PropertyValueFactory<TaskTableData, String>("title"));
@@ -106,10 +95,10 @@ public class FX_TaskList extends Application {
 		Button button = new Button("登録");
 		root.getChildren().add(button);
 		button.setOnMouseClicked(event->{
-			int idx = table.getSelectionModel().getSelectedIndex();
-			if(idx == -1) {
-				return;
-			}
+//			int idx = table.getSelectionModel().getSelectedIndex();
+//			if(idx == -1) {
+//				return;
+//			}
 		});
 		
 		//データ追加
