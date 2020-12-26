@@ -8,28 +8,22 @@ import java.util.Locale;
 import com.officina_hide.base.common.FD_Date;
 
 import javafx.application.Application;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 public class FX_TaskList extends Application {
 
@@ -45,7 +39,14 @@ public class FX_TaskList extends Application {
 		 */
 		
 		TableView<TaskTableData> table = new TableView<TaskTableData>();
-		TableColumn<TaskTableData, Boolean> checkCol = new TableColumn<TaskTableData, Boolean>("check");
+		table.setOnMouseClicked(event->{
+			//左ボタンダブルクリックで単票画面へ遷移する。
+			if(event.getClickCount() == 2 && event.getButton() == MouseButton.PRIMARY) {
+				System.out.println("double clicked");
+			}
+		});
+		
+		TableColumn<TaskTableData, Boolean> checkCol = new TableColumn<TaskTableData, Boolean>("selRow");
 		checkCol.setStyle("-fx-alignment: center;");
 		TableColumn<TaskTableData, String> comboCol = new TableColumn<>("状況");
 		TableColumn<TaskTableData, String> titleCol = new TableColumn<TaskTableData, String>("タイトル");
@@ -53,7 +54,7 @@ public class FX_TaskList extends Application {
 		
 		ObservableList<String> list = FXCollections.observableArrayList("OK","ERROR");
 		
-		checkCol.setCellValueFactory(new PropertyValueFactory<TaskTableData, Boolean>("check"));
+		checkCol.setCellValueFactory(new PropertyValueFactory<TaskTableData, Boolean>("selRow"));
 		checkCol.setCellFactory(column -> new TableCell<TaskTableData, Boolean>() {
 		        public void updateItem(Boolean check, boolean empty) {
 		            super.updateItem(check, empty);
@@ -84,21 +85,19 @@ public class FX_TaskList extends Application {
 		titleCol.setCellFactory(TextFieldTableCell.forTableColumn());
 		titleCol.setPrefWidth(100);
 		sdateCol.setCellValueFactory(new PropertyValueFactory<TaskTableData, FD_Date>("startDate"));
+		
 		table.getColumns().add(checkCol);
 		table.getColumns().add(comboCol);
 		table.getColumns().add(titleCol);
 		table.getColumns().add(sdateCol);
 		root.getChildren().add(table);
-		table.setEditable(true);
+//		table.setEditable(true);
 		
 		//ボタン追加
 		Button button = new Button("登録");
 		root.getChildren().add(button);
 		button.setOnMouseClicked(event->{
-//			int idx = table.getSelectionModel().getSelectedIndex();
-//			if(idx == -1) {
-//				return;
-//			}
+			System.out.println(table.getItems().size());
 		});
 		
 		//データ追加

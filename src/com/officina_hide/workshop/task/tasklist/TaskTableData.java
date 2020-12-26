@@ -15,10 +15,10 @@ public class TaskTableData {
 	public TaskTableData(String title, Calendar start_Date) {
 		setTitle(title);
 		startDate.setDate(start_Date);
-		setCheck(true);
+		setSelRow(false);
 	}
 
-	private Boolean check;
+	private Boolean selRow;
 	private String status;
 	private String title;
 	private FD_Date startDate = new FD_Date();
@@ -50,10 +50,16 @@ public class TaskTableData {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Boolean getCheck() {
-		return check;
+	/**
+	 * @return selRow
+	 */
+	public Boolean getSelRow() {
+		return selRow;
 	}
-	public void setCheck(Boolean check) {
-		this.check = check;
+	/**
+	 * @param selRow セットする selRow
+	 */
+	public void setSelRow(Boolean selRow) {
+		this.selRow = selRow;
 	}
 }
