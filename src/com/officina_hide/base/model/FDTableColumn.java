@@ -153,19 +153,30 @@ public class FDTableColumn extends FD_DB implements I_FD_TableColumn {
 		addData(env, 0, TABLE_ID, COLUMNNAME_Is_Primary, NAME_Is_Primary, COMMENT_Is_Primary
 				, COLUMNTYPE_ID_FD_YesNo, "N", 0, 110, "N", "N");
 		
-		addData(env, 0, TABLE_ID, COLUMNNAME_FD_Process_ID, NAME_FD_Process_ID, COMMENT_FD_Process_ID
-				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 900, "N", "N");
-		addData(env, 0, TABLE_ID, COLUMNNAME_FD_CREATE, NAME_FD_CREATE, COMMENT_FD_CREATE
-				, COLUMNTYPE_ID_FD_Date, null, 0, 900, "N", "N");
-		addData(env, 0, TABLE_ID, COLUMNNAME_FD_CREATED, NAME_FD_CREATED, COMMENT_FD_CREATED
-				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 910, "N", "N");
-		addData(env, 0, TABLE_ID, COLUMNNAME_FD_UPDATE, NAME_FD_UPDATE, COMMENT_FD_UPDATE
-				, COLUMNTYPE_ID_FD_Date, null, 0, 920, "N", "N");
-		addData(env, 0, TABLE_ID, COLUMNNAME_FD_UPDATED, NAME_FD_UPDATED, COMMENT_FD_UPDATED
-				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 930, "N", "N");
+		addBaseTableColumnData(env, TABLE_ID);
 		
 		log.addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"のテーブル項目情報登録開始");
 
+	}
+
+	/**
+	 * 共通テーブル項目情報登録[Register the information of common table items.]<br>
+	 * @author officina-hide.com
+	 * @since 1.30 2021/01/04
+	 * @param env 環境情報
+	 * @param tableId テーブル情報ID[Table information ID]
+	 */
+	public void addBaseTableColumnData(FD_EnvData env, int tableId) {
+		addData(env, 0, tableId, COLUMNNAME_FD_Process_ID, NAME_FD_Process_ID, COMMENT_FD_Process_ID
+				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 900, "N", "N");
+		addData(env, 0, tableId, COLUMNNAME_FD_CREATE, NAME_FD_CREATE, COMMENT_FD_CREATE
+				, COLUMNTYPE_ID_FD_Date, null, 0, 910, "N", "N");
+		addData(env, 0, tableId, COLUMNNAME_FD_CREATED, NAME_FD_CREATED, COMMENT_FD_CREATED
+				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 920, "N", "N");
+		addData(env, 0, tableId, COLUMNNAME_FD_UPDATE, NAME_FD_UPDATE, COMMENT_FD_UPDATE
+				, COLUMNTYPE_ID_FD_Date, null, 0, 930, "N", "N");
+		addData(env, 0, tableId, COLUMNNAME_FD_UPDATED, NAME_FD_UPDATED, COMMENT_FD_UPDATED
+				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 940, "N", "N");
 	}
 
 }

@@ -52,7 +52,7 @@ public class CreatePackages {
 		/*
 		 * タスク関連情報の構築
 		 */
-		if(runLevel == 1) {
+		if(runLevel <= 1) {
 			CreateTaskInformation ctf = new CreateTaskInformation();
 			ctf.execute(env);
 		}

@@ -4,8 +4,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.officina_hide.base.model.FD_DB;
-import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.base.model.I_FD_Process;
+import com.officina_hide.base.model.I_FD_Table;
+import com.officina_hide.base.model.X_FD_Table;
 
 /**
  * DB取扱汎用クラス[DB handling general class]<br>
@@ -55,7 +56,6 @@ public class FD_DB_Utility extends FD_DB {
 		StringBuffer sql = new StringBuffer();
 		sql.append("DELETE FROM ").append(tableName).append(" ");
 		sql.append("WHERE ").append(I_FD_Process.COLUMNNAME_FD_Process_ID).append(" = ").append(processId);
-//		DBUpdateExecution(env, sql.toString());
 		Statement stmt = null;
 		connection(env);
 		try {
@@ -68,4 +68,17 @@ public class FD_DB_Utility extends FD_DB {
 		}
 	}
 
+	/**
+	 * テーブル構築[Table construction]<br>
+	 * @author officina-hide.com
+	 * @since 1.30 2021/01/04
+	 * @param env 環境情報
+	 * @param tableId テーブル情報ID[Table information ID]
+	 */
+	public void createDBTable(FD_EnvData env, int tableId) {
+		//テーブル情報取得
+		X_FD_Table table = new X_FD_Table(env, tableId);
+		
+	}
+	
 }
