@@ -1,5 +1,9 @@
 package com.officina_hide.base.common;
 
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.base.model.I_FD_Process;
 
@@ -9,7 +13,7 @@ import com.officina_hide.base.model.I_FD_Process;
  * @version 1.30
  * @since 2020/12/09 
  */
-public class FD_DB_Utility implements I_FD_DB {
+public class FD_DB_Utility extends FD_DB {
 
 	/**
 	 * 共通テーブル項目構築用SQL文取得[Get SQL statement for common table item construction]<br>
@@ -36,6 +40,32 @@ public class FD_DB_Utility implements I_FD_DB {
 		sql.append(") ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=").append(FD_SQ).append(name).append(FD_SQ);
 		
 		return sql.toString();
+	}
+
+	/**
+	 * 指定されたテーブルの内、指定されたプロセス情報IDを持つ情報を削除する。<br>
+	 * Deletes the information with the specified process information ID in the specified table.<br>
+	 * @author officina-hide.com
+	 * @since 1.30 2020/12/31
+	 * @param env 環境情報
+	 * @param tableName テーブル名
+	 * @param processId プロセス情報ID
+	 */
+	public void deleteDataByProcessId(FD_EnvData env, String tableName, int processId) {
+		StringBuffer sql = new StringBuffer();
+		sql.append("DELETE FROM ").append(tableName).append(" ");
+		sql.append("WHERE ").append(I_FD_Process.COLUMNNAME_FD_Process_ID).append(" = ").append(processId);
+//		DBUpdateExecution(env, sql.toString());
+		Statement stmt = null;
+		connection(env);
+		try {
+			stmt = conn.createStatement();
+			stmt.executeUpdate(sql.toString());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBclose(stmt, null);
+		}
 	}
 
 }

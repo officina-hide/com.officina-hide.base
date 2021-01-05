@@ -23,6 +23,12 @@ public class CreatePackages {
 
 	/** 環境情報 */
 	private static FD_EnvData env;
+	/**
+	 * 処理レベル<br>
+	 * 0 = ベース構築
+	 * 1 = タスク情報構築
+	 */
+	private static int runLevel = 1;
 	
 	public static void main(String[] args) {
 		/*
@@ -38,8 +44,18 @@ public class CreatePackages {
 		/*
 		 * 基盤テーブルの構築[Building a base table]
 		 */
-		CreateBaseInformation cbi = new CreateBaseInformation();
-		cbi.execute(env);
+		if(runLevel == 0) {
+			CreateBaseInformation cbi = new CreateBaseInformation();
+			cbi.execute(env);
+		}
+		
+		/*
+		 * タスク関連情報の構築
+		 */
+		if(runLevel == 1) {
+			CreateTaskInformation ctf = new CreateTaskInformation();
+			ctf.execute(env);
+		}
 	}
 
 }
