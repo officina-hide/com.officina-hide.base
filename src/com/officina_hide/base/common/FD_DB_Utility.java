@@ -76,8 +76,13 @@ public class FD_DB_Utility extends FD_DB {
 	 * @param tableId テーブル情報ID[Table information ID]
 	 */
 	public void createDBTable(FD_EnvData env, int tableId) {
+		StringBuffer dropSql = new StringBuffer();
+		StringBuffer sql = new StringBuffer();
 		//テーブル情報取得
 		X_FD_Table table = new X_FD_Table(env, tableId);
+		//既にテーブルが存在するときは削除する。
+		dropSql.append("DROP TABLE IF EXISTS ").append(table.getValueOfString(I_FD_Table.COLUMNNAME_Table_Name));
+		DBUpdateExecution(env, dropSql.toString());
 		
 	}
 	

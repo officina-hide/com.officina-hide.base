@@ -193,6 +193,18 @@ public class FD_DB implements I_FD_DB {
 		FDLog log = new FDLog();
 		log.addLog(env, I_FD_Log.LOGTYPE_Data_Update, changeEscape(sql.toString()));
 	}
+	
+	/**
+	 * 項目の文字列情報を返す<br>
+	 * @author officine-hide.com
+	 * @since 1.10 2020/11/02
+	 * @param columnName 項目名
+	 * @return 文字列情報
+	 */
+	public String getValueOfString(String columnName) {
+		FD_Item item = itemList.getItemByName(columnName);
+		return item.getStringOfValue();
+	}
 
 	/**
 	 * 項目の数値情報を返す。<br>
