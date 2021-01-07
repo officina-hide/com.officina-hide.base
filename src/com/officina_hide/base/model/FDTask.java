@@ -23,7 +23,7 @@ public class FDTask extends FD_DB implements I_FD_Task {
 		table.addData(env, TABLE_ID, Table_Name, NAME, COMMENT);
 		//テーブル項目情報登録
 		FDTableColumn column = new FDTableColumn();
-		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Task_ID, COLUMNNAME_FD_Task_ID, COMMENT_FD_Task_ID
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Task_ID, NAME_FD_Task_ID, COMMENT_FD_Task_ID
 				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 10, "Y", "Y");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_Task_Subject, NAME_Task_Subject, COMMENT_Task_Subject
 				, COLUMNTYPE_ID_FD_Text, null, 200, 20, "N", "N");
