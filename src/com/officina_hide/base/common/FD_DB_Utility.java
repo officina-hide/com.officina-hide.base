@@ -139,6 +139,7 @@ public class FD_DB_Utility extends FD_DB {
 					break;
 				case COLUMNTYPE_FD_Information_ID:
 				case COLUMNTYPE_FD_Number:
+				case COLUMNTYPE_FD_List:
 					items.append("INT UNSIGNED").append(" ");
 					break;
 				case COLUMNTYPE_FD_Date:

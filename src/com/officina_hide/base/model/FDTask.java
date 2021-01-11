@@ -27,6 +27,10 @@ public class FDTask extends FD_DB implements I_FD_Task {
 				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 10, "Y", "Y");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_Task_Subject, NAME_Task_Subject, COMMENT_Task_Subject
 				, COLUMNTYPE_ID_FD_Text, null, 200, 20, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_Task_Status, NAME_Task_Status, COMMENT_Task_Status
+				, COLUMNTYPE_ID_FD_List, null, 0, 30, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_Task_StartDateTime, NAME_Task_StartDateTime, COMMENT_Task_StartDateTime
+				, COLUMNTYPE_ID_FD_Date, null, 0, 40, "N", "N");
 		column.addBaseTableColumnData(env, TABLE_ID);
 		//テーブル生成
 		FD_DB_Utility dbUtil = new FD_DB_Utility();
