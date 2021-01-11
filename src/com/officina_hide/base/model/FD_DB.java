@@ -193,6 +193,18 @@ public class FD_DB implements I_FD_DB {
 		FDLog log = new FDLog();
 		log.addLog(env, I_FD_Log.LOGTYPE_Data_Update, changeEscape(sql.toString()));
 	}
+	
+	/**
+	 * 項目の文字列情報を返す<br>
+	 * @author officine-hide.com
+	 * @since 1.10 2020/11/02
+	 * @param columnName 項目名
+	 * @return 文字列情報
+	 */
+	public String getValueOfString(String columnName) {
+		FD_Item item = itemList.getItemByName(columnName);
+		return item.getStringOfValue();
+	}
 
 	/**
 	 * 項目の数値情報を返す。<br>
@@ -206,4 +218,53 @@ public class FD_DB implements I_FD_DB {
 		return item.getIntOfValue();
 	}
 
+	/**
+	 * 情報取得[Get information.]<br>
+	 * @author officina-hide.com
+	 * @since 1.30 2021/01/04
+	 * @param env 環境情報
+	 * @param TableName テーブル名[Table name]
+	 * @param Id 情報ID[Information ID]
+	 */
+	public void load(FD_EnvData env, String TableName, int Id) {
+		Statement stmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT * FROM ").append(TableName).append(" ");
+			sql.append("WHERE ").append(TableName).append("_ID = ").append(Id);
+			connection(env);
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql.toString());
+			if(rs.next()) {
+				for(FD_Item item : itemList.getItemList()) {
+					switch(item.getItemType()) {
+					case COLUMNTYPE_FD_Text:
+					case COLUMNTYPE_FD_Field_Text:
+					case COLUMNTYPE_FD_YesNo:
+						item.setItemData(rs.getString(item.getItemName()));
+						break;
+					case COLUMNTYPE_FD_Information_ID:
+					case COLUMNTYPE_FD_Number:
+						item.setItemData(rs.getInt(item.getItemName()));
+						break;
+					case COLUMNTYPE_FD_Date:
+						if(rs.getTimestamp(item.getItemName()) != null) {
+							item.setItemData(new Date(rs.getTimestamp(item.getItemName()).getTime()));
+						} else {
+							item.setItemData(null);
+						}
+						break;
+					}
+				}
+			} else {
+				FDLog log = new FDLog();
+				log.addLog(env, I_FD_Log.LOGTYPE_ERROR_ID, "Data Load Error : "+TableName+"["+Id+"]");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBclose(stmt, rs);
+		}
+	}
 }

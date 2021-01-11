@@ -118,4 +118,15 @@ public class FD_Items {
 		
 		return sql.toString();
 	}
+	
+	/**
+	 * 項目リスト取得<br>
+	 * @author officine-hide.com
+	 * @since 1.10 2020/11/02
+	 * @return 項目リスト
+	 */
+	public List<FD_Item> getItemList() {
+		return itemList;
+	}
+	
 }

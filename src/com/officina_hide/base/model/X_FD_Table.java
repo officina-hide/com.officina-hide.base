@@ -21,6 +21,29 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 	}
 
 	/**
+	 * コンストラクタ<br>
+	 * <p>インスタンス時にテーブル項目を初期化し、引数のテーブル情報IDを持つテーブル情報を取得する。<br>
+	 * Initialize the table item at the time of instance and get the table information with the table information ID of the argument.</p>
+	 * @author officina-hide.com
+	 * @since 1.30 2021/01/04
+	 * @param env 環境情報
+	 * @param tableId テーブル情報ID[Table Information ID]
+	 */
+	public X_FD_Table(FD_EnvData env, int tableId) {
+		initializeItemList();
+		load(env, tableId);
+	}
+
+	/**
+	 * 情報取得
+	 * @param env
+	 * @param dataId 
+	 */
+	private void load(FD_EnvData env, int dataId) {
+		load(env, Table_Name, dataId);
+	}
+
+	/**
 	 * 項目リスト初期化<br>
 	 * Item list initialization<br>
 	 * @author officina-hide.com
