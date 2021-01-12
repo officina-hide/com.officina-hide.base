@@ -1,8 +1,7 @@
-package com.officina_hide.base.tests;
+package com.officina_hide.base.model;
 
+import com.officina_hide.base.common.FD_DB_Utility;
 import com.officina_hide.base.common.FD_EnvData;
-import com.officina_hide.base.model.FD_DB;
-import com.officina_hide.base.model.I_FD_Task;
 
 public class X_FD_Task extends FD_DB implements I_FD_Task {
 
@@ -13,7 +12,8 @@ public class X_FD_Task extends FD_DB implements I_FD_Task {
 	 * @param env 環境情報
 	 */
 	public X_FD_Task(FD_EnvData env) {
-		
+		FD_DB_Utility dbUtil = new FD_DB_Utility();
+		dbUtil.initializeItemList(env, TABLE_ID, itemList);
 	}
 
 }
