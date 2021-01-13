@@ -36,6 +36,7 @@ public class FD_Task_Test implements I_FD_Task {
 		task.setValueByName(env, COLUMNNAME_Task_Subject, "プロジェクト開発");
 		task.setValueByName(env, COLUMNNAME_Task_Status, null);
 		task.setValueByName(env, COLUMNNAME_Task_StartDateTime, new Date());
+		task.save(env);
 	}
 
 }

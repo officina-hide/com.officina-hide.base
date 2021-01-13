@@ -16,4 +16,15 @@ public class X_FD_Task extends FD_DB implements I_FD_Task {
 		dbUtil.initializeItemList(env, TABLE_ID, itemList);
 	}
 
+	/**
+	 * 情報保存<br>
+	 * To save the information.
+	 * @author officine-hide.com
+	 * @since 1.30 2021/01/14
+	 * @param env 環境情報
+	 */
+	public void save(FD_EnvData env) {
+		save(env, Table_Name);
+	}
+
 }
