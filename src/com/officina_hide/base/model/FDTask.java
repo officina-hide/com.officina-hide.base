@@ -41,6 +41,9 @@ public class FDTask extends FD_DB implements I_FD_Task {
 		//採番情報登録
 		FDNumbering num = new FDNumbering();
 		num.addData(env, TABLE_ID, TABLE_ID, 0, 1000001);
+		/*
+		 * タスク状態用リファレンスリストの登録
+		 */
 
 		log.addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築終了");
 	}
