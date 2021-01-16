@@ -27,6 +27,10 @@ public class FDReferenceList extends FD_DB implements I_FD_ReferenceList {
 		sqlDrop.append("DROP TABLE IF EXISTS ").append(Table_Name);
 		DBUpdateExecution(env, sqlDrop.toString());
 		
+		//リファレンスリスト情報テーブル構築
+		sql.append("CREATE TABLE IF NOT EXISTS ").append(Table_Name).append(" (");
+		
+		
 	}
 
 }
