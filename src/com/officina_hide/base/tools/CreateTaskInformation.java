@@ -8,6 +8,7 @@ import com.officina_hide.base.model.FDLog;
 import com.officina_hide.base.model.FDProcess;
 import com.officina_hide.base.model.FDTask;
 import com.officina_hide.base.model.I_FD_Log;
+import com.officina_hide.base.model.I_FD_Numbering;
 import com.officina_hide.base.model.I_FD_Process;
 import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.model.I_FD_TableColumn;
@@ -64,6 +65,7 @@ public class CreateTaskInformation {
 		dbUtil.deleteDataByProcessId(env, I_FD_Process.Table_Name, processId);
 		dbUtil.deleteDataByProcessId(env, I_FD_Table.Table_Name, processId);
 		dbUtil.deleteDataByProcessId(env, I_FD_TableColumn.Table_Name, processId);
+		dbUtil.deleteDataByProcessId(env, I_FD_Numbering.Table_Name, processId);
 	}
 
 }

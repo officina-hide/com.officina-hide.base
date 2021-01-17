@@ -7,6 +7,7 @@ import com.officina_hide.base.model.FDLog;
 import com.officina_hide.base.model.FDNumbering;
 import com.officina_hide.base.model.FDProcess;
 import com.officina_hide.base.model.FDReference;
+import com.officina_hide.base.model.FDReferenceList;
 import com.officina_hide.base.model.FDTable;
 import com.officina_hide.base.model.FDTableColumn;
 import com.officina_hide.base.model.I_FD_Log;
@@ -65,6 +66,9 @@ public class CreateBaseInformation {
 		//リファレンス情報構築
 		FDReference ref = new FDReference();
 		ref.createTable(env);
+		//リファレンスリスト情報構築
+		FDReferenceList reflist = new FDReferenceList();
+		reflist.createTable(env);
 		//テーブル項目情報構築
 		FDTableColumn column = new FDTableColumn();
 		column.createTable(env);

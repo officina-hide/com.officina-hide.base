@@ -18,6 +18,9 @@ public class FDTask extends FD_DB implements I_FD_Task {
 	 * @param env 環境情報
 	 */
 	public void createTable(FD_EnvData env) {
+		FDLog log = new FDLog();
+		log.addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築開始");
+
 		//テーブル情報登録
 		FDTable table = new FDTable();
 		table.addData(env, TABLE_ID, Table_Name, NAME, COMMENT);
@@ -35,7 +38,14 @@ public class FDTask extends FD_DB implements I_FD_Task {
 		//テーブル生成
 		FD_DB_Utility dbUtil = new FD_DB_Utility();
 		dbUtil.createDBTable(env, TABLE_ID);
-		
+		//採番情報登録
+		FDNumbering num = new FDNumbering();
+		num.addData(env, TABLE_ID, TABLE_ID, 0, 1000001);
+		/*
+		 * タスク状態用リファレンスリストの登録
+		 */
+
+		log.addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築終了");
 	}
 	
 }
