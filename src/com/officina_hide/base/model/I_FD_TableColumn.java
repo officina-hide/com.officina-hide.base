@@ -65,5 +65,9 @@ public interface I_FD_TableColumn {
 	public final String NAME_Is_Primary = "プライマリーKey判定";
 	public final String COMMENT_Is_Primary = "テーブル項目がPrimary　Keyの時にYESとする。";
 	public final String IS_PRIMARY_Yes = "Y";
-	public final String IS_PRIMARY_No = "N";	
+	public final String IS_PRIMARY_No = "N";
+	/** 参照情報ID */
+	public final String COLUMNNAME_FD_Reference_ID = I_FD_Reference.Table_Name + "_ID";
+	public final String NAME_FD_Reference_ID = "参照用リファレンス情報ID";
+	public final String COMMENT_FD_Reference_ID = "項目が使用するリスト等の管理をする為のリファレンス情報ID";
 }

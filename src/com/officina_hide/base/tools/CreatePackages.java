@@ -28,7 +28,7 @@ public class CreatePackages {
 	 * 0 = ベース構築
 	 * 1 = タスク情報構築
 	 */
-	private static int runLevel = 1;
+	private static int runLevel = 0;
 	
 	public static void main(String[] args) {
 		/*

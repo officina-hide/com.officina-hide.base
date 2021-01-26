@@ -30,7 +30,7 @@ public class FDTask extends FD_DB implements I_FD_Task {
 				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 10, "Y", "Y");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_Task_Subject, NAME_Task_Subject, COMMENT_Task_Subject
 				, COLUMNTYPE_ID_FD_Text, null, 200, 20, "N", "N");
-		column.addData(env, 0, TABLE_ID, COLUMNNAME_Task_Status, NAME_Task_Status, COMMENT_Task_Status
+		int statusId = column.addData(env, 0, TABLE_ID, COLUMNNAME_Task_Status, NAME_Task_Status, COMMENT_Task_Status
 				, COLUMNTYPE_ID_FD_List, null, 0, 30, "N", "N");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_Task_StartDateTime, NAME_Task_StartDateTime, COMMENT_Task_StartDateTime
 				, COLUMNTYPE_ID_FD_Date, null, 0, 40, "N", "N");
@@ -44,6 +44,11 @@ public class FDTask extends FD_DB implements I_FD_Task {
 		/*
 		 * タスク状態用リファレンスリストの登録
 		 */
+		FDReference ref = new FDReference();
+		int refId = ref.addData(env, 0, COLUMNNAME_Task_Status, COMMENT_Task_Status_Reference);
+		column.addDataByName(env, statusId, I_FD_TableColumn.COLUMNNAME_FD_Reference_ID, refId);
+		FDReferenceList rlist = new FDReferenceList();
+		rlist.addData(env,0,refId, 10, "1");
 
 		log.addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築終了");
 	}

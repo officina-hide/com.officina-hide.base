@@ -66,9 +66,6 @@ public class CreateBaseInformation {
 		//リファレンス情報構築
 		FDReference ref = new FDReference();
 		ref.createTable(env);
-		//リファレンスリスト情報構築
-		FDReferenceList reflist = new FDReferenceList();
-		reflist.createTable(env);
 		//テーブル項目情報構築
 		FDTableColumn column = new FDTableColumn();
 		column.createTable(env);
@@ -95,6 +92,14 @@ public class CreateBaseInformation {
 		process.addTableColumn(env);
 		num.addTableColumn(env);
 		ref.addTableColumn(env);
+		
+		/*
+		 * ここから先のテーブル登録は標準の手順で生成する。
+		 */
+		
+		//リファレンスリスト情報構築
+		FDReferenceList reflist = new FDReferenceList();
+		reflist.createTable(env);
 		
 		log.addLog(env, I_FD_Log.LOGTYPE_Info_ID, "基盤環境構築完了");
 	}

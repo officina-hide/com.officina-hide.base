@@ -23,6 +23,31 @@ public class X_FD_TableColumn extends FD_DB implements I_FD_TableColumn {
 	}
 
 	/**
+	 * コンストラクター<br>
+	 * インスタンス時にアイテムを初期化し、引数の情報IDを持つテーブル項目情報を取得する。<br>
+	 * Initialize the item at the time of instance and get the table item information with the information ID of the argument.<br>
+	 * @author officina-hide.com
+	 * @since 1.30 2021/01/25
+	 * @param env 環境情報
+	 * @param tableColumnID テーブル項目情報ID
+	 */
+	public X_FD_TableColumn(FD_EnvData env, int tableColumnID) {
+		initializeItemList();
+		load(env, tableColumnID);
+	}
+
+	/**
+	 * 情報抽出[Information extraction]
+	 * @author officina-hide.com
+	 * @since 1.30 2021/01/25
+	 * @param env 環境情報
+	 * @param tableColumnID テーブル項目情報ID
+	 */
+	public void load(FD_EnvData env, int tableColumnID) {
+		load(env, Table_Name, tableColumnID);
+	}
+
+	/**
 	 * 項目初期化<br>
 	 * @author officine-hide.com
 	 * @since 1.00 2020/10/22

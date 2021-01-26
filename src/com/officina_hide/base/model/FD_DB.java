@@ -153,13 +153,13 @@ public class FD_DB implements I_FD_DB {
 			itemList.setData(tableName+"_ID",  nutil.getNewID(env, tableName));
 			sql.append("INSERT INTO ").append(tableName).append(" SET ");
 		} else {
-//			if(existsId(env, tableName, id)) {
-//				sql.append("UPDATE ").append(tableName).append(" SET ");
-//				where.append("WHERE ").append(tableName).append("_ID = ")
-//					.append(itemList.getItemByName(tableName+"_ID").getIntOfValue());
-//			} else {
+			if(existsId(env, tableName, id)) {
+				sql.append("UPDATE ").append(tableName).append(" SET ");
+				where.append("WHERE ").append(tableName).append("_ID = ")
+					.append(itemList.getItemByName(tableName+"_ID").getIntOfValue());
+			} else {
 				sql.append("INSERT INTO ").append(tableName).append(" SET ");
-//			}
+			}
 		}
 		
 		//登録日、更新日設定
@@ -194,6 +194,22 @@ public class FD_DB implements I_FD_DB {
 		log.addLog(env, I_FD_Log.LOGTYPE_Data_Update, changeEscape(sql.toString()));
 	}
 	
+	/**
+	 * 情報ID登録確認[Information ID registration confirmation]<br>
+	 * @author officina-hide.com
+	 * @since 1.30 2021/01/25
+	 * @param env 環境情報
+	 * @param tableName テーブル名
+	 * @param id 情報ID
+	 * @return true - 登録済、false - 未登録
+	 */
+	private boolean existsId(FD_EnvData env, String tableName, int id) {
+		boolean chk = false;
+		StringBuffer sql = new StringBuffer();
+		
+		return chk;
+	}
+
 	/**
 	 * 項目の文字列情報を返す<br>
 	 * @author officine-hide.com

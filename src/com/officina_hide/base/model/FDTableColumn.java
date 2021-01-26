@@ -57,6 +57,8 @@ public class FDTableColumn extends FD_DB implements I_FD_TableColumn {
 			.append(FD_SQ).append("Y").append(FD_SQ).append(",")
 			.append(FD_SQ).append("N").append(FD_SQ).append(")  ")
 			.append("COMMENT ").append(FD_SQ).append(NAME_Is_Primary).append(FD_SQ).append(",");
+		sql.append(COLUMNNAME_FD_Reference_ID).append(" INT UNSIGNED COMMENT ")
+			.append(FD_SQ).append(NAME_FD_Reference_ID).append(FD_SQ).append(",");
 		
 		FD_DB_Utility dutil = new FD_DB_Utility();
 		sql.append(dutil.getBaseSQLStrings(NAME));		
@@ -103,8 +105,9 @@ public class FDTableColumn extends FD_DB implements I_FD_TableColumn {
 	 * @param sortOrder 並び順
 	 * @param idNull notNull判定
 	 * @param isPrimary PrimaryKey判定
+	 * @return 
 	 */
-	public void addData(FD_EnvData env, int columnId, int tableId, String columnName, String name,
+	public int addData(FD_EnvData env, int columnId, int tableId, String columnName, String name,
 			String comment, int typeId, String defaultData, int size, int sortOrder, String isNull, String isPrimary) {
 		X_FD_TableColumn column = new X_FD_TableColumn(env);
 		column.setValueByName(env, COLUMNNAME_FD_TableColumn_ID, columnId);
@@ -119,6 +122,7 @@ public class FDTableColumn extends FD_DB implements I_FD_TableColumn {
 		column.setValueByName(env, COLUMNNAME_Is_Null, isNull);
 		column.setValueByName(env, COLUMNNAME_Is_Primary, isPrimary);
 		column.save(env);
+		return column.getintOfValue(COLUMNNAME_FD_TableColumn_ID);
 	}
 
 	/**
@@ -152,6 +156,8 @@ public class FDTableColumn extends FD_DB implements I_FD_TableColumn {
 				, COLUMNTYPE_ID_FD_YesNo, "N", 0, 100, "N", "N");
 		addData(env, 0, TABLE_ID, COLUMNNAME_Is_Primary, NAME_Is_Primary, COMMENT_Is_Primary
 				, COLUMNTYPE_ID_FD_YesNo, "N", 0, 110, "N", "N");
+		addData(env, 0, TABLE_ID, COLUMNNAME_FD_Reference_ID, NAME_FD_Reference_ID, COMMENT_FD_Reference_ID
+				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 120, "N", "N");
 		
 		addBaseTableColumnData(env, TABLE_ID);
 		
@@ -177,6 +183,21 @@ public class FDTableColumn extends FD_DB implements I_FD_TableColumn {
 				, COLUMNTYPE_ID_FD_Date, null, 0, 930, "N", "N");
 		addData(env, 0, tableId, COLUMNNAME_FD_UPDATED, NAME_FD_UPDATED, COMMENT_FD_UPDATED
 				, COLUMNTYPE_ID_FD_Information_ID, null, 0, 940, "N", "N");
+	}
+
+	/**
+	 * 項目名による情報登録[Information registration by item name.]
+	 * @author officina-hide.com
+	 * @since 1.30 2021/01/25
+	 * @param env 環境情報
+	 * @param referenceId リファレンス情報ID
+	 * @param columnName 項目名
+	 * @param data 項目情報
+	 */
+	public void addDataByName(FD_EnvData env, int tableColumnID, String columnName, Object data) {
+		X_FD_TableColumn ref = new X_FD_TableColumn(env, tableColumnID);
+		ref.setValueByName(env, columnName, data);
+		ref.save(env);
 	}
 
 }

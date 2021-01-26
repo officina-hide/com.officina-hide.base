@@ -22,6 +22,31 @@ public class X_FD_Reference extends FD_DB implements I_FD_Reference {
 	}
 
 	/**
+	 * コンストラクター<br>
+	 * インスタンス時にアイテムを初期化し、引数の情報IDを持つリファレンス情報を取得する。<br>
+	 * Initialize the item at the time of instance and get the reference information with the information ID of the argument.<br>
+	 * @author officina-hide.com
+	 * @since 1.30 2021/01/25
+	 * @param env 環境情報
+	 * @param referenceId リファレンス情報
+	 */
+	public X_FD_Reference(FD_EnvData env, int referenceId) {
+		initializeItemList();
+		load(env, referenceId);
+	}
+
+	/**
+	 * 情報抽出[Information extraction]
+	 * @author officina-hide.com
+	 * @since 1.30 2021/01/25
+	 * @param env 環境情報
+	 * @param referenceId リファレンス情報ID
+	 */
+	public void load(FD_EnvData env, int referenceId) {
+		load(env, Table_Name, referenceId);
+	}
+
+	/**
 	 * 項目リスト初期化<br>
 	 * Item list initialization<br>
 	 * @author officine-hide.com

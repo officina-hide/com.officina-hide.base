@@ -30,6 +30,7 @@ public interface I_FD_Task {
 	public final String COLUMNNAME_Task_Status = "Task_Status";
 	public final String NAME_Task_Status = "タスク状態";
 	public final String COMMENT_Task_Status = "タスク情報の処理状況";
+	public final String COMMENT_Task_Status_Reference = "タスク状態を管理するリファレンス情報の情報ID";
 	//タスク開始時間[Task start time]
 	public final String COLUMNNAME_Task_StartDateTime = "Task_StartDateTime";
 	public final String NAME_Task_StartDateTime = "タスク開始日時";

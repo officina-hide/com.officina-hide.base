@@ -98,7 +98,7 @@ public class FD_DB_Utility extends FD_DB {
 			//テーブル項目情報より関連する情報のリストを作成する。
 			sql.append("SELECT * FROM ").append(I_FD_TableColumn.Table_Name).append(" ");
 			sql.append("LEFT JOIN ").append(I_FD_Reference.Table_Name).append(" ON " )
-				.append(I_FD_Reference.COLUMNNAME_FD_Reference_ID).append(" = ")
+				.append(I_FD_Reference.Table_Name).append(".").append(I_FD_Reference.COLUMNNAME_FD_Reference_ID).append(" = ")
 				.append(I_FD_TableColumn.COLUMNNAME_TableColumn_Type_ID).append(" ");
 			sql.append("WHERE ").append(I_FD_TableColumn.COLUMNNAME_FD_Table_ID).append(" = ").append(tableId).append(" ");
 			sql.append("ORDER BY ").append(I_FD_TableColumn.COLUMNNAME_Column_Sort_Order).append(" ");
@@ -200,7 +200,7 @@ public class FD_DB_Utility extends FD_DB {
 		try {
 			sql.append("SELECT * FROM ").append(I_FD_TableColumn.Table_Name).append(" ");
 			sql.append("LEFT JOIN ").append(I_FD_Reference.Table_Name).append(" ON ")
-				.append(I_FD_Reference.COLUMNNAME_FD_Reference_ID).append(" = ")
+				.append(I_FD_Reference.Table_Name).append(".").append(I_FD_Reference.COLUMNNAME_FD_Reference_ID).append(" = ")
 				.append(I_FD_TableColumn.COLUMNNAME_TableColumn_Type_ID).append(" ");
 			sql.append("WHERE ").append(I_FD_TableColumn.COLUMNNAME_FD_Table_ID).append(" = ").append(tableId).append(" ");
 			connection(env);
