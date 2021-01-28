@@ -1,6 +1,6 @@
 package com.officina_hide.base.model;
 
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -205,8 +205,23 @@ public class FD_DB implements I_FD_DB {
 	 */
 	private boolean existsId(FD_EnvData env, String tableName, int id) {
 		boolean chk = false;
+		Statement stmt = null;
+		ResultSet rs = null;
 		StringBuffer sql = new StringBuffer();
-		
+		try {
+			sql.append("SELECT ").append(tableName).append("_ID").append(" FROM ").append(tableName).append(" ");
+			sql.append("WHERE ").append(tableName).append("_ID").append(" = ").append(id);
+			connection(env);
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql.toString());
+			if(rs.next()) {
+				chk = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBclose(stmt, rs);
+		}
 		return chk;
 	}
 

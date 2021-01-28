@@ -65,6 +65,7 @@ public class X_FD_TableColumn extends FD_DB implements I_FD_TableColumn {
 		itemList.add(COLUMNNAME_Column_Sort_Order, null, COLUMNTYPE_FD_Number);
 		itemList.add(COLUMNNAME_Is_Null, null, COLUMNTYPE_FD_YesNo);
 		itemList.add(COLUMNNAME_Is_Primary, null, COLUMNTYPE_FD_YesNo);
+		itemList.add(COLUMNNAME_FD_Reference_ID, null, COLUMNTYPE_FD_Information_ID);
 		
 		itemList.add(COLUMNNAME_FD_Process_ID, null, COLUMNTYPE_FD_Information_ID);
 		itemList.add(COLUMNNAME_FD_CREATE, null, COLUMNTYPE_FD_Date);
