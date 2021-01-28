@@ -35,6 +35,8 @@ public class FDReferenceList extends FD_DB implements I_FD_ReferenceList {
 				, COLUMNTYPE_ID_FD_Number, null, 0, 30, "N", "N");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Code, NAME_FD_Code, COMMENT_FD_Code
 				, COLUMNTYPE_ID_FD_Text, null, 100, 40, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_Name, NAME_FD_Name, COMMENT_FD_Name
+				, COLUMNTYPE_ID_FD_Text, null, 100, 50, "N", "N");
 		column.addBaseTableColumnData(env, TABLE_ID);
 		//テーブル生成
 		FD_DB_Utility dbUtil = new FD_DB_Utility();
@@ -56,11 +58,12 @@ public class FDReferenceList extends FD_DB implements I_FD_ReferenceList {
 	 * @param listSeq リファレンス並び順
 	 * @param code リストコード
 	 */
-	public void addData(FD_EnvData env, int referenceListId, int referenceId, int listSeq, String code) {
+	public void addData(FD_EnvData env, int referenceListId, int referenceId, int listSeq, String code, String name) {
 		X_FD_ReferenceList refList = new X_FD_ReferenceList(env);
 		refList.setValueByName(env, COLUMNNAME_FD_Reference_ID, referenceId);
 		refList.setValueByName(env, COLUMNNAME_FD_Sequence, listSeq);
 		refList.setValueByName(env, COLUMNNAME_FD_Code, code);
+		refList.setValueByName(env, COLUMNNAME_FD_Name, name);
 		refList.save(env);
 	}
 

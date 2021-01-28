@@ -32,4 +32,9 @@ public interface I_FD_ReferenceList {
 	/** リストコード */
 	public final String COLUMNNAME_FD_Code = "FD_Code";
 	public final String NAME_FD_Code = "リストコード";
-	public final String COMMENT_FD_Code = "リファレンスで使用する情報";}
+	public final String COMMENT_FD_Code = "リファレンスで使用する情報";
+	/** リスト名 */
+	public final String COLUMNNAME_FD_Name = "FD_Name";
+	public final String NAME_FD_Name = "リスト名";
+	public final String COMMENT_FD_Name = "リストコードに対する表示名";
+	}

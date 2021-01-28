@@ -48,7 +48,10 @@ public class FDTask extends FD_DB implements I_FD_Task {
 		int refId = ref.addData(env, 0, COLUMNNAME_Task_Status, COMMENT_Task_Status_Reference);
 		column.addDataByName(env, statusId, I_FD_TableColumn.COLUMNNAME_FD_Reference_ID, refId);
 		FDReferenceList rlist = new FDReferenceList();
-		rlist.addData(env,0,refId, 10, "1");
+		rlist.addData(env,0,refId, 10, "1", "未着手");
+		rlist.addData(env,0,refId, 20, "2", "着手");
+		rlist.addData(env,0,refId, 30, "3", "完了");
+		rlist.addData(env,0,refId, 90, "9", "クローズ");
 
 		log.addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築終了");
 	}
