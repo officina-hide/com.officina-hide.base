@@ -41,7 +41,12 @@ public class FX_TaskList extends Application {
 		table.setOnMouseClicked(event->{
 			//左ボタンダブルクリックで単票画面へ遷移する。
 			if(event.getClickCount() == 2 && event.getButton() == MouseButton.PRIMARY) {
-				System.out.println("double clicked");
+				FX_TaskView taskview = new FX_TaskView();
+				try {
+					taskview.start(new Stage());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		});
 		
