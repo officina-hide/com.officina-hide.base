@@ -1,5 +1,10 @@
 package com.officina_hide.workshop.task.tasklist;
 
+import java.io.File;
+import java.io.IOException;
+
+import com.officina_hide.base.common.FD_EnvData;
+
 /**
  * タスク情報のテストを行う。<br>
  * Test task information.
@@ -9,14 +14,31 @@ package com.officina_hide.workshop.task.tasklist;
  */
 public class TskTest {
 
+	/** 環境情報 */
+	private static FD_EnvData env;
+	/** プロセス情報 */
+	private static final int TASK_PROCESS_ID = 301;
+	
 	public static void main(String[] args) {
+		/*
+		 * 環境情報セット
+		 */
+		try {
+			String propPath = new File(".").getCanonicalPath()+"\\data\\fdbase.properties";
+			env = new FD_EnvData(propPath);
+			env.setActiveProcessID(TASK_PROCESS_ID);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		/*
 		 * タスク情報を登録する。
 		 */
 		
 		//タスク情報一覧画面表示
 //		FX_TaskList taskList = new FX_TaskList();
-		FX_TaskList.main(null);
+//		taskList.setEnv(env);
+		FX_TaskList.main(env);
 		System.out.println("test");
 	}
 

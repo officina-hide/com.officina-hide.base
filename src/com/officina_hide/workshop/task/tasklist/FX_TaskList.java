@@ -6,6 +6,7 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import com.officina_hide.base.common.FD_Date;
+import com.officina_hide.base.common.FD_EnvData;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -26,6 +27,8 @@ import javafx.stage.Stage;
 
 public class FX_TaskList extends Application {
 
+	private static FD_EnvData env;
+	
 	@Override
 	public void start(Stage stage) throws Exception {
 		VBox root = new VBox(5);
@@ -42,6 +45,7 @@ public class FX_TaskList extends Application {
 			//左ボタンダブルクリックで単票画面へ遷移する。
 			if(event.getClickCount() == 2 && event.getButton() == MouseButton.PRIMARY) {
 				FX_TaskView taskview = new FX_TaskView();
+				taskview.setEnv(env);
 				try {
 					taskview.start(new Stage());
 				} catch (Exception e) {
@@ -117,6 +121,12 @@ public class FX_TaskList extends Application {
 	}
 
 	public static void main(String[] args) {
+		launch(args);
+	}
+
+	public static void main(FD_EnvData envData) {
+		String[] args = null;
+		env = envData;
 		launch(args);
 	}
 
