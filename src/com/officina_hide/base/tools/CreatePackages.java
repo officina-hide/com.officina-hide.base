@@ -62,6 +62,7 @@ public class CreatePackages {
 		 */
 		if(runLevel <= 2) {
 			CreateFxBaseInformation fbi = new CreateFxBaseInformation();
+			fbi.execute(env);
 		}
 	}
 
