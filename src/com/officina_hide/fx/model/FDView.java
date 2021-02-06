@@ -1,7 +1,9 @@
 package com.officina_hide.fx.model;
 
+import com.officina_hide.base.common.FD_DB_Utility;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FDLog;
+import com.officina_hide.base.model.FDNumbering;
 import com.officina_hide.base.model.FDTable;
 import com.officina_hide.base.model.FDTableColumn;
 import com.officina_hide.base.model.FD_DB;
@@ -31,7 +33,21 @@ public class FDView extends FD_DB implements I_FD_View {
 		
 		//テーブル項目情報登録
 		FDTableColumn column = new FDTableColumn();
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_FD_View_ID, NAME_FD_View_ID, COMMENT_FD_View_ID
+				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 10, "Y", "Y");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_View_Name, NAME_View_Name, COMMENT_View_Name
+				, COLUMNTYPE_ID_FD_Field_Text, null, 100, 20, "N", "N");
 		column.addBaseTableColumnData(env, tableId);
+		
+		//テーブル生成
+		FD_DB_Utility dbUtil = new FD_DB_Utility();
+		dbUtil.createDBTable(env, TABLE_ID);
+		
+		//採番情報登録
+		FDNumbering num = new FDNumbering();
+		num.addData(env, TABLE_ID, TABLE_ID, 0, 1000001);
+
+		log.addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築完了");
 	}
 
 }
