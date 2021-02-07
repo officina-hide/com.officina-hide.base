@@ -28,7 +28,7 @@ public class CreatePackages {
 	 * 0 = ベース構築
 	 * 1 = タスク情報構築
 	 */
-	private static int runLevel = 0;
+	private static int runLevel = 2;
 	
 	public static void main(String[] args) {
 		/*
@@ -55,6 +55,14 @@ public class CreatePackages {
 		if(runLevel <= 1) {
 			CreateTaskInformation ctf = new CreateTaskInformation();
 			ctf.execute(env);
+		}
+		
+		/*
+		 * Fx画面用基盤構築
+		 */
+		if(runLevel <= 2) {
+			CreateFxBaseInformation fbi = new CreateFxBaseInformation();
+			fbi.execute(env);
 		}
 	}
 
