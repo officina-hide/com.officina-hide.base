@@ -50,4 +50,19 @@ public class FDView extends FD_DB implements I_FD_View {
 		log.addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築完了");
 	}
 
+	/**
+	 * 情報登録[Entry of information.]
+	 * @author officina-hide.com
+	 * @since 1.31 2021/02/08
+	 * @param env 環境情報
+	 * @param viewId Fx画面情報ID
+	 * @param viewName Fx画面情報名
+	 */
+	public void addData(FD_EnvData env, int viewId, String viewName) {
+		X_FD_View view = new X_FD_View(env);
+		view.setValueByName(env, COLUMNNAME_FD_View_ID, viewId);
+		view.setValueByName(env, COLUMNNAME_View_Name, viewName);
+		view.save(env);
+	}
+
 }

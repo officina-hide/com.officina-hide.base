@@ -3,6 +3,12 @@ package com.officina_hide.base.model;
 import com.officina_hide.base.common.FD_DB_Utility;
 import com.officina_hide.base.common.FD_EnvData;
 
+/**
+ * タスク情報I/Oクラス
+ * @author officina-hide.com
+ * @version 1.30
+ * @since 1.30 2021/01/14
+ */
 public class X_FD_Task extends FD_DB implements I_FD_Task {
 
 	/**

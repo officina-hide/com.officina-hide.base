@@ -12,6 +12,8 @@ import com.officina_hide.base.model.I_FD_Numbering;
 import com.officina_hide.base.model.I_FD_Process;
 import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.model.I_FD_TableColumn;
+import com.officina_hide.fx.model.FDView;
+import com.officina_hide.fx.model.I_FD_View;
 
 /**
  * タスク関連情報構築<br>
@@ -44,6 +46,11 @@ public class CreateTaskInformation {
 		//開始メッセージ
 		FDLog log = new FDLog();
 		log.addLog(env, I_FD_Log.LOGTYPE_Info_ID, "タスク関連情報構築開始");
+		
+		//タスク照会画面情報生成
+		FDView view = new FDView();
+		view.addData(env, 0, "Task_View");
+		
 		//タスク情報生成
 		FDTask task = new FDTask();
 		task.createTable(env);
@@ -66,6 +73,7 @@ public class CreateTaskInformation {
 		dbUtil.deleteDataByProcessId(env, I_FD_Table.Table_Name, processId);
 		dbUtil.deleteDataByProcessId(env, I_FD_TableColumn.Table_Name, processId);
 		dbUtil.deleteDataByProcessId(env, I_FD_Numbering.Table_Name, processId);
+		dbUtil.deleteDataByProcessId(env, I_FD_View.Table_Name, processId);
 	}
 
 }
