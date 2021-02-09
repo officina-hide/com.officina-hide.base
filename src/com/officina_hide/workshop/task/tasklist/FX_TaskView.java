@@ -9,6 +9,8 @@ public class FX_TaskView extends Application {
 
 	/** 環境情報 */
 	private FD_EnvData env;
+	/** Fx画面情報ID */
+	private int FxViewID;
 	
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -21,6 +23,9 @@ public class FX_TaskView extends Application {
 
 	public void setEnv(FD_EnvData env) {
 		this.env = env;
+	}
+	public void setFxViewID(int fxViewID) {
+		FxViewID = fxViewID;
 	}
 
 }

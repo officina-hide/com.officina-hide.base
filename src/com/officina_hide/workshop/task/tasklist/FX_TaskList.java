@@ -5,8 +5,11 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import com.officina_hide.base.common.FDSQLWhere;
+import com.officina_hide.base.common.FD_DB_Utility;
 import com.officina_hide.base.common.FD_Date;
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.fx.model.I_FD_View;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -46,6 +49,9 @@ public class FX_TaskList extends Application {
 			if(event.getClickCount() == 2 && event.getButton() == MouseButton.PRIMARY) {
 				FX_TaskView taskview = new FX_TaskView();
 				taskview.setEnv(env);
+				FD_DB_Utility dbUtil = new FD_DB_Utility();
+				FDSQLWhere where = new FDSQLWhere(I_FD_View.COLUMNNAME_View_Name, "Task_View");
+				taskview.setFxViewID(dbUtil.getId(env,I_FD_View.Table_Name, where));
 				try {
 					taskview.start(new Stage());
 				} catch (Exception e) {

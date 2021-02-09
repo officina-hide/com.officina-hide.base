@@ -216,5 +216,9 @@ public class FD_DB_Utility extends FD_DB {
 			DBclose(stmt, rs);
 		}
 	}
+
+	public int getId(FD_EnvData env, String tableName, FDSQLWhere where) {
+		return 0;
+	}
 	
 }
