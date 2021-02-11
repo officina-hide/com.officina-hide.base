@@ -10,6 +10,8 @@ import com.officina_hide.base.model.I_FD_DB;
  */
 public class FDSQLWhere implements I_FD_DB {
 
+	/** Whre句リスト */
+	
 	private StringBuffer where;
 	
 	/**
@@ -23,4 +25,9 @@ public class FDSQLWhere implements I_FD_DB {
 		where.append(columnName).append(" = ").append(FD_SQ).append(value).append(FD_SQ);
 	}
 	
+	private class whereData {
+		private String columnName;
+		private Object columnData;
+		private int columnType;
+	}
 }
