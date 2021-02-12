@@ -217,8 +217,40 @@ public class FD_DB_Utility extends FD_DB {
 		}
 	}
 
+	/**
+	 * 情報ID取得<br>
+	 * 指定されたテーブルから指定された条件で情報IDを取得する。<br>
+	 * Get the information ID from the specified table under the specified conditions.<br>
+	 * TODO 汎用的なメソッドへの移行を取得する検討する事(2021/02/13)
+	 * @param env 環境情報
+	 * @param tableName テーブル名
+	 * @param where 条件句
+	 * @return 情報ID
+	 */
 	public int getId(FD_EnvData env, String tableName, FDSQLWhere where) {
-		return 0;
+		int id = 0;
+		Statement stmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT ").append(tableName).append("_ID").append(" FROM ").append(tableName).append(" ");
+			sql.append("WHERE ").append(where.toString()).append(" ");
+			connection(env);
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql.toString());
+			if(rs.next()) {
+				id = rs.getInt(tableName+"_ID");
+			} else {
+				FDLog log = new FDLog();
+				log.addLog(env, FDLog.LOGTYPE_ERROR_ID, "Information ID not found!! : "+sql.toString());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBclose(stmt, rs);
+		}
+		
+		return id;
 	}
 	
 }
