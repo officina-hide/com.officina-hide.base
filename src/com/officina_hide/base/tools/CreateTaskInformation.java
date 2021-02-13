@@ -49,7 +49,7 @@ public class CreateTaskInformation {
 		
 		//タスク照会画面情報生成
 		FDView view = new FDView();
-		view.addData(env, 0, "Task_View");
+		view.addData(env, 0, "Task_View", 400, 400);
 		
 		//タスク情報生成
 		FDTask task = new FDTask();

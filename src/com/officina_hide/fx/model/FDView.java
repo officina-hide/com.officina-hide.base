@@ -37,6 +37,10 @@ public class FDView extends FD_DB implements I_FD_View {
 				, COLUMNTYPE_ID_FD_Information_ID, "0", 0, 10, "Y", "Y");
 		column.addData(env, 0, TABLE_ID, COLUMNNAME_View_Name, NAME_View_Name, COMMENT_View_Name
 				, COLUMNTYPE_ID_FD_Field_Text, null, 100, 20, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_Initial_Width, NAME_Initial_Width, COMMENT_Initial_Width
+				, COLUMNTYPE_ID_FD_Number, null, 0, 30, "N", "N");
+		column.addData(env, 0, TABLE_ID, COLUMNNAME_Initial_Height, NAME_Initial_Height, COMMENT_Initial_Height
+				, COLUMNTYPE_ID_FD_Number, null, 0, 40, "N", "N");
 		column.addBaseTableColumnData(env, tableId);
 		
 		//テーブル生成
@@ -57,11 +61,15 @@ public class FDView extends FD_DB implements I_FD_View {
 	 * @param env 環境情報
 	 * @param viewId Fx画面情報ID
 	 * @param viewName Fx画面情報名
+	 * @param j 
+	 * @param  
 	 */
-	public void addData(FD_EnvData env, int viewId, String viewName) {
+	public void addData(FD_EnvData env, int viewId, String viewName, int width, int height) {
 		X_FD_View view = new X_FD_View(env);
 		view.setValueByName(env, COLUMNNAME_FD_View_ID, viewId);
 		view.setValueByName(env, COLUMNNAME_View_Name, viewName);
+		view.setValueByName(env, COLUMNNAME_Initial_Width, width);
+		view.setValueByName(env, COLUMNNAME_Initial_Height, height);
 		view.save(env);
 	}
 

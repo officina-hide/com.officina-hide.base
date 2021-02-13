@@ -26,4 +26,12 @@ public interface I_FD_View {
 	public final String COLUMNNAME_View_Name = "View_Name";
 	public final String NAME_View_Name = "Fx画面名";
 	public final String COMMENT_View_Name = "Fx画面の名称";
+	/** Fx画面初期幅 */
+	public final String COLUMNNAME_Initial_Width = "Initial_Width";
+	public final String NAME_Initial_Width = "Fx画面初期幅";
+	public final String COMMENT_Initial_Width = "Fx画面表示時の画面幅の初期値";
+	/** Fx画面初期高さ */
+	public final String COLUMNNAME_Initial_Height = "Initial_Height";
+	public final String NAME_Initial_Height = "初期高さ";
+	public final String COMMENT_Initial_Height = "Fx画面表示時の画面高さの初期値";
 }
