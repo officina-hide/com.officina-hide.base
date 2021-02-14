@@ -1,6 +1,9 @@
 package com.officina_hide.base.tools;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import com.officina_hide.base.common.FD_DB_Utility;
 import com.officina_hide.base.common.FD_EnvData;
@@ -12,6 +15,7 @@ import com.officina_hide.base.model.I_FD_Numbering;
 import com.officina_hide.base.model.I_FD_Process;
 import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.model.I_FD_TableColumn;
+import com.officina_hide.base.model.I_FD_Task;
 import com.officina_hide.fx.model.FDView;
 import com.officina_hide.fx.model.I_FD_View;
 
@@ -54,6 +58,9 @@ public class CreateTaskInformation {
 		//タスク情報生成
 		FDTask task = new FDTask();
 		task.createTable(env);
+		Calendar cal = new GregorianCalendar(new Locale("ja", "JP"));
+		cal.setTime(new Date());
+		task.addData(env, "AAAAA", cal, I_FD_Task.Taks_Status_Code_NotStarted);
 		
 		//終了メッセージ
 		log.addLog(env, I_FD_Log.LOGTYPE_Info_ID, "タスク関連情報構築完了");

@@ -1,5 +1,7 @@
 package com.officina_hide.base.model;
 
+import java.util.Calendar;
+
 import com.officina_hide.base.common.FD_DB_Utility;
 import com.officina_hide.base.common.FD_EnvData;
 
@@ -48,12 +50,29 @@ public class FDTask extends FD_DB implements I_FD_Task {
 		int refId = ref.addData(env, 0, COLUMNNAME_Task_Status, COMMENT_Task_Status_Reference);
 		column.addDataByName(env, statusId, I_FD_TableColumn.COLUMNNAME_FD_Reference_ID, refId);
 		FDReferenceList rlist = new FDReferenceList();
-		rlist.addData(env,0,refId, 10, "1", "未着手");
-		rlist.addData(env,0,refId, 20, "2", "着手");
-		rlist.addData(env,0,refId, 30, "3", "完了");
-		rlist.addData(env,0,refId, 90, "9", "クローズ");
+		rlist.addData(env,0,refId, 10, Taks_Status_Code_NotStarted, Taks_Status_Name_NotStarted);
+		rlist.addData(env,0,refId, 20, Taks_Status_Code_Started, Taks_Status_Name_Started);
+		rlist.addData(env,0,refId, 30, Taks_Status_Code_Completed, Taks_Status_Name_Completed);
+		rlist.addData(env,0,refId, 90, Taks_Status_Code_Closed, Taks_Status_Name_Closed);
 
 		log.addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築終了");
+	}
+
+	/**
+	 * 情報登録[Entry of information]<br>
+	 * @author officina-hide.com
+	 * @since 1.31 2021/02/13
+	 * @param env 環境情報
+	 * @param subject タスク件名
+	 * @param startDate タスク開始日時
+	 */
+	public void addData(FD_EnvData env, String subject, Calendar startDate, String status) {
+		X_FD_Task task = new X_FD_Task(env);
+		task.setValueByName(env, COLUMNNAME_FD_Task_ID, 0);
+		task.setValueByName(env, COLUMNNAME_Task_Subject, subject);
+		task.setValueByName(env, COLUMNNAME_Task_StartDateTime, startDate.getTime());
+		task.setValueByName(env, COLUMNNAME_Task_Status, status);
+		task.save(env);
 	}
 	
 }

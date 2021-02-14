@@ -47,10 +47,17 @@ public class FX_TaskList extends Application {
 		table.setOnMouseClicked(event->{
 			//左ボタンダブルクリックで単票画面へ遷移する。
 			if(event.getClickCount() == 2 && event.getButton() == MouseButton.PRIMARY) {
-				FX_TaskView taskview = new FX_TaskView();
-				taskview.setEnv(env);
 				FD_DB_Utility dbUtil = new FD_DB_Utility();
 				FDSQLWhere where = new FDSQLWhere(I_FD_View.COLUMNNAME_View_Name, "Task_View");
+				/*
+				 * クリックした情報のIDを取得する。
+				 */
+				int selectNo = table.getSelectionModel().getSelectedIndex();
+				TaskTableData data = table.getItems().get(selectNo);
+				System.out.println(data.getTitle());
+				
+				FX_TaskView taskview = new FX_TaskView();
+				taskview.setEnv(env);
 				taskview.setFxViewID(dbUtil.getId(env,I_FD_View.Table_Name, where));
 				try {
 					taskview.start(new Stage());
@@ -118,8 +125,9 @@ public class FX_TaskList extends Application {
 		Calendar cal = new GregorianCalendar(new Locale("ja", "JP"));
 		cal.setTime(new Date());
 		TaskTableData data01 = new TaskTableData("AAAAA", cal);
-		table.getItems().add(data01);	
-		table.getItems().add(data01);	
+		TaskTableData data02 = new TaskTableData("AAABB", cal);
+		table.getItems().add(data01);
+		table.getItems().add(data02);	
 
 		Scene scene = new Scene(root, 400, 300);
 		stage.setScene(scene);

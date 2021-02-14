@@ -35,4 +35,18 @@ public interface I_FD_Task {
 	public final String COLUMNNAME_Task_StartDateTime = "Task_StartDateTime";
 	public final String NAME_Task_StartDateTime = "タスク開始日時";
 	public final String COMMENT_Task_StartDateTime = "タスクの処理開始された日時";
+	
+	//タスク状態 : 未着手
+	public final String Taks_Status_Name_NotStarted = "未着手";
+	public final String Taks_Status_Code_NotStarted = "1";
+	//タスク状態 : 着手
+	public final String Taks_Status_Name_Started = "着手";
+	public final String Taks_Status_Code_Started = "2";
+	//タスク状態 : 完了
+	public final String Taks_Status_Name_Completed = "完了";
+	public final String Taks_Status_Code_Completed = "3";
+	//タスク状態 : クローズ
+	public final String Taks_Status_Name_Closed = "クローズ";
+	public final String Taks_Status_Code_Closed = "9";
+	
 }

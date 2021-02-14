@@ -100,6 +100,7 @@ public class FD_Items {
 					case I_FD_DB.COLUMNTYPE_FD_Text:
 					case I_FD_DB.COLUMNTYPE_FD_Field_Text:
 					case I_FD_DB.COLUMNTYPE_FD_YesNo:
+					case I_FD_DB.COLUMNTYPE_FD_List:
 						sql.append(item.getItemName()).append(" = ")
 							.append(I_FD_DB.FD_SQ).append(item.getStringOfValue()).append(I_FD_DB.FD_SQ);
 						break;
