@@ -61,6 +61,7 @@ public class CreateTaskInformation {
 		Calendar cal = new GregorianCalendar(new Locale("ja", "JP"));
 		cal.setTime(new Date());
 		task.addData(env, "AAAAA", cal, I_FD_Task.Taks_Status_Code_NotStarted);
+		task.addData(env, "BBBBBB", cal, I_FD_Task.Taks_Status_Code_NotStarted);
 		
 		//終了メッセージ
 		log.addLog(env, I_FD_Log.LOGTYPE_Info_ID, "タスク関連情報構築完了");

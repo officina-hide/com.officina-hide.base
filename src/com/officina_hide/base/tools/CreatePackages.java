@@ -50,7 +50,7 @@ public class CreatePackages {
 		}
 		
 		/*
-		 * Fx画面用基盤構築
+		 * Fx画面用基盤構築z
 		 */
 		if(runLevel <= 1) {
 			CreateFxBaseInformation fbi = new CreateFxBaseInformation();

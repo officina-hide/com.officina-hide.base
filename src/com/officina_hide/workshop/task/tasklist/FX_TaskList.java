@@ -1,14 +1,21 @@
 package com.officina_hide.workshop.task.tasklist;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Locale;
 
 import com.officina_hide.base.common.FDSQLWhere;
 import com.officina_hide.base.common.FD_DB_Utility;
 import com.officina_hide.base.common.FD_Date;
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.model.FD_DB;
+import com.officina_hide.base.model.I_FD_Task;
+import com.officina_hide.base.model.X_FD_Task;
 import com.officina_hide.fx.model.I_FD_View;
 
 import javafx.application.Application;
@@ -37,6 +44,11 @@ public class FX_TaskList extends Application {
 		VBox root = new VBox(5);
 		root.setPadding(new Insets(5, 5, 5, 5));
 		root.setStyle("-fx-font-size:12.0;-fx-font-family:MeiryoUI");
+		
+		/*
+		 * タスク情報取得
+		 */
+		List<X_FD_Task> tasklist = getDataList();
 		
 		/*
 		 * 日付項目については、表示の書式を設定する関係上、テーブル項目用のクラス(FD_Date)を作成。<br>
@@ -132,6 +144,23 @@ public class FX_TaskList extends Application {
 		Scene scene = new Scene(root, 400, 300);
 		stage.setScene(scene);
 		stage.show();
+	}
+
+	/**
+	 * タスク情報の抽出[Extraction of task information]<br>
+	 * @author officine-hide.com
+	 * @since 1.31 2021/02/17
+	 * @return タスク情報リスト
+	 */
+	private List<X_FD_Task> getDataList() {
+		FD_DB DB = new FD_DB();
+		List<X_FD_Task> list = new ArrayList<>();
+		Statement stmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT * FROM ").append(I_FD_Task.Table_Name).append(" ");
+		DB.connection(env);
+		return list;
 	}
 
 	public static void main(String[] args) {
