@@ -17,6 +17,7 @@ import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.model.I_FD_TableColumn;
 import com.officina_hide.base.model.I_FD_Task;
 import com.officina_hide.fx.model.FDView;
+import com.officina_hide.fx.model.FDViewColumn;
 import com.officina_hide.fx.model.I_FD_View;
 
 /**
@@ -51,8 +52,12 @@ public class CreateTaskInformation {
 		FDLog log = new FDLog();
 		log.addLog(env, I_FD_Log.LOGTYPE_Info_ID, "タスク関連情報構築開始");
 		
-		//タスク照会画面情報生成
 		FDView view = new FDView();
+		FDViewColumn vcolumn = new FDViewColumn();
+		//タスク一覧画面情報生成
+		int tlId = view.addData(env, 0, "Task_List", 600, 400);
+		vcolumn.addData(env, 0, tlId, "status", "状況");
+		//タスク照会画面情報生成
 		view.addData(env, 0, "Task_View", 400, 400);
 		
 		//タスク情報生成

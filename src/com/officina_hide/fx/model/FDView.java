@@ -63,14 +63,17 @@ public class FDView extends FD_DB implements I_FD_View {
 	 * @param viewName Fx画面情報名
 	 * @param j 
 	 * @param  
+	 * @return 
 	 */
-	public void addData(FD_EnvData env, int viewId, String viewName, int width, int height) {
+	public int addData(FD_EnvData env, int viewId, String viewName, int width, int height) {
 		X_FD_View view = new X_FD_View(env);
 		view.setValueByName(env, COLUMNNAME_FD_View_ID, viewId);
 		view.setValueByName(env, COLUMNNAME_View_Name, viewName);
 		view.setValueByName(env, COLUMNNAME_Initial_Width, width);
 		view.setValueByName(env, COLUMNNAME_Initial_Height, height);
 		view.save(env);
+		
+		return view.getintOfValue(COLUMNNAME_FD_View_ID);
 	}
 
 }

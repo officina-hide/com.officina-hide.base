@@ -54,4 +54,23 @@ public class FDViewColumn extends FD_DB implements I_FD_ViewColumn {
 		log.addLog(env, I_FD_Log.LOGTYPE_Info_ID, NAME+"テーブル構築完了");
 	}
 
+	/**
+	 * Fx画面項目情報登録[Fx screen item information registration]<br>
+	 * @author officina-hide.com
+	 * @since 1.31 2021/02/20
+	 * @param env 環境情報
+	 * @param viewColunId Fx画面項目情報ID
+	 * @param viewId Fx画面情報ID
+	 * @param viewName FX画面項目名
+	 * @param name Fx画面項目表示名
+	 */
+	public void addData(FD_EnvData env, int viewColumnId, int viewId, String viewName, String name) {
+		X_FD_ViewColumn vcolumn = new X_FD_ViewColumn(env);
+		vcolumn.setValueByName(env, COLUMNNAME_FD_ViewColumn_ID, viewColumnId);
+		vcolumn.setValueByName(env, COLUMNNAME_FD_View_ID, viewId);
+		vcolumn.setValueByName(env, COLUMNNAME_ViewColumn_Name, viewName);
+		vcolumn.setValueByName(env, COLUMNNAME_FD_Name, name);
+		vcolumn.save(env);
+	}
+
 }
