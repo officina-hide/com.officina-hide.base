@@ -1,10 +1,10 @@
 package com.officina_hide.workshop.task.tasklist;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
@@ -49,6 +49,7 @@ public class FX_TaskList extends Application {
 		 * タスク情報取得
 		 */
 		List<X_FD_Task> tasklist = getDataList();
+		System.out.println(tasklist.size());
 		
 		/*
 		 * 日付項目については、表示の書式を設定する関係上、テーブル項目用のクラス(FD_Date)を作成。<br>
@@ -66,7 +67,6 @@ public class FX_TaskList extends Application {
 				 */
 				int selectNo = table.getSelectionModel().getSelectedIndex();
 				TaskTableData data = table.getItems().get(selectNo);
-				System.out.println(data.getTitle());
 				
 				FX_TaskView taskview = new FX_TaskView();
 				taskview.setEnv(env);
@@ -134,12 +134,12 @@ public class FX_TaskList extends Application {
 		});
 		
 		//データ追加
-		Calendar cal = new GregorianCalendar(new Locale("ja", "JP"));
-		cal.setTime(new Date());
-		TaskTableData data01 = new TaskTableData("AAAAA", cal);
-		TaskTableData data02 = new TaskTableData("AAABB", cal);
-		table.getItems().add(data01);
-		table.getItems().add(data02);	
+		for(X_FD_Task task : tasklist) {
+			Calendar cal = new GregorianCalendar(new Locale("ja", "JP"));
+			cal.setTime(task.getDateOfValue(I_FD_Task.COLUMNNAME_Task_StartDateTime));
+			TaskTableData data = new TaskTableData(task.getValueOfString(I_FD_Task.COLUMNNAME_Task_Subject), cal);
+			table.getItems().add(data);
+		}
 
 		Scene scene = new Scene(root, 400, 300);
 		stage.setScene(scene);
@@ -158,8 +158,25 @@ public class FX_TaskList extends Application {
 		Statement stmt = null;
 		ResultSet rs = null;
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT * FROM ").append(I_FD_Task.Table_Name).append(" ");
-		DB.connection(env);
+		try {
+			sql.append("SELECT * FROM ").append(I_FD_Task.Table_Name).append(" ");
+			DB.connection(env);
+			stmt = DB.createStatement(env);
+			rs = stmt.executeQuery(sql.toString());
+			while(rs.next()) {
+				X_FD_Task task = new X_FD_Task(env);
+				task.setValueByName(env, I_FD_Task.COLUMNNAME_FD_Task_ID, rs.getInt(I_FD_Task.COLUMNNAME_FD_Task_ID));
+				task.setValueByName(env, I_FD_Task.COLUMNNAME_Task_Subject, rs.getString(I_FD_Task.COLUMNNAME_Task_Subject));
+				task.setValueByName(env, I_FD_Task.COLUMNNAME_Task_Status, rs.getString(I_FD_Task.COLUMNNAME_Task_Status));
+				task.setValueByName(env, I_FD_Task.COLUMNNAME_Task_StartDateTime
+						, rs.getTimestamp(I_FD_Task.COLUMNNAME_Task_StartDateTime));
+				list.add(task);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.DBclose(stmt, rs);
+		}
 		return list;
 	}
 

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
 import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
@@ -250,6 +251,18 @@ public class FD_DB implements I_FD_DB {
 	}
 
 	/**
+	 * 項目の日付情報を返す。[Return item information by date]<br>
+	 * @author officina-hide.com
+	 * @since 1.31 2021/02/20
+	 * @param columnName
+	 * @return 日付情報
+	 */
+	public Date getDateOfValue(String columnName) {
+		FD_Item item = itemList.getItemByName(columnName);
+		return item.getDateOfValue();
+	}
+
+	/**
 	 * 情報取得[Get information.]<br>
 	 * @author officina-hide.com
 	 * @since 1.30 2021/01/04
@@ -296,6 +309,24 @@ public class FD_DB implements I_FD_DB {
 			e.printStackTrace();
 		} finally {
 			DBclose(stmt, rs);
+		}
+	}
+
+	/**
+	 * ステートメント生成[Create statement]<br>
+	 * @author officina-hide.com
+	 * @since 1.31 2021/02/20
+	 * @param env 環境情報
+	 * @return ステートメント
+	 */
+	public Statement createStatement(FD_EnvData env) {
+		if(conn == null) {
+			connection(env);
+		}
+		try {
+			return conn.createStatement();
+		} catch (SQLException e) {
+			return null;
 		}
 	}
 }
