@@ -8,6 +8,7 @@ import com.officina_hide.base.model.I_FD_Process;
 import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.model.I_FD_TableColumn;
 import com.officina_hide.fx.model.FDView;
+import com.officina_hide.fx.model.FDViewColumn;
 
 /**
  * Fx画面用基盤構築<br>
@@ -37,9 +38,12 @@ public class CreateFxBaseInformation {
 		//プロセス情報IDセット
 		env.setActiveProcessID(ThisProcess_ID);
 		
-		//画面情報登録
+		//画面情報構築
 		FDView view  = new FDView();
 		view.createTable(env);
+		//画面項目情報構築
+		FDViewColumn vcolumn = new FDViewColumn();
+		vcolumn.createTable(env);
 	}
 
 	/**
