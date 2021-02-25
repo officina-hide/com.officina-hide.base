@@ -17,6 +17,7 @@ import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Task;
 import com.officina_hide.base.model.X_FD_Task;
 import com.officina_hide.fx.model.I_FD_View;
+import com.officina_hide.fx.model.X_FD_View;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -45,6 +46,11 @@ public class FX_TaskList extends Application {
 		root.setPadding(new Insets(5, 5, 5, 5));
 		root.setStyle("-fx-font-size:12.0;-fx-font-family:MeiryoUI");
 		
+		/*
+		 * 画面情報取得
+		 */
+		FDSQLWhere where = new FDSQLWhere(I_FD_View.COLUMNNAME_View_Name, "Task_List");
+		X_FD_View view = new X_FD_View(env, where);
 		/*
 		 * タスク情報取得
 		 */

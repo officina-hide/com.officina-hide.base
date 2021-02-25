@@ -1,5 +1,6 @@
 package com.officina_hide.fx.model;
 
+import com.officina_hide.base.common.FDSQLWhere;
 import com.officina_hide.base.common.FD_DB_Utility;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
@@ -36,6 +37,21 @@ public class X_FD_View extends FD_DB implements I_FD_View {
 		FD_DB_Utility dbUtil = new FD_DB_Utility();
 		dbUtil.initializeItemList(env, TABLE_ID, itemList);
 		load(env, Table_Name, fxViewID);
+	}
+
+	/**
+	 * コンストラクター<br>
+	 * インスタンス化時にアイテムを初期化する。<br>
+	 * Initialize the items at the time of instancing.<br>
+	 * 指定された条件でFx画面情報を抽出する。<br>
+	 * Get Fx screen information under the specified conditions.<br>
+	 * @param env 環境情報
+	 * @param where 抽出条件
+	 */
+	public X_FD_View(FD_EnvData env, FDSQLWhere where) {
+		FD_DB_Utility dbUtil = new FD_DB_Utility();
+		dbUtil.initializeItemList(env, TABLE_ID, itemList);
+		
 	}
 
 	/**
