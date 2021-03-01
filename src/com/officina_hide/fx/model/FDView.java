@@ -1,5 +1,12 @@
 package com.officina_hide.fx.model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.officina_hide.base.common.FDSQLWhere;
 import com.officina_hide.base.common.FD_DB_Utility;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FDLog;
@@ -74,6 +81,37 @@ public class FDView extends FD_DB implements I_FD_View {
 		view.save(env);
 		
 		return view.getintOfValue(COLUMNNAME_FD_View_ID);
+	}
+
+	/**
+	 * 情報リスト生成[Information list generation.]<br>
+	 * 指定された条件により抽出し、情報リストを作成する。<br>
+	 * Extract according to the specified conditions and create an information list.
+	 * @param env 環境情報
+	 * @param where 条件
+	 * @return 情報リスト
+	 */
+	public List<X_FD_View> getDataList(FD_EnvData env, FDSQLWhere where) {
+		List<X_FD_View> list = new ArrayList<>();
+		Statement stmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer(); 
+		try {
+			sql.append("SELECT * FROM ").append(I_FD_View.Table_Name).append(" ");
+			sql.append("WHERE ").append(where.toString()).append(" ");
+			connection(env);
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql.toString());
+			while(rs.next()) {
+				X_FD_View view = new X_FD_View(env, rs.getInt(I_FD_View.COLUMNNAME_FD_View_ID));
+				list.add(view);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBclose(stmt, rs);
+		}
+		return list;
 	}
 
 }

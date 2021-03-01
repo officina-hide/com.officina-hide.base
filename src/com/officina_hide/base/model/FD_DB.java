@@ -1,11 +1,10 @@
 package com.officina_hide.base.model;
 
-import java.sql.Connection; 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Calendar;
 import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;

@@ -16,6 +16,7 @@ import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Task;
 import com.officina_hide.base.model.X_FD_Task;
+import com.officina_hide.fx.model.FDView;
 import com.officina_hide.fx.model.I_FD_View;
 import com.officina_hide.fx.model.X_FD_View;
 
@@ -50,7 +51,6 @@ public class FX_TaskList extends Application {
 		 * 画面情報取得
 		 */
 		FDSQLWhere where = new FDSQLWhere(I_FD_View.COLUMNNAME_View_Name, "Task_List");
-		X_FD_View view = new X_FD_View(env, where);
 		/*
 		 * タスク情報取得
 		 */
@@ -62,12 +62,12 @@ public class FX_TaskList extends Application {
 		 * 
 		 */
 		
-		TableView<TaskTableData> table = new TableView<TaskTableData>();
+		TableView<TaskTableData> table = new TableView<TaskTableData>(); 
 		table.setOnMouseClicked(event->{
-			//左ボタンダブルクリックで単票画面へ遷移する。
+			//左ボタンダブルクリックで単票画面へ遷移する。 
 			if(event.getClickCount() == 2 && event.getButton() == MouseButton.PRIMARY) {
 				FD_DB_Utility dbUtil = new FD_DB_Utility();
-				FDSQLWhere where = new FDSQLWhere(I_FD_View.COLUMNNAME_View_Name, "Task_View");
+				FDSQLWhere wh = new FDSQLWhere(I_FD_View.COLUMNNAME_View_Name, "Task_View");
 				/*
 				 * クリックした情報のIDを取得する。
 				 */
