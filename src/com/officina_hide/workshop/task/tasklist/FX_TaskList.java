@@ -39,6 +39,7 @@ import javafx.stage.Stage;
 public class FX_TaskList extends Application {
 
 	private static FD_EnvData env;
+	private FDSQLWhere where;
 	
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -49,9 +50,8 @@ public class FX_TaskList extends Application {
 		/*
 		 * 画面情報取得
 		 */
-		FDSQLWhere where = new FDSQLWhere(I_FD_View.COLUMNNAME_View_Name, "Task_List");
+		where = new FDSQLWhere(I_FD_View.COLUMNNAME_View_Name, "Task_List");
 		X_FD_View view = new X_FD_View(env, where);
-		System.out.println("load view : "+view.getValueOfString(I_FD_View.COLUMNNAME_View_Name));
 		/*
 		 * タスク情報取得
 		 */
@@ -67,12 +67,13 @@ public class FX_TaskList extends Application {
 			//左ボタンダブルクリックで単票画面へ遷移する。 
 			if(event.getClickCount() == 2 && event.getButton() == MouseButton.PRIMARY) {
 				FD_DB_Utility dbUtil = new FD_DB_Utility();
-				FDSQLWhere wh = new FDSQLWhere(I_FD_View.COLUMNNAME_View_Name, "Task_View");
+				where = new FDSQLWhere(I_FD_View.COLUMNNAME_View_Name, "Task_View");
 				/*
 				 * クリックした情報のIDを取得する。
 				 */
 				int selectNo = table.getSelectionModel().getSelectedIndex();
 				TaskTableData data = table.getItems().get(selectNo);
+				System.out.println(data.getTitle());
 				
 				FX_TaskView taskview = new FX_TaskView();
 				taskview.setEnv(env);
@@ -147,7 +148,9 @@ public class FX_TaskList extends Application {
 			table.getItems().add(data);
 		}
 
-		Scene scene = new Scene(root, 400, 300);
+		Scene scene = new Scene(root
+				, view.getintOfValue(I_FD_View.COLUMNNAME_Initial_Width)
+				, view.getintOfValue(I_FD_View.COLUMNNAME_Initial_Height));
 		stage.setScene(scene);
 		stage.show();
 	}

@@ -36,8 +36,6 @@ public class TskTest {
 		 */
 		
 		//タスク情報一覧画面表示
-//		FX_TaskList taskList = new FX_TaskList();
-//		taskList.setEnv(env);
 		FX_TaskList.main(env);
 		System.out.println("test");
 	}
