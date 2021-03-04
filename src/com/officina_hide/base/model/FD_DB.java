@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 
+import com.officina_hide.base.common.FDSQLWhere;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_Item;
 import com.officina_hide.base.common.FD_Items;
@@ -326,6 +327,53 @@ public class FD_DB implements I_FD_DB {
 			return conn.createStatement();
 		} catch (SQLException e) {
 			return null;
+		}
+	}
+
+	/**
+	 * 情報取得[Get Information.]<br>
+	 * 指定されたテーブルから指定された条件を満たす情報を１件抽出する。<br>
+	 * Extract one piece of information that satisfies the conditions from the table.<br>
+	 * @param env 環境情報
+	 * @param tableName テーブル名
+	 * @param where 条件
+	 */
+	public void load(FD_EnvData env, String tableName, FDSQLWhere where) {
+		Statement stmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT * FROM ").append(tableName).append(" ");
+			sql.append("WHERE ").append(where.toString()).append(" ");
+			connection(env);
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql.toString());
+			if(rs.next()) {
+				for(FD_Item item : itemList.getItemList()) {
+					switch(item.getItemType()) {
+					case COLUMNTYPE_FD_Text:
+					case COLUMNTYPE_FD_Field_Text:
+					case COLUMNTYPE_FD_YesNo:
+						item.setItemData(rs.getString(item.getItemName()));
+						break;
+					case COLUMNTYPE_FD_Information_ID:
+					case COLUMNTYPE_FD_Number:
+						item.setItemData(rs.getInt(item.getItemName()));
+						break;
+					case COLUMNTYPE_FD_Date:
+						if(rs.getTimestamp(item.getItemName()) != null) {
+							item.setItemData(new Date(rs.getTimestamp(item.getItemName()).getTime()));
+						} else {
+							item.setItemData(null);
+						}
+						break;
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBclose(stmt, rs);
 		}
 	}
 }

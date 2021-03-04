@@ -51,7 +51,7 @@ public class X_FD_View extends FD_DB implements I_FD_View {
 	public X_FD_View(FD_EnvData env, FDSQLWhere where) {
 		FD_DB_Utility dbUtil = new FD_DB_Utility();
 		dbUtil.initializeItemList(env, TABLE_ID, itemList);
-		
+		load(env, Table_Name, where);
 	}
 
 	/**

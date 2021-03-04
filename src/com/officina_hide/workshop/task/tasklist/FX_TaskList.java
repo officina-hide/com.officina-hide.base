@@ -16,7 +16,6 @@ import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Task;
 import com.officina_hide.base.model.X_FD_Task;
-import com.officina_hide.fx.model.FDView;
 import com.officina_hide.fx.model.I_FD_View;
 import com.officina_hide.fx.model.X_FD_View;
 
@@ -51,11 +50,12 @@ public class FX_TaskList extends Application {
 		 * 画面情報取得
 		 */
 		FDSQLWhere where = new FDSQLWhere(I_FD_View.COLUMNNAME_View_Name, "Task_List");
+		X_FD_View view = new X_FD_View(env, where);
+		System.out.println("load view : "+view.getValueOfString(I_FD_View.COLUMNNAME_View_Name));
 		/*
 		 * タスク情報取得
 		 */
 		List<X_FD_Task> tasklist = getDataList();
-		System.out.println(tasklist.size());
 		
 		/*
 		 * 日付項目については、表示の書式を設定する関係上、テーブル項目用のクラス(FD_Date)を作成。<br>
