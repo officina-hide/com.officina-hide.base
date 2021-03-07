@@ -57,8 +57,10 @@ public class CreateTaskInformation {
 		//タスク一覧画面情報生成
 		int tlId = view.addData(env, 0, "Task_List", 600, 400);
 		vcolumn.addData(env, 0, tlId, "status", "状況");
+		
 		//タスク照会画面情報生成
-		view.addData(env, 0, "Task_View", 400, 400);
+		int tvId = view.addData(env, 0, "Task_View", 400, 400);
+		vcolumn.addData(env, 0, tvId, "status", "状況");
 		
 		//タスク情報生成
 		FDTask task = new FDTask();
