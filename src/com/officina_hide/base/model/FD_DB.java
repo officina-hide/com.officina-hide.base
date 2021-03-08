@@ -6,12 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
+import java.util.List;
 
 import com.officina_hide.base.common.FDSQLWhere;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_Item;
 import com.officina_hide.base.common.FD_Items;
 import com.officina_hide.base.common.FD_NumberingUtility;
+import com.officina_hide.fx.model.X_FD_ViewColumn;
 
 /**
  * データベース操作クラス[Database operation class]<br>
@@ -375,5 +377,10 @@ public class FD_DB implements I_FD_DB {
 		} finally {
 			DBclose(stmt, rs);
 		}
+	}
+
+	public List<X_FD_ViewColumn> getDataList(FD_EnvData env, String tableName, FDSQLWhere where) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
 	}
 }

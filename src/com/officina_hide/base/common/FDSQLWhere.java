@@ -31,6 +31,21 @@ public class FDSQLWhere implements I_FD_DB {
 		list.add(data);
 	}
 	
+	/**
+	 * コンストラクター<br>
+	 * 実体化時に、指定された項目に対して数値情報のwhere句を生成する。
+	 * At the time of instance, the where clause of numerical information is generated for the specified item.
+	 * @param columnName 項目名
+	 * @param value 数値情報
+	 */
+	public FDSQLWhere(String columnName, int value) {
+		whereData data = new whereData();
+		data.setColumnName(columnName);
+		data.setColumnData(value);
+		data.setColumnType(COLUMNTYPE_ID_FD_Number);
+		list.add(data);
+	}
+
 	@Override
 	public String toString() {
 		/*
