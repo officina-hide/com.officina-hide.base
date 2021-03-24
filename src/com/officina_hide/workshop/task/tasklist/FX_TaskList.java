@@ -17,7 +17,9 @@ import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Task;
 import com.officina_hide.base.model.X_FD_Task;
 import com.officina_hide.fx.model.I_FD_View;
+import com.officina_hide.fx.model.I_FD_ViewColumn;
 import com.officina_hide.fx.model.X_FD_View;
+import com.officina_hide.fx.model.X_FD_ViewColumn;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -50,8 +52,13 @@ public class FX_TaskList extends Application {
 		/*
 		 * 画面情報取得
 		 */
+		FD_DB_Utility dutil = new FD_DB_Utility();
 		where = new FDSQLWhere(I_FD_View.COLUMNNAME_View_Name, "Task_List");
 		X_FD_View view = new X_FD_View(env, where);
+		where = new FDSQLWhere(I_FD_ViewColumn.COLUMNNAME_FD_View_ID
+				, view.getintOfValue(I_FD_View.COLUMNNAME_FD_View_ID));
+		List<X_FD_ViewColumn> clist = dutil.getDataList(env, I_FD_ViewColumn.Table_Name, where);
+		System.out.println(clist.size());
 		/*
 		 * タスク情報取得
 		 */
