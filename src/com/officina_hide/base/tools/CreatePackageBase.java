@@ -15,13 +15,16 @@ package com.officina_hide.base.tools;
 public class CreatePackageBase {
 
 	/**
+	 * @since 1.00 2021/03/31
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		// TODO 開始メッセージ
+		// TODO 環境情報の取得
 		//構築クラス呼び出し
 		CreateBaseInformation cbi = new CreateBaseInformation();
 		cbi.execute();
+		// TODO 終了メッセージ
 	}
 
 }
