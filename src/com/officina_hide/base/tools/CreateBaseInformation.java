@@ -25,7 +25,19 @@ public class CreateBaseInformation {
 		/*
 		 * テーブル情報テーブルの生成（dicument install内のSQLを使用して生成する。)
 		 */
+		createTableByXML("FD_Table", "com.officina_hide.base.model");
 		//テーブル項目情報テーブルの生成
+	}
+
+	/**
+	 * XMLファイルからテーブルを生成する。<br>
+	 * Generate a table from an XML file.
+	 * @param name XMLファイル名
+	 * @param libraryURI 関連クラス保管場所
+	 */
+	private void createTableByXML(String name, String libraryURI) {
+		File file = new File(new File(".").getAbsoluteFile()+"\\src\\"+libraryURI.replaceAll("\\.", "\\\\\\\\"));
+		System.out.println(file.getAbsolutePath()+":"+file.exists());
 	}
 
 }
