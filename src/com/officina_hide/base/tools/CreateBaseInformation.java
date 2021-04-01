@@ -25,7 +25,6 @@ public class CreateBaseInformation {
 		/*
 		 * テーブル情報テーブルの生成（dicument install内のSQLを使用して生成する。)
 		 */
-		File file = new File("./document");
 		//テーブル項目情報テーブルの生成
 	}
 
