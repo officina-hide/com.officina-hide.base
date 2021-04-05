@@ -1,6 +1,6 @@
 package com.officina_hide.base.tools;
 
-import java.io.File;
+import com.officina_hide.base.model.FD_Table;
 
 /**
  * 基盤情報構築クラス<br>
@@ -22,22 +22,7 @@ public class CreateBaseInformation {
 	 * @since 1.00 2021/03/31
 	 */
 	public void execute() {
-		/*
-		 * テーブル情報テーブルの生成（dicument install内のSQLを使用して生成する。)
-		 */
-		createTableByXML("FD_Table", "com.officina_hide.base.model");
-		//テーブル項目情報テーブルの生成
+		//テーブル情報生成
+		FD_Table table = new FD_Table();
 	}
-
-	/**
-	 * XMLファイルからテーブルを生成する。<br>
-	 * Generate a table from an XML file.
-	 * @param name XMLファイル名
-	 * @param libraryURI 関連クラス保管場所
-	 */
-	private void createTableByXML(String name, String libraryURI) {
-		File file = new File(new File(".").getAbsoluteFile()+"\\src\\"+libraryURI.replaceAll("\\.", "\\\\\\\\"));
-		System.out.println(file.getAbsolutePath()+":"+file.exists());
-	}
-
 }
