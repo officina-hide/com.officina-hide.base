@@ -1,5 +1,7 @@
 package com.officina_hide.base.model;
 
+import com.officina_hide.base.common.FD_EnvData;
+
 /**
  * テーブル情報[Table information class]<br>
  * <p>テーブル情報は基盤情報の一つで、非標準の方法で生成されます。</p>
@@ -9,5 +11,41 @@ package com.officina_hide.base.model;
  * @since 2021/04/05
  */
 public class FD_Table {
+
+	/** 環境情報 */
+	private FD_EnvData env;
+	
+	/**
+	 * コンストラクター<br>
+	 * 環境情報の保存[Ensure environmental information]<br>
+	 * @param env 環境情報
+	 */
+	public FD_Table(FD_EnvData env) {
+		this.env = env;
+	}
+
+	/**
+	 * テーブル情報生成[Table information generation]<br>
+	 */
+	public void createTable() {
+		/*
+		 * テーブル情報が生成済みかどうかをチェックする。<br>
+		 * 未生成の時は、外部の生成用SQL文を読み込み、テーブル生成と情報の書き込みを行う。<br>
+		 * Check if the table information has been generated.<br>
+		 * When it is not generated, the external SQL statement is read, the table is generated and the information is written.<br>
+		 */
+		if(exitTable(I_FD_Table.Table_Name));
+	}
+
+	/**
+	 * テーブル存在確認[Check for the existence of the table.]<br>
+	 * @param tableName テーブル名
+	 * @return true - 存在する、false - 存在しない。<br>
+	 *  true - exists, false - not exists
+	 */
+	private boolean exitTable(String tableName) {
+		boolean chk = false;
+		return chk;
+	}
 	
 }

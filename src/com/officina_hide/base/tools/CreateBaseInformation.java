@@ -1,5 +1,6 @@
 package com.officina_hide.base.tools;
 
+import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Table;
 
 /**
@@ -22,7 +23,10 @@ public class CreateBaseInformation {
 	 * @since 1.00 2021/03/31
 	 */
 	public void execute() {
+		//環境情報の取得
+		FD_EnvData env = new FD_EnvData();
 		//テーブル情報生成
-		FD_Table table = new FD_Table();
+		FD_Table table = new FD_Table(env);
+		table.createTable();
 	}
 }
