@@ -1,5 +1,9 @@
 package com.officina_hide.base.model;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.Date;
+
 import com.officina_hide.base.common.FD_EnvData;
 
 /**
@@ -14,6 +18,11 @@ public class FD_Table {
 
 	/** 環境情報 */
 	private FD_EnvData env;
+	/** 
+	 * TODO Connection汎用化時に除去
+	 * データベース接続情報
+	 */
+	protected static Connection conn;
 	
 	/**
 	 * コンストラクター<br>
@@ -38,6 +47,7 @@ public class FD_Table {
 	}
 
 	/**
+	 * TODO 汎用化予定
 	 * テーブル存在確認[Check for the existence of the table.]<br>
 	 * @param tableName テーブル名
 	 * @return true - 存在する、false - 存在しない。<br>
@@ -45,7 +55,28 @@ public class FD_Table {
 	 */
 	private boolean exitTable(String tableName) {
 		boolean chk = false;
+		connection(env);
 		return chk;
+	}
+
+	/**
+	 * TODO 汎用化予定
+	 * データベース接続[Database Connection]<br>
+	 * @param env 環境情報[Environment Information]
+	 */
+	private void connection(FD_EnvData env) {
+		if(conn == null) {
+			try {
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				StringBuffer url  = new StringBuffer().append("jdbc:mysql://")
+						.append(env.getDB_Host())
+						.append(":3306/")
+						.append(env.getDB_Name());			} catch (ClassNotFoundException e) {
+				conn = DriverManager.getConnection(url.toString(), env.getDB_User(), env.getDB_Password());
+				System.out.println(new Date() + " : "+"Database Connected.");
+				e.printStackTrace();
+			}
+		}
 	}
 	
 }
