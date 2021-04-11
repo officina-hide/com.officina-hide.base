@@ -2,6 +2,7 @@ package com.officina_hide.base.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
@@ -68,12 +69,13 @@ public class FD_Table {
 		if(conn == null) {
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
-				StringBuffer url  = new StringBuffer().append("jdbc:mysql://")
-						.append(env.getDB_Host())
-						.append(":3306/")
-						.append(env.getDB_Name());			} catch (ClassNotFoundException e) {
-				conn = DriverManager.getConnection(url.toString(), env.getDB_User(), env.getDB_Password());
+				StringBuffer url  = new StringBuffer().append("jdbc:mysql://www.officina-hide.com:3306/FDBASE");
+//						.append(env.getDB_Host())
+//						.append(":3306/")
+//						.append(env.getDB_Name());			
+				conn = DriverManager.getConnection(url.toString(), "fdadmin", "fdadminqAz*01");
 				System.out.println(new Date() + " : "+"Database Connected.");
+			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}
 		}
