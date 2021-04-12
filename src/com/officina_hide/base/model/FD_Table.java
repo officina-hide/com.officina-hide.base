@@ -1,5 +1,6 @@
 package com.officina_hide.base.model;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -44,7 +45,24 @@ public class FD_Table {
 		 * Check if the table information has been generated.<br>
 		 * When it is not generated, the external SQL statement is read, the table is generated and the information is written.<br>
 		 */
-		if(exitTable(I_FD_Table.Table_Name));
+		if(exitTable(I_FD_Table.Table_Name) == false) {
+			String sql = getSQLParameter("CreateTable");
+		}
+	}
+
+	/**
+	 * SQLテンプレート取得[Get SQL template]<br>
+	 * 指定された名称を持つSQLテンプレートを取得する。<br>
+	 * Gets the SQL template with the specified name.<br>
+	 * @author officine-hide.com
+	 * @since 1.00 2021/04/12
+	 * @param paramName パラメータ名[Parameter name]
+	 * @return SQLテンプレート文[SQL template string]
+	 */
+	private String getSQLParameter(String paramName) {
+		String path = new File(".").getAbsolutePath()+"/document/SQL/Template/";
+		System.out.println(path);
+		return null;
 	}
 
 	/**
