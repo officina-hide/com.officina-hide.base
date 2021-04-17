@@ -2,6 +2,8 @@ package com.officina_hide.base.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
@@ -15,7 +17,7 @@ import com.officina_hide.base.common.FD_EnvData;
  * @version 1.00
  * @since 2021/04/05
  */
-public class FD_Table {
+public class FD_Table implements I_FD_DB {
 
 	/** 環境情報 */
 	private FD_EnvData env;
@@ -44,7 +46,11 @@ public class FD_Table {
 		 * Check if the table information has been generated.<br>
 		 * When it is not generated, the external SQL statement is read, the table is generated and the information is written.<br>
 		 */
-		if(exitTable(I_FD_Table.Table_Name));
+		if(exitTable(I_FD_Table.Table_Name) == false) {
+			System.out.println("FD_Table not created!");
+			//テーブル情報の生成を開始する。[Start generating table information.]
+			
+		}
 	}
 
 	/**
@@ -56,7 +62,21 @@ public class FD_Table {
 	 */
 	private boolean exitTable(String tableName) {
 		boolean chk = false;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		connection(env);
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT * FROM information_schema.tables WHERE table_name = ?");
+			stmt = conn.prepareStatement(sql.toString());
+			stmt.setString(1, tableName);
+			rs = stmt.executeQuery();
+			if(rs.next()) {
+				chk = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return chk;
 	}
 
@@ -70,9 +90,6 @@ public class FD_Table {
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				StringBuffer url  = new StringBuffer().append("jdbc:mysql://www.officina-hide.com:3306/FDBASE");
-//						.append(env.getDB_Host())
-//						.append(":3306/")
-//						.append(env.getDB_Name());			
 				conn = DriverManager.getConnection(url.toString(), "fdadmin", "fdadminqAz*01");
 				System.out.println(new Date() + " : "+"Database Connected.");
 			} catch (ClassNotFoundException | SQLException e) {
