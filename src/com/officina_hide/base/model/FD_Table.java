@@ -1,10 +1,16 @@
 package com.officina_hide.base.model;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
@@ -47,10 +53,62 @@ public class FD_Table implements I_FD_DB {
 		 * When it is not generated, the external SQL statement is read, the table is generated and the information is written.<br>
 		 */
 		if(exitTable(I_FD_Table.Table_Name) == false) {
+<<<<<<< HEAD
 			System.out.println("FD_Table not created!");
 			//テーブル情報の生成を開始する。[Start generating table information.]
 			
 		}
+=======
+			dropTable(I_FD_Table.Table_Name);
+		}
+	}
+
+	/**
+	 * テーブル削除[Drop of Table]<br>
+	 * @param tableName テーブル名[name of Table]
+	 */
+	private void dropTable(String tableName) {
+		String sql = getSQLParameter("drop");
+		try {
+			sql = sql.replaceAll("\\?", tableName);
+			connection(env);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			System.out.println(pstmt.toString());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * SQLテンプレート取得[Get SQL template]<br>
+	 * 指定された名称を持つSQLテンプレートを取得する。<br>
+	 * Gets the SQL template with the specified name.<br>
+	 * @author officine-hide.com
+	 * @since 1.00 2021/04/12
+	 * @param paramName パラメータ名[Parameter name]
+	 * @return SQLテンプレート文[SQL template string]
+	 */
+	private String getSQLParameter(String paramName) {
+		File currentdir = new File("."+"/document/SQL/Template/");
+		File sqlFile = new File(currentdir.getAbsolutePath() + "\\" + paramName + ".sql");
+		BufferedReader reader = null;
+		StringBuffer sql = new StringBuffer();
+		try {
+			reader = new BufferedReader(new FileReader(sqlFile));
+			while(reader.ready()) {
+				sql.append(reader.readLine()).append(" ");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return sql.toString();
+>>>>>>> aecf6a5149374e7ec52fcc0e219fe981a93eba56
 	}
 
 	/**
