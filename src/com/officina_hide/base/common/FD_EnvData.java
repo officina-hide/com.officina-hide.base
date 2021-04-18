@@ -8,4 +8,14 @@ package com.officina_hide.base.common;
  */
 public class FD_EnvData {
 
+	/** 処理レベル */
+	private int runLevel;
+
+	public int getRunLevel() {
+		return runLevel;
+	}
+
+	public void setRunLevel(int runLevel) {
+		this.runLevel = runLevel;
+	}
 }

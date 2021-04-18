@@ -10,7 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.PreparedStatement;
 import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
@@ -52,19 +51,34 @@ public class FD_Table implements I_FD_DB {
 		 * Check if the table information has been generated.<br>
 		 * When it is not generated, the external SQL statement is read, the table is generated and the information is written.<br>
 		 */
-		if(exitTable(I_FD_Table.Table_Name) == false) {
-<<<<<<< HEAD
+		if(exitTable(I_FD_Table.Table_Name) == false || env.getRunLevel() == 0) {
 			System.out.println("FD_Table not created!");
-			//テーブル情報の生成を開始する。[Start generating table information.]
+			dropTable(I_FD_Table.Table_Name);
+			create();
 			
 		}
-=======
-			dropTable(I_FD_Table.Table_Name);
+	}
+
+	/**
+	 * テーブル生成[Table generation]<br>
+	 * @author officina-hide.com
+	 * @since 1.00 2021/04/17
+	 */
+	private void create() {
+		String sql = getSQLParameter("Create_"+I_FD_Table.Table_Name);
+		try {
+			connection(env);
+			Statement stmt = conn.createStatement();
+			stmt.execute(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 
 	/**
 	 * テーブル削除[Drop of Table]<br>
+	 * @author officina-hide.com
+	 * @since 1.00 2021/04/16
 	 * @param tableName テーブル名[name of Table]
 	 */
 	private void dropTable(String tableName) {
@@ -73,7 +87,7 @@ public class FD_Table implements I_FD_DB {
 			sql = sql.replaceAll("\\?", tableName);
 			connection(env);
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			System.out.println(pstmt.toString());
+			pstmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -96,7 +110,7 @@ public class FD_Table implements I_FD_DB {
 		try {
 			reader = new BufferedReader(new FileReader(sqlFile));
 			while(reader.ready()) {
-				sql.append(reader.readLine()).append(" ");
+				sql.append(reader.readLine()).append(System.lineSeparator());
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -108,7 +122,6 @@ public class FD_Table implements I_FD_DB {
 			}
 		}
 		return sql.toString();
->>>>>>> aecf6a5149374e7ec52fcc0e219fe981a93eba56
 	}
 
 	/**

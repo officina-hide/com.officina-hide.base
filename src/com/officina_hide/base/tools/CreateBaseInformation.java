@@ -17,14 +17,19 @@ import com.officina_hide.base.model.FD_Table;
  */
 public class CreateBaseInformation {
 
+	//環境情報の取得
+	FD_EnvData env = new FD_EnvData();
+
+	public CreateBaseInformation(FD_EnvData env) {
+		this.env = env;
+	}
+
 	/**
 	 * 構築実行<br>
 	 * Build execution.
 	 * @since 1.00 2021/03/31
 	 */
 	public void execute() {
-		//環境情報の取得
-		FD_EnvData env = new FD_EnvData();
 		//テーブル情報生成
 		FD_Table table = new FD_Table(env);
 		table.createTable();
