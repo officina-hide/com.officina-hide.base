@@ -52,11 +52,16 @@ public class FD_Table {
 		 */
 		if(exitTable(I_FD_Table.Table_Name) == false) {
 			dropTable(I_FD_Table.Table_Name);
+			String sql = getSQLParameter("Create_"+I_FD_Table.Table_Name);
+			System.out.println(sql);
 		}
 	}
 
 	/**
+	 * TODO 汎用化予定
 	 * テーブル削除[Drop of Table]<br>
+	 * @author officine-hide.com
+	 * @since 1.00 2021/04/16
 	 * @param tableName テーブル名[name of Table]
 	 */
 	private void dropTable(String tableName) {
@@ -72,6 +77,7 @@ public class FD_Table {
 	}
 
 	/**
+	 * TODO 汎用化予定
 	 * SQLテンプレート取得[Get SQL template]<br>
 	 * 指定された名称を持つSQLテンプレートを取得する。<br>
 	 * Gets the SQL template with the specified name.<br>

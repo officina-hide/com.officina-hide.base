@@ -1,6 +1,3 @@
-/* FD_Table削除 */
-DROP TABLE IF EXISTS FD_Table;
-
 /* FD_TAble生成 */
 CREATE TABLE IF NOT EXISTS FD_Table 
 (
