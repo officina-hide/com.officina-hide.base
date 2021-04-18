@@ -1,5 +1,7 @@
 package com.officina_hide.base.tools;
 
+import com.officina_hide.base.common.FD_EnvData;
+
 /**
  * パッケージの基盤情報を構築するためのプロセスを起動するクラス。<br>
  * A class that launches a process to build the base information of a package.<br>
@@ -13,16 +15,20 @@ package com.officina_hide.base.tools;
  * @since 2021/03/31
  */
 public class CreatePackageBase {
+	//環境情報の取得
+	private static FD_EnvData env = new FD_EnvData();
 
 	/**
 	 * @since 1.00 2021/03/31
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		/** 処理レベルをセットする。 */
+		env.setRunLevel(0);
 		// TODO 開始メッセージ
 		// TODO 環境情報の取得
 		//構築クラス呼び出し
-		CreateBaseInformation cbi = new CreateBaseInformation();
+		CreateBaseInformation cbi = new CreateBaseInformation(env);
 		cbi.execute();
 		// TODO 終了メッセージ
 	}
