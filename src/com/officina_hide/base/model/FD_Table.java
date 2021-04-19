@@ -55,8 +55,18 @@ public class FD_Table implements I_FD_DB {
 			System.out.println("FD_Table not created!");
 			dropTable(I_FD_Table.Table_Name);
 			create();
-			
+			fileDataImport("Insert_"+I_FD_Table.Table_Name+".dat");
 		}
+	}
+
+	/**
+	 * ファイルからデータを挿入する。[Insert data from a file.]<br>
+	 * @author officine-hide.com
+	 * @since 1.00 2021/04/19
+	 * @param dataFileName 挿入ファイル[Insert data file]
+	 */
+	private void fileDataImport(String dataFileName) {
+		
 	}
 
 	/**
