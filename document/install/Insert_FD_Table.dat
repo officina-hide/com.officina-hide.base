@@ -1,0 +1,4 @@
+FD_Table_Name=FD_Table
+FD_Name=テーブル情報
+FD_Comment=テーブルに関する情報を管理する。
+FD_Group_ID=<System>

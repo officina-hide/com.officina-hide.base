@@ -3,7 +3,8 @@ CREATE TABLE IF NOT EXISTS FD_Table
 (
 FD_Table_ID int(10) unsigned NOT NULL COMMENT 'テーブル情報ID',
 FD_Table_Name varchar(100) COMMENT 'テーブル識別名',
-FD_Name varchar(100) COMMENT 'テーブル表示名',
+FD_Name varchar(100) COMMENT '表示名',
+FD_Comment text COMMENT '説明',
 FD_Group_ID int(10) unsigned COMMENT '管理グループID',
 FD_Created datetime DEFAULT NULL COMMENT '登録日',
 FD_CreatedBy int(10) unsigned DEFAULT NULL COMMENT '登録者ID',

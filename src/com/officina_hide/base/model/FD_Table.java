@@ -2,6 +2,7 @@ package com.officina_hide.base.model;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -11,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
+import java.util.Properties;
 
 import com.officina_hide.base.common.FD_EnvData;
 
@@ -66,7 +68,15 @@ public class FD_Table implements I_FD_DB {
 	 * @param dataFileName 挿入ファイル[Insert data file]
 	 */
 	private void fileDataImport(String dataFileName) {
-		
+		try {
+			File currentdir = new File("."+"/document/install/");
+			File dataFile = new File(currentdir.getAbsolutePath() + "\\" + dataFileName);
+			FileInputStream fs = new FileInputStream(dataFile);
+			Properties prop = new Properties();
+			prop.load(fs);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
