@@ -10,4 +10,6 @@ public class I_FD_Table {
 
 	/** テーブル名 */
 	public static final String Table_Name = "FD_Table";
+	/** テーブル項目 : テーブル情報ID */
+	public static final String COLUMNNAME_FD_Table_ID = Table_Name+"_ID";
 }

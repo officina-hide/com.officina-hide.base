@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.Properties;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_ItemCollection;
 
 /**
  * テーブル情報[Table information class]<br>
@@ -41,6 +42,20 @@ public class FD_Table implements I_FD_DB {
 	 */
 	public FD_Table(FD_EnvData env) {
 		this.env = env;
+		/** 項目リスト作成 */
+		FD_ItemCollection itemList = createItemList();
+	}
+
+	/**
+	 * テーブル項目リスト生成[Table item list generation]<br>
+	 * @author officine-hide.com
+	 * @since 1.00 2021/04/23
+	 * @return テーブル項目リスト[Table item list]
+	 */
+	private FD_ItemCollection createItemList() {
+		FD_ItemCollection itemList = new FD_ItemCollection();
+		itemList.add(I_FD_Table.COLUMNNAME_FD_Table_ID, null, I_FD_DB.Item_Value_Type_ID);
+		return itemList;
 	}
 
 	/**

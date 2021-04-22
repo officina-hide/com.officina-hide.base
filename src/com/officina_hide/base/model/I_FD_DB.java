@@ -10,4 +10,7 @@ public interface I_FD_DB {
 
 	/** SQL文補助 */
 	public final static String FD_SQ = "'";	//シングルコーテーション
+	
+	/** テーブル項目種別 : ID */
+	public static final String Item_Value_Type_ID = "ID";
 }
