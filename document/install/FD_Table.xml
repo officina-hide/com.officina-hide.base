@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<table>
-	<name>FD_Table</name>
-	<comment>テーブルの情報を管理する。</comment>
-</table>
+<Table name="FD_Table">
+	<column name="FD_Talbe_ID" type="ID" comment="テーブル情報ID"></column>
+	<column name="FD_Table_Name" type="String" length="100" comment="テーブル名"></column>
+	<column name="FD_DisplayName" type="String" length="256"  comment="テーブル表示名"></column>
+	<column name="FD_Description" type="Text"  comment="テーブルの情報を管理する。"></column>
+	<column name="FD_Group_ID" type="ID"  comment="グループ情報ID"></column>
+	<entry>
+		<data table="FD_Table" FD_Table_Name="FD_Table" FD_DisplayName="テーブル情報"
+		 FD_Description="テーブルの情報を管理する管理する。" FD_Group_ID="&lt;System&gt;"></data>
+	</entry>
+</Table>

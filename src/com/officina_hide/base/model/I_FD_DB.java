@@ -13,4 +13,6 @@ public interface I_FD_DB {
 	
 	/** テーブル項目種別 : ID */
 	public static final String Item_Value_Type_ID = "ID";
+	/** テーブル項目種別 : 文字列 */
+	public static final String Item_Value_Type_String = "String";
 }

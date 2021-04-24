@@ -14,6 +14,15 @@ import java.sql.Statement;
 import java.util.Date;
 import java.util.Properties;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_ItemCollection;
 
@@ -29,6 +38,7 @@ public class FD_Table implements I_FD_DB {
 
 	/** 環境情報 */
 	private FD_EnvData env;
+	private FD_ItemCollection itemList;
 	/** 
 	 * TODO Connection汎用化時に除去
 	 * データベース接続情報
@@ -43,7 +53,7 @@ public class FD_Table implements I_FD_DB {
 	public FD_Table(FD_EnvData env) {
 		this.env = env;
 		/** 項目リスト作成 */
-		FD_ItemCollection itemList = createItemList();
+		itemList = createItemList();
 	}
 
 	/**
@@ -55,25 +65,45 @@ public class FD_Table implements I_FD_DB {
 	private FD_ItemCollection createItemList() {
 		FD_ItemCollection itemList = new FD_ItemCollection();
 		itemList.add(I_FD_Table.COLUMNNAME_FD_Table_ID, null, I_FD_DB.Item_Value_Type_ID);
+		itemList.add(I_FD_Table.COLUMNNAME_FD_Table_Name, null, I_FD_DB.Item_Value_Type_String);
 		return itemList;
 	}
 
 	/**
 	 * テーブル情報生成[Table information generation]<br>
+	 * <p>本メソッドが呼び出された時は、XML情報よりテーブル生成と情報登録を行う。</p>
+	 * <p>When this method is called, table generation and information registration are performed from XML information.</p>
+	 * @author officina-hide.com
+	 * @since 2021/04/05
 	 */
 	public void createTable() {
-		/*
-		 * テーブル情報が生成済みかどうかをチェックする。<br>
-		 * 未生成の時は、外部の生成用SQL文を読み込み、テーブル生成と情報の書き込みを行う。<br>
-		 * Check if the table information has been generated.<br>
-		 * When it is not generated, the external SQL statement is read, the table is generated and the information is written.<br>
-		 */
-		if(exitTable(I_FD_Table.Table_Name) == false || env.getRunLevel() == 0) {
-			System.out.println("FD_Table not created!");
-			dropTable(I_FD_Table.Table_Name);
-			create();
-			fileDataImport("Insert_"+I_FD_Table.Table_Name+".dat");
+		try {
+			File currentdir = new File("."+"/document/install/");
+			File xmlFile = new File(currentdir.getAbsolutePath() + "\\FD_Table.xml");
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			Document document = builder.parse(xmlFile);
+			Element tableData = document.getDocumentElement();
+			NodeList table = tableData.getElementsByTagName("column");
+			//生成用SQL文を作成する。
+			
+		} catch (ParserConfigurationException | SAXException | IOException e) {
+			e.printStackTrace();
 		}
+		
+		
+//		/*
+//		 * テーブル情報が生成済みかどうかをチェックする。<br>
+//		 * 未生成の時は、外部の生成用SQL文を読み込み、テーブル生成と情報の書き込みを行う。<br>
+//		 * Check if the table information has been generated.<br>
+//		 * When it is not generated, the external SQL statement is read, the table is generated and the information is written.<br>
+//		 */
+//		if(exitTable(I_FD_Table.Table_Name) == false || env.getRunLevel() == 0) {
+//			System.out.println("FD_Table not created!");
+//			dropTable(I_FD_Table.Table_Name);
+//			create();
+//			fileDataImport("Insert_"+I_FD_Table.Table_Name+".dat");
+//		}
 	}
 
 	/**
@@ -89,6 +119,8 @@ public class FD_Table implements I_FD_DB {
 			FileInputStream fs = new FileInputStream(dataFile);
 			Properties prop = new Properties();
 			prop.load(fs);
+			//テーブル項目リストからデータの各項目情報をセットする。
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
