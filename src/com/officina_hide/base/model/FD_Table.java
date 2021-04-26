@@ -25,6 +25,7 @@ import org.xml.sax.SAXException;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_ItemCollection;
+import com.officina_hide.base.sql.FD_sql;
 
 /**
  * テーブル情報[Table information class]<br>
@@ -39,6 +40,8 @@ public class FD_Table implements I_FD_DB {
 	/** 環境情報 */
 	private FD_EnvData env;
 	private FD_ItemCollection itemList;
+	/** SQLクラス */
+	FD_sql sq = new FD_sql();
 	/** 
 	 * TODO Connection汎用化時に除去
 	 * データベース接続情報
@@ -86,7 +89,7 @@ public class FD_Table implements I_FD_DB {
 			Element tableData = document.getDocumentElement();
 			NodeList table = tableData.getElementsByTagName("column");
 			//生成用SQL文を作成する。
-			
+			String sql = sq.createSqlStatement(env, FD_sql.CREATE_TABLE, tableData);
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			e.printStackTrace();
 		}
