@@ -15,4 +15,8 @@ public interface I_FD_DB {
 	public static final String Item_Value_Type_ID = "ID";
 	/** テーブル項目種別 : 文字列 */
 	public static final String Item_Value_Type_String = "String";
+	/** テーブル項目種別 : テキスト */
+	public static final String Item_Value_Type_Text = "Text";
+	/** テーブル項目種別 : 日付 */
+	public static final String Item_Value_Type_Date = "Date";
 }

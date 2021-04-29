@@ -18,6 +18,9 @@ public class FD_sql implements I_FD_DB {
 	public static final String CREATE_TABLE = "CreateTable";
 	private static final String ENTRY_DATA_FD_DisplayName = "FD_DisplayName";
 	private static final String COLUMN_NAME = "name";
+	private static final String COLUMN_TYPE = "type";
+	private static final String COLUMN_COMMENT = "comment";
+	private static final String COLUMN_LENGTH = "length";
 
 	/**
 	 * SQLステートメント生成[SQL statement generation]<br>
@@ -65,6 +68,19 @@ public class FD_sql implements I_FD_DB {
 				sql.append(",");
 			}
 			sql.append(column.getAttribute(COLUMN_NAME)).append(" ");
+			//項目種別
+			switch(column.getAttribute(COLUMN_TYPE)) {
+			case Item_Value_Type_ID:
+				sql.append("int(10) unsigned NOT NULL").append(" ");
+				break;
+			case Item_Value_Type_String:
+				sql.append("varchar(").append(column.getAttribute(COLUMN_LENGTH)).append(")").append(" ");
+				break;
+			case Item_Value_Type_Date:
+				break;
+			}
+			//コメント
+			sql.append("COMMENT ").append(FD_SQ).append(column.getAttribute(COLUMN_COMMENT)).append(FD_SQ).append(" ");
 		}
 		sql.append(") ");
 		sql.append("ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=")
