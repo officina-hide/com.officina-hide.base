@@ -90,6 +90,7 @@ public class FD_Table implements I_FD_DB {
 			NodeList table = tableData.getElementsByTagName("column");
 			//生成用SQL文を作成する。
 			String sql = sq.createSqlStatement(env, FD_sql.CREATE_TABLE, tableData);
+			System.out.println(sql);
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			e.printStackTrace();
 		}
