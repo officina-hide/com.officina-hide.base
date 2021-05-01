@@ -1,9 +1,7 @@
 package com.officina_hide.base.model;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,7 +18,6 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.officina_hide.base.common.FD_EnvData;
@@ -80,34 +77,30 @@ public class FD_Table implements I_FD_DB {
 	 * @since 2021/04/05
 	 */
 	public void createTable() {
+		Statement stmt = null;
 		try {
-			File currentdir = new File("."+"/document/install/");
-			File xmlFile = new File(currentdir.getAbsolutePath() + "\\FD_Table.xml");
+			File currentdir = new File("."+"/document/install/");	// TODO 環境変数化
+			File xmlFile = new File(currentdir.getAbsolutePath() + "\\FD_Table.xml");	// TODO 環境変数化
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			Document document = builder.parse(xmlFile);
 			Element tableData = document.getDocumentElement();
-			NodeList table = tableData.getElementsByTagName("column");
+			connection(env);
+			stmt = conn.createStatement();
+			// TODO 生成に関するメッセージが必要(2020/05/01)
+			//既登録分の削除用SQL文を生成する生成する。
+			String sql = sq.createSqlStatement(env, FD_sql.DELETE_TABLE, tableData);
+			stmt.addBatch(sql);
 			//生成用SQL文を作成する。
-			String sql = sq.createSqlStatement(env, FD_sql.CREATE_TABLE, tableData);
-			System.out.println(sql);
-		} catch (ParserConfigurationException | SAXException | IOException e) {
+			sql = sq.createSqlStatement(env, FD_sql.CREATE_TABLE, tableData);
+			stmt.addBatch(sql);
+			stmt.executeBatch();
+			//テーブル情報登録
+			
+			
+		} catch (ParserConfigurationException | SAXException | IOException | SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
-//		/*
-//		 * テーブル情報が生成済みかどうかをチェックする。<br>
-//		 * 未生成の時は、外部の生成用SQL文を読み込み、テーブル生成と情報の書き込みを行う。<br>
-//		 * Check if the table information has been generated.<br>
-//		 * When it is not generated, the external SQL statement is read, the table is generated and the information is written.<br>
-//		 */
-//		if(exitTable(I_FD_Table.Table_Name) == false || env.getRunLevel() == 0) {
-//			System.out.println("FD_Table not created!");
-//			dropTable(I_FD_Table.Table_Name);
-//			create();
-//			fileDataImport("Insert_"+I_FD_Table.Table_Name+".dat");
-//		}
 	}
 
 	/**
@@ -128,71 +121,6 @@ public class FD_Table implements I_FD_DB {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	/**
-	 * テーブル生成[Table generation]<br>
-	 * @author officina-hide.com
-	 * @since 1.00 2021/04/17
-	 */
-	private void create() {
-		String sql = getSQLParameter("Create_"+I_FD_Table.Table_Name);
-		try {
-			connection(env);
-			Statement stmt = conn.createStatement();
-			stmt.execute(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * テーブル削除[Drop of Table]<br>
-	 * @author officina-hide.com
-	 * @since 1.00 2021/04/16
-	 * @param tableName テーブル名[name of Table]
-	 */
-	private void dropTable(String tableName) {
-		String sql = getSQLParameter("drop");
-		try {
-			sql = sql.replaceAll("\\?", tableName);
-			connection(env);
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.execute();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * SQLテンプレート取得[Get SQL template]<br>
-	 * 指定された名称を持つSQLテンプレートを取得する。<br>
-	 * Gets the SQL template with the specified name.<br>
-	 * @author officine-hide.com
-	 * @since 1.00 2021/04/12
-	 * @param paramName パラメータ名[Parameter name]
-	 * @return SQLテンプレート文[SQL template string]
-	 */
-	private String getSQLParameter(String paramName) {
-		File currentdir = new File("."+"/document/SQL/Template/");
-		File sqlFile = new File(currentdir.getAbsolutePath() + "\\" + paramName + ".sql");
-		BufferedReader reader = null;
-		StringBuffer sql = new StringBuffer();
-		try {
-			reader = new BufferedReader(new FileReader(sqlFile));
-			while(reader.ready()) {
-				sql.append(reader.readLine()).append(System.lineSeparator());
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				reader.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		return sql.toString();
 	}
 
 	/**

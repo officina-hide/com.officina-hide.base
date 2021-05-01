@@ -16,6 +16,8 @@ public class FD_sql implements I_FD_DB {
 
 	/** SQL作成種別 : Create Table */
 	public static final String CREATE_TABLE = "CreateTable";
+	public static final String DELETE_TABLE = "DeleteTable";
+
 	private static final String ENTRY_DATA_FD_DisplayName = "FD_DisplayName";
 	private static final String COLUMN_NAME = "name";
 	private static final String COLUMN_TYPE = "type";
@@ -36,11 +38,33 @@ public class FD_sql implements I_FD_DB {
 	public String createSqlStatement(FD_EnvData env, String createType, Element xmlData) {
 		StringBuffer sql = new StringBuffer();
 		switch(createType) {
+		case DELETE_TABLE:
+			deleteTableStatement(env, xmlData, sql);
+			break;
 		case CREATE_TABLE:
 			createTableStatement(env, xmlData, sql);
 			break;
 		}
 		return sql.toString();
+	}
+
+	/**
+	 * TODO 要検討 別クラス化(2021/04/29)
+	 * テーブル削除SQLステートメント生成[Delete table SQL statement generation]<br>
+	 * @author officina-hide.com
+	 * @since 1.00 2021/05/01
+	 * @param env 環境情報[Environment Information]
+	 * @param xmlData[XML Information]
+	 * @param sql SQLステートメント[SQL Statement]
+	 */
+	private void deleteTableStatement(FD_EnvData env, Element xmlData, StringBuffer sql) {
+		//テーブル情報取得
+		NodeList entry = xmlData.getElementsByTagName("entry");
+		NodeList datas = ((Element) entry.item(0)).getElementsByTagName("data");
+		Element data = (Element) datas.item(0);
+		String tableName = data.getAttribute("table");
+		//SQL文編集
+		sql.append("DROP TABLE IF EXISTS ").append(tableName).append(";");
 	}
 
 	/**
@@ -77,7 +101,10 @@ public class FD_sql implements I_FD_DB {
 				sql.append("varchar(").append(column.getAttribute(COLUMN_LENGTH)).append(")").append(" ");
 				break;
 			case Item_Value_Type_Date:
+				sql.append("datetime").append(" ");
 				break;
+			case Item_Value_Type_Text:
+				sql.append("text").append(" ");
 			}
 			//コメント
 			sql.append("COMMENT ").append(FD_SQ).append(column.getAttribute(COLUMN_COMMENT)).append(FD_SQ).append(" ");
