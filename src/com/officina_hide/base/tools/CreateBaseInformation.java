@@ -31,7 +31,7 @@ public class CreateBaseInformation {
 	 */
 	public void execute() {
 		//テーブル情報生成
-		FD_Table table = new FD_Table(env);
+		FD_Table table = new FD_Table(env); 
 		table.createTable();
 	}
 }

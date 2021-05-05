@@ -61,6 +61,23 @@ public class FD_Table implements I_FD_DB {
 	}
 
 	/**
+	 * コンストラクター[Constructor]<br>
+	 * 環境情報の保存[Ensure environmental information]<br>
+	 * XML情報からテーブル情報をセットする。<br>
+	 * Set table information from XML information.<br>
+	 * @author officina-hide.com
+	 * @since 1.00 2021/05/06
+	 * @param env 環境情報[Environment Information]
+	 * @param xmlData XML情報[XML Information]
+	 */
+	public FD_Table(FD_EnvData env, Element xmlData) {
+		//環境情報保存[Storage of environmental information]
+		this.env = env;
+		//XML情報読み取り
+		System.out.println(xmlData.getAttribute(COLUMN_NAME));
+	}
+
+	/**
 	 * テーブル項目リスト生成[Table item list generation]<br>
 	 * @author officine-hide.com
 	 * @since 1.00 2021/04/23
@@ -94,18 +111,22 @@ public class FD_Table implements I_FD_DB {
 			// TODO 生成に関するメッセージが必要(2020/05/01)
 			//テーブル項目情報から項目リストを作成する。
 			FD_Items items = new FD_Items(xmlData);
-			//既登録分の削除用SQL文を生成する生成する。
-			String sql = sq.createSqlStatement(env, FD_sql.DELETE_TABLE, xmlData);
-			stmt.addBatch(sql);
-			//生成用SQL文を作成する。
-			sql = sq.createSqlStatement(env, FD_sql.CREATE_TABLE, xmlData);
-			stmt.addBatch(sql);
-			stmt.executeBatch();
-			//テーブル情報登録
-//			NodeList entry = xmlData.getElementsByTagName("entry");
-//			NodeList datas = ((Element) entry.item(0)).getElementsByTagName("data");
-//			Element data = (Element) datas.item(0);
-			sql = createEntrySQL(xmlData);
+			//XML情報からテーブル情報を取得する。
+//			X_FD_Table table = new X_FD_Table(env, xmlData);
+			
+			
+//			//既登録分の削除用SQL文を生成する生成する。
+//			String sql = sq.createSqlStatement(env, FD_sql.DELETE_TABLE, xmlData);
+//			stmt.addBatch(sql);
+//			//生成用SQL文を作成する。
+//			sql = sq.createSqlStatement(env, FD_sql.CREATE_TABLE, xmlData);
+//			stmt.addBatch(sql);
+//			stmt.executeBatch();
+//			//テーブル情報登録
+////			NodeList entry = xmlData.getElementsByTagName("entry");
+////			NodeList datas = ((Element) entry.item(0)).getElementsByTagName("data");
+////			Element data = (Element) datas.item(0);
+//			sql = createEntrySQL(xmlData);
 			
 		} catch (ParserConfigurationException | SAXException | IOException | SQLException e) {
 			e.printStackTrace();
