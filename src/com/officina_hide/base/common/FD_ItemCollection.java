@@ -22,9 +22,9 @@ public class FD_ItemCollection {
 	 */
 	public void add(String name, Object value, String valueType) {
 		FD_Item item = new FD_Item();
-		item.setName(name);
-		item.setValue(value);
-		item.setValueType(valueType);
+//		item.setName(name);
+//		item.setValue(value);
+//		item.setValueType(valueType);
 		list.add(item);
 	}
 }

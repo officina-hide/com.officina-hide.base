@@ -10,45 +10,74 @@ public class FD_Item {
 
 	/** 項目名[item name] */
 	private String name;
-	/** 項目値（検索用項目）[]item vlue (search item) */
-	private Object value;
-	/** 項目種別 */
-	private String valueType;
+	/** 項目種別[item type] */
+	private String type;
+	/** 項目サイズ[item size] */
+	private int size;
+	/** 項目設定値[item setting value] */
+	private Object data;
 	
-	/**
-	 * @return name
-	 */
 	public String getName() {
 		return name;
 	}
-	/**
-	 * @param name セットする name
-	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-	/**
-	 * @return value
-	 */
-	public Object getValue() {
-		return value;
+	public String getType() {
+		return type;
 	}
-	/**
-	 * @param value セットする value
-	 */
-	public void setValue(Object value) {
-		this.value = value;
+	public void setType(String type) {
+		this.type = type;
 	}
-	/**
-	 * @return valueType
-	 */
-	public String getValueType() {
-		return valueType;
+	public int getSize() {
+		return size;
 	}
-	/**
-	 * @param valueType セットする valueType
-	 */
-	public void setValueType(String valueType) {
-		this.valueType = valueType;
+	public void setSize(int size) {
+		this.size = size;
 	}
+	public void setData(Object data) {
+		this.data = data;
+	}
+	
+//	/** 項目値（検索用項目）[]item vlue (search item) */
+//	private Object value;
+//	/** 項目種別 */
+//	private String valueType;
+//	
+//	/**
+//	 * @return name
+//	 */
+//	public String getName() {
+//		return name;
+//	}
+//	/**
+//	 * @param name セットする name
+//	 */
+//	public void setName(String name) {
+//		this.name = name;
+//	}
+//	/**
+//	 * @return value
+//	 */
+//	public Object getValue() {
+//		return value;
+//	}
+//	/**
+//	 * @param value セットする value
+//	 */
+//	public void setValue(Object value) {
+//		this.value = value;
+//	}
+//	/**
+//	 * @return valueType
+//	 */
+//	public String getValueType() {
+//		return valueType;
+//	}
+//	/**
+//	 * @param valueType セットする valueType
+//	 */
+//	public void setValueType(String valueType) {
+//		this.valueType = valueType;
+//	}
 }

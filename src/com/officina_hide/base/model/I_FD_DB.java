@@ -19,4 +19,10 @@ public interface I_FD_DB {
 	public static final String Item_Value_Type_Text = "Text";
 	/** テーブル項目種別 : 日付 */
 	public static final String Item_Value_Type_Date = "Date";
+	
+	public static final String COLUMN_NAME = "name";
+	public static final String COLUMN_TYPE = "type";
+	public static final String COLUMN_COMMENT = "comment";
+	public static final String COLUMN_LENGTH = "length";
+
 }

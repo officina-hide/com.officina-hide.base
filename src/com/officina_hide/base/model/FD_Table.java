@@ -18,10 +18,14 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_ItemCollection;
+import com.officina_hide.base.common.FD_Items;
 import com.officina_hide.base.sql.FD_sql;
 
 /**
@@ -84,23 +88,50 @@ public class FD_Table implements I_FD_DB {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			Document document = builder.parse(xmlFile);
-			Element tableData = document.getDocumentElement();
+			Element xmlData = document.getDocumentElement();
 			connection(env);
 			stmt = conn.createStatement();
 			// TODO 生成に関するメッセージが必要(2020/05/01)
+			//テーブル項目情報から項目リストを作成する。
+			FD_Items items = new FD_Items(xmlData);
 			//既登録分の削除用SQL文を生成する生成する。
-			String sql = sq.createSqlStatement(env, FD_sql.DELETE_TABLE, tableData);
+			String sql = sq.createSqlStatement(env, FD_sql.DELETE_TABLE, xmlData);
 			stmt.addBatch(sql);
 			//生成用SQL文を作成する。
-			sql = sq.createSqlStatement(env, FD_sql.CREATE_TABLE, tableData);
+			sql = sq.createSqlStatement(env, FD_sql.CREATE_TABLE, xmlData);
 			stmt.addBatch(sql);
 			stmt.executeBatch();
 			//テーブル情報登録
-			
+//			NodeList entry = xmlData.getElementsByTagName("entry");
+//			NodeList datas = ((Element) entry.item(0)).getElementsByTagName("data");
+//			Element data = (Element) datas.item(0);
+			sql = createEntrySQL(xmlData);
 			
 		} catch (ParserConfigurationException | SAXException | IOException | SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * テーブル情報登録用SQL文生成[SQL statement generation for table information registration]<br>
+	 * @author officina-hide.com
+	 * @since 1.00 2021/05/02
+	 * @param xmlData[XML Information]
+	 * @param sql SQLステートメント[SQL Statement]
+	 */
+	private String createEntrySQL(Element xmlData) {
+		StringBuffer sql = new StringBuffer();
+		StringBuffer sqlItem = new StringBuffer();
+		NamedNodeMap data = xmlData.getAttributes();
+		for(int ix =0; ix < data.getLength(); ix++) {
+			System.out.println(data.item(ix).getNodeName()+":"+data.item(ix).getNodeValue());
+			if(data.item(ix).getNodeName().equals("table")) {
+				sql.append("INSERT INTO ").append(data.item(ix).getNodeValue()).append(" SET ");
+			} else {
+				sqlItem.append(data.item(ix).getNodeName()).append(" = ").append(data.item(ix).getNodeValue()).append(" ");
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -159,8 +190,9 @@ public class FD_Table implements I_FD_DB {
 		if(conn == null) {
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
-				StringBuffer url  = new StringBuffer().append("jdbc:mysql://www.officina-hide.com:3306/FDBASE");
-				conn = DriverManager.getConnection(url.toString(), "fdadmin", "fdadminqAz*01");
+//				StringBuffer url  = new StringBuffer().append("jdbc:mysql://www.officina-hide.com:3306/FDBASE");
+				StringBuffer url  = new StringBuffer().append("jdbc:mysql://192.168.0.14:3306/FDBASE");
+				conn = DriverManager.getConnection(url.toString(), "fdadmin", "fdadminAz*01");
 				System.out.println(new Date() + " : "+"Database Connected.");
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();

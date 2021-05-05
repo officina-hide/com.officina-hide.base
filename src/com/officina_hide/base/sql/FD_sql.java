@@ -19,10 +19,10 @@ public class FD_sql implements I_FD_DB {
 	public static final String DELETE_TABLE = "DeleteTable";
 
 	private static final String ENTRY_DATA_FD_DisplayName = "FD_DisplayName";
-	private static final String COLUMN_NAME = "name";
-	private static final String COLUMN_TYPE = "type";
-	private static final String COLUMN_COMMENT = "comment";
-	private static final String COLUMN_LENGTH = "length";
+//	private static final String COLUMN_NAME = "name";
+//	private static final String COLUMN_TYPE = "type";
+//	private static final String COLUMN_COMMENT = "comment";
+//	private static final String COLUMN_LENGTH = "length";
 
 	/**
 	 * SQLステートメント生成[SQL statement generation]<br>
@@ -88,6 +88,7 @@ public class FD_sql implements I_FD_DB {
 		NodeList columns = xmlData.getElementsByTagName("column");
 		for(int ix = 0; ix < columns.getLength(); ix++) {
 			Element column = (Element) columns.item(ix);
+//			System.out.println(column.getAttributes().item(1).getTextContent());
 			if(ix > 0) {
 				sql.append(",");
 			}
