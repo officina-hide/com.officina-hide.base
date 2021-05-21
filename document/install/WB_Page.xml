@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Table name="WB_Page" FD_Table_Name="WB_Page" FD_DisplayName="Webページ情報" 
+	FD_Description="Webページの基本情報を管理する。" FD_Table_ID="301"
+	FD_Group_ID="&lt;Web&gt;">
+	<column name="WB_Page_ID" type="ID" comment="Webページ情報ID"></column>
+</Table>
