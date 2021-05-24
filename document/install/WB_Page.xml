@@ -3,4 +3,5 @@
 	FD_Description="Webページの基本情報を管理する。" FD_Table_ID="301"
 	FD_Group_ID="&lt;Web&gt;">
 	<column name="WB_Page_ID" type="ID" comment="Webページ情報ID"></column>
+	<column name="WB_Page_Name" type="String" length="100" comment="Webページ識別名"></column>
 </Table>

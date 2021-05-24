@@ -6,4 +6,5 @@ module com.officina_hide {
 	requires javafx.base;
 	requires java.xml;
 	
+	opens com.officina_hide.fx.base;
 }

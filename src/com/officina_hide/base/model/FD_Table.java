@@ -110,7 +110,7 @@ public class FD_Table implements I_FD_DB {
 			stmt = conn.createStatement();
 			// TODO 生成に関するメッセージが必要(2020/05/01)
 			//テーブル項目情報から項目リストを作成する。
-			FD_Items items = new FD_Items(xmlData);
+//			FD_Items items = new FD_Items(xmlData);
 			//XML情報からテーブル情報を取得する。
 //			X_FD_Table table = new X_FD_Table(env, xmlData);
 			

@@ -12,5 +12,7 @@ public class I_FD_Table {
 	public static final String Table_Name = "FD_Table";
 	/** テーブル項目 : テーブル情報ID */
 	public static final String COLUMNNAME_FD_Table_ID = Table_Name+"_ID";
-	public static final String COLUMNNAME_FD_Table_Name = "FD_Table";
+	public static final String COLUMNNAME_FD_Table_Name = Table_Name + "_Name";
+	public static final String COLUMNNAME_FD_DisplayName = "FD_DisplayName";
+	public static final String COLUMNNAME_FD_Description = "FD_Description";
 }

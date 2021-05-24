@@ -38,6 +38,9 @@ public class FD_Item {
 	public void setData(Object data) {
 		this.data = data;
 	}
+	public Object getData() {
+		return data;
+	}
 	
 //	/** 項目値（検索用項目）[]item vlue (search item) */
 //	private Object value;
