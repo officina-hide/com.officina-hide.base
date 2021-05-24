@@ -1,5 +1,7 @@
 package com.officina_hide.fx.base;
 
+import com.officina_hide.base.common.FD_EnvData;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,8 +22,16 @@ import javafx.stage.StageStyle;
  */
 public class Fx_Menu extends Application {
 	
+	/** 環境情報 */
+	FD_EnvData env = new FD_EnvData();
+	
 	@Override
 	public void start(Stage stage) throws Exception {
+		/*
+		 * 環境情報取得
+		 */
+		env.initialize();
+		
 		HBox root = new HBox();
 		root.setPadding(new Insets(10, 10, 10, 10));
 		
@@ -54,7 +64,7 @@ public class Fx_Menu extends Application {
 	 */
 	protected void sysCreateTable() {
 		try {
-			FxCreateTable ct = new FxCreateTable();
+			FxCreateTable ct = new FxCreateTable(env);
 			ct.start(new Stage());
 		} catch (Exception e) {
 			e.printStackTrace();

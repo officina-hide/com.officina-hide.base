@@ -4,7 +4,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_Items;
 import com.officina_hide.base.model.I_FD_DB;
+import com.officina_hide.base.model.X_FD_Table;
 
 /**
  * SQL管理クラス[SQL management class]<br>
@@ -113,6 +115,11 @@ public class FD_sql implements I_FD_DB {
 		sql.append(") ");
 		sql.append("ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=")
 			.append(FD_SQ).append(tableComment).append(FD_SQ).append(";");
+	}
+
+	public String createSqlStatement(FD_EnvData env, String createType, FD_Items items) {
+		StringBuffer sql = new StringBuffer();
+		return sql.toString();
 	}
 
 }

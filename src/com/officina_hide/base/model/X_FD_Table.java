@@ -30,4 +30,15 @@ public class X_FD_Table {
 		}
 	}
 
+	/**
+	 * テーブル情報の項目リストを返す。<br>
+	 * Returns a list of table information items.<br>
+	 * @author officine-hide.com
+	 * @since 1.00 2021/05/24
+	 * @return テーブル項目リスト[Table item list]
+	 */
+	public FD_Items getItems() {
+		return items;
+	}
+
 }

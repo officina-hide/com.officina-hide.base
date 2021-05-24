@@ -11,8 +11,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
+import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.X_FD_Table;
+import com.officina_hide.base.sql.FD_sql;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -41,7 +43,22 @@ public class FxCreateTable extends Application {
 	private TextField xmlFileName;
 	/** DB操作クラス */
 	private FD_DB DB = new FD_DB();
+	/** 環境情報 */
+	private FD_EnvData env = new FD_EnvData();
+	/** SQLクラス */
+	FD_sql sqlUtil = new FD_sql(); 
 	
+	/**
+	 * インスタンス時に、環境情報をセットする。<br>
+	 * Set environment information at the time of instance.<br>
+	 * @author officine-hide.com
+	 * @since 1.00 2021/05/24
+	 * @param env 環境情報[Environment Information]
+	 */
+	public FxCreateTable(FD_EnvData env) {
+		this.env = env;
+	}
+
 	@Override
 	public void start(Stage stage) throws Exception {
 		VBox root = new VBox(5);
@@ -75,6 +92,7 @@ public class FxCreateTable extends Application {
 	 */
 	private void fileSelect(Stage stage) {
 		//ファイル選択ダアログ表示[File selection Daalog display]
+		// TODO 初期表示DirをEnvに入れる。(環境プロパティから取得する）
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setInitialDirectory(new File("./document"));
 		File file = fileChooser.showOpenDialog(stage);
@@ -105,8 +123,10 @@ public class FxCreateTable extends Application {
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			Document document = builder.parse(file);
 			Element xmlData = document.getDocumentElement();
-			//テーブル情報取得
+			//テーブル情報生成
 			X_FD_Table table = new X_FD_Table(xmlData);
+			//テーブル削除用SQL生成
+			String sql = sqlUtil.createSqlStatement(env, FD_sql.DELETE_TABLE, table.getItems());
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			e.printStackTrace();
 		}

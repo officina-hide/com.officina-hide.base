@@ -31,4 +31,13 @@ public class FD_EnvData {
 	public void setGeneratePath(String generatePath) {
 		this.generatePath = generatePath;
 	}
+
+	/**
+	 * 環境情報初期化[Environmental information initialization]<br>
+	 * @author officine-hide.com
+	 * @since 1.00 2021/05/24
+	 */
+	public void initialize() {
+		
+	}
 }
