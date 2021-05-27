@@ -56,6 +56,24 @@ public class FD_Items implements I_FD_DB {
 		FD_Item item = items.get(no);
 		return item.getData();
 	}
+
+	/**
+	 * 文字列取得[Get string]<br>
+	 * テーブル項目配列から指定された項目名の情報を文字列で取得する。<br>
+	 * Get the information of the specified item name from the table item array as a character string.
+	 * @param itemName 項目名[item name]
+	 * @return 文字列情報[String Information]
+	 */
+	public String getStringData(String itemName) {
+		String str = null;
+		for(FD_Item item : items) {
+			if(item.getName().equals(itemName)) {
+				str = item.getData();
+				break;
+			}
+		}
+		return str;
+	}
 	
 //	/**
 //	 * XML情報よりテーブル項目リストを作成する。<br>

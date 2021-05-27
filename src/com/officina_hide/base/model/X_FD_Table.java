@@ -13,6 +13,8 @@ import com.officina_hide.base.common.FD_Items;
 public class X_FD_Table {
 	/** 項目リスト[item list] */
 	private FD_Items items = new FD_Items();
+	/** テーブル項目 */
+	private String FD_Table_Name;
 
 	/**
 	 * インスタンス時に、XMLデータからテーブル情報をセットする。<br>
@@ -39,6 +41,14 @@ public class X_FD_Table {
 	 */
 	public FD_Items getItems() {
 		return items;
+	}
+
+	public String getFD_Table_Name() {
+		return items.getStringData(I_FD_Table.COLUMNNAME_FD_Table_Name);
+	}
+
+	public void setFD_Table_Name(String fD_Table_Name) {
+		FD_Table_Name = fD_Table_Name;
 	}
 
 }

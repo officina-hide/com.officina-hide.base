@@ -23,6 +23,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -41,6 +42,8 @@ public class FxCreateTable extends Application {
 
 	/** XMLファイルPath */
 	private TextField xmlFileName;
+	/** テーブル名 */
+	private TextField tableNameText;
 	/** DB操作クラス */
 	private FD_DB DB = new FD_DB();
 	/** 環境情報 */
@@ -63,7 +66,25 @@ public class FxCreateTable extends Application {
 	public void start(Stage stage) throws Exception {
 		VBox root = new VBox(5);
 		root.setPadding(new Insets(10, 10, 10, 10));
+
+		//画面設定
+		initDisp(root, stage);
 		
+		Scene scene = new Scene(root, 500, 200);
+		stage.setScene(scene);
+		stage.initModality(Modality.APPLICATION_MODAL);
+		stage.show();
+	}
+
+	/**
+	 * 画面初期設定[Screen initial settings]<br>
+	 * @author officine-hide.net
+	 * @since  1.00 2021/05/27
+	 * @param root ルート[root]
+	 * @param stage ステージ[stage]
+	 */
+	private void initDisp(VBox root, Stage stage) {
+		//ファイル選択
 		HBox fileSelect = new HBox(5);
 		fileSelect.setAlignment(Pos.CENTER_LEFT);
 		xmlFileName = new TextField();
@@ -77,11 +98,15 @@ public class FxCreateTable extends Application {
 		});
 		fileSelect.getChildren().addAll(xmlFileName, fileButton);
 		
-		root.getChildren().addAll(fileSelect);
-		Scene scene = new Scene(root, 500, 200);
-		stage.setScene(scene);
-		stage.initModality(Modality.APPLICATION_MODAL);
-		stage.show();
+		//テーブル名
+		HBox tableNameBox = new HBox(5);
+		tableNameBox.setAlignment(Pos.CENTER_LEFT);
+		Label tableNameLabel = new Label("テーブル名");
+		tableNameText = new TextField("");
+		tableNameText.setEditable(false);
+		tableNameBox.getChildren().addAll(tableNameLabel, tableNameText);
+		
+		root.getChildren().addAll(fileSelect, tableNameBox);
 	}
 
 	/**
@@ -125,8 +150,16 @@ public class FxCreateTable extends Application {
 			Element xmlData = document.getDocumentElement();
 			//テーブル情報生成
 			X_FD_Table table = new X_FD_Table(xmlData);
-			//テーブル削除用SQL生成
-			String sql = sqlUtil.createSqlStatement(env, FD_sql.DELETE_TABLE, table.getItems());
+			//テーブル情報セット
+			tableNameText.setText(table.getFD_Table_Name());
+			
+			
+			
+//			//データベース接続
+//			DB.connection(env);
+//			//テーブル削除用SQL生成
+//			String sql = sqlUtil.createSqlStatement(env, FD_sql.DELETE_TABLE, table.getItems());
+//			System.out.println(sql);
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			e.printStackTrace();
 		}

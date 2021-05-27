@@ -38,8 +38,8 @@ public class FD_Item {
 	public void setData(Object data) {
 		this.data = data;
 	}
-	public Object getData() {
-		return data;
+	public String getData() {
+		return (String) this.data;
 	}
 	
 //	/** 項目値（検索用項目）[]item vlue (search item) */
