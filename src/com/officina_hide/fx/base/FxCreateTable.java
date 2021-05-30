@@ -2,6 +2,7 @@ package com.officina_hide.fx.base;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -20,10 +21,15 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -44,12 +50,16 @@ public class FxCreateTable extends Application {
 	private TextField xmlFileName;
 	/** テーブル名 */
 	private TextField tableNameText;
+	/** テーブル生成ボタン */
+	private Button createButton;
 	/** DB操作クラス */
 	private FD_DB DB = new FD_DB();
 	/** 環境情報 */
 	private FD_EnvData env = new FD_EnvData();
+	/** テーブル情報 */
+	private X_FD_Table table;
 	/** SQLクラス */
-	FD_sql sqlUtil = new FD_sql(); 
+	private FD_sql sqlUtil = new FD_sql(); 
 	
 	/**
 	 * インスタンス時に、環境情報をセットする。<br>
@@ -106,7 +116,39 @@ public class FxCreateTable extends Application {
 		tableNameText.setEditable(false);
 		tableNameBox.getChildren().addAll(tableNameLabel, tableNameText);
 		
-		root.getChildren().addAll(fileSelect, tableNameBox);
+		//ライン
+		Separator separator = new Separator(Orientation.HORIZONTAL);
+		
+		//ボタン領域
+		HBox buttonArea = new HBox(5);
+		buttonArea.setAlignment(Pos.CENTER_RIGHT);
+		createButton = new Button("テーブル作成");
+		createButton.setDisable(true);
+		createButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+					createTable();
+			}
+		});
+		buttonArea.getChildren().addAll(createButton);
+		
+		root.getChildren().addAll(fileSelect, tableNameBox, separator, buttonArea);
+	}
+
+	/**
+	 * テーブル構築[Table construction]<br>
+	 * @author officine-hide.net
+	 * @since 1.00 2021/05/29
+	 */
+	protected void createTable() {
+		//生成確認
+		Alert confirmwid = new Alert(AlertType.CONFIRMATION);
+		Optional<ButtonType> result = confirmwid.showAndWait();
+		if(result.isPresent() && result.get().equals(ButtonType.CANCEL)) {
+			return;
+		}
+		//既登録分削除
+		
 	}
 
 	/**
@@ -134,6 +176,8 @@ public class FxCreateTable extends Application {
 		 * Check the contents of the XML file.
 		 */
 		checkXmlFile(file);
+		//テーブル構築ボタンを活性化する。
+		createButton.setDisable(false);
 	}
 
 	/**
@@ -149,7 +193,7 @@ public class FxCreateTable extends Application {
 			Document document = builder.parse(file);
 			Element xmlData = document.getDocumentElement();
 			//テーブル情報生成
-			X_FD_Table table = new X_FD_Table(xmlData);
+			table = new X_FD_Table(xmlData);
 			//テーブル情報セット
 			tableNameText.setText(table.getFD_Table_Name());
 			
