@@ -148,7 +148,7 @@ public class FxCreateTable extends Application {
 			return;
 		}
 		//既登録分削除
-		
+		table.createTable(env);
 	}
 
 	/**

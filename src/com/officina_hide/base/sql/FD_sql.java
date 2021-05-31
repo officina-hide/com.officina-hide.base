@@ -117,9 +117,16 @@ public class FD_sql implements I_FD_DB {
 			.append(FD_SQ).append(tableComment).append(FD_SQ).append(";");
 	}
 
-	public String createSqlStatement(FD_EnvData env, String createType, FD_Items items) {
-		StringBuffer sql = new StringBuffer();
-		return sql.toString();
+	/**
+	 * SQL文字列作成[SQL string creation]<br>
+	 * @author officine-hide.net
+	 * @since 1.00 2021/05/31
+	 * @param env 環境情報[Environment Information]
+	 * @param createType 生成種別[Generation Type]
+	 * @param table
+	 */
+	public void createSqlStatement(FD_EnvData env, String createType, FD_Items items) {
+		
 	}
 
 }
