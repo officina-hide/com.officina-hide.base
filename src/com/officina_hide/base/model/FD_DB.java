@@ -2,6 +2,7 @@ package com.officina_hide.base.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Date;
 
@@ -37,6 +38,24 @@ public class FD_DB {
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+	
+	/**
+	 * テーブル削除[Drop Table]<br>
+	 * @author officine-hide.net
+	 * @since 1.00 2021/06/03
+	 * @param env 環境情報[Environment Information]
+	 * @param tableName テーブル名[Table Name]
+	 */
+	public void deleteTable(FD_EnvData env, String tableName) {
+		try {
+			connection(env);
+			StringBuffer sql = new StringBuffer();
+			sql.append("DROP TABLE IF EXISTS ?");
+			PreparedStatement ptmt = conn.prepareStatement(sql.toString());
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 

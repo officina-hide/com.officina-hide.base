@@ -6,7 +6,7 @@ package com.officina_hide.base.model;
  * @version 1.00
  * @since 2021/04/08
  */
-public class I_FD_Table {
+public interface I_FD_Table {
 
 	/** テーブル名 */
 	public static final String Table_Name = "FD_Table";
