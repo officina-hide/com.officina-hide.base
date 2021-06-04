@@ -141,6 +141,14 @@ public class FxCreateTable extends Application {
 	 * @since 1.00 2021/05/29
 	 */
 	protected void createTable() {
+		/*
+		 * 1.生成確認
+		 * 2.構築済みの場合は削除
+		 * 3.新たにテーブルを生成
+		 * 4.テーブル情報の登録
+		 * 5.完了メッセージ
+		 */
+		
 		//生成確認
 		Alert confirmwid = new Alert(AlertType.CONFIRMATION);
 		Optional<ButtonType> result = confirmwid.showAndWait();

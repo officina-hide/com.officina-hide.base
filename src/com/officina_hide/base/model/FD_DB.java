@@ -52,8 +52,9 @@ public class FD_DB {
 		try {
 			connection(env);
 			StringBuffer sql = new StringBuffer();
-			sql.append("DROP TABLE IF EXISTS ?");
+			sql.append("DROP TABLE IF EXISTS ").append(tableName);
 			PreparedStatement ptmt = conn.prepareStatement(sql.toString());
+			ptmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
