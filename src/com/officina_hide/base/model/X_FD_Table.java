@@ -60,8 +60,10 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 	 */
 	public void createTable(FD_EnvData env) {
 		//既構築テーブルの削除[Delete existing table]
-		deleteTable(env, Table_Name);
-		
+		deleteTable(env, items.getStringData(COLUMNNAME_FD_Table_Name));
+		//テーブル生成[Table generation]
+		createTable(env, items.getStringData(COLUMNNAME_FD_Table_Name),
+				items.getStringData(COLUMNNAME_FD_DisplayName), getItems());
 	}
 
 

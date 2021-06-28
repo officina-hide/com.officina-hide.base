@@ -74,6 +74,10 @@ public class FD_Items implements I_FD_DB {
 		}
 		return str;
 	}
+
+	public List<FD_Item> getItems() {
+		return items;
+	}
 	
 //	/**
 //	 * XML情報よりテーブル項目リストを作成する。<br>
