@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
+import com.officina_hide.base.model.I_FD_DB;
+import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.model.X_FD_Table;
 
 import javafx.application.Application;
@@ -42,7 +44,6 @@ public class FxTableInformation extends Application {
 	public void start(Stage stage) throws Exception {
 		//テーブル情報取得
 		List<X_FD_Table> list = getTableList();
-		
 		VBox root = new VBox(5);
 		TableView<String> table = new TableView<>();
 		root.getChildren().add(table);
@@ -66,7 +67,7 @@ public class FxTableInformation extends Application {
 	 */
 	private List<X_FD_Table> getTableList() {
 		List<X_FD_Table> list = new ArrayList<>();
-//		List<Integer> ids = DB.getAllId(env);
+		List<Integer> ids = DB.getAllId(I_FD_Table.Table_Name, "1 = 1", env);
 		return list;
 	}
 

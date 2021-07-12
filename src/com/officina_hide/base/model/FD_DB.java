@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_Item;
@@ -103,6 +106,29 @@ public class FD_DB implements I_FD_DB {
 			.append(FD_SQ).append(comment).append(FD_SQ).append(";");
 		
 		System.out.println(sql.toString());
+	}
+
+	/**
+	 * 情報ID一覧取得[Get information ID list]<br>
+	 * @author officina-hide.net
+	 * @since 1.00 2021/07/12
+	 * @param tableName テーブル名[Table name]<br>
+	 * @param where 条件句[SQL Where clause]<br>
+	 * @param env 環境情報[Environment Information]
+	 * @return 情報ID一覧[information ID list]
+	 */
+	public List<Integer> getAllId(String tableName, String where, FD_EnvData env) {
+		List<Integer> list = new ArrayList<>();
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT ").append(tableName).append("_ID FROM ").append(tableName).append(" ");
+			sql.append("WHERE ").append(where).append(" ");
+			connection(env);
+			Statement stmt = conn.createStatement();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 }
