@@ -23,10 +23,11 @@ public class FD_Items implements I_FD_DB {
 	 * @param name 項目名[Item Name]
 	 * @param data 項目値[Item Value]
 	 */
-	public void add(String name, Object data) {
+	public void add(String name, Object data, String type) {
 		FD_Item item = new FD_Item();
 		item.setName(name);
 		item.setData(data);
+		item.setType(type);
 		items.add(item);
 	}
 
@@ -68,7 +69,7 @@ public class FD_Items implements I_FD_DB {
 		String str = null;
 		for(FD_Item item : items) {
 			if(item.getName().equals(itemName)) {
-				str = item.getData();
+				str = (String) item.getData();
 				break;
 			}
 		}
@@ -77,6 +78,38 @@ public class FD_Items implements I_FD_DB {
 
 	public List<FD_Item> getItems() {
 		return items;
+	}
+
+	/**
+	 * 項目情報セット[Item Information Set]<br>
+	 * @author officine-hide.net
+	 * @since 1/00 2021/07/15
+	 * @param itemName 項目名[Item Name]
+	 * @param value 項目値[Item Value]
+	 */
+	public void setValue(String itemName, Object value) {
+		for(FD_Item item : getItems()) {
+			if(item.getName().equals(itemName)) {
+				item.setData(value);
+			}
+		}
+	}
+
+	/**
+	 * 数値情報取得[Numerical information acquisition]<br>
+	 * @author officine-hide.net
+	 * @since 1.00 2021/07/15
+	 * @param itemName 項目名[item name]
+	 */
+	public int getintData(String itemName) {
+		int data = 0;
+		for(FD_Item item : items) {
+			if(item.getName().equals(itemName)) {
+				data = (int) item.getData();
+				break;
+			}
+		}
+		return data;
 	}
 	
 //	/**

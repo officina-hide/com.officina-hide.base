@@ -8,6 +8,10 @@ package com.officina_hide.base.common;
  */
 public class FD_Item {
 
+	/** 項目種別 */
+	public static final String ITEM_TYPE_Integer = "integer";
+	public static final String ITEM_TYPE_String = "String";
+	
 	/** 項目名[item name] */
 	private String name;
 	/** 項目種別[item type] */
@@ -38,8 +42,8 @@ public class FD_Item {
 	public void setData(Object data) {
 		this.data = data;
 	}
-	public String getData() {
-		return (String) this.data;
+	public Object getData() {
+		return this.data;
 	}
 	
 //	/** 項目値（検索用項目）[]item vlue (search item) */

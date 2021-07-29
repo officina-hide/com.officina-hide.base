@@ -3,6 +3,7 @@ package com.officina_hide.base.model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -120,15 +121,73 @@ public class FD_DB implements I_FD_DB {
 	public List<Integer> getAllId(String tableName, String where, FD_EnvData env) {
 		List<Integer> list = new ArrayList<>();
 		StringBuffer sql = new StringBuffer();
+		Statement stmt = null;
+		ResultSet rs = null;
 		try {
 			sql.append("SELECT ").append(tableName).append("_ID FROM ").append(tableName).append(" ");
 			sql.append("WHERE ").append(where).append(" ");
 			connection(env);
-			Statement stmt = conn.createStatement();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql.toString());
+			while(rs.next()) {
+				list.add(rs.getInt(tableName+"_ID"));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				stmt.close();
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return list;
+	}
+
+	/**
+	 * 情報抽出[Load Information]<br>
+	 * 指定された情報IDを持つ情報を抽出し項目リストに格納する。<br>
+	 * Extracts the information with the specified information ID and stores it in the item list.
+	 * @param env 環境情報[Environment Information]
+	 * @param tableName テーブル名[Table Name]
+	 * @param id 情報ID[Information ID]
+	 * @param items 項目リスト[List of Items]
+	 */
+	public void load(FD_EnvData env, String tableName, int id, FD_Items items) {
+		StringBuffer sql = new StringBuffer();
+		Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			sql.append("SELECT * FROM ").append(tableName).append(" ");
+			sql.append("WHERE ").append(tableName).append("_ID = ").append(id).append(" ");
+			connection(env);
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql.toString());
+			if(rs.next()) {
+				for(FD_Item item : items.getItems()) {
+					switch(item.getType()) {
+					case FD_Item.ITEM_TYPE_Integer:
+						items.setValue(item.getName(), rs.getInt(item.getName()));
+						break;
+					case FD_Item.ITEM_TYPE_String:
+						items.setValue(item.getName(), rs.getString(item.getName()));
+						break;
+					}
+				}
+			} else {
+				System.out.println("Table Record Not Found! : "+id);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				stmt.close();
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

@@ -1,11 +1,12 @@
 package com.officina_hide.fx.base;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
-import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.model.X_FD_Table;
 
@@ -13,8 +14,8 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -40,19 +41,28 @@ public class FxTableInformation extends Application {
 		this.env = env;
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void start(Stage stage) throws Exception {
 		//テーブル情報取得
 		List<X_FD_Table> list = getTableList();
 		VBox root = new VBox(5);
-		TableView<String> table = new TableView<>();
+		TableView<Map> table = new TableView<>();
 		root.getChildren().add(table);
 		
-		TableColumn<String, String> TableName = new TableColumn<>("テーブル物理名");
-		TableColumn<String, String> TableDispName = new TableColumn<>("テーブル表示名");
+		TableColumn<Map, String> TableName = new TableColumn<>("テーブル物理名");
+		TableName.setCellValueFactory(new MapValueFactory<>(I_FD_Table.COLUMNNAME_FD_Table_Name));
+		TableColumn<Map, String> TableDispName = new TableColumn<>("テーブル表示名");
+		TableDispName.setCellValueFactory(new MapValueFactory<>(I_FD_Table.COLUMNNAME_FD_DisplayName));
 		table.getColumns().add(TableName);
 		table.getColumns().add(TableDispName);
-
+		
+		Map<String, String> map = new HashMap<>();
+		map.put(I_FD_Table.COLUMNNAME_FD_Table_Name, list.get(0).getFD_Table_Name());
+		map.put(I_FD_Table.COLUMNNAME_FD_DisplayName, list.get(0).getFD_DisplayName());
+		
+		table.getItems().add(map);
+		
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		//画面をユーザー対応待ちとして表示する。
@@ -68,6 +78,10 @@ public class FxTableInformation extends Application {
 	private List<X_FD_Table> getTableList() {
 		List<X_FD_Table> list = new ArrayList<>();
 		List<Integer> ids = DB.getAllId(I_FD_Table.Table_Name, "1 = 1", env);
+		for(int id: ids) {
+			X_FD_Table table = new X_FD_Table(env, id);
+			list.add(table);
+		}
 		return list;
 	}
 
