@@ -1,4 +1,5 @@
 /* FD_TAble生成 */
+DROP Table if Exists FD_Table;
 CREATE TABLE IF NOT EXISTS FD_Table 
 (
 FD_Table_ID int(10) unsigned NOT NULL COMMENT 'テーブル情報ID',
@@ -17,6 +18,12 @@ INSERT INTO FD_Table
 	( FD_Table_ID, FD_Table_Name, FD_Name, FD_Description
 	, FD_Group_ID, FD_Created, FD_CreatedBy, FD_Updated, FD_UpdatedBy)
 	VALUES
-	( 100, 'FD_Table', 'テーブル情報', 'テーブルの基本情報を管理する。'
-	, 100, '2021/07/12 12:42:00', 100, '2021/07/12 12:42:00', 100 );
-	
+	( 100, 'FD_DataDictionary', '辞書情報', 'プロジェクト内で使用するオブジェクトの存在を定義する。'
+	, 100, '2021/07/31 12:00:00', 100, '2021/07/31 12:00:00', 100 ),
+	( 101, 'FD_Group', 'グループ情報', 'プロジェクト内で使用される情報の管理単位を定義する。'
+	, 100, '2021/07/12 12:00:00', 100, '2021/07/12 12:00:00', 100 ),
+	( 101, 'FD_User', 'ユーザー情報', 'プロジェクトを利用するユーザーを管理する。'
+	, 100, '2021/07/12 12:00:00', 100, '2021/07/12 12:00:00', 100 ),
+	( 102, 'FD_Table', 'テーブル情報', 'テーブルの基本情報を定義する。'
+	, 100, '2021/07/12 12:00:00', 100, '2021/07/12 12:00:00', 100 )
+;
