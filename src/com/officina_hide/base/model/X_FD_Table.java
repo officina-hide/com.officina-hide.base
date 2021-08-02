@@ -18,7 +18,9 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 	/** テーブル項目 */
 	private int FD_Table_ID;
 	private String FD_Table_Name;
+	private String FD_Name;
 	private String FD_DisplayName;
+	private String FD_Description;
 
 	/**
 	 * インスタンス時に、XMLデータからテーブル情報をセットする。<br>
@@ -47,10 +49,15 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 	public X_FD_Table(FD_EnvData env, int id) {
 		items.add(I_FD_Table.COLUMNNAME_FD_Table_ID, 0, FD_Item.ITEM_TYPE_Integer);
 		items.add(I_FD_Table.COLUMNNAME_FD_Table_Name, null, FD_Item.ITEM_TYPE_String);
+		items.add(I_FD_Table.COLUMNNAME_FD_Name, null, FD_Item.ITEM_TYPE_String);
+		items.add(I_FD_Table.COLUMNNAME_FD_DisplayName, null, FD_Item.ITEM_TYPE_String);
+		items.add(I_FD_Table.COLUMNNAME_FD_Description, null, FD_Item.ITEM_TYPE_String);
 		load(env, Table_Name, id, items);
 		setFD_Table_ID(items.getintData(COLUMNNAME_FD_Table_ID));
 		setFD_Table_Name(items.getStringData(COLUMNNAME_FD_Table_Name));
+		setFD_Name(items.getStringData(COLUMNNAME_FD_Name));
 		setFD_DisplayName(items.getStringData(COLUMNNAME_FD_DisplayName));
+		setFD_Description(items.getStringData(COLUMNNAME_FD_Description));
 	}
 
 	/**
@@ -100,6 +107,22 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 
 	public void setFD_DisplayName(String fD_DisplayName) {
 		FD_DisplayName = fD_DisplayName;
+	}
+
+	public String getFD_Name() {
+		return FD_Name;
+	}
+
+	public void setFD_Name(String fD_Name) {
+		FD_Name = fD_Name;
+	}
+
+	public String getFD_Description() {
+		return FD_Description;
+	}
+
+	public void setFD_Description(String fD_Description) {
+		FD_Description = fD_Description;
 	}
 
 }

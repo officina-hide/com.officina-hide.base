@@ -52,14 +52,18 @@ public class FxTableInformation extends Application {
 		
 		TableColumn<Map, String> TableName = new TableColumn<>("テーブル物理名");
 		TableName.setCellValueFactory(new MapValueFactory<>(I_FD_Table.COLUMNNAME_FD_Table_Name));
+		TableColumn<Map, String> Name = new TableColumn<>("テーブル表示名");
+		Name.setCellValueFactory(new MapValueFactory<>(I_FD_Table.COLUMNNAME_FD_Name));
 		TableColumn<Map, String> TableDispName = new TableColumn<>("テーブル表示名");
 		TableDispName.setCellValueFactory(new MapValueFactory<>(I_FD_Table.COLUMNNAME_FD_DisplayName));
 		table.getColumns().add(TableName);
+		table.getColumns().add(Name);
 		table.getColumns().add(TableDispName);
 		
 		Map<String, String> map = new HashMap<>();
+		System.out.println(list.get(0).getFD_Name());
 		map.put(I_FD_Table.COLUMNNAME_FD_Table_Name, list.get(0).getFD_Table_Name());
-		map.put(I_FD_Table.COLUMNNAME_FD_DisplayName, list.get(0).getFD_DisplayName());
+		map.put(I_FD_Table.COLUMNNAME_FD_Name, list.get(0).getFD_Name());
 		
 		table.getItems().add(map);
 		

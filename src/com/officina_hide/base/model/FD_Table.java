@@ -201,23 +201,23 @@ public class FD_Table implements I_FD_DB {
 		}
 		return chk;
 	}
-
-	/**
-	 * TODO 汎用化予定
-	 * データベース接続[Database Connection]<br>
-	 * @param env 環境情報[Environment Information]
-	 */
-	private void connection(FD_EnvData env) {
-		if(conn == null) {
-			try {
-				Class.forName("com.mysql.cj.jdbc.Driver");
-//				StringBuffer url  = new StringBuffer().append("jdbc:mysql://www.officina-hide.com:3306/FDBASE");
-				StringBuffer url  = new StringBuffer().append("jdbc:mysql://192.168.0.14:3306/FDBASE");
-				conn = DriverManager.getConnection(url.toString(), "fdadmin", "fdadminAz*01");
-				System.out.println(new Date() + " : "+"Database Connected.");
-			} catch (ClassNotFoundException | SQLException e) {
-				e.printStackTrace();
-			}
-		}
-	}	
+//
+//	/**
+//	 * TODO 汎用化予定
+//	 * データベース接続[Database Connection]<br>
+//	 * @param env 環境情報[Environment Information]
+//	 */
+//	private void connection(FD_EnvData env) {
+//		if(conn == null) {
+//			try {
+//				Class.forName("com.mysql.cj.jdbc.Driver");
+////				StringBuffer url  = new StringBuffer().append("jdbc:mysql://www.officina-hide.com:3306/FDBASE");
+//				StringBuffer url  = new StringBuffer().append("jdbc:mysql://192.168.0.14:3306/FDBASE");
+//				conn = DriverManager.getConnection(url.toString(), "fdadmin", "fdadminAz*01");
+//				System.out.println(new Date() + " : "+"Database Connected.");
+//			} catch (ClassNotFoundException | SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//	}	
 }
