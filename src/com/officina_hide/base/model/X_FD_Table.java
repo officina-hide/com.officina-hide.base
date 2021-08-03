@@ -19,7 +19,6 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 	private int FD_Table_ID;
 	private String FD_Table_Name;
 	private String FD_Name;
-	private String FD_DisplayName;
 	private String FD_Description;
 
 	/**
@@ -50,13 +49,11 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 		items.add(I_FD_Table.COLUMNNAME_FD_Table_ID, 0, FD_Item.ITEM_TYPE_Integer);
 		items.add(I_FD_Table.COLUMNNAME_FD_Table_Name, null, FD_Item.ITEM_TYPE_String);
 		items.add(I_FD_Table.COLUMNNAME_FD_Name, null, FD_Item.ITEM_TYPE_String);
-		items.add(I_FD_Table.COLUMNNAME_FD_DisplayName, null, FD_Item.ITEM_TYPE_String);
 		items.add(I_FD_Table.COLUMNNAME_FD_Description, null, FD_Item.ITEM_TYPE_String);
 		load(env, Table_Name, id, items);
 		setFD_Table_ID(items.getintData(COLUMNNAME_FD_Table_ID));
 		setFD_Table_Name(items.getStringData(COLUMNNAME_FD_Table_Name));
 		setFD_Name(items.getStringData(COLUMNNAME_FD_Name));
-		setFD_DisplayName(items.getStringData(COLUMNNAME_FD_DisplayName));
 		setFD_Description(items.getStringData(COLUMNNAME_FD_Description));
 	}
 
@@ -81,8 +78,8 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 		//既構築テーブルの削除[Delete existing table]
 		deleteTable(env, items.getStringData(COLUMNNAME_FD_Table_Name));
 		//テーブル生成[Table generation]
-		createTable(env, items.getStringData(COLUMNNAME_FD_Table_Name),
-				items.getStringData(COLUMNNAME_FD_DisplayName), getItems());
+//		createTable(env, items.getStringData(COLUMNNAME_FD_Table_Name),
+//				items.getStringData(COLUMNNAME_FD_), getItems());
 	}
 
 	public String getFD_Table_Name() {
@@ -99,14 +96,6 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 
 	public void setFD_Table_ID(int fD_Table_ID) {
 		FD_Table_ID = fD_Table_ID;
-	}
-
-	public String getFD_DisplayName() {
-		return FD_DisplayName;
-	}
-
-	public void setFD_DisplayName(String fD_DisplayName) {
-		FD_DisplayName = fD_DisplayName;
 	}
 
 	public String getFD_Name() {

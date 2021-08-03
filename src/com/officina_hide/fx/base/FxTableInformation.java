@@ -54,18 +54,26 @@ public class FxTableInformation extends Application {
 		TableName.setCellValueFactory(new MapValueFactory<>(I_FD_Table.COLUMNNAME_FD_Table_Name));
 		TableColumn<Map, String> Name = new TableColumn<>("テーブル表示名");
 		Name.setCellValueFactory(new MapValueFactory<>(I_FD_Table.COLUMNNAME_FD_Name));
-		TableColumn<Map, String> TableDispName = new TableColumn<>("テーブル表示名");
-		TableDispName.setCellValueFactory(new MapValueFactory<>(I_FD_Table.COLUMNNAME_FD_DisplayName));
+		TableColumn<Map, String> TableDescription = new TableColumn<>("テーブル説明");
+		TableDescription.setCellValueFactory(new MapValueFactory<>(I_FD_Table.COLUMNNAME_FD_Description));
 		table.getColumns().add(TableName);
 		table.getColumns().add(Name);
-		table.getColumns().add(TableDispName);
+		table.getColumns().add(TableDescription);
 		
-		Map<String, String> map = new HashMap<>();
-		System.out.println(list.get(0).getFD_Name());
-		map.put(I_FD_Table.COLUMNNAME_FD_Table_Name, list.get(0).getFD_Table_Name());
-		map.put(I_FD_Table.COLUMNNAME_FD_Name, list.get(0).getFD_Name());
-		
-		table.getItems().add(map);
+		for(X_FD_Table data : list) {
+			Map<String, String> map = new HashMap<>();
+//			System.out.println(list.get(0).getFD_Name());
+			map.put(I_FD_Table.COLUMNNAME_FD_Table_Name, data.getFD_Table_Name());
+			map.put(I_FD_Table.COLUMNNAME_FD_Name, data.getFD_Name());
+			map.put(I_FD_Table.COLUMNNAME_FD_Description, data.getFD_Description());
+			table.getItems().add(map);
+		}
+//		Map<String, String> map = new HashMap<>();
+//		System.out.println(list.get(0).getFD_Name());
+//		map.put(I_FD_Table.COLUMNNAME_FD_Table_Name, list.get(0).getFD_Table_Name());
+//		map.put(I_FD_Table.COLUMNNAME_FD_Name, list.get(0).getFD_Name());
+//		map.put(I_FD_Table.COLUMNNAME_FD_Description, list.get(0).getFD_Description());
+//		table.getItems().add(map);
 		
 		Scene scene = new Scene(root);
 		stage.setScene(scene);

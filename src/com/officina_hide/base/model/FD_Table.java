@@ -106,7 +106,7 @@ public class FD_Table implements I_FD_DB {
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			Document document = builder.parse(xmlFile);
 			Element xmlData = document.getDocumentElement();
-			connection(env);
+//			connection(env);
 			stmt = conn.createStatement();
 			// TODO 生成に関するメッセージが必要(2020/05/01)
 			//テーブル項目情報から項目リストを作成する。
@@ -186,7 +186,7 @@ public class FD_Table implements I_FD_DB {
 		boolean chk = false;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		connection(env);
+//		connection(env);
 		StringBuffer sql = new StringBuffer();
 		try {
 			sql.append("SELECT * FROM information_schema.tables WHERE table_name = ?");
