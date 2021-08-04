@@ -62,20 +62,23 @@ public class FxTableInformation extends Application {
 		
 		for(X_FD_Table data : list) {
 			Map<String, String> map = new HashMap<>();
-//			System.out.println(list.get(0).getFD_Name());
 			map.put(I_FD_Table.COLUMNNAME_FD_Table_Name, data.getFD_Table_Name());
 			map.put(I_FD_Table.COLUMNNAME_FD_Name, data.getFD_Name());
 			map.put(I_FD_Table.COLUMNNAME_FD_Description, data.getFD_Description());
+			map.put(I_FD_Table.COLUMNNAME_FD_Table_ID, Integer.toString(data.getFD_Table_ID()));
 			table.getItems().add(map);
 		}
-//		Map<String, String> map = new HashMap<>();
-//		System.out.println(list.get(0).getFD_Name());
-//		map.put(I_FD_Table.COLUMNNAME_FD_Table_Name, list.get(0).getFD_Table_Name());
-//		map.put(I_FD_Table.COLUMNNAME_FD_Name, list.get(0).getFD_Name());
-//		map.put(I_FD_Table.COLUMNNAME_FD_Description, list.get(0).getFD_Description());
-//		table.getItems().add(map);
+		table.setOnMouseClicked(event ->{
+			if(event.getClickCount() == 2) {
+				System.out.println("Double Clicked!!");
+				System.out.println(table.getSelectionModel().getSelectedIndex());
+				System.out.println(table.getItems().get(table.getSelectionModel().getSelectedIndex()));
+				Map map = table.getItems().get(table.getSelectionModel().getSelectedIndex());
+				System.out.println(map.get(I_FD_Table.COLUMNNAME_FD_Table_Name));
+			}
+		});
 		
-		Scene scene = new Scene(root);
+		Scene scene = new Scene(root, 500, 300);
 		stage.setScene(scene);
 		//画面をユーザー対応待ちとして表示する。
 		stage.show();
