@@ -116,6 +116,14 @@ public class FxTableInformation extends Application {
 		ObservableList<Map> items = table.getSelectionModel().getSelectedItems();
 		Map map = items.get(0);
 		System.out.println(map.get(I_FD_Table.COLUMNNAME_FD_Table_ID));
+		Fx_FD_Table_View fftv = 
+				new Fx_FD_Table_View(env,
+						Integer.parseInt(map.get(I_FD_Table.COLUMNNAME_FD_Table_ID).toString()));
+		try {
+			fftv.start(new Stage());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
