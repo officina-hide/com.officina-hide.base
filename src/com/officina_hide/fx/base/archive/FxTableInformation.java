@@ -1,4 +1,4 @@
-package com.officina_hide.fx.base;
+package com.officina_hide.fx.base.archive;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,6 +9,7 @@ import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.model.X_FD_Table;
+import com.officina_hide.fx.base.Fx_FD_Table_View;
 
 import javafx.application.Application;
 import javafx.collections.ObservableList;

@@ -1,5 +1,9 @@
 package com.officina_hide.fx.base;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import com.officina_hide.base.common.FD_EnvData;
 
 import javafx.application.Application;
@@ -11,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -44,8 +49,9 @@ public class Fx_Menu extends Application {
 		});
 		
 		MenuButton systemButton = new MenuButton("システム管理", null, sysTableInformation);
-		systemButton.setPrefWidth(100);
+		systemButton.setPrefWidth(120);
 		systemButton.setAlignment(Pos.CENTER);
+		systemButton.setFont(new Font("Meiryo UI", 12));
 		MenuButton dataButton = new MenuButton("情報管理");
 		dataButton.setPrefWidth(100);
 		dataButton.setAlignment(Pos.CENTER);
@@ -77,10 +83,13 @@ public class Fx_Menu extends Application {
 	 * @since 1.00 2021/07/06
 	 */
 	protected void sysCreateTable() {
-		FxTableInformation ti = new FxTableInformation(env);
 		try {
-			ti.start(new Stage());
-		} catch (Exception e) {
+			Class<?> clazz = Class.forName("com.officina_hide.fx.base.Fx_FD_Table_List");
+			Constructor<?> constructor = clazz.getConstructor(FD_EnvData.class);
+			Object instance = constructor.newInstance(env);
+			Method method = clazz.getMethod("start", Stage.class);
+			method.invoke(instance, new Stage());
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
 	}
