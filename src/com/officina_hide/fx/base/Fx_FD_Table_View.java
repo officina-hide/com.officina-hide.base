@@ -1,7 +1,5 @@
 package com.officina_hide.fx.base;
 
-import java.util.zip.Inflater;
-
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.model.X_FD_Table;
@@ -36,6 +34,8 @@ public class Fx_FD_Table_View extends Application {
 	private FD_EnvData env;
 	/** テーブル情報ID */
 	private int tableId;
+	/** テーブル情報 */
+	private X_FD_Table table;
 	/** 画面タイトル */
 	private static final String View_Title = "テーブル情報";
 	/** テキスト表示モード */
@@ -44,9 +44,9 @@ public class Fx_FD_Table_View extends Application {
 	/** 保存ボタン */
 	private Button saveButton;
 	private static final String Fx_Save_Button = "保存";
-	/** 新規ボタン */
-	private Button newButton;
-	private static final String Fx_New_Button = "新規";
+//	/** 新規ボタン */
+//	private Button newButton;
+//	private static final String Fx_New_Button = "新規";
 	
 	/**
 	 * 表示するテーブル情報のIDを保管する。[Store the ID of the table information to be displayed.]<br>
@@ -63,7 +63,9 @@ public class Fx_FD_Table_View extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		//テーブル情報取得
-		X_FD_Table table = new X_FD_Table(env, tableId);
+//		if(tableId > 0) {
+			table = new X_FD_Table(env, tableId);
+//		}
 		
 		VBox root = new VBox(5);
 		root.setPadding(new Insets(10, 10, 10, 10));
@@ -72,8 +74,13 @@ public class Fx_FD_Table_View extends Application {
 		//タイトル
 		root.getChildren().add(getTitle());
 		//テーブル情報
-		root.getChildren().add(getText(I_FD_Table.COMMENT_FD_Table_Name, table.getFD_Table_Name()
-				,I_FD_Table.COLUMNNAME_FD_Table_Name , FX_ReadOnly));
+		if(tableId > 0) {
+			root.getChildren().add(getText(I_FD_Table.COMMENT_FD_Table_Name, table.getFD_Table_Name()
+					,I_FD_Table.COLUMNNAME_FD_Table_Name , FX_ReadOnly));
+		} else {
+			root.getChildren().add(getText(I_FD_Table.COMMENT_FD_Table_Name, table.getFD_Table_Name()
+					,I_FD_Table.COLUMNNAME_FD_Table_Name , FX_TextField));
+		}
 		root.getChildren().add(getText(I_FD_Table.COMMENT_FD_Name, table.getFD_Name()
 				,I_FD_Table.COLUMNNAME_FD_Name , FX_TextField));
 		root.getChildren().add(getTextArea(I_FD_Table.COMMENT_FD_Description, table.getFD_Description()));
@@ -96,11 +103,11 @@ public class Fx_FD_Table_View extends Application {
 		saveButton = new Button(Fx_Save_Button);
 		saveButton.setDisable(true);
 		buttonArea.getChildren().add(saveButton);
-		
-		//新規ボタン
-		newButton = new Button(Fx_New_Button);
-		newButton.setFont(new Font("Meiryo UI", 12));
-		buttonArea.getChildren().add(newButton);
+//		
+//		//新規ボタン
+//		newButton = new Button(Fx_New_Button);
+//		newButton.setFont(new Font("Meiryo UI", 12));
+//		buttonArea.getChildren().add(newButton);
 		
 		return buttonArea;
 	}

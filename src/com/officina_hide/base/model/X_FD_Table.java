@@ -50,7 +50,9 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 		items.add(I_FD_Table.COLUMNNAME_FD_Table_Name, null, FD_Item.ITEM_TYPE_String);
 		items.add(I_FD_Table.COLUMNNAME_FD_Name, null, FD_Item.ITEM_TYPE_String);
 		items.add(I_FD_Table.COLUMNNAME_FD_Description, null, FD_Item.ITEM_TYPE_String);
-		load(env, Table_Name, id, items);
+		if(id > 0) {
+			load(env, Table_Name, id, items);
+		}
 		setFD_Table_ID(items.getintData(COLUMNNAME_FD_Table_ID));
 		setFD_Table_Name(items.getStringData(COLUMNNAME_FD_Table_Name));
 		setFD_Name(items.getStringData(COLUMNNAME_FD_Name));

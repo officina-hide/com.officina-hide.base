@@ -12,6 +12,7 @@ import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.model.X_FD_Table;
+import com.officina_hide.fx.model.Fx_ToolButtonArea;
 
 import javafx.application.Application;
 import javafx.collections.ObservableList;
@@ -74,7 +75,8 @@ public class Fx_FD_Table_List extends Application {
 		root.setPadding(new Insets(5, 5, 5, 5));
 		
 		//ボタン領域表示
-		root.getChildren().add(getBottunArea());
+		Fx_ToolButtonArea tba = new Fx_ToolButtonArea();
+		root.getChildren().add(tba.createNode());
 		
 		table = new TableView<>();
 		root.getChildren().add(table);
@@ -167,8 +169,30 @@ public class Fx_FD_Table_List extends Application {
 		}
 	}
 	
+	/**
+	 * 新規ボタンクリック時の処理<br>
+	 * Processing when a new button is clicked.
+	 * @author officine-hide.net
+	 * @since 1.00 2021/08/16
+	 * @param event イベント情報[event information]
+	 */
 	public void newSelected(ActionEvent event) {
-		
+		/*
+		 * テーブル情報の照会画面に遷移する。<br>
+		 * Move to the table information inquiry screen.
+		 */
+		StringBuffer clazzName = new StringBuffer();
+		try {
+			clazzName.append("com.officina_hide.fx.base").append(".").append("Fx_")
+				.append(I_FD_Table.Table_Name).append("_View");
+			Class<?> clazz = Class.forName(clazzName.toString());
+			Constructor<?> constructor = clazz.getConstructor(FD_EnvData.class, Integer.class);
+			Object instance = constructor.newInstance(env, 0);
+			Method method = clazz.getMethod("start", Stage.class);
+			method.invoke(instance, new Stage());
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
