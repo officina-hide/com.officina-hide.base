@@ -75,7 +75,7 @@ public class Fx_FD_Table_List extends Application {
 		root.setPadding(new Insets(5, 5, 5, 5));
 		
 		//ボタン領域表示
-		Fx_ToolButtonArea tba = new Fx_ToolButtonArea();
+		Fx_ToolButtonArea tba = new Fx_ToolButtonArea(this.getClass().getSimpleName());
 		root.getChildren().add(tba.createNode());
 		
 		table = new TableView<>();
