@@ -18,16 +18,12 @@ import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -50,7 +46,7 @@ public class Fx_FD_Table_List extends Application {
 	/** 「新規ボタン」 */
 	private static final String Fx_New_Button = "新規";
 	/** ボタン領域情報 */
-	List<buttonData> buttonList = new ArrayList<>();
+	private Fx_ToolButtonArea tba;
 	/** テーブル選択位置 */
 	private int viewNo = -1;
 	
@@ -61,9 +57,15 @@ public class Fx_FD_Table_List extends Application {
 	 */
 	public Fx_FD_Table_List(FD_EnvData env) {
 		this.env = env;
-		//ボタン情報リスト初期化
-		buttonList.add(new buttonData(Fx_Disp_Button, "dispSelected"));
-		buttonList.add(new buttonData(Fx_New_Button, "newSelected"));
+		try {
+			tba = new Fx_ToolButtonArea();
+			tba.getButtonData(Fx_Disp_Button).setMethod(this.getClass().getMethod("dispSelected", ActionEvent.class));
+			tba.getButtonData(Fx_Disp_Button).setClazz(this);
+			tba.getButtonData(Fx_New_Button).setMethod(this.getClass().getMethod("newSelected", ActionEvent.class));
+			tba.getButtonData(Fx_New_Button).setClazz(this);
+		} catch (NoSuchMethodException | SecurityException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -75,7 +77,6 @@ public class Fx_FD_Table_List extends Application {
 		root.setPadding(new Insets(5, 5, 5, 5));
 		
 		//ボタン領域表示
-		Fx_ToolButtonArea tba = new Fx_ToolButtonArea(this.getClass().getSimpleName());
 		root.getChildren().add(tba.createNode());
 		
 		table = new TableView<>();
@@ -106,32 +107,6 @@ public class Fx_FD_Table_List extends Application {
 		stage.setScene(scene);
 		//画面をユーザー対応待ちとして表示する。
 		stage.show();
-	}
-
-	/**
-	 * ボタン領域生成[Generate button area]<br>
-	 * @author officina-hide.net
-	 * @since 1.00 2021/08/14
-	 * @return ボタン領域[Button Area]
-	 */
-	private Node getBottunArea() {
-		HBox buttonArea = new HBox(5);
-		for(buttonData bd : buttonList) {
-			//ボタン追加
-			Button button = new Button(bd.getButtonName());
-			button.setFont(new Font("Meiryo UI", 12));
-			//ボタンクリック時の行動追加
-			button.setOnAction(event->{
-				try {
-					Method method = this.getClass().getMethod(bd.getProcessMethod(), ActionEvent.class);
-					method.invoke(this, event);
-				} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-					e.printStackTrace();
-				}
-			});
-			buttonArea.getChildren().add(button);
-		}
-		return buttonArea;
 	}
 
 	/**
@@ -224,37 +199,5 @@ public class Fx_FD_Table_List extends Application {
 			list.add(table);
 		}
 		return list;
-	}
-
-	/**
-	 * ボタン情報[Button information]<br>
-	 * TODO テーブル化予定
-	 * @author officina-hide.net
-	 * @version 0.00
-	 * @since 2021/08/14
-	 */
-	private class buttonData {
-		/** ボタン名 */
-		private String buttonName;
-		/** 処理メソッド */
-		private String processMethod;
-
-		public buttonData(String buttonName, String methodName) {
-			setButtonName(buttonName);
-			setProcessMethod(methodName);
-		}
-
-		public String getButtonName() {
-			return buttonName;
-		}
-		public void setButtonName(String buttonName) {
-			this.buttonName = buttonName;
-		}
-		public String getProcessMethod() {
-			return processMethod;
-		}
-		public void setProcessMethod(String processMethod) {
-			this.processMethod = processMethod;
-		}
 	}
 }
