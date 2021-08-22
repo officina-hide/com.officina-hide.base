@@ -19,9 +19,11 @@ import javafx.scene.text.Font;
 public class Fx_ToolButtonArea {
 
 	/** 「表示」ボタン */
-	private static final String Fx_Disp_Button = "表示";
+	public static final String Fx_Disp_Button = "表示";
 	/** 「新規ボタン」 */
-	private static final String Fx_New_Button = "新規";
+	public static final String Fx_New_Button = "新規";
+	/** 「保存ボタン」 */
+	public static final String Fx_Save_Button = "保存";
 
 	/** ボタン一覧 */
 	private List<buttonData> buttonList = new ArrayList<>();
@@ -33,6 +35,7 @@ public class Fx_ToolButtonArea {
 	 */
 	public Fx_ToolButtonArea() {
 		buttonList.add(new buttonData(Fx_Disp_Button));
+		buttonList.add(new buttonData(Fx_Save_Button));
 		buttonList.add(new buttonData(Fx_New_Button));
 	}
 
@@ -46,6 +49,10 @@ public class Fx_ToolButtonArea {
 		
 		HBox toolButonArea = new HBox(5);
 		for(buttonData bd : buttonList) {
+			if(bd.isActive() == false) {
+				//ボタンが非アクティブの時は表示しない。
+				continue;
+			}
 			//ボタン追加
 			Button button = new Button(bd.getButtonName());
 			button.setFont(new Font("Meiryo UI", 12));
@@ -92,6 +99,8 @@ public class Fx_ToolButtonArea {
 		private Method method;
 		/** 処理クラス */
 		private Object clazz;
+		/** アクティブ */
+		private boolean active = true;
 
 		public buttonData(String buttonName) {
 			setButtonName(buttonName);
@@ -114,6 +123,12 @@ public class Fx_ToolButtonArea {
 		}
 		public void setClazz(Object clazz) {
 			this.clazz = clazz;
+		}
+		public boolean isActive() {
+			return active;
+		}
+		public void setActive(boolean active) {
+			this.active = active;
 		}
 	}
 

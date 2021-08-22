@@ -41,10 +41,10 @@ public class Fx_FD_Table_List extends Application {
 	/** 一覧ビュー */
 	@SuppressWarnings("rawtypes")
 	private TableView<Map> table;
-	/** 「表示」ボタン */
-	private static final String Fx_Disp_Button = "表示";
-	/** 「新規ボタン」 */
-	private static final String Fx_New_Button = "新規";
+//	/** 「表示」ボタン */
+//	private static final String Fx_Disp_Button = "表示";
+//	/** 「新規ボタン」 */
+//	private static final String Fx_New_Button = "新規";
 	/** ボタン領域情報 */
 	private Fx_ToolButtonArea tba;
 	/** テーブル選択位置 */
@@ -59,10 +59,11 @@ public class Fx_FD_Table_List extends Application {
 		this.env = env;
 		try {
 			tba = new Fx_ToolButtonArea();
-			tba.getButtonData(Fx_Disp_Button).setMethod(this.getClass().getMethod("dispSelected", ActionEvent.class));
-			tba.getButtonData(Fx_Disp_Button).setClazz(this);
-			tba.getButtonData(Fx_New_Button).setMethod(this.getClass().getMethod("newSelected", ActionEvent.class));
-			tba.getButtonData(Fx_New_Button).setClazz(this);
+			tba.getButtonData(Fx_ToolButtonArea.Fx_Disp_Button).setMethod(this.getClass().getMethod("dispSelected", ActionEvent.class));
+			tba.getButtonData(Fx_ToolButtonArea.Fx_Disp_Button).setClazz(this);
+			tba.getButtonData(Fx_ToolButtonArea.Fx_New_Button).setMethod(this.getClass().getMethod("newSelected", ActionEvent.class));
+			tba.getButtonData(Fx_ToolButtonArea.Fx_New_Button).setClazz(this);
+			tba.getButtonData(Fx_ToolButtonArea.Fx_Save_Button).setActive(false);
 		} catch (NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
 		}

@@ -17,7 +17,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  * 基本メニュー[Basic menu]<br>
@@ -62,20 +61,6 @@ public class Fx_Menu extends Application {
 		stage.setScene(scene);
 		stage.show();
 	}
-//
-//	/**
-//	 * テーブル生成画面遷移[Table generation screen transition]<br>
-//	 * @author officina-hide.com
-//	 * @since 1.00 2021/05/22
-//	 */
-//	protected void sysCreateTable() {
-//		try {
-//			FxCreateTable ct = new FxCreateTable(env);
-//			ct.start(new Stage());
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		};
-//	}
 
 	/**
 	 * テーブル情報画面遷移[Table information screen transition]<br>

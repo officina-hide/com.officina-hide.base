@@ -1,15 +1,23 @@
 package com.officina_hide.fx.base;
 
+import java.util.Optional;
+
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.model.X_FD_Table;
+import com.officina_hide.fx.model.Fx_TextArea;
+import com.officina_hide.fx.model.Fx_ToolButtonArea;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -41,12 +49,12 @@ public class Fx_FD_Table_View extends Application {
 	/** テキスト表示モード */
 	private static final Boolean FX_ReadOnly = true;
 	private static final Boolean FX_TextField = false;
-	/** 保存ボタン */
-	private Button saveButton;
-	private static final String Fx_Save_Button = "保存";
-//	/** 新規ボタン */
-//	private Button newButton;
-//	private static final String Fx_New_Button = "新規";
+	/** ボタン領域情報 */
+	Fx_ToolButtonArea tba;
+	/** テーブル名情報 */
+	Fx_TextArea tableName;
+	/** ダイアログメッセージ */
+	StringBuffer message = new StringBuffer();
 	
 	/**
 	 * 表示するテーブル情報のIDを保管する。[Store the ID of the table information to be displayed.]<br>
@@ -58,29 +66,37 @@ public class Fx_FD_Table_View extends Application {
 	public Fx_FD_Table_View(FD_EnvData env, Integer id) {
 		this.env = env;
 		tableId = id;
+		tba = new Fx_ToolButtonArea();
+		try {
+			tba.getButtonData(Fx_ToolButtonArea.Fx_Disp_Button).setActive(false);
+			tba.getButtonData(Fx_ToolButtonArea.Fx_Save_Button).setClazz(this);
+			tba.getButtonData(Fx_ToolButtonArea.Fx_Save_Button).setMethod(this.getClass().getMethod("saveSelected", ActionEvent.class));
+		} catch (NoSuchMethodException | SecurityException e) {
+			e.printStackTrace();
+		}
+		tableName = new Fx_TextArea();
 	}
 
 	@Override
 	public void start(Stage stage) throws Exception {
 		//テーブル情報取得
-//		if(tableId > 0) {
-			table = new X_FD_Table(env, tableId);
-//		}
+		table = new X_FD_Table(env, tableId);
 		
 		VBox root = new VBox(5);
 		root.setPadding(new Insets(10, 10, 10, 10));
-		//ボタン領域
-		root.getChildren().add(getButton());
+		//ボタン領域表示
+		root.getChildren().add(tba.createNode());
 		//タイトル
 		root.getChildren().add(getTitle());
 		//テーブル情報
-		if(tableId > 0) {
-			root.getChildren().add(getText(I_FD_Table.COMMENT_FD_Table_Name, table.getFD_Table_Name()
-					,I_FD_Table.COLUMNNAME_FD_Table_Name , FX_ReadOnly));
-		} else {
-			root.getChildren().add(getText(I_FD_Table.COMMENT_FD_Table_Name, table.getFD_Table_Name()
-					,I_FD_Table.COLUMNNAME_FD_Table_Name , FX_TextField));
-		}
+		root.getChildren().add(tableName.createNode());
+//		if(tableId > 0) {
+//			root.getChildren().add(getText(I_FD_Table.COMMENT_FD_Table_Name, table.getFD_Table_Name()
+//					,I_FD_Table.COLUMNNAME_FD_Table_Name , FX_ReadOnly));
+//		} else {
+//			root.getChildren().add(getText(I_FD_Table.COMMENT_FD_Table_Name, table.getFD_Table_Name()
+//					,I_FD_Table.COLUMNNAME_FD_Table_Name , FX_TextField));
+//		}
 		root.getChildren().add(getText(I_FD_Table.COMMENT_FD_Name, table.getFD_Name()
 				,I_FD_Table.COLUMNNAME_FD_Name , FX_TextField));
 		root.getChildren().add(getTextArea(I_FD_Table.COMMENT_FD_Description, table.getFD_Description()));
@@ -88,28 +104,6 @@ public class Fx_FD_Table_View extends Application {
 		Scene scene = new Scene(root, 550, 300);
 		stage.setScene(scene);
 		stage.show();
-	}
-
-	/**
-	 * ボタン領域生成[Button area generation]<br>
-	 * @author officine-hide.net
-	 * @since 1.00 2021/08/10
-	 * @return ボタン領域ノード[Button area node]
-	 */
-	private Node getButton() {
-		HBox buttonArea = new HBox(5);
-		
-		//保存ボタン
-		saveButton = new Button(Fx_Save_Button);
-		saveButton.setDisable(true);
-		buttonArea.getChildren().add(saveButton);
-//		
-//		//新規ボタン
-//		newButton = new Button(Fx_New_Button);
-//		newButton.setFont(new Font("Meiryo UI", 12));
-//		buttonArea.getChildren().add(newButton);
-		
-		return buttonArea;
 	}
 
 	/**
@@ -172,14 +166,14 @@ public class Fx_FD_Table_View extends Application {
 			text.setPrefWidth(200);
 			text.setId(columnId);
 			text.setUserData(textData);
-			text.setOnKeyTyped(event->{
-				TextField ttt = (TextField) event.getSource();
-				if(ttt.getText().equals(ttt.getUserData())){
-					saveButton.setDisable(true);
-				} else {
-					saveButton.setDisable(false);
-				}
-			});
+//			text.setOnKeyTyped(event->{
+//				TextField ttt = (TextField) event.getSource();
+//				if(ttt.getText().equals(ttt.getUserData())){
+//					saveButton.setDisable(true);
+//				} else {
+//					saveButton.setDisable(false);
+//				}
+//			});
 		}
 		
 		return textBox;
@@ -199,4 +193,40 @@ public class Fx_FD_Table_View extends Application {
 		return titleBox;
 	}
 
+	/**
+	 * 保存ボタン選択処理[Save button selection process]<br>
+	 * @author officine-hide.net
+	 * @since 1.00 2021/08/18
+	 * @param event イベント情報[event information]
+	 */
+	public void saveSelected(ActionEvent event) {
+		System.out.println("save selected!!");
+		//入力チェック
+		if(inputCheck() == false) {
+			Alert dialog = new Alert(AlertType.ERROR);
+			dialog.showAndWait();
+			return;
+		}
+		
+		Alert dialog = new Alert(AlertType.CONFIRMATION);
+		dialog.setHeaderText("テーブル情報を保存しますか？");
+		if(dialog.showAndWait().get().equals(ButtonType.OK) == false) {
+			//「OK」がクリックされなかった時は、保存処理を抜ける
+			return;
+		}
+		
+	}
+
+	/**
+	 * 入力チェック[Input check]<br>
+	 * @author officine-hide.net
+	 * @since 1.00 2021/08/19
+	 * @return チェック結果 true - ok, false - error
+	 */
+	private boolean inputCheck() {
+		//テーブル名必須入力チェック
+		//テーブル名重複チェック
+		
+		return false;
+	}
 }
