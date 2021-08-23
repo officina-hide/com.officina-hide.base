@@ -1,12 +1,16 @@
 package com.officina_hide.fx.base;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_WhereData;
 import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.model.X_FD_Table;
 import com.officina_hide.fx.model.Fx_TextArea;
 import com.officina_hide.fx.model.Fx_ToolButtonArea;
+import com.officina_hide.fx.model.I_Fx_View;
+import com.officina_hide.fx.model.X_Fx_View;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -29,6 +33,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import sun.jvm.hotspot.code.Location.Where;
 
 /**
  * テーブル情報単票画面[Table information display screen]<br>
@@ -40,6 +45,9 @@ public class Fx_FD_Table_View extends Application {
 
 	/** 環境情報 */
 	private FD_EnvData env;
+	/** 画面基本情報 */
+	private X_Fx_View view;
+	private static final String View_Name = "FX_FD_Table_View";
 	/** テーブル情報ID */
 	private int tableId;
 	/** テーブル情報 */
@@ -66,6 +74,12 @@ public class Fx_FD_Table_View extends Application {
 	public Fx_FD_Table_View(FD_EnvData env, Integer id) {
 		this.env = env;
 		tableId = id;
+		/*
+		 * 画面項目情報を取得する。
+		 */
+		FD_WhereData where = new FD_WhereData(I_Fx_View.COLUMNNAME_Fx_View_ID, 101);
+		view = new X_Fx_View(env, where);
+		
 		tba = new Fx_ToolButtonArea();
 		try {
 			tba.getButtonData(Fx_ToolButtonArea.Fx_Disp_Button).setActive(false);
