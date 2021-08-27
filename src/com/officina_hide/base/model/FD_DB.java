@@ -46,7 +46,27 @@ public class FD_DB implements I_FD_DB {
 			}
 		}
 	}
-	
+
+	/**
+	 * 接続情報クローズ[Connection information closed]<br>
+	 * @author officine-hide.net
+	 * @since 1.00 2021/08/24
+	 * @param stmt ステートメント情報[Statement Information]
+	 * @param rs 検索結果[search results]
+	 */
+	public void DBClose(Statement stmt, ResultSet rs) {
+		try {
+			if(stmt != null) {
+				stmt.close();
+			}
+			if(rs != null) {
+				rs.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * テーブル削除[Drop Table]<br>
 	 * @author officine-hide.net

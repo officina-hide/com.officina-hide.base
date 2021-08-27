@@ -79,7 +79,8 @@ public class FD_Table implements I_FD_DB {
 
 	/**
 	 * テーブル項目リスト生成[Table item list generation]<br>
-	 * @author officine-hide.com
+	 * TODO 汎用化予定　2021/08/26
+	 * @author officine-hide.net
 	 * @since 1.00 2021/04/23
 	 * @return テーブル項目リスト[Table item list]
 	 */

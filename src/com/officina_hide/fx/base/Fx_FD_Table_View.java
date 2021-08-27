@@ -10,6 +10,7 @@ import com.officina_hide.base.model.X_FD_Table;
 import com.officina_hide.fx.model.Fx_TextArea;
 import com.officina_hide.fx.model.Fx_ToolButtonArea;
 import com.officina_hide.fx.model.I_Fx_View;
+import com.officina_hide.fx.model.X_Fx_Field;
 import com.officina_hide.fx.model.X_Fx_View;
 
 import javafx.application.Application;
@@ -33,7 +34,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import sun.jvm.hotspot.code.Location.Where;
 
 /**
  * テーブル情報単票画面[Table information display screen]<br>
@@ -48,6 +48,8 @@ public class Fx_FD_Table_View extends Application {
 	/** 画面基本情報 */
 	private X_Fx_View view;
 	private static final String View_Name = "FX_FD_Table_View";
+	/** 画面項目リスト */
+	private List<X_Fx_Field> fileds;
 	/** テーブル情報ID */
 	private int tableId;
 	/** テーブル情報 */
@@ -79,6 +81,7 @@ public class Fx_FD_Table_View extends Application {
 		 */
 		FD_WhereData where = new FD_WhereData(I_Fx_View.COLUMNNAME_Fx_View_ID, 101);
 		view = new X_Fx_View(env, where);
+		fields = getFieldList()
 		
 		tba = new Fx_ToolButtonArea();
 		try {

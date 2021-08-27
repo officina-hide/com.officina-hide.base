@@ -25,8 +25,13 @@ public class FD_WhereData {
 	
 	@Override
 	public String toString() {
-		//Where用文字列を生成する。
-		return super.toString();
+		StringBuffer where = new StringBuffer();
+		WhereItemData item = whereList.get(0);
+		where.append("Where ").append(item.getItemName()).append(" = ");
+		if(item.getItemData().getClass().getSimpleName().equals("Integer")) {
+			where.append(item.getItemData().toString()).append(" ");
+		}
+		return where.toString();
 	}
 	
 	/**
