@@ -1,14 +1,20 @@
 package com.officina_hide.fx.base;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_WhereData;
+import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.model.X_FD_Table;
 import com.officina_hide.fx.model.Fx_TextArea;
 import com.officina_hide.fx.model.Fx_ToolButtonArea;
+import com.officina_hide.fx.model.I_Fx_Fields;
 import com.officina_hide.fx.model.I_Fx_View;
 import com.officina_hide.fx.model.X_Fx_Field;
 import com.officina_hide.fx.model.X_Fx_View;
@@ -65,6 +71,8 @@ public class Fx_FD_Table_View extends Application {
 	Fx_TextArea tableName;
 	/** ダイアログメッセージ */
 	StringBuffer message = new StringBuffer();
+	/** DBクラス */
+	private FD_DB DB = new FD_DB();
 	
 	/**
 	 * 表示するテーブル情報のIDを保管する。[Store the ID of the table information to be displayed.]<br>
@@ -81,7 +89,7 @@ public class Fx_FD_Table_View extends Application {
 		 */
 		FD_WhereData where = new FD_WhereData(I_Fx_View.COLUMNNAME_Fx_View_ID, 101);
 		view = new X_Fx_View(env, where);
-		fields = getFieldList()
+		fileds = getFieldList(view.getFx_View_ID());
 		
 		tba = new Fx_ToolButtonArea();
 		try {
@@ -92,6 +100,33 @@ public class Fx_FD_Table_View extends Application {
 			e.printStackTrace();
 		}
 		tableName = new Fx_TextArea();
+	}
+
+	/**
+	 * Fx画面項目情報リスト生成[Fx screen item information list generation]<br>
+	 * @author officine-hide.net
+	 * @param viewId 
+	 * @since 1.00 2021/08/28
+	 * @return Fx画面項目情報リスト[Fx screen item information list]
+	 */
+	private List<X_Fx_Field> getFieldList(int viewId) {
+		List<X_Fx_Field> list = new ArrayList<>();
+		Statement stmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT * FROM ").append(I_Fx_Fields.Table_Name).append(" ");
+			sql.append("WHERE ").append(I_Fx_Fields.COLUMNNAME_Fx_View_ID).append(" = ").append(viewId).append(" ");
+			DB.connection(env);
+			stmt = DB.getConn().createStatement();
+			rs = stmt.executeQuery(sql.toString());
+			while(rs.next()) {
+				list.add(new X_Fx_Field(env, rs.getInt(I_Fx_Fields.COLUMNNAME_Fx_Fields_ID)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} DB.DBClose(stmt, rs);
+		return list;
 	}
 
 	@Override

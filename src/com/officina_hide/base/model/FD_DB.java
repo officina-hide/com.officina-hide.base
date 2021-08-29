@@ -24,7 +24,7 @@ public class FD_DB implements I_FD_DB {
 	/** 
 	 * データベース接続情報[Database connection information]
 	 */
-	protected static Connection conn;
+	private static Connection conn;
 
 	/**
 	 * データベース接続[Database connection]<br>
@@ -208,6 +208,10 @@ public class FD_DB implements I_FD_DB {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public Connection getConn() {
+		return conn;
 	}
 
 }
