@@ -9,7 +9,7 @@ package com.officina_hide.fx.model;
 public interface I_Fx_Fields {
 
 	/** テーブル識別名 */
-	public final static String Table_Name = "FX_Fields";
+	public final static String Table_Name = "FX_Field";
 	/** テーフルID */
 	public final static int Table_ID = 202;
 	

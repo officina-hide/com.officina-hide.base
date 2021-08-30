@@ -24,6 +24,8 @@ public class X_Fx_View extends FD_DB implements I_Fx_View {
 	private String Fx_View_Name;
 	/** テーブル項目コレクション */
 	private FD_ItemCollection itemList;
+//	/** DB処理クラス */
+//	FD_DB DB = new FD_DB();
 	
 	/**
 	 * コンストラクタ[Constructor]<br>
@@ -71,7 +73,7 @@ public class X_Fx_View extends FD_DB implements I_Fx_View {
 			sql.append(where.toString()).append(" ");
 			//データ抽出
 			connection(env);
-			stmt = conn.createStatement();
+			stmt = getConn().createStatement();
 			rs = stmt.executeQuery(sql.toString());
 			if(rs.next()) {
 				itemList.setItem(rs);
@@ -84,6 +86,7 @@ public class X_Fx_View extends FD_DB implements I_Fx_View {
 	}
 
 	public int getFx_View_ID() {
+		Fx_View_ID = (int) itemList.getItem(I_Fx_View.COLUMNNAME_Fx_View_ID).getData();
 		return Fx_View_ID;
 	}
 

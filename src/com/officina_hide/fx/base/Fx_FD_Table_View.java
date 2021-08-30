@@ -87,9 +87,11 @@ public class Fx_FD_Table_View extends Application {
 		/*
 		 * 画面項目情報を取得する。
 		 */
-		FD_WhereData where = new FD_WhereData(I_Fx_View.COLUMNNAME_Fx_View_ID, 101);
+		FD_WhereData where = new FD_WhereData(I_Fx_View.COLUMNNAME_Fx_View_ID, 100);
 		view = new X_Fx_View(env, where);
+		System.out.println(view.getFx_View_ID());
 		fileds = getFieldList(view.getFx_View_ID());
+		System.out.println(fileds.size());
 		
 		tba = new Fx_ToolButtonArea();
 		try {
@@ -102,33 +104,6 @@ public class Fx_FD_Table_View extends Application {
 		tableName = new Fx_TextArea();
 	}
 
-	/**
-	 * Fx画面項目情報リスト生成[Fx screen item information list generation]<br>
-	 * @author officine-hide.net
-	 * @param viewId 
-	 * @since 1.00 2021/08/28
-	 * @return Fx画面項目情報リスト[Fx screen item information list]
-	 */
-	private List<X_Fx_Field> getFieldList(int viewId) {
-		List<X_Fx_Field> list = new ArrayList<>();
-		Statement stmt = null;
-		ResultSet rs = null;
-		StringBuffer sql = new StringBuffer();
-		try {
-			sql.append("SELECT * FROM ").append(I_Fx_Fields.Table_Name).append(" ");
-			sql.append("WHERE ").append(I_Fx_Fields.COLUMNNAME_Fx_View_ID).append(" = ").append(viewId).append(" ");
-			DB.connection(env);
-			stmt = DB.getConn().createStatement();
-			rs = stmt.executeQuery(sql.toString());
-			while(rs.next()) {
-				list.add(new X_Fx_Field(env, rs.getInt(I_Fx_Fields.COLUMNNAME_Fx_Fields_ID)));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} DB.DBClose(stmt, rs);
-		return list;
-	}
-
 	@Override
 	public void start(Stage stage) throws Exception {
 		//テーブル情報取得
@@ -138,10 +113,12 @@ public class Fx_FD_Table_View extends Application {
 		root.setPadding(new Insets(10, 10, 10, 10));
 		//ボタン領域表示
 		root.getChildren().add(tba.createNode());
-		//タイトル
-		root.getChildren().add(getTitle());
-		//テーブル情報
-		root.getChildren().add(tableName.createNode());
+//		//タイトル
+//		root.getChildren().add(getTitle());
+		//項目情報セット
+		root.getChildren().add(getItem(fileds));
+//		//テーブル情報
+//		root.getChildren().add(tableName.createNode());
 //		if(tableId > 0) {
 //			root.getChildren().add(getText(I_FD_Table.COMMENT_FD_Table_Name, table.getFD_Table_Name()
 //					,I_FD_Table.COLUMNNAME_FD_Table_Name , FX_ReadOnly));
@@ -149,13 +126,46 @@ public class Fx_FD_Table_View extends Application {
 //			root.getChildren().add(getText(I_FD_Table.COMMENT_FD_Table_Name, table.getFD_Table_Name()
 //					,I_FD_Table.COLUMNNAME_FD_Table_Name , FX_TextField));
 //		}
-		root.getChildren().add(getText(I_FD_Table.COMMENT_FD_Name, table.getFD_Name()
-				,I_FD_Table.COLUMNNAME_FD_Name , FX_TextField));
-		root.getChildren().add(getTextArea(I_FD_Table.COMMENT_FD_Description, table.getFD_Description()));
+//		root.getChildren().add(getText(I_FD_Table.COMMENT_FD_Name, table.getFD_Name()
+//				,I_FD_Table.COLUMNNAME_FD_Name , FX_TextField));
+//		root.getChildren().add(getTextArea(I_FD_Table.COMMENT_FD_Description, table.getFD_Description()));
 		
 		Scene scene = new Scene(root, 550, 300);
 		stage.setScene(scene);
 		stage.show();
+	}
+//
+//	/**
+//	 * タイトル項目生成[Title item generation]<br>
+//	 * @author officine-hide.net
+//	 * @since 1.00 2021/08/09
+//	 * @return タイトル表示用ノード[Title display node]
+//	 */
+//	private Node getTitle() {
+//		HBox titleBox = new HBox(5);
+//		Label title = new Label(View_Title);
+//		title.setFont(new Font("Meiryo UI", 12));
+//		titleBox.getChildren().add(title);
+//		return titleBox;
+//	}
+
+	/**
+	 * 項目領域を生成する。[Generate an item area.]<br>
+	 * @author officine-hide.net
+	 * @param fileds 画面項目リスト[screen item list]
+	 * @since 1.00 2021/08/30
+	 * @return 項目領域[Item Area]
+	 */
+	private Node getItem(List<X_Fx_Field> fileds) {
+		VBox itemArea = new VBox(5);
+		for(X_Fx_Field field : fileds) {
+			HBox rowArea = new HBox(5);
+			itemArea.getChildren().add(rowArea);
+			//項目のラベルをセット
+			Label title = new Label(field.getValue(I_Fx_Fields.COLUMNNAME_Fx_Fields_Name));
+			rowArea.getChildren().add(title);
+		}
+		return itemArea;
 	}
 
 	/**
@@ -232,20 +242,6 @@ public class Fx_FD_Table_View extends Application {
 	}
 
 	/**
-	 * タイトル項目生成[Title item generation]<br>
-	 * @author officine-hide.net
-	 * @since 1.00 2021/08/09
-	 * @return タイトル表示用ノード[Title display node]
-	 */
-	private Node getTitle() {
-		HBox titleBox = new HBox(5);
-		Label title = new Label(View_Title);
-		title.setFont(new Font("Meiryo UI", 12));
-		titleBox.getChildren().add(title);
-		return titleBox;
-	}
-
-	/**
 	 * 保存ボタン選択処理[Save button selection process]<br>
 	 * @author officine-hide.net
 	 * @since 1.00 2021/08/18
@@ -280,5 +276,32 @@ public class Fx_FD_Table_View extends Application {
 		//テーブル名重複チェック
 		
 		return false;
+	}
+
+	/**
+	 * Fx画面項目情報リスト生成[Fx screen item information list generation]<br>
+	 * @author officine-hide.net
+	 * @param viewId 
+	 * @since 1.00 2021/08/28
+	 * @return Fx画面項目情報リスト[Fx screen item information list]
+	 */
+	private List<X_Fx_Field> getFieldList(int viewId) {
+		List<X_Fx_Field> list = new ArrayList<>();
+		Statement stmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT * FROM ").append(I_Fx_Fields.Table_Name).append(" ");
+			sql.append("WHERE ").append(I_Fx_Fields.COLUMNNAME_Fx_View_ID).append(" = ").append(viewId).append(" ");
+			DB.connection(env);
+			stmt = DB.getConn().createStatement();
+			rs = stmt.executeQuery(sql.toString());
+			while(rs.next()) {
+				list.add(new X_Fx_Field(env, rs.getInt(I_Fx_Fields.COLUMNNAME_Fx_Fields_ID)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} DB.DBClose(stmt, rs);
+		return list;
 	}
 }

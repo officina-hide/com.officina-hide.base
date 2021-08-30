@@ -60,4 +60,15 @@ public class FD_ItemCollection {
 	public FD_Item getItem(int index) {
 		return list.get(index);
 	}
+
+	public FD_Item getItem(String columnName) {
+		FD_Item item = null;
+		for(FD_Item wk : list) {
+			if(wk.getName().equals(columnName)) {
+				item = wk;
+				break;
+			}
+		}
+		return item;
+	}
 }
