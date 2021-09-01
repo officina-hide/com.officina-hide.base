@@ -160,9 +160,12 @@ public class Fx_FD_Table_View extends Application {
 		VBox itemArea = new VBox(5);
 		for(X_Fx_Field field : fileds) {
 			HBox rowArea = new HBox(5);
-			itemArea.getChildren().add(rowArea);
+			itemArea.getChildren().add(rowArea); 
 			//項目のラベルをセット
 			Label title = new Label(field.getValue(I_Fx_Fields.COLUMNNAME_Fx_Fields_Name));
+			title.setFont(new Font("Meiryo UI", 12));
+			title.setPrefWidth(100);
+			title.setAlignment(Pos.CENTER_RIGHT);
 			rowArea.getChildren().add(title);
 		}
 		return itemArea;

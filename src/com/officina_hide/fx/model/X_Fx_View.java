@@ -51,6 +51,7 @@ public class X_Fx_View extends FD_DB implements I_Fx_View {
 		itemList = new FD_ItemCollection();
 		itemList.add(I_Fx_View.COLUMNNAME_Fx_View_ID, 0, I_FD_DB.Item_Value_Type_ID);
 		itemList.add(I_Fx_View.COLUMNNAME_Fx_View_Name, null, I_FD_DB.Item_Value_Type_String);
+		itemList.add(I_Fx_View.COLUMNNAME_FD_Table_ID, 0, Item_Value_Type_ID);
 		return itemList;
 	}
 
