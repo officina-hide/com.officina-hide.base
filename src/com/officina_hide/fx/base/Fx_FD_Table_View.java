@@ -89,9 +89,7 @@ public class Fx_FD_Table_View extends Application {
 		 */
 		FD_WhereData where = new FD_WhereData(I_Fx_View.COLUMNNAME_Fx_View_ID, 100);
 		view = new X_Fx_View(env, where);
-		System.out.println(view.getFx_View_ID());
 		fileds = getFieldList(view.getFx_View_ID());
-		System.out.println(fileds.size());
 		
 		tba = new Fx_ToolButtonArea();
 		try {
@@ -162,10 +160,12 @@ public class Fx_FD_Table_View extends Application {
 			HBox rowArea = new HBox(5);
 			itemArea.getChildren().add(rowArea); 
 			//項目のラベルをセット
-			Label title = new Label(field.getValue(I_Fx_Fields.COLUMNNAME_Fx_Fields_Name));
+			Label title = new Label(field.getFX_Field_Name());
 			title.setFont(new Font("Meiryo UI", 12));
 			title.setPrefWidth(100);
 			title.setAlignment(Pos.CENTER_RIGHT);
+			//テーブル項目の属性を取得する。
+			
 			rowArea.getChildren().add(title);
 		}
 		return itemArea;
@@ -300,7 +300,7 @@ public class Fx_FD_Table_View extends Application {
 			stmt = DB.getConn().createStatement();
 			rs = stmt.executeQuery(sql.toString());
 			while(rs.next()) {
-				list.add(new X_Fx_Field(env, rs.getInt(I_Fx_Fields.COLUMNNAME_Fx_Fields_ID)));
+				list.add(new X_Fx_Field(env, rs.getInt(I_Fx_Fields.COLUMNNAME_Fx_Field_ID)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -2,7 +2,7 @@
 Drop table if exists FD_DataDictionnary;
 create table if not exists FD_DataDictionnary
 (
-	FD_DataDictionnary_ID int unsigned NOT NULL COMMENT '辞書情報ID',
+	FD_DataDictionnary_ID int unsigned NOT NULL PRIMARY KEY COMMENT '辞書情報ID',
 	FD_Name varchar(100) unique COMMENT '要素名',
 	FD_Description text COMMENT '要素説明',
 	FD_Created datetime DEFAULT NULL COMMENT '登録日',
@@ -10,7 +10,7 @@ create table if not exists FD_DataDictionnary
 	FD_Updated datetime DEFAULT NULL COMMENT '更新日',
 	FD_UpdatedBy int(10) unsigned DEFAULT NULL COMMENT '更新者ID'
 )
-ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='テーブル情報';
+ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='辞書情報';
 /* 必要な辞書情報の登録 */
 insert into FD_DataDictionnary
 	( FD_DataDictionnary_ID, FD_Name, FD_Description
@@ -32,6 +32,6 @@ values
 	, '2021/07/31 12:00:00', 100, '2021/07/31 12:00:00', 100 ),
 	(107, 'FD_Table_ID', 'テーブル情報ID'
 	, '2021/07/31 12:00:00', 100, '2021/07/31 12:00:00', 100 ),
-	(108, 'FD_Table_Name', 'テーブル物理名'
+	(108, 'FD_Table_Name', 'テーブル識別名'
 	, '2021/07/31 12:00:00', 100, '2021/07/31 12:00:00', 100 )
 ;

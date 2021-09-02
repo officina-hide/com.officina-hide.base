@@ -12,6 +12,12 @@ import com.officina_hide.base.model.FD_DB;
  */
 public class X_Fx_Field extends FD_DB implements I_Fx_Fields {
 
+	/** 画面項目 */
+	private int FX_Fields_ID;
+	private String FX_Field_Name;
+	private int Fx_View_ID;
+	private X_Fx_View Fx_View;
+	
 	private FD_Items items;
 	
 	/**
@@ -25,8 +31,8 @@ public class X_Fx_Field extends FD_DB implements I_Fx_Fields {
 	 */
 	public X_Fx_Field(FD_EnvData env, int id) {
 		items = new FD_Items();
-		items.add(COLUMNNAME_Fx_Fields_ID, env, Item_Value_Type_ID);
-		items.add(COLUMNNAME_Fx_Fields_Name, env, Item_Value_Type_String);
+		items.add(COLUMNNAME_Fx_Field_ID, env, Item_Value_Type_ID);
+		items.add(COLUMNNAME_Fx_Field_Name, env, Item_Value_Type_String);
 		items.add(COLUMNNAME_Fx_View_ID, env, Item_Value_Type_ID);
 		load(env, Table_Name, id, items);
 	}
@@ -44,4 +50,25 @@ public class X_Fx_Field extends FD_DB implements I_Fx_Fields {
 		return data;
 	}
 
+	public int getFX_Fields_ID() {
+		return FX_Fields_ID;
+	}
+	public void setFX_Fields_ID(int fX_Fields_ID) {
+		FX_Fields_ID = fX_Fields_ID;
+	}
+	public String getFX_Field_Name() {
+		return FX_Field_Name;
+	}
+	public void setFX_Field_Name(String fX_Field_Name) {
+		FX_Field_Name = fX_Field_Name;
+	}
+	public int getFx_View_ID() {
+		return Fx_View_ID;
+	}
+	public void setFx_View_ID(int fx_View_ID) {
+		Fx_View_ID = fx_View_ID;
+	}
+	public X_Fx_View getFx_View() {
+		return Fx_View;
+	}
 }

@@ -2,7 +2,7 @@
 DROP Table if Exists FD_Table;
 CREATE TABLE IF NOT EXISTS FD_Table 
 (
-FD_Table_ID int(10) unsigned NOT NULL COMMENT 'テーブル情報ID',
+FD_Table_ID int(10) unsigned NOT NULL PRIMARY KEY COMMENT 'テーブル情報ID',
 FD_Table_Name varchar(100) COMMENT 'テーブル物理名',
 FD_Name varchar(100) COMMENT 'テーブル表示名',
 FD_Description text COMMENT '説明',
@@ -26,6 +26,8 @@ INSERT INTO FD_Table
 	, 100, '2021/07/12 12:00:00', 100, '2021/07/12 12:00:00', 100 ),
 	( 103, 'FD_Table', 'テーブル情報', 'テーブルの基本情報を定義する。'
 	, 100, '2021/07/12 12:00:00', 100, '2021/07/12 12:00:00', 100 ),
+	( 104, 'FD_Column', 'テーブル項目情報', 'テーブルで使用する項目を管理する。'
+	, 100, '2021/09/02 12:00:00', 100, '2021/09/02 12:00:00', 100 ),
 	( 201, 'FX_View', '画面基本情報', 'Fx画面の基本情報を管理する。'
 	, 100, '2021/07/12 12:00:00', 100, '2021/07/12 12:00:00', 100 ),
 	( 202, 'FX_Field', '画面項目情報', 'Fx画面の項目情報を管理する。'

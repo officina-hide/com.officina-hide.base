@@ -15,9 +15,11 @@ public interface I_Fx_Fields {
 	
 	/** 項目情報 */
 	/** 画面項目情報ID */
-	public final static String COLUMNNAME_Fx_Fields_ID = Table_Name + "_ID";
+	public final static String COLUMNNAME_Fx_Field_ID = Table_Name + "_ID";
 	/** 画面項目識別名 */
-	public final static String COLUMNNAME_Fx_Fields_Name = Table_Name + "_Name";
+	public final static String COLUMNNAME_Fx_Field_Name = Table_Name + "_Name";
 	/** 画面基本情報ID */
 	public final static String COLUMNNAME_Fx_View_ID = I_Fx_View.Table_Name + "_ID";
+	/** テーブル項目情報ID */
+	public final static String COLUMNNAME_FD_Column_ID = "";
 }

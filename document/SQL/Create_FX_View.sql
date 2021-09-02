@@ -2,7 +2,7 @@
 DROP Table if Exists FX_View;
 CREATE TABLE IF NOT EXISTS FX_View
 (
-	FX_View_ID int unsigned NOT NULL COMMENT '画面基本情報ID',
+	FX_View_ID int unsigned NOT NULL PRIMARY KEY COMMENT '画面基本情報ID',
 	FX_View_Name varchar(100) COMMENT '画面識別名',
 	FD_Name varchar(100) COMMENT '名前',
 	FD_Description text COMMENT '説明',
