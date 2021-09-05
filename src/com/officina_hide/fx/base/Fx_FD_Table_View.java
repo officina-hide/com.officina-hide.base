@@ -55,7 +55,7 @@ public class Fx_FD_Table_View extends Application {
 	private X_Fx_View view;
 	private static final String View_Name = "FX_FD_Table_View";
 	/** 画面項目リスト */
-	private List<X_Fx_Field> fileds;
+	private List<X_Fx_Field> fields;
 	/** テーブル情報ID */
 	private int tableId;
 	/** テーブル情報 */
@@ -89,7 +89,7 @@ public class Fx_FD_Table_View extends Application {
 		 */
 		FD_WhereData where = new FD_WhereData(I_Fx_View.COLUMNNAME_Fx_View_ID, 100);
 		view = new X_Fx_View(env, where);
-		fileds = getFieldList(view.getFx_View_ID());
+		fields = getFieldList(view.getFx_View_ID());
 		
 		tba = new Fx_ToolButtonArea();
 		try {
@@ -114,7 +114,7 @@ public class Fx_FD_Table_View extends Application {
 //		//タイトル
 //		root.getChildren().add(getTitle());
 		//項目情報セット
-		root.getChildren().add(getItem(fileds));
+		root.getChildren().add(getItem(fields));
 //		//テーブル情報
 //		root.getChildren().add(tableName.createNode());
 //		if(tableId > 0) {
@@ -165,6 +165,7 @@ public class Fx_FD_Table_View extends Application {
 			title.setPrefWidth(100);
 			title.setAlignment(Pos.CENTER_RIGHT);
 			//テーブル項目の属性を取得する。
+			System.out.println(field.getFD_Column().getFD_Type());
 			
 			rowArea.getChildren().add(title);
 		}

@@ -3,6 +3,7 @@ package com.officina_hide.fx.model;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_Items;
 import com.officina_hide.base.model.FD_DB;
+import com.officina_hide.base.model.X_FD_Column;
 
 /**
  * Fx画面項目情報[Fx screen item information]<br>
@@ -12,11 +13,16 @@ import com.officina_hide.base.model.FD_DB;
  */
 public class X_Fx_Field extends FD_DB implements I_Fx_Fields {
 
+	/** 環境情報 */
+	FD_EnvData env = new FD_EnvData();
+	
 	/** 画面項目 */
 	private int FX_Fields_ID;
 	private String FX_Field_Name;
 	private int Fx_View_ID;
 	private X_Fx_View Fx_View;
+	private int FD_Column_ID;
+	private X_FD_Column FD_Column;
 	
 	private FD_Items items;
 	
@@ -30,10 +36,13 @@ public class X_Fx_Field extends FD_DB implements I_Fx_Fields {
 	 * @param id [Information ID]
 	 */
 	public X_Fx_Field(FD_EnvData env, int id) {
+		this.env = env;
+		
 		items = new FD_Items();
 		items.add(COLUMNNAME_Fx_Field_ID, env, Item_Value_Type_ID);
 		items.add(COLUMNNAME_Fx_Field_Name, env, Item_Value_Type_String);
 		items.add(COLUMNNAME_Fx_View_ID, env, Item_Value_Type_ID);
+		items.add(COLUMNNAME_FD_Column_ID, env, Item_Value_Type_ID);
 		load(env, Table_Name, id, items);
 	}
 
@@ -57,7 +66,7 @@ public class X_Fx_Field extends FD_DB implements I_Fx_Fields {
 		FX_Fields_ID = fX_Fields_ID;
 	}
 	public String getFX_Field_Name() {
-		return FX_Field_Name;
+		return items.getStringData(COLUMNNAME_Fx_Field_Name);
 	}
 	public void setFX_Field_Name(String fX_Field_Name) {
 		FX_Field_Name = fX_Field_Name;
@@ -70,5 +79,18 @@ public class X_Fx_Field extends FD_DB implements I_Fx_Fields {
 	}
 	public X_Fx_View getFx_View() {
 		return Fx_View;
+	}
+	public int getFD_Column_ID() {
+		return items.getintData(COLUMNNAME_FD_Column_ID);
+	}
+	public void setFD_Column_ID(int fD_Column_ID) {
+		FD_Column_ID = fD_Column_ID;
+	}
+	public X_FD_Column getFD_Column() {
+		System.out.println(getFD_Column_ID());
+		if(FD_Column == null) {
+			FD_Column = new X_FD_Column(env, getFD_Column_ID());
+		}
+		return FD_Column;
 	}
 }

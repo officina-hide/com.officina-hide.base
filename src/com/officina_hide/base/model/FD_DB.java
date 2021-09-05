@@ -187,10 +187,10 @@ public class FD_DB implements I_FD_DB {
 			if(rs.next()) {
 				for(FD_Item item : items.getItems()) {
 					switch(item.getType()) {
-					case FD_Item.ITEM_TYPE_Integer:
+					case Item_Value_Type_ID:
 						items.setValue(item.getName(), rs.getInt(item.getName()));
 						break;
-					case FD_Item.ITEM_TYPE_String:
+					case Item_Value_Type_String:
 						items.setValue(item.getName(), rs.getString(item.getName()));
 						break;
 					}
