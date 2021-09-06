@@ -17,6 +17,7 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 	/** 項目 */
 	private FD_Items items;
 	private int FD_Column_ID;
+	private String FD_Column_Name;
 	private int FD_Table_ID;
 	private int FD_Type_ID;
 	private X_FD_Type FD_Type;
@@ -39,18 +40,23 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 		items.add(COLUMNNAME_FD_Type_ID, null, Item_Value_Type_ID);
 		load(env, Table_Name, columnId, items);
 	}
-
+ 
 	public X_FD_Type getFD_Type() {
-		System.out.println(getFD_Type_ID());
 		if(FD_Type == null) {
-			FD_Type = new X_FD_Type();
+			FD_Type = new X_FD_Type(env, getFD_Type_ID());
 		}
 		return FD_Type;
 	}
 	public int getFD_Type_ID() {
-		return items.getintData(Item_Value_Type_ID);
+		return items.getintData(COLUMNNAME_FD_Type_ID);
 	}
 	public void setFD_Type_ID(int fD_Type_ID) {
 		FD_Type_ID = fD_Type_ID;
+	}
+	public String getFD_Column_Name() {
+		return items.getStringData(COLUMNNAME_FD_Column_Name);
+	}
+	public void setFD_Column_Name(String fD_Column_Name) {
+		FD_Column_Name = fD_Column_Name;
 	}
 }

@@ -83,7 +83,7 @@ public class Fx_FD_Table_View extends Application {
 	 */
 	public Fx_FD_Table_View(FD_EnvData env, Integer id) {
 		this.env = env;
-		tableId = id;
+		this.tableId = id;
 		/*
 		 * 画面項目情報を取得する。
 		 */
@@ -164,10 +164,16 @@ public class Fx_FD_Table_View extends Application {
 			title.setFont(new Font("Meiryo UI", 12));
 			title.setPrefWidth(100);
 			title.setAlignment(Pos.CENTER_RIGHT);
-			//テーブル項目の属性を取得する。
-			System.out.println(field.getFD_Column().getFD_Type());
-			
 			rowArea.getChildren().add(title);
+			//テーブル項目の属性を取得する。
+			System.out.println(field.getFD_Column().getFD_Column_Name());
+			switch(field.getFD_Column().getFD_Type_ID()) {
+			case 101:	// TODO テキスト項目　クラス化予定
+				TextField text = new TextField(table.getItems().getStringData(I_FD_Table.COLUMNNAME_FD_Table_Name));
+				rowArea.getChildren().add(text);
+				break;
+			}
+			
 		}
 		return itemArea;
 	}

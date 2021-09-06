@@ -87,7 +87,6 @@ public class X_Fx_Field extends FD_DB implements I_Fx_Fields {
 		FD_Column_ID = fD_Column_ID;
 	}
 	public X_FD_Column getFD_Column() {
-		System.out.println(getFD_Column_ID());
 		if(FD_Column == null) {
 			FD_Column = new X_FD_Column(env, getFD_Column_ID());
 		}
