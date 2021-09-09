@@ -46,17 +46,17 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 	 * @param id 情報ID[Information ID]
 	 */
 	public X_FD_Table(FD_EnvData env, int id) {
-		items.add(I_FD_Table.COLUMNNAME_FD_Table_ID, 0, FD_Item.ITEM_TYPE_Integer);
-		items.add(I_FD_Table.COLUMNNAME_FD_Table_Name, null, FD_Item.ITEM_TYPE_String);
-		items.add(I_FD_Table.COLUMNNAME_FD_Name, null, FD_Item.ITEM_TYPE_String);
-		items.add(I_FD_Table.COLUMNNAME_FD_Description, null, FD_Item.ITEM_TYPE_String);
+		items.add(I_FD_Table.COLUMNNAME_FD_Table_ID, 0, Item_Value_Type_ID);
+		items.add(I_FD_Table.COLUMNNAME_FD_Table_Name, null, Item_Value_Type_String);
+		items.add(I_FD_Table.COLUMNNAME_FD_Name, null, Item_Value_Type_String);
+		items.add(I_FD_Table.COLUMNNAME_FD_Description, null, Item_Value_Type_String);
 		if(id > 0) {
 			load(env, Table_Name, id, items);
 		}
-		setFD_Table_ID(items.getintData(COLUMNNAME_FD_Table_ID));
-		setFD_Table_Name(items.getStringData(COLUMNNAME_FD_Table_Name));
-		setFD_Name(items.getStringData(COLUMNNAME_FD_Name));
-		setFD_Description(items.getStringData(COLUMNNAME_FD_Description));
+//		setFD_Table_ID(items.getintData(COLUMNNAME_FD_Table_ID));
+//		setFD_Table_Name(items.getStringData(COLUMNNAME_FD_Table_Name));
+//		setFD_Name(items.getStringData(COLUMNNAME_FD_Name));
+//		setFD_Description(items.getStringData(COLUMNNAME_FD_Description));
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 	}
 
 	public String getFD_Table_Name() {
-		return FD_Table_Name;
+		return items.getStringData(COLUMNNAME_FD_Table_Name);
 	}
 
 	public void setFD_Table_Name(String fD_Table_Name) {
@@ -93,7 +93,7 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 	}
 
 	public int getFD_Table_ID() {
-		return FD_Table_ID;
+		return items.getintData(COLUMNNAME_FD_Table_ID);
 	}
 
 	public void setFD_Table_ID(int fD_Table_ID) {
@@ -101,7 +101,7 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 	}
 
 	public String getFD_Name() {
-		return FD_Name;
+		return items.getStringData(COLUMNNAME_FD_Name);
 	}
 
 	public void setFD_Name(String fD_Name) {
@@ -109,7 +109,7 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 	}
 
 	public String getFD_Description() {
-		return FD_Description;
+		return items.getStringData(COLUMNNAME_FD_Description);
 	}
 
 	public void setFD_Description(String fD_Description) {

@@ -7,6 +7,7 @@ FD_Column_Name varchar(100) COMMENT 'テーブル識別名',
 FD_DataDictionnary_ID int unsigned NOT NULL COMMENT '辞書情報ID',
 FD_Table_ID int unsigned COMMENT 'テーブル情報ID',
 FD_Type_ID int unsigned COMMENT 'テーブル項目種別情報ID',
+FD_Column_Size int(10) unsigned DEFAULT 0 COMMENT 'テーブル項目桁数',
 FD_Group_ID int(10) unsigned COMMENT '管理グループID',
 FD_Created datetime DEFAULT NULL COMMENT '登録日',
 FD_CreatedBy int(10) unsigned DEFAULT NULL COMMENT '登録者ID',
@@ -23,6 +24,8 @@ VALUES
 	, 100, '2021/09/03 12:00:00', 100, '2021/09/03 12:00:00', 100),
 	(101, 'FD_Table_Name', 108, 103, 101
 	, 100, '2021/09/03 12:00:00', 100, '2021/09/03 12:00:00', 100),
-	(102, 'FD_Name', 101, 103, 102
-	, 100, '2021/09/03 12:00:00', 100, '2021/09/03 12:00:00', 100)
+	(102, 'FD_Name', 101, 103, 101
+	, 100, '2021/09/03 12:00:00', 100, '2021/09/03 12:00:00', 100),
+	(103, 'FD_Description', 102, 103, 102
+	, 100, '2021/09/07 12:00:00', 100, '2021/09/07 12:00:00', 100)
 ;

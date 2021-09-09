@@ -18,11 +18,15 @@ import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.MapValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -81,7 +85,7 @@ public class Fx_FD_Table_List extends Application {
 		root.getChildren().add(tba.createNode());
 		
 		table = new TableView<>();
-		root.getChildren().add(table);
+//		root.getChildren().add(table);
 		TableColumn<Map, String> TableName = new TableColumn<>("テーブル物理名");
 		TableName.setCellValueFactory(new MapValueFactory<>(I_FD_Table.COLUMNNAME_FD_Table_Name));
 		TableColumn<Map, String> Name = new TableColumn<>("テーブル表示名");
@@ -104,7 +108,20 @@ public class Fx_FD_Table_List extends Application {
 //			tableclicked(event);
 //		});
 		
-		Scene scene = new Scene(root, 500, 300);
+		//タブ表示
+		SplitPane sp = new SplitPane();
+		sp.setOrientation(Orientation.VERTICAL);
+		sp.setDividerPositions(0.8, 0.2);
+		root.getChildren().add(sp);
+//		HBox test1 = new HBox(5);
+//		Label t1 = new Label("test1");
+//		test1.getChildren().add(t1);
+		HBox test2 = new HBox(5);
+		Label t2 = new Label("test2");
+		test2.getChildren().add(t2);
+		sp.getItems().addAll(table, test2);
+		
+		Scene scene = new Scene(root, 600, 400);
 		stage.setScene(scene);
 		//画面をユーザー対応待ちとして表示する。
 		stage.show();
@@ -125,6 +142,7 @@ public class Fx_FD_Table_List extends Application {
 		}
 		//選択されたオブジェクトを取得する。[Gets the selected object.]
 		ObservableList<Map> items = table.getSelectionModel().getSelectedItems();
+		System.out.println("selected"+": viewNo "+viewNo+":"+items);
 		Map map = items.get(0);
 		/*
 		 * テーブル情報の照会画面に遷移する。<br>
@@ -170,21 +188,20 @@ public class Fx_FD_Table_List extends Application {
 			e.printStackTrace();
 		}
 	}
-	
-	/**
-	 * テーブルクリック時処理[Processing when clicking a table]<br>
-	 * @author officine-hide.net
-	 * @since 1.00 2021/08/05
-	 * @param event イベント情報
-	 */
-	private void tableclicked(MouseEvent event) {
-		System.out.println("Clicked!!");
-//		//「表示」ボタン活性化
-//		dispButton.setDisable(false);
-		//選択位置の保管
-		viewNo = table.getSelectionModel().getSelectedIndex();
-		System.out.println(viewNo);
-	}
+//	
+//	/**
+//	 * テーブルクリック時処理[Processing when clicking a table]<br>
+//	 * @author officine-hide.net
+//	 * @since 1.00 2021/08/05
+//	 * @param event イベント情報
+//	 */
+//	private void tableclicked(MouseEvent event) {
+//		System.out.println("Clicked!!");
+////		//「表示」ボタン活性化
+////		dispButton.setDisable(false);
+//		//選択位置の保管
+////		viewNo = table.getSelectionModel().getSelectedIndex();
+//	}
 
 	/**
 	 * テーブル情報リスト取得[Get table information list]<br>

@@ -105,6 +105,7 @@ public class Fx_FD_Table_View extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		//テーブル情報取得
+		System.out.println(tableId);
 		table = new X_FD_Table(env, tableId);
 		
 		VBox root = new VBox(5);
@@ -169,9 +170,12 @@ public class Fx_FD_Table_View extends Application {
 			System.out.println(field.getFD_Column().getFD_Column_Name());
 			switch(field.getFD_Column().getFD_Type_ID()) {
 			case 101:	// TODO テキスト項目　クラス化予定
-				TextField text = new TextField(table.getItems().getStringData(I_FD_Table.COLUMNNAME_FD_Table_Name));
+				TextField text = new TextField(table.getItems().getStringData(field.getFD_Column().getFD_Column_Name()));
 				rowArea.getChildren().add(text);
 				break;
+			case 102:	// TODO 複数行項目 クラス化予定
+				TextArea textArea = new TextArea(table.getItems().getStringData(field.getFD_Column().getFD_Column_Name()));
+				rowArea.getChildren().add(textArea);
 			}
 			
 		}
@@ -238,14 +242,6 @@ public class Fx_FD_Table_View extends Application {
 			text.setPrefWidth(200);
 			text.setId(columnId);
 			text.setUserData(textData);
-//			text.setOnKeyTyped(event->{
-//				TextField ttt = (TextField) event.getSource();
-//				if(ttt.getText().equals(ttt.getUserData())){
-//					saveButton.setDisable(true);
-//				} else {
-//					saveButton.setDisable(false);
-//				}
-//			});
 		}
 		
 		return textBox;
@@ -272,7 +268,7 @@ public class Fx_FD_Table_View extends Application {
 			//「OK」がクリックされなかった時は、保存処理を抜ける
 			return;
 		}
-		
+		System.out.println(table.getFD_Table_ID());
 	}
 
 	/**
@@ -282,10 +278,11 @@ public class Fx_FD_Table_View extends Application {
 	 * @return チェック結果 true - ok, false - error
 	 */
 	private boolean inputCheck() {
+		boolean chk = true;
 		//テーブル名必須入力チェック
 		//テーブル名重複チェック
 		
-		return false;
+		return chk;
 	}
 
 	/**
