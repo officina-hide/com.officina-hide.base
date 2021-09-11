@@ -87,8 +87,8 @@ public class Fx_FD_Table_View extends Application {
 		/*
 		 * 画面項目情報を取得する。
 		 */
-		FD_WhereData where = new FD_WhereData(I_Fx_View.COLUMNNAME_Fx_View_ID, 100);
-		view = new X_Fx_View(env, where);
+//		FD_WhereData where = new FD_WhereData(I_Fx_View.COLUMNNAME_Fx_View_ID, 100);
+		view = new X_Fx_View(env, 100);
 		fields = getFieldList(view.getFx_View_ID());
 		
 		tba = new Fx_ToolButtonArea();
@@ -112,8 +112,6 @@ public class Fx_FD_Table_View extends Application {
 		root.setPadding(new Insets(10, 10, 10, 10));
 		//ボタン領域表示
 		root.getChildren().add(tba.createNode());
-//		//タイトル
-//		root.getChildren().add(getTitle());
 		//項目情報セット
 		root.getChildren().add(getItem(fields));
 //		//テーブル情報
@@ -131,22 +129,9 @@ public class Fx_FD_Table_View extends Application {
 		
 		Scene scene = new Scene(root, 550, 300);
 		stage.setScene(scene);
+		stage.setTitle(view.getFD_Name());
 		stage.show();
 	}
-//
-//	/**
-//	 * タイトル項目生成[Title item generation]<br>
-//	 * @author officine-hide.net
-//	 * @since 1.00 2021/08/09
-//	 * @return タイトル表示用ノード[Title display node]
-//	 */
-//	private Node getTitle() {
-//		HBox titleBox = new HBox(5);
-//		Label title = new Label(View_Title);
-//		title.setFont(new Font("Meiryo UI", 12));
-//		titleBox.getChildren().add(title);
-//		return titleBox;
-//	}
 
 	/**
 	 * 項目領域を生成する。[Generate an item area.]<br>

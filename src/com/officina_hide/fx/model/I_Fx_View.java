@@ -18,4 +18,5 @@ public interface I_Fx_View {
 	public static final String COLUMNNAME_Fx_View_ID = Table_Name + "_ID";
 	public static final String COLUMNNAME_Fx_View_Name = "FX_View_Name";
 	public static final String COLUMNNAME_FD_Table_ID = I_FD_Table.COLUMNNAME_FD_Table_ID;
+	public static final String COLUMNNAME_FD_Name = "FD_Name";
 }

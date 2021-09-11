@@ -9,12 +9,12 @@ minimum-scale=1.0,maximum-scale=1.0' name='viewport'/>
 	<hr size="5">
 </div>
 <div id="content">
-<div id="main">
-	<h2>メインページ</h2>
-</div>
-<div id="menu">
-	<ul>
-		<li>TEST</li>
-	</ul>
-</div>
+	<div id="main">
+		<h2>メインページ</h2>
+	</div>
+	<div id="menu">
+		<ul>
+			<li>TEST</li>
+			<li><a href='JavaFx.php'>JavaFx</a></li>
+	</div>
 </div>
