@@ -1,11 +1,7 @@
 package com.officina_hide.fx.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_Items;
-import com.officina_hide.base.common.FD_WhereData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.X_FD_Column;
 
@@ -15,7 +11,7 @@ import com.officina_hide.base.model.X_FD_Column;
  * @version 1.00
  * @since 2021/08/26
  */
-public class X_Fx_Field extends FD_DB implements I_Fx_Fields {
+public class X_Fx_Field extends FD_DB implements I_Fx_Field {
 
 	/** 環境情報 */
 	FD_EnvData env = new FD_EnvData();
@@ -23,6 +19,7 @@ public class X_Fx_Field extends FD_DB implements I_Fx_Fields {
 	/** 画面項目 */
 	private int FX_Fields_ID;
 	private String FX_Field_Name;
+	private String FD_Name;
 	private int Fx_View_ID;
 	private X_Fx_View Fx_View;
 	private int FD_Column_ID;
@@ -47,6 +44,7 @@ public class X_Fx_Field extends FD_DB implements I_Fx_Fields {
 		items.add(COLUMNNAME_Fx_Field_Name, env, Item_Value_Type_String);
 		items.add(COLUMNNAME_Fx_View_ID, env, Item_Value_Type_ID);
 		items.add(COLUMNNAME_FD_Column_ID, env, Item_Value_Type_ID);
+		items.add(COLUMNNAME_FD_Name, null, Item_Value_Type_String);
 		load(env, Table_Name, id, items);
 	}
 
@@ -96,17 +94,11 @@ public class X_Fx_Field extends FD_DB implements I_Fx_Fields {
 		}
 		return FD_Column;
 	}
-
-	/**
-	 * 画面項目情報の一覧生成[Generate a list of screen item information]<br>
-	 * @author officine-hide.net
-	 * @since 1.00 2021/09/11
-	 * @param env 環境情報[Environment Information]
-	 * @param where 抽出条件[Extraction condition]
-	 * @return 画面項目情報一覧[Screen item information list]
-	 */
-	public static List<X_Fx_Field> getList(FD_EnvData env, FD_WhereData where) {
-		List<X_Fx_Field> list = new ArrayList<>();
-		return list;
+	public String getFD_Name() {
+		FD_Name = items.getStringData(COLUMNNAME_FD_Name);
+		return FD_Name;
+	}
+	public void setFD_Name(String fD_Name) {
+		FD_Name = fD_Name;
 	}
 }

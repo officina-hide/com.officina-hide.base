@@ -3,18 +3,21 @@ package com.officina_hide.fx.base;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.officina_hide.base.common.FD_EnvData;
-import com.officina_hide.base.common.FD_WhereData;
 import com.officina_hide.base.model.FD_DB;
+import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.model.X_FD_Table;
 import com.officina_hide.fx.model.Fx_ToolButtonArea;
-import com.officina_hide.fx.model.I_Fx_Fields;
+import com.officina_hide.fx.model.I_Fx_Field;
 import com.officina_hide.fx.model.X_Fx_Field;
 import com.officina_hide.fx.model.X_Fx_View;
 
@@ -25,15 +28,12 @@ import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.MapValueFactory;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -43,7 +43,7 @@ import javafx.stage.Stage;
  * @version 1.01
  * @since 2021/08/14
  */
-public class Fx_FD_Table_List extends Application {
+public class Fx_FD_Table_List extends Application implements I_FD_DB {
 
 	/** DBクラス */
 	private FD_DB DB = new FD_DB();
@@ -74,9 +74,6 @@ public class Fx_FD_Table_List extends Application {
 		this.env = env;
 		//画面情報取得
 		view = new X_Fx_View(env, viewId);
-		//画面項目一覧取得
-		FD_WhereData where = new FD_WhereData(I_Fx_Fields.COLUMNNAME_Fx_View_ID, viewId);
-		List<X_Fx_Field> fields = X_Fx_Field.getList(env, where);
 		//ツールバーボタン設定
 		try {
 			tba = new Fx_ToolButtonArea();
@@ -92,8 +89,6 @@ public class Fx_FD_Table_List extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		//テーブル情報取得
-		List<X_FD_Table> list = getTableList();
 		VBox root = new VBox(5);
 		root.setPadding(new Insets(5, 5, 5, 5));
 		
@@ -108,27 +103,7 @@ public class Fx_FD_Table_List extends Application {
 		
 		//初期表示では一覧を表示する。
 		mainSprit.getItems().add(createTableView());
-		
-//		table = new TableView<>();
-//		mainSprit.getItems().add(table);
-//		TableColumn<Map, String> TableName = new TableColumn<>("テーブル物理名");
-//		TableName.setCellValueFactory(new MapValueFactory<>(I_FD_Table.COLUMNNAME_FD_Table_Name));
-//		TableColumn<Map, String> Name = new TableColumn<>("テーブル表示名");
-//		Name.setCellValueFactory(new MapValueFactory<>(I_FD_Table.COLUMNNAME_FD_Name));
-//		TableColumn<Map, String> TableDescription = new TableColumn<>("テーブル説明");
-//		TableDescription.setCellValueFactory(new MapValueFactory<>(I_FD_Table.COLUMNNAME_FD_Description));
-//		table.getColumns().add(TableName);
-//		table.getColumns().add(Name);
-//		table.getColumns().add(TableDescription);
-//		
-//		for(X_FD_Table data : list) {
-//			Map<String, String> map = new HashMap<>();
-//			map.put(I_FD_Table.COLUMNNAME_FD_Table_Name, data.getFD_Table_Name());
-//			map.put(I_FD_Table.COLUMNNAME_FD_Name, data.getFD_Name());
-//			map.put(I_FD_Table.COLUMNNAME_FD_Description, data.getFD_Description());
-//			map.put(I_FD_Table.COLUMNNAME_FD_Table_ID, Integer.toString(data.getFD_Table_ID()));
-//			table.getItems().add(map);
-//		}
+
 //		table.setOnMouseClicked(event ->{
 //			tableclicked(event);
 //		});
@@ -160,9 +135,61 @@ public class Fx_FD_Table_List extends Application {
 	 */
 	private Node createTableView() {
 		table = new TableView<>();
-		//テーブル項目名表示
+		System.out.println(table.getStyle());
+		table.setStyle("-fx-font-family: Meiryo UI; -fx-font-size: 12");
+		//テーブル項目一覧取得
+		setTableTitle(env, table);
+		//テーブル情報取得
+		List<X_FD_Table> list = getTableList();
+		//情報一覧セット
+		for(X_FD_Table data : list) {
+			Map<String, String> map = new HashMap<>();
+			map.put(I_FD_Table.COLUMNNAME_FD_Table_Name, data.getFD_Table_Name());
+			map.put(I_FD_Table.COLUMNNAME_FD_Name, data.getFD_Name());
+			map.put(I_FD_Table.COLUMNNAME_FD_Description, data.getFD_Description());
+			map.put(I_FD_Table.COLUMNNAME_FD_Table_ID, Integer.toString(data.getFD_Table_ID()));
+			table.getItems().add(map);
+		}
 		
 		return table;
+	}
+
+	/**
+	 * テーブルタイトル設定[Table title setting]<br>
+	 * TODO 汎用化予定
+	 * @author officina-hide.net
+	 * @since 1.00 2021/09/12
+	 * @param env 環境情報[Environment Information]
+	 * @param table テーブルノード[Table Node]
+	 */
+	@SuppressWarnings("rawtypes")
+	private void setTableTitle(FD_EnvData env, TableView<Map> table) {
+		Statement stmt = null;
+		ResultSet rs = null;
+		/*
+		 * 画面項目情報から一覧用の項目を取得する抽出する。
+		 */
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT * FROM ").append(I_Fx_Field.Table_Name).append(" ");
+			sql.append("WHERE ").append(I_Fx_Field.COLUMNNAME_Fx_View_ID)
+				.append(" = ").append(view.getFx_View_ID()).append(" ");
+			sql.append("AND ").append(I_Fx_Field.COLUMNNAME_Fx_isListField)
+				.append(" = ").append(FD_SQ).append(I_Fx_Field.Fx_isListField_YES).append(FD_SQ);
+			DB.connection(env);
+			stmt = DB.getConn().createStatement();
+			rs = stmt.executeQuery(sql.toString());
+			while(rs.next()) {
+				X_Fx_Field field = new X_Fx_Field(env, rs.getInt(I_Fx_Field.COLUMNNAME_Fx_Field_ID));
+				TableColumn<Map, String> tableColumn = new TableColumn<>(field.getFD_Name());
+				tableColumn.setCellValueFactory(new MapValueFactory<>(field.getFX_Field_Name()));
+				table.getColumns().add(tableColumn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.DBClose(stmt, rs);
+		}
 	}
 
 	/**
