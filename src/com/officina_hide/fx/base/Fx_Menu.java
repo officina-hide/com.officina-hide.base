@@ -70,8 +70,8 @@ public class Fx_Menu extends Application {
 	protected void sysCreateTable() {
 		try {
 			Class<?> clazz = Class.forName("com.officina_hide.fx.base.Fx_FD_Table_List");
-			Constructor<?> constructor = clazz.getConstructor(FD_EnvData.class);
-			Object instance = constructor.newInstance(env);
+			Constructor<?> constructor = clazz.getConstructor(FD_EnvData.class, Integer.class);
+			Object instance = constructor.newInstance(env, 100);
 			Method method = clazz.getMethod("start", Stage.class);
 			method.invoke(instance, new Stage());
 		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {

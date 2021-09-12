@@ -1,7 +1,11 @@
 package com.officina_hide.fx.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_Items;
+import com.officina_hide.base.common.FD_WhereData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.X_FD_Column;
 
@@ -91,5 +95,18 @@ public class X_Fx_Field extends FD_DB implements I_Fx_Fields {
 			FD_Column = new X_FD_Column(env, getFD_Column_ID());
 		}
 		return FD_Column;
+	}
+
+	/**
+	 * 画面項目情報の一覧生成[Generate a list of screen item information]<br>
+	 * @author officine-hide.net
+	 * @since 1.00 2021/09/11
+	 * @param env 環境情報[Environment Information]
+	 * @param where 抽出条件[Extraction condition]
+	 * @return 画面項目情報一覧[Screen item information list]
+	 */
+	public static List<X_Fx_Field> getList(FD_EnvData env, FD_WhereData where) {
+		List<X_Fx_Field> list = new ArrayList<>();
+		return list;
 	}
 }

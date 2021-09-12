@@ -9,19 +9,26 @@ import java.util.List;
 import java.util.Map;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_WhereData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.model.X_FD_Table;
 import com.officina_hide.fx.model.Fx_ToolButtonArea;
+import com.officina_hide.fx.model.I_Fx_Fields;
+import com.officina_hide.fx.model.X_Fx_Field;
+import com.officina_hide.fx.model.X_Fx_View;
 
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.MapValueFactory;
@@ -42,6 +49,8 @@ public class Fx_FD_Table_List extends Application {
 	private FD_DB DB = new FD_DB();
 	/** 環境情報 */
 	private FD_EnvData env = new FD_EnvData();
+	/** 画面情報 */
+	private X_Fx_View view;
 	/** 一覧ビュー */
 	@SuppressWarnings("rawtypes")
 	private TableView<Map> table;
@@ -58,9 +67,17 @@ public class Fx_FD_Table_List extends Application {
 	 * コンストラクタ[Constructor]<br>
 	 * 実体化時に環境情報をセットする。[Set environment information at the time of class instance.]<br>
 	 * @param env 環境情報 [Environment informatioin]
+	 * @param viewId 画面情報ID[Screen Information ID]
 	 */
-	public Fx_FD_Table_List(FD_EnvData env) {
+	public Fx_FD_Table_List(FD_EnvData env, Integer viewId) {
+		//環境情報セット[Environmental information set]
 		this.env = env;
+		//画面情報取得
+		view = new X_Fx_View(env, viewId);
+		//画面項目一覧取得
+		FD_WhereData where = new FD_WhereData(I_Fx_Fields.COLUMNNAME_Fx_View_ID, viewId);
+		List<X_Fx_Field> fields = X_Fx_Field.getList(env, where);
+		//ツールバーボタン設定
 		try {
 			tba = new Fx_ToolButtonArea();
 			tba.getButtonData(Fx_ToolButtonArea.Fx_Disp_Button).setMethod(this.getClass().getMethod("dispSelected", ActionEvent.class));
@@ -73,7 +90,6 @@ public class Fx_FD_Table_List extends Application {
 		}
 	}
 
-	@SuppressWarnings("rawtypes")
 	@Override
 	public void start(Stage stage) throws Exception {
 		//テーブル情報取得
@@ -84,47 +100,69 @@ public class Fx_FD_Table_List extends Application {
 		//ボタン領域表示
 		root.getChildren().add(tba.createNode());
 		
-		table = new TableView<>();
-//		root.getChildren().add(table);
-		TableColumn<Map, String> TableName = new TableColumn<>("テーブル物理名");
-		TableName.setCellValueFactory(new MapValueFactory<>(I_FD_Table.COLUMNNAME_FD_Table_Name));
-		TableColumn<Map, String> Name = new TableColumn<>("テーブル表示名");
-		Name.setCellValueFactory(new MapValueFactory<>(I_FD_Table.COLUMNNAME_FD_Name));
-		TableColumn<Map, String> TableDescription = new TableColumn<>("テーブル説明");
-		TableDescription.setCellValueFactory(new MapValueFactory<>(I_FD_Table.COLUMNNAME_FD_Description));
-		table.getColumns().add(TableName);
-		table.getColumns().add(Name);
-		table.getColumns().add(TableDescription);
+		//スプリット領域生成（上下で親と子の一覧を表示する。)
+		SplitPane mainSprit = new SplitPane();
+		mainSprit.setOrientation(Orientation.VERTICAL);
+		mainSprit.setDividerPositions(0.7, 0.3);
+		root.getChildren().add(mainSprit);
 		
-		for(X_FD_Table data : list) {
-			Map<String, String> map = new HashMap<>();
-			map.put(I_FD_Table.COLUMNNAME_FD_Table_Name, data.getFD_Table_Name());
-			map.put(I_FD_Table.COLUMNNAME_FD_Name, data.getFD_Name());
-			map.put(I_FD_Table.COLUMNNAME_FD_Description, data.getFD_Description());
-			map.put(I_FD_Table.COLUMNNAME_FD_Table_ID, Integer.toString(data.getFD_Table_ID()));
-			table.getItems().add(map);
-		}
+		//初期表示では一覧を表示する。
+		mainSprit.getItems().add(createTableView());
+		
+//		table = new TableView<>();
+//		mainSprit.getItems().add(table);
+//		TableColumn<Map, String> TableName = new TableColumn<>("テーブル物理名");
+//		TableName.setCellValueFactory(new MapValueFactory<>(I_FD_Table.COLUMNNAME_FD_Table_Name));
+//		TableColumn<Map, String> Name = new TableColumn<>("テーブル表示名");
+//		Name.setCellValueFactory(new MapValueFactory<>(I_FD_Table.COLUMNNAME_FD_Name));
+//		TableColumn<Map, String> TableDescription = new TableColumn<>("テーブル説明");
+//		TableDescription.setCellValueFactory(new MapValueFactory<>(I_FD_Table.COLUMNNAME_FD_Description));
+//		table.getColumns().add(TableName);
+//		table.getColumns().add(Name);
+//		table.getColumns().add(TableDescription);
+//		
+//		for(X_FD_Table data : list) {
+//			Map<String, String> map = new HashMap<>();
+//			map.put(I_FD_Table.COLUMNNAME_FD_Table_Name, data.getFD_Table_Name());
+//			map.put(I_FD_Table.COLUMNNAME_FD_Name, data.getFD_Name());
+//			map.put(I_FD_Table.COLUMNNAME_FD_Description, data.getFD_Description());
+//			map.put(I_FD_Table.COLUMNNAME_FD_Table_ID, Integer.toString(data.getFD_Table_ID()));
+//			table.getItems().add(map);
+//		}
 //		table.setOnMouseClicked(event ->{
 //			tableclicked(event);
 //		});
 		
-		//タブ表示
-		SplitPane sp = new SplitPane();
-		sp.setOrientation(Orientation.VERTICAL);
-		sp.setDividerPositions(0.8, 0.2);
-		root.getChildren().add(sp);
-//		HBox test1 = new HBox(5);
-//		Label t1 = new Label("test1");
-//		test1.getChildren().add(t1);
-		HBox test2 = new HBox(5);
-		Label t2 = new Label("test2");
-		test2.getChildren().add(t2);
-		sp.getItems().addAll(table, test2);
+//		//タブ表示
+//		SplitPane sp = new SplitPane();
+//		sp.setOrientation(Orientation.VERTICAL);
+//		sp.setDividerPositions(0.8, 0.2);
+//		root.getChildren().add(sp);
+		TabPane tabPane = new TabPane();
+		Tab tab1 = new Tab("Column");
+		tab1.setClosable(false);
+		tabPane.getTabs().add(tab1);
+		mainSprit.getItems().add(tabPane);
 		
-		Scene scene = new Scene(root, 600, 400);
+		Scene scene = new Scene(root, 700, 400);
 		stage.setScene(scene);
+		//タイトルセット[Title set]
+		stage.setTitle(view.getFD_Name());
 		//画面をユーザー対応待ちとして表示する。
 		stage.show();
+	}
+
+	/**
+	 * 一覧画面表示[List screen display]<br>
+	 * @author officine-hide.net
+	 * @since 1.00 2021/09/11
+	 * @return 一覧画面ノード[List Screen Node]
+	 */
+	private Node createTableView() {
+		table = new TableView<>();
+		//テーブル項目名表示
+		
+		return table;
 	}
 
 	/**
