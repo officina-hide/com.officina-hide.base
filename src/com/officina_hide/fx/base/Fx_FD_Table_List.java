@@ -13,6 +13,7 @@ import java.util.Map;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
+import com.officina_hide.base.model.FX_Tabs;
 import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.model.X_FD_Table;
@@ -34,6 +35,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.MapValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -51,6 +53,8 @@ public class Fx_FD_Table_List extends Application implements I_FD_DB {
 	private FD_EnvData env = new FD_EnvData();
 	/** 画面情報 */
 	private X_Fx_View view;
+	/** タブ階層情報 */
+	private FX_Tabs tabs;
 	/** 一覧ビュー */
 	@SuppressWarnings("rawtypes")
 	private TableView<Map> table;
@@ -61,7 +65,7 @@ public class Fx_FD_Table_List extends Application implements I_FD_DB {
 	/** ボタン領域情報 */
 	private Fx_ToolButtonArea tba;
 	/** テーブル選択位置 */
-	private int viewNo = -1;
+	private int viewNo = 0;
 	
 	/**
 	 * コンストラクタ[Constructor]<br>
@@ -74,6 +78,8 @@ public class Fx_FD_Table_List extends Application implements I_FD_DB {
 		this.env = env;
 		//画面情報取得
 		view = new X_Fx_View(env, viewId);
+		//タブ階層情報取得
+		tabs = getTabs(env, viewId);
 		//ツールバーボタン設定
 		try {
 			tba = new Fx_ToolButtonArea();
@@ -85,6 +91,24 @@ public class Fx_FD_Table_List extends Application implements I_FD_DB {
 		} catch (NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * タブ階層情報生成[Tab hierarchy information generate]<br>
+	 * TODO 汎用化予定
+	 * @author officine-hide.net
+	 * @since 1.00 2021/09/13 
+	 * @param env 環境情報 [Environment informatioin]
+	 * @param viewId 画面情報ID[Screen Information ID]
+	 * @return タブ階層情報[Tab hierarchy information]
+	 */
+	private FX_Tabs getTabs(FD_EnvData env, Integer viewId) {
+		FX_Tabs tabs = new FX_Tabs();
+		
+		
+		
+		
+		return tabs;
 	}
 
 	@Override
@@ -141,6 +165,10 @@ public class Fx_FD_Table_List extends Application implements I_FD_DB {
 		setTableTitle(env, table);
 		//テーブル情報取得
 		List<X_FD_Table> list = getTableList();
+		//一覧の件数が0件以上ある場合は、最初の行の情報を子タブに渡す為に、viewNoを0にセットする。
+		if(list.size() > 0) {
+			viewNo = 0;
+		}
 		//情報一覧セット
 		for(X_FD_Table data : list) {
 			Map<String, String> map = new HashMap<>();
@@ -150,8 +178,32 @@ public class Fx_FD_Table_List extends Application implements I_FD_DB {
 			map.put(I_FD_Table.COLUMNNAME_FD_Table_ID, Integer.toString(data.getFD_Table_ID()));
 			table.getItems().add(map);
 		}
+		//テーブル動作設定
+		table.setOnMouseClicked(event->{
+			tableClicked(event);
+		});
 		
 		return table;
+	}
+
+	/**
+	 * テーブルクリック処理[Table click process]<br>
+	 * @author officine-hide.net
+	 * @since 1.00 2021/09/13
+	 * @param event イベント情報[event information]
+	 */
+	private void tableClicked(MouseEvent event) {
+		if(event.getClickCount() == 1) {
+			/*
+			 * シングルクリック時 : 子タブの情報更新
+			 */
+			int idx = table.getSelectionModel().getSelectedIndex();
+		}
+		if(event.getClickCount() == 2) {
+			/*
+			 * ダブルクリック時は単票画面に切り替える。
+			 */
+		}
 	}
 
 	/**

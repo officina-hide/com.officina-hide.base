@@ -14,3 +14,11 @@ CREATE TABLE IF NOT EXISTS FX_Tab
 	FD_UpdatedBy int(10) unsigned DEFAULT NULL COMMENT '更新者ID'	
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='画面タブ情報';
+/* 情報登録 */
+INSERT INTO FX_Tab 
+	(FX_Tab_ID, FX_Tab_Name, FD_Tab_Seq, FD_Tab_Level, FD_TableID,
+	FD_Group_ID, FD_Created, FD_CreatedBy, FD_Updated, FD_UpdatedBy)
+VALUES
+	(100, 'テーブル基本情報', 10, 0, 103,
+	100, '2021/09/13 12:00:00', 100, '2021/09/13 12:00:00', 100)
+;
