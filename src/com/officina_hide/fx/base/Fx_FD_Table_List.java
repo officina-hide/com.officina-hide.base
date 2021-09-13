@@ -103,7 +103,7 @@ public class Fx_FD_Table_List extends Application implements I_FD_DB {
 	 * @return タブ階層情報[Tab hierarchy information]
 	 */
 	private FX_Tabs getTabs(FD_EnvData env, Integer viewId) {
-		FX_Tabs tabs = new FX_Tabs();
+		FX_Tabs tabs = new FX_Tabs(env, viewId, 0);
 		
 		
 		
