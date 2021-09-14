@@ -11,6 +11,10 @@ import java.util.List;
  */
 public class FD_WhereData {
 	
+	/** 論理演算子 */
+	public static final String AND = "and";
+	public static final String OR = "or";
+	
 	/** 条件一覧 */
 	List<WhereItemData> whereList = new ArrayList<>();
 	
@@ -20,7 +24,7 @@ public class FD_WhereData {
 	 * @param itemData
 	 */
 	public FD_WhereData(String itemName, int itemData) {
-		whereList.add(new WhereItemData(itemName, itemData));
+		whereList.add(new WhereItemData(null, itemName, itemData));
 	}
 	
 	@Override
@@ -33,6 +37,10 @@ public class FD_WhereData {
 		}
 		return where.toString();
 	}
+
+	public void add(String connectType, String itemName, int itemData) {
+		
+	}
 	
 	/**
 	 * 条件句情報[Where clause Information]<br>
@@ -41,11 +49,14 @@ public class FD_WhereData {
 	 * @since 2021/08/23
 	 */
 	private class WhereItemData {
-		public WhereItemData(String name, int data) {
+		public WhereItemData(String connect, String name, int data) {
+			setConnect(connect);
 			setItemName(name);
 			setItemData(data);
 		}
 
+		/** 論理接続子 */
+		private String connect;
 		/** 項目名 */
 		private String itemName;
 		/** 項目データ(数値) */
@@ -61,6 +72,9 @@ public class FD_WhereData {
 		}
 		public void setItemData(Object itemData) {
 			this.itemData = itemData;
+		}
+		public void setConnect(String connect) {
+			this.connect = connect;
 		}
 	}
 }

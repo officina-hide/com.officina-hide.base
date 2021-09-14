@@ -4,8 +4,8 @@ CREATE TABLE IF NOT EXISTS FX_Tab
 (
 	FX_Tab_ID int(10) unsigned NOT NULL PRIMARY KEY COMMENT '画面タブ情報ID',
 	FX_Tab_Name varchar(100) COMMENT 'タブ識別名',
-	FD_Tab_Seq int(10) unsigned COMMENT 'タブ並び順',
-	FD_Tab_Level int(10) unsigned COMMENT 'タブ階層番号',
+	FX_Tab_Seq int(10) unsigned COMMENT 'タブ並び順',
+	FX_Tab_Level int(10) unsigned COMMENT 'タブ階層番号',
 	FD_TableID int(10) unsigned COMMENT 'テーブル情報ID',
 	FD_Group_ID int(10) unsigned COMMENT '管理グループID',
 	FD_Created datetime DEFAULT NULL COMMENT '登録日',
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS FX_Tab
 ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='画面タブ情報';
 /* 情報登録 */
 INSERT INTO FX_Tab 
-	(FX_Tab_ID, FX_Tab_Name, FD_Tab_Seq, FD_Tab_Level, FD_TableID,
+	(FX_Tab_ID, FX_Tab_Name, FX_Tab_Seq, FX_Tab_Level, FD_TableID,
 	FD_Group_ID, FD_Created, FD_CreatedBy, FD_Updated, FD_UpdatedBy)
 VALUES
 	(100, 'テーブル基本情報', 10, 0, 103,

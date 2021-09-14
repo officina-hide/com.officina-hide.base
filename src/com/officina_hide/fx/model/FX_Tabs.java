@@ -1,10 +1,9 @@
-package com.officina_hide.base.model;
+package com.officina_hide.fx.model;
 
 import java.util.List;
 
 import com.officina_hide.base.common.FD_EnvData;
-import com.officina_hide.fx.model.FX_Tab;
-import com.officina_hide.fx.model.X_Fx_Field;
+import com.officina_hide.base.common.FD_WhereData;
 
 /**
  * タブ階層情報[Tab hierarchy information]<br>
@@ -29,6 +28,8 @@ public class FX_Tabs {
 		 * 現段階では呼び出しレベルの一覧を作成する。
 		 * 将来的に階層構造とする。
 		 */
+		FD_WhereData where = new FD_WhereData(I_Fx_Field.COLUMNNAME_Fx_View_ID, viewId);
+		where.add(FD_WhereData.AND, I_FX_Tab.COLUMNNAME_FX_Tab_Level, 0);
 	}
 
 }

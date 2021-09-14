@@ -13,7 +13,7 @@ public interface I_Fx_Field {
 	/** テーブル識別名 */
 	public final static String Table_Name = "FX_Field";
 	/** テーフルID */
-	public final static int Table_ID = 202;
+	public final static int Table_ID = 203;
 	
 	/** 項目情報 */
 	/** 画面項目情報ID */

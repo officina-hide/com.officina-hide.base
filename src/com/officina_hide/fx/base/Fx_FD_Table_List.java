@@ -13,10 +13,10 @@ import java.util.Map;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
-import com.officina_hide.base.model.FX_Tabs;
 import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.model.X_FD_Table;
+import com.officina_hide.fx.model.FX_Tabs;
 import com.officina_hide.fx.model.Fx_ToolButtonArea;
 import com.officina_hide.fx.model.I_Fx_Field;
 import com.officina_hide.fx.model.X_Fx_Field;
