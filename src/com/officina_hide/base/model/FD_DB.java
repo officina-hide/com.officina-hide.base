@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -207,6 +208,38 @@ public class FD_DB implements I_FD_DB {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+
+	/**
+	 * 項目一覧に共通項目の情報を追加する。<br>
+	 * Add common item information to the item list.<br>
+	 * @param items 項目一覧[Item list]
+	 */
+	public void baseItemSet(FD_Items items) {
+		items.add(COLUMNNAME_FD_Group_ID, null, Item_Value_Type_ID);
+		items.add(COLUMNNAME_FD_Created, null, Item_Value_Type_Date);
+		items.add(COLUMNNAME_FD_CreatedBy, null, Item_Value_Type_ID);
+		items.add(COLUMNNAME_FD_Updated, null, Item_Value_Type_Date);
+		items.add(COLUMNNAME_FD_UpdatedBy, null, Item_Value_Type_ID);
+	}
+
+	/**
+	 * Prepared Statmentに共通項目をセットする。<br>
+	 * Set common items in Prepared Statement.
+	 * @param pstmt Prepared Statment
+	 * @param items 項目一覧[Item list]
+	 * @param startPos セット開始位置[Set start position]
+	 */
+	public void setCommonPrepared(PreparedStatement pstmt, FD_Items items, int startPos) {
+		try {
+			pstmt.setInt(startPos, items.getintData(COLUMNNAME_FD_Group_ID));
+			pstmt.setTimestamp(startPos + 1, new Timestamp(items.getDateData(COLUMNNAME_FD_Created).getTimeInMillis()));
+			pstmt.setInt(startPos + 2, items.getintData(COLUMNNAME_FD_CreatedBy));
+			pstmt.setTimestamp(startPos + 3, new Timestamp(items.getDateData(COLUMNNAME_FD_Updated).getTimeInMillis()));
+			pstmt.setInt(startPos + 4, items.getintData(COLUMNNAME_FD_UpdatedBy));
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 

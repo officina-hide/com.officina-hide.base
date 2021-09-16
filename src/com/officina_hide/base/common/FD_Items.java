@@ -1,7 +1,11 @@
 package com.officina_hide.base.common;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 
 import com.officina_hide.base.model.I_FD_DB;
 
@@ -110,6 +114,77 @@ public class FD_Items implements I_FD_DB {
 			}
 		}
 		return data;
+	}
+
+	/**
+	 * 数値情報取得(Bigint対応)[Numerical information acquisition (Bigint compatible)]<br>
+	 * @author officine-hide.net
+	 * @since 1.00 2021/09/16
+	 * @param itemName 項目名[item name]
+	 * @return 数値情報(Bigint対応)[Numerical information (Bigint compatible)]
+	 */
+	public long getlongData(String itemName) {
+		long data = 0;
+		for(FD_Item item : items) {
+			if(item.getName().equals(itemName)) {
+				data = (long) item.getData();
+				break;
+			}
+		}
+		return data;
+	}
+
+	/**
+	 * SQLの挿入で使用する項目一覧のSQL文字列[SQL string of item list used for inserting SQL]<br>
+	 * @author officine-hide.net
+	 * @since 1.00 2021/09/16
+	 * @return SQL文字列[SQL string]
+	 */
+	public String getInsertItemStrings() {
+		StringBuffer sql = new StringBuffer();
+		for(FD_Item item : getItems()) {
+			if(sql.length() > 0) {
+				sql.append(", ");
+			}
+			sql.append(item.getName());
+		}
+		return sql.toString();
+	}
+
+	/**
+	 * SQLの挿入で使用するPrepared Parameter用文字列生成
+	 * [String generation for Prepared Parameter used for SQL insertion]<br>
+	 * @author officine-hide.net
+	 * @since 1.00 2021/09/16
+	 * @return SQL文字列[SQL string]
+	 */
+	public String getPrepardStrings() {
+		StringBuffer sql = new StringBuffer();
+		for(int ix = 0; ix < getLength(); ix++) {
+			if(ix > 0) {
+				sql.append(",");
+			}
+			sql.append("?");
+		}
+		return sql.toString();
+	}
+
+	/**
+	 * 日付情報取得[Get date information]<br>
+	 * @author officine-hide.net
+	 * @since 1.00 2021/09/16
+	 * @param itemName 項目名[item name]
+	 * @return 日付情報[Date information]
+	 */
+	public Calendar getDateData(String itemName) {
+		Calendar cal = new GregorianCalendar(new Locale(Locale.JAPAN.getLanguage(), Locale.JAPAN.getCountry()));
+		for(FD_Item item : items) {
+			if(item.getName().equals(itemName)) {
+				cal = (Calendar) item.getData();
+				break;
+			}
+		}
+		return cal;
 	}
 	
 //	/**
