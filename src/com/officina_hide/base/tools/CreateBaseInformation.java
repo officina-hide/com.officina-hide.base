@@ -1,6 +1,7 @@
 package com.officina_hide.base.tools;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.model.FD_DataDictionary;
 import com.officina_hide.base.model.FD_Numbering;
 import com.officina_hide.base.model.I_FD_Numbering;
 
@@ -35,9 +36,12 @@ public class CreateBaseInformation {
 	public void execute() {
 		/*
 		 * 1. ID採番用テーブル構築、情報登録
+		 * 2. 辞書除法テーブル構築、情報登録
 		 */
 		FD_Numbering num = new FD_Numbering();
 		num.createTable(env);
 		num.add(env, 101, I_FD_Numbering.Table_ID, 101, 101);
+		FD_DataDictionary dd = new FD_DataDictionary();
+		dd.createTable(env);
 	}
 }
