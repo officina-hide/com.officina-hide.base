@@ -1,11 +1,17 @@
 package com.officina_hide.base.model;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_Item;
 import com.officina_hide.base.common.FD_Items;
+import com.officina_hide.base.common.FD_WhereData;
 
 /**
  * 採番情報I/Oクラス[Numbering information I/O class]<br>
@@ -20,9 +26,9 @@ public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 	private FD_Items items;
 	
 	/** 項目 : 採番情報ID */
-	private int FD_Numbering_ID;
+	private long FD_Numbering_ID;
 	/** 項目 : テーブル情報ID */
-	private int FD_Table_ID;
+	private long FD_Table_ID;
 	/** 項目 : 初期採番番号 */
 	private long FD_InitialNumber;
 	/** 項目 : 現在採番番号 */
@@ -44,15 +50,78 @@ public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 	 * @param numberingID 採番情報ID[Numbering information ID]
 	 */
 	public X_FD_Numbering(FD_EnvData env, int numberingID) {
-		//項目リスト設定
+		//項目リストの初期化
+		initItems();
+//		//項目リスト設定
+//		items = new FD_Items();
+//		items.add(COLUMNNAME_FD_Numbering_ID, null, Item_Value_Type_ID);
+//		items.add(COLUMNNAME_FD_Table_ID, null, Item_Value_Type_ID);
+//		items.add(COLUMNNAME_FD_InitialNumber, null, Item_Value_Type_Bigint);
+//		items.add(COLUMNNAME_FD_CurrentNumber, null, Item_Value_Type_Bigint);
+//		baseItemSet(items);
+
+		// TODO 未実装 : 採番情報IDがゼロ以外の時にload()をする。
+	}
+
+	/**
+	 * コンストラクタ[Constructor]<br>
+	 * @author officina-hide.net
+	 * @since 1.00 2021/09/17
+	 * @param env 環境情報[Enfironment information]
+	 * @param where 条件情報[Condition information]
+	 */
+	public X_FD_Numbering(FD_EnvData env, FD_WhereData where) {
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		//項目リストの初期化
+		initItems();
+		//指定された条件で抽出する。
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT * FROM ").append(Table_Name).append(" ");
+			sql.append(where.toString());
+			connection(env);
+			stmt = getConn().createStatement();
+			rs = stmt.executeQuery(sql.toString());
+			if(rs.next()) {
+				for(FD_Item item : items.getItems()) {
+					switch(item.getType()) {
+					case Item_Value_Type_ID:
+					case Item_Value_Type_Bigint:
+						items.setValue(item.getName(), rs.getLong(item.getName()));
+						break;
+					case Item_Value_Type_String:
+					case Item_Value_Type_Text:
+						items.setValue(item.getName(), rs.getString(item.getName()));
+						break;
+					case Item_Value_Type_Date:
+						Calendar cal = new GregorianCalendar(new Locale(Locale.JAPAN.getLanguage(), Locale.JAPAN.getCountry()));
+						cal.setTime(rs.getTimestamp(item.getName()));
+						items.setValue(item.getName(), cal);
+						break;
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(stmt, rs);
+		}
+	}
+
+	/**
+	 * 項目一覧の初期化[Item list initialization]<br>
+	 * @author officina-hide.net
+	 * @since 1.00 2021/09/17
+	 */
+	private void initItems() {
 		items = new FD_Items();
 		items.add(COLUMNNAME_FD_Numbering_ID, null, Item_Value_Type_ID);
 		items.add(COLUMNNAME_FD_Table_ID, null, Item_Value_Type_ID);
 		items.add(COLUMNNAME_FD_InitialNumber, null, Item_Value_Type_Bigint);
 		items.add(COLUMNNAME_FD_CurrentNumber, null, Item_Value_Type_Bigint);
 		baseItemSet(items);
-
-		// TODO 未実装 : 採番情報IDがゼロ以外の時にload()をする。
 	}
 
 	/**
@@ -71,8 +140,8 @@ public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 			
 			connection(env);
 			pstmt = getConn().prepareStatement(sql.toString());
-			pstmt.setInt(1, items.getintData(COLUMNNAME_FD_Numbering_ID));
-			pstmt.setInt(2, items.getintData(COLUMNNAME_FD_Table_ID));
+			pstmt.setLong(1, items.getlongData(COLUMNNAME_FD_Numbering_ID));
+			pstmt.setLong(2, items.getlongData(COLUMNNAME_FD_Table_ID));
 			pstmt.setLong(3, items.getlongData(COLUMNNAME_FD_InitialNumber));
 			pstmt.setLong(4, items.getlongData(COLUMNNAME_FD_CurrentNumber));
 			setCommonPrepared(pstmt, items, 5);
@@ -86,18 +155,18 @@ public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 		}
 	}
 
-	public int getFD_Numbering_ID() {
-		FD_Numbering_ID = items.getintData(COLUMNNAME_FD_Numbering_ID);
+	public long getFD_Numbering_ID() {
+		FD_Numbering_ID = items.getlongData(COLUMNNAME_FD_Numbering_ID);
 		return FD_Numbering_ID;
 	}
-	public void setFD_Numbering_ID(int numberingID) {
+	public void setFD_Numbering_ID(long numberingID) {
 		items.setValue(COLUMNNAME_FD_Numbering_ID, numberingID);
 	}
-	public int getFD_Table_ID() {
-		FD_Table_ID = items.getintData(COLUMNNAME_FD_Table_ID);
+	public long getFD_Table_ID() {
+		FD_Table_ID = items.getlongData(COLUMNNAME_FD_Table_ID);
 		return FD_Table_ID;
 	}
-	public void setFD_Table_ID(int tableID) {
+	public void setFD_Table_ID(long tableID) {
 		items.setValue(COLUMNNAME_FD_Table_ID, tableID);
 	}
 	public long getFD_InitialNumber() {
@@ -108,7 +177,7 @@ public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 		items.setValue(COLUMNNAME_FD_InitialNumber, initialNumber);
 	}
 	public long getFD_CurrentNumber() {
-		FD_CurrentNumber = items.getintData(COLUMNNAME_FD_CurrentNumber);
+		FD_CurrentNumber = items.getlongData(COLUMNNAME_FD_CurrentNumber);
 		return FD_CurrentNumber;
 	}
 	public void setFD_CurrentNumber(long currentNumber) {

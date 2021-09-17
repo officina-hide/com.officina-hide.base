@@ -33,10 +33,12 @@ public interface I_FD_DB {
 	public static final String COLUMN_LENGTH = "length";
 	public static final String DATETIME = " datetime ";
 	public static final String DATE = " date ";
+	public static final String VARCHAR_100 = " varchar(100) ";
+	public static final String TEXT = " text ";
 	
 	/** SQL用共通定数 */
-	public static final String ID_KEY_TYPE = " int unsigned NOT NULL PRIMARY KEY ";
-	public static final String ID_TYPE = " int unsigned ";
+	public static final String ID_KEY_TYPE = " bigint unsigned NOT NULL PRIMARY KEY ";
+	public static final String ID_TYPE = " bigint unsigned ";
 	public static final String UNSIGNED_BIGINT = " bigint unsigned ";
 	public static final String COMMENT = " COMMENT ";
 	
@@ -45,7 +47,7 @@ public interface I_FD_DB {
 	public static final String NAME_FD_Group_ID = I_FD_Group.NAME_FD_Group_ID;
 	/** 共通項目 : 登録日時 */
 	public static final String COLUMNNAME_FD_Created = "FD_Created";
-	public static final String NAME_FD_Created = "登録日次";
+	public static final String NAME_FD_Created = "登録日時";
 	/** 共通項目 : 登録者情報ID */
 	public static final String COLUMNNAME_FD_CreatedBy = "FD_CreatedBy";
 	public static final String NAME_FD_CreatedBy = "登録者情報ID";

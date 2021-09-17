@@ -43,5 +43,6 @@ public class CreateBaseInformation {
 		num.add(env, 101, I_FD_Numbering.Table_ID, 101, 101);
 		FD_DataDictionary dd = new FD_DataDictionary();
 		dd.createTable(env);
+		dd.addBaseData(env);
 	}
 }

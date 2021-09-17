@@ -8,6 +8,7 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_WhereData;
 
 /**
  * 採番情報クラス[Numbering information class]<br>
@@ -53,7 +54,8 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 	public void add(FD_EnvData env, int numberingId, int tableId, int initialNo, int currentNo) {
 		//採番情報IDがゼロの時は採番を行う。
 		if(numberingId == 0) {
-			//採番機能は未実装
+			//採番情報の採番処理
+			getNumber(env, Table_ID);
 		}
 		//項目セット
 		X_FD_Numbering num = new X_FD_Numbering(env, 0);
@@ -69,6 +71,19 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 		num.setFD_updated(now);
 		num.setFD_UpdatedBy(SYSTEM_USER_ID);
 		num.save(env);
+	}
+
+	/**
+	 * テーブル情報ID指定による採番処理[Numbering process by specifying table information ID]<br>
+	 * @author officina-hide.net
+	 * @since 1.00 2021/09/17
+	 * @param env 環境情報[Enfironment information]
+	 * @param tableId テーブル情報ID[Table information ID]
+	 */
+	public void getNumber(FD_EnvData env, int tableId) {
+		FD_WhereData where = new FD_WhereData(COLUMNNAME_FD_Table_ID, tableId);
+		X_FD_Numbering num = new X_FD_Numbering(env, where);
+		System.out.println(num.getFD_Numbering_ID()+":"+num.getFD_Created());
 	}
 
 }

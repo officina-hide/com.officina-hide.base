@@ -8,4 +8,42 @@ package com.officina_hide.base.model;
  */
 public interface I_FD_DataDictionary extends I_FD_DB {
 
+	/** テーブル識別名 */
+	public static final String Table_Name = "FD_DataDictionary";
+	/** テーブル表示名 */
+	public static final String Table_Disp_Name = "辞書情報";
+	/** テーブル情報ID */
+	public static final int Table_ID = 102;
+
+	/** 項目 : 辞書情報ID */
+	public static final String COLUMNNAME_FD_DataDictionary_ID = Table_Name + "_ID";
+	public static final String NAME_FD_DataDictionary_ID = Table_Disp_Name + "ID";
+	/** 項目 : 辞書項目識別名 */
+	public static final String COLUMNNAME_FD_DataDictionary_Name = "FD_DataDictionary_Name";
+	public static final String NAME_FD_DataDictionary_Name = "辞書項目識別名";
+	/** 項目 : 表示名 */
+	public static final String COLUMNNAME_FD_Name = "FD_Name";
+	public static final String NAME_FD_Name = "表示名";
+	/** 項目 : 説明 */
+	public static final String COLUMNNAME_FD_Description = "FD_Description";
+	public static final String NAME_FD_Description = "説明";
+	
+	/** テーブル削除用SQL */
+	public static final String Table_Drop_SQL =
+			"DROP TABLE IF EXISTS " + Table_Name;
+	/** テーブル生成用SQL */
+	public static final String Table_Create_SQL = 
+		"CREATE TABLE IF NOT EXISTS " + Table_Name
+			+" ("
+			+ COLUMNNAME_FD_DataDictionary_ID + ID_KEY_TYPE
+				+ COMMENT + FD_SQ + NAME_FD_DataDictionary_ID + FD_SQ + ","
+			+ COLUMNNAME_FD_DataDictionary_Name + VARCHAR_100
+				+ COMMENT + FD_SQ + NAME_FD_DataDictionary_Name + FD_SQ + ","
+			+ COLUMNNAME_FD_Name + VARCHAR_100
+				+ COMMENT + FD_SQ + NAME_FD_Name + FD_SQ + ","
+			+ COLUMNNAME_FD_Description + TEXT
+				+ COMMENT + FD_SQ + NAME_FD_Description + FD_SQ + ","
+			+ COMMON_ITEM_CREATE_SQL
+			+") "
+			+"ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=" + FD_SQ + Table_Disp_Name + FD_SQ;
 }
