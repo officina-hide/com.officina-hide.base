@@ -45,18 +45,31 @@ public interface I_FD_DB {
 	/** 共通項目 : グルーブ情報ID */
 	public static final String COLUMNNAME_FD_Group_ID = I_FD_Group.COLUMNNAME_FD_Group_ID;
 	public static final String NAME_FD_Group_ID = I_FD_Group.NAME_FD_Group_ID;
+	public static final String COMMENT_FD_Group_ID = I_FD_Group.COMMENT_FD_Group_ID;
 	/** 共通項目 : 登録日時 */
 	public static final String COLUMNNAME_FD_Created = "FD_Created";
 	public static final String NAME_FD_Created = "登録日時";
+	public static final String COMMENT_FD_Created = "情報の新規登録日時（登録時点のローカルシステム日付がセットされる。）";
 	/** 共通項目 : 登録者情報ID */
 	public static final String COLUMNNAME_FD_CreatedBy = "FD_CreatedBy";
 	public static final String NAME_FD_CreatedBy = "登録者情報ID";
+	public static final String COMMENT_FD_CreatedBy = "情報の新規登録者の情報ID（環境情報の処理者情報IDがセットされる。）";
 	/** 共通項目 : 更新日時 */
 	public static final String COLUMNNAME_FD_Updated = "FD_Updated";
 	public static final String NAME_FD_Updated = "更新日時";
+	public static final String COMMENT_FD_Updated = "情報の最終更新日時（更新時点のローカルシステム日付がセットされる。）";
 	/** 共通項目 : 更新者情報ID */
 	public static final String COLUMNNAME_FD_UpdatedBy = "FD_UpdatedBy";
 	public static final String NAME_FD_UpdatedBy = "更新者情報ID";
+	public static final String COMMENT_FD_UpdatedBy = "情報の最終更新者の情報ID（環境情報の処理者情報IDがセットされる。）";
+	/** 項目 : 表示名 */
+	public static final String COLUMNNAME_FD_Name = "FD_Name";
+	public static final String NAME_FD_Name = "表示名";
+	public static final String COMMENT_FD_Name = "情報の表示用の名称";
+	/** 項目 : 説明 */
+	public static final String COLUMNNAME_FD_Description = "FD_Description";
+	public static final String NAME_FD_Description = "説明";
+	public static final String COMMENT_FD_Description = "情報に関する詳細の説明";
 	
 	/** 共通項目生成用SQL */
 	public static final String COMMON_ITEM_CREATE_SQL = 

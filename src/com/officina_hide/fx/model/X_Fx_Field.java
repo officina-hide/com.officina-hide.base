@@ -3,6 +3,7 @@ package com.officina_hide.fx.model;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_Items;
 import com.officina_hide.base.model.FD_DB;
+import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.base.model.X_FD_Column;
 
 /**
@@ -94,11 +95,11 @@ public class X_Fx_Field extends FD_DB implements I_Fx_Field {
 		}
 		return FD_Column;
 	}
-	public String getFD_Name() {
-		FD_Name = items.getStringData(COLUMNNAME_FD_Name);
-		return FD_Name;
-	}
-	public void setFD_Name(String fD_Name) {
-		FD_Name = fD_Name;
-	}
+//	public String getFD_Name() {
+//		FD_Name = items.getStringData(COLUMNNAME_FD_Name);
+//		return FD_Name;
+//	}
+//	public void setFD_Name(String fD_Name) {
+//		FD_Name = fD_Name;
+//	}
 }

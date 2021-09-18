@@ -52,14 +52,15 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 	 * @param currentNo 現在採番番号[Current numbering number]
 	 */
 	public void add(FD_EnvData env, int numberingId, int tableId, int initialNo, int currentNo) {
+		//項目セット
+		X_FD_Numbering num = new X_FD_Numbering(env, 0);
 		//採番情報IDがゼロの時は採番を行う。
 		if(numberingId == 0) {
 			//採番情報の採番処理
-			getNumber(env, Table_ID);
+			num.setFD_Numbering_ID(getNumber(env, Table_ID));
+		} else {
+			num.setFD_Numbering_ID(numberingId);
 		}
-		//項目セット
-		X_FD_Numbering num = new X_FD_Numbering(env, 0);
-		num.setFD_Numbering_ID(numberingId);
 		num.setFD_Table_ID(tableId);
 		num.setFD_InitialNumber(initialNo);
 		num.setFD_CurrentNumber(currentNo);
@@ -79,11 +80,43 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 	 * @since 1.00 2021/09/17
 	 * @param env 環境情報[Enfironment information]
 	 * @param tableId テーブル情報ID[Table information ID]
+	 * @return no 採番番号[Numbering number]
 	 */
-	public void getNumber(FD_EnvData env, int tableId) {
+	public long getNumber(FD_EnvData env, int tableId) {
+		long no = 0;
 		FD_WhereData where = new FD_WhereData(COLUMNNAME_FD_Table_ID, tableId);
 		X_FD_Numbering num = new X_FD_Numbering(env, where);
-		System.out.println(num.getFD_Numbering_ID()+":"+num.getFD_Created());
+		if(num.getFD_CurrentNumber() == 0) {
+			no = num.getFD_InitialNumber();
+			num.setFD_CurrentNumber(num.getFD_InitialNumber());
+		} else {
+			no = num.getFD_CurrentNumber() + 1;
+			num.setFD_CurrentNumber(no);
+		}
+		num.save(env);
+		return no;
+	}
+
+	/**
+	 * テーブル毎の登録処理を行う。[Perform registration processing for each table.]<br>
+	 * @author officine-hide.net
+	 * @since 1.00 2021/09/18
+	 * @param env 環境情報[Environment information]
+	 * @param tableName テーブル名[Table name]
+	 */
+	public void addData(FD_EnvData env, String tableName) {
+		switch(tableName) {
+		case Table_Name:
+			add(env, 101, I_FD_Numbering.Table_ID, 101, 101);
+			break;
+		case I_FD_DataDictionary.Table_Name:
+			FD_DataDictionary dd = new FD_DataDictionary();
+			dd.add(env, 0, COLUMNNAME_FD_Numbering_ID, NAME_FD_Numbering_ID, null);
+			dd.add(env, 0, COLUMNNAME_FD_Numbering_ID, NAME_FD_Table_ID, null);
+			dd.add(env, 0, COLUMNNAME_FD_InitialNumber, NAME_FD_InitialNumber, null);
+			dd.add(env, 0, COLUMNNAME_FD_CurrentNumber, NAME_FD_CurrentNumber, null);
+			break;
+		}
 	}
 
 }

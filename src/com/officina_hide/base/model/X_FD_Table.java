@@ -99,21 +99,21 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 	public void setFD_Table_ID(int fD_Table_ID) {
 		FD_Table_ID = fD_Table_ID;
 	}
-
-	public String getFD_Name() {
-		return items.getStringData(COLUMNNAME_FD_Name);
-	}
-
-	public void setFD_Name(String fD_Name) {
-		FD_Name = fD_Name;
-	}
-
-	public String getFD_Description() {
-		return items.getStringData(COLUMNNAME_FD_Description);
-	}
-
-	public void setFD_Description(String fD_Description) {
-		FD_Description = fD_Description;
-	}
+//
+//	public String getFD_Name() {
+//		return items.getStringData(COLUMNNAME_FD_Name);
+//	}
+//
+//	public void setFD_Name(String fD_Name) {
+//		FD_Name = fD_Name;
+//	}
+//
+//	public String getFD_Description() {
+//		return items.getStringData(COLUMNNAME_FD_Description);
+//	}
+//
+//	public void setFD_Description(String fD_Description) {
+//		FD_Description = fD_Description;
+//	}
 
 }

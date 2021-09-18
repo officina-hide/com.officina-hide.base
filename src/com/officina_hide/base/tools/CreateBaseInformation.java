@@ -1,8 +1,10 @@
 package com.officina_hide.base.tools;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.FD_DataDictionary;
 import com.officina_hide.base.model.FD_Numbering;
+import com.officina_hide.base.model.I_FD_DataDictionary;
 import com.officina_hide.base.model.I_FD_Numbering;
 
 /**
@@ -36,13 +38,18 @@ public class CreateBaseInformation {
 	public void execute() {
 		/*
 		 * 1. ID採番用テーブル構築、情報登録
-		 * 2. 辞書除法テーブル構築、情報登録
+		 * 2. 辞書情報テーブル構築、情報登録
+		 * 3. テーブル情報構築、情報登録
 		 */
+		FD_DB DB = new FD_DB();
 		FD_Numbering num = new FD_Numbering();
 		num.createTable(env);
-		num.add(env, 101, I_FD_Numbering.Table_ID, 101, 101);
+		num.addData(env, I_FD_Numbering.Table_Name);
 		FD_DataDictionary dd = new FD_DataDictionary();
 		dd.createTable(env);
-		dd.addBaseData(env);
+		dd.addData(env, I_FD_Numbering.Table_Name);
+		DB.addData(env, null);
+		num.addData(env, I_FD_DataDictionary.Table_Name);
+		dd.addData(env, I_FD_DataDictionary.Table_Name);
 	}
 }

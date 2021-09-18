@@ -8,6 +8,11 @@ package com.officina_hide.base.common;
  */
 public class FD_EnvData {
 
+	/** 処理者情報ID 2021/09/18 Addition */
+	private long actionUserID;
+	
+	
+	
 	/** 処理レベル */
 	private int runLevel;
 	/** 
@@ -39,5 +44,12 @@ public class FD_EnvData {
 	 */
 	public void initialize() {
 		
+	}
+
+	public long getActionUserID() {
+		return actionUserID;
+	}
+	public void setActionUserID(long actionUserID) {
+		this.actionUserID = actionUserID;
 	}
 }

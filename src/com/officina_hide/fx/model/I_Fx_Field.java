@@ -20,8 +20,8 @@ public interface I_Fx_Field {
 	public final static String COLUMNNAME_Fx_Field_ID = Table_Name + "_ID";
 	/** 画面項目識別名 */
 	public final static String COLUMNNAME_Fx_Field_Name = Table_Name + "_Name";
-	/** 名前 */
-	public final static String COLUMNNAME_FD_Name = "FD_Name";
+//	/** 名前 */
+//	public final static String COLUMNNAME_FD_Name = "FD_Name";
 	/** 画面基本情報ID */
 	public final static String COLUMNNAME_Fx_View_ID = I_Fx_View.Table_Name + "_ID";
 	/** テーブル項目情報ID */

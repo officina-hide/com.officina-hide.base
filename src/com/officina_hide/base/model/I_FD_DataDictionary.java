@@ -18,15 +18,11 @@ public interface I_FD_DataDictionary extends I_FD_DB {
 	/** 項目 : 辞書情報ID */
 	public static final String COLUMNNAME_FD_DataDictionary_ID = Table_Name + "_ID";
 	public static final String NAME_FD_DataDictionary_ID = Table_Disp_Name + "ID";
+	public static final String COMMENT_FD_DataDictionary_ID = Table_Disp_Name+"を識別する為の情報ID";
 	/** 項目 : 辞書項目識別名 */
 	public static final String COLUMNNAME_FD_DataDictionary_Name = "FD_DataDictionary_Name";
 	public static final String NAME_FD_DataDictionary_Name = "辞書項目識別名";
-	/** 項目 : 表示名 */
-	public static final String COLUMNNAME_FD_Name = "FD_Name";
-	public static final String NAME_FD_Name = "表示名";
-	/** 項目 : 説明 */
-	public static final String COLUMNNAME_FD_Description = "FD_Description";
-	public static final String NAME_FD_Description = "説明";
+	public static final String COMMENT_FD_DataDictionary_Name = "各辞書情報を識別する為のユニークな名称";
 	
 	/** テーブル削除用SQL */
 	public static final String Table_Drop_SQL =

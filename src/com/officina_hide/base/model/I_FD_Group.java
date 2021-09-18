@@ -16,4 +16,5 @@ public interface I_FD_Group extends I_FD_DB {
 	/** 項目 : グループ情報ID */
 	public static final String COLUMNNAME_FD_Group_ID = Table_Name + "_ID";
 	public static final String  NAME_FD_Group_ID = Table_Disp_Name + "ID";
+	public static final String COMMENT_FD_Group_ID = "管理グループを識別する情報ID";
 }

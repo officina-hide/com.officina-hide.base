@@ -17,7 +17,7 @@ public interface I_FD_Numbering extends I_FD_DB {
 	
 	/** 項目 : 採番情報ID */
 	public static final String COLUMNNAME_FD_Numbering_ID = Table_Name + "_ID";
-	public static final String NAME_FD_Numbering = Table_Disp_Name+"ID";
+	public static final String NAME_FD_Numbering_ID = Table_Disp_Name+"ID";
 	/** 項目 : 採番情報ID */
 	public static final String COLUMNNAME_FD_Table_ID = I_FD_Table.COLUMNNAME_FD_Table_ID;
 	public static final String NAME_FD_Table_ID = I_FD_Table.NAME_FD_Table_ID;
@@ -36,7 +36,7 @@ public interface I_FD_Numbering extends I_FD_DB {
 			"CREATE TABLE IF NOT EXISTS " + Table_Name
 			+" ("
 				+ COLUMNNAME_FD_Numbering_ID + ID_KEY_TYPE 
-					+ COMMENT + FD_SQ + NAME_FD_Numbering + FD_SQ + ","
+					+ COMMENT + FD_SQ + NAME_FD_Numbering_ID + FD_SQ + ","
 				+ COLUMNNAME_FD_Table_ID + ID_TYPE 
 					+ COMMENT + FD_SQ + NAME_FD_Table_ID + FD_SQ + ","
 				+ COLUMNNAME_FD_InitialNumber + UNSIGNED_BIGINT

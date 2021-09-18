@@ -20,10 +20,6 @@ import com.officina_hide.base.common.FD_WhereData;
  * @since 2021/09/16
  */
 public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
-
-
-	/** 項目リスト */
-	private FD_Items items;
 	
 	/** 項目 : 採番情報ID */
 	private long FD_Numbering_ID;
@@ -33,16 +29,6 @@ public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 	private long FD_InitialNumber;
 	/** 項目 : 現在採番番号 */
 	private long FD_CurrentNumber;
-	/** 項目 : グループ情報ID */
-	private int FD_Group_ID;
-	/** 項目 : 登録日時 */
-	private Calendar FD_Created;
-	/** 項目 : 登録者情報ID */
-	private int FD_CreatedBy;
-	/** 項目 : 更新日時 */
-	private Calendar FD_updated;
-	/** 項目 : 更新者情報ID */
-	private int FD_UpdatedBy;
 	
 	/**
 	 * コンストラクタ[Constructor]
@@ -52,13 +38,6 @@ public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 	public X_FD_Numbering(FD_EnvData env, int numberingID) {
 		//項目リストの初期化
 		initItems();
-//		//項目リスト設定
-//		items = new FD_Items();
-//		items.add(COLUMNNAME_FD_Numbering_ID, null, Item_Value_Type_ID);
-//		items.add(COLUMNNAME_FD_Table_ID, null, Item_Value_Type_ID);
-//		items.add(COLUMNNAME_FD_InitialNumber, null, Item_Value_Type_Bigint);
-//		items.add(COLUMNNAME_FD_CurrentNumber, null, Item_Value_Type_Bigint);
-//		baseItemSet(items);
 
 		// TODO 未実装 : 採番情報IDがゼロ以外の時にload()をする。
 	}
@@ -133,11 +112,20 @@ public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 		PreparedStatement pstmt = null;
 		StringBuffer sql = new StringBuffer();
 		try {
-			sql.append("INSERT INTO ").append(Table_Name).append(" ");
-			sql.append("(").append(items.getInsertItemStrings()).append(")").append(" ");
-			sql.append("VALUES");
-			sql.append("(").append(items.getPrepardStrings()).append(")");
-			
+			//情報IDがテーブル内に存在しているか確認する。
+			if(isRecoedExits(env, Table_Name, getFD_Numbering_ID())) {
+				//更新用SQL作成
+				sql.append("UPDATE ").append(Table_Name).append(" ").append(" SET ");
+				sql.append(items.getUpdateItemStrings()).append(" ");
+				sql.append("WHERE ").append(I_FD_Numbering.COLUMNNAME_FD_Numbering_ID)
+					.append(" = ").append(getFD_Numbering_ID()).append(" ");
+			} else {
+				//新規登録用SQL作成
+				sql.append("INSERT INTO ").append(Table_Name).append(" ");
+				sql.append("(").append(items.getInsertItemStrings()).append(")").append(" ");
+				sql.append("VALUES");
+				sql.append("(").append(items.getPrepardStrings()).append(")");
+			}
 			connection(env);
 			pstmt = getConn().prepareStatement(sql.toString());
 			pstmt.setLong(1, items.getlongData(COLUMNNAME_FD_Numbering_ID));
@@ -182,41 +170,6 @@ public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 	}
 	public void setFD_CurrentNumber(long currentNumber) {
 		items.setValue(COLUMNNAME_FD_CurrentNumber, currentNumber);
-	}
-	public int getFD_Group_ID() {
-		FD_Group_ID = items.getintData(COLUMNNAME_FD_Group_ID);
-		return FD_Group_ID;
-	}
-	public void setFD_Group_ID(int groupID) {
-		items.setValue(COLUMNNAME_FD_Group_ID, groupID);
-	}
-	public Calendar getFD_Created() {
-		FD_Created = items.getDateData(COLUMNNAME_FD_Created);
-		return FD_Created;
-	}
-	public void setFD_Created(Calendar created) {
-		items.setValue(COLUMNNAME_FD_Created, created);
-	}
-	public int getFD_CreatedBy() {
-		FD_CreatedBy = items.getintData(COLUMNNAME_FD_CreatedBy);
-		return FD_CreatedBy;
-	}
-	public void setFD_CreatedBy(int createdBy) {
-		items.setValue(COLUMNNAME_FD_CreatedBy, createdBy);
-	}
-	public Calendar getFD_updated() {
-		FD_updated = items.getDateData(COLUMNNAME_FD_Updated);
-		return FD_updated;
-	}
-	public void setFD_updated(Calendar updated) {
-		items.setValue(COLUMNNAME_FD_Updated, updated);
-	}
-	public int getFD_UpdatedBy() {
-		FD_UpdatedBy = items.getintData(COLUMNNAME_FD_UpdatedBy);
-		return FD_UpdatedBy;
-	}
-	public void setFD_UpdatedBy(int updatedBy) {
-		items.setValue(COLUMNNAME_FD_UpdatedBy, updatedBy);
 	}
 
 }

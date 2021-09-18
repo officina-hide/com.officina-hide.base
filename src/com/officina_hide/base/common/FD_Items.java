@@ -2,7 +2,6 @@ package com.officina_hide.base.common;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
@@ -186,25 +185,21 @@ public class FD_Items implements I_FD_DB {
 		}
 		return cal;
 	}
-	
-//	/**
-//	 * XML情報よりテーブル項目リストを作成する。<br>
-//	 * Create a table item list from XML information.<br>
-//	 * @author officina-hide.com
-//	 * @since 1.00 2021/05/05
-//	 * @param xmlData[XML Information]
-//	 */
-//	public FD_Items(Element xmlData) {
-//		NodeList columns = xmlData.getElementsByTagName("column");
-//		for(int ix = 0; ix < columns.getLength(); ix++) {
-//			Element column = (Element) columns.item(ix);
-//			FD_Item item = new FD_Item();
-//			item.setName(column.getAttribute(COLUMN_NAME));
-//			item.setType(column.getAttribute(COLUMN_TYPE));
-//			if(column.hasAttribute(COLUMN_LENGTH)) {
-//				item.setSize(Integer.parseInt(column.getAttribute(COLUMN_LENGTH)));
-//			}
-//			items.add(item);
-//		}
-//	}
+
+	/**
+	 * SQLの更新で使用する項目一覧生成[Generate a list of items used for updating SQL]<br>
+	 * @author officine-hide.net
+	 * @since 1.00 2021/09/18
+	 * @return SQL文字列[SQL string]
+	 */
+	public String getUpdateItemStrings() {
+		StringBuffer sql = new StringBuffer();
+		for(FD_Item item : getItems()) {
+			if(sql.length() > 0) {
+				sql.append(" ").append(",");
+			}
+			sql.append(item.getName()).append(" = ?");
+		}
+		return sql.toString();
+	}
 }

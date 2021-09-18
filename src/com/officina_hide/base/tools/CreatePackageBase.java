@@ -1,6 +1,7 @@
 package com.officina_hide.base.tools;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.model.I_FD_DB;
 
 /**
  * パッケージの基盤情報を構築するためのプロセスを起動するクラス。<br>
@@ -25,6 +26,8 @@ public class CreatePackageBase {
 	public static void main(String[] args) {
 		/** 処理レベルをセットする。 */
 		env.setRunLevel(0);
+		//処理者の設定(Systemユーザ)
+		env.setActionUserID(I_FD_DB.SYSTEM_USER_ID);
 		// TODO 開始メッセージ
 		// TODO 環境情報の取得
 		//構築クラス呼び出し

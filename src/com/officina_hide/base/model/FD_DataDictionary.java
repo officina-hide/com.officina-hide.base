@@ -34,15 +34,47 @@ public class FD_DataDictionary extends FD_DB implements I_FD_DataDictionary {
 	}
 
 	/**
-	 * 辞書テーブル初期登録[Dictionary table initial registration]<br>
-	 * @author officina-hide.net
-	 * @since 2021/09/17
+	 * テーブル毎の登録処理を行う。[Perform registration processing for each table.]<br>
+	 * @author officine-hide.net
+	 * @since 1.00 2021/09/18
 	 * @param env 環境情報[Environment information]
+	 * @param tableName テーブル名[Table name]
 	 */
-	public void addBaseData(FD_EnvData env) {
-		//採番情報の登録
-		FD_Numbering num = new FD_Numbering();
-		num.add(env, 0, Table_ID, 101, 0);
+	public void addData(FD_EnvData env, String tableName) {
+		switch(tableName) {
+		case Table_Name:
+			add(env, 0, COLUMNNAME_FD_DataDictionary_ID, NAME_FD_DataDictionary_ID, null);
+			break;
+		case I_FD_Numbering.Table_Name:
+			//採番情報の登録
+			FD_Numbering num = new FD_Numbering();
+			num.add(env, 0, Table_ID, 101, 0);
+			break;
+		}
+	}
+
+	/**
+	 * 辞書情報の登録[Registration of dictionary information]<br>
+	 * @author officine-hide.net
+	 * @since 1.00 2021/09/18
+	 * @param env 環境情報[Environment information]
+	 * @param id 辞書情報ID[Dictionary information ID]
+	 * @param name 辞書識別名[Dictionary distinguished name]
+	 * @param dispName 辞書表示名[Dictionary display name]
+	 * @param description 辞書説明[Dictionaty description]
+	 */
+	public void add(FD_EnvData env, int id, String name, String dispName, String description) {
+		X_FD_DataDictionary dd = new X_FD_DataDictionary(env, 0);
+		if(id == 0) {
+			//採番処理
+			FD_Numbering num = new FD_Numbering();
+			dd.setFD_DataDictionary_ID(num.getNumber(env, Table_ID));
+		}
+		dd.setFD_DataDictionary_Name(name);
+		dd.setFD_Name(dispName);
+		dd.setFD_Description(description);
+		dd.setFD_Group_ID(SYSTEM_GROUP_ID);
+		dd.save(env);
 	}
 
 }

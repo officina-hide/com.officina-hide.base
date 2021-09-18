@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -22,6 +23,24 @@ import com.officina_hide.base.common.FD_Items;
  * @since 2021/05/22
  */
 public class FD_DB implements I_FD_DB {
+	/** 項目リスト */
+	protected FD_Items items;
+
+	/** 項目 : グループ情報ID */
+	private long FD_Group_ID;
+	/** 項目 : 登録日時 */
+	private Calendar FD_Created;
+	/** 項目 : 登録者情報ID */
+	private long FD_CreatedBy;
+	/** 項目 : 更新日時 */
+	private Calendar FD_updated;
+	/** 項目 : 更新者情報ID */
+	private long FD_UpdatedBy;
+	/** 項目 : 表示名 */
+	private String FD_Name;
+	/** 項目 : 説明 */
+	private String FD_Description;
+
 	/** 
 	 * データベース接続情報[Database connection information]
 	 */
@@ -233,11 +252,11 @@ public class FD_DB implements I_FD_DB {
 	 */
 	public void setCommonPrepared(PreparedStatement pstmt, FD_Items items, int startPos) {
 		try {
-			pstmt.setInt(startPos, items.getintData(COLUMNNAME_FD_Group_ID));
+			pstmt.setLong(startPos, items.getlongData(COLUMNNAME_FD_Group_ID));
 			pstmt.setTimestamp(startPos + 1, new Timestamp(items.getDateData(COLUMNNAME_FD_Created).getTimeInMillis()));
-			pstmt.setInt(startPos + 2, items.getintData(COLUMNNAME_FD_CreatedBy));
+			pstmt.setLong(startPos + 2, items.getlongData(COLUMNNAME_FD_CreatedBy));
 			pstmt.setTimestamp(startPos + 3, new Timestamp(items.getDateData(COLUMNNAME_FD_Updated).getTimeInMillis()));
-			pstmt.setInt(startPos + 4, items.getintData(COLUMNNAME_FD_UpdatedBy));
+			pstmt.setLong(startPos + 4, items.getlongData(COLUMNNAME_FD_UpdatedBy));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -245,6 +264,105 @@ public class FD_DB implements I_FD_DB {
 
 	public Connection getConn() {
 		return conn;
+	}
+
+	/**
+	 * 指定されたテーブルに指定された情報IDが存在するかチェックする。<br>
+	 * [Checks if the specified information ID exists in the specified table.]<br>
+	 * @author officine-hide.net
+	 * @since 1.00 2021/09/18
+	 * @param env 環境情報[Environment information]
+	 * @param tableName テーブル名[Table name]
+	 * @param id 情報ID[Information ID]
+	 * @return 情報が存在する時は true 無い時は false を返す。<br>
+	 *              Returns true if the information exists, false if it does not exist.<br>
+	 */
+	public boolean isRecoedExits(FD_EnvData env, String tableName, long id) {
+		boolean chk = false;
+		Statement stmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT * FROM ").append(tableName).append(" ");
+			sql.append("WHERE ").append(tableName).append("_ID").append(" = ").append(id).append(" ");
+			connection(env);
+			stmt = getConn().createStatement();
+			rs = stmt.executeQuery(sql.toString());
+			if(rs.next()) {
+				chk = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(stmt, rs);
+		}
+		return chk;
+	}
+
+	/**
+	 * 共通項目の辞書情報登録[Registration of dictionary information for common items]<br>
+	 * @author officine-hide.net
+	 * @since 1.00 2021/09/18
+	 * @param env 環境情報[Environment information]
+	 * @param tableName テーブル名[Table name]
+	 */
+	public void addData(FD_EnvData env, String tableName) {
+		FD_DataDictionary dd = new FD_DataDictionary();
+		dd.add(env, 0, COLUMNNAME_FD_Group_ID, NAME_FD_Group_ID, COMMENT_FD_Group_ID);
+		dd.add(env, 0, COLUMNNAME_FD_Created, NAME_FD_Created, COMMENT_FD_Created);
+		dd.add(env, 0, COLUMNNAME_FD_CreatedBy, NAME_FD_CreatedBy, COMMENT_FD_CreatedBy);
+		dd.add(env, 0, COLUMNNAME_FD_Updated, NAME_FD_Updated, COMMENT_FD_Updated);
+		dd.add(env, 0, COLUMNNAME_FD_UpdatedBy, NAME_FD_UpdatedBy, COMMENT_FD_UpdatedBy);
+	}
+	
+	public long getFD_Group_ID() {
+		FD_Group_ID = items.getlongData(COLUMNNAME_FD_Group_ID);
+		return FD_Group_ID;
+	}
+	public void setFD_Group_ID(long groupID) {
+		items.setValue(COLUMNNAME_FD_Group_ID, groupID);
+	}
+	public Calendar getFD_Created() {
+		FD_Created = items.getDateData(COLUMNNAME_FD_Created);
+		return FD_Created;
+	}
+	public void setFD_Created(Calendar created) {
+		items.setValue(COLUMNNAME_FD_Created, created);
+	}
+	public long getFD_CreatedBy() {
+		FD_CreatedBy = items.getlongData(COLUMNNAME_FD_CreatedBy);
+		return FD_CreatedBy;
+	}
+	public void setFD_CreatedBy(long createdBy) {
+		items.setValue(COLUMNNAME_FD_CreatedBy, createdBy);
+	}
+	public Calendar getFD_updated() {
+		FD_updated = items.getDateData(COLUMNNAME_FD_Updated);
+		return FD_updated;
+	}
+	public void setFD_updated(Calendar updated) {
+		items.setValue(COLUMNNAME_FD_Updated, updated);
+	}
+	public long getFD_UpdatedBy() {
+		FD_UpdatedBy = items.getlongData(COLUMNNAME_FD_UpdatedBy);
+		return FD_UpdatedBy;
+	}
+	public void setFD_UpdatedBy(long updatedBy) {
+		items.setValue(COLUMNNAME_FD_UpdatedBy, updatedBy);
+	}
+	public String getFD_Name() {
+		FD_Name = items.getStringData(COLUMNNAME_FD_Name);
+		return FD_Name;
+	}
+	public void setFD_Name(String name) {
+		items.setValue(COLUMNNAME_FD_Name, name);
+	}
+	public String getFD_Description() {
+		FD_Description = items.getStringData(COLUMNNAME_FD_Description);
+		return FD_Description;
+	}
+	public void setFD_Description(String description) {
+		items.setValue(COLUMNNAME_FD_Description, description);
 	}
 
 }
