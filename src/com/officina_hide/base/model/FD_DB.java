@@ -304,9 +304,8 @@ public class FD_DB implements I_FD_DB {
 	 * @author officine-hide.net
 	 * @since 1.00 2021/09/18
 	 * @param env 環境情報[Environment information]
-	 * @param tableName テーブル名[Table name]
 	 */
-	public void addData(FD_EnvData env, String tableName) {
+	public void addData(FD_EnvData env) {
 		FD_DataDictionary dd = new FD_DataDictionary();
 		dd.add(env, 0, COLUMNNAME_FD_Group_ID, NAME_FD_Group_ID, COMMENT_FD_Group_ID);
 		dd.add(env, 0, COLUMNNAME_FD_Created, NAME_FD_Created, COMMENT_FD_Created);

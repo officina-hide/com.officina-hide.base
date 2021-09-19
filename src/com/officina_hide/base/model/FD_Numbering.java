@@ -112,9 +112,11 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 		case I_FD_DataDictionary.Table_Name:
 			FD_DataDictionary dd = new FD_DataDictionary();
 			dd.add(env, 0, COLUMNNAME_FD_Numbering_ID, NAME_FD_Numbering_ID, null);
-			dd.add(env, 0, COLUMNNAME_FD_Numbering_ID, NAME_FD_Table_ID, null);
+			dd.add(env, 0, COLUMNNAME_FD_Table_ID, NAME_FD_Table_ID, COMMENT_FD_Table_ID);
 			dd.add(env, 0, COLUMNNAME_FD_InitialNumber, NAME_FD_InitialNumber, null);
 			dd.add(env, 0, COLUMNNAME_FD_CurrentNumber, NAME_FD_CurrentNumber, null);
+			break;
+		case I_FD_Table.Table_Name:
 			break;
 		}
 	}

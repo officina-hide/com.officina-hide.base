@@ -4,8 +4,10 @@ import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.FD_DataDictionary;
 import com.officina_hide.base.model.FD_Numbering;
+import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.I_FD_DataDictionary;
 import com.officina_hide.base.model.I_FD_Numbering;
+import com.officina_hide.base.model.I_FD_Table;
 
 /**
  * 基盤情報構築クラス<br>
@@ -48,8 +50,15 @@ public class CreateBaseInformation {
 		FD_DataDictionary dd = new FD_DataDictionary();
 		dd.createTable(env);
 		dd.addData(env, I_FD_Numbering.Table_Name);
-		DB.addData(env, null);
+		DB.addData(env);
 		num.addData(env, I_FD_DataDictionary.Table_Name);
 		dd.addData(env, I_FD_DataDictionary.Table_Name);
+		FD_Table table = new FD_Table();
+		table.createTable(env);
+		table.addData(env, I_FD_Numbering.Table_Name);
+		table.addData(env, I_FD_DataDictionary.Table_Name);
+		num.addData(env, I_FD_Table.Table_Name);
+		dd.addData(env, I_FD_Table.Table_Name);
+		table.addData(env, I_FD_Table.Table_Name);
 	}
 }

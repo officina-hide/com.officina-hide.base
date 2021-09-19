@@ -21,6 +21,7 @@ public interface I_FD_Numbering extends I_FD_DB {
 	/** 項目 : 採番情報ID */
 	public static final String COLUMNNAME_FD_Table_ID = I_FD_Table.COLUMNNAME_FD_Table_ID;
 	public static final String NAME_FD_Table_ID = I_FD_Table.NAME_FD_Table_ID;
+	public static final String COMMENT_FD_Table_ID = I_FD_Table.COMMENT_FD_Table_ID;
 	/** 項目 : 採番初期値 */
 	public static final String COLUMNNAME_FD_InitialNumber = "FD_InitialNumber";
 	public static final String NAME_FD_InitialNumber = "採番初期値";

@@ -43,7 +43,9 @@ public class FD_DataDictionary extends FD_DB implements I_FD_DataDictionary {
 	public void addData(FD_EnvData env, String tableName) {
 		switch(tableName) {
 		case Table_Name:
-			add(env, 0, COLUMNNAME_FD_DataDictionary_ID, NAME_FD_DataDictionary_ID, null);
+			add(env, 0, COLUMNNAME_FD_DataDictionary_ID, NAME_FD_DataDictionary_ID, COMMENT_FD_DataDictionary_ID);
+			add(env, 0, COLUMNNAME_FD_DataDictionary_Name, NAME_FD_DataDictionary_Name
+					, COMMENT_FD_DataDictionary_Name);
 			break;
 		case I_FD_Numbering.Table_Name:
 			//採番情報の登録

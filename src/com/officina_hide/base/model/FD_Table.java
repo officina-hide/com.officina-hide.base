@@ -36,7 +36,7 @@ import com.officina_hide.base.sql.FD_sql;
  * @version 1.00
  * @since 2021/04/05
  */
-public class FD_Table implements I_FD_DB {
+public class FD_Table extends FD_DB implements I_FD_Table {
 
 	/** 環境情報 */
 	private FD_EnvData env;
@@ -58,6 +58,9 @@ public class FD_Table implements I_FD_DB {
 		this.env = env;
 		/** 項目リスト作成 */
 		itemList = createItemList();
+	}
+
+	public FD_Table() {
 	}
 
 	/**
@@ -133,6 +136,26 @@ public class FD_Table implements I_FD_DB {
 			e.printStackTrace();
 		}
 	}
+	
+		/**
+		 * テーブル情報生成[Table information generate]<br>
+		 * @author officine-hide.net
+		 * @since 1.00 2021/09/19
+		 * @param env 環境情報[Environment information]
+		 */
+		public void createTable(FD_EnvData env) {
+			Statement stmt = null;
+			try {
+				connection(env);
+				stmt = getConn().createStatement();
+				stmt.executeUpdate(Table_Drop_SQL);
+				stmt.executeUpdate(Table_Create_SQL);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				DBClose(stmt, null);
+			}
+		}
 
 	/**
 	 * テーブル情報登録用SQL文生成[SQL statement generation for table information registration]<br>
@@ -202,23 +225,24 @@ public class FD_Table implements I_FD_DB {
 		}
 		return chk;
 	}
-//
-//	/**
-//	 * TODO 汎用化予定
-//	 * データベース接続[Database Connection]<br>
-//	 * @param env 環境情報[Environment Information]
-//	 */
-//	private void connection(FD_EnvData env) {
-//		if(conn == null) {
-//			try {
-//				Class.forName("com.mysql.cj.jdbc.Driver");
-////				StringBuffer url  = new StringBuffer().append("jdbc:mysql://www.officina-hide.com:3306/FDBASE");
-//				StringBuffer url  = new StringBuffer().append("jdbc:mysql://192.168.0.14:3306/FDBASE");
-//				conn = DriverManager.getConnection(url.toString(), "fdadmin", "fdadminAz*01");
-//				System.out.println(new Date() + " : "+"Database Connected.");
-//			} catch (ClassNotFoundException | SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//	}	
+
+	/**
+	 * テーブル毎の登録処理を行う。[Perform registration processing for each table.]<br>
+	 * @author officine-hide.net
+	 * @since 1.00 2021/09/19
+	 * @param env 環境情報[Environment information]
+	 * @param tableName テーブル名[Table name]
+	 */
+	public void addData(FD_EnvData env, String tableName) {
+		switch(tableName) {
+		case I_FD_Numbering.Table_Name:
+			FD_Numbering num = new FD_Numbering();
+			num.add(env, 0, Table_ID, 101, 0);
+			break;
+		case I_FD_DataDictionary.Table_Name:
+			FD_DataDictionary dd = new FD_DataDictionary();
+			dd.add(env, 0, COLUMNNAME_FD_Table_Name, NAME_FD_Table_Name, COMMENT_FD_Table_Name);
+			break;
+		}
+	}
 }
