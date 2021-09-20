@@ -27,12 +27,24 @@ public class FD_WhereData {
 		whereList.add(new WhereItemData(null, itemName, itemData));
 	}
 	
+	/**
+	 * コンストラクタ[constructor]
+	 * long属性の項目値の条件情報を追加する。<br>
+	 * Add the condition information of the item value of long attribute.<br>
+	 * @param itemName 項目名[item name]
+	 * @param itemData 項目値[item value]
+	 */
+	public FD_WhereData(String itemName, long itemData) {
+		whereList.add(new WhereItemData(null, itemName, itemData));
+	}
+
 	@Override
 	public String toString() {
 		StringBuffer where = new StringBuffer();
 		WhereItemData item = whereList.get(0);
 		where.append("Where ").append(item.getItemName()).append(" = ");
-		if(item.getItemData().getClass().getSimpleName().equals("Integer")) {
+		if(item.getItemData().getClass().getSimpleName().equals("Integer") 
+				|| item.getItemData().getClass().getSimpleName().equals("Long")) {
 			where.append(item.getItemData().toString()).append(" ");
 		}
 		return where.toString();
@@ -55,12 +67,19 @@ public class FD_WhereData {
 			setItemData(data);
 		}
 
+		public WhereItemData(String connect, String name, long data) {
+			setConnect(connect);
+			setItemName(name);
+			setItemData(data);
+		}
+
 		/** 論理接続子 */
 		private String connect;
 		/** 項目名 */
 		private String itemName;
 		/** 項目データ(数値) */
 		private Object itemData;
+		
 		public String getItemName() {
 			return itemName;
 		}
@@ -75,6 +94,9 @@ public class FD_WhereData {
 		}
 		public void setConnect(String connect) {
 			this.connect = connect;
+		}
+		public String getConnect() {
+			return connect;
 		}
 	}
 }

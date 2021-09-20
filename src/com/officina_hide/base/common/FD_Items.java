@@ -18,6 +18,10 @@ public class FD_Items implements I_FD_DB {
 
 	/** テーブル項目配列 */
 	private List<FD_Item> items = new ArrayList<>();
+	/** テーブル名 */
+	private String tableName;
+	/** テーブル情報ID */
+	private long tableId;
 
 	/**
 	 * 項目情報追加[Item information added]
@@ -201,5 +205,18 @@ public class FD_Items implements I_FD_DB {
 			sql.append(item.getName()).append(" = ?");
 		}
 		return sql.toString();
+	}
+
+	public String getTableName() {
+		return tableName;
+	}
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
+	public long getTableId() {
+		return tableId;
+	}
+	public void setTableId(long tableId) {
+		this.tableId = tableId;
 	}
 }

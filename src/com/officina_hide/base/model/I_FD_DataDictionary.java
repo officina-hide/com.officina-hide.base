@@ -12,6 +12,9 @@ public interface I_FD_DataDictionary extends I_FD_DB {
 	public static final String Table_Name = "FD_DataDictionary";
 	/** テーブル表示名 */
 	public static final String Table_Disp_Name = "辞書情報";
+	/** テーブル説明 */
+	public static final String Table_Comment = "パッケージで使用する項目の整合性を維持するために、項目を一元管理する。";
+	public static final String Table_Comment_Eng = "Centrally manage items to ensure the integrity of the items used in the package..";
 	/** テーブル情報ID */
 	public static final int Table_ID = 102;
 

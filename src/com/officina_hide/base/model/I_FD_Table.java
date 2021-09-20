@@ -12,6 +12,9 @@ public interface I_FD_Table extends I_FD_DB {
 	public static final String Table_Name = "FD_Table";
 	/** テーブル表示名 */
 	public static final String Table_Disp_Name = "テーブル情報";
+	/** テーブル説明 */
+	public static final String Table_Comment = "パッケージで使用するテーブルを管理する。";
+	public static final String Table_Comment_Eng = "Manage the tables used in the package.";
 	/** テーブルID */
 	public static final int Table_ID = 103;
 

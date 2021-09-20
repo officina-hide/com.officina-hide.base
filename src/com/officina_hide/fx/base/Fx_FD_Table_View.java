@@ -155,12 +155,12 @@ public class Fx_FD_Table_View extends Application {
 			System.out.println(field.getFD_Column().getFD_Column_Name());
 			switch(field.getFD_Column().getFD_Type_ID()) {
 			case 101:	// TODO テキスト項目　クラス化予定
-				TextField text = new TextField(table.getItems().getStringData(field.getFD_Column().getFD_Column_Name()));
-				rowArea.getChildren().add(text);
+//				TextField text = new TextField(table.getItems().getStringData(field.getFD_Column().getFD_Column_Name()));
+//				rowArea.getChildren().add(text);
 				break;
 			case 102:	// TODO 複数行項目 クラス化予定
-				TextArea textArea = new TextArea(table.getItems().getStringData(field.getFD_Column().getFD_Column_Name()));
-				rowArea.getChildren().add(textArea);
+//				TextArea textArea = new TextArea(table.getItems().getStringData(field.getFD_Column().getFD_Column_Name()));
+//				rowArea.getChildren().add(textArea);
 			}
 			
 		}

@@ -52,6 +52,10 @@ public class FD_DataDictionary extends FD_DB implements I_FD_DataDictionary {
 			FD_Numbering num = new FD_Numbering();
 			num.add(env, 0, Table_ID, 101, 0);
 			break;
+		case I_FD_Table.Table_Name:
+			FD_Table table = new FD_Table();
+			table.add(env, Table_ID, Table_Name, Table_Disp_Name, Table_Comment);
+			break;
 		}
 	}
 
@@ -73,9 +77,9 @@ public class FD_DataDictionary extends FD_DB implements I_FD_DataDictionary {
 			dd.setFD_DataDictionary_ID(num.getNumber(env, Table_ID));
 		}
 		dd.setFD_DataDictionary_Name(name);
-		dd.setFD_Name(dispName);
-		dd.setFD_Description(description);
-		dd.setFD_Group_ID(SYSTEM_GROUP_ID);
+		dd.setFD_Name(dd.getItems(), dispName);
+		dd.setFD_Description(dd.getItems(), description);
+		dd.setFD_Group_ID(dd.getItems(), SYSTEM_GROUP_ID);
 		dd.save(env);
 	}
 

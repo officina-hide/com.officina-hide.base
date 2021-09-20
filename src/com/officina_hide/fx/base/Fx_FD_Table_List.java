@@ -173,9 +173,9 @@ public class Fx_FD_Table_List extends Application implements I_FD_DB {
 		for(X_FD_Table data : list) {
 			Map<String, String> map = new HashMap<>();
 			map.put(I_FD_Table.COLUMNNAME_FD_Table_Name, data.getFD_Table_Name());
-			map.put(I_FD_Table.COLUMNNAME_FD_Name, data.getFD_Name());
-			map.put(I_FD_Table.COLUMNNAME_FD_Description, data.getFD_Description());
-			map.put(I_FD_Table.COLUMNNAME_FD_Table_ID, Integer.toString(data.getFD_Table_ID()));
+//			map.put(I_FD_Table.COLUMNNAME_FD_Name, data.getFD_Name());
+//			map.put(I_FD_Table.COLUMNNAME_FD_Description, data.getFD_Description());
+			map.put(I_FD_Table.COLUMNNAME_FD_Table_ID, Long.toString(data.getFD_Table_ID()));
 			table.getItems().add(map);
 		}
 		//テーブル動作設定
@@ -233,9 +233,9 @@ public class Fx_FD_Table_List extends Application implements I_FD_DB {
 			rs = stmt.executeQuery(sql.toString());
 			while(rs.next()) {
 				X_Fx_Field field = new X_Fx_Field(env, rs.getInt(I_Fx_Field.COLUMNNAME_Fx_Field_ID));
-				TableColumn<Map, String> tableColumn = new TableColumn<>(field.getFD_Name());
-				tableColumn.setCellValueFactory(new MapValueFactory<>(field.getFX_Field_Name()));
-				table.getColumns().add(tableColumn);
+//				TableColumn<Map, String> tableColumn = new TableColumn<>(field.getFD_Name());
+//				tableColumn.setCellValueFactory(new MapValueFactory<>(field.getFX_Field_Name()));
+//				table.getColumns().add(tableColumn);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

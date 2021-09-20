@@ -1,9 +1,6 @@
 package com.officina_hide.base.model;
 
-import org.w3c.dom.Element;
-
 import com.officina_hide.base.common.FD_EnvData;
-import com.officina_hide.base.common.FD_Item;
 import com.officina_hide.base.common.FD_Items;
 
 /**
@@ -12,30 +9,30 @@ import com.officina_hide.base.common.FD_Items;
  * @version 1.00
  * @since 2021/05/22
  */
-public class X_FD_Table extends FD_DB implements I_FD_Table {
+public class X_FD_Table extends FD_DB implements I_FD_Table {	
 	/** 項目リスト[item list] */
-	private FD_Items items = new FD_Items();
+	private FD_Items items; 
+	
+	//	private FD_Items items = new FD_Items();
 	/** テーブル項目 */
-	private int FD_Table_ID;
+	private long FD_Table_ID;
 	private String FD_Table_Name;
-	private String FD_Name;
-	private String FD_Description;
-
-	/**
-	 * インスタンス時に、XMLデータからテーブル情報をセットする。<br>
-	 * Set table information from XML data at instance time.<br>
-	 * @author officina-hide.net
-	 * @since 1.00 2021/05/22
-	 * @param xmlData XMLデータ[XML data]
-	 */
-	public X_FD_Table(Element xmlData) {
-		if(xmlData.getTagName().equals("Table")) {
-//			items.add(I_FD_Table.COLUMNNAME_FD_Table_ID, xmlData.getAttribute(I_FD_Table.COLUMNNAME_FD_Table_ID));
-//			items.add(I_FD_Table.COLUMNNAME_FD_Table_Name, xmlData.getAttribute(I_FD_Table.COLUMNNAME_FD_Table_Name));
-//			items.add(I_FD_Table.COLUMNNAME_FD_DisplayName, xmlData.getAttribute(I_FD_Table.COLUMNNAME_FD_DisplayName));
-//			items.add(I_FD_Table.COLUMNNAME_FD_Description, xmlData.getAttribute(I_FD_Table.COLUMNNAME_FD_Description));
-		}
-	}
+//
+//	/**
+//	 * インスタンス時に、XMLデータからテーブル情報をセットする。<br>
+//	 * Set table information from XML data at instance time.<br>
+//	 * @author officina-hide.net
+//	 * @since 1.00 2021/05/22
+//	 * @param xmlData XMLデータ[XML data]
+//	 */
+//	public X_FD_Table(Element xmlData) {
+//		if(xmlData.getTagName().equals("Table")) {
+////			items.add(I_FD_Table.COLUMNNAME_FD_Table_ID, xmlData.getAttribute(I_FD_Table.COLUMNNAME_FD_Table_ID));
+////			items.add(I_FD_Table.COLUMNNAME_FD_Table_Name, xmlData.getAttribute(I_FD_Table.COLUMNNAME_FD_Table_Name));
+////			items.add(I_FD_Table.COLUMNNAME_FD_DisplayName, xmlData.getAttribute(I_FD_Table.COLUMNNAME_FD_DisplayName));
+////			items.add(I_FD_Table.COLUMNNAME_FD_Description, xmlData.getAttribute(I_FD_Table.COLUMNNAME_FD_Description));
+//		}
+//	}
 
 	/**
 	 * インスタンス時に、指定されたIDを持つ情報を取得する。<br>
@@ -46,28 +43,36 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 	 * @param id 情報ID[Information ID]
 	 */
 	public X_FD_Table(FD_EnvData env, int id) {
-		items.add(I_FD_Table.COLUMNNAME_FD_Table_ID, 0, Item_Value_Type_ID);
-		items.add(I_FD_Table.COLUMNNAME_FD_Table_Name, null, Item_Value_Type_String);
-		items.add(I_FD_Table.COLUMNNAME_FD_Name, null, Item_Value_Type_String);
-		items.add(I_FD_Table.COLUMNNAME_FD_Description, null, Item_Value_Type_String);
+		createItemList();
 		if(id > 0) {
 			load(env, Table_Name, id, items);
 		}
-//		setFD_Table_ID(items.getintData(COLUMNNAME_FD_Table_ID));
-//		setFD_Table_Name(items.getStringData(COLUMNNAME_FD_Table_Name));
-//		setFD_Name(items.getStringData(COLUMNNAME_FD_Name));
-//		setFD_Description(items.getStringData(COLUMNNAME_FD_Description));
 	}
 
 	/**
-	 * テーブル情報の項目リストを返す。<br>
-	 * Returns a list of table information items.<br>
-	 * @author officine-hide.com
-	 * @since 1.00 2021/05/24
+	 * テーブル項目リスト生成[Table item list generation]<br>
+	 * TODO 汎用化予定　2021/08/26
+	 * @author officine-hide.net
+	 * @since 1.00 2021/04/23
 	 * @return テーブル項目リスト[Table item list]
 	 */
-	public FD_Items getItems() {
-		return items;
+	private void createItemList() {
+		items = new FD_Items();
+		items.setTableName(Table_Name);
+		items.setTableId(Table_ID);
+		items.add(COLUMNNAME_FD_Table_ID, null, Item_Value_Type_ID);
+		items.add(COLUMNNAME_FD_Table_Name, null, Item_Value_Type_String);
+		items.add(COLUMNNAME_FD_Name, null, Item_Value_Type_String);
+		items.add(COLUMNNAME_FD_Description, null, Item_Value_Type_Text);
+		baseItemSet(items);
+	}
+
+	/**
+	 * 情報登録[Information registration]
+	 * @param env 環境情報[Enfironment information]
+	 */
+	public void save(FD_EnvData env) {
+		save(env, Table_Name, items);
 	}
 
 	/**
@@ -84,36 +89,23 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 //				items.getStringData(COLUMNNAME_FD_), getItems());
 	}
 
+	public long getFD_Table_ID() {
+		FD_Table_ID = items.getlongData(COLUMNNAME_FD_Table_ID);
+		return FD_Table_ID;
+	}
+	public void setFD_Table_ID(long tableID) {
+		items.setValue(COLUMNNAME_FD_Table_ID, tableID);
+	}
 	public String getFD_Table_Name() {
-		return items.getStringData(COLUMNNAME_FD_Table_Name);
+		FD_Table_Name = items.getStringData(COLUMNNAME_FD_Table_Name);
+		return FD_Table_Name;
+	}
+	public void setFD_Table_Name(String tableName) {
+		items.setValue(COLUMNNAME_FD_Table_Name, tableName);
 	}
 
-	public void setFD_Table_Name(String fD_Table_Name) {
-		FD_Table_Name = fD_Table_Name;
+	public FD_Items getItems() {
+		return items;
 	}
-
-	public int getFD_Table_ID() {
-		return items.getintData(COLUMNNAME_FD_Table_ID);
-	}
-
-	public void setFD_Table_ID(int fD_Table_ID) {
-		FD_Table_ID = fD_Table_ID;
-	}
-//
-//	public String getFD_Name() {
-//		return items.getStringData(COLUMNNAME_FD_Name);
-//	}
-//
-//	public void setFD_Name(String fD_Name) {
-//		FD_Name = fD_Name;
-//	}
-//
-//	public String getFD_Description() {
-//		return items.getStringData(COLUMNNAME_FD_Description);
-//	}
-//
-//	public void setFD_Description(String fD_Description) {
-//		FD_Description = fD_Description;
-//	}
 
 }

@@ -200,8 +200,8 @@ public class FxCreateTable extends Application {
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			Document document = builder.parse(file);
 			Element xmlData = document.getDocumentElement();
-			//テーブル情報生成
-			table = new X_FD_Table(xmlData);
+//			//テーブル情報生成
+//			table = new X_FD_Table(xmlData);
 			//テーブル情報セット
 			tableNameText.setText(table.getFD_Table_Name());
 			

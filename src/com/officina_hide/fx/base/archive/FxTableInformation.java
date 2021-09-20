@@ -90,7 +90,7 @@ public class FxTableInformation extends Application {
 			map.put(I_FD_Table.COLUMNNAME_FD_Table_Name, data.getFD_Table_Name());
 			map.put(I_FD_Table.COLUMNNAME_FD_Name, data.getFD_Name());
 			map.put(I_FD_Table.COLUMNNAME_FD_Description, data.getFD_Description());
-			map.put(I_FD_Table.COLUMNNAME_FD_Table_ID, Integer.toString(data.getFD_Table_ID()));
+			map.put(I_FD_Table.COLUMNNAME_FD_Table_ID, Long.toString(data.getFD_Table_ID()));
 			table.getItems().add(map);
 		}
 		table.setOnMouseClicked(event ->{

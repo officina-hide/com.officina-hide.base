@@ -64,13 +64,13 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 		num.setFD_Table_ID(tableId);
 		num.setFD_InitialNumber(initialNo);
 		num.setFD_CurrentNumber(currentNo);
-		num.setFD_Group_ID(SYSTEM_GROUP_ID);
+		num.setFD_Group_ID(num.getItems(), SYSTEM_GROUP_ID);
 		Calendar now = new GregorianCalendar(new Locale(Locale.JAPAN.getLanguage(), Locale.JAPAN.getCountry()));
 		now.setTime(new Date());
-		num.setFD_Created(now);
-		num.setFD_CreatedBy(SYSTEM_USER_ID);
-		num.setFD_updated(now);
-		num.setFD_UpdatedBy(SYSTEM_USER_ID);
+		num.setFD_Created(num.getItems(), now);
+		num.setFD_CreatedBy(num.getItems(), SYSTEM_USER_ID);
+		num.setFD_updated(num.getItems(), now);
+		num.setFD_UpdatedBy(num.getItems(), SYSTEM_USER_ID);
 		num.save(env);
 	}
 
@@ -82,7 +82,7 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 	 * @param tableId テーブル情報ID[Table information ID]
 	 * @return no 採番番号[Numbering number]
 	 */
-	public long getNumber(FD_EnvData env, int tableId) {
+	public long getNumber(FD_EnvData env, long tableId) {
 		long no = 0;
 		FD_WhereData where = new FD_WhereData(COLUMNNAME_FD_Table_ID, tableId);
 		X_FD_Numbering num = new X_FD_Numbering(env, where);
@@ -117,6 +117,8 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 			dd.add(env, 0, COLUMNNAME_FD_CurrentNumber, NAME_FD_CurrentNumber, null);
 			break;
 		case I_FD_Table.Table_Name:
+			FD_Table table = new FD_Table();
+			table.add(env, Table_ID, Table_Name, Table_Disp_Name, Table_Comment);
 			break;
 		}
 	}

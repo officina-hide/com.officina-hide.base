@@ -10,7 +10,9 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_Item;
@@ -23,23 +25,23 @@ import com.officina_hide.base.common.FD_Items;
  * @since 2021/05/22
  */
 public class FD_DB implements I_FD_DB {
-	/** 項目リスト */
-	protected FD_Items items;
+//	/** 項目リスト */
+//	protected FD_Items items;
 
-	/** 項目 : グループ情報ID */
-	private long FD_Group_ID;
-	/** 項目 : 登録日時 */
-	private Calendar FD_Created;
-	/** 項目 : 登録者情報ID */
-	private long FD_CreatedBy;
-	/** 項目 : 更新日時 */
-	private Calendar FD_updated;
-	/** 項目 : 更新者情報ID */
-	private long FD_UpdatedBy;
-	/** 項目 : 表示名 */
-	private String FD_Name;
-	/** 項目 : 説明 */
-	private String FD_Description;
+//	/** 項目 : グループ情報ID */
+//	private long FD_Group_ID;
+//	/** 項目 : 登録日時 */
+//	private Calendar FD_Created;
+//	/** 項目 : 登録者情報ID */
+//	private long FD_CreatedBy;
+//	/** 項目 : 更新日時 */
+//	private Calendar FD_updated;
+//	/** 項目 : 更新者情報ID */
+//	private long FD_UpdatedBy;
+//	/** 項目 : 表示名 */
+//	private String FD_Name;
+//	/** 項目 : 説明 */
+//	private String FD_Description;
 
 	/** 
 	 * データベース接続情報[Database connection information]
@@ -84,6 +86,80 @@ public class FD_DB implements I_FD_DB {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 情報登録[Information registration]
+	 * @param env 環境情報[Enfironment information]
+	 * @param tableName テーブル名[Table name]
+	 * @param items 項目一覧[item list]
+	 */
+	public void save(FD_EnvData env, String tableName, FD_Items items) {
+		PreparedStatement pstmt = null;
+		Calendar nowDate = new GregorianCalendar(new Locale(Locale.JAPAN.getLanguage(), Locale.JAPAN.getCountry()));
+		nowDate.setTime(new Date());
+		StringBuffer sql = new StringBuffer();
+		//情報ID取得
+		long id = items.getlongData(tableName+"_ID");
+		if(id > 0 && isRecoedExits(env, tableName, id)) {
+			//情報更新
+			//更新日時、更新者セット
+			items.setValue(COLUMNNAME_FD_Updated, nowDate);
+			items.setValue(COLUMNNAME_FD_UpdatedBy, env.getActionUserID());
+			//更新用SQL作成
+			sql.append("UPDATE ").append(tableName).append(" ").append(" SET ");
+			sql.append(items.getUpdateItemStrings()).append(" ");
+			sql.append("WHERE ").append(I_FD_Numbering.COLUMNNAME_FD_Numbering_ID)
+				.append(" = ").append(id).append(" ");
+		} else {
+			//採番処理
+			if(id == 0) {
+				FD_Numbering num = new FD_Numbering();
+				items.setValue(tableName + "_ID", num.getNumber(env, items.getTableId()));
+			}
+			//新規登録
+			//登録日時、登録者、更新日時、更新者セット
+			items.setValue(COLUMNNAME_FD_Created, nowDate);
+			items.setValue(COLUMNNAME_FD_CreatedBy, env.getActionUserID());
+			items.setValue(COLUMNNAME_FD_Updated, nowDate);
+			items.setValue(COLUMNNAME_FD_UpdatedBy, env.getActionUserID());
+			//新規登録用SQL作成
+			sql.append("INSERT INTO ").append(tableName).append(" ");
+			sql.append("(").append(items.getInsertItemStrings()).append(")").append(" ");
+			sql.append("VALUES");
+			sql.append("(").append(items.getPrepardStrings()).append(")");
+		}
+		
+		connection(env);
+		try {
+			pstmt = getConn().prepareStatement(sql.toString());
+			int idx = 1;
+			for(FD_Item item : items.getItems()) {
+				switch(item.getType()) {
+				case Item_Value_Type_ID:
+				case Item_Value_Type_Bigint:
+					pstmt.setLong(idx, items.getlongData(item.getName()));
+					break;
+				case Item_Value_Type_String:
+				case Item_Value_Type_Text:
+					// FIXME エスケープ対象文字未対応
+					pstmt.setString(idx, items.getStringData(item.getName()));
+					break;
+				case Item_Value_Type_Date:
+					pstmt.setTimestamp(idx, new Timestamp(items.getDateData(item.getName()).getTimeInMillis()));
+					break;
+				}
+				idx++;
+			}
+			//情報保存
+			if(pstmt.executeUpdate() != 1) {
+				new Exception("採番情報保存エラー");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, null);
 		}
 	}
 
@@ -314,53 +390,46 @@ public class FD_DB implements I_FD_DB {
 		dd.add(env, 0, COLUMNNAME_FD_UpdatedBy, NAME_FD_UpdatedBy, COMMENT_FD_UpdatedBy);
 	}
 	
-	public long getFD_Group_ID() {
-		FD_Group_ID = items.getlongData(COLUMNNAME_FD_Group_ID);
-		return FD_Group_ID;
+	public long getFD_Group_ID(FD_Items items) {
+		return items.getlongData(COLUMNNAME_FD_Group_ID);
 	}
-	public void setFD_Group_ID(long groupID) {
+	public void setFD_Group_ID(FD_Items items, long groupID) {
 		items.setValue(COLUMNNAME_FD_Group_ID, groupID);
 	}
-	public Calendar getFD_Created() {
-		FD_Created = items.getDateData(COLUMNNAME_FD_Created);
-		return FD_Created;
+	public Calendar getFD_Created(FD_Items items) {
+		return items.getDateData(COLUMNNAME_FD_Created);
 	}
-	public void setFD_Created(Calendar created) {
+	public void setFD_Created(FD_Items items, Calendar created) {
 		items.setValue(COLUMNNAME_FD_Created, created);
 	}
-	public long getFD_CreatedBy() {
-		FD_CreatedBy = items.getlongData(COLUMNNAME_FD_CreatedBy);
-		return FD_CreatedBy;
+	public long getFD_CreatedBy(FD_Items items) {
+		return items.getlongData(COLUMNNAME_FD_CreatedBy);
 	}
-	public void setFD_CreatedBy(long createdBy) {
+	public void setFD_CreatedBy(FD_Items items, long createdBy) {
 		items.setValue(COLUMNNAME_FD_CreatedBy, createdBy);
 	}
-	public Calendar getFD_updated() {
-		FD_updated = items.getDateData(COLUMNNAME_FD_Updated);
-		return FD_updated;
+	public Calendar getFD_updated(FD_Items items) {
+		return items.getDateData(COLUMNNAME_FD_Updated);
 	}
-	public void setFD_updated(Calendar updated) {
+	public void setFD_updated(FD_Items items, Calendar updated) {
 		items.setValue(COLUMNNAME_FD_Updated, updated);
 	}
-	public long getFD_UpdatedBy() {
-		FD_UpdatedBy = items.getlongData(COLUMNNAME_FD_UpdatedBy);
-		return FD_UpdatedBy;
+	public long getFD_UpdatedBy(FD_Items items) {
+		return items.getlongData(COLUMNNAME_FD_UpdatedBy);
 	}
-	public void setFD_UpdatedBy(long updatedBy) {
+	public void setFD_UpdatedBy(FD_Items items, long updatedBy) {
 		items.setValue(COLUMNNAME_FD_UpdatedBy, updatedBy);
 	}
-	public String getFD_Name() {
-		FD_Name = items.getStringData(COLUMNNAME_FD_Name);
-		return FD_Name;
+	public String getFD_Name(FD_Items items) {
+		return items.getStringData(COLUMNNAME_FD_Name);
 	}
-	public void setFD_Name(String name) {
+	public void setFD_Name(FD_Items items, String name) {
 		items.setValue(COLUMNNAME_FD_Name, name);
 	}
-	public String getFD_Description() {
-		FD_Description = items.getStringData(COLUMNNAME_FD_Description);
-		return FD_Description;
+	public String getFD_Description(FD_Items items) {
+		return items.getStringData(COLUMNNAME_FD_Description);
 	}
-	public void setFD_Description(String description) {
+	public void setFD_Description(FD_Items items, String description) {
 		items.setValue(COLUMNNAME_FD_Description, description);
 	}
 

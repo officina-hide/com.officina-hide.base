@@ -12,6 +12,9 @@ public interface I_FD_Numbering extends I_FD_DB {
 	public static final String Table_Name = "FD_Numbering";
 	/** テーブル表示名 */
 	public static final String Table_Disp_Name = "採番情報";
+	/** テーブル説明 */
+	public static final String Table_Comment = "パッケージで使用する各種番号の採番を管理するテーブル";
+	public static final String Table_Comment_Eng = "A table that manages the numbering of various numbers used in the package.";
 	/** テーブル情報ID */
 	public static final int Table_ID = 101;
 	
