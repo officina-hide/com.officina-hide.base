@@ -25,8 +25,8 @@ import com.officina_hide.base.common.FD_Items;
  * @since 2021/05/22
  */
 public class FD_DB implements I_FD_DB {
-//	/** 項目リスト */
-//	protected FD_Items items;
+	/** 項目リスト */
+	protected FD_Items items;
 
 //	/** 項目 : グループ情報ID */
 //	private long FD_Group_ID;
@@ -390,46 +390,46 @@ public class FD_DB implements I_FD_DB {
 		dd.add(env, 0, COLUMNNAME_FD_UpdatedBy, NAME_FD_UpdatedBy, COMMENT_FD_UpdatedBy);
 	}
 	
-	public long getFD_Group_ID(FD_Items items) {
+	public long getFD_Group_ID() {
 		return items.getlongData(COLUMNNAME_FD_Group_ID);
 	}
-	public void setFD_Group_ID(FD_Items items, long groupID) {
+	public void setFD_Group_ID(long groupID) {
 		items.setValue(COLUMNNAME_FD_Group_ID, groupID);
 	}
-	public Calendar getFD_Created(FD_Items items) {
+	public Calendar getFD_Created() {
 		return items.getDateData(COLUMNNAME_FD_Created);
 	}
-	public void setFD_Created(FD_Items items, Calendar created) {
+	public void setFD_Created(Calendar created) {
 		items.setValue(COLUMNNAME_FD_Created, created);
 	}
-	public long getFD_CreatedBy(FD_Items items) {
+	public long getFD_CreatedBy() {
 		return items.getlongData(COLUMNNAME_FD_CreatedBy);
 	}
-	public void setFD_CreatedBy(FD_Items items, long createdBy) {
+	public void setFD_CreatedBy(long createdBy) {
 		items.setValue(COLUMNNAME_FD_CreatedBy, createdBy);
 	}
-	public Calendar getFD_updated(FD_Items items) {
+	public Calendar getFD_updated() {
 		return items.getDateData(COLUMNNAME_FD_Updated);
 	}
-	public void setFD_updated(FD_Items items, Calendar updated) {
+	public void setFD_updated(Calendar updated) {
 		items.setValue(COLUMNNAME_FD_Updated, updated);
 	}
-	public long getFD_UpdatedBy(FD_Items items) {
+	public long getFD_UpdatedBy() {
 		return items.getlongData(COLUMNNAME_FD_UpdatedBy);
 	}
-	public void setFD_UpdatedBy(FD_Items items, long updatedBy) {
+	public void setFD_UpdatedBy(long updatedBy) {
 		items.setValue(COLUMNNAME_FD_UpdatedBy, updatedBy);
 	}
-	public String getFD_Name(FD_Items items) {
+	public String getFD_Name() {
 		return items.getStringData(COLUMNNAME_FD_Name);
 	}
-	public void setFD_Name(FD_Items items, String name) {
+	public void setFD_Name(String name) {
 		items.setValue(COLUMNNAME_FD_Name, name);
 	}
-	public String getFD_Description(FD_Items items) {
+	public String getFD_Description() {
 		return items.getStringData(COLUMNNAME_FD_Description);
 	}
-	public void setFD_Description(FD_Items items, String description) {
+	public void setFD_Description(String description) {
 		items.setValue(COLUMNNAME_FD_Description, description);
 	}
 

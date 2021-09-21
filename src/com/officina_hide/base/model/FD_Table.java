@@ -236,7 +236,7 @@ public class FD_Table extends FD_DB implements I_FD_Table {
 			break;
 		case I_FD_Numbering.Table_Name:
 			FD_Numbering num = new FD_Numbering();
-			num.add(env, 0, Table_ID, 101, 0);
+			num.add(env, 0, Table_ID, 101, 110);
 			break;
 		case I_FD_DataDictionary.Table_Name:
 			FD_DataDictionary dd = new FD_DataDictionary();
@@ -259,9 +259,9 @@ public class FD_Table extends FD_DB implements I_FD_Table {
 		X_FD_Table table = new X_FD_Table(env, 0);
 		table.setFD_Table_ID(tableId);
 		table.setFD_Table_Name(tableName);
-		table.setFD_Name(table.getItems(), name);
-		table.setFD_Description(table.getItems(), description);
-		table.setFD_Group_ID(table.getItems(), SYSTEM_GROUP_ID);
+		table.setFD_Name(name);
+		table.setFD_Description(description);
+		table.setFD_Group_ID(SYSTEM_GROUP_ID);
 		table.save(env);		
 	}
 }

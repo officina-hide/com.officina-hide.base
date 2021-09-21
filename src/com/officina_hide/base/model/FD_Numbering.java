@@ -20,7 +20,6 @@ import com.officina_hide.base.common.FD_WhereData;
  */
 public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 
-
 	/**
 	 * 採番情報テーブル生成[Numbering information table generation]<br>
 	 * <p>採番情報テーブルは初期の基盤情報のため、生成は個別に行う。</p>
@@ -64,13 +63,13 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 		num.setFD_Table_ID(tableId);
 		num.setFD_InitialNumber(initialNo);
 		num.setFD_CurrentNumber(currentNo);
-		num.setFD_Group_ID(num.getItems(), SYSTEM_GROUP_ID);
+		num.setFD_Group_ID(SYSTEM_GROUP_ID);
 		Calendar now = new GregorianCalendar(new Locale(Locale.JAPAN.getLanguage(), Locale.JAPAN.getCountry()));
 		now.setTime(new Date());
-		num.setFD_Created(num.getItems(), now);
-		num.setFD_CreatedBy(num.getItems(), SYSTEM_USER_ID);
-		num.setFD_updated(num.getItems(), now);
-		num.setFD_UpdatedBy(num.getItems(), SYSTEM_USER_ID);
+		num.setFD_Created(now);
+		num.setFD_CreatedBy(SYSTEM_USER_ID);
+		num.setFD_updated(now);
+		num.setFD_UpdatedBy(SYSTEM_USER_ID);
 		num.save(env);
 	}
 

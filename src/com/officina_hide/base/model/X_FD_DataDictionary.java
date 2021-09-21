@@ -20,8 +20,8 @@ import com.officina_hide.base.common.FD_Items;
  */
 public class X_FD_DataDictionary extends FD_DB implements I_FD_DataDictionary {
 
-	/** 項目一覧 */
-	private FD_Items items;
+//	/** 項目一覧 */
+//	private FD_Items items;
 	
 	/** 項目 : 辞書情報ID */
 	private long FD_DataDictionary_ID;
@@ -136,8 +136,8 @@ public class X_FD_DataDictionary extends FD_DB implements I_FD_DataDictionary {
 		items.setValue(COLUMNNAME_FD_DataDictionary_Name, dictionaryName);
 	}
 
-	public FD_Items getItems() {
-		return items;
-	}
+//	public FD_Items getItems() {
+//		return items;
+//	}
 
 }

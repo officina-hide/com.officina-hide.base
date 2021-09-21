@@ -21,8 +21,8 @@ import com.officina_hide.base.common.FD_WhereData;
  */
 public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 	
-	/** 項目一覧 */
-	private FD_Items items;
+//	/** 項目一覧 */
+//	private FD_Items items;
 
 	/** 項目 : 採番情報ID */
 	private long FD_Numbering_ID;
@@ -174,8 +174,8 @@ public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 	public void setFD_CurrentNumber(long currentNumber) {
 		items.setValue(COLUMNNAME_FD_CurrentNumber, currentNumber);
 	}
-	public FD_Items getItems() {
-		return items;
-	}
+//	public FD_Items getItems() {
+//		return items;
+//	}
 
 }

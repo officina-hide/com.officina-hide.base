@@ -77,9 +77,9 @@ public class FD_DataDictionary extends FD_DB implements I_FD_DataDictionary {
 			dd.setFD_DataDictionary_ID(num.getNumber(env, Table_ID));
 		}
 		dd.setFD_DataDictionary_Name(name);
-		dd.setFD_Name(dd.getItems(), dispName);
-		dd.setFD_Description(dd.getItems(), description);
-		dd.setFD_Group_ID(dd.getItems(), SYSTEM_GROUP_ID);
+		dd.setFD_Name(dispName);
+		dd.setFD_Description(description);
+		dd.setFD_Group_ID(SYSTEM_GROUP_ID);
 		dd.save(env);
 	}
 

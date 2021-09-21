@@ -10,8 +10,8 @@ import com.officina_hide.base.common.FD_Items;
  * @since 2021/05/22
  */
 public class X_FD_Table extends FD_DB implements I_FD_Table {	
-	/** 項目リスト[item list] */
-	private FD_Items items; 
+//	/** 項目リスト[item list] */
+//	private FD_Items items; 
 	
 	//	private FD_Items items = new FD_Items();
 	/** テーブル項目 */
@@ -103,9 +103,9 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 	public void setFD_Table_Name(String tableName) {
 		items.setValue(COLUMNNAME_FD_Table_Name, tableName);
 	}
-
-	public FD_Items getItems() {
-		return items;
-	}
+//
+//	public FD_Items getItems() {
+//		return items;
+//	}
 
 }
