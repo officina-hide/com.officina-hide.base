@@ -1,10 +1,12 @@
 package com.officina_hide.base.tools;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.FD_DataDictionary;
 import com.officina_hide.base.model.FD_Numbering;
 import com.officina_hide.base.model.FD_Table;
+import com.officina_hide.base.model.FD_Type;
 import com.officina_hide.base.model.I_FD_DataDictionary;
 import com.officina_hide.base.model.I_FD_Numbering;
 import com.officina_hide.base.model.I_FD_Table;
@@ -42,7 +44,8 @@ public class CreateBaseInformation {
 		 * 1. ID採番用テーブル構築、情報登録
 		 * 2. 辞書情報テーブル構築、情報登録
 		 * 3. テーブル情報構築、情報登録
-		 * 4. テーブル項目情報構築、情報登録
+		 * 4. 属性情報構築、情報登録
+		 * 5. テーブル項目情報構築、情報登録
 		 */
 		FD_DB DB = new FD_DB();
 		//1.
@@ -65,6 +68,9 @@ public class CreateBaseInformation {
 		dd.addData(env, I_FD_Table.Table_Name);
 		table.addData(env, I_FD_Table.Table_Name);
 		//4.
+		FD_Type type = new FD_Type();
+		type.createTable(env);
+		//5.
 		FD_Column column = new FD_Column();
 		column.createTable(env);
 	}
