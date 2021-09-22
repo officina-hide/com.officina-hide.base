@@ -45,7 +45,9 @@ public class CreateBaseInformation {
 		 * 2. 辞書情報テーブル構築、情報登録
 		 * 3. テーブル情報構築、情報登録
 		 * 4. 属性情報構築、情報登録
-		 * 5. テーブル項目情報構築、情報登録
+		 * 5. 属性項目情報構築、情報登録
+		 * 6-1. テーブル項目用属性登録 
+		 * 6-2. テーブル項目情報構築、情報登録
 		 */
 		FD_DB DB = new FD_DB();
 		//1.
@@ -70,8 +72,30 @@ public class CreateBaseInformation {
 		//4.
 		FD_Type type = new FD_Type();
 		type.createTable(env);
+		type.addData(env, I_FD_Numbering.Table_Name);
+		type.addData(env, I_FD_DataDictionary.Table_Name);
+		type.addData(env, I_FD_Table.Table_Name);
 		//5.
+		FD_TypeItem typeItem = new FD_TypeItem();
+		typeItem.createTable(env);
+		typeItem.addData(env, I_FD_Numbering.Table_Name);
+		typeItem.addData(env, I_FD_DataDictionary.Table_Name);
+		typeItem.addData(env, I_FD_Table.Table_Name);
+		//6-1.
+		addTableTypeInformation(env);
+		//6.
 		FD_Column column = new FD_Column();
 		column.createTable(env);
+	}
+
+	/**
+	 * テーブル項目用属性情報登録[Attribute information registration for table items]<br>
+	 * @author officine-hide.net
+	 * @since 2021/09/22
+	 * @param env 環境情報[Environment information]
+	 */
+	private void addTableTypeInformation(FD_EnvData env) {
+		FD_Type type = new FD_Type();
+		type.addData(env, 0, "ColumnType", "テーブル項目属性", "テーブル項目の属性を管理する。");
 	}
 }

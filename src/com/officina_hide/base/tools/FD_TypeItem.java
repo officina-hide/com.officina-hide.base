@@ -1,20 +1,30 @@
-package com.officina_hide.base.model;
+package com.officina_hide.base.tools;
 
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.model.FD_DB;
+import com.officina_hide.base.model.FD_DataDictionary;
+import com.officina_hide.base.model.FD_Numbering;
+import com.officina_hide.base.model.FD_Table;
+import com.officina_hide.base.model.I_FD_DataDictionary;
+import com.officina_hide.base.model.I_FD_Numbering;
+import com.officina_hide.base.model.I_FD_Table;
+import com.officina_hide.base.model.I_FD_TypeItem;
 
 /**
- * 属性情報クラス[Type infoemation class]<br>
- * @author officine-hide.net
+ * 属性項目情報クラス[Type item information class]<br>
+ * @author officine-hide.com
  * @version 1.00
- * @since 2021/09/21
+ * @since 2021/09/22
  */
-public class FD_Type extends FD_DB implements I_FD_Type {
+public class FD_TypeItem extends FD_DB implements I_FD_TypeItem {
 
 	/**
-	 * 属性情報テーブル生成[Type information table generation]
+	 * 属性項目情報生成[Type item information generate]<br>
+	 * @author officine-hide.net
+	 * @since 1.00 2021/09/22
 	 * @param env 環境情報[Environment information]
 	 */
 	public void createTable(FD_EnvData env) {
@@ -38,7 +48,7 @@ public class FD_Type extends FD_DB implements I_FD_Type {
 	 * @param env 環境情報[Environment information]
 	 * @param tableName テーブル名[Table name]
 	 */
-	public void addData(FD_EnvData env, String tableName) { 
+	public void addData(FD_EnvData env, String tableName) {
 		switch(tableName) {
 		case I_FD_Numbering.Table_Name:
 			FD_Numbering num = new FD_Numbering();
@@ -46,32 +56,14 @@ public class FD_Type extends FD_DB implements I_FD_Type {
 			break;
 		case I_FD_DataDictionary.Table_Name:
 			FD_DataDictionary dd = new FD_DataDictionary();
-			dd.add(env, 0, COLUMNNAME_FD_Type_ID, NAME_FD_Type_ID, COMMENT_FD_Type_ID);
-			dd.add(env, 0, COLUMNNAME_FD_Type_Name, NAME_FD_Type_Name, COMMENT_FD_Type_Name);
+			dd.add(env, 0, COLUMNNAME_FD_TypeItem_ID, NAME_FD_TypeItem_ID, COMMENT_FD_TypeItem_ID);
+			dd.add(env, 0, COLUMNNAME_FD_TypeItem_Name, NAME_FD_TypeItem_Name, COMMENT_FD_TypeItem_Name);
 			break;
 		case I_FD_Table.Table_Name:
 			FD_Table table = new FD_Table();
 			table.add(env, Table_ID, Table_Name, Table_Disp_Name, Table_Comment);
 			break;
 		}
-	}
-
-	/**
-	 * 情報登録[Infoemation registration]
-	 * @param env 環境情報[Environment information]
-	 * @param typeID 属性情報ID[Type information ID]
-	 * @param typeName 属性識別名[Attribute distinguished name]
-	 * @param name 表示名[display name]
-	 * @param description 解説[description]
-	 */
-	public void addData(FD_EnvData env, int typeID, String typeName, String name, String description) {
-		X_FD_Type type = new X_FD_Type(env, 0);
-		type.setFD_Type_ID(typeID);
-		type.setFD_Type_Name(typeName);
-		type.setFD_Name(name);
-		type.setFD_Description(description);
-		type.setFD_Group_ID(SYSTEM_GROUP_ID);
-		type.save(env);
 	}
 
 }

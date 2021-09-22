@@ -13,7 +13,7 @@ public interface I_FD_Column extends I_FD_DB {
 	/** テーブル表示名 */
 	public static final String Table_Disp_Name = "テーブル項目情報";
 	/** テーブル情報ID */
-	public final static int Table_ID = 105;
+	public final static int Table_ID = 106;
 	
 	/** 項目 : テーブル項目情報ID */
 	public final static String COLUMNNAME_FD_Column_ID = Table_Name + "_ID";
@@ -27,7 +27,7 @@ public interface I_FD_Column extends I_FD_DB {
 	public static final String COLUMNNAME_FD_DataDictionary_ID = I_FD_DataDictionary.COLUMNNAME_FD_DataDictionary_ID;
 	public static final String NAME_FD_DataDictionary_ID = I_FD_DataDictionary.NAME_FD_DataDictionary_ID;
 	public static final String COMMENT_FD_DataDictionary_ID = I_FD_DataDictionary.COMMENT_FD_DataDictionary_ID;
-	/** 項目 : テーブル項目属性情報ID */
+	/** 項目 : 属性項目情報ID */
 	
 	
 	/** テーブル項目識別名 */
