@@ -152,16 +152,16 @@ public class Fx_FD_Table_View extends Application {
 			title.setAlignment(Pos.CENTER_RIGHT);
 			rowArea.getChildren().add(title);
 			//テーブル項目の属性を取得する。
-			System.out.println(field.getFD_Column().getFD_Column_Name());
-			switch(field.getFD_Column().getFD_Type_ID()) {
-			case 101:	// TODO テキスト項目　クラス化予定
+//			System.out.println(field.getFD_Column().getFD_Column_Name());
+//			switch(field.getFD_Column().getFD_Type_ID()) {
+//			case 101:	// TODO テキスト項目　クラス化予定
 //				TextField text = new TextField(table.getItems().getStringData(field.getFD_Column().getFD_Column_Name()));
 //				rowArea.getChildren().add(text);
-				break;
-			case 102:	// TODO 複数行項目 クラス化予定
+//				break;
+//			case 102:	// TODO 複数行項目 クラス化予定
 //				TextArea textArea = new TextArea(table.getItems().getStringData(field.getFD_Column().getFD_Column_Name()));
 //				rowArea.getChildren().add(textArea);
-			}
+//			}
 			
 		}
 		return itemArea;

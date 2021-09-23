@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_WhereData;
 
 /**
  * 辞書情報クラス[Dictionary information class]<br>
@@ -81,6 +82,20 @@ public class FD_DataDictionary extends FD_DB implements I_FD_DataDictionary {
 		dd.setFD_Description(description);
 		dd.setFD_Group_ID(SYSTEM_GROUP_ID);
 		dd.save(env);
+	}
+
+	/**
+	 * 辞書識別名から辞書情報ID取得[Obtain dictionary information ID from dictionary identification name]<br>
+	 * @author officina-hide.net
+	 * @since 1.00 2021/09/23
+	 * @param env 環境情報[Enfironment information]
+	 * @param name 辞書識別名[Dictionary distinguished name]
+	 * @return 辞書情報ID[Dictionary information ID]
+	 */
+	public long getIDByName(FD_EnvData env, String name) {
+		FD_WhereData where = new FD_WhereData(COLUMNNAME_FD_DataDictionary_Name, name);
+		X_FD_DataDictionary dd = new X_FD_DataDictionary(env, where);
+		return dd.getFD_DataDictionary_ID();
 	}
 
 }

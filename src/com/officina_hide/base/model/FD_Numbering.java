@@ -119,6 +119,10 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 			FD_Table table = new FD_Table();
 			table.add(env, Table_ID, Table_Name, Table_Disp_Name, Table_Comment);
 			break;
+		case I_FD_Column.Table_Name:
+			FD_Column column = new FD_Column();
+			column.add(env, 0, Table_ID, COLUMNNAME_FD_Numbering_ID, FD_Item_ID, 0);
+			break;
 		}
 	}
 

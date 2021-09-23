@@ -40,6 +40,7 @@ public interface I_FD_DB {
 	public static final String ID_KEY_TYPE = " bigint unsigned NOT NULL PRIMARY KEY ";
 	public static final String ID_TYPE = " bigint unsigned ";
 	public static final String UNSIGNED_BIGINT = " bigint unsigned ";
+	public static final String UNSIGNED_INT = " int unsigned ";
 	public static final String COMMENT = " COMMENT ";
 	
 	/** 共通項目 : グルーブ情報ID */
@@ -78,4 +79,8 @@ public interface I_FD_DB {
 			+ COLUMNNAME_FD_CreatedBy + ID_TYPE + COMMENT + FD_SQ + NAME_FD_CreatedBy + FD_SQ + ","
 			+ COLUMNNAME_FD_Updated + DATETIME + COMMENT + FD_SQ + NAME_FD_Updated + FD_SQ + ","
 			+ COLUMNNAME_FD_UpdatedBy + ID_TYPE + COMMENT + FD_SQ + NAME_FD_UpdatedBy + FD_SQ;
+
+	/** 属性情報名 : テーブル項目情報用属性情報名 */
+	public static final String FD_Column_Type = "FD_Column_Type";
+
 }

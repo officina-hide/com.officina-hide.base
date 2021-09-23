@@ -40,12 +40,12 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 	 * @author officine-hide.net
 	 * @since 1.00 2021/07/13
 	 * @param env 環境情報[Environment Information]
-	 * @param id 情報ID[Information ID]
+	 * @param tableID 情報ID[Information ID]
 	 */
-	public X_FD_Table(FD_EnvData env, int id) {
+	public X_FD_Table(FD_EnvData env, long tableID) {
 		createItemList();
-		if(id > 0) {
-			load(env, Table_Name, id, items);
+		if(tableID > 0) {
+			load(env, Table_Name, tableID, items);
 		}
 	}
 

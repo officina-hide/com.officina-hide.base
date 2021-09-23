@@ -8,6 +8,7 @@ import com.officina_hide.base.model.FD_Numbering;
 import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.FD_Type;
 import com.officina_hide.base.model.FD_TypeItem;
+import com.officina_hide.base.model.I_FD_Column;
 import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.base.model.I_FD_DataDictionary;
 import com.officina_hide.base.model.I_FD_Numbering;
@@ -88,6 +89,10 @@ public class CreateBaseInformation implements I_FD_DB {
 		//6.
 		FD_Column column = new FD_Column();
 		column.createTable(env);
+		column.addData(env, I_FD_Numbering.Table_Name);
+		column.addData(env, I_FD_DataDictionary.Table_Name);
+		column.addData(env, I_FD_Table.Table_Name);
+		num.addData(env, I_FD_Column.Table_Name);
 	}
 
 	/**
@@ -98,7 +103,7 @@ public class CreateBaseInformation implements I_FD_DB {
 	 */
 	private void addTableTypeInformation(FD_EnvData env) {
 		FD_Type type = new FD_Type();
-		long typeID = type.add(env, 0, "ColumnType", "テーブル項目属性", "テーブル項目の属性を管理する。");
+		long typeID = type.add(env, 0, FD_Column_Type, "テーブル項目属性", "テーブル項目の属性を管理する。");
 		FD_TypeItem typeItem = new FD_TypeItem();
 		typeItem.add(env, 0, FD_Item_ID, typeID, "情報ID", "情報を識別するID");
 		typeItem.add(env, 0, FD_Item_String, typeID, "文字列", "単行の文字列");

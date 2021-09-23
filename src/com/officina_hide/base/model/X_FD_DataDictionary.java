@@ -11,6 +11,7 @@ import java.util.Locale;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_Item;
 import com.officina_hide.base.common.FD_Items;
+import com.officina_hide.base.common.FD_WhereData;
 
 /**
  * 辞書情報I/Oクラス[Dictionary information I/O class]<br>
@@ -35,11 +36,24 @@ public class X_FD_DataDictionary extends FD_DB implements I_FD_DataDictionary {
 	 * @param env 環境情報[Environment information]
 	 * @param id 辞書情報ID[Dictionary information ID]
 	 */
-	public X_FD_DataDictionary(FD_EnvData env, int id) {
+	public X_FD_DataDictionary(FD_EnvData env, long id) {
 		//項目一覧初期化
 		initItems();
 		
 		// TODO 未実装 : 採番情報IDがゼロ以外の時にload()をする。
+	}
+
+	/**
+	 * コンストラクタ[Condtructor]
+	 * @param env 環境情報[Enfironment information]
+	 * @param where 抽出条件[Extraction condition]
+	 */
+	public X_FD_DataDictionary(FD_EnvData env, FD_WhereData where) {
+		//項目一覧初期化
+		initItems();
+		if(where != null) {
+			load(env, items, where);
+		}
 	}
 
 	/**
@@ -54,6 +68,8 @@ public class X_FD_DataDictionary extends FD_DB implements I_FD_DataDictionary {
 		items.add(COLUMNNAME_FD_Name, null, FD_Item_String);
 		items.add(COLUMNNAME_FD_Description, null, FD_Item_Text);
 		baseItemSet(items);
+		items.setTableId(Table_ID);
+		items.setTableName(Table_Name);
 	}
 	
 	/**

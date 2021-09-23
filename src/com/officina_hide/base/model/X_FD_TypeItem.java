@@ -2,6 +2,7 @@ package com.officina_hide.base.model;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_Items;
+import com.officina_hide.base.common.FD_WhereData;
 
 /**
  * 属性項目情報I/Oクラス[Type item information I/O class]<br>
@@ -25,6 +26,20 @@ public class X_FD_TypeItem extends FD_DB implements I_FD_TypeItem {
 	 */
 	public X_FD_TypeItem(FD_EnvData env, int typeItemID) {
 		createItemList();
+	}
+
+	/**
+	 * コンストラクタ[Constructor]
+	 * @author officina-hide.net
+	 * @since 1.00 2021/09/23
+	 * @param env 環境情報[Enfironment information]
+	 * @param where 抽出条件[Extraction condition]
+	 */
+	public X_FD_TypeItem(FD_EnvData env, FD_WhereData where) {
+		createItemList();
+		if(where != null) {
+			load(env, items, where);
+		}
 	}
 
 	/**

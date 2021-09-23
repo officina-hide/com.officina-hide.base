@@ -17,6 +17,7 @@ import java.util.Locale;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_Item;
 import com.officina_hide.base.common.FD_Items;
+import com.officina_hide.base.common.FD_WhereData;
 
 /**
  * DB操作クラス[DB operation class]<br>
@@ -267,16 +268,16 @@ public class FD_DB implements I_FD_DB {
 	 * Extracts the information with the specified information ID and stores it in the item list.
 	 * @param env 環境情報[Environment Information]
 	 * @param tableName テーブル名[Table Name]
-	 * @param id 情報ID[Information ID]
+	 * @param tableID 情報ID[Information ID]
 	 * @param items 項目リスト[List of Items]
 	 */
-	public void load(FD_EnvData env, String tableName, int id, FD_Items items) {
+	public void load(FD_EnvData env, String tableName, long tableID, FD_Items items) {
 		StringBuffer sql = new StringBuffer();
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
 			sql.append("SELECT * FROM ").append(tableName).append(" ");
-			sql.append("WHERE ").append(tableName).append("_ID = ").append(id).append(" ");
+			sql.append("WHERE ").append(tableName).append("_ID = ").append(tableID).append(" ");
 			connection(env);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql.toString());
@@ -292,7 +293,7 @@ public class FD_DB implements I_FD_DB {
 					}
 				}
 			} else {
-				System.out.println("Table Record Not Found! : "+id);
+				System.out.println("Table Record Not Found! : "+tableID);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -303,6 +304,62 @@ public class FD_DB implements I_FD_DB {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+
+	/**
+	 * 情報抽出[Load information]<br>
+	 * 指定された抽出条件でレコードを抽出する。[Extract records with the specified extraction conditions.]<br>
+	 * @param env 環境情報[Enfironment information]
+	 * @param items 項目一覧[Item list]
+	 * @param where 抽出条件[extraction conditions]
+	 */
+	public void load(FD_EnvData env, FD_Items items, FD_WhereData where) {
+		Statement stmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT * FROM ").append(items.getTableName()).append(" ");
+			sql.append(where.toString());
+			connection(env);
+			stmt = getConn().createStatement();
+			rs = stmt.executeQuery(sql.toString());
+			if(rs.next()) {
+				setItems(rs, items);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(stmt, rs);
+		}
+	}
+
+	/**
+	 * 項目セット[Item set]
+	 * @param rs 抽出結果[Extraction result]
+	 * @param items 項目一覧[Item list]
+	 */
+	private void setItems(ResultSet rs, FD_Items items) {
+		try {
+			for(FD_Item item : items.getItems()) {
+				switch(item.getType()) {
+				case FD_Item_ID:
+				case FD_ITEM_BigInt:
+					item.setData(rs.getLong(item.getName()));
+					break;
+				case FD_Item_String:
+				case FD_Item_Text:
+					item.setData(rs.getString(item.getName()));
+					break;
+				case FD_ITEM_Date:
+					Calendar cal = new GregorianCalendar(new Locale(Locale.JAPAN.getLanguage(), Locale.JAPAN.getCountry()));
+					cal.setTime(rs.getTimestamp(item.getName()));
+					item.setData(cal);
+					break;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 
