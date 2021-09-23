@@ -12,15 +12,15 @@ public interface I_FD_DB {
 	public final static String FD_SQ = "'";	//シングルコーテーション
 	
 	/** テーブル項目種別 : ID */
-	public static final String Item_Value_Type_ID = "ID";
+	public static final String FD_Item_ID = "FD_Item_ID";
 	/** テーブル項目種別 : 文字列 */
-	public static final String Item_Value_Type_String = "String";
+	public static final String FD_Item_String = "FD_Item_String";
 	/** テーブル項目種別 : テキスト */
-	public static final String Item_Value_Type_Text = "Text";
+	public static final String FD_Item_Text = "FD_Item_Text";
 	/** テーブル項目種別 : 日付 */
-	public static final String Item_Value_Type_Date = "Date";
+	public static final String FD_ITEM_Date = "FD_ITEM_Date";
 	/** テーブル項目種別 : 拡大整数値 */
-	public static final String Item_Value_Type_Bigint = "Bigint";
+	public static final String FD_ITEM_BigInt = "FD_ITEM_BigInt";
 	
 	/** システムグループ情報ID */
 	public static final int SYSTEM_GROUP_ID = 100;

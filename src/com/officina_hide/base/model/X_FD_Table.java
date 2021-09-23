@@ -60,10 +60,10 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 		items = new FD_Items();
 		items.setTableName(Table_Name);
 		items.setTableId(Table_ID);
-		items.add(COLUMNNAME_FD_Table_ID, null, Item_Value_Type_ID);
-		items.add(COLUMNNAME_FD_Table_Name, null, Item_Value_Type_String);
-		items.add(COLUMNNAME_FD_Name, null, Item_Value_Type_String);
-		items.add(COLUMNNAME_FD_Description, null, Item_Value_Type_Text);
+		items.add(COLUMNNAME_FD_Table_ID, null, FD_Item_ID);
+		items.add(COLUMNNAME_FD_Table_Name, null, FD_Item_String);
+		items.add(COLUMNNAME_FD_Name, null, FD_Item_String);
+		items.add(COLUMNNAME_FD_Description, null, FD_Item_Text);
 		baseItemSet(items);
 	}
 

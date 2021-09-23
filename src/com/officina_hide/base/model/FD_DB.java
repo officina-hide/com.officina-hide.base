@@ -137,16 +137,16 @@ public class FD_DB implements I_FD_DB {
 			int idx = 1;
 			for(FD_Item item : items.getItems()) {
 				switch(item.getType()) {
-				case Item_Value_Type_ID:
-				case Item_Value_Type_Bigint:
+				case FD_Item_ID:
+				case FD_ITEM_BigInt:
 					pstmt.setLong(idx, items.getlongData(item.getName()));
 					break;
-				case Item_Value_Type_String:
-				case Item_Value_Type_Text:
+				case FD_Item_String:
+				case FD_Item_Text:
 					// FIXME エスケープ対象文字未対応
 					pstmt.setString(idx, items.getStringData(item.getName()));
 					break;
-				case Item_Value_Type_Date:
+				case FD_ITEM_Date:
 					pstmt.setTimestamp(idx, new Timestamp(items.getDateData(item.getName()).getTimeInMillis()));
 					break;
 				}
@@ -203,16 +203,16 @@ public class FD_DB implements I_FD_DB {
 			column.append(item.getName()).append(" ");
 			//項目種別
 			switch(item.getType()) {
-			case Item_Value_Type_ID:
+			case FD_Item_ID:
 				sql.append("int(10) unsigned NOT NULL").append(" ");
 				break;
-			case Item_Value_Type_String:
+			case FD_Item_String:
 				sql.append("varchar(").append(item.getSize()).append(")").append(" ");
 				break;
-			case Item_Value_Type_Date:
+			case FD_ITEM_Date:
 				sql.append("datetime").append(" ");
 				break;
-			case Item_Value_Type_Text:
+			case FD_Item_Text:
 				sql.append("text").append(" ");
 			}
 			//コメント
@@ -283,10 +283,10 @@ public class FD_DB implements I_FD_DB {
 			if(rs.next()) {
 				for(FD_Item item : items.getItems()) {
 					switch(item.getType()) {
-					case Item_Value_Type_ID:
+					case FD_Item_ID:
 						items.setValue(item.getName(), rs.getInt(item.getName()));
 						break;
-					case Item_Value_Type_String:
+					case FD_Item_String:
 						items.setValue(item.getName(), rs.getString(item.getName()));
 						break;
 					}
@@ -312,11 +312,11 @@ public class FD_DB implements I_FD_DB {
 	 * @param items 項目一覧[Item list]
 	 */
 	public void baseItemSet(FD_Items items) {
-		items.add(COLUMNNAME_FD_Group_ID, null, Item_Value_Type_ID);
-		items.add(COLUMNNAME_FD_Created, null, Item_Value_Type_Date);
-		items.add(COLUMNNAME_FD_CreatedBy, null, Item_Value_Type_ID);
-		items.add(COLUMNNAME_FD_Updated, null, Item_Value_Type_Date);
-		items.add(COLUMNNAME_FD_UpdatedBy, null, Item_Value_Type_ID);
+		items.add(COLUMNNAME_FD_Group_ID, null, FD_Item_ID);
+		items.add(COLUMNNAME_FD_Created, null, FD_ITEM_Date);
+		items.add(COLUMNNAME_FD_CreatedBy, null, FD_Item_ID);
+		items.add(COLUMNNAME_FD_Updated, null, FD_ITEM_Date);
+		items.add(COLUMNNAME_FD_UpdatedBy, null, FD_Item_ID);
 	}
 
 	/**

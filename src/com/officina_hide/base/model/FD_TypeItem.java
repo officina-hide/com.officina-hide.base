@@ -1,17 +1,9 @@
-package com.officina_hide.base.tools;
+package com.officina_hide.base.model;
 
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.officina_hide.base.common.FD_EnvData;
-import com.officina_hide.base.model.FD_DB;
-import com.officina_hide.base.model.FD_DataDictionary;
-import com.officina_hide.base.model.FD_Numbering;
-import com.officina_hide.base.model.FD_Table;
-import com.officina_hide.base.model.I_FD_DataDictionary;
-import com.officina_hide.base.model.I_FD_Numbering;
-import com.officina_hide.base.model.I_FD_Table;
-import com.officina_hide.base.model.I_FD_TypeItem;
 
 /**
  * 属性項目情報クラス[Type item information class]<br>
@@ -64,6 +56,27 @@ public class FD_TypeItem extends FD_DB implements I_FD_TypeItem {
 			table.add(env, Table_ID, Table_Name, Table_Disp_Name, Table_Comment);
 			break;
 		}
+	}
+
+	/**
+	 * 情報保存[save information]
+	 * @param env 環境情報[Enfironment information]
+	 * @param typeItemID 属性項目情報ID[Type item information ID]
+	 * @param typeItemName 属性項目識別ID[Attribute item identification ID]
+	 * @param typeID 属性情報ID[Type information ID]
+	 * @param name 
+	 * @param description
+	 */
+	public void add(FD_EnvData env, int typeItemID, String typeItemName, long typeID
+			, String name, String description) {
+		X_FD_TypeItem typeItem = new X_FD_TypeItem(env, 0);
+		typeItem.setFD_TypeItem_ID(typeItemID);
+		typeItem.setFD_TypeItem_Name(typeItemName);
+		typeItem.setFD_Type_ID(typeID);
+		typeItem.setFD_Name(name);
+		typeItem.setFD_Description(description);
+		typeItem.setFD_Group_ID(SYSTEM_GROUP_ID);
+		typeItem.save(env);
 	}
 
 }

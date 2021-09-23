@@ -63,8 +63,11 @@ public class FD_Type extends FD_DB implements I_FD_Type {
 	 * @param typeName 属性識別名[Attribute distinguished name]
 	 * @param name 表示名[display name]
 	 * @param description 解説[description]
+	 * @return id 情報ID[information ID]
 	 */
-	public void addData(FD_EnvData env, int typeID, String typeName, String name, String description) {
+	public long add(FD_EnvData env, int typeID, String typeName, String name, String description) {
+		long id = 0;
+		
 		X_FD_Type type = new X_FD_Type(env, 0);
 		type.setFD_Type_ID(typeID);
 		type.setFD_Type_Name(typeName);
@@ -72,6 +75,10 @@ public class FD_Type extends FD_DB implements I_FD_Type {
 		type.setFD_Description(description);
 		type.setFD_Group_ID(SYSTEM_GROUP_ID);
 		type.save(env);
+		
+		id = type.getFD_Type_ID();
+		
+		return id;
 	}
 
 }

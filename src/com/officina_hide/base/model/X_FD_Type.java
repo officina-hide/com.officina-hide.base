@@ -10,14 +10,17 @@ import com.officina_hide.base.common.FD_Items;
  * @since 2021/09/04 
  */
 public class X_FD_Type extends FD_DB implements I_FD_Type {
-	
-	/** 項目情報 */
-	private FD_Items items;
+//	
+//	/** 項目情報 */
+//	private FD_Items items;
 	
 	/** 属性情報ID */
 	private long FD_Type_ID;
 	/** 属性名 */
 	private String FD_Type_Name;
+	
+	public X_FD_Type() {	
+	}
 	
 	public X_FD_Type(FD_EnvData env, int typeId) {
 		createItemList();
@@ -31,11 +34,13 @@ public class X_FD_Type extends FD_DB implements I_FD_Type {
 	 */
 	private void createItemList() {
 		items = new FD_Items();
-		items.add(COLUMNNAME_FD_Type_ID, null, Item_Value_Type_ID);
-		items.add(COLUMNNAME_FD_Type_Name, null, Item_Value_Type_String);
-		items.add(COLUMNNAME_FD_Name, null, Item_Value_Type_String);
-		items.add(COLUMNNAME_FD_Description, null, Item_Value_Type_Text);
+		items.add(COLUMNNAME_FD_Type_ID, null, FD_Item_ID);
+		items.add(COLUMNNAME_FD_Type_Name, null, FD_Item_String);
+		items.add(COLUMNNAME_FD_Name, null, FD_Item_String);
+		items.add(COLUMNNAME_FD_Description, null, FD_Item_Text);
 		baseItemSet(items);
+		items.setTableId(Table_ID);
+		items.setTableName(Table_Name);
 	}
 
 	/**

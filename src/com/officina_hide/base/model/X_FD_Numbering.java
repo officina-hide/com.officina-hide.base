@@ -69,15 +69,15 @@ public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 			if(rs.next()) {
 				for(FD_Item item : items.getItems()) {
 					switch(item.getType()) {
-					case Item_Value_Type_ID:
-					case Item_Value_Type_Bigint:
+					case FD_Item_ID:
+					case FD_ITEM_BigInt:
 						items.setValue(item.getName(), rs.getLong(item.getName()));
 						break;
-					case Item_Value_Type_String:
-					case Item_Value_Type_Text:
+					case FD_Item_String:
+					case FD_Item_Text:
 						items.setValue(item.getName(), rs.getString(item.getName()));
 						break;
-					case Item_Value_Type_Date:
+					case FD_ITEM_Date:
 						Calendar cal = new GregorianCalendar(new Locale(Locale.JAPAN.getLanguage(), Locale.JAPAN.getCountry()));
 						cal.setTime(rs.getTimestamp(item.getName()));
 						items.setValue(item.getName(), cal);
@@ -99,10 +99,10 @@ public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 	 */
 	private void initItems() {
 		items = new FD_Items();
-		items.add(COLUMNNAME_FD_Numbering_ID, null, Item_Value_Type_ID);
-		items.add(COLUMNNAME_FD_Table_ID, null, Item_Value_Type_ID);
-		items.add(COLUMNNAME_FD_InitialNumber, null, Item_Value_Type_Bigint);
-		items.add(COLUMNNAME_FD_CurrentNumber, null, Item_Value_Type_Bigint);
+		items.add(COLUMNNAME_FD_Numbering_ID, null, FD_Item_ID);
+		items.add(COLUMNNAME_FD_Table_ID, null, FD_Item_ID);
+		items.add(COLUMNNAME_FD_InitialNumber, null, FD_ITEM_BigInt);
+		items.add(COLUMNNAME_FD_CurrentNumber, null, FD_ITEM_BigInt);
 		baseItemSet(items);
 	}
 

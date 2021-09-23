@@ -40,10 +40,10 @@ public class FD_ItemCollection {
 	public void setItem(ResultSet rs) throws SQLException {
 		for(FD_Item item : list) {
 			switch(item.getType()) {
-			case FD_DB.Item_Value_Type_ID:
+			case FD_DB.FD_Item_ID:
 				item.setData(rs.getInt(item.getName()));
 				break;
-			case FD_DB.Item_Value_Type_String:
+			case FD_DB.FD_Item_String:
 				item.setData(rs.getString(item.getName()));
 				break;
 			}

@@ -49,10 +49,10 @@ public class X_FD_DataDictionary extends FD_DB implements I_FD_DataDictionary {
 	 */
 	private void initItems() {
 		items = new FD_Items();
-		items.add(COLUMNNAME_FD_DataDictionary_ID, null, Item_Value_Type_ID);
-		items.add(COLUMNNAME_FD_DataDictionary_Name, null, Item_Value_Type_String);
-		items.add(COLUMNNAME_FD_Name, null, Item_Value_Type_String);
-		items.add(COLUMNNAME_FD_Description, null, Item_Value_Type_Text);
+		items.add(COLUMNNAME_FD_DataDictionary_ID, null, FD_Item_ID);
+		items.add(COLUMNNAME_FD_DataDictionary_Name, null, FD_Item_String);
+		items.add(COLUMNNAME_FD_Name, null, FD_Item_String);
+		items.add(COLUMNNAME_FD_Description, null, FD_Item_Text);
 		baseItemSet(items);
 	}
 	
@@ -95,16 +95,16 @@ public class X_FD_DataDictionary extends FD_DB implements I_FD_DataDictionary {
 			int idx = 1;
 			for(FD_Item item : items.getItems()) {
 				switch(item.getType()) {
-				case Item_Value_Type_ID:
-				case Item_Value_Type_Bigint:
+				case FD_Item_ID:
+				case FD_ITEM_BigInt:
 					pstmt.setLong(idx, items.getlongData(item.getName()));
 					break;
-				case Item_Value_Type_String:
-				case Item_Value_Type_Text:
+				case FD_Item_String:
+				case FD_Item_Text:
 					// FIXME エスケープ対象文字未対応
 					pstmt.setString(idx, items.getStringData(item.getName()));
 					break;
-				case Item_Value_Type_Date:
+				case FD_ITEM_Date:
 					pstmt.setTimestamp(idx, new Timestamp(items.getDateData(item.getName()).getTimeInMillis()));
 					break;
 				}

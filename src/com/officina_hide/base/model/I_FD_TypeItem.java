@@ -45,6 +45,10 @@ public interface I_FD_TypeItem extends I_FD_DB {
 			+ COMMENT + FD_SQ + NAME_FD_TypeItem_Name + FD_SQ + ","
 		+ COLUMNNAME_FD_Type_ID + ID_TYPE
 			+ COMMENT + FD_SQ + NAME_FD_Type_ID + FD_SQ + ","
+		+ COLUMNNAME_FD_Name + VARCHAR_100
+			+ COMMENT + FD_SQ + NAME_FD_Name + FD_SQ + ","
+		+ COLUMNNAME_FD_Description + TEXT
+			+ COMMENT + FD_SQ + NAME_FD_Description + FD_SQ + ","
 		+ COMMON_ITEM_CREATE_SQL
 		+") "
 		+"ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=" + FD_SQ + Table_Disp_Name + FD_SQ;

@@ -7,6 +7,8 @@ import com.officina_hide.base.model.FD_DataDictionary;
 import com.officina_hide.base.model.FD_Numbering;
 import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.FD_Type;
+import com.officina_hide.base.model.FD_TypeItem;
+import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.base.model.I_FD_DataDictionary;
 import com.officina_hide.base.model.I_FD_Numbering;
 import com.officina_hide.base.model.I_FD_Table;
@@ -24,7 +26,7 @@ import com.officina_hide.base.model.I_FD_Table;
  * @version 2.00 構築手順の全面見直し
  * @since 2021/03/31
  */
-public class CreateBaseInformation {
+public class CreateBaseInformation implements I_FD_DB {
 
 	//環境情報の取得
 	FD_EnvData env = new FD_EnvData();
@@ -96,6 +98,12 @@ public class CreateBaseInformation {
 	 */
 	private void addTableTypeInformation(FD_EnvData env) {
 		FD_Type type = new FD_Type();
-		type.addData(env, 0, "ColumnType", "テーブル項目属性", "テーブル項目の属性を管理する。");
+		long typeID = type.add(env, 0, "ColumnType", "テーブル項目属性", "テーブル項目の属性を管理する。");
+		FD_TypeItem typeItem = new FD_TypeItem();
+		typeItem.add(env, 0, FD_Item_ID, typeID, "情報ID", "情報を識別するID");
+		typeItem.add(env, 0, FD_Item_String, typeID, "文字列", "単行の文字列");
+		typeItem.add(env, 0, FD_Item_Text, typeID, "複数行文字列", "複数行の文字列");
+		typeItem.add(env, 0, FD_ITEM_Date, typeID, "日付", "日付(ClassはCalendar)");
+		typeItem.add(env, 0, FD_ITEM_BigInt, typeID, "拡大整数", "最大長の整数(Classはlong)");
 	}
 }

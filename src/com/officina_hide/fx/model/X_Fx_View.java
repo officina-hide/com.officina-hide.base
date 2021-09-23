@@ -52,10 +52,10 @@ public class X_Fx_View extends FD_DB implements I_Fx_View {
 	 */
 	private FD_Items createItemList() {
 		items = new FD_Items();
-		items.add(COLUMNNAME_Fx_View_ID, null, Item_Value_Type_ID);
-		items.add(COLUMNNAME_Fx_View_Name, null, Item_Value_Type_String);
-		items.add(COLUMNNAME_FD_Table_ID, null, Item_Value_Type_ID);
-		items.add(COLUMNNAME_FD_Name, null, Item_Value_Type_String);
+		items.add(COLUMNNAME_Fx_View_ID, null, FD_Item_ID);
+		items.add(COLUMNNAME_Fx_View_Name, null, FD_Item_String);
+		items.add(COLUMNNAME_FD_Table_ID, null, FD_Item_ID);
+		items.add(COLUMNNAME_FD_Name, null, FD_Item_String);
 
 		return items;
 	}

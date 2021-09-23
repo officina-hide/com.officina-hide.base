@@ -33,11 +33,11 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 		this.env = env;
 		
 		items = new FD_Items();
-		items.add(COLUMNNAME_FD_Column_ID, null, Item_Value_Type_ID);
-		items.add(COLUMNNAME_FD_Column_Name, null, Item_Value_Type_String);
-		items.add(COLUMNNAME_FD_DataDictionary_ID, null, Item_Value_Type_ID);
-		items.add(COLUMNNAME_FD_Table_ID, null, Item_Value_Type_ID);
-		items.add(COLUMNNAME_FD_Type_ID, null, Item_Value_Type_ID);
+		items.add(COLUMNNAME_FD_Column_ID, null, FD_Item_ID);
+		items.add(COLUMNNAME_FD_Column_Name, null, FD_Item_String);
+		items.add(COLUMNNAME_FD_DataDictionary_ID, null, FD_Item_ID);
+		items.add(COLUMNNAME_FD_Table_ID, null, FD_Item_ID);
+		items.add(COLUMNNAME_FD_Type_ID, null, FD_Item_ID);
 		load(env, Table_Name, columnId, items);
 	}
  

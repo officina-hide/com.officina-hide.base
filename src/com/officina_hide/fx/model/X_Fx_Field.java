@@ -41,11 +41,11 @@ public class X_Fx_Field extends FD_DB implements I_Fx_Field {
 		this.env = env;
 		
 		items = new FD_Items();
-		items.add(COLUMNNAME_Fx_Field_ID, env, Item_Value_Type_ID);
-		items.add(COLUMNNAME_Fx_Field_Name, env, Item_Value_Type_String);
-		items.add(COLUMNNAME_Fx_View_ID, env, Item_Value_Type_ID);
-		items.add(COLUMNNAME_FD_Column_ID, env, Item_Value_Type_ID);
-		items.add(COLUMNNAME_FD_Name, null, Item_Value_Type_String);
+		items.add(COLUMNNAME_Fx_Field_ID, env, FD_Item_ID);
+		items.add(COLUMNNAME_Fx_Field_Name, env, FD_Item_String);
+		items.add(COLUMNNAME_Fx_View_ID, env, FD_Item_ID);
+		items.add(COLUMNNAME_FD_Column_ID, env, FD_Item_ID);
+		items.add(COLUMNNAME_FD_Name, null, FD_Item_String);
 		load(env, Table_Name, id, items);
 	}
 
