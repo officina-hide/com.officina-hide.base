@@ -20,6 +20,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.xml.sax.SAXException;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_WhereData;
 import com.officina_hide.base.sql.FD_sql;
 
 /**
@@ -73,22 +74,17 @@ public class FD_Table extends FD_DB implements I_FD_Table {
 		//XML情報読み取り
 		System.out.println(xmlData.getAttribute(COLUMN_NAME));
 	}
-//
-//	/**
-//	 * テーブル項目リスト生成[Table item list generation]<br>
-//	 * TODO 汎用化予定　2021/08/26
-//	 * @author officine-hide.net
-//	 * @since 1.00 2021/04/23
-//	 * @return テーブル項目リスト[Table item list]
-//	 */
-//	private void createItemList() {
-//		items = new FD_Items();
-//		items.add(COLUMNNAME_FD_Table_ID, null, Item_Value_Type_ID);
-//		items.add(COLUMNNAME_FD_Table_Name, null, Item_Value_Type_String);
-//		items.add(COLUMNNAME_FD_Name, null, Item_Value_Type_String);
-//		items.add(COLUMNNAME_FD_Description, null, Item_Value_Type_Text);
-//		baseItemSet(items);
-//	}
+
+	/**
+	 * コンストラクタ[Constructor]
+	 * @param env 環境情報[Enfironment information]
+	 * @param where 抽出条件[Extraction condition]
+	 */
+	public FD_Table(FD_EnvData env, FD_WhereData where) {
+		//項目一覧設定
+		createItemList(env, Table_ID);
+		//テーブル情報
+	}
 
 	/**
 	 * テーブル情報生成[Table information generation]<br>
@@ -262,8 +258,9 @@ public class FD_Table extends FD_DB implements I_FD_Table {
 	 * @param tableName テーブル識別名[Table distinguished name]
 	 * @param name 表示名[display name]
 	 * @param description 解説[description]
+	 * @return テーブル情報ID[Table information ID]
 	 */
-	public void add(FD_EnvData env, long tableId, String tableName, String name, String description) {
+	public long add(FD_EnvData env, long tableId, String tableName, String name, String description) {
 		X_FD_Table table = new X_FD_Table(env, 0);
 		table.setFD_Table_ID(tableId);
 		table.setFD_Table_Name(tableName);
@@ -271,5 +268,7 @@ public class FD_Table extends FD_DB implements I_FD_Table {
 		table.setFD_Description(description);
 		table.setFD_Group_ID(SYSTEM_GROUP_ID);
 		table.save(env);		
+		
+		return table.getFD_Table_ID();
 	}
 }

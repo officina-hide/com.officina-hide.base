@@ -17,7 +17,7 @@ import com.officina_hide.base.model.I_FD_DB;
  * @version 1.00
  * @since 2021/08/23
  */
-public class X_Fx_View extends FD_DB implements I_Fx_View {
+public class X_Fx_View extends FD_DB implements I_FX_View {
 
 	/** 項目リスト[item list] */
 	private FD_Items items = new FD_Items();
@@ -52,9 +52,9 @@ public class X_Fx_View extends FD_DB implements I_Fx_View {
 	 */
 	private FD_Items createItemList() {
 		items = new FD_Items();
-		items.add(COLUMNNAME_Fx_View_ID, null, FD_Item_ID);
-		items.add(COLUMNNAME_Fx_View_Name, null, FD_Item_String);
-		items.add(COLUMNNAME_FD_Table_ID, null, FD_Item_ID);
+//		items.add(COLUMNNAME_Fx_View_ID, null, FD_Item_ID);
+//		items.add(COLUMNNAME_Fx_View_Name, null, FD_Item_String);
+//		items.add(COLUMNNAME_FD_Table_ID, null, FD_Item_ID);
 		items.add(COLUMNNAME_FD_Name, null, FD_Item_String);
 
 		return items;
@@ -90,24 +90,5 @@ public class X_Fx_View extends FD_DB implements I_Fx_View {
 //			DBClose(stmt, rs);
 //		}
 //	}
-
-	public int getFx_View_ID() {
-		return items.getintData(COLUMNNAME_Fx_View_ID);
-	}
-	public void setFx_View_ID(int fx_View_ID) {
-		Fx_View_ID = fx_View_ID;
-	}
-	public String getFx_View_Name() {
-		return items.getStringData(COLUMNNAME_Fx_View_Name);
-	}
-	public void setFx_View_Name(String fx_View_Name) {
-		Fx_View_Name = fx_View_Name;
-	}
-	public String getFD_Name() {
-		return items.getStringData(COLUMNNAME_FD_Name);
-	}
-	public void setFD_Name(String fD_Name) {
-		FD_Name = fD_Name;
-	}
 
 }

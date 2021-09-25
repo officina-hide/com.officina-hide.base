@@ -176,17 +176,33 @@ public class FD_DB implements I_FD_DB {
 	 * @param env 環境情報[Environment Information]
 	 * @param tableName テーブル名[Table Name]
 	 */
-	public void deleteTable(FD_EnvData env, String tableName) {
+	public void dropTable(FD_EnvData env, String tableName) {
 		try {
 			connection(env);
 			StringBuffer sql = new StringBuffer();
 			sql.append("DROP TABLE IF EXISTS ").append(tableName);
 			PreparedStatement ptmt = conn.prepareStatement(sql.toString());
-			System.out.println(sql.toString());
 			ptmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * テーブル生成[Create Table]<br>
+	 * @author officine-hide.net
+	 * @since 1.00 2021/09/25
+	 * @param env 環境情報[Enfironment information]
+	 * @param tableName テーブル名
+	 */
+	public void createTable(FD_EnvData env, String tableName) {
+		//テーブル情報取得
+		FD_WhereData where = new FD_WhereData(I_FD_Table.COLUMNNAME_FD_Table_Name, tableName);
+		FD_Table table = new FD_Table(env, where);
+		StringBuffer sql = new StringBuffer();
+		sql.append("CREATE TABLE IF NOT EXISTS ").append(tableName).append(" (");
+		sql.append(") ");
+		sql.append("ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=");
 	}
 
 	/**
@@ -229,6 +245,42 @@ public class FD_DB implements I_FD_DB {
 			.append(FD_SQ).append(comment).append(FD_SQ).append(";");
 		
 		System.out.println(sql.toString());
+	}
+
+	/**
+	 * 項目一覧設定[Item list setting]<br>
+	 * @author officina-hide.net
+	 * @since 1.00 2021/09/25
+	 * @param env 環境情報[Enfironment information]
+	 * @param tableId テーブル情報ID[Table information ID]
+	 */
+	public void createItemList(FD_EnvData env, long tableId) {
+		items = new FD_Items();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT * FROM ").append(I_FD_Column.Table_Name).append(" c ");
+			sql.append("LEFT JOIN ").append(I_FD_DataDictionary.Table_Name).append(" dd ")
+				.append(" ON ").append("dd.").append(I_FD_DataDictionary.COLUMNNAME_FD_DataDictionary_ID).append(" = ")
+				.append(" c.").append(I_FD_Column.COLUMNNAME_FD_DataDictionary_ID).append(" ");
+			sql.append("LEFT JOIN ").append(I_FD_TypeItem.Table_Name).append(" t ")
+				.append(" ON ").append("c.").append(I_FD_TypeItem.COLUMNNAME_FD_TypeItem_ID).append(" = ")
+				.append(" c.").append(I_FD_Column.COLUMNNAME_FD_TypeItem_ID).append(" ");
+			sql.append("WHERE ").append(I_FD_Column.COLUMNNAME_FD_Column_ID).append(" = ?");
+			connection(env);
+			pstmt = getConn().prepareStatement(sql.toString());
+			pstmt.setLong(1, tableId);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				items.add(rs.getString("dd."+I_FD_DataDictionary.COLUMNNAME_FD_DataDictionary_Name), null,
+						"t."+I_FD_TypeItem.COLUMNNAME_FD_TypeItem_Name);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
 	}
 
 	/**

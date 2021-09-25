@@ -30,9 +30,12 @@ public class CreatePackageBase {
 		env.setActionUserID(I_FD_DB.SYSTEM_USER_ID);
 		// TODO 開始メッセージ
 		// TODO 環境情報の取得
-		//構築クラス呼び出し
+		//基盤情報構築
 		CreateBaseInformation cbi = new CreateBaseInformation(env);
 		cbi.execute();
+		//Fx画面用基盤情報構築
+		CreateFxInformation cfi = new CreateFxInformation(env);
+		cfi.execute();
 		// TODO 終了メッセージ
 	}
 

@@ -224,8 +224,8 @@ public class Fx_FD_Table_List extends Application implements I_FD_DB {
 		StringBuffer sql = new StringBuffer();
 		try {
 			sql.append("SELECT * FROM ").append(I_Fx_Field.Table_Name).append(" ");
-			sql.append("WHERE ").append(I_Fx_Field.COLUMNNAME_Fx_View_ID)
-				.append(" = ").append(view.getFx_View_ID()).append(" ");
+//			sql.append("WHERE ").append(I_Fx_Field.COLUMNNAME_Fx_View_ID)
+//				.append(" = ").append(view.getFx_View_ID()).append(" ");
 			sql.append("AND ").append(I_Fx_Field.COLUMNNAME_Fx_isListField)
 				.append(" = ").append(FD_SQ).append(I_Fx_Field.Fx_isListField_YES).append(FD_SQ);
 			DB.connection(env);

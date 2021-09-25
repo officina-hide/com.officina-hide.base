@@ -74,20 +74,20 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 	public void save(FD_EnvData env) {
 		save(env, Table_Name, items);
 	}
-
-	/**
-	 * テーブル情報テーブル生成[Table information table generation]<br>
-	 * @author officine-hide.net
-	 * @since 1.00 2021/06/03
-	 * @param env 環境情報[Environment Information]
-	 */
-	public void createTable(FD_EnvData env) {
-		//既構築テーブルの削除[Delete existing table]
-		deleteTable(env, items.getStringData(COLUMNNAME_FD_Table_Name));
-		//テーブル生成[Table generation]
-//		createTable(env, items.getStringData(COLUMNNAME_FD_Table_Name),
-//				items.getStringData(COLUMNNAME_FD_), getItems());
-	}
+//
+//	/**
+//	 * テーブル情報テーブル生成[Table information table generation]<br>
+//	 * @author officine-hide.net
+//	 * @since 1.00 2021/06/03
+//	 * @param env 環境情報[Environment Information]
+//	 */
+//	public void createTable(FD_EnvData env) {
+//		//既構築テーブルの削除[Delete existing table]
+//		deleteTable(env, items.getStringData(COLUMNNAME_FD_Table_Name));
+//		//テーブル生成[Table generation]
+////		createTable(env, items.getStringData(COLUMNNAME_FD_Table_Name),
+////				items.getStringData(COLUMNNAME_FD_), getItems());
+//	}
 
 	public long getFD_Table_ID() {
 		FD_Table_ID = items.getlongData(COLUMNNAME_FD_Table_ID);

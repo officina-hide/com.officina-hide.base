@@ -75,15 +75,15 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 	 * @since 1.00 2021/09/23
 	 * @param env 環境情報[Enfironment information]
 	 * @param columnID テーブル項目情報ID[Table item information ID]
-	 * @param tableId テーブル情報ID[Table information ID]
+	 * @param tableID テーブル情報ID[Table information ID]
 	 * @param columnName テーブル項目名[Table item name]
 	 * @param typeName 属性名[Type name]
 	 * @param size 属性桁数[Type size]
 	 */
-	public void add(FD_EnvData env, int columnID, int tableId, String columnName, String typeName, int size) {
+	public void add(FD_EnvData env, int columnID, long tableID, String columnName, String typeName, int size) {
 		X_FD_Column column = new X_FD_Column(env, 0);
 		column.setFD_Column_ID(0);
-		column.setFD_Table_ID(tableId);
+		column.setFD_Table_ID(tableID);
 		FD_DataDictionary dd = new FD_DataDictionary();
 		column.setFD_DataDictionary_ID(dd.getIDByName(env, columnName));
 		column.setFD_TypeItem_ID(getTypeItemID(env, typeName));

@@ -15,7 +15,7 @@ import com.officina_hide.base.model.X_FD_Table;
 import com.officina_hide.fx.model.Fx_TextArea;
 import com.officina_hide.fx.model.Fx_ToolButtonArea;
 import com.officina_hide.fx.model.I_Fx_Field;
-import com.officina_hide.fx.model.I_Fx_View;
+import com.officina_hide.fx.model.I_FX_View;
 import com.officina_hide.fx.model.X_Fx_Field;
 import com.officina_hide.fx.model.X_Fx_View;
 
@@ -89,7 +89,7 @@ public class Fx_FD_Table_View extends Application {
 		 */
 //		FD_WhereData where = new FD_WhereData(I_Fx_View.COLUMNNAME_Fx_View_ID, 100);
 		view = new X_Fx_View(env, 100);
-		fields = getFieldList(view.getFx_View_ID());
+//		fields = getFieldList(view.getF_View_ID());
 		
 		tba = new Fx_ToolButtonArea();
 		try {

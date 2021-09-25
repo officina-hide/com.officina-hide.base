@@ -24,8 +24,11 @@ public class X_FD_TypeItem extends FD_DB implements I_FD_TypeItem {
 	 * @param env 環境情報[Enfironment information]
 	 * @param typeItemID 属性項目情報ID
 	 */
-	public X_FD_TypeItem(FD_EnvData env, int typeItemID) {
+	public X_FD_TypeItem(FD_EnvData env, long typeItemID) {
 		createItemList();
+		if(typeItemID > 0) {
+			
+		}
 	}
 
 	/**

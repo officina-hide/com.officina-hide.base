@@ -155,8 +155,8 @@ public class FxCreateTable extends Application {
 		if(result.isPresent() && result.get().equals(ButtonType.CANCEL)) {
 			return;
 		}
-		//既登録分削除
-		table.createTable(env);
+//		//既登録分削除
+//		table.createTable(env);
 	}
 
 	/**
