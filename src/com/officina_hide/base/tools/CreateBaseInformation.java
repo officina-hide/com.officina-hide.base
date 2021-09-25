@@ -61,7 +61,7 @@ public class CreateBaseInformation implements I_FD_DB {
 		FD_DataDictionary dd = new FD_DataDictionary();
 		dd.createTable(env);
 		dd.addData(env, I_FD_Numbering.Table_Name);
-		DB.addData(env);
+		DB.addData(env, I_FD_DataDictionary.Table_Name);
 		num.addData(env, I_FD_DataDictionary.Table_Name);
 		dd.addData(env, I_FD_DataDictionary.Table_Name);
 		//3.
@@ -93,8 +93,12 @@ public class CreateBaseInformation implements I_FD_DB {
 		column.addData(env, I_FD_DataDictionary.Table_Name);
 		column.addData(env, I_FD_Table.Table_Name);
 		num.addData(env, I_FD_Column.Table_Name);
+		dd.addData(env, I_FD_Column.Table_Name);
+		table.addData(env, I_FD_Column.Table_Name);
+		type.addData(env, I_FD_Column.Table_Name);
+		typeItem.addData(env, I_FD_Column.Table_Name);
+		column.addData(env, I_FD_Column.Table_Name);
 	}
-
 	/**
 	 * テーブル項目用属性情報登録[Attribute information registration for table items]<br>
 	 * @author officine-hide.net
@@ -105,10 +109,13 @@ public class CreateBaseInformation implements I_FD_DB {
 		FD_Type type = new FD_Type();
 		long typeID = type.add(env, 0, FD_Column_Type, "テーブル項目属性", "テーブル項目の属性を管理する。");
 		FD_TypeItem typeItem = new FD_TypeItem();
-		typeItem.add(env, 0, FD_Item_ID, typeID, "情報ID", "情報を識別するID");
-		typeItem.add(env, 0, FD_Item_String, typeID, "文字列", "単行の文字列");
-		typeItem.add(env, 0, FD_Item_Text, typeID, "複数行文字列", "複数行の文字列");
+		typeItem.add(env, 0, FD_Item_ID, typeID, "情報ID", "情報を識別するID(Classはlong)");
+		typeItem.add(env, 0, FD_Item_String, typeID, "文字列", "単行の文字列(ClassはString)");
+		typeItem.add(env, 0, FD_Item_Text, typeID, "複数行文字列", "複数行の文字列(ClassはString)");
 		typeItem.add(env, 0, FD_ITEM_Date, typeID, "日付", "日付(ClassはCalendar)");
 		typeItem.add(env, 0, FD_ITEM_BigInt, typeID, "拡大整数", "最大長の整数(Classはlong)");
+		typeItem.add(env, 0, FD_ITEM_Unsugned_BigInt, typeID, "拡大正整数", "最大長の符号無し整数(Classはlong)");
+		typeItem.add(env, 0, FD_ITEM_Int, typeID, "整数", "整数(Classはint)");
+		typeItem.add(env, 0, FD_ITEM_Unsigned_Int, typeID, "正整数", "符号無し整数(Classはint)");
 	}
 }

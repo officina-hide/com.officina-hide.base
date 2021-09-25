@@ -50,10 +50,21 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 		case I_FD_DataDictionary.Table_Name:
 			FD_DataDictionary dd = new FD_DataDictionary();
 			dd.add(env, 0, COLUMNNAME_FD_Column_ID, NAME_FD_Column_ID, COMMENT_FD_Column_ID);
+			dd.add(env, 0, COLUMNNAME_FD_Column_Size, NAME_FD_Column_Size, COMMENT_FD_Column_Size);
 			break;
 		case I_FD_Table.Table_Name:
 			FD_Table table = new FD_Table();
 			table.add(env, Table_ID, Table_Name, Table_Disp_Name, Table_Comment);
+			break;
+		case Table_Name:
+			add(env, 0, Table_ID, COLUMNNAME_FD_Column_ID, FD_Item_ID, 0);
+			add(env, 0, Table_ID, COLUMNNAME_FD_DataDictionary_ID, FD_Item_ID, 0);
+			add(env, 0, Table_ID, COLUMNNAME_FD_Table_ID, FD_Item_ID, 0);
+			add(env, 0, Table_ID, COLUMNNAME_FD_TypeItem_ID, FD_Item_ID, 0);
+			add(env, 0, Table_ID, COLUMNNAME_FD_Column_Size, FD_ITEM_Unsigned_Int, 0);
+			add(env, 0, Table_ID, COLUMNNAME_FD_Name, FD_Item_String, 100);
+			add(env, 0, Table_ID, COLUMNNAME_FD_Description, FD_Item_Text, 0);
+			addCommonColumn(env, Table_ID);
 			break;
 		}
 	}
@@ -75,8 +86,10 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 		column.setFD_Table_ID(tableId);
 		FD_DataDictionary dd = new FD_DataDictionary();
 		column.setFD_DataDictionary_ID(dd.getIDByName(env, columnName));
-		column.setFD_Type_ID(getTypeItemID(env, typeName));
-		//FIXME 次はここから
+		column.setFD_TypeItem_ID(getTypeItemID(env, typeName));
+		column.setFD_Group_ID(SYSTEM_GROUP_ID);
+		column.setFD_ColumnSize(size);
+		column.save(env);
 	}
 
 	/**
@@ -93,7 +106,6 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 		//属性項目情報ID取得
 		FD_WhereData where = new FD_WhereData(I_FD_TypeItem.COLUMNNAME_FD_Type_ID, type.getFD_Type_ID());
 		where.add("AND", I_FD_TypeItem.COLUMNNAME_FD_TypeItem_Name, typeName);
-		System.out.println(where.toString());
 		X_FD_TypeItem typeItem = new X_FD_TypeItem(env, where);
 		return typeItem.getFD_TypeItem_ID();
 	}

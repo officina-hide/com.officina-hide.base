@@ -32,14 +32,9 @@ public interface I_FD_Column extends I_FD_DB {
 	public static final String COLUMNNAME_FD_TypeItem_ID = I_FD_TypeItem.COLUMNNAME_FD_TypeItem_ID;
 	public static final String NAME_FD_TypeItem_ID = I_FD_TypeItem.NAME_FD_TypeItem_ID;
 	/** 項目 : 項目桁数 */
-	public static final String COLUMNNAME_FD_Column_Size = "FD_Item_Size";
+	public static final String COLUMNNAME_FD_Column_Size = "FD_Column_Size";
 	public static final String NAME_FD_Column_Size = "項目桁数";
 	public final static String COMMENT_FD_Column_Size = "テーブル項目の桁数";
-	
-	/** テーブル項目識別名 */
-	public final static String COLUMNNAME_FD_Column_Name = "FD_Column_Name";
-	/** テーブル項目属性 */
-	public final static String COLUMNNAME_FD_Type_ID = "FD_Type_ID";
 	
 	/** テーブル削除用SQL */
 	public static final String Table_Drop_SQL =

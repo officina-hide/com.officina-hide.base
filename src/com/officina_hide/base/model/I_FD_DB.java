@@ -19,8 +19,12 @@ public interface I_FD_DB {
 	public static final String FD_Item_Text = "FD_Item_Text";
 	/** テーブル項目種別 : 日付 */
 	public static final String FD_ITEM_Date = "FD_ITEM_Date";
+	/** テーブル項目種別 : 整数値 */
+	public static final String FD_ITEM_Int = "FD_ITEM_Int";
+	public static final String FD_ITEM_Unsigned_Int = "FD_ITEM_Unsigned_Int";
 	/** テーブル項目種別 : 拡大整数値 */
 	public static final String FD_ITEM_BigInt = "FD_ITEM_BigInt";
+	public static final String FD_ITEM_Unsugned_BigInt = "FD_ITEM_Unsigned_BigInt";
 	
 	/** システムグループ情報ID */
 	public static final int SYSTEM_GROUP_ID = 100;

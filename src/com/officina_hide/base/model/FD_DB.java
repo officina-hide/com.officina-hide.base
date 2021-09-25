@@ -140,7 +140,12 @@ public class FD_DB implements I_FD_DB {
 				switch(item.getType()) {
 				case FD_Item_ID:
 				case FD_ITEM_BigInt:
+				case FD_ITEM_Unsugned_BigInt:
 					pstmt.setLong(idx, items.getlongData(item.getName()));
+					break;
+				case FD_ITEM_Int:
+				case FD_ITEM_Unsigned_Int:
+					pstmt.setInt(idx, items.getintData(item.getName()));
 					break;
 				case FD_Item_String:
 				case FD_Item_Text:
@@ -326,6 +331,8 @@ public class FD_DB implements I_FD_DB {
 			rs = stmt.executeQuery(sql.toString());
 			if(rs.next()) {
 				setItems(rs, items);
+			} else {
+				System.out.println("Data Dictionnary Not Found!! : "+ where.toString());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -437,14 +444,37 @@ public class FD_DB implements I_FD_DB {
 	 * @author officine-hide.net
 	 * @since 1.00 2021/09/18
 	 * @param env 環境情報[Environment information]
+	 * @param tableName 
 	 */
-	public void addData(FD_EnvData env) {
-		FD_DataDictionary dd = new FD_DataDictionary();
-		dd.add(env, 0, COLUMNNAME_FD_Group_ID, NAME_FD_Group_ID, COMMENT_FD_Group_ID);
-		dd.add(env, 0, COLUMNNAME_FD_Created, NAME_FD_Created, COMMENT_FD_Created);
-		dd.add(env, 0, COLUMNNAME_FD_CreatedBy, NAME_FD_CreatedBy, COMMENT_FD_CreatedBy);
-		dd.add(env, 0, COLUMNNAME_FD_Updated, NAME_FD_Updated, COMMENT_FD_Updated);
-		dd.add(env, 0, COLUMNNAME_FD_UpdatedBy, NAME_FD_UpdatedBy, COMMENT_FD_UpdatedBy);
+	public void addData(FD_EnvData env, String tableName) {
+		switch(tableName) {
+		case I_FD_DataDictionary.Table_Name:
+			FD_DataDictionary dd = new FD_DataDictionary();
+			dd.add(env, 0, COLUMNNAME_FD_Group_ID, NAME_FD_Group_ID, COMMENT_FD_Group_ID);
+			dd.add(env, 0, COLUMNNAME_FD_Created, NAME_FD_Created, COMMENT_FD_Created);
+			dd.add(env, 0, COLUMNNAME_FD_CreatedBy, NAME_FD_CreatedBy, COMMENT_FD_CreatedBy);
+			dd.add(env, 0, COLUMNNAME_FD_Updated, NAME_FD_Updated, COMMENT_FD_Updated);
+			dd.add(env, 0, COLUMNNAME_FD_UpdatedBy, NAME_FD_UpdatedBy, COMMENT_FD_UpdatedBy);
+			dd.add(env, 0, COLUMNNAME_FD_Name, NAME_FD_Name, COMMENT_FD_Name);
+			dd.add(env, 0, COLUMNNAME_FD_Description, NAME_FD_Description, COMMENT_FD_Description);
+			break;
+		}
+	}
+
+	/**
+	 * 共通項目をテーブル項目情報に登録[Register common items in table item information]<br>
+	 * @author officina-hide.net
+	 * @since 1.00 2021/09/25
+	 * @param env 環境情報[Enfironment information]
+	 * @param tableId テーブル情報ID[Table information ID]
+	 */
+	public void addCommonColumn(FD_EnvData env, int tableId) {
+		FD_Column column = new FD_Column();
+		column.add(env, 0, tableId, COLUMNNAME_FD_Group_ID, FD_Item_ID, 0);
+		column.add(env, 0, tableId, COLUMNNAME_FD_Created, FD_ITEM_Date, 0);
+		column.add(env, 0, tableId, COLUMNNAME_FD_CreatedBy, FD_Item_ID, 0);
+		column.add(env, 0, tableId, COLUMNNAME_FD_Updated, FD_ITEM_Date, 0);
+		column.add(env, 0, tableId, COLUMNNAME_FD_UpdatedBy, FD_Item_ID, 0);
 	}
 	
 	public long getFD_Group_ID() {

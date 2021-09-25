@@ -242,6 +242,14 @@ public class FD_Table extends FD_DB implements I_FD_Table {
 			FD_DataDictionary dd = new FD_DataDictionary();
 			dd.add(env, 0, COLUMNNAME_FD_Table_Name, NAME_FD_Table_Name, COMMENT_FD_Table_Name);
 			break;
+		case I_FD_Column.Table_Name:
+			FD_Column column = new FD_Column();
+			column.add(env, 0, Table_ID, COLUMNNAME_FD_Table_ID, FD_Item_ID, 0);
+			column.add(env, 0, Table_ID, COLUMNNAME_FD_Table_Name, FD_Item_String, 100);
+			column.add(env, 0, Table_ID, COLUMNNAME_FD_Name, FD_Item_String, 100);
+			column.add(env, 0, Table_ID, COLUMNNAME_FD_Description, FD_Item_Text, 0);
+			addCommonColumn(env, Table_ID);
+			break;
 		}
 	}
 

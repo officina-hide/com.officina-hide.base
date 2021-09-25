@@ -15,14 +15,14 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 	FD_EnvData env = new FD_EnvData();
 	
 	/** 項目 */
-	private FD_Items items;
 	private long FD_Column_ID;
 	private long FD_DataDictionary_ID;
 	private X_FD_DataDictionary FD_DataDictionary;
 	private long FD_Table_ID;
 	private X_FD_Table FD_Table;
-	private long FD_Type_ID;
-	private X_FD_Type FD_Type;
+	private long FD_TypeItem_ID;
+	private X_FD_Type FD_TypeItem;
+	private int FD_ColumnSize;
 	
 	/**
 	 * コンストラクタ[Constructor]<br>
@@ -36,10 +36,10 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 		
 		items = new FD_Items();
 		items.add(COLUMNNAME_FD_Column_ID, null, FD_Item_ID);
-		items.add(COLUMNNAME_FD_Column_Name, null, FD_Item_String);
 		items.add(COLUMNNAME_FD_DataDictionary_ID, null, FD_Item_ID);
 		items.add(COLUMNNAME_FD_Table_ID, null, FD_Item_ID);
-		items.add(COLUMNNAME_FD_Type_ID, null, FD_Item_ID);
+		items.add(COLUMNNAME_FD_TypeItem_ID, null, FD_Item_ID);
+		items.add(COLUMNNAME_FD_Column_Size, null, FD_ITEM_Unsigned_Int);
 		baseItemSet(items);
 		items.setTableId(Table_ID);
 		items.setTableName(Table_Name);
@@ -47,6 +47,14 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 //		if(columnId > 0) {
 //			load(env, Table_Name, columnId, items);
 //		}
+	}
+
+	/**
+	 * 情報登録[save information]
+	 * @param env 環境情報[Enfironment information]
+	 */
+	public void save(FD_EnvData env) {
+		save(env, Table_Name, items);
 	}
 
 	public long getFD_Column_ID() {
@@ -90,21 +98,27 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 		}
 		return FD_Table;
 	}
-	public long getFD_Type_ID() {
-		FD_Type_ID = items.getlongData(COLUMNNAME_FD_Type_ID);
-		return FD_Type_ID;
+	public long getFD_TypeItem_ID() {
+		FD_TypeItem_ID = items.getlongData(COLUMNNAME_FD_TypeItem_ID);
+		return FD_TypeItem_ID;
 	}
-	public void setFD_Type_ID(long typeID) {
-		items.setValue(COLUMNNAME_FD_Type_ID, typeID);
+	public void setFD_TypeItem_ID(long typeItemID) {
+		items.setValue(COLUMNNAME_FD_TypeItem_ID, typeItemID);
 	}
-	public X_FD_Type getFD_Type() {
-		if(FD_Type == null) {
-			if(getFD_Table_ID() == 0) {
+	public X_FD_Type getFD_TypeItem() {
+		if(FD_TypeItem == null) {
+			if(getFD_TypeItem_ID() == 0) {
 				return null;
-			} else {
-				FD_Type = new X_FD_Type(env, getFD_Type_ID());
 			}
+			FD_TypeItem = new X_FD_Type(env, getFD_TypeItem_ID());
 		}
-		return FD_Type;
+		return FD_TypeItem;
+	}
+	public int getFD_ColumnSize() {
+		FD_ColumnSize = items.getintData(COLUMNNAME_FD_Column_Size);
+		return FD_ColumnSize;
+	}
+	public void setFD_ColumnSize(int columnSize) {
+		items.setValue(COLUMNNAME_FD_Column_Size, columnSize);
 	}
 }
