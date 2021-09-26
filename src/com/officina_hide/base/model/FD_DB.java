@@ -201,6 +201,7 @@ public class FD_DB implements I_FD_DB {
 		FD_Table table = new FD_Table(env, where);
 		StringBuffer sql = new StringBuffer();
 		sql.append("CREATE TABLE IF NOT EXISTS ").append(tableName).append(" (");
+		sql.append(items.getCreateTableString());
 		sql.append(") ");
 		sql.append("ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=");
 	}

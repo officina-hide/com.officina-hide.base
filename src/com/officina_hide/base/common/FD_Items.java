@@ -219,4 +219,22 @@ public class FD_Items implements I_FD_DB {
 	public void setTableId(long tableId) {
 		this.tableId = tableId;
 	}
+
+	/**
+	 * テーブル構築用SQL文字列生成[SQL string generation for table construction]
+	 * @author officine-hide.net
+	 * @since 1.00 2021/09/26
+	 * @return SQL文字列[SQL Strings]
+	 */
+	public String getCreateTableString() {
+		StringBuffer sql = new StringBuffer();
+		for(int ix = 0; ix < items.size(); ix++) {
+			FD_Item item = items.get(ix);
+			if(ix > 0) {
+				sql.append(",");
+			}
+			sql.append(item.getName());
+		}
+		return sql.toString();
+	}
 }
