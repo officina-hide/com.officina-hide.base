@@ -121,12 +121,19 @@ public class CreateBaseInformation implements I_FD_DB {
 		FD_TypeITem_Param typeItemParam = new FD_TypeITem_Param();
 		long typeItemID = typeItem.add(env, 0, FD_Item_ID, typeID, "情報ID", "情報を識別するID(Classはlong)");
 		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "int unsigned", null);
-		typeItem.add(env, 0, FD_Item_String, typeID, "文字列", "単行の文字列(ClassはString)");
-		typeItem.add(env, 0, FD_Item_Text, typeID, "複数行文字列", "複数行の文字列(ClassはString)");
-		typeItem.add(env, 0, FD_ITEM_Date, typeID, "日付", "日付(ClassはCalendar)");
-		typeItem.add(env, 0, FD_ITEM_BigInt, typeID, "拡大整数", "最大長の整数(Classはlong)");
-		typeItem.add(env, 0, FD_ITEM_Unsugned_BigInt, typeID, "拡大正整数", "最大長の符号無し整数(Classはlong)");
-		typeItem.add(env, 0, FD_ITEM_Int, typeID, "整数", "整数(Classはint)");
-		typeItem.add(env, 0, FD_ITEM_Unsigned_Int, typeID, "正整数", "符号無し整数(Classはint)");
+		typeItemID = typeItem.add(env, 0, FD_Item_String, typeID, "文字列", "単行の文字列(ClassはString)");
+		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "varchar(@size@)", null);
+		typeItemID = typeItem.add(env, 0, FD_Item_Text, typeID, "複数行文字列", "複数行の文字列(ClassはString)");
+		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "text", null);
+		typeItemID = typeItem.add(env, 0, FD_ITEM_Date, typeID, "日付", "日付(ClassはCalendar)");
+		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "datetime", null);
+		typeItemID = typeItem.add(env, 0, FD_ITEM_BigInt, typeID, "拡大整数", "最大長の整数(Classはlong)");
+		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "bigint", null);
+		typeItemID = typeItem.add(env, 0, FD_ITEM_Unsugned_BigInt, typeID, "拡大正整数", "最大長の符号無し整数(Classはlong)");
+		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "bigint unsigned", null);
+		typeItemID = typeItem.add(env, 0, FD_ITEM_Int, typeID, "整数", "整数(Classはint)");
+		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "int", null);
+		typeItemID = typeItem.add(env, 0, FD_ITEM_Unsigned_Int, typeID, "正整数", "符号無し整数(Classはint)");
+		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "int unsigned", null);
 	}
 }

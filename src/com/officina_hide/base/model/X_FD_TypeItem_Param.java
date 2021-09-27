@@ -46,7 +46,8 @@ public class X_FD_TypeItem_Param extends FD_DB implements I_FD_TypeITem_Param {
 		items.add(COLUMNNAME_FD_Name, null, FD_Item_String);
 		items.add(COLUMNNAME_FD_Description, null, FD_Item_Text);
 		baseItemSet(items);
-		
+		items.setTableId(Table_ID);
+		items.setTableName(Table_Name);
 	}
 
 	/**

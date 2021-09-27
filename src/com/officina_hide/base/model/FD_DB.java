@@ -133,10 +133,12 @@ public class FD_DB implements I_FD_DB {
 		}
 		
 		connection(env);
+		FD_Item wkItem = null;
 		try {
 			pstmt = getConn().prepareStatement(sql.toString());
 			int idx = 1;
 			for(FD_Item item : items.getItems()) {
+				wkItem = item;
 				switch(item.getType()) {
 				case FD_Item_ID:
 				case FD_ITEM_BigInt:
@@ -163,6 +165,9 @@ public class FD_DB implements I_FD_DB {
 				new Exception("採番情報保存エラー");
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (NullPointerException e) {
+			System.out.println(wkItem.getName()+" is null!!");
 			e.printStackTrace();
 		} finally {
 			DBClose(pstmt, null);

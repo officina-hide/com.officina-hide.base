@@ -91,6 +91,7 @@ public class FD_TypeITem_Param extends FD_DB implements I_FD_TypeITem_Param {
 		ftp.setFD_Value(value);
 		ftp.setFD_Name(name);
 		ftp.setFD_Description(description);
+		ftp.setFD_Group_ID(SYSTEM_GROUP_ID);
 		ftp.save(env);
 	}
 
