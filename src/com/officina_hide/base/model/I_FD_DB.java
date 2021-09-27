@@ -75,6 +75,10 @@ public interface I_FD_DB {
 	public static final String COLUMNNAME_FD_Description = "FD_Description";
 	public static final String NAME_FD_Description = "説明";
 	public static final String COMMENT_FD_Description = "情報に関する詳細の説明";
+	/** 項目 : 値 */
+	public static final String COLUMNNAME_FD_Value = "FD_Value";
+	public static final String NAME_FD_Value = "値";
+	public static final String COMMENT_FD_Value = "情報が保有する値";
 	
 	/** 共通項目生成用SQL */
 	public static final String COMMON_ITEM_CREATE_SQL = 

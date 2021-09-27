@@ -18,7 +18,7 @@ public interface I_FD_Type extends I_FD_DB {
 	public static final String Table_Comment_Eng = "Header information for centrally managing the attributes used in the package."
 			+ "\n" + "Attribute details are managed by FD_TypeItem.";
 	/** テーブル情報ID */
-	public final static int Table_ID = 104;
+	public final static int Table_ID = 105;
 	
 	/** 項目 */
 	/** 種別情報ID */

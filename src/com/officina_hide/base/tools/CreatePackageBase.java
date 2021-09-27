@@ -34,8 +34,8 @@ public class CreatePackageBase {
 		CreateBaseInformation cbi = new CreateBaseInformation(env);
 		cbi.execute();
 		//Fx画面用基盤情報構築
-		CreateFxInformation cfi = new CreateFxInformation(env);
-		cfi.execute();
+//		CreateFxInformation cfi = new CreateFxInformation(env);
+//		cfi.execute();
 		// TODO 終了メッセージ
 	}
 

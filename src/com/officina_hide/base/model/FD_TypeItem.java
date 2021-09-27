@@ -75,8 +75,9 @@ public class FD_TypeItem extends FD_DB implements I_FD_TypeItem {
 	 * @param typeID 属性情報ID[Type information ID]
 	 * @param name 
 	 * @param description
+	 * @return id 属性情報ID[Type item information ID]
 	 */
-	public void add(FD_EnvData env, int typeItemID, String typeItemName, long typeID
+	public long add(FD_EnvData env, int typeItemID, String typeItemName, long typeID
 			, String name, String description) {
 		X_FD_TypeItem typeItem = new X_FD_TypeItem(env, 0);
 		typeItem.setFD_TypeItem_ID(typeItemID);
@@ -86,6 +87,8 @@ public class FD_TypeItem extends FD_DB implements I_FD_TypeItem {
 		typeItem.setFD_Description(description);
 		typeItem.setFD_Group_ID(SYSTEM_GROUP_ID);
 		typeItem.save(env);
+		
+		return typeItem.getFD_TypeItem_ID();
 	}
 
 }

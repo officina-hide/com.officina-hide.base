@@ -16,7 +16,7 @@ public interface I_FD_Column extends I_FD_DB {
 	public static final String Table_Comment = "パッケージで使用するテーブルの項目情報を管理する。";
 	public static final String Table_Comment_Eng = "Manage the item information of the table used in the package.";
 	/** テーブル情報ID */
-	public final static int Table_ID = 106;
+	public final static int Table_ID = 104;
 	
 	/** 項目 : テーブル項目情報ID */
 	public final static String COLUMNNAME_FD_Column_ID = Table_Name + "_ID";

@@ -7,6 +7,7 @@ import com.officina_hide.base.model.FD_DataDictionary;
 import com.officina_hide.base.model.FD_Numbering;
 import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.FD_Type;
+import com.officina_hide.base.model.FD_TypeITem_Param;
 import com.officina_hide.base.model.FD_TypeItem;
 import com.officina_hide.base.model.I_FD_Column;
 import com.officina_hide.base.model.I_FD_DB;
@@ -48,7 +49,8 @@ public class CreateBaseInformation implements I_FD_DB {
 		 * 2. 辞書情報テーブル構築、情報登録
 		 * 3. テーブル情報構築、情報登録
 		 * 4. 属性情報構築、情報登録
-		 * 5. 属性項目情報構築、情報登録
+		 * 5-1. 属性項目情報構築、情報登録
+		 * 5-2. 属性設定値、情報登録
 		 * 6-1. テーブル項目用属性登録 
 		 * 6-2. テーブル項目情報構築、情報登録
 		 */
@@ -78,12 +80,18 @@ public class CreateBaseInformation implements I_FD_DB {
 		type.addData(env, I_FD_Numbering.Table_Name);
 		type.addData(env, I_FD_DataDictionary.Table_Name);
 		type.addData(env, I_FD_Table.Table_Name);
-		//5.
+		//5-1.
 		FD_TypeItem typeItem = new FD_TypeItem();
 		typeItem.createTable(env);
 		typeItem.addData(env, I_FD_Numbering.Table_Name);
 		typeItem.addData(env, I_FD_DataDictionary.Table_Name);
 		typeItem.addData(env, I_FD_Table.Table_Name);
+		//5-2.
+		FD_TypeITem_Param typeItemParam = new FD_TypeITem_Param();
+		typeItemParam.createTable(env);
+		typeItemParam.addData(env, I_FD_Numbering.Table_Name);
+		typeItemParam.addData(env, I_FD_DataDictionary.Table_Name);
+		typeItemParam.addData(env, I_FD_Table.Table_Name);
 		//6-1.
 		addTableTypeInformation(env);
 		//6.
@@ -98,6 +106,7 @@ public class CreateBaseInformation implements I_FD_DB {
 		type.addData(env, I_FD_Column.Table_Name);
 		typeItem.addData(env, I_FD_Column.Table_Name);
 		column.addData(env, I_FD_Column.Table_Name);
+		typeItemParam.addData(env, I_FD_Column.Table_Name);
 	}
 	/**
 	 * テーブル項目用属性情報登録[Attribute information registration for table items]<br>
@@ -109,7 +118,9 @@ public class CreateBaseInformation implements I_FD_DB {
 		FD_Type type = new FD_Type();
 		long typeID = type.add(env, 0, FD_Column_Type, "テーブル項目属性", "テーブル項目の属性を管理する。");
 		FD_TypeItem typeItem = new FD_TypeItem();
-		typeItem.add(env, 0, FD_Item_ID, typeID, "情報ID", "情報を識別するID(Classはlong)");
+		FD_TypeITem_Param typeItemParam = new FD_TypeITem_Param();
+		long typeItemID = typeItem.add(env, 0, FD_Item_ID, typeID, "情報ID", "情報を識別するID(Classはlong)");
+		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "int unsigned", null);
 		typeItem.add(env, 0, FD_Item_String, typeID, "文字列", "単行の文字列(ClassはString)");
 		typeItem.add(env, 0, FD_Item_Text, typeID, "複数行文字列", "複数行の文字列(ClassはString)");
 		typeItem.add(env, 0, FD_ITEM_Date, typeID, "日付", "日付(ClassはCalendar)");

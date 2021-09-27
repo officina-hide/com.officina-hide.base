@@ -510,6 +510,7 @@ public class FD_DB implements I_FD_DB {
 			dd.add(env, 0, COLUMNNAME_FD_UpdatedBy, NAME_FD_UpdatedBy, COMMENT_FD_UpdatedBy);
 			dd.add(env, 0, COLUMNNAME_FD_Name, NAME_FD_Name, COMMENT_FD_Name);
 			dd.add(env, 0, COLUMNNAME_FD_Description, NAME_FD_Description, COMMENT_FD_Description);
+			dd.add(env, 0, COLUMNNAME_FD_Value, NAME_FD_Value, COMMENT_FD_Value);
 			break;
 		}
 	}
