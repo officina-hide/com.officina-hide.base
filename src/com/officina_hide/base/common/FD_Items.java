@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Locale;
 
 import com.officina_hide.base.model.I_FD_DB;
+import com.officina_hide.base.model.X_FD_Table;
 
 /**
  * テーブル項目リスト[Table Item List]<br>
@@ -22,6 +23,8 @@ public class FD_Items implements I_FD_DB {
 	private String tableName;
 	/** テーブル情報ID */
 	private long tableId;
+	/** テーブル情報 */
+	private X_FD_Table FD_Table;
 
 	/**
 	 * 項目情報追加[Item information added]
@@ -236,5 +239,15 @@ public class FD_Items implements I_FD_DB {
 			sql.append(item.getName());
 		}
 		return sql.toString();
+	}
+
+	public X_FD_Table getFD_Table(FD_EnvData env) {
+		if(FD_Table == null) {
+			if(getTableId() == 0) {
+				return null;
+			}
+			FD_Table = new X_FD_Table(env, getTableId());
+		}
+		return FD_Table;
 	}
 }

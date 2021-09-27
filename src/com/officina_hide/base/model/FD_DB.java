@@ -201,14 +201,57 @@ public class FD_DB implements I_FD_DB {
 	 * @param tableName テーブル名
 	 */
 	public void createTable(FD_EnvData env, String tableName) {
-		//テーブル情報取得
-		FD_WhereData where = new FD_WhereData(I_FD_Table.COLUMNNAME_FD_Table_Name, tableName);
-		FD_Table table = new FD_Table(env, where);
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		StringBuffer sql = new StringBuffer();
-		sql.append("CREATE TABLE IF NOT EXISTS ").append(tableName).append(" (");
-		sql.append(items.getCreateTableString());
-		sql.append(") ");
-		sql.append("ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=");
+		try {
+			//項目一覧生成
+			items = new FD_Items();
+			sql.append("SELECT * FROM ").append(I_FD_Column.Table_Name).append(" c ");
+			sql.append("LEFT JOIN ").append(I_FD_Table.Table_Name).append(" t ")
+				.append(" ON ").append("t.").append(I_FD_Table.COLUMNNAME_FD_Table_ID).append(" = ")
+				.append("c.").append(I_FD_Column.COLUMNNAME_FD_Table_ID).append(" ");
+			sql.append("LEFT JOIN ").append(I_FD_DataDictionary.Table_Name).append(" d ")
+				.append(" ON ").append("d.").append(I_FD_DataDictionary.COLUMNNAME_FD_DataDictionary_ID).append(" = ")
+				.append("c.").append(I_FD_Column.COLUMNNAME_FD_DataDictionary_ID).append(" ");
+			sql.append("LEFT JOIN ").append(I_FD_TypeItem.Table_Name).append(" ty ")
+				.append(" ON ").append("ty.").append(I_FD_TypeItem.COLUMNNAME_FD_TypeItem_ID).append(" = ")
+				.append("c.").append(I_FD_Column.COLUMNNAME_FD_TypeItem_ID).append(" ");
+			sql.append("WHERE ").append("t.").append(I_FD_Table.COLUMNNAME_FD_Table_Name).append(" = ?");
+			
+			connection(env);
+			pstmt = getConn().prepareStatement(sql.toString());
+			pstmt.setString(1, tableName);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				items.add(rs.getString("d."+I_FD_DataDictionary.COLUMNNAME_FD_DataDictionary_Name), null
+						, rs.getString("ty."+I_FD_TypeItem.COLUMNNAME_FD_TypeItem_Name));
+				if(items.getTableId() == 0) {
+					items.setTableId(rs.getLong("t."+I_FD_Table.COLUMNNAME_FD_Table_ID));
+				}
+				if(items.getTableName() == null) {
+					items.setTableName(rs.getString(I_FD_Table.COLUMNNAME_FD_Table_Name));
+				}
+			}
+
+			//テーブル生成用SQL作成
+			sql = new StringBuffer();
+			sql.append("CREATE TABLE IF NOT EXISTS ").append(tableName).append(" (");
+			sql.append(items.getCreateTableString());
+			sql.append(") ");
+			sql.append("ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=")
+				.append(FD_SQ).append(items.getFD_Table(env).getFD_Name()).append(FD_SQ).append(" ");
+			System.out.println(sql.toString());
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
+		
+//		//テーブル情報取得
+//		FD_WhereData where = new FD_WhereData(I_FD_Table.COLUMNNAME_FD_Table_Name, tableName);
+//		FD_Table table = new FD_Table(env, where);
 	}
 
 	/**
@@ -331,43 +374,12 @@ public class FD_DB implements I_FD_DB {
 	 * Extracts the information with the specified information ID and stores it in the item list.
 	 * @param env 環境情報[Environment Information]
 	 * @param tableName テーブル名[Table Name]
-	 * @param tableID 情報ID[Information ID]
+	 * @param id 情報ID[Information ID]
 	 * @param items 項目リスト[List of Items]
 	 */
-	public void load(FD_EnvData env, String tableName, long tableID, FD_Items items) {
-		StringBuffer sql = new StringBuffer();
-		Statement stmt = null;
-		ResultSet rs = null;
-		try {
-			sql.append("SELECT * FROM ").append(tableName).append(" ");
-			sql.append("WHERE ").append(tableName).append("_ID = ").append(tableID).append(" ");
-			connection(env);
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(sql.toString());
-			if(rs.next()) {
-				for(FD_Item item : items.getItems()) {
-					switch(item.getType()) {
-					case FD_Item_ID:
-						items.setValue(item.getName(), rs.getInt(item.getName()));
-						break;
-					case FD_Item_String:
-						items.setValue(item.getName(), rs.getString(item.getName()));
-						break;
-					}
-				}
-			} else {
-				System.out.println("Table Record Not Found! : "+tableID);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				stmt.close();
-				rs.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+	public void load(FD_EnvData env, String tableName, long id, FD_Items items) {
+		FD_WhereData where = new FD_WhereData(tableName+"_ID", id);
+		load(env, items, where);
 	}
 
 	/**
@@ -527,7 +539,7 @@ public class FD_DB implements I_FD_DB {
 	 * @param env 環境情報[Enfironment information]
 	 * @param tableId テーブル情報ID[Table information ID]
 	 */
-	public void addCommonColumn(FD_EnvData env, int tableId) {
+	public void addCommonColumn(FD_EnvData env, long tableId) {
 		FD_Column column = new FD_Column();
 		column.add(env, 0, tableId, COLUMNNAME_FD_Group_ID, FD_Item_ID, 0);
 		column.add(env, 0, tableId, COLUMNNAME_FD_Created, FD_ITEM_Date, 0);
