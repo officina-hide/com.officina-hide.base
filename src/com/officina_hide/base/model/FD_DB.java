@@ -224,20 +224,21 @@ public class FD_DB implements I_FD_DB {
 			pstmt.setString(1, tableName);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				items.add(rs.getString("d."+I_FD_DataDictionary.COLUMNNAME_FD_DataDictionary_Name), null
-						, rs.getString("ty."+I_FD_TypeItem.COLUMNNAME_FD_TypeItem_Name));
+				FD_Item item = new FD_Item();
+				item.setName(rs.getString("d."+I_FD_DataDictionary.COLUMNNAME_FD_DataDictionary_Name));
+				item.setData(null);
+				item.setFD_ItemType_ID(rs.getLong("ty."+I_FD_TypeItem.COLUMNNAME_FD_TypeItem_ID));
+				item.setSize(rs.getInt("c."+I_FD_Column.COLUMNNAME_FD_Column_Size));
+				items.getItems().add(item);
 				if(items.getTableId() == 0) {
 					items.setTableId(rs.getLong("t."+I_FD_Table.COLUMNNAME_FD_Table_ID));
-				}
-				if(items.getTableName() == null) {
-					items.setTableName(rs.getString(I_FD_Table.COLUMNNAME_FD_Table_Name));
 				}
 			}
 
 			//テーブル生成用SQL作成
 			sql = new StringBuffer();
 			sql.append("CREATE TABLE IF NOT EXISTS ").append(tableName).append(" (");
-			sql.append(items.getCreateTableString());
+			sql.append(items.getCreateTableString(env));
 			sql.append(") ");
 			sql.append("ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=")
 				.append(FD_SQ).append(items.getFD_Table(env).getFD_Name()).append(FD_SQ).append(" ");

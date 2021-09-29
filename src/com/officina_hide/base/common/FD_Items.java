@@ -32,12 +32,29 @@ public class FD_Items implements I_FD_DB {
 	 * @since 1.00 2021/05/22
 	 * @param name 項目名[Item Name]
 	 * @param data 項目値[Item Value]
+	 * @param type 項目属性名[Item attribute name]
 	 */
 	public void add(String name, Object data, String type) {
 		FD_Item item = new FD_Item();
 		item.setName(name);
 		item.setData(data);
 		item.setType(type);
+		items.add(item);
+	}
+
+	/**
+	 * 項目情報追加[Item information added]
+	 * @author officine-hide.net
+	 * @since 1.00 2021/09/29
+	 * @param name 項目名[Item Name]
+	 * @param data 項目値[Item Value]
+	 * @param typeItemID 属性項目情報ID[Attribute item information ID]
+	 */
+	public void add(String name, Object data, long typeItemID) {
+		FD_Item item = new FD_Item();
+		item.setName(name);
+		item.setData(data);
+		item.setFD_ItemType_ID(typeItemID);
 		items.add(item);
 	}
 
@@ -228,15 +245,22 @@ public class FD_Items implements I_FD_DB {
 	 * @author officine-hide.net
 	 * @since 1.00 2021/09/26
 	 * @return SQL文字列[SQL Strings]
+	 * @param env 環境情報[Environment information]
 	 */
-	public String getCreateTableString() {
+	public String getCreateTableString(FD_EnvData env) {
 		StringBuffer sql = new StringBuffer();
 		for(int ix = 0; ix < items.size(); ix++) {
 			FD_Item item = items.get(ix);
 			if(ix > 0) {
 				sql.append(",");
 			}
-			sql.append(item.getName());
+			sql.append(item.getName()).append(" ");
+			String type = item.getParamValue(env, "SQL_String");
+			if(type.indexOf("@size@") > 0) {
+				type = type.replaceAll("@size@", Integer.toString(item.getSize()));
+			}
+			sql.append(type);
+			
 		}
 		return sql.toString();
 	}

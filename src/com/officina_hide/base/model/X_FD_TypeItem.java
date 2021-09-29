@@ -27,7 +27,7 @@ public class X_FD_TypeItem extends FD_DB implements I_FD_TypeItem {
 	public X_FD_TypeItem(FD_EnvData env, long typeItemID) {
 		createItemList();
 		if(typeItemID > 0) {
-			
+			load(env, Table_Name, typeItemID, items);
 		}
 	}
 
