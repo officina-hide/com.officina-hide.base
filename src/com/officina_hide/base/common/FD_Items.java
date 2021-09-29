@@ -260,7 +260,8 @@ public class FD_Items implements I_FD_DB {
 				type = type.replaceAll("@size@", Integer.toString(item.getSize()));
 			}
 			sql.append(type);
-			
+			// TODO null と Primary Keyとdefault valueを追加する。
+			sql.append(COMMENT).append(FD_SQ).append(item.getFD_Column(env).getFD_DataDictionary().getFD_Name()).append(FD_SQ);
 		}
 		return sql.toString();
 	}

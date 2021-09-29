@@ -142,7 +142,7 @@ public class FD_DB implements I_FD_DB {
 				switch(item.getType()) {
 				case FD_Item_ID:
 				case FD_ITEM_BigInt:
-				case FD_ITEM_Unsugned_BigInt:
+				case FD_ITEM_Unsigned_BigInt:
 					pstmt.setLong(idx, items.getlongData(item.getName()));
 					break;
 				case FD_ITEM_Int:
@@ -226,6 +226,8 @@ public class FD_DB implements I_FD_DB {
 			while(rs.next()) {
 				FD_Item item = new FD_Item();
 				item.setName(rs.getString("d."+I_FD_DataDictionary.COLUMNNAME_FD_DataDictionary_Name));
+				item.setFD_ItemType_ID(rs.getLong("c."+I_FD_Column.COLUMNNAME_FD_Table_ID));
+				item.setFD_Column_ID(rs.getLong(I_FD_Column.COLUMNNAME_FD_Column_ID));
 				item.setData(null);
 				item.setFD_ItemType_ID(rs.getLong("ty."+I_FD_TypeItem.COLUMNNAME_FD_TypeItem_ID));
 				item.setSize(rs.getInt("c."+I_FD_Column.COLUMNNAME_FD_Column_Size));
@@ -423,7 +425,12 @@ public class FD_DB implements I_FD_DB {
 				switch(item.getType()) {
 				case FD_Item_ID:
 				case FD_ITEM_BigInt:
+				case FD_ITEM_Unsigned_BigInt:
 					item.setData(rs.getLong(item.getName()));
+					break;
+				case FD_ITEM_Unsigned_Int:
+				case FD_ITEM_Int:
+					item.setData(rs.getInt(item.getName()));
 					break;
 				case FD_Item_String:
 				case FD_Item_Text:

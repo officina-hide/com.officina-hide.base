@@ -24,7 +24,7 @@ public interface I_FD_DB {
 	public static final String FD_ITEM_Unsigned_Int = "FD_ITEM_Unsigned_Int";
 	/** テーブル項目種別 : 拡大整数値 */
 	public static final String FD_ITEM_BigInt = "FD_ITEM_BigInt";
-	public static final String FD_ITEM_Unsugned_BigInt = "FD_ITEM_Unsigned_BigInt";
+	public static final String FD_ITEM_Unsigned_BigInt = "FD_ITEM_Unsigned_BigInt";
 	
 	/** システムグループ情報ID */
 	public static final int SYSTEM_GROUP_ID = 100;

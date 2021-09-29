@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_TypeITem_Param;
+import com.officina_hide.base.model.X_FD_Column;
 import com.officina_hide.base.model.X_FD_TypeItem;
 import com.officina_hide.base.model.X_FD_TypeItem_Param;
 
@@ -24,7 +25,9 @@ public class FD_Item {
 	public static final String ITEM_TYPE_String = "String";
 	
 	/** テーブル項目情報ID */
-	
+	private long FD_Column_ID;
+	/** テーブル項目情報 */
+	private X_FD_Column FD_Column;
 	/** 項目名[item name] */
 	private String name;
 	/** 項目種別[item type] */
@@ -131,5 +134,17 @@ public class FD_Item {
 			}
 		}
 		return null;
+	}
+	public long getFD_Column_ID() {
+		return FD_Column_ID;
+	}
+	public void setFD_Column_ID(long fD_Column_ID) {
+		FD_Column_ID = fD_Column_ID;
+	}
+	public X_FD_Column getFD_Column(FD_EnvData env) {
+		if(FD_Column == null) {
+			FD_Column = new X_FD_Column(env, getFD_Column_ID());
+		}
+		return FD_Column;
 	}
 }

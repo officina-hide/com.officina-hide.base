@@ -29,9 +29,9 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 	 * @author officine-hide.net
 	 * @since 1.00 2021/09/05
 	 * @param env 環境情報[Environment Information]
-	 * @param columnId テーブル項目情報ID[Table Item Information ID]
+	 * @param columnID テーブル項目情報ID[Table Item Information ID]
 	 */
-	public X_FD_Column(FD_EnvData env, int columnId) {
+	public X_FD_Column(FD_EnvData env, long columnID) {
 		this.env = env;
 		
 		items = new FD_Items();
@@ -44,9 +44,9 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 		items.setTableId(Table_ID);
 		items.setTableName(Table_Name);
 
-//		if(columnId > 0) {
-//			load(env, Table_Name, columnId, items);
-//		}
+		if(columnID > 0) {
+			load(env, Table_Name, columnID, items);
+		}
 	}
 
 	/**

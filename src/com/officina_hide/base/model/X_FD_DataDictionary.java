@@ -20,9 +20,6 @@ import com.officina_hide.base.common.FD_WhereData;
  * @since 2021/09/18
  */
 public class X_FD_DataDictionary extends FD_DB implements I_FD_DataDictionary {
-
-//	/** 項目一覧 */
-//	private FD_Items items;
 	
 	/** 項目 : 辞書情報ID */
 	private long FD_DataDictionary_ID;
@@ -39,8 +36,10 @@ public class X_FD_DataDictionary extends FD_DB implements I_FD_DataDictionary {
 	public X_FD_DataDictionary(FD_EnvData env, long id) {
 		//項目一覧初期化
 		initItems();
-		
-		// TODO 未実装 : 採番情報IDがゼロ以外の時にload()をする。
+		//idが0以上の時は情報を抽出する。
+		if(id > 0) {
+			load(env, Table_Name, id, items);
+		}
 	}
 
 	/**

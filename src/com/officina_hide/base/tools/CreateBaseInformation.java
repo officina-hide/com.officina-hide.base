@@ -129,7 +129,7 @@ public class CreateBaseInformation implements I_FD_DB {
 		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "datetime", null);
 		typeItemID = typeItem.add(env, 0, FD_ITEM_BigInt, typeID, "拡大整数", "最大長の整数(Classはlong)");
 		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "bigint", null);
-		typeItemID = typeItem.add(env, 0, FD_ITEM_Unsugned_BigInt, typeID, "拡大正整数", "最大長の符号無し整数(Classはlong)");
+		typeItemID = typeItem.add(env, 0, FD_ITEM_Unsigned_BigInt, typeID, "拡大正整数", "最大長の符号無し整数(Classはlong)");
 		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "bigint unsigned", null);
 		typeItemID = typeItem.add(env, 0, FD_ITEM_Int, typeID, "整数", "整数(Classはint)");
 		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "int", null);
