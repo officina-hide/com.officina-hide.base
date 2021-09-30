@@ -121,10 +121,10 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 			break;
 		case I_FD_Column.Table_Name:
 			FD_Column column = new FD_Column();
-			column.add(env, 0, Table_ID, COLUMNNAME_FD_Numbering_ID, FD_Item_ID, 0, true, true, null);
-			column.add(env, 0, Table_ID, COLUMNNAME_FD_CurrentNumber, FD_ITEM_Unsigned_Int, 0, false, false, null);
-			column.add(env, 0, Table_ID, COLUMNNAME_FD_InitialNumber, FD_ITEM_Unsigned_BigInt, 0, false, false, null);
-			column.add(env, 0, Table_ID, COLUMNNAME_FD_CurrentNumber, FD_ITEM_Unsigned_BigInt, 0, false, false, null);
+			column.add(env, 0, Table_ID, COLUMNNAME_FD_Numbering_ID, FD_Item_ID, 0, false, true, null);
+			column.add(env, 0, Table_ID, COLUMNNAME_FD_CurrentNumber, FD_ITEM_Unsigned_Int, 0, true, false, null);
+			column.add(env, 0, Table_ID, COLUMNNAME_FD_InitialNumber, FD_ITEM_Unsigned_BigInt, 0, true, false, null);
+			column.add(env, 0, Table_ID, COLUMNNAME_FD_CurrentNumber, FD_ITEM_Unsigned_BigInt, 0, true, false, null);
 			addCommonColumn(env, Table_ID);
 			break;
 		}

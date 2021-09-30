@@ -279,6 +279,9 @@ public class FD_Items implements I_FD_DB {
 			}
 			sql.append(type);
 			// TODO null と Primary Keyとdefault valueを追加する。
+			if(item.getFD_Column(env).isFD_Is_Null() == false) {
+				sql.append(" not null ");
+			}
 			sql.append(COMMENT).append(FD_SQ).append(item.getFD_Column(env).getFD_DataDictionary().getFD_Name()).append(FD_SQ);
 		}
 		return sql.toString();

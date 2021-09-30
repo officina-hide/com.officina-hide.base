@@ -567,11 +567,11 @@ public class FD_DB implements I_FD_DB {
 	 */
 	public void addCommonColumn(FD_EnvData env, long tableId) {
 		FD_Column column = new FD_Column();
-		column.add(env, 0, tableId, COLUMNNAME_FD_Group_ID, FD_Item_ID, 0, false, false, null);
-		column.add(env, 0, tableId, COLUMNNAME_FD_Created, FD_ITEM_Date, 0, false, false, null);
-		column.add(env, 0, tableId, COLUMNNAME_FD_CreatedBy, FD_Item_ID, 0, false, false, null);
-		column.add(env, 0, tableId, COLUMNNAME_FD_Updated, FD_ITEM_Date, 0, false, false, null);
-		column.add(env, 0, tableId, COLUMNNAME_FD_UpdatedBy, FD_Item_ID, 0, false, false, null);
+		column.add(env, 0, tableId, COLUMNNAME_FD_Group_ID, FD_Item_ID, 0, true, false, null);
+		column.add(env, 0, tableId, COLUMNNAME_FD_Created, FD_ITEM_Date, 0, true, false, null);
+		column.add(env, 0, tableId, COLUMNNAME_FD_CreatedBy, FD_Item_ID, 0, true, false, null);
+		column.add(env, 0, tableId, COLUMNNAME_FD_Updated, FD_ITEM_Date, 0, true, false, null);
+		column.add(env, 0, tableId, COLUMNNAME_FD_UpdatedBy, FD_Item_ID, 0, true, false, null);
 	}
 	
 	public long getFD_Group_ID() {

@@ -55,10 +55,10 @@ public class FD_Type extends FD_DB implements I_FD_Type {
 			break;
 		case I_FD_Column.Table_Name:
 			FD_Column column = new FD_Column();
-			column.add(env, 0, Table_ID, COLUMNNAME_FD_Type_ID, FD_Item_ID, 0, true, true, null);
-			column.add(env, 0, Table_ID, COLUMNNAME_FD_Type_Name, FD_Item_String, 100, false, false, null);
-			column.add(env, 0, Table_ID, COLUMNNAME_FD_Name, FD_Item_String, 100, false, false, null);
-			column.add(env, 0, Table_ID, COLUMNNAME_FD_Description, FD_Item_Text, 0, false, false, null);
+			column.add(env, 0, Table_ID, COLUMNNAME_FD_Type_ID, FD_Item_ID, 0, false, true, null);
+			column.add(env, 0, Table_ID, COLUMNNAME_FD_Type_Name, FD_Item_String, 100, true, false, null);
+			column.add(env, 0, Table_ID, COLUMNNAME_FD_Name, FD_Item_String, 100, true, false, null);
+			column.add(env, 0, Table_ID, COLUMNNAME_FD_Description, FD_Item_Text, 0, true, false, null);
 			addCommonColumn(env, Table_ID);
 			break;
 		}
