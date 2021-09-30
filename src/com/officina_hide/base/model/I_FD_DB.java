@@ -25,6 +25,8 @@ public interface I_FD_DB {
 	/** テーブル項目種別 : 拡大整数値 */
 	public static final String FD_ITEM_BigInt = "FD_ITEM_BigInt";
 	public static final String FD_ITEM_Unsigned_BigInt = "FD_ITEM_Unsigned_BigInt";
+	/** テーブル項目種別 : 判定 */
+	public static final String FD_ITEM_YES_NO = "FD_ITEM_YES_NO";
 	
 	/** システムグループ情報ID */
 	public static final int SYSTEM_GROUP_ID = 100;
@@ -45,7 +47,9 @@ public interface I_FD_DB {
 	public static final String ID_TYPE = " bigint unsigned ";
 	public static final String UNSIGNED_BIGINT = " bigint unsigned ";
 	public static final String UNSIGNED_INT = " int unsigned ";
-	public static final String COMMENT = " COMMENT ";
+	public static final String YES_NO = " enum('Y','N') ";
+	public static final String COMMENT = " COMMENT ";	
+	public static final String DEFAULT = " DEFAULT ";	
 	
 	/** 共通項目 : グルーブ情報ID */
 	public static final String COLUMNNAME_FD_Group_ID = I_FD_Group.COLUMNNAME_FD_Group_ID;

@@ -211,6 +211,24 @@ public class FD_Items implements I_FD_DB {
 	}
 
 	/**
+	 * 判定情報取得[Get judgment information]<br>
+	 * @author officine-hide.net
+	 * @since 1.00 2021/09/30
+	 * @param itemName 項目名[Item name]
+	 * @return 判定情報[Judgment information]
+	 */
+	public boolean getBooleanData(String itemName) {
+		boolean chk = false;
+		for(FD_Item item : items) {
+			if(item.getName().equals(itemName)) {
+				chk = (boolean) item.getData();
+				break;
+			}
+		}
+		return chk;
+	}
+
+	/**
 	 * SQLの更新で使用する項目一覧生成[Generate a list of items used for updating SQL]<br>
 	 * @author officine-hide.net
 	 * @since 1.00 2021/09/18

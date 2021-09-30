@@ -35,6 +35,22 @@ public interface I_FD_Column extends I_FD_DB {
 	public static final String COLUMNNAME_FD_Column_Size = "FD_Column_Size";
 	public static final String NAME_FD_Column_Size = "項目桁数";
 	public final static String COMMENT_FD_Column_Size = "テーブル項目の桁数";
+	/** 項目 : Null判定 */
+	public static final String COLUMNNAME_FD_IS_Null = "FD_IS_Null";
+	public static final String NAME_FD_IS_Null = "Null判定";
+	public final static String COMMENT_FD_IS_Null = "null値を許可するかどうかを判定するフラグ。\nYの時は許可、Nの時は非許可";
+	public static final String FD_IS_NULL_YES = "Y";
+	public static final String FD_IS_NULL_NO = "N";
+	/** 項目 : プライマリーKey判定 */
+	public static final String COLUMNNAME_FD_IS_Key = "FD_IS_Key";
+	public static final String NAME_FD_IS_Key = "プライマリーKey判定";
+	public final static String COMMENT_FD_IS_Key = "プライマリーKeyかどうかを判定するフラグ。\nYの時は許可、Nの時は非許可";
+	public static final String FD_IS_KEY_YES = "Y";
+	public static final String FD_IS_KEY_NO = "N";
+	/** 項目 : 初期値 */
+	public static final String COLUMNNAME_FD_Default = "FD_Default";
+	public static final String NAME_FD_Default = "初期値";
+	public final static String COMMENT_FD_Default = "入力が無い時にセットする初期値";
 	
 	/** テーブル削除用SQL */
 	public static final String Table_Drop_SQL =
@@ -53,6 +69,12 @@ public interface I_FD_Column extends I_FD_DB {
 				+ COMMENT + FD_SQ + NAME_FD_TypeItem_ID + FD_SQ + ","
 			+ COLUMNNAME_FD_Column_Size + UNSIGNED_INT
 				+ COMMENT + FD_SQ + NAME_FD_Column_Size + FD_SQ + ","
+			+ COLUMNNAME_FD_IS_Null + YES_NO + " default 'Y' "
+				+ COMMENT + FD_SQ + NAME_FD_IS_Null + FD_SQ + ","
+			+ COLUMNNAME_FD_IS_Key + YES_NO + DEFAULT + FD_SQ + FD_IS_KEY_NO + FD_SQ
+				+ COMMENT + FD_SQ + NAME_FD_IS_Key + FD_SQ + ","
+			+ COLUMNNAME_FD_Default + VARCHAR_100
+				+ COMMENT + FD_SQ + NAME_FD_Default + FD_SQ + ","
 			+ COMMON_ITEM_CREATE_SQL
 		+") "
 		+"ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=" + FD_SQ + Table_Disp_Name + FD_SQ;

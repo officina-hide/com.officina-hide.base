@@ -23,6 +23,9 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 	private long FD_TypeItem_ID;
 	private X_FD_Type FD_TypeItem;
 	private int FD_ColumnSize;
+	private boolean FD_Is_Null;
+	private boolean FD_Is_Key;
+	private String FD_Default;
 	
 	/**
 	 * コンストラクタ[Constructor]<br>
@@ -40,6 +43,9 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 		items.add(COLUMNNAME_FD_Table_ID, null, FD_Item_ID);
 		items.add(COLUMNNAME_FD_TypeItem_ID, null, FD_Item_ID);
 		items.add(COLUMNNAME_FD_Column_Size, null, FD_ITEM_Unsigned_Int);
+		items.add(COLUMNNAME_FD_IS_Null, null, FD_ITEM_YES_NO);
+		items.add(COLUMNNAME_FD_IS_Key, null, FD_ITEM_YES_NO);
+		items.add(COLUMNNAME_FD_Default, null, FD_Item_String);
 		baseItemSet(items);
 		items.setTableId(Table_ID);
 		items.setTableName(Table_Name);
@@ -120,5 +126,26 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 	}
 	public void setFD_ColumnSize(int columnSize) {
 		items.setValue(COLUMNNAME_FD_Column_Size, columnSize);
+	}
+	public boolean isFD_Is_Null() {
+		FD_Is_Null = items.getBooleanData(COLUMNNAME_FD_IS_Null);
+		return FD_Is_Null;
+	}
+	public void setFD_Is_Null(boolean isnull) {
+		items.setValue(COLUMNNAME_FD_IS_Null, isnull);
+	}
+	public boolean isFD_Is_Key() {
+		FD_Is_Key = items.getBooleanData(COLUMNNAME_FD_IS_Key);
+		return FD_Is_Key;
+	}
+	public void setFD_Is_Key(boolean isKey) {
+		items.setValue(COLUMNNAME_FD_IS_Key, isKey);
+	}
+	public String isFD_Default() {
+		FD_Default = items.getStringData(COLUMNNAME_FD_Default);
+		return FD_Default;
+	}
+	public void setFD_Default(String valueData) {
+		items.setValue(COLUMNNAME_FD_Value, valueData);
 	}
 }

@@ -135,5 +135,7 @@ public class CreateBaseInformation implements I_FD_DB {
 		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "int", null);
 		typeItemID = typeItem.add(env, 0, FD_ITEM_Unsigned_Int, typeID, "正整数", "符号無し整数(Classはint)");
 		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "int unsigned", null);
+		typeItemID = typeItem.add(env, 0, FD_ITEM_YES_NO, typeID, "正整数", "判定値 Yはtrue、Nはfalse (Classはboolean)");
+		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "enum('Y','N')", null);
 	}
 }

@@ -240,10 +240,10 @@ public class FD_Table extends FD_DB implements I_FD_Table {
 			break;
 		case I_FD_Column.Table_Name:
 			FD_Column column = new FD_Column();
-			column.add(env, 0, Table_ID, COLUMNNAME_FD_Table_ID, FD_Item_ID, 0);
-			column.add(env, 0, Table_ID, COLUMNNAME_FD_Table_Name, FD_Item_String, 100);
-			column.add(env, 0, Table_ID, COLUMNNAME_FD_Name, FD_Item_String, 100);
-			column.add(env, 0, Table_ID, COLUMNNAME_FD_Description, FD_Item_Text, 0);
+			column.add(env, 0, Table_ID, COLUMNNAME_FD_Table_ID, FD_Item_ID, 0, true, true, null);
+			column.add(env, 0, Table_ID, COLUMNNAME_FD_Table_Name, FD_Item_String, 100, false, false, null);
+			column.add(env, 0, Table_ID, COLUMNNAME_FD_Name, FD_Item_String, 100, false, false, null);
+			column.add(env, 0, Table_ID, COLUMNNAME_FD_Description, FD_Item_Text, 0, false, false, null);
 			addCommonColumn(env, Table_ID);
 			break;
 		}

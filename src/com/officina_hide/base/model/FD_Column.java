@@ -51,19 +51,25 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 			FD_DataDictionary dd = new FD_DataDictionary();
 			dd.add(env, 0, COLUMNNAME_FD_Column_ID, NAME_FD_Column_ID, COMMENT_FD_Column_ID);
 			dd.add(env, 0, COLUMNNAME_FD_Column_Size, NAME_FD_Column_Size, COMMENT_FD_Column_Size);
+			dd.add(env, 0, COLUMNNAME_FD_IS_Null, NAME_FD_IS_Null, COMMENT_FD_IS_Null);
+			dd.add(env, 0, COLUMNNAME_FD_IS_Key, NAME_FD_IS_Key, COMMENT_FD_IS_Key);
+			dd.add(env, 0, COLUMNNAME_FD_Default, NAME_FD_Default, COMMENT_FD_Default);
 			break;
 		case I_FD_Table.Table_Name:
 			FD_Table table = new FD_Table();
 			table.add(env, Table_ID, Table_Name, Table_Disp_Name, Table_Comment);
 			break;
 		case Table_Name:
-			add(env, 0, Table_ID, COLUMNNAME_FD_Column_ID, FD_Item_ID, 0);
-			add(env, 0, Table_ID, COLUMNNAME_FD_DataDictionary_ID, FD_Item_ID, 0);
-			add(env, 0, Table_ID, COLUMNNAME_FD_Table_ID, FD_Item_ID, 0);
-			add(env, 0, Table_ID, COLUMNNAME_FD_TypeItem_ID, FD_Item_ID, 0);
-			add(env, 0, Table_ID, COLUMNNAME_FD_Column_Size, FD_ITEM_Unsigned_Int, 0);
-			add(env, 0, Table_ID, COLUMNNAME_FD_Name, FD_Item_String, 100);
-			add(env, 0, Table_ID, COLUMNNAME_FD_Description, FD_Item_Text, 0);
+			add(env, 0, Table_ID, COLUMNNAME_FD_Column_ID, FD_Item_ID, 0, true, true, null);
+			add(env, 0, Table_ID, COLUMNNAME_FD_DataDictionary_ID, FD_Item_ID, 0, false, false, null);
+			add(env, 0, Table_ID, COLUMNNAME_FD_Table_ID, FD_Item_ID, 0, false, false, null);
+			add(env, 0, Table_ID, COLUMNNAME_FD_TypeItem_ID, FD_Item_ID, 0, false, false, null);
+			add(env, 0, Table_ID, COLUMNNAME_FD_Column_Size, FD_ITEM_Unsigned_Int, 0, false, false, null);
+			add(env, 0, Table_ID, COLUMNNAME_FD_Name, FD_Item_String, 100, false, false, null);
+			add(env, 0, Table_ID, COLUMNNAME_FD_Description, FD_Item_Text, 0, false, false, null);
+			add(env, 0, Table_ID, COLUMNNAME_FD_IS_Null, FD_ITEM_YES_NO, 0, false, false, "Y");
+			add(env, 0, Table_ID, COLUMNNAME_FD_IS_Key, FD_ITEM_YES_NO, 0, false, false, "N");
+			add(env, 0, Table_ID, COLUMNNAME_FD_Default, FD_Item_String, 100, false, false, null);
 			addCommonColumn(env, Table_ID);
 			break;
 		}
@@ -80,7 +86,8 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 	 * @param typeName 属性名[Type name]
 	 * @param size 属性桁数[Type size]
 	 */
-	public void add(FD_EnvData env, int columnID, long tableID, String columnName, String typeName, int size) {
+	public void add(FD_EnvData env, int columnID, long tableID, String columnName, String typeName
+			, int size, boolean isnull, boolean isKey, String defaultValue) {
 		X_FD_Column column = new X_FD_Column(env, 0);
 		column.setFD_Column_ID(0);
 		column.setFD_Table_ID(tableID);
@@ -89,6 +96,9 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 		column.setFD_TypeItem_ID(getTypeItemID(env, typeName));
 		column.setFD_Group_ID(SYSTEM_GROUP_ID);
 		column.setFD_ColumnSize(size);
+		column.setFD_Is_Null(isnull);
+		column.setFD_Is_Key(isKey);
+		column.setFD_Default(defaultValue);
 		column.save(env);
 	}
 
