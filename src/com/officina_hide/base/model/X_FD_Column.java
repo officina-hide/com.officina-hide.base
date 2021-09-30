@@ -141,7 +141,7 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 	public void setFD_Is_Key(boolean isKey) {
 		items.setValue(COLUMNNAME_FD_IS_Key, isKey);
 	}
-	public String isFD_Default() {
+	public String getFD_Default() {
 		FD_Default = items.getStringData(COLUMNNAME_FD_Default);
 		return FD_Default;
 	}

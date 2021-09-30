@@ -278,9 +278,14 @@ public class FD_Items implements I_FD_DB {
 				type = type.replaceAll("@size@", Integer.toString(item.getSize()));
 			}
 			sql.append(type);
-			// TODO null と Primary Keyとdefault valueを追加する。
 			if(item.getFD_Column(env).isFD_Is_Null() == false) {
 				sql.append(" not null ");
+			}
+			if(item.getFD_Column(env).isFD_Is_Key() == true) {
+				sql.append(" primary key ");
+			}
+			if(item.getFD_Column(env).getFD_Default() != null) {
+				sql.append(" default ").append(FD_SQ).append(item.getFD_Column(env).getFD_Default()).append(FD_SQ).append(" ");
 			}
 			sql.append(COMMENT).append(FD_SQ).append(item.getFD_Column(env).getFD_DataDictionary().getFD_Name()).append(FD_SQ);
 		}

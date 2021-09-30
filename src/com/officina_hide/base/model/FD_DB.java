@@ -243,7 +243,8 @@ public class FD_DB implements I_FD_DB {
 					items.setTableId(rs.getLong("t."+I_FD_Table.COLUMNNAME_FD_Table_ID));
 				}
 			}
-
+			pstmt.close();
+			
 			//テーブル生成用SQL作成
 			sql = new StringBuffer();
 			sql.append("CREATE TABLE IF NOT EXISTS ").append(tableName).append(" (");
@@ -251,17 +252,14 @@ public class FD_DB implements I_FD_DB {
 			sql.append(") ");
 			sql.append("ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=")
 				.append(FD_SQ).append(items.getFD_Table(env).getFD_Name()).append(FD_SQ).append(" ");
-			System.out.println(sql.toString());
+			pstmt = getConn().prepareStatement(sql.toString());
+			pstmt.execute();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DBClose(pstmt, rs);
 		}
-		
-//		//テーブル情報取得
-//		FD_WhereData where = new FD_WhereData(I_FD_Table.COLUMNNAME_FD_Table_Name, tableName);
-//		FD_Table table = new FD_Table(env, where);
 	}
 
 	/**
