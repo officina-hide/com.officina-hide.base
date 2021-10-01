@@ -25,7 +25,7 @@ public class CreateFxInformation {
 	 */
 	public void execute() {
 		/*
-		 * 1. 画面情報テーブル生成
+		 * 1. 画面情報テーブル生成,
 		 * 2. 画面項目情報テーブル生成
 		 */
 		//1.
