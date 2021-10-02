@@ -1,7 +1,7 @@
 <?php
 try {
     $pdo = new PDO(
-        'mysql:dbname=FDBASE;host=localhost;charset=utf8mb4',
+        'mysql:dbname=MYPAGE;host=localhost;charset=utf8mb4',
         'fdadmin',
         'fdadminqAz*01',
         [

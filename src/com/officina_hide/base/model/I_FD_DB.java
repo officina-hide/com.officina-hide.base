@@ -95,4 +95,25 @@ public interface I_FD_DB {
 	/** 属性情報名 : テーブル項目情報用属性情報名 */
 	public static final String FD_Column_Type = "FD_Column_Type";
 
+	/** テーブル項目一覧用情報抽出SQL文 */
+	public static final String ITEM_LIST_SQL_Name = "name";
+	public static final String ITEM_LIST_SQL_TypeName = "typename";
+	public static final String ITEM_LIST_SQL_TableID = "tableID";
+	public static final String ITEM_LIST_SQL = 
+			"SELECT "
+				+ "d."+I_FD_DataDictionary.COLUMNNAME_FD_DataDictionary_Name + " " + ITEM_LIST_SQL_Name+ ", "
+				+ "ty." + I_FD_TypeItem.COLUMNNAME_FD_TypeItem_Name + " " + ITEM_LIST_SQL_TypeName + ", "
+				+ "t." + I_FD_Table.COLUMNNAME_FD_Table_ID + " " + ITEM_LIST_SQL_TableID + " "
+			+ "FROM " + I_FD_Column.Table_Name + " c "
+			+ "LEFT JOIN " + I_FD_Table.Table_Name + " t "
+				+ " ON " + "t." + I_FD_Table.COLUMNNAME_FD_Table_ID + " = "
+				+ "c." + I_FD_Column.COLUMNNAME_FD_Table_ID + " "
+			+ "LEFT JOIN " + I_FD_DataDictionary.Table_Name + " d "
+				+ " ON " + "d." + I_FD_DataDictionary.COLUMNNAME_FD_DataDictionary_ID + " = "
+				+ "c." + I_FD_Column.COLUMNNAME_FD_DataDictionary_ID + " "
+			+ "LEFT JOIN " + I_FD_TypeItem.Table_Name + " ty "
+				+ " ON " + "ty." + I_FD_TypeItem.COLUMNNAME_FD_TypeItem_ID + " = "
+				+ "c." + I_FD_Column.COLUMNNAME_FD_TypeItem_ID + " "
+			+ "WHERE " + "t." + I_FD_Table.COLUMNNAME_FD_Table_Name + " = ?";
+
 }

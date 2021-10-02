@@ -14,6 +14,7 @@ import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.base.model.I_FD_DataDictionary;
 import com.officina_hide.base.model.I_FD_Numbering;
 import com.officina_hide.base.model.I_FD_Table;
+import com.officina_hide.base.model.X_FD_Numbering;
 
 /**
  * 基盤情報構築クラス<br>
@@ -137,5 +138,29 @@ public class CreateBaseInformation implements I_FD_DB {
 		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "int unsigned", null);
 		typeItemID = typeItem.add(env, 0, FD_ITEM_YES_NO, typeID, "正整数", "判定値 Yはtrue、Nはfalse (Classはboolean)");
 		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "enum('Y','N')", null);
+	}
+
+	/**
+	 * 機能開発用の採番再設定[Renumbering for function development]
+	 * @author officina-hide.net
+	 * @since 2021/10/02 Ver.1.00
+	 * @param env 環境情報[Enfironment information]
+	 */
+	public void reNumber(FD_EnvData env) {
+		//採番情報
+		X_FD_Numbering num = new X_FD_Numbering(env, I_FD_Numbering.Table_ID);
+		num.setFD_InitialNumber(100001);
+		num.setFD_CurrentNumber(0);
+		num.save(env);
+		//辞書情報
+		X_FD_Numbering num_dd = new X_FD_Numbering(env, I_FD_DataDictionary.Table_ID);
+		num_dd.setFD_InitialNumber(100001);
+		num_dd.setFD_CurrentNumber(0);
+		num_dd.save(env);
+		//テーブル項目情報
+		X_FD_Numbering num_column = new X_FD_Numbering(env, I_FD_Column.Table_ID);
+		num_column.setFD_InitialNumber(100001);
+		num_column.setFD_CurrentNumber(0);
+		num_column.save(env);
 	}
 }

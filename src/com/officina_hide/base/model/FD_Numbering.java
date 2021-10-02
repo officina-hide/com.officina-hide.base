@@ -50,7 +50,7 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 	 * @param initialNo 初期採番番号[Initial numbering number]
 	 * @param currentNo 現在採番番号[Current numbering number]
 	 */
-	public void add(FD_EnvData env, int numberingId, int tableId, int initialNo, int currentNo) {
+	public void add(FD_EnvData env, long numberingId, long tableId, long initialNo, long currentNo) {
 		//項目セット
 		X_FD_Numbering num = new X_FD_Numbering(env, 0);
 		//採番情報IDがゼロの時は採番を行う。

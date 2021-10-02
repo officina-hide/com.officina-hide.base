@@ -1,7 +1,7 @@
 <?php
 try {
     $pdo = new PDO(
-        'mysql:dbname=FDBASE;host=localhost;charset=utf8mb4',
+        'mysql:dbname=MYPAGE;host=localhost;charset=utf8mb4',
         'fdadmin',
         'fdadminqAz*01',
         [
@@ -28,5 +28,14 @@ minimum-scale=1.0,maximum-scale=1.0' name='viewport'/>
 <div id="header">
 	<h1><?php echo $title; ?></h1>
 	<hr size="5">
+</div>
+<div id="content">
+	<div id="main">
+		<h2>TEST</h2>
+	</div>
+	<div id="menu">
+		<ul>
+			<li>JavaFxで画面を作る。</li>
+	</div>
 </div>
 </html>

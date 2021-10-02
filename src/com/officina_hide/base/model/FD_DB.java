@@ -60,8 +60,7 @@ public class FD_DB implements I_FD_DB {
 			try {
 				// TODO 接続に関する情報を環境情報から取得する(2021/05/25)
 				Class.forName("com.mysql.cj.jdbc.Driver");
-//				StringBuffer url  = new StringBuffer().append("jdbc:mysql://www.officina-hide.com:3306/FDBASE");
-				StringBuffer url  = new StringBuffer().append("jdbc:mysql://www.officina-hide.net:3306/FDBASE");
+				StringBuffer url  = new StringBuffer().append("jdbc:mysql://www.officina-hide.net:3306/").append(env.getDbName());
 				conn = DriverManager.getConnection(url.toString(), "fdadmin", "fdadminqAz*01");
 				System.out.println(new Date() + " : "+"Database Connected.");
 			} catch (ClassNotFoundException | SQLException e) {

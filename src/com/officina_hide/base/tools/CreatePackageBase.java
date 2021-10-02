@@ -26,6 +26,7 @@ public class CreatePackageBase {
 	public static void main(String[] args) {
 		/** 処理レベルをセットする。 */
 		env.setRunLevel(0);
+		env.setDbName("FDBASE");
 		//処理者の設定(Systemユーザ)
 		env.setActionUserID(I_FD_DB.SYSTEM_USER_ID);
 		// TODO 開始メッセージ

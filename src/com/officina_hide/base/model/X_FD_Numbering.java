@@ -42,7 +42,9 @@ public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 		//項目リストの初期化
 		initItems();
 
-		// TODO 未実装 : 採番情報IDがゼロ以外の時にload()をする。
+		if(numberingID > 0) {
+			load(env, Table_Name, numberingID, items);
+		}
 	}
 
 	/**
@@ -104,6 +106,8 @@ public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 		items.add(COLUMNNAME_FD_InitialNumber, null, FD_ITEM_BigInt);
 		items.add(COLUMNNAME_FD_CurrentNumber, null, FD_ITEM_BigInt);
 		baseItemSet(items);
+		items.setTableName(Table_Name);
+		items.setTableId(Table_ID);
 	}
 
 	/**

@@ -8,6 +8,8 @@ package com.officina_hide.base.common;
  */
 public class FD_EnvData {
 
+	/** データベース名[Database name] 2021/10/02 */
+	private String dbName;
 	/** 処理者情報ID 2021/09/18 Addition */
 	private long actionUserID;
 	
@@ -51,5 +53,12 @@ public class FD_EnvData {
 	}
 	public void setActionUserID(long actionUserID) {
 		this.actionUserID = actionUserID;
+	}
+
+	public String getDbName() {
+		return dbName;
+	}
+	public void setDbName(String dbName) {
+		this.dbName = dbName;
 	}
 }

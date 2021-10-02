@@ -31,6 +31,7 @@ public class CreateFxInformation {
 		//1.
 		FX_View view = new FX_View();
 		view.createTable(env);
+		
 	}
 	
 }

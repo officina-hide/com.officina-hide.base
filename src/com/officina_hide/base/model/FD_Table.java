@@ -232,7 +232,7 @@ public class FD_Table extends FD_DB implements I_FD_Table {
 			break;
 		case I_FD_Numbering.Table_Name:
 			FD_Numbering num = new FD_Numbering();
-			num.add(env, 0, Table_ID, 101, 110);
+			num.add(env, 0, Table_ID, 10001, 0);
 			break;
 		case I_FD_DataDictionary.Table_Name:
 			FD_DataDictionary dd = new FD_DataDictionary();
