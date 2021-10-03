@@ -1,12 +1,6 @@
 package com.officina_hide.page.model;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import com.officina_hide.base.common.FD_EnvData;
-import com.officina_hide.base.common.FD_Item;
-import com.officina_hide.base.common.FD_Items;
 import com.officina_hide.base.model.FD_DB;
 
 /**
@@ -28,42 +22,44 @@ public class X_FM_Base extends FD_DB implements I_FM_Base {
 	 * @param baseId ホームページ基盤情報ID[Homepage base information ID]
 	 */
 	public X_FM_Base(FD_EnvData env, int baseId) {
-		createItemList(env);
+		createItemList(env, Table_Name);
 		if(baseId > 0) {
 			load(env, Table_Name, baseId, items);
 		}
 	}
-
-	/**
-	 * 項目一覧セット[Item list setting]
-	 * @param env 環境情報[Enfironment information]
-	 */
-	private void createItemList(FD_EnvData env) {
-		items = new FD_Items();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			connection(env);
-			pstmt = getConn().prepareStatement(ITEM_LIST_SQL);
-			pstmt.setString(1, Table_Name);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				FD_Item item = new FD_Item();
-				item.setName(rs.getString(ITEM_LIST_SQL_Name));
-				item.setData(null);
-				item.setType(rs.getString(ITEM_LIST_SQL_TypeName));
-				items.getItems().add(item);
-				if(items.getTableId() == 0) {
-					items.setTableId(rs.getLong(ITEM_LIST_SQL_TableID));
-					items.setTableName(Table_Name);
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBClose(pstmt, rs);
-		}
-	}
+//
+//	/**
+//	 * 項目一覧セット[Item list setting]
+//	 * @param env 環境情報[Enfironment information]
+//	 */
+//	private void createItemList(FD_EnvData env) {
+//		createItemList(env, Table_Name);
+////		
+//		items = new FD_Items();
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		try {
+//			connection(env);
+//			pstmt = getConn().prepareStatement(ITEM_LIST_SQL);
+//			pstmt.setString(1, Table_Name);
+//			rs = pstmt.executeQuery();
+//			while(rs.next()) {
+//				FD_Item item = new FD_Item();
+//				item.setName(rs.getString(ITEM_LIST_SQL_Name));
+//				item.setData(null);
+//				item.setType(rs.getString(ITEM_LIST_SQL_TypeName));
+//				items.getItems().add(item);
+//				if(items.getTableId() == 0) {
+//					items.setTableId(rs.getLong(ITEM_LIST_SQL_TableID));
+//					items.setTableName(Table_Name);
+//				}
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			DBClose(pstmt, rs);
+//		}
+//	}
 
 	/**
 	 * 情報保存[Save information]

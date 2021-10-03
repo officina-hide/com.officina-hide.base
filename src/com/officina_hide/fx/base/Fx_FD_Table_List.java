@@ -20,7 +20,7 @@ import com.officina_hide.fx.model.FX_Tabs;
 import com.officina_hide.fx.model.Fx_ToolButtonArea;
 import com.officina_hide.fx.model.I_Fx_Field;
 import com.officina_hide.fx.model.X_Fx_Field;
-import com.officina_hide.fx.model.X_Fx_View;
+import com.officina_hide.fx.model.X_FX_View;
 
 import javafx.application.Application;
 import javafx.collections.ObservableList;
@@ -52,7 +52,7 @@ public class Fx_FD_Table_List extends Application implements I_FD_DB {
 	/** 環境情報 */
 	private FD_EnvData env = new FD_EnvData();
 	/** 画面情報 */
-	private X_Fx_View view;
+	private X_FX_View view;
 	/** タブ階層情報 */
 	private FX_Tabs tabs;
 	/** 一覧ビュー */
@@ -77,7 +77,7 @@ public class Fx_FD_Table_List extends Application implements I_FD_DB {
 		//環境情報セット[Environmental information set]
 		this.env = env;
 		//画面情報取得
-		view = new X_Fx_View(env, viewId);
+		view = new X_FX_View(env, viewId);
 		//タブ階層情報取得
 		tabs = getTabs(env, viewId);
 		//ツールバーボタン設定

@@ -22,7 +22,7 @@ public class X_Fx_Field extends FD_DB implements I_Fx_Field {
 	private String FX_Field_Name;
 	private String FD_Name;
 	private int Fx_View_ID;
-	private X_Fx_View Fx_View;
+	private X_FX_View Fx_View;
 	private int FD_Column_ID;
 	private X_FD_Column FD_Column;
 	
@@ -80,7 +80,7 @@ public class X_Fx_Field extends FD_DB implements I_Fx_Field {
 	public void setFx_View_ID(int fx_View_ID) {
 		Fx_View_ID = fx_View_ID;
 	}
-	public X_Fx_View getFx_View() {
+	public X_FX_View getFx_View() {
 		return Fx_View;
 	}
 	public int getFD_Column_ID() {

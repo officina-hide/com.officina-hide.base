@@ -1,6 +1,7 @@
 package com.officina_hide.base.tools;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.fx.model.FX_Tab;
 import com.officina_hide.fx.model.FX_View;
 
 /**
@@ -31,7 +32,10 @@ public class CreateFxInformation {
 		//1.
 		FX_View view = new FX_View();
 		view.createTable(env);
-		
+		view.add(env, 0, V_FX_TableColumn.FX_View_Name, V_FX_TableColumn.FX_Name, V_FX_TableColumn.FX_Description);
+		//2.
+		FX_Tab tab = new FX_Tab();
+		tab.createTable(env);
 	}
 	
 }

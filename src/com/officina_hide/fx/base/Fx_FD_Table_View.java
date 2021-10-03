@@ -17,7 +17,7 @@ import com.officina_hide.fx.model.Fx_ToolButtonArea;
 import com.officina_hide.fx.model.I_Fx_Field;
 import com.officina_hide.fx.model.I_FX_View;
 import com.officina_hide.fx.model.X_Fx_Field;
-import com.officina_hide.fx.model.X_Fx_View;
+import com.officina_hide.fx.model.X_FX_View;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -52,7 +52,7 @@ public class Fx_FD_Table_View extends Application {
 	/** 環境情報 */
 	private FD_EnvData env;
 	/** 画面基本情報 */
-	private X_Fx_View view;
+	private X_FX_View view;
 	private static final String View_Name = "FX_FD_Table_View";
 	/** 画面項目リスト */
 	private List<X_Fx_Field> fields;
@@ -88,7 +88,7 @@ public class Fx_FD_Table_View extends Application {
 		 * 画面項目情報を取得する。
 		 */
 //		FD_WhereData where = new FD_WhereData(I_Fx_View.COLUMNNAME_Fx_View_ID, 100);
-		view = new X_Fx_View(env, 100);
+		view = new X_FX_View(env, 100);
 //		fields = getFieldList(view.getF_View_ID());
 		
 		tba = new Fx_ToolButtonArea();

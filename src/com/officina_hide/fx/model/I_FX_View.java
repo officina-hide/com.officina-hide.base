@@ -7,11 +7,11 @@ package com.officina_hide.fx.model;
  * @since 2021/08/23
  */
 public interface I_FX_View {
-	/** 基本定数 */
+
 	/** テーブル名 */
 	public static final String Table_Name = "FX_View";
 	/** テーブル表示名 */
-	public static final String Table_Disp_Name = "FX_画面情報";
+	public static final String Table_Disp_Name = "FX画面基本情報";
 	/** テーブル説明 */
 	public static final String Table_Comment = "パッケージで使用するFX画面のヘッダー情報を管理する。";
 	public static final String Table_Comment_Eng = "Manage the header information of the FX screen used in the package.";

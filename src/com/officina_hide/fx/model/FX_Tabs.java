@@ -29,7 +29,7 @@ public class FX_Tabs {
 		 * 将来的に階層構造とする。
 		 */
 		FD_WhereData where = new FD_WhereData(I_Fx_Field.COLUMNNAME_Fx_View_ID, viewId);
-		where.add(FD_WhereData.AND, I_FX_Tab.COLUMNNAME_FX_Tab_Level, 0);
+//		where.add(FD_WhereData.AND, I_FX_Tab.COLUMNNAME_FX_Tab_Level, 0);
 	}
 
 }
