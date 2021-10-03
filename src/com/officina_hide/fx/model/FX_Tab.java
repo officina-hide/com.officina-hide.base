@@ -45,4 +45,26 @@ public class FX_Tab extends FD_DB implements I_FX_Tab {
 		//テーブル生成
 		createTable(env, Table_Name);
 	}
+
+	/**
+	 * 情報登録[Save data]<br>
+	 * @author officina-hide.net
+	 * @since 2021/10/03 Ver. 1.00
+	 * @param env 環境情報[Enfironment information]
+	 * @param tabID FXタブ情報ID[FX tab information ID]
+	 * @param tabName タブ識別名[Tab distinguished name]
+	 * @param viewId FX画面基盤情報ID[FX screen base information ID]
+	 * @param name 表示名[Displey name]
+	 * @param description 説明[Description]
+	 */
+	public void add(FD_EnvData env, int tabID, String tabName, long viewId, String name,	String description) {
+		X_FX_Tab tab = new X_FX_Tab(env, 0);
+		tab.setFX_Tab_ID(0);
+		tab.setFX_Tab_Name(tabName);
+		tab.setFX_View_ID(viewId);
+		tab.setFD_Name(name);
+		tab.setFD_Description(description);
+		tab.setFD_Group_ID(env.getActionUserID());
+		tab.save(env);
+	}
 }

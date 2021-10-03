@@ -46,12 +46,13 @@ public class FX_View extends FD_DB implements I_FX_View {
 	/**
 	 * 情報登録[Save data]
 	 * @param env 環境情報[Enfironment information]
-	 * @param viewID FX画面情報ID
-	 * @param viewName FX画面名
-	 * @param description 
-	 * @param name 
+	 * @param viewID FX画面情報ID [FX screen information ID]
+	 * @param viewName FX画面名 [FX screeen name]
+	 * @param description 説明 [description]
+	 * @param name 表示名[Displey name]
+	 * @return FX画面情報ID[FX screen information ID]
 	 */
-	public void add(FD_EnvData env, int viewID, String viewName, String name, String description) {
+	public long add(FD_EnvData env, int viewID, String viewName, String name, String description) {
 		X_FX_View view = new X_FX_View(env, 0);
 		view.setFX_View_ID(0);
 		view.setFX_View_Name(viewName);
@@ -59,6 +60,8 @@ public class FX_View extends FD_DB implements I_FX_View {
 		view.setFD_Description(description);
 		view.setFD_Group_ID(env.getActionUserID());
 		view.save	(env);
+		
+		return view.getFX_View_ID();
 	}
 
 }
