@@ -32,6 +32,10 @@ public interface I_FD_DB {
 	public static final int SYSTEM_GROUP_ID = 100;
 	/** システムユーザー情報ID */
 	public static final int SYSTEM_USER_ID = 100;
+	public static final String SYSTEM_USER = "SystemUser";
+	public static final String SYSTEM_USER_PASSWORD = "System";
+	public static final String SYSTEM_USER_NAME = "システム管理者";
+	public static final String SYSTEM_USER_DESCRIPTION = "システム初期設定時の管理者（稼働時には無効化される。）";
 	
 	public static final String COLUMN_NAME = "name";
 	public static final String COLUMN_TYPE = "type";
