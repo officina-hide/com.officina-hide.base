@@ -114,6 +114,8 @@ public class CreateBaseInformation implements I_FD_DB {
 		//7.
 		FD_User user = new FD_User();
 		user.createTable(env);
+		user.add(env, SYSTEM_USER_ID, SYSTEM_USER, SYSTEM_USER_PASSWORD,
+				SYSTEM_USER_NAME, SYSTEM_USER_DESCRIPTION);
 	}
 	/**
 	 * テーブル項目用属性情報登録[Attribute information registration for table items]<br>

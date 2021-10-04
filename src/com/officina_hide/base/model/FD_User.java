@@ -32,9 +32,24 @@ public class FD_User extends FD_DB implements I_FD_User {
 		FD_Column column = new FD_Column();
 		column.add(env, 0, Table_ID, COLUMNNAME_FD_User_ID, FD_Item_ID, 0, false, true, null);
 		column.add(env, 0, Table_ID, COLUMNNAME_FD_User_Name, FD_Item_String, 100, true, false, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FD_Login_Password, FD_Item_Text, 100, true, false, null);
 		column.add(env, 0, Table_ID, COLUMNNAME_FD_Name, FD_Item_String, 100, true, false, null);
 		column.add(env, 0, Table_ID, COLUMNNAME_FD_Description, FD_Item_Text, 0, true, false, null);
 		addCommonColumn(env, Table_ID);
+	}
+
+	/**
+	 * 情報登録[Save data]
+	 * @param env 環境情報[Enfironment information]
+	 * @param userID ユーザー情報ID[User information ID]
+	 * @param userName ユーザー識別名[User Distinguished Name]
+	 * @param password パスワード[パスワード]
+	 * @param name ユーザー表示名[User display name]
+	 * @param description 説明[description]
+	 */
+	public void add(FD_EnvData env, int userID, String userName, String password,
+			String name, String description) {
+		X_FD_User user = new X_FD_User(env, 0);
 	}
 
 }
