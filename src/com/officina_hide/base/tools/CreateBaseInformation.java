@@ -9,6 +9,7 @@ import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.FD_Type;
 import com.officina_hide.base.model.FD_TypeITem_Param;
 import com.officina_hide.base.model.FD_TypeItem;
+import com.officina_hide.base.model.FD_User;
 import com.officina_hide.base.model.I_FD_Column;
 import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.base.model.I_FD_DataDictionary;
@@ -54,6 +55,8 @@ public class CreateBaseInformation implements I_FD_DB {
 		 * 5-2. 属性設定値、情報登録
 		 * 6-1. テーブル項目用属性登録 
 		 * 6-2. テーブル項目情報構築、情報登録
+		 * ※ここからは汎用の構築手順で行う。
+		 * 7. ユーザー情報テーブル構築、システムユーザー登録
 		 */
 		FD_DB DB = new FD_DB();
 		//1.
@@ -108,6 +111,9 @@ public class CreateBaseInformation implements I_FD_DB {
 		typeItem.addData(env, I_FD_Column.Table_Name);
 		column.addData(env, I_FD_Column.Table_Name);
 		typeItemParam.addData(env, I_FD_Column.Table_Name);
+		//7.
+		FD_User user = new FD_User();
+		user.createTable(env);
 	}
 	/**
 	 * テーブル項目用属性情報登録[Attribute information registration for table items]<br>
