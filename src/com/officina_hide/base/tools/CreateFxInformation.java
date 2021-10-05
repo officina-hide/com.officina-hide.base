@@ -3,6 +3,7 @@ package com.officina_hide.base.tools;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.fx.model.FX_Tab;
 import com.officina_hide.fx.model.FX_View;
+import com.officina_hide.fx.model.V_FX_TableColumn;
 
 /**
  * FX画面用基盤情報構築[Construction of basic information for FX screens]

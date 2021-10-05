@@ -10,6 +10,11 @@ import com.officina_hide.base.common.FD_EnvData;
  */
 public class X_FD_User extends FD_DB implements I_FD_User {
 
+	/** 項目 : ユーザー情報ID */
+	private long FD_User_ID;
+	private String FD_User_Name;
+	private String FD_Login_Password;
+	
 	/**
 	 * コンストラクタ[Constructor]
 	 * @param env 環境情報[Enfironment information]
@@ -20,6 +25,38 @@ public class X_FD_User extends FD_DB implements I_FD_User {
 		if(userID > 0) {
 			load(env, Table_Name, userID, items);
 		}
+	}
+
+	/**
+	 * 情報登録[Save data]
+	 * @author officine-hide.net
+	 * @since 2021/10/05 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 */
+	public void save(FD_EnvData env) {
+		save(env, Table_Name, items);
+	}
+
+	public long getFD_User_ID() {
+		FD_User_ID = items.getlongData(COLUMNNAME_FD_User_ID);
+		return FD_User_ID;
+	}
+	public void setFD_User_ID(long userID) {
+		items.setValue(COLUMNNAME_FD_User_ID, userID);
+	}
+	public String getFD_User_Name() {
+		FD_User_Name = items.getStringData(COLUMNNAME_FD_User_Name);
+		return FD_User_Name;
+	}
+	public void setFD_User_Name(String userName) {
+		items.setValue(COLUMNNAME_FD_User_Name, userName);
+	}
+	public String getFD_Login_Password() {
+		FD_Login_Password = items.getStringData(COLUMNNAME_FD_Login_Password);
+		return FD_Login_Password;
+	}
+	public void setFD_Login_Password(String password) {
+		items.setValue(COLUMNNAME_FD_Login_Password, password);
 	}
 
 }
