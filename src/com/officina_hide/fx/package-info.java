@@ -1,5 +1,5 @@
 /**
- * JavaFX‚ğg—p‚µ‚½ƒNƒ‰ƒX‚ğŠÇ—‚·‚éB<br>
+ * JavaFXç”»é¢ã«ã‹ã‚“ã™ã‚‹ã‚¯ãƒ©ã‚¹ã‚’ç®¡ç†ã™ã‚‹ã€‚<br>
  * Manage classes using JavaFX.
  * @author officina-hide.com
  * @version 1.00
