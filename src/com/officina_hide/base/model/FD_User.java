@@ -36,6 +36,10 @@ public class FD_User extends FD_DB implements I_FD_User {
 		column.add(env, 0, Table_ID, COLUMNNAME_FD_Name, FD_Item_String, 100, true, false, null);
 		column.add(env, 0, Table_ID, COLUMNNAME_FD_Description, FD_Item_Text, 0, true, false, null);
 		addCommonColumn(env, Table_ID);
+		//テーブル削除
+		dropTable(env, Table_Name);
+		//テーブル生成
+		createTable(env, Table_Name);
 	}
 
 	/**
@@ -50,6 +54,13 @@ public class FD_User extends FD_DB implements I_FD_User {
 	public void add(FD_EnvData env, int userID, String userName, String password,
 			String name, String description) {
 		X_FD_User user = new X_FD_User(env, 0);
+		user.setFD_User_ID(0);
+		user.setFD_User_Name(userName);
+		user.setFD_Login_Password(password);
+		user.setFD_Name(name);
+		user.setFD_Description(description);
+		user.setFD_Group_ID(env.getActionUserID());
+		user.save(env);
 	}
 
 }

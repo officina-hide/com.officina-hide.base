@@ -4,6 +4,7 @@ import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.FD_DataDictionary;
+import com.officina_hide.base.model.FD_Login;
 import com.officina_hide.base.model.FD_Numbering;
 import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.FD_Type;
@@ -57,6 +58,7 @@ public class CreateBaseInformation implements I_FD_DB {
 		 * 6-2. テーブル項目情報構築、情報登録
 		 * ※ここからは汎用の構築手順で行う。
 		 * 7. ユーザー情報テーブル構築、システムユーザー登録
+		 * 8. ログイン情報テーブル構築
 		 */
 		FD_DB DB = new FD_DB();
 		//1.
@@ -116,6 +118,9 @@ public class CreateBaseInformation implements I_FD_DB {
 		user.createTable(env);
 		user.add(env, SYSTEM_USER_ID, SYSTEM_USER, SYSTEM_USER_PASSWORD,
 				SYSTEM_USER_NAME, SYSTEM_USER_DESCRIPTION);
+		//8.
+		FD_Login login = new FD_Login();
+		login.createTable(env);
 	}
 	/**
 	 * テーブル項目用属性情報登録[Attribute information registration for table items]<br>

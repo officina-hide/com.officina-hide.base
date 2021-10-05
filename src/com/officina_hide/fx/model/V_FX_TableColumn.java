@@ -1,4 +1,4 @@
-package com.officina_hide.base.tools;
+package com.officina_hide.fx.model;
 
 /**
  * テーブル・カラム画面インターフェースクラス[Table / column screen interface class]<br>
