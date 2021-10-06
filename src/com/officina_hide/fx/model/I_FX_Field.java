@@ -28,10 +28,10 @@ public interface I_FX_Field {
 	public static final String COLUMNNAME_FX_Field_Name = "FX_Field_Name";
 	public static final String NAME_FX_Field_Name = "FX画面項目識別名";
 	public static final String COMMENT_FX_Field_Name = "FX画面項目を識別する為の名称";
+	/** 項目 : FXタブ情報ID */
+	public static final String COLUMNNAME_FX_Tab_ID = I_FX_Tab.COLUMNNAME_FX_Tab_ID;
+	public static final String NAME_FX_Tab_ID = I_FX_Tab.NAME_FX_Tab_ID;
 	
-	/** 項目情報 */
-	/** 画面項目識別名 */
-	public final static String COLUMNNAME_Fx_Field_Name = Table_Name + "_Name";
 	/** テーブル項目情報ID */
 	public final static String COLUMNNAME_FD_Column_ID = I_FD_Column.Table_Name + "_ID";
 	/** リスト用項目判定 */

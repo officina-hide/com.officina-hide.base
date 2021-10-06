@@ -42,7 +42,7 @@ public class X_Fx_Field extends FD_DB implements I_FX_Field {
 		
 		items = new FD_Items();
 		items.add(COLUMNNAME_FX_Field_ID, env, FD_Item_ID);
-		items.add(COLUMNNAME_Fx_Field_Name, env, FD_Item_String);
+//		items.add(COLUMNNAME_Fx_Field_Name, env, FD_Item_String);
 //		items.add(COLUMNNAME_FX_View_ID, env, FD_Item_ID);
 		items.add(COLUMNNAME_FD_Column_ID, env, FD_Item_ID);
 		items.add(COLUMNNAME_FD_Name, null, FD_Item_String);
@@ -68,9 +68,9 @@ public class X_Fx_Field extends FD_DB implements I_FX_Field {
 	public void setFX_Fields_ID(int fX_Fields_ID) {
 		FX_Fields_ID = fX_Fields_ID;
 	}
-	public String getFX_Field_Name() {
-		return items.getStringData(COLUMNNAME_Fx_Field_Name);
-	}
+//	public String getFX_Field_Name() {
+//		return items.getStringData(COLUMNNAME_Fx_Field_Name);
+//	}
 	public void setFX_Field_Name(String fX_Field_Name) {
 		FX_Field_Name = fX_Field_Name;
 	}

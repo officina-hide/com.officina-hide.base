@@ -146,11 +146,11 @@ public class Fx_FD_Table_View extends Application {
 			HBox rowArea = new HBox(5);
 			itemArea.getChildren().add(rowArea); 
 			//項目のラベルをセット
-			Label title = new Label(field.getFX_Field_Name());
-			title.setFont(new Font("Meiryo UI", 12));
-			title.setPrefWidth(100);
-			title.setAlignment(Pos.CENTER_RIGHT);
-			rowArea.getChildren().add(title);
+//			Label title = new Label(field.getFX_Field_Name());
+//			title.setFont(new Font("Meiryo UI", 12));
+//			title.setPrefWidth(100);
+//			title.setAlignment(Pos.CENTER_RIGHT);
+//			rowArea.getChildren().add(title);
 			//テーブル項目の属性を取得する。
 //			System.out.println(field.getFD_Column().getFD_Column_Name());
 //			switch(field.getFD_Column().getFD_Type_ID()) {

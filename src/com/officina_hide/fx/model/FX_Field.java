@@ -36,11 +36,25 @@ public class FX_Field extends FD_DB implements I_FX_Field {
 		FD_Column column = new FD_Column();
 		column.add(env, 0, Table_ID, COLUMNNAME_FX_Field_ID, FD_Item_ID, 0, false, true, null);
 		column.add(env, 0, Table_ID, COLUMNNAME_FX_Field_Name, FD_Item_String, 100, true, false, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FX_Tab_ID, FD_Item_ID, 0, true, false, null);
 		addCommonColumn(env, Table_ID);
 		//テーブル削除
 		dropTable(env, Table_Name);
 		//テーブル生成
 		createTable(env, Table_Name);
+	}
+
+	/**
+	 * 情報登録[Save data]
+	 * @author officina-hide.net
+	 * @since 2021/10/06 Ver. 1.00
+	 * @param env 環境情報[Enfironment information]
+	 * @param fieldId 画面項目情報ID[Screen item information ID]
+	 * @param fieldName 画面項目名[Screen item name]
+	 * @param tabId タブ情報ID[Tab information ID]
+	 */
+	public void add(FD_EnvData env, int fieldId, String fieldName, long tabId) {
+		
 	}
 
 }

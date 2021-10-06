@@ -48,7 +48,7 @@ public class CreateFxInformation {
 		long viewId = view.add(env, 0, V_FX_Login.FX_View_Name, V_FX_Login.FX_Name, V_FX_Login.FX_Description);
 		long tabId = tab.add(env, 0, V_FX_Login.FX_Tab_Name, viewId,
 				I_FD_Login.Table_ID ,V_FX_Login.FX_Tab_Disp_Name, V_FX_Login.FX_Tab_Description);
-		
+		field.add(env, 0, I_FD_Login.COLUMNNAME_FD_User_Name, tabId);
 		
 //		long viewId = view.add(env, 0, V_FX_TableColumn.FX_View_Name, V_FX_TableColumn.FX_Name, V_FX_TableColumn.FX_Description);
 //		tab.add(env, 0, V_FX_TableColumn.FX_TAB_Table, viewId,
