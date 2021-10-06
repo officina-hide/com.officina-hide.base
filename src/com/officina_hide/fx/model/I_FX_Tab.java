@@ -1,5 +1,7 @@
 package com.officina_hide.fx.model;
 
+import com.officina_hide.base.model.I_FD_Table;
+
 /**
  * 画面タブ情報インターフェースクラス[Screen Tab Information Interface Class]<br>
  * @author officina-hide.net
@@ -30,4 +32,7 @@ public interface I_FX_Tab {
 	/** 項目 : FX画面基盤情報ID */
 	public static final String COLUMNNAME_FX_View_ID = I_FX_View.COLUMNNAME_FX_View_ID;
 	public static final String NAME_FX_View_ID = I_FX_View.NAME_FX_View_ID;
+	/** 項目 : テーブル情報ID */
+	public static final String COLUMNNAME_FD_Table_ID = I_FD_Table.COLUMNNAME_FD_Table_ID;
+	public static final String NAME_FD_Table_ID = I_FD_Table.NAME_FD_Table_ID;
 }

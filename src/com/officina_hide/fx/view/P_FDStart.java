@@ -1,5 +1,7 @@
 package com.officina_hide.fx.view;
 
+import com.officina_hide.base.common.FD_EnvData;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -10,11 +12,16 @@ import javafx.stage.Stage;
  * @since 2021/10/05 Ver. 1.00
  */
 public class P_FDStart extends Application {
+	//環境情報の取得
+	private FD_EnvData env = new FD_EnvData();
 
 	@Override
 	public void start(Stage stage) throws Exception {
+		//環境情報初期化
+		env.setDbName("FDBASE");
+		
 		//ログイン画面を表示する。
-		V_Login login = new  V_Login();
+		V_Login login = new  V_Login(env);
 		login.start(new Stage());
 	}
 

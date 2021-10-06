@@ -1,6 +1,7 @@
 package com.officina_hide.fx.model;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_WhereData;
 import com.officina_hide.base.model.FD_DB;
 
 /**
@@ -31,6 +32,19 @@ public class X_FX_View extends FD_DB implements I_FX_View {
 		createItemList(env, Table_Name);
 		if(viewId > 0) {
 			load(env, Table_Name, viewId, items);
+		}
+	}
+
+	/**
+	 * コンストラクタ[Constructor]
+	 * @param env 環境情報[Environment information]
+	 * @param where 抽出条件[Extraction condition]
+	 */
+	public X_FX_View(FD_EnvData env, FD_WhereData where) {
+		/** 項目リスト作成 */
+		createItemList(env, Table_Name);
+		if(where != null) {
+			load(env, items, where);
 		}
 	}
 

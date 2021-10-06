@@ -14,7 +14,7 @@ import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.model.X_FD_Table;
 import com.officina_hide.fx.model.Fx_TextArea;
 import com.officina_hide.fx.model.Fx_ToolButtonArea;
-import com.officina_hide.fx.model.I_Fx_Field;
+import com.officina_hide.fx.model.I_FX_Field;
 import com.officina_hide.fx.model.I_FX_View;
 import com.officina_hide.fx.model.X_Fx_Field;
 import com.officina_hide.fx.model.X_FX_View;
@@ -283,13 +283,13 @@ public class Fx_FD_Table_View extends Application {
 		ResultSet rs = null;
 		StringBuffer sql = new StringBuffer();
 		try {
-			sql.append("SELECT * FROM ").append(I_Fx_Field.Table_Name).append(" ");
-			sql.append("WHERE ").append(I_Fx_Field.COLUMNNAME_Fx_View_ID).append(" = ").append(viewId).append(" ");
+			sql.append("SELECT * FROM ").append(I_FX_Field.Table_Name).append(" ");
+//			sql.append("WHERE ").append(I_FX_Field.COLUMNNAME_FX_View_ID).append(" = ").append(viewId).append(" ");
 			DB.connection(env);
 			stmt = DB.getConn().createStatement();
 			rs = stmt.executeQuery(sql.toString());
 			while(rs.next()) {
-				list.add(new X_Fx_Field(env, rs.getInt(I_Fx_Field.COLUMNNAME_Fx_Field_ID)));
+				list.add(new X_Fx_Field(env, rs.getInt(I_FX_Field.COLUMNNAME_FX_Field_ID)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

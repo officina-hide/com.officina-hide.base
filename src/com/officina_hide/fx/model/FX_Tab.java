@@ -37,6 +37,7 @@ public class FX_Tab extends FD_DB implements I_FX_Tab {
 		column.add(env, 0, Table_ID, COLUMNNAME_FX_Tab_ID, FD_Item_ID, 0, false, true, null);
 		column.add(env, 0, Table_ID, COLUMNNAME_FX_Tab_Name, FD_Item_String, 100, true, false, null);
 		column.add(env, 0, Table_ID, COLUMNNAME_FX_View_ID, FD_Item_ID, 0, true, false, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FD_Table_ID, FD_Item_ID, 0, true, false, null);
 		column.add(env, 0, Table_ID, COLUMNNAME_FD_Name, FD_Item_String, 100, true, false, null);
 		column.add(env, 0, Table_ID, COLUMNNAME_FD_Description, FD_Item_Text, 0, true, false, null);
 		addCommonColumn(env, Table_ID);
@@ -54,17 +55,22 @@ public class FX_Tab extends FD_DB implements I_FX_Tab {
 	 * @param tabID FXタブ情報ID[FX tab information ID]
 	 * @param tabName タブ識別名[Tab distinguished name]
 	 * @param viewId FX画面基盤情報ID[FX screen base information ID]
+	 * @param tableId テーブル情報ID[Table informatiln ID]
 	 * @param name 表示名[Displey name]
 	 * @param description 説明[Description]
+	 * @return tabID FXタブ情報ID[FX tab information ID]
 	 */
-	public void add(FD_EnvData env, int tabID, String tabName, long viewId, String name,	String description) {
+	public long add(FD_EnvData env, int tabID, String tabName, long viewId, int tableId, String name,	String description) {
 		X_FX_Tab tab = new X_FX_Tab(env, 0);
 		tab.setFX_Tab_ID(0);
 		tab.setFX_Tab_Name(tabName);
 		tab.setFX_View_ID(viewId);
 		tab.setFD_Name(name);
 		tab.setFD_Description(description);
+		tab.setFD_Table_ID(tableId);
 		tab.setFD_Group_ID(env.getActionUserID());
 		tab.save(env);
+		
+		return tab.getFX_Tab_ID();
 	}
 }

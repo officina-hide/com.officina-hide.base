@@ -12,7 +12,7 @@ import com.officina_hide.base.model.X_FD_Column;
  * @version 1.00
  * @since 2021/08/26
  */
-public class X_Fx_Field extends FD_DB implements I_Fx_Field {
+public class X_Fx_Field extends FD_DB implements I_FX_Field {
 
 	/** 環境情報 */
 	FD_EnvData env = new FD_EnvData();
@@ -41,9 +41,9 @@ public class X_Fx_Field extends FD_DB implements I_Fx_Field {
 		this.env = env;
 		
 		items = new FD_Items();
-		items.add(COLUMNNAME_Fx_Field_ID, env, FD_Item_ID);
+		items.add(COLUMNNAME_FX_Field_ID, env, FD_Item_ID);
 		items.add(COLUMNNAME_Fx_Field_Name, env, FD_Item_String);
-		items.add(COLUMNNAME_Fx_View_ID, env, FD_Item_ID);
+//		items.add(COLUMNNAME_FX_View_ID, env, FD_Item_ID);
 		items.add(COLUMNNAME_FD_Column_ID, env, FD_Item_ID);
 		items.add(COLUMNNAME_FD_Name, null, FD_Item_String);
 		load(env, Table_Name, id, items);

@@ -142,7 +142,6 @@ public class FD_WhereData implements I_FD_DB {
 		public void setConnect(String connect) {
 			this.connect = connect;
 		}
-		@SuppressWarnings("unused")
 		public String getConnect() {
 			return connect;
 		}

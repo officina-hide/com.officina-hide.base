@@ -28,7 +28,7 @@ public class FX_Tabs {
 		 * 現段階では呼び出しレベルの一覧を作成する。
 		 * 将来的に階層構造とする。
 		 */
-		FD_WhereData where = new FD_WhereData(I_Fx_Field.COLUMNNAME_Fx_View_ID, viewId);
+//		FD_WhereData where = new FD_WhereData(I_FX_Field.COLUMNNAME_Fx_View_ID, viewId);
 //		where.add(FD_WhereData.AND, I_FX_Tab.COLUMNNAME_FX_Tab_Level, 0);
 	}
 

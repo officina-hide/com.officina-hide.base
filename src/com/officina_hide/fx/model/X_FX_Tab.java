@@ -1,6 +1,7 @@
 package com.officina_hide.fx.model;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_WhereData;
 import com.officina_hide.base.model.FD_DB;
 
 public class X_FX_Tab extends FD_DB implements I_FX_Tab {
@@ -11,6 +12,8 @@ public class X_FX_Tab extends FD_DB implements I_FX_Tab {
 	private String FX_Tab_Name;
 	/** 項目 : FX画面情報ID */
 	private long FX_View_ID;
+	/** 項目 : テーブル情報ID */
+	private long FD_Table_ID;
 	
 	/**
 	 * コンストラクタ[Constructor]
@@ -21,6 +24,20 @@ public class X_FX_Tab extends FD_DB implements I_FX_Tab {
 		createItemList(env, Table_Name);
 		if(tabID > 0) {
 			load(env, Table_Name, tabID, items);
+		}
+	}
+
+	/**
+	 * コンストラクタ[Constructor]
+	 * @author officine-hide.net
+	 * @since 2021/10/06 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param where 抽出条件[Extraction condition]
+	 */
+	public X_FX_Tab(FD_EnvData env, FD_WhereData where) {
+		createItemList(env, Table_Name);
+		if(where != null) {
+			load(env, items, where);
 		}
 	}
 
@@ -54,6 +71,13 @@ public class X_FX_Tab extends FD_DB implements I_FX_Tab {
 	}
 	public void setFX_View_ID(long viewId) {
 		items.setValue(COLUMNNAME_FX_View_ID, viewId);
+	}
+	public long getFD_Table_ID() {
+		FD_Table_ID = items.getlongData(COLUMNNAME_FD_Table_ID);
+		return FD_Table_ID;
+	}
+	public void setFD_Table_ID(long tableID) {
+		items.setValue(COLUMNNAME_FD_Table_ID, tableID);
 	}
 
 }
