@@ -18,12 +18,12 @@ public class X_FX_Tab extends FD_DB implements I_FX_Tab {
 	/**
 	 * コンストラクタ[Constructor]
 	 * @param env 環境情報[Enfironment information]
-	 * @param tabID FXタブ情報ID
+	 * @param tabId FXタブ情報ID
 	 */
-	public X_FX_Tab(FD_EnvData env, int tabID) {
+	public X_FX_Tab(FD_EnvData env, long tabId) {
 		createItemList(env, Table_Name);
-		if(tabID > 0) {
-			load(env, Table_Name, tabID, items);
+		if(tabId > 0) {
+			load(env, Table_Name, tabId, items);
 		}
 	}
 

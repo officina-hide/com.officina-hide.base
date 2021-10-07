@@ -22,6 +22,8 @@ public class P_FDStart extends Application {
 		
 		//ログイン画面を表示する。
 		V_Login login = new  V_Login(env);
+		//表示項目設定
+		
 		login.start(new Stage());
 	}
 

@@ -16,7 +16,7 @@ import com.officina_hide.fx.model.Fx_TextArea;
 import com.officina_hide.fx.model.Fx_ToolButtonArea;
 import com.officina_hide.fx.model.I_FX_Field;
 import com.officina_hide.fx.model.I_FX_View;
-import com.officina_hide.fx.model.X_Fx_Field;
+import com.officina_hide.fx.model.X_FX_Field;
 import com.officina_hide.fx.model.X_FX_View;
 
 import javafx.application.Application;
@@ -55,7 +55,7 @@ public class Fx_FD_Table_View extends Application {
 	private X_FX_View view;
 	private static final String View_Name = "FX_FD_Table_View";
 	/** 画面項目リスト */
-	private List<X_Fx_Field> fields;
+	private List<X_FX_Field> fields;
 	/** テーブル情報ID */
 	private int tableId;
 	/** テーブル情報 */
@@ -140,9 +140,9 @@ public class Fx_FD_Table_View extends Application {
 	 * @since 1.00 2021/08/30
 	 * @return 項目領域[Item Area]
 	 */
-	private Node getItem(List<X_Fx_Field> fileds) {
+	private Node getItem(List<X_FX_Field> fileds) {
 		VBox itemArea = new VBox(5);
-		for(X_Fx_Field field : fileds) {
+		for(X_FX_Field field : fileds) {
 			HBox rowArea = new HBox(5);
 			itemArea.getChildren().add(rowArea); 
 			//項目のラベルをセット
@@ -277,8 +277,8 @@ public class Fx_FD_Table_View extends Application {
 	 * @since 1.00 2021/08/28
 	 * @return Fx画面項目情報リスト[Fx screen item information list]
 	 */
-	private List<X_Fx_Field> getFieldList(int viewId) {
-		List<X_Fx_Field> list = new ArrayList<>();
+	private List<X_FX_Field> getFieldList(int viewId) {
+		List<X_FX_Field> list = new ArrayList<>();
 		Statement stmt = null;
 		ResultSet rs = null;
 		StringBuffer sql = new StringBuffer();
@@ -289,7 +289,7 @@ public class Fx_FD_Table_View extends Application {
 			stmt = DB.getConn().createStatement();
 			rs = stmt.executeQuery(sql.toString());
 			while(rs.next()) {
-				list.add(new X_Fx_Field(env, rs.getInt(I_FX_Field.COLUMNNAME_FX_Field_ID)));
+				list.add(new X_FX_Field(env, rs.getInt(I_FX_Field.COLUMNNAME_FX_Field_ID)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

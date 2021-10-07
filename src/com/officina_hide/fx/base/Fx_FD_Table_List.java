@@ -19,7 +19,7 @@ import com.officina_hide.base.model.X_FD_Table;
 import com.officina_hide.fx.model.FX_Tabs;
 import com.officina_hide.fx.model.Fx_ToolButtonArea;
 import com.officina_hide.fx.model.I_FX_Field;
-import com.officina_hide.fx.model.X_Fx_Field;
+import com.officina_hide.fx.model.X_FX_Field;
 import com.officina_hide.fx.model.X_FX_View;
 
 import javafx.application.Application;
@@ -232,7 +232,7 @@ public class Fx_FD_Table_List extends Application implements I_FD_DB {
 			stmt = DB.getConn().createStatement();
 			rs = stmt.executeQuery(sql.toString());
 			while(rs.next()) {
-				X_Fx_Field field = new X_Fx_Field(env, rs.getInt(I_FX_Field.COLUMNNAME_FX_Field_ID));
+				X_FX_Field field = new X_FX_Field(env, rs.getInt(I_FX_Field.COLUMNNAME_FX_Field_ID));
 //				TableColumn<Map, String> tableColumn = new TableColumn<>(field.getFD_Name());
 //				tableColumn.setCellValueFactory(new MapValueFactory<>(field.getFX_Field_Name()));
 //				table.getColumns().add(tableColumn);

@@ -1,6 +1,13 @@
 package com.officina_hide.fx.model;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_WhereData;
 import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.FD_DataDictionary;
@@ -54,7 +61,42 @@ public class FX_Field extends FD_DB implements I_FX_Field {
 	 * @param tabId タブ情報ID[Tab information ID]
 	 */
 	public void add(FD_EnvData env, int fieldId, String fieldName, long tabId) {
-		
+		X_FX_Field field = new X_FX_Field(env, 0);
+		field.setFX_Field_ID(fieldId);
+		field.setFx_Field_Name(fieldName);
+		field.setFX_Tab_ID(tabId);
+		field.setFD_Group_ID(env.getActionUserID());
+		field.save(env);
+	}
+
+	/**
+	 * 画面項目一覧生成[Screen item list generation]
+	 * @author officine-hide.net
+	 * @since 2021/10/07 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param where 抽出条件[Extraction condition]
+	 * @return 画面項目一覧[Screen item list]
+	 */
+	public List<X_FX_Field> getList(FD_EnvData env, FD_WhereData where) {
+		List<X_FX_Field> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT * FROM ").append(I_FX_Field.Table_Name).append(" ");
+			sql.append(where.toString()).append(" ");
+			connection(env);
+			pstmt = getConn().prepareStatement(sql.toString());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				list.add(new X_FX_Field(env, rs.getLong(COLUMNNAME_FX_Field_ID)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
+		return list;
 	}
 
 }
