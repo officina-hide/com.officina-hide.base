@@ -2,6 +2,7 @@ package com.officina_hide.fx.model;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
+import com.officina_hide.base.model.X_FD_TypeItem;
 
 /**
  * Fx画面項目情報[Fx screen item information]<br>
@@ -15,11 +16,15 @@ public class X_FX_Field extends FD_DB implements I_FX_Field {
 	/** 項目 : 画面項目情報iD */
 	private long FX_Field_ID;
 	/** 項目 : 画面項目名 */
-	private String Fx_Field_Name;
+	private String FX_Field_Name;
 	/** 項目 : タブ情報ID */
 	private long FX_Tab_ID;
 	/** 項目 : タブ情報 */
 	private X_FX_Tab FX_Tab;
+	/** 項目 : 属性項目情報ID */
+	private long FD_TypeItem_ID;
+	/** 項目 : 属性項目情報 */
+	private X_FD_TypeItem FD_TypeItem;
 	
 	/**
 	 * コンストラクタ[Constructor]<br>
@@ -67,8 +72,8 @@ public class X_FX_Field extends FD_DB implements I_FX_Field {
 		items.setValue(COLUMNNAME_FX_Field_ID, fieldID);
 	}
 	public String getFx_Field_Name() {
-		Fx_Field_Name = items.getStringData(COLUMNNAME_FX_Field_Name);
-		return Fx_Field_Name;
+		FX_Field_Name = items.getStringData(COLUMNNAME_FX_Field_Name);
+		return FX_Field_Name;
 	}
 	public void setFx_Field_Name(String fieldName) {
 		items.setValue(COLUMNNAME_FX_Field_Name, fieldName);
@@ -93,6 +98,27 @@ public class X_FX_Field extends FD_DB implements I_FX_Field {
 			}
 		}
 		return FX_Tab;
+	}
+	public long getFD_TypeItem_ID() {
+		FD_TypeItem_ID = items.getlongData(COLUMNNAME_FD_TypeItem_ID);
+		return FD_TypeItem_ID;
+	}
+	public void setFD_TypeItem_ID(long typeItemID) {
+		items.setValue(COLUMNNAME_FD_TypeItem_ID, typeItemID);
+	}
+	public X_FD_TypeItem getFD_TypeItem(FD_EnvData env) {
+		if(FD_TypeItem == null) {
+			if(getFD_TypeItem_ID() > 0) {
+				FD_TypeItem = new X_FD_TypeItem(env, getFD_TypeItem_ID());
+			} else {
+				return null;
+			}
+		} else {
+			if(getFD_TypeItem_ID() != FD_TypeItem.getFD_TypeItem_ID()) {
+				FD_TypeItem = new X_FD_TypeItem(env, getFD_TypeItem_ID());
+			}
+		}
+		return FD_TypeItem;
 	}
 
 }

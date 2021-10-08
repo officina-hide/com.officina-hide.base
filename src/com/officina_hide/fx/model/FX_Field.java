@@ -13,6 +13,7 @@ import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.FD_DataDictionary;
 import com.officina_hide.base.model.FD_Numbering;
 import com.officina_hide.base.model.FD_Table;
+import com.officina_hide.base.model.FD_TypeItem;
 
 /**
  * 画面項目情報クラス[Screen item information class]<br>
@@ -43,7 +44,9 @@ public class FX_Field extends FD_DB implements I_FX_Field {
 		FD_Column column = new FD_Column();
 		column.add(env, 0, Table_ID, COLUMNNAME_FX_Field_ID, FD_Item_ID, 0, false, true, null);
 		column.add(env, 0, Table_ID, COLUMNNAME_FX_Field_Name, FD_Item_String, 100, true, false, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FD_Name, FD_Item_String, 200, true, false, null);
 		column.add(env, 0, Table_ID, COLUMNNAME_FX_Tab_ID, FD_Item_ID, 0, true, false, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FD_TypeItem_ID, FD_Item_ID, 0, true, false, null);
 		addCommonColumn(env, Table_ID);
 		//テーブル削除
 		dropTable(env, Table_Name);
@@ -58,14 +61,19 @@ public class FX_Field extends FD_DB implements I_FX_Field {
 	 * @param env 環境情報[Enfironment information]
 	 * @param fieldId 画面項目情報ID[Screen item information ID]
 	 * @param fieldName 画面項目名[Screen item name]
+	 * @param name 表示名[Display name]
 	 * @param tabId タブ情報ID[Tab information ID]
+	 * @param fieldTypeName 属性項目名[Attribute item name]
 	 */
-	public void add(FD_EnvData env, int fieldId, String fieldName, long tabId) {
+	public void add(FD_EnvData env, int fieldId, String fieldName, String name, long tabId, String fieldTypeName) {
 		X_FX_Field field = new X_FX_Field(env, 0);
 		field.setFX_Field_ID(fieldId);
 		field.setFx_Field_Name(fieldName);
+		field.setFD_Name(name);
 		field.setFX_Tab_ID(tabId);
 		field.setFD_Group_ID(env.getActionUserID());
+		FD_TypeItem typeItem = new FD_TypeItem();		
+		field.setFD_TypeItem_ID(typeItem.getTypeItemID(env, FD_Field_Type, fieldTypeName));
 		field.save(env);
 	}
 

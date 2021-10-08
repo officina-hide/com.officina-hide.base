@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_WhereData;
+import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.fx.model.FX_Field;
 import com.officina_hide.fx.model.I_FX_Field;
 import com.officina_hide.fx.model.I_FX_Tab;
@@ -15,8 +16,11 @@ import com.officina_hide.fx.model.X_FX_Field;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -27,7 +31,7 @@ import javafx.stage.Stage;
  * @version 1.00 新規作成
  * @since 2021/10/06 Ver. 1.00
  */
-public class V_Login extends Application {
+public class V_Login extends Application implements I_FD_DB {
 
 	/** 環境情報 */
 	FD_EnvData env;
@@ -55,7 +59,7 @@ public class V_Login extends Application {
 		where = new FD_WhereData(I_FX_Tab.COLUMNNAME_FX_View_ID	, view.getFX_View_ID());
 		X_FX_Tab tab = new X_FX_Tab(env, where);
 		//3.
-		VBox root = new VBox();
+		VBox root = new VBox(5);
 		root.setPadding(new Insets(5, 5, 5, 5));
 		root.setStyle("-fx-font-family: Meiryo UI; -fx-font-size: 12");
 
@@ -83,10 +87,22 @@ public class V_Login extends Application {
 		List<X_FX_Field> flist = field.getList(env, where);
 		for(X_FX_Field fd : flist) {
 			HBox fbox = new HBox(5);
+			fbox.setAlignment(Pos.CENTER_LEFT);
 			root.getChildren().add(fbox);
 			//ラベルセット
-			Label label = new Label(fd.getFx_Field_Name());
+			Label label = new Label(fd.getFD_Name());
 			fbox.getChildren().add(label);
+			//項目セット
+			switch(fd.getFD_TypeItem(env).getFD_TypeItem_Name()) {
+			case FD_Field_SimpleText:
+				TextField textField = new TextField();
+				fbox.getChildren().add(textField);
+				break;
+			case FD_Field_Password:
+				PasswordField pass = new PasswordField();
+				fbox.getChildren().add(pass);
+				break;
+			}
 		}
 	}
 

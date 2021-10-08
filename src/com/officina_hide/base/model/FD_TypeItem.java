@@ -1,5 +1,7 @@
 package com.officina_hide.base.model;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -89,6 +91,42 @@ public class FD_TypeItem extends FD_DB implements I_FD_TypeItem {
 		typeItem.save(env);
 		
 		return typeItem.getFD_TypeItem_ID();
+	}
+
+	/**
+	 * 属性項目情報ID取得[Attribute item information ID acquisition]<br>
+	 * @param env 環境情報[Environment information]
+	 * @param type 属性名[Attribute name]
+	 * @param typeItem 属性項目名[Attribute item name]
+	 * @return 属性項目情報ID[Attribute item information ID]
+	 */
+	public long getTypeItemID(FD_EnvData env, String type, String typeItem) {
+		long id = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT ").append("ti.").append(I_FD_TypeItem.COLUMNNAME_FD_TypeItem_ID)
+				.append(" FROM ").append(I_FD_TypeItem.Table_Name).append(" ti ");
+			sql.append("LEFT JOIN ").append(I_FD_Type.Table_Name).append(" t ")
+				.append(" ON ").append("t.").append(I_FD_Type.COLUMNNAME_FD_Type_ID).append(" = ")
+				.append("ti.").append(I_FD_TypeItem.COLUMNNAME_FD_Type_ID).append(" ");
+			sql.append("WHERE ").append("t.").append(I_FD_Type.COLUMNNAME_FD_Type_Name).append(" = ? ");
+			sql.append("AND ").append("ti.").append(I_FD_TypeItem.COLUMNNAME_FD_TypeItem_Name).append(" = ? ");
+			connection(env);
+			pstmt = getConn().prepareStatement(sql.toString());
+			pstmt.setString(1, type);
+			pstmt.setString(2, typeItem);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				id = rs.getLong("ti."+I_FD_TypeItem.COLUMNNAME_FD_TypeItem_ID);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
+		return id;
 	}
 
 }

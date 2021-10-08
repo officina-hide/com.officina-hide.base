@@ -28,6 +28,11 @@ public interface I_FD_DB {
 	/** テーブル項目種別 : 判定 */
 	public static final String FD_ITEM_YES_NO = "FD_ITEM_YES_NO";
 	
+	/** 画面項目種別 : 1行テキスト */
+	public static final String FD_Field_SimpleText = "FD_Field_SimpleText";
+	/** 画面項目種別 : パスワード */
+	public static final String FD_Field_Password = "FD_Field_Password";
+	
 	/** システムグループ情報ID */
 	public static final int SYSTEM_GROUP_ID = 100;
 	/** システムユーザー情報ID */
@@ -97,7 +102,8 @@ public interface I_FD_DB {
 			+ COLUMNNAME_FD_UpdatedBy + ID_TYPE + COMMENT + FD_SQ + NAME_FD_UpdatedBy + FD_SQ;
 
 	/** 属性情報名 : テーブル項目情報用属性情報名 */
-	public static final String FD_Column_Type = "FD_Column_Type";
+	public static final String FD_Column_Type = "FD_Column_Type";	//テーブル項目
+	public static final String FD_Field_Type = "FD_Field_Type";				//画面項目
 
 	/** テーブル項目一覧用情報抽出SQL文 */
 	public static final String ITEM_LIST_SQL_Name = "name";
