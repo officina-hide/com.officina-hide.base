@@ -59,6 +59,7 @@ public class CreateBaseInformation implements I_FD_DB {
 		 * ※ここからは汎用の構築手順で行う。
 		 * 7. ユーザー情報テーブル構築、システムユーザー登録
 		 * 8. ログイン情報テーブル構築
+		 * 9. 処理情報テーブル構築
 		 */
 		FD_DB DB = new FD_DB();
 		//1.
@@ -121,6 +122,9 @@ public class CreateBaseInformation implements I_FD_DB {
 		//8.
 		FD_Login login = new FD_Login();
 		login.createTable(env);
+		//9.
+		FD_Process process = new FD_Process();
+		process.createTable(env);
 	}
 	/**
 	 * テーブル項目用属性情報登録[Attribute information registration for table items]<br>

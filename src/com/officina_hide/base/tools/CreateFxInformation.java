@@ -52,6 +52,7 @@ public class CreateFxInformation implements I_FD_DB {
 		field.createTable(env);
 		//5.
 		FX_TabProcess tp = new FX_TabProcess();
+		tp.createTable(env);
 		//6.
 		long viewId = view.add(env, 0, V_FX_Login.FX_View_Name, V_FX_Login.FX_Name, V_FX_Login.FX_Description);
 		long tabId = tab.add(env, 0, V_FX_Login.FX_Tab_Name, viewId,
