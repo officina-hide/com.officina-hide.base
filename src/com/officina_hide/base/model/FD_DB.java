@@ -340,6 +340,38 @@ public class FD_DB implements I_FD_DB {
 	}
 
 	/**
+	 * 項目一覧セット[Item list setting]
+	 * @param env 環境情報[Enfironment information]
+	 * @param TableName テーブル名[Table name]
+	 */
+	public void createItemList(FD_EnvData env, String TableName) {
+		items = new FD_Items();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			connection(env);
+			pstmt = getConn().prepareStatement(ITEM_LIST_SQL);
+			pstmt.setString(1, TableName);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				FD_Item item = new FD_Item();
+				item.setName(rs.getString(ITEM_LIST_SQL_Name));
+				item.setData(null);
+				item.setType(rs.getString(ITEM_LIST_SQL_TypeName));
+				items.getItems().add(item);
+				if(items.getTableId() == 0) {
+					items.setTableId(rs.getLong(ITEM_LIST_SQL_TableID));
+					items.setTableName(TableName);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
+	}
+
+	/**
 	 * 情報ID一覧取得[Get information ID list]<br>
 	 * @author officina-hide.net
 	 * @since 1.00 2021/07/12
@@ -460,38 +492,6 @@ public class FD_DB implements I_FD_DB {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * 項目一覧セット[Item list setting]
-	 * @param env 環境情報[Enfironment information]
-	 * @param TableName テーブル名[Table name]
-	 */
-	public void createItemList(FD_EnvData env, String TableName) {
-		items = new FD_Items();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			connection(env);
-			pstmt = getConn().prepareStatement(ITEM_LIST_SQL);
-			pstmt.setString(1, TableName);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				FD_Item item = new FD_Item();
-				item.setName(rs.getString(ITEM_LIST_SQL_Name));
-				item.setData(null);
-				item.setType(rs.getString(ITEM_LIST_SQL_TypeName));
-				items.getItems().add(item);
-				if(items.getTableId() == 0) {
-					items.setTableId(rs.getLong(ITEM_LIST_SQL_TableID));
-					items.setTableName(TableName);
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBClose(pstmt, rs);
 		}
 	}
 

@@ -7,6 +7,7 @@ import com.officina_hide.base.model.FD_DataDictionary;
 import com.officina_hide.base.model.FD_Numbering;
 import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.I_FD_Process;
+import com.officina_hide.base.model.X_FD_Process;
 
 /**
  * 処理情報クラス[Process information class]<br>
@@ -44,6 +45,24 @@ public class FD_Process extends FD_DB implements I_FD_Process {
 		dropTable(env, Table_Name);
 		//テーブル生成
 		createTable(env, Table_Name);
+	}
+
+	/**
+	 * 情報登録[Save data]<br>
+	 * @author officine-hide.net
+	 * @since 2021/10/09 Ver. 1.00
+	 * @param env 環境情報[Environmane information]
+	 * @param processId 処理情報ID[Process information ID]
+	 * @param processName 処理名[Process name]
+	 * @return 処理情報ID[Process information ID]
+	 */
+	public long add(FD_EnvData env, int processId, String processName) {
+		X_FD_Process process = new X_FD_Process(env, 0);
+		process.setFD_Process_ID(0);
+		process.setFD_Process_Name(processName);
+		process.setFD_Group_ID(env.getActionUserID());
+		process.save(env);
+		return process.getFD_Process_ID();
 	}
 
 }
