@@ -1,12 +1,14 @@
 package com.officina_hide.base.tools;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.model.FD_Process;
 import com.officina_hide.base.model.FD_Type;
 import com.officina_hide.base.model.FD_TypeItem;
 import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.base.model.I_FD_Login;
 import com.officina_hide.fx.model.FX_Field;
 import com.officina_hide.fx.model.FX_Tab;
+import com.officina_hide.fx.model.FX_TabProcess;
 import com.officina_hide.fx.model.FX_View;
 import com.officina_hide.fx.model.V_FX_Login;
 
@@ -72,6 +74,7 @@ public class CreateFxInformation implements I_FD_DB {
 		FD_Process process = new FD_Process();
 		long loginProcessId = process.add(env, 0, "FX_Login_Entry");
 		long cancelProcessId = process.add(env, 0, "FX_Cancel_Entry");
+//		tp.add(env, 0, tabId, loginProcessId, "ログイン");
 		
 //		long viewId = view.add(env, 0, V_FX_TableColumn.FX_View_Name, V_FX_TableColumn.FX_Name, V_FX_TableColumn.FX_Description);
 //		tab.add(env, 0, V_FX_TableColumn.FX_TAB_Table, viewId,

@@ -1,6 +1,7 @@
 package com.officina_hide.fx.model;
 
 import com.officina_hide.base.model.I_FD_DB;
+import com.officina_hide.base.model.I_FD_Process;
 
 /**
  * タブ処理情報インターフェースクラス[Tab process information interface class]<br>
@@ -27,7 +28,8 @@ public interface I_FX_TabProcess extends I_FD_DB {
 	/** 項目 : タブ情報ID */
 	public static final String COLUMNNAME_FX_Tab_ID = I_FX_Tab.COLUMNNAME_FX_Tab_ID;
 	public static final String NAME_FX_Tab_ID = I_FX_Tab.NAME_FX_Tab_ID;
-	
-	
+	/** 項目 : 処理情報ID */
+	public static final String COLUMNNAME_FD_Process_ID = I_FD_Process.COLUMNNAME_FD_Process_ID;
+	public static final String NAME_FD_Process_ID = I_FD_Process.NAME_FD_Process_ID;
 
 }

@@ -6,6 +6,7 @@ import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.FD_DataDictionary;
 import com.officina_hide.base.model.FD_Login;
 import com.officina_hide.base.model.FD_Numbering;
+import com.officina_hide.base.model.FD_Process;
 import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.FD_Type;
 import com.officina_hide.base.model.FD_TypeITem_Param;

@@ -1,13 +1,6 @@
-package com.officina_hide.base.tools;
+package com.officina_hide.base.model;
 
 import com.officina_hide.base.common.FD_EnvData;
-import com.officina_hide.base.model.FD_Column;
-import com.officina_hide.base.model.FD_DB;
-import com.officina_hide.base.model.FD_DataDictionary;
-import com.officina_hide.base.model.FD_Numbering;
-import com.officina_hide.base.model.FD_Table;
-import com.officina_hide.base.model.I_FD_Process;
-import com.officina_hide.base.model.X_FD_Process;
 
 /**
  * 処理情報クラス[Process information class]<br>
