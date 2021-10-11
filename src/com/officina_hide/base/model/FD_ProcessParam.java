@@ -23,6 +23,11 @@ public class FD_ProcessParam extends FD_DB implements I_FD_ProcessParam {
 		//採番情報登録
 		FD_Numbering num = new FD_Numbering();
 		num.add(env, 0, Table_ID, 101, 0);
+		//辞書情報
+		FD_DataDictionary dd = new FD_DataDictionary();
+		dd.add(env, 0, COLUMNNAME_FD_ProcessParam_ID, NAME_FD_ProcessParam_ID, COMMENT_FD_ProcessParam_ID);
+		dd.add(env, 0, COLUMNNAME_FD_ProcessParam_Name, NAME_FD_ProcessParam_Name, COMMENT_FD_ProcessParam_Name);
+		dd.add(env, 0, COLUMNNAME_FD_ProcessParam_Data, NAME_FD_ProcessParam_Data, COMMENT_FD_ProcessParam_Data);
 	}
 
 }

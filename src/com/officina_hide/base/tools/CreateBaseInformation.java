@@ -28,7 +28,7 @@ import com.officina_hide.base.model.X_FD_Numbering;
  * <p>The basic information includes the following information.<br>
  * ・Table-related information (information necessary for building a database such as tables and columns)</p>
  * 
- * @author officine-hide.com
+ * @author officina-hide.net
  * @version 1.00 新規作成
  * @version 2.00 構築手順の全面見直し
  * @since 2021/03/31
