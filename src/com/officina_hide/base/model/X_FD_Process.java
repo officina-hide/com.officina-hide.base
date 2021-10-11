@@ -22,7 +22,7 @@ public class X_FD_Process extends FD_DB implements I_FD_Process {
 	 * @param env 環境情報[Environment information]
 	 * @param processID 処理情報ID[Process information ID]
 	 */
-	public X_FD_Process(FD_EnvData env, int processID) {
+	public X_FD_Process(FD_EnvData env, long processID) {
 		createItemList(env, Table_Name);
 		if(processID > 0) {
 			load(env, Table_Name, processID, items);

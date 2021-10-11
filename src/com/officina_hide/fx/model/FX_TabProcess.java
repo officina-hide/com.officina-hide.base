@@ -38,6 +38,30 @@ public class FX_TabProcess extends FD_DB implements I_FX_TabProcess {
 		column.add(env, 0, Table_ID, COLUMNNAME_FD_Process_ID, FD_Item_ID, 0, true, false, null);
 		column.add(env, 0, Table_ID, COLUMNNAME_FD_Name, FD_Item_String, 100, true, false, null);
 		addCommonColumn(env, Table_ID);
+		//テーブル削除
+		dropTable(env, Table_Name);
+		//テーブル生成
+		createTable(env, Table_Name);
+	}
+
+	/**
+	 * 情報登録[Save data]<br>
+	 * @author officine-hide.net
+	 * @since 2021/10/11 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param tabProcesId タブ処理情報ID[Tab process information ID]
+	 * @param tabId タブ情報ID [Tab information ID]
+	 * @param name 表示名[Display name]
+	 * @param processId 処理情報ID[Process information ID]
+	 */
+	public void add(FD_EnvData env, int tabProcesId, long tabId, String name, long processId) {
+		X_FX_TabProcess tp = new X_FX_TabProcess(env, 0);
+		tp.setFX_TabProcess_ID(tabProcesId);
+		tp.setFX_Tab_ID(tabId);
+		tp.setFD_Name(name);
+		tp.setFD_Process_ID(processId);
+		tp.setFD_Group_ID(env.getActionUserID());
+		tp.save(env);
 	}
 
 }
