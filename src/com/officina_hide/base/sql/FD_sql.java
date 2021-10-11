@@ -97,16 +97,16 @@ public class FD_sql implements I_FD_DB {
 			sql.append(column.getAttribute(COLUMN_NAME)).append(" ");
 			//項目種別
 			switch(column.getAttribute(COLUMN_TYPE)) {
-			case FD_Item_ID:
+			case FD_ITEM_ID:
 				sql.append("int(10) unsigned NOT NULL").append(" ");
 				break;
-			case FD_Item_String:
+			case FD_ITEM_String:
 				sql.append("varchar(").append(column.getAttribute(COLUMN_LENGTH)).append(")").append(" ");
 				break;
 			case FD_ITEM_Date:
 				sql.append("datetime").append(" ");
 				break;
-			case FD_Item_Text:
+			case FD_ITEM_Text:
 				sql.append("text").append(" ");
 			}
 			//コメント

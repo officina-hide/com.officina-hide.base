@@ -38,14 +38,14 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 		this.env = env;
 		
 		items = new FD_Items();
-		items.add(COLUMNNAME_FD_Column_ID, null, FD_Item_ID);
-		items.add(COLUMNNAME_FD_DataDictionary_ID, null, FD_Item_ID);
-		items.add(COLUMNNAME_FD_Table_ID, null, FD_Item_ID);
-		items.add(COLUMNNAME_FD_TypeItem_ID, null, FD_Item_ID);
+		items.add(COLUMNNAME_FD_Column_ID, null, FD_ITEM_ID);
+		items.add(COLUMNNAME_FD_DataDictionary_ID, null, FD_ITEM_ID);
+		items.add(COLUMNNAME_FD_Table_ID, null, FD_ITEM_ID);
+		items.add(COLUMNNAME_FD_TypeItem_ID, null, FD_ITEM_ID);
 		items.add(COLUMNNAME_FD_Column_Size, null, FD_ITEM_Unsigned_Int);
 		items.add(COLUMNNAME_FD_IS_Null, null, FD_ITEM_YES_NO);
 		items.add(COLUMNNAME_FD_IS_Key, null, FD_ITEM_YES_NO);
-		items.add(COLUMNNAME_FD_Default, null, FD_Item_String);
+		items.add(COLUMNNAME_FD_Default, null, FD_ITEM_String);
 		baseItemSet(items);
 		items.setTableId(Table_ID);
 		items.setTableName(Table_Name);

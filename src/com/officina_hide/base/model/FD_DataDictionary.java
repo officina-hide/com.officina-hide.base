@@ -59,10 +59,10 @@ public class FD_DataDictionary extends FD_DB implements I_FD_DataDictionary {
 			break;
 		case I_FD_Column.Table_Name:
 			FD_Column column = new FD_Column();
-			column.add(env, 0, Table_ID, COLUMNNAME_FD_DataDictionary_ID, FD_Item_ID, 0, false, true, null);
-			column.add(env, 0, Table_ID, COLUMNNAME_FD_DataDictionary_Name, FD_Item_String, 100, true, false, null);
-			column.add(env, 0, Table_ID, COLUMNNAME_FD_Name, FD_Item_String, 100, true, false, null);
-			column.add(env, 0, Table_ID, COLUMNNAME_FD_Description, FD_Item_Text, 0, true, false, null);
+			column.add(env, 0, Table_ID, COLUMNNAME_FD_DataDictionary_ID, FD_ITEM_ID, 0, false, true, null);
+			column.add(env, 0, Table_ID, COLUMNNAME_FD_DataDictionary_Name, FD_ITEM_String, 100, true, false, null);
+			column.add(env, 0, Table_ID, COLUMNNAME_FD_Name, FD_ITEM_String, 100, true, false, null);
+			column.add(env, 0, Table_ID, COLUMNNAME_FD_Description, FD_ITEM_Text, 0, true, false, null);
 			addCommonColumn(env, Table_ID);
 			break;
 		}

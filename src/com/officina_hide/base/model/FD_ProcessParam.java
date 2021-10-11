@@ -29,10 +29,10 @@ public class FD_ProcessParam extends FD_DB implements I_FD_ProcessParam {
 		dd.add(env, 0, COLUMNNAME_FD_ProcessParam_Name, NAME_FD_ProcessParam_Name, COMMENT_FD_ProcessParam_Name);
 		//テーブル項目情報登録
 		FD_Column column = new FD_Column();
-		column.add(env, 0, Table_ID, COLUMNNAME_FD_ProcessParam_ID, FD_Item_ID, 0, false, true, null);
-		column.add(env, 0, Table_ID, COLUMNNAME_FD_ProcessParam_Name, FD_Item_String, 100, true, false, null);
-		column.add(env, 0, Table_ID, COLUMNNAME_FD_TypeItem_ID, FD_Item_ID, 0, true, false, null);
-		column.add(env, 0, Table_ID, COLUMNNAME_FD_Process_ID, FD_Item_ID, 0, true, false, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FD_ProcessParam_ID, FD_ITEM_ID, 0, false, true, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FD_ProcessParam_Name, FD_ITEM_String, 100, true, false, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FD_TypeItem_ID, FD_ITEM_ID, 0, true, false, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FD_Process_ID, FD_ITEM_ID, 0, true, false, null);
 		addCommonColumn(env, Table_ID);
 		//テーブル削除
 		dropTable(env, Table_Name);

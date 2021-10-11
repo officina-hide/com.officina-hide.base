@@ -12,11 +12,11 @@ public interface I_FD_DB {
 	public final static String FD_SQ = "'";	//シングルコーテーション
 	
 	/** テーブル項目種別 : ID */
-	public static final String FD_Item_ID = "FD_Item_ID";
+	public static final String FD_ITEM_ID = "FD_Item_ID";
 	/** テーブル項目種別 : 文字列 */
-	public static final String FD_Item_String = "FD_Item_String";
+	public static final String FD_ITEM_String = "FD_Item_String";
 	/** テーブル項目種別 : テキスト */
-	public static final String FD_Item_Text = "FD_Item_Text";
+	public static final String FD_ITEM_Text = "FD_Item_Text";
 	/** テーブル項目種別 : 日付 */
 	public static final String FD_ITEM_Date = "FD_ITEM_Date";
 	/** テーブル項目種別 : 整数値 */

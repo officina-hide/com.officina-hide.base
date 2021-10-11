@@ -71,12 +71,12 @@ public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 			if(rs.next()) {
 				for(FD_Item item : items.getItems()) {
 					switch(item.getType()) {
-					case FD_Item_ID:
+					case FD_ITEM_ID:
 					case FD_ITEM_BigInt:
 						items.setValue(item.getName(), rs.getLong(item.getName()));
 						break;
-					case FD_Item_String:
-					case FD_Item_Text:
+					case FD_ITEM_String:
+					case FD_ITEM_Text:
 						items.setValue(item.getName(), rs.getString(item.getName()));
 						break;
 					case FD_ITEM_Date:
@@ -101,8 +101,8 @@ public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 	 */
 	private void initItems() {
 		items = new FD_Items();
-		items.add(COLUMNNAME_FD_Numbering_ID, null, FD_Item_ID);
-		items.add(COLUMNNAME_FD_Table_ID, null, FD_Item_ID);
+		items.add(COLUMNNAME_FD_Numbering_ID, null, FD_ITEM_ID);
+		items.add(COLUMNNAME_FD_Table_ID, null, FD_ITEM_ID);
 		items.add(COLUMNNAME_FD_InitialNumber, null, FD_ITEM_BigInt);
 		items.add(COLUMNNAME_FD_CurrentNumber, null, FD_ITEM_BigInt);
 		baseItemSet(items);

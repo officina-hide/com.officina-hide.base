@@ -34,8 +34,8 @@ public class FM_Base extends FD_DB implements I_FM_Base {
 		dd.add(env, 0, COLUMNNAME_FM_Title, NAME_FM_Title, COMMENT_FM_Title);
 		//テーブル項目情報登録
 		FD_Column column = new FD_Column();
-		column.add(env, 0, tableId, COLUMNNAME_FM_Base_ID, FD_Item_ID, 0, false, true, null);
-		column.add(env, 0, tableId, COLUMNNAME_FM_Title, FD_Item_String, 200, true, false, null);
+		column.add(env, 0, tableId, COLUMNNAME_FM_Base_ID, FD_ITEM_ID, 0, false, true, null);
+		column.add(env, 0, tableId, COLUMNNAME_FM_Title, FD_ITEM_String, 200, true, false, null);
 		addCommonColumn(env, tableId);
 		//テーブル削除
 		dropTable(env, Table_Name);

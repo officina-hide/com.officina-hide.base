@@ -60,16 +60,16 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 			table.add(env, Table_ID, Table_Name, Table_Disp_Name, Table_Comment);
 			break;
 		case Table_Name:
-			add(env, 0, Table_ID, COLUMNNAME_FD_Column_ID, FD_Item_ID, 0, false, true, null);
-			add(env, 0, Table_ID, COLUMNNAME_FD_DataDictionary_ID, FD_Item_ID, 0, true, false, null);
-			add(env, 0, Table_ID, COLUMNNAME_FD_Table_ID, FD_Item_ID, 0, true, false, null);
-			add(env, 0, Table_ID, COLUMNNAME_FD_TypeItem_ID, FD_Item_ID, 0, true, false, null);
+			add(env, 0, Table_ID, COLUMNNAME_FD_Column_ID, FD_ITEM_ID, 0, false, true, null);
+			add(env, 0, Table_ID, COLUMNNAME_FD_DataDictionary_ID, FD_ITEM_ID, 0, true, false, null);
+			add(env, 0, Table_ID, COLUMNNAME_FD_Table_ID, FD_ITEM_ID, 0, true, false, null);
+			add(env, 0, Table_ID, COLUMNNAME_FD_TypeItem_ID, FD_ITEM_ID, 0, true, false, null);
 			add(env, 0, Table_ID, COLUMNNAME_FD_Column_Size, FD_ITEM_Unsigned_Int, 0, true, false, null);
-			add(env, 0, Table_ID, COLUMNNAME_FD_Name, FD_Item_String, 100, true, false, null);
-			add(env, 0, Table_ID, COLUMNNAME_FD_Description, FD_Item_Text, 0, true, false, null);
+			add(env, 0, Table_ID, COLUMNNAME_FD_Name, FD_ITEM_String, 100, true, false, null);
+			add(env, 0, Table_ID, COLUMNNAME_FD_Description, FD_ITEM_Text, 0, true, false, null);
 			add(env, 0, Table_ID, COLUMNNAME_FD_IS_Null, FD_ITEM_YES_NO, 0, true, false, "Y");
 			add(env, 0, Table_ID, COLUMNNAME_FD_IS_Key, FD_ITEM_YES_NO, 0, true, false, "N");
-			add(env, 0, Table_ID, COLUMNNAME_FD_Default, FD_Item_String, 100, true, false, null);
+			add(env, 0, Table_ID, COLUMNNAME_FD_Default, FD_ITEM_String, 100, true, false, null);
 			addCommonColumn(env, Table_ID);
 			break;
 		}

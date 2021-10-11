@@ -34,12 +34,12 @@ public class FX_Tab extends FD_DB implements I_FX_Tab {
 		dd.add(env, 0, COLUMNNAME_FX_Tab_Name, NAME_FX_Tab_Name, COMMENT_FX_Tab_Name);
 		//テーブル項目情報登録
 		FD_Column column = new FD_Column();
-		column.add(env, 0, Table_ID, COLUMNNAME_FX_Tab_ID, FD_Item_ID, 0, false, true, null);
-		column.add(env, 0, Table_ID, COLUMNNAME_FX_Tab_Name, FD_Item_String, 100, true, false, null);
-		column.add(env, 0, Table_ID, COLUMNNAME_FX_View_ID, FD_Item_ID, 0, true, false, null);
-		column.add(env, 0, Table_ID, COLUMNNAME_FD_Table_ID, FD_Item_ID, 0, true, false, null);
-		column.add(env, 0, Table_ID, COLUMNNAME_FD_Name, FD_Item_String, 100, true, false, null);
-		column.add(env, 0, Table_ID, COLUMNNAME_FD_Description, FD_Item_Text, 0, true, false, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FX_Tab_ID, FD_ITEM_ID, 0, false, true, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FX_Tab_Name, FD_ITEM_String, 100, true, false, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FX_View_ID, FD_ITEM_ID, 0, true, false, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FD_Table_ID, FD_ITEM_ID, 0, true, false, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FD_Name, FD_ITEM_String, 100, true, false, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FD_Description, FD_ITEM_Text, 0, true, false, null);
 		addCommonColumn(env, Table_ID);
 		//テーブル削除
 		dropTable(env, Table_Name);

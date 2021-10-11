@@ -134,7 +134,7 @@ public class CreateBaseInformation implements I_FD_DB {
 	}
 	/**
 	 * テーブル項目用属性情報登録[Attribute information registration for table items]<br>
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 2021/09/22
 	 * @param env 環境情報[Environment information]
 	 */
@@ -143,11 +143,11 @@ public class CreateBaseInformation implements I_FD_DB {
 		long typeID = type.add(env, 0, FD_Column_Type, "テーブル項目属性", "テーブル項目の属性を管理する。");
 		FD_TypeItem typeItem = new FD_TypeItem();
 		FD_TypeITem_Param typeItemParam = new FD_TypeITem_Param();
-		long typeItemID = typeItem.add(env, 0, FD_Item_ID, typeID, "情報ID", "情報を識別するID(Classはlong)");
+		long typeItemID = typeItem.add(env, 0, FD_ITEM_ID, typeID, "情報ID", "情報を識別するID(Classはlong)");
 		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "int unsigned", null);
-		typeItemID = typeItem.add(env, 0, FD_Item_String, typeID, "文字列", "単行の文字列(ClassはString)");
+		typeItemID = typeItem.add(env, 0, FD_ITEM_String, typeID, "文字列", "単行の文字列(ClassはString)");
 		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "varchar(@size@)", null);
-		typeItemID = typeItem.add(env, 0, FD_Item_Text, typeID, "複数行文字列", "複数行の文字列(ClassはString)");
+		typeItemID = typeItem.add(env, 0, FD_ITEM_Text, typeID, "複数行文字列", "複数行の文字列(ClassはString)");
 		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "text", null);
 		typeItemID = typeItem.add(env, 0, FD_ITEM_Date, typeID, "日付", "日付(ClassはCalendar)");
 		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "datetime", null);
@@ -167,7 +167,7 @@ public class CreateBaseInformation implements I_FD_DB {
 	 * 機能開発用の採番再設定[Renumbering for function development]
 	 * @author officina-hide.net
 	 * @since 2021/10/02 Ver.1.00
-	 * @param env 環境情報[Enfironment information]
+	 * @param env 環境情報[Environment information]
 	 */
 	public void reNumber(FD_EnvData env) {
 		//採番情報

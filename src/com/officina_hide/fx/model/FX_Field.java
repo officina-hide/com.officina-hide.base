@@ -42,11 +42,11 @@ public class FX_Field extends FD_DB implements I_FX_Field {
 		dd.add(env, 0, COLUMNNAME_FX_Field_Name, NAME_FX_Field_Name, COMMENT_FX_Field_Name);
 		//テーブル項目情報登録
 		FD_Column column = new FD_Column();
-		column.add(env, 0, Table_ID, COLUMNNAME_FX_Field_ID, FD_Item_ID, 0, false, true, null);
-		column.add(env, 0, Table_ID, COLUMNNAME_FX_Field_Name, FD_Item_String, 100, true, false, null);
-		column.add(env, 0, Table_ID, COLUMNNAME_FD_Name, FD_Item_String, 200, true, false, null);
-		column.add(env, 0, Table_ID, COLUMNNAME_FX_Tab_ID, FD_Item_ID, 0, true, false, null);
-		column.add(env, 0, Table_ID, COLUMNNAME_FD_TypeItem_ID, FD_Item_ID, 0, true, false, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FX_Field_ID, FD_ITEM_ID, 0, false, true, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FX_Field_Name, FD_ITEM_String, 100, true, false, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FD_Name, FD_ITEM_String, 200, true, false, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FX_Tab_ID, FD_ITEM_ID, 0, true, false, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FD_TypeItem_ID, FD_ITEM_ID, 0, true, false, null);
 		addCommonColumn(env, Table_ID);
 		//テーブル削除
 		dropTable(env, Table_Name);

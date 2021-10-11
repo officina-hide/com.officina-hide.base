@@ -53,11 +53,11 @@ public class X_FD_TypeItem extends FD_DB implements I_FD_TypeItem {
 	 */
 	private void createItemList() {
 		items = new FD_Items();
-		items.add(COLUMNNAME_FD_TypeItem_ID, null, FD_Item_ID);
-		items.add(COLUMNNAME_FD_TypeItem_Name, null, FD_Item_String);
-		items.add(COLUMNNAME_FD_Type_ID, null, FD_Item_ID);
-		items.add(COLUMNNAME_FD_Name, null, FD_Item_String);
-		items.add(COLUMNNAME_FD_Description, null, FD_Item_Text);
+		items.add(COLUMNNAME_FD_TypeItem_ID, null, FD_ITEM_ID);
+		items.add(COLUMNNAME_FD_TypeItem_Name, null, FD_ITEM_String);
+		items.add(COLUMNNAME_FD_Type_ID, null, FD_ITEM_ID);
+		items.add(COLUMNNAME_FD_Name, null, FD_ITEM_String);
+		items.add(COLUMNNAME_FD_Description, null, FD_ITEM_Text);
 		baseItemSet(items);
 		items.setTableId(Table_ID);
 		items.setTableName(Table_Name);

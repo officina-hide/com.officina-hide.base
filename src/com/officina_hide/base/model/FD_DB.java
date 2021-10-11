@@ -139,7 +139,7 @@ public class FD_DB implements I_FD_DB {
 			for(FD_Item item : items.getItems()) {
 				wkItem = item;
 				switch(item.getType()) {
-				case FD_Item_ID:
+				case FD_ITEM_ID:
 				case FD_ITEM_BigInt:
 				case FD_ITEM_Unsigned_BigInt:
 					pstmt.setLong(idx, items.getlongData(item.getName()));
@@ -148,8 +148,8 @@ public class FD_DB implements I_FD_DB {
 				case FD_ITEM_Unsigned_Int:
 					pstmt.setInt(idx, items.getintData(item.getName()));
 					break;
-				case FD_Item_String:
-				case FD_Item_Text:
+				case FD_ITEM_String:
+				case FD_ITEM_Text:
 					// FIXME エスケープ対象文字未対応
 					pstmt.setString(idx, items.getStringData(item.getName()));
 					break;
@@ -281,16 +281,16 @@ public class FD_DB implements I_FD_DB {
 			column.append(item.getName()).append(" ");
 			//項目種別
 			switch(item.getType()) {
-			case FD_Item_ID:
+			case FD_ITEM_ID:
 				sql.append("int(10) unsigned NOT NULL").append(" ");
 				break;
-			case FD_Item_String:
+			case FD_ITEM_String:
 				sql.append("varchar(").append(item.getSize()).append(")").append(" ");
 				break;
 			case FD_ITEM_Date:
 				sql.append("datetime").append(" ");
 				break;
-			case FD_Item_Text:
+			case FD_ITEM_Text:
 				sql.append("text").append(" ");
 			}
 			//コメント
@@ -459,7 +459,7 @@ public class FD_DB implements I_FD_DB {
 		try {
 			for(FD_Item item : items.getItems()) {
 				switch(item.getType()) {
-				case FD_Item_ID:
+				case FD_ITEM_ID:
 				case FD_ITEM_BigInt:
 				case FD_ITEM_Unsigned_BigInt:
 					item.setData(rs.getLong(item.getName()));
@@ -468,8 +468,8 @@ public class FD_DB implements I_FD_DB {
 				case FD_ITEM_Int:
 					item.setData(rs.getInt(item.getName()));
 					break;
-				case FD_Item_String:
-				case FD_Item_Text:
+				case FD_ITEM_String:
+				case FD_ITEM_Text:
 					item.setData(rs.getString(item.getName()));
 					break;
 				case FD_ITEM_Date:
@@ -501,11 +501,11 @@ public class FD_DB implements I_FD_DB {
 	 * @param items 項目一覧[Item list]
 	 */
 	public void baseItemSet(FD_Items items) {
-		items.add(COLUMNNAME_FD_Group_ID, null, FD_Item_ID);
+		items.add(COLUMNNAME_FD_Group_ID, null, FD_ITEM_ID);
 		items.add(COLUMNNAME_FD_Created, null, FD_ITEM_Date);
-		items.add(COLUMNNAME_FD_CreatedBy, null, FD_Item_ID);
+		items.add(COLUMNNAME_FD_CreatedBy, null, FD_ITEM_ID);
 		items.add(COLUMNNAME_FD_Updated, null, FD_ITEM_Date);
-		items.add(COLUMNNAME_FD_UpdatedBy, null, FD_Item_ID);
+		items.add(COLUMNNAME_FD_UpdatedBy, null, FD_ITEM_ID);
 	}
 
 	/**
@@ -596,11 +596,11 @@ public class FD_DB implements I_FD_DB {
 	 */
 	public void addCommonColumn(FD_EnvData env, long tableId) {
 		FD_Column column = new FD_Column();
-		column.add(env, 0, tableId, COLUMNNAME_FD_Group_ID, FD_Item_ID, 0, true, false, null);
+		column.add(env, 0, tableId, COLUMNNAME_FD_Group_ID, FD_ITEM_ID, 0, true, false, null);
 		column.add(env, 0, tableId, COLUMNNAME_FD_Created, FD_ITEM_Date, 0, true, false, null);
-		column.add(env, 0, tableId, COLUMNNAME_FD_CreatedBy, FD_Item_ID, 0, true, false, null);
+		column.add(env, 0, tableId, COLUMNNAME_FD_CreatedBy, FD_ITEM_ID, 0, true, false, null);
 		column.add(env, 0, tableId, COLUMNNAME_FD_Updated, FD_ITEM_Date, 0, true, false, null);
-		column.add(env, 0, tableId, COLUMNNAME_FD_UpdatedBy, FD_Item_ID, 0, true, false, null);
+		column.add(env, 0, tableId, COLUMNNAME_FD_UpdatedBy, FD_ITEM_ID, 0, true, false, null);
 	}
 	
 	public long getFD_Group_ID() {

@@ -62,10 +62,10 @@ public class X_FD_DataDictionary extends FD_DB implements I_FD_DataDictionary {
 	 */
 	private void initItems() {
 		items = new FD_Items();
-		items.add(COLUMNNAME_FD_DataDictionary_ID, null, FD_Item_ID);
-		items.add(COLUMNNAME_FD_DataDictionary_Name, null, FD_Item_String);
-		items.add(COLUMNNAME_FD_Name, null, FD_Item_String);
-		items.add(COLUMNNAME_FD_Description, null, FD_Item_Text);
+		items.add(COLUMNNAME_FD_DataDictionary_ID, null, FD_ITEM_ID);
+		items.add(COLUMNNAME_FD_DataDictionary_Name, null, FD_ITEM_String);
+		items.add(COLUMNNAME_FD_Name, null, FD_ITEM_String);
+		items.add(COLUMNNAME_FD_Description, null, FD_ITEM_Text);
 		baseItemSet(items);
 		items.setTableId(Table_ID);
 		items.setTableName(Table_Name);
@@ -110,12 +110,12 @@ public class X_FD_DataDictionary extends FD_DB implements I_FD_DataDictionary {
 			int idx = 1;
 			for(FD_Item item : items.getItems()) {
 				switch(item.getType()) {
-				case FD_Item_ID:
+				case FD_ITEM_ID:
 				case FD_ITEM_BigInt:
 					pstmt.setLong(idx, items.getlongData(item.getName()));
 					break;
-				case FD_Item_String:
-				case FD_Item_Text:
+				case FD_ITEM_String:
+				case FD_ITEM_Text:
 					// FIXME エスケープ対象文字未対応
 					pstmt.setString(idx, items.getStringData(item.getName()));
 					break;
