@@ -12,7 +12,7 @@ public class FD_ProcessParam extends FD_DB implements I_FD_ProcessParam {
 
 	/**
 	 * 処理変数情報テーブル構築[Process variable information table construction]<br>
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 2021/10/11 Ver. 1.00
 	 * @param env 環境情報[Environment information]
 	 */
@@ -27,7 +27,17 @@ public class FD_ProcessParam extends FD_DB implements I_FD_ProcessParam {
 		FD_DataDictionary dd = new FD_DataDictionary();
 		dd.add(env, 0, COLUMNNAME_FD_ProcessParam_ID, NAME_FD_ProcessParam_ID, COMMENT_FD_ProcessParam_ID);
 		dd.add(env, 0, COLUMNNAME_FD_ProcessParam_Name, NAME_FD_ProcessParam_Name, COMMENT_FD_ProcessParam_Name);
-		dd.add(env, 0, COLUMNNAME_FD_ProcessParam_Data, NAME_FD_ProcessParam_Data, COMMENT_FD_ProcessParam_Data);
+		//テーブル項目情報登録
+		FD_Column column = new FD_Column();
+		column.add(env, 0, Table_ID, COLUMNNAME_FD_ProcessParam_ID, FD_Item_ID, 0, false, true, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FD_ProcessParam_Name, FD_Item_String, 100, true, false, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FD_TypeItem_ID, FD_Item_ID, 0, true, false, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FD_Process_ID, FD_Item_ID, 0, true, false, null);
+		addCommonColumn(env, Table_ID);
+		//テーブル削除
+		dropTable(env, Table_Name);
+		//テーブル生成
+		createTable(env, Table_Name);
 	}
 
 }

@@ -26,10 +26,9 @@ public interface I_FD_ProcessParam extends I_FD_DB {
 	public static final String COLUMNNAME_FD_ProcessParam_Name = Table_Name + "_Name";
 	public static final String NAME_FD_ProcessParam_Name = "処理変数名";
 	public static final String COMMENT_FD_ProcessParam_Name = "処理変数を識別するための名称";
-	/** 項目 : 処理変数値 */
-	public static final String COLUMNNAME_FD_ProcessParam_Data = Table_Name + "_Data";
-	public static final String NAME_FD_ProcessParam_Data = "処理変数値";
-	public static final String COMMENT_FD_ProcessParam_Data = "処理変数として受け渡す情報値";
+	/** 項目 : 属性項目情報ID */
+	public static final String COLUMNNAME_FD_TypeItem_ID = I_FD_TypeItem.COLUMNNAME_FD_TypeItem_ID;
+	public static final String NAME_FD_TypeItem_ID = I_FD_TypeItem.NAME_FD_TypeItem_ID;
 	/** 項目 : 処理情報ID */
 	public static final String COLUMNNAME_FD_Process_ID = I_FD_Process.COLUMNNAME_FD_Process_ID;
 	public static final String NAME_FD_Process_ID = I_FD_Process.NAME_FD_Process_ID;

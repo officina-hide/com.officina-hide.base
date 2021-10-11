@@ -7,7 +7,7 @@ import com.officina_hide.base.common.FD_EnvData;
 
 /**
  * 属性情報クラス[Type infoemation class]<br>
- * @author officine-hide.net
+ * @author officina-hide.net
  * @version 1.00
  * @since 2021/09/21
  */
