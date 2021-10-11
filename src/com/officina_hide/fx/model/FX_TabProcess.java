@@ -1,6 +1,13 @@
 package com.officina_hide.fx.model;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_WhereData;
 import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.FD_DataDictionary;
@@ -9,7 +16,7 @@ import com.officina_hide.base.model.FD_Table;
 
 /**
  * タブ処理情報クラス[Tab process information class]
- * @author officine-hide.net
+ * @author officina-hide.net
  * @version 1.00 新規作成
  * @since 2021/10/08 Ver. 1.00
  */
@@ -62,6 +69,36 @@ public class FX_TabProcess extends FD_DB implements I_FX_TabProcess {
 		tp.setFD_Process_ID(processId);
 		tp.setFD_Group_ID(env.getActionUserID());
 		tp.save(env);
+	}
+
+	/**
+	 * タブ処理情報リスト生成[Tab processing information list generation]<br>
+	 * @author officine-hide.net
+	 * @since 2021/10/11 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param where 抽出条件[Extraction condition]
+	 * @return タブ処理情報リスト生成[Tab processing information list]
+	 */
+	public List<X_FX_TabProcess> getList(FD_EnvData env, FD_WhereData where) {
+		List<X_FX_TabProcess> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT * FROM ").append(I_FX_TabProcess.Table_Name).append(" ");
+			sql.append(where.toString()).append(" ");
+			connection(env);
+			pstmt = getConn().prepareStatement(sql.toString());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				list.add(new X_FX_TabProcess(env, rs.getLong(COLUMNNAME_FX_TabProcess_ID)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
+		return list;
 	}
 
 }

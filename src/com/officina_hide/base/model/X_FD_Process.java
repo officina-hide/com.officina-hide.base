@@ -14,6 +14,8 @@ public class X_FD_Process extends FD_DB implements I_FD_Process {
 	private long FD_Process_ID;
 	/** 項目 : 処理情報名 */
 	private String FD_Process_Name;
+	/** 項目 : 呼出クラス名 */
+	private String FD_CallProcess_Name;
 	
 	/**
 	 * コンストラクタ[Constructor]<br>
@@ -52,6 +54,13 @@ public class X_FD_Process extends FD_DB implements I_FD_Process {
 	}
 	public void setFD_Process_Name(String processName) {
 		items.setValue(COLUMNNAME_FD_Process_Name, processName);
+	}
+	public String getFD_CallProcess_Name() {
+		FD_CallProcess_Name = items.getStringData(COLUMNNAME_FD_CallProcess_Name);
+		return FD_CallProcess_Name;
+	}
+	public void setFD_CallProcess_Name(String callProcessName) {
+		items.setValue(COLUMNNAME_FD_CallProcess_Name, callProcessName);
 	}
 	
 }

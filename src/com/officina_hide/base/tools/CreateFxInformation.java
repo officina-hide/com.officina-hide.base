@@ -72,9 +72,9 @@ public class CreateFxInformation implements I_FD_DB {
 		field.add(env, 0, I_FD_Login.COLUMNNAME_FD_Login_Password, "パスワード", tabId, FD_Field_Password);
 		//6-4.
 		FD_Process process = new FD_Process();
-		long processId = process.add(env, 0, "FX_Login_Entry");
+		long processId = process.add(env, 0, "FX_Login_Entry", "com.officina_hide.fx.process.FX_LoginProcess");
 		tp.add(env, 0, tabId, "ログイン", processId);
-		processId = process.add(env, 0, "FX_Cancel_Entry");
+		processId = process.add(env, 0, "FX_Cancel_Entry", "com.officina_hide.fx.process.FX_WindowCancel");
 		tp.add(env, 0, tabId, "キャンセル", processId);
 		
 //		long viewId = view.add(env, 0, V_FX_TableColumn.FX_View_Name, V_FX_TableColumn.FX_Name, V_FX_TableColumn.FX_Description);

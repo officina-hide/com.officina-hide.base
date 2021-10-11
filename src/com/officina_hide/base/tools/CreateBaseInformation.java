@@ -7,6 +7,7 @@ import com.officina_hide.base.model.FD_DataDictionary;
 import com.officina_hide.base.model.FD_Login;
 import com.officina_hide.base.model.FD_Numbering;
 import com.officina_hide.base.model.FD_Process;
+import com.officina_hide.base.model.FD_ProcessParam;
 import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.FD_Type;
 import com.officina_hide.base.model.FD_TypeITem_Param;
@@ -61,6 +62,7 @@ public class CreateBaseInformation implements I_FD_DB {
 		 * 7. ユーザー情報テーブル構築、システムユーザー登録
 		 * 8. ログイン情報テーブル構築
 		 * 9. 処理情報テーブル構築
+		 * 10. 処理変数情報テーブル構築
 		 */
 		FD_DB DB = new FD_DB();
 		//1.
@@ -126,6 +128,9 @@ public class CreateBaseInformation implements I_FD_DB {
 		//9.
 		FD_Process process = new FD_Process();
 		process.createTable(env);
+		//10.
+		FD_ProcessParam pp = new FD_ProcessParam();
+		pp.createTable(env);
 	}
 	/**
 	 * テーブル項目用属性情報登録[Attribute information registration for table items]<br>

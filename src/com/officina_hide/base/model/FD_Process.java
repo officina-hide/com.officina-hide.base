@@ -27,10 +27,12 @@ public class FD_Process extends FD_DB implements I_FD_Process {
 		FD_DataDictionary dd = new FD_DataDictionary();
 		dd.add(env, 0, COLUMNNAME_FD_Process_ID, NAME_FD_Process_ID, COMMENT_FD_Process_ID);
 		dd.add(env, 0, COLUMNNAME_FD_Process_Name, NAME_FD_Process_Name, COMMENT_FD_Process_Name);
+		dd.add(env, 0, COLUMNNAME_FD_CallProcess_Name, NAME_FD_CallProcess_Name, NAME_FD_CallProcess_Name);
 		//テーブル項目情報登録
 		FD_Column column = new FD_Column();
 		column.add(env, 0, Table_ID, COLUMNNAME_FD_Process_ID, FD_Item_ID, 0, false, true, null);
 		column.add(env, 0, Table_ID, COLUMNNAME_FD_Process_Name, FD_Item_String, 100, true, false, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FD_CallProcess_Name, FD_Item_String, 256, true, false, null);
 		column.add(env, 0, Table_ID, COLUMNNAME_FD_Name, FD_Item_String, 100, true, false, null);
 		column.add(env, 0, Table_ID, COLUMNNAME_FD_Description, FD_Item_Text, 0, true, false, null);
 		addCommonColumn(env, Table_ID);
@@ -47,12 +49,14 @@ public class FD_Process extends FD_DB implements I_FD_Process {
 	 * @param env 環境情報[Environmane information]
 	 * @param processId 処理情報ID[Process information ID]
 	 * @param processName 処理名[Process name]
+	 * @param processClass 
 	 * @return 処理情報ID[Process information ID]
 	 */
-	public long add(FD_EnvData env, int processId, String processName) {
+	public long add(FD_EnvData env, int processId, String processName, String processClass) {
 		X_FD_Process process = new X_FD_Process(env, 0);
 		process.setFD_Process_ID(0);
 		process.setFD_Process_Name(processName);
+		process.setFD_CallProcess_Name(processClass);
 		process.setFD_Group_ID(env.getActionUserID());
 		process.save(env);
 		return process.getFD_Process_ID();

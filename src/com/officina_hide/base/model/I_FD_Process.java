@@ -26,4 +26,8 @@ public interface I_FD_Process extends I_FD_DB {
 	public static final String COLUMNNAME_FD_Process_Name = "FD_Process_Name";
 	public static final String NAME_FD_Process_Name = "処理名";
 	public static final String COMMENT_FD_Process_Name = "処理を識別する為の名称";
+	/** 項目 : 呼出クラス名 */
+	public static final String COLUMNNAME_FD_CallProcess_Name = "FD_CallProcess_Name";
+	public static final String NAME_FD_CallProcess_Name = "呼出処理クラス名";
+	public static final String COMMENT_FD_CallProcess_Name = "処理で呼び出すクラスの名称をフルパスで管理する。";
 }
