@@ -40,4 +40,23 @@ public class FD_ProcessParam extends FD_DB implements I_FD_ProcessParam {
 		createTable(env, Table_Name);
 	}
 
+	/**
+	 * 情報登録[Save data]
+	 * @param env環境情報[Environment information]
+	 * @param processParamId
+	 * @param processParamName
+	 * @param type
+	 * @param processId
+	 */
+	public void add(FD_EnvData env, long processParamId, String processParamName, String type, long processId) {
+		X_FD_ProcessParam pp = new X_FD_ProcessParam(env, 0);
+		pp.setFD_ProcessParam_ID(processParamId);
+		pp.setFD_ProcessParam_Name(processParamName);
+		FD_TypeItem typeItem = new FD_TypeItem();
+		pp.setFD_TypeItem_ID(typeItem.getTypeItemID(env, FD_Param_Type, type));
+		pp.setFD_Process_ID(processId);
+		pp.setFD_Group_ID(env.getActionUserID());
+		pp.save(env);
+	}
+
 }

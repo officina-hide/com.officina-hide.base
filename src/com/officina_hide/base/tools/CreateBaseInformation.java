@@ -62,7 +62,8 @@ public class CreateBaseInformation implements I_FD_DB {
 		 * 7. ユーザー情報テーブル構築、システムユーザー登録
 		 * 8. ログイン情報テーブル構築
 		 * 9. 処理情報テーブル構築
-		 * 10. 処理変数情報テーブル構築
+		 * 10-1. 処理変数情報テーブル構築
+		 * 10-2. 処理変数用種別登録
 		 */
 		FD_DB DB = new FD_DB();
 		//1.
@@ -128,9 +129,11 @@ public class CreateBaseInformation implements I_FD_DB {
 		//9.
 		FD_Process process = new FD_Process();
 		process.createTable(env);
-		//10.
+		//10-1.
 		FD_ProcessParam pp = new FD_ProcessParam();
 		pp.createTable(env);
+		//10-2.
+		addParamTypeInformation(env);
 	}
 	/**
 	 * テーブル項目用属性情報登録[Attribute information registration for table items]<br>
@@ -161,6 +164,19 @@ public class CreateBaseInformation implements I_FD_DB {
 		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "int unsigned", null);
 		typeItemID = typeItem.add(env, 0, FD_ITEM_YES_NO, typeID, "正整数", "判定値 Yはtrue、Nはfalse (Classはboolean)");
 		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "enum('Y','N')", null);
+	}
+
+	/**
+	 * 処理変数用属性情報登録[Attribute information registration for processing variables]<br>
+	 * @author officina-hide.net
+	 * @since 2021/10/12 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 */
+	private void addParamTypeInformation(FD_EnvData env) {
+		FD_Type type = new FD_Type();
+		FD_TypeItem typeItem = new FD_TypeItem();
+		long typeID = type.add(env, 0, FD_Param_Type, NAME_FD_Param_Type, COMMENT_FD_Param_Type);
+		typeItem.add(env, 0, FD_Param_Object, typeID, NAME_FD_Param_Object, COMMENT_FD_Param_Object);
 	}
 
 	/**

@@ -2,6 +2,7 @@ package com.officina_hide.base.tools;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Process;
+import com.officina_hide.base.model.FD_ProcessParam;
 import com.officina_hide.base.model.FD_Type;
 import com.officina_hide.base.model.FD_TypeItem;
 import com.officina_hide.base.model.I_FD_DB;
@@ -59,8 +60,8 @@ public class CreateFxInformation implements I_FD_DB {
 		 * 6-1. 画面項目情報登録
 		 * 6-2. タブ情報登録
 		 * 6-3. 画面項目登録
-		 * 6-4. 処理情報登録(ログイン、キャンセル)
-		 * 6-5. タブ処理情報登録(ログイン、キャンセル各ボタン）
+		 * 6-4. タブ処理情報登録(ログイン)
+		 * 6-5. タブ処理情報登録(キャンセル）
 		 */
 		//6-1.
 		long viewId = view.add(env, 0, V_FX_Login.FX_View_Name, V_FX_Login.FX_Name, V_FX_Login.FX_Description);
@@ -72,8 +73,11 @@ public class CreateFxInformation implements I_FD_DB {
 		field.add(env, 0, I_FD_Login.COLUMNNAME_FD_Login_Password, "パスワード", tabId, FD_Field_Password);
 		//6-4.
 		FD_Process process = new FD_Process();
+		FD_ProcessParam pp = new FD_ProcessParam();
 		long processId = process.add(env, 0, "FX_Login_Entry", "com.officina_hide.fx.process.FX_LoginProcess");
+		pp.add(env, 0, "stage", FD_Param_Object, processId);
 		tp.add(env, 0, tabId, "ログイン", processId);
+		//6-5.
 		processId = process.add(env, 0, "FX_Cancel_Entry", "com.officina_hide.fx.process.FX_WindowCancel");
 		tp.add(env, 0, tabId, "キャンセル", processId);
 		
@@ -83,8 +87,8 @@ public class CreateFxInformation implements I_FD_DB {
 	}
 
 	/**
-	 * 画面項目種別登録[Screen item atribute entry]<br>
-	 * @author officine-hide.net
+	 * 画面項目種別登録[Screen item attribute entry]<br>
+	 * @author officina-hide.net
 	 * @since 2021/10/08 Ver. 1.00
 	 * @param env 環境情報[Environment information]
 	 */

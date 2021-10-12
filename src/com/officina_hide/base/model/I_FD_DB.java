@@ -33,6 +33,15 @@ public interface I_FD_DB {
 	/** 画面項目種別 : パスワード */
 	public static final String FD_Field_Password = "FD_Field_Password";
 	
+	/** 処理変数種別 */
+	public static final String FD_Param_Type = "FD_Param_Type";
+	public static final String NAME_FD_Param_Type = "処理変数属性";
+	public static final String COMMENT_FD_Param_Type = "処理変数で使用する属性を管理する。";
+	/** 処理変数種別 : オブジェクト */
+	public static final String FD_Param_Object = "FD_Param_Object";
+	public static final String NAME_FD_Param_Object = "オブジェクト";
+	public static final String COMMENT_FD_Param_Object = "クラスなどのオブジェクト情報";
+	
 	/** システムグループ情報ID */
 	public static final int SYSTEM_GROUP_ID = 100;
 	/** システムユーザー情報ID */
