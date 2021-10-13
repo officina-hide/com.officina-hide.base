@@ -40,7 +40,7 @@ public class CreateFxInformation implements I_FD_DB {
 		 * 3. 画面項目属性情報テーブル構築
 		 * 4. 画面項目情報テーブル構築、関連情報登録
 		 * 5. プロセス情報テーブル構築
-		 * 6. ログイン画面関連情報登録
+		 * 6. ログイン画面構成
 		 */
 		//1.
 		FX_View view = new FX_View();
@@ -57,6 +57,7 @@ public class CreateFxInformation implements I_FD_DB {
 		FX_TabProcess tp = new FX_TabProcess();
 		tp.createTable(env);
 		/*
+		 * 6. 
 		 * 6-1. 画面項目情報登録
 		 * 6-2. タブ情報登録
 		 * 6-3. 画面項目登録
@@ -79,6 +80,7 @@ public class CreateFxInformation implements I_FD_DB {
 		tp.add(env, 0, tabId, "ログイン", processId);
 		//6-5.
 		processId = process.add(env, 0, "FX_Cancel_Entry", "com.officina_hide.fx.process.FX_WindowCancel");
+		pp.add(env, 0, "stage", FD_Param_Object, processId);
 		tp.add(env, 0, tabId, "キャンセル", processId);
 		
 //		long viewId = view.add(env, 0, V_FX_TableColumn.FX_View_Name, V_FX_TableColumn.FX_Name, V_FX_TableColumn.FX_Description);

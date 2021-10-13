@@ -16,6 +16,8 @@ public class X_FD_ProcessParam extends FD_DB implements I_FD_ProcessParam {
 	private String FD_ProcessParam_Name;
 	/** 項目 : 属性項目情報ID */
 	private long FD_TypeItem_ID;
+	/** 情報 : 属性項目情報 */
+	private X_FD_TypeItem FD_TypeItem;
 	/** 項目 : 処理情報ID */
 	private long FD_Process_ID;
 	
@@ -26,7 +28,7 @@ public class X_FD_ProcessParam extends FD_DB implements I_FD_ProcessParam {
 	 * @param env 環境情報[Environment information]
 	 * @param processParamId 処理変数情報ID[Process variable information ID]
 	 */
-	public X_FD_ProcessParam(FD_EnvData env, int processParamId) {
+	public X_FD_ProcessParam(FD_EnvData env, long processParamId) {
 		createItemList(env, Table_Name);
 		if(processParamId > 0) {
 			load(env, Table_Name, processParamId, items);
@@ -70,6 +72,20 @@ public class X_FD_ProcessParam extends FD_DB implements I_FD_ProcessParam {
 	}
 	public void setFD_Process_ID(long processId) {
 		items.setValue(COLUMNNAME_FD_Process_ID, processId);
+	}
+	public X_FD_TypeItem getFD_TypeItem(FD_EnvData env) {
+		if(FD_TypeItem == null) {
+			if(getFD_TypeItem_ID() > 0) {
+				FD_TypeItem = new X_FD_TypeItem(env, getFD_TypeItem_ID());
+			} else {
+				return null;
+			}
+		} else {
+			if(FD_TypeItem.getFD_TypeItem_ID() != getFD_TypeItem_ID()) {
+				FD_TypeItem = new X_FD_TypeItem(env, getFD_TypeItem_ID());
+			}
+		}
+		return FD_TypeItem;
 	}
 
 }

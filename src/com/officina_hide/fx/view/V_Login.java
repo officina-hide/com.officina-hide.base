@@ -8,6 +8,7 @@ import java.util.List;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_WhereData;
 import com.officina_hide.base.model.I_FD_DB;
+import com.officina_hide.fx.model.FD_Params;
 import com.officina_hide.fx.model.FX_Field;
 import com.officina_hide.fx.model.FX_TabProcess;
 import com.officina_hide.fx.model.I_FX_Field;
@@ -35,7 +36,7 @@ import javafx.stage.Stage;
 
 /**
  * ログイン画面[Login screen]
- * @author officine-hide.net
+ * @author officina-hide.net
  * @version 1.00 新規作成
  * @since 2021/10/06 Ver. 1.00
  */
@@ -81,7 +82,7 @@ public class V_Login extends Application implements I_FD_DB {
 
 	/**
 	 * 画面項目設定[Screen item setting]
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 2021/10/07 Ver. 1.00
 	 * @param root ルート[Root]
 	 * @param stage ステージ[Stage]
@@ -129,7 +130,9 @@ public class V_Login extends Application implements I_FD_DB {
 			buttonBox.getChildren().add(button);
 			button.setOnMouseClicked(event->{
 				//プロセスCall[Process call]
-				callProcess(event, env, tpro, stage);
+				FD_Params params = new FD_Params(env, tpro.getFD_Process_ID());
+				params.setValue("stage", stage);
+				callProcess(event, env, tpro, params);
 			});
 		}
 		root.getChildren().add(buttonBox);
@@ -137,21 +140,21 @@ public class V_Login extends Application implements I_FD_DB {
 
 	/**
 	 * 処理呼び出し[Call process]<br>
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 2021/10/11 Ver. 1.00
 	 * @param event イベント情報[Event information]
 	 * @param env 環境情報[Environment information]
 	 * @param tp タブ処理情報[Tab process information]
-	 * @param stage ステージ[Stage]
+	 * @param params 処理変数情報[Process variable information]
 	 */
-	private void callProcess(MouseEvent event, FD_EnvData env, X_FX_TabProcess tp, Stage stage) {
+	private void callProcess(MouseEvent event, FD_EnvData env, X_FX_TabProcess tp, FD_Params params) {
 		try {
 			System.out.println(tp.getFD_Process(env).getFD_CallProcess_Name());
 			Class<?> callClass = Class.forName(tp.getFD_Process(env).getFD_CallProcess_Name());
 			Constructor<?> constructor = callClass.getConstructor();
 			Object cc = constructor.newInstance();
-			Method exeMethod = callClass.getMethod("execute");
-			exeMethod.invoke(cc);
+			Method exeMethod = callClass.getMethod("execute", FD_Params.class);
+			exeMethod.invoke(cc, params);
 		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException |
 				InstantiationException | IllegalAccessException | IllegalArgumentException |
 				InvocationTargetException e) {
