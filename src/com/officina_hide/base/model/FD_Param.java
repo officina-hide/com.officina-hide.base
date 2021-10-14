@@ -1,4 +1,4 @@
-package com.officina_hide.fx.model;
+package com.officina_hide.base.model;
 
 /**
  * 処理変数情報クラス[Process variable information class]<br>

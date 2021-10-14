@@ -1,6 +1,6 @@
 package com.officina_hide.fx.process;
 
-import com.officina_hide.fx.model.FD_Params;
+import com.officina_hide.base.model.FD_Params;
 
 import javafx.stage.Stage;
 

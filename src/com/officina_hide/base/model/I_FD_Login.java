@@ -2,7 +2,7 @@ package com.officina_hide.base.model;
 
 /**
  * ログイン情報インターフェースクラス[Login information interface class]<br>
- * @author officine-hide.net
+ * @author officina-hide.net
  * @version 1.00 新規登録
  * @since 2021/10/05 Ver. 1.00
  */

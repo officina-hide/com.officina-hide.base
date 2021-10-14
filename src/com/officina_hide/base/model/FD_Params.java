@@ -1,4 +1,4 @@
-package com.officina_hide.fx.model;
+package com.officina_hide.base.model;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,9 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.officina_hide.base.common.FD_EnvData;
-import com.officina_hide.base.model.FD_DB;
-import com.officina_hide.base.model.I_FD_ProcessParam;
-import com.officina_hide.base.model.X_FD_ProcessParam;
 
 /**
  * 処理変数情報一覧クラス[Process variable information list class]<br>

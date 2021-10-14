@@ -7,8 +7,9 @@ import java.util.List;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_WhereData;
+import com.officina_hide.base.model.FD_Params;
 import com.officina_hide.base.model.I_FD_DB;
-import com.officina_hide.fx.model.FD_Params;
+import com.officina_hide.base.model.X_FD_Login;
 import com.officina_hide.fx.model.FX_Field;
 import com.officina_hide.fx.model.FX_TabProcess;
 import com.officina_hide.fx.model.I_FX_Field;
@@ -44,6 +45,8 @@ public class V_Login extends Application implements I_FD_DB {
 
 	/** 環境情報 */
 	FD_EnvData env;
+	/** ログイン情報 */
+	private X_FD_Login login;
 	
 	/**
 	 * コンストラクタ[Constructor]
@@ -57,20 +60,24 @@ public class V_Login extends Application implements I_FD_DB {
 	public void start(Stage stage) throws Exception {
 		/*
 		 * ログイン画面はView情報に1つのタブ情報が紐づく単一画面となる。
-		 * 1. View情報を取得
-		 * 2. タブ情報取得
-		 * 3. 画面項目設定
+		 * 1. ログイン情報の初期設定
+		 * 2. View情報を取得
+		 * 3. タブ情報取得
+		 * 4. 画面項目設定
 		 */
 		//1.
+		login = new X_FD_Login(env, 0);
+		//2.
 		FD_WhereData where = new FD_WhereData(I_FX_View.COLUMNNAME_FX_View_Name, V_FX_Login.FX_View_Name);
 		X_FX_View view = new X_FX_View(env, where);
-		//2.
+		//3.
 		where = new FD_WhereData(I_FX_Tab.COLUMNNAME_FX_View_ID	, view.getFX_View_ID());
 		X_FX_Tab tab = new X_FX_Tab(env, where);
-		//3.
+		//4.
 		VBox root = new VBox(5);
 		root.setPadding(new Insets(5, 5, 5, 5));
 		root.setStyle("-fx-font-family: Meiryo UI; -fx-font-size: 12");
+		root.setUserData(login);
 
 		setItem(root, tab.getFX_Tab_ID(), stage);
 		
@@ -109,10 +116,14 @@ public class V_Login extends Application implements I_FD_DB {
 			switch(fd.getFD_TypeItem(env).getFD_TypeItem_Name()) {
 			case FD_Field_SimpleText:
 				TextField textField = new TextField();
+				textField.setOnKeyReleased(event->{
+					login.setValue(fd.getFx_Field_Name(), textField.getText());
+				});
 				fbox.getChildren().add(textField);
 				break;
 			case FD_Field_Password:
 				PasswordField pass = new PasswordField();
+				pass.setId(fd.getFx_Field_Name());
 				fbox.getChildren().add(pass);
 				break;
 			}
