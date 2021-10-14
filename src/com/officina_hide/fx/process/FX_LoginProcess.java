@@ -27,7 +27,7 @@ public class FX_LoginProcess {
 		 */
 		Stage stage = (Stage) params.getObject("stage");
 		X_FD_Login login = (X_FD_Login) stage.getScene().getRoot().getUserData();
-		System.out.println(login);
+		System.out.println(login.getFD_User_Name()+" : "+login.getFD_Login_Password());
 		//1.
 		
 	}

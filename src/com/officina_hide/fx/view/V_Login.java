@@ -124,6 +124,9 @@ public class V_Login extends Application implements I_FD_DB {
 			case FD_Field_Password:
 				PasswordField pass = new PasswordField();
 				pass.setId(fd.getFx_Field_Name());
+				pass.setOnKeyReleased(event->{
+					login.setValue(fd.getFx_Field_Name(), pass.getText());
+				});
 				fbox.getChildren().add(pass);
 				break;
 			}

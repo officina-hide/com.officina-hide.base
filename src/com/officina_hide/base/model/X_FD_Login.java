@@ -42,4 +42,26 @@ public class X_FD_Login extends FD_DB implements I_FD_Login {
 		items.setValue(columnName, data);
 	}
 
+	public long getFD_Login_ID() {
+		FD_Login_ID = items.getlongData(COLUMNNAME_FD_Login_ID);
+		return FD_Login_ID;
+	}
+	public void setFD_Login_ID(long loginId) {
+		items.setValue(COLUMNNAME_FD_Login_ID, loginId);
+	}
+	public String getFD_User_Name() {
+		FD_User_Name = items.getStringData(COLUMNNAME_FD_User_Name);
+		return FD_User_Name;
+	}
+	public void setFD_User_Name(String userName) {
+		items.setValue(COLUMNNAME_FD_User_Name, userName);
+	}
+	public String getFD_Login_Password() {
+		FD_Login_Password = items.getStringData(COLUMNNAME_FD_Login_Password);
+		return FD_Login_Password;
+	}
+	public void setFD_Login_Password(String loginPassword) {
+		items.setValue(COLUMNNAME_FD_Login_Password, loginPassword);
+	}
+
 }
