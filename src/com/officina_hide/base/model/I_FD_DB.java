@@ -113,6 +113,7 @@ public interface I_FD_DB {
 	/** 属性情報名 : テーブル項目情報用属性情報名 */
 	public static final String FD_Column_Type = "FD_Column_Type";	//テーブル項目
 	public static final String FD_Field_Type = "FD_Field_Type";				//画面項目
+	public static final String FD_MENU_Type = "FD_Menu_Type";			//メニュー項目
 
 	/** テーブル項目一覧用情報抽出SQL文 */
 	public static final String ITEM_LIST_SQL_Name = "name";

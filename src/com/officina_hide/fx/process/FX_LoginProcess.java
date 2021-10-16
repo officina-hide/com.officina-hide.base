@@ -7,7 +7,7 @@ import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.base.model.I_FD_User;
 import com.officina_hide.base.model.X_FD_Login;
 import com.officina_hide.base.model.X_FD_User;
-import com.officina_hide.fx.view.V_Menu;
+import com.officina_hide.fx.view.V_MainMenu;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -52,7 +52,7 @@ public class FX_LoginProcess implements I_FD_DB {
 			return;
 		}
 		//3.
-		V_Menu menu = new V_Menu();
+		V_MainMenu menu = new V_MainMenu();
 		try {
 			stage.hide();
 			menu.start(new Stage());

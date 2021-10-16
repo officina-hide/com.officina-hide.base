@@ -8,6 +8,7 @@ import com.officina_hide.base.model.FD_TypeItem;
 import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.base.model.I_FD_Login;
 import com.officina_hide.fx.model.FX_Field;
+import com.officina_hide.fx.model.FX_Menu;
 import com.officina_hide.fx.model.FX_Tab;
 import com.officina_hide.fx.model.FX_TabProcess;
 import com.officina_hide.fx.model.FX_View;
@@ -40,7 +41,9 @@ public class CreateFxInformation implements I_FD_DB {
 		 * 3. 画面項目属性情報テーブル構築
 		 * 4. 画面項目情報テーブル構築、関連情報登録
 		 * 5. プロセス情報テーブル構築
-		 * 6. ログイン画面構成
+		 * 6. メニュー情報テーブル構築
+		 * 7. ログイン画面構成
+		 * 8. 総合メニュー画面構成
 		 */
 		//1.
 		FX_View view = new FX_View();
@@ -56,36 +59,36 @@ public class CreateFxInformation implements I_FD_DB {
 		//5.
 		FX_TabProcess tp = new FX_TabProcess();
 		tp.createTable(env);
+		//6.
+		FX_Menu menu = new FX_Menu();
+		menu.createTable(env);
+		
 		/*
-		 * 6. 
-		 * 6-1. 画面項目情報登録
-		 * 6-2. タブ情報登録
-		 * 6-3. 画面項目登録
-		 * 6-4. タブ処理情報登録(ログイン)
-		 * 6-5. タブ処理情報登録(キャンセル）
+		 * 7. 
+		 * 7-1. 画面項目情報登録
+		 * 7-2. タブ情報登録
+		 * 7-3. 画面項目登録
+		 * 7-4. タブ処理情報登録(ログイン)
+		 * 7-5. タブ処理情報登録(キャンセル）
 		 */
-		//6-1.
+		//7-1.
 		long viewId = view.add(env, 0, V_FX_Login.FX_View_Name, V_FX_Login.FX_Name, V_FX_Login.FX_Description);
-		//6-2.
+		//7-2.
 		long tabId = tab.add(env, 0, V_FX_Login.FX_Tab_Name, viewId,
 				I_FD_Login.Table_ID ,V_FX_Login.FX_Tab_Disp_Name, V_FX_Login.FX_Tab_Description);
-		//6-3.
+		//7-3.
 		field.add(env, 0, I_FD_Login.COLUMNNAME_FD_User_Name, "ログイン名", tabId, FD_Field_SimpleText);
 		field.add(env, 0, I_FD_Login.COLUMNNAME_FD_Login_Password, "パスワード", tabId, FD_Field_Password);
-		//6-4.
+		//7-4.
 		FD_Process process = new FD_Process();
 		FD_ProcessParam pp = new FD_ProcessParam();
 		long processId = process.add(env, 0, "FX_Login_Entry", "com.officina_hide.fx.process.FX_LoginProcess");
 		pp.add(env, 0, "stage", FD_Param_Object, processId);
 		tp.add(env, 0, tabId, "ログイン", processId);
-		//6-5.
+		//7-5.
 		processId = process.add(env, 0, "FX_Cancel_Entry", "com.officina_hide.fx.process.FX_WindowCancel");
 		pp.add(env, 0, "stage", FD_Param_Object, processId);
 		tp.add(env, 0, tabId, "キャンセル", processId);
-		
-//		long viewId = view.add(env, 0, V_FX_TableColumn.FX_View_Name, V_FX_TableColumn.FX_Name, V_FX_TableColumn.FX_Description);
-//		tab.add(env, 0, V_FX_TableColumn.FX_TAB_Table, viewId,
-//				V_FX_TableColumn.FX_TAB_Table_Name, V_FX_TableColumn.FX_TAB_Table_Description);
 	}
 
 	/**
@@ -97,7 +100,6 @@ public class CreateFxInformation implements I_FD_DB {
 	private void addFieldType(FD_EnvData env) {
 		FD_Type type = new FD_Type();
 		FD_TypeItem typeItem = new FD_TypeItem();
-//		FD_TypeITem_Param typeItemParam = new FD_TypeITem_Param();
 		
 		long typeID = type.add(env, 0, FD_Field_Type, "画面項目属性", "画面項目の属性を管理する。");
 		typeItem.add(env, 0, FD_Field_SimpleText, typeID, "1行テキスト", "1行のみのテキスト情報(ClassはString)");
