@@ -149,7 +149,7 @@ public class CreateBaseInformation implements I_FD_DB {
 		long typeItemID = typeItem.add(env, 0, FD_ITEM_ID, typeID, "情報ID", "情報を識別するID(Classはlong)");
 		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "int unsigned", null);
 		typeItemID = typeItem.add(env, 0, FD_ITEM_String, typeID, "文字列", "単行の文字列(ClassはString)");
-		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "varchar(@size@)", null);
+		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "varchar(@size@) binary", null);
 		typeItemID = typeItem.add(env, 0, FD_ITEM_Text, typeID, "複数行文字列", "複数行の文字列(ClassはString)");
 		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "text", null);
 		typeItemID = typeItem.add(env, 0, FD_ITEM_Date, typeID, "日付", "日付(ClassはCalendar)");

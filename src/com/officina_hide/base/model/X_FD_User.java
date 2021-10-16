@@ -1,6 +1,7 @@
 package com.officina_hide.base.model;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_WhereData;
 
 /**
  * ユーザー情報I/Oクラス[User information I/O class]<br>
@@ -17,7 +18,7 @@ public class X_FD_User extends FD_DB implements I_FD_User {
 	
 	/**
 	 * コンストラクタ[Constructor]
-	 * @param env 環境情報[Enfironment information]
+	 * @param env 環境情報[Environment information]
 	 * @param userID ユーザー情報ID
 	 */
 	public X_FD_User(FD_EnvData env, long userID) {
@@ -28,8 +29,20 @@ public class X_FD_User extends FD_DB implements I_FD_User {
 	}
 
 	/**
+	 * コンストラクタ[Constructor]
+	 * @param env 環境情報[Environment information]
+	 * @param where 抽出条件[Extraction condition]
+	 */
+	public X_FD_User(FD_EnvData env, FD_WhereData where) {
+		createItemList(env, Table_Name);
+		if(where.toString().length() > 0) {
+			load(env, items, where);
+		}
+	}
+
+	/**
 	 * 情報登録[Save data]
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 2021/10/05 Ver. 1.00
 	 * @param env 環境情報[Environment information]
 	 */

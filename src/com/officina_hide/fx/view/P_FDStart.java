@@ -25,6 +25,7 @@ public class P_FDStart extends Application {
 		//表示項目設定
 		
 		login.start(new Stage());
+		System.out.println("P_FDStart End");
 	}
 
 	public static void main(String[] args) {

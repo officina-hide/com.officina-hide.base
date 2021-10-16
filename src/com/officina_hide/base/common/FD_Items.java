@@ -150,7 +150,11 @@ public class FD_Items implements I_FD_DB {
 		long data = 0;
 		for(FD_Item item : items) {
 			if(item.getName().equals(itemName)) {
-				data = (long) item.getData();
+				if(item.getData() != null) {
+					data = (long) item.getData();
+				} else {
+					data = 0;
+				}
 				break;
 			}
 		}

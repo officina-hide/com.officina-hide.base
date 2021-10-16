@@ -67,6 +67,8 @@ public class V_Login extends Application implements I_FD_DB {
 		 */
 		//1.
 		login = new X_FD_Login(env, 0);
+		login.setFD_User_Name("SystemUser");
+		login.setFD_Login_Password("System");
 		//2.
 		FD_WhereData where = new FD_WhereData(I_FX_View.COLUMNNAME_FX_View_Name, V_FX_Login.FX_View_Name);
 		X_FX_View view = new X_FX_View(env, where);
@@ -116,6 +118,7 @@ public class V_Login extends Application implements I_FD_DB {
 			switch(fd.getFD_TypeItem(env).getFD_TypeItem_Name()) {
 			case FD_Field_SimpleText:
 				TextField textField = new TextField();
+				textField.setText(login.getFD_User_Name());
 				textField.setOnKeyReleased(event->{
 					login.setValue(fd.getFx_Field_Name(), textField.getText());
 				});
@@ -124,6 +127,7 @@ public class V_Login extends Application implements I_FD_DB {
 			case FD_Field_Password:
 				PasswordField pass = new PasswordField();
 				pass.setId(fd.getFx_Field_Name());
+				pass.setText(login.getFD_Login_Password());
 				pass.setOnKeyReleased(event->{
 					login.setValue(fd.getFx_Field_Name(), pass.getText());
 				});
@@ -167,8 +171,8 @@ public class V_Login extends Application implements I_FD_DB {
 			Class<?> callClass = Class.forName(tp.getFD_Process(env).getFD_CallProcess_Name());
 			Constructor<?> constructor = callClass.getConstructor();
 			Object cc = constructor.newInstance();
-			Method exeMethod = callClass.getMethod("execute", FD_Params.class);
-			exeMethod.invoke(cc, params);
+			Method exeMethod = callClass.getMethod("execute", FD_EnvData.class, FD_Params.class);
+			exeMethod.invoke(cc, env, params);
 		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException |
 				InstantiationException | IllegalAccessException | IllegalArgumentException |
 				InvocationTargetException e) {

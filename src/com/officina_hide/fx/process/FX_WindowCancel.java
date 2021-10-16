@@ -1,5 +1,6 @@
 package com.officina_hide.fx.process;
 
+import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Params;
 
 import javafx.stage.Stage;
@@ -12,7 +13,7 @@ import javafx.stage.Stage;
  */
 public class FX_WindowCancel {
 
-	public void execute(FD_Params params) {
+	public void execute(FD_EnvData env, FD_Params params) {
 		System.out.println("Window Close");
 		//画面を閉じる[Close window]
 		Stage stage = (Stage) params.getObject("stage");

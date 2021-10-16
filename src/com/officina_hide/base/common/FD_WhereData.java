@@ -53,6 +53,9 @@ public class FD_WhereData implements I_FD_DB {
 		whereList.add(new WhereItemData(null, itemName, itemData));
 	}
 
+	public FD_WhereData() {
+	}
+
 	@Override
 	public String toString() {
 		StringBuffer where = new StringBuffer();

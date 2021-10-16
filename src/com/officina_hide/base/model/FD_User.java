@@ -32,7 +32,7 @@ public class FD_User extends FD_DB implements I_FD_User {
 		FD_Column column = new FD_Column();
 		column.add(env, 0, Table_ID, COLUMNNAME_FD_User_ID, FD_ITEM_ID, 0, false, true, null);
 		column.add(env, 0, Table_ID, COLUMNNAME_FD_User_Name, FD_ITEM_String, 100, true, false, null);
-		column.add(env, 0, Table_ID, COLUMNNAME_FD_Login_Password, FD_ITEM_Text, 100, true, false, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FD_Login_Password, FD_ITEM_String, 100, true, false, null);
 		column.add(env, 0, Table_ID, COLUMNNAME_FD_Name, FD_ITEM_String, 100, true, false, null);
 		column.add(env, 0, Table_ID, COLUMNNAME_FD_Description, FD_ITEM_Text, 0, true, false, null);
 		addCommonColumn(env, Table_ID);

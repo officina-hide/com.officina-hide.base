@@ -29,21 +29,6 @@ public class FD_DB implements I_FD_DB {
 	/** 項目リスト */
 	protected FD_Items items;
 
-//	/** 項目 : グループ情報ID */
-//	private long FD_Group_ID;
-//	/** 項目 : 登録日時 */
-//	private Calendar FD_Created;
-//	/** 項目 : 登録者情報ID */
-//	private long FD_CreatedBy;
-//	/** 項目 : 更新日時 */
-//	private Calendar FD_updated;
-//	/** 項目 : 更新者情報ID */
-//	private long FD_UpdatedBy;
-//	/** 項目 : 表示名 */
-//	private String FD_Name;
-//	/** 項目 : 説明 */
-//	private String FD_Description;
-
 	/** 
 	 * データベース接続情報[Database connection information]
 	 */
@@ -263,7 +248,7 @@ public class FD_DB implements I_FD_DB {
 
 	/**
 	 * テーブル生成[Create Table]<br>
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 1.00 2021/06/08
 	 * @param env 環境情報[Environment Information]
 	 * @param tableName テーブル名[Table Name]
@@ -285,7 +270,7 @@ public class FD_DB implements I_FD_DB {
 				sql.append("int(10) unsigned NOT NULL").append(" ");
 				break;
 			case FD_ITEM_String:
-				sql.append("varchar(").append(item.getSize()).append(")").append(" ");
+				sql.append("varchar(").append(item.getSize()).append(")").append(" binary ");
 				break;
 			case FD_ITEM_Date:
 				sql.append("datetime").append(" ");
@@ -441,7 +426,7 @@ public class FD_DB implements I_FD_DB {
 			if(rs.next()) {
 				setItems(rs, items);
 			} else {
-				System.out.println("Data Dictionnary Not Found!! : "+ where.toString());
+				System.out.println("Record Not Found!! : "+ where.toString());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
