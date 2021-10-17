@@ -76,7 +76,7 @@ public class FD_DB implements I_FD_DB {
 
 	/**
 	 * 情報登録[Information registration]
-	 * @param env 環境情報[Enfironment information]
+	 * @param env 環境情報[Environment information]
 	 * @param tableName テーブル名[Table name]
 	 * @param items 項目一覧[item list]
 	 */
@@ -115,7 +115,7 @@ public class FD_DB implements I_FD_DB {
 			sql.append("VALUES");
 			sql.append("(").append(items.getPrepardStrings()).append(")");
 		}
-		
+//		System.out.println(sql.toString());
 		connection(env);
 		FD_Item wkItem = null;
 		try {

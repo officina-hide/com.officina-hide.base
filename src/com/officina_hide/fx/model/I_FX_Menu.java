@@ -25,10 +25,16 @@ public interface I_FX_Menu {
 	public static final String NAME_FX_Menu_ID = Table_Disp_Name + "ID";
 	public static final String COMMENT_FX_Menu_ID = "メニュー情報を識別するためのID";
 	/** 項目 : メニュー名 */
-	public static final String COLUMNNAME_FX_Menu_Name = "FD_Menu_Name";
+	public static final String COLUMNNAME_FX_Menu_Name = "FX_Menu_Name";
 	public static final String NAME_FX_Menu_Name = "メニュー識別名";
 	public static final String COMMENT_FX_Menu_Name = "メニューを識別する為の名称";
+	/** 項目 : 遷移対象情報ID */
+	public static final String COLUMNNAME_FX_Target_ID = "FX_Target_ID";
+	public static final String NAME_FX_Target_ID = "遷移対象情報ID";
+	public static final String COMMENT_FX_Target_ID = "メニュー選択時に遷移する先の情報ID。"
+			+ "遷移する対象はメニュー種別で指定する。";
 	/** 項目 : メニュー種別(属性項目情報ID) */
 	public static final String COLUMNNAME_FD_TypeItem_ID = I_FD_TypeItem.COLUMNNAME_FD_TypeItem_ID;
 	public static final String NAME_FD_TypeItem_ID = I_FD_TypeItem.NAME_FD_TypeItem_ID;
+	
 }
