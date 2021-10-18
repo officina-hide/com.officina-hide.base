@@ -33,6 +33,11 @@ public interface I_FD_DB {
 	/** 画面項目種別 : パスワード */
 	public static final String FD_Field_Password = "FD_Field_Password";
 	
+	/** メニュー種別 : 画面 */
+	public static final String FD_Menu_View = "FD_Menu_View";
+	/** メニュー種別 : 処理 */
+	public static final String FD_Menu_Process = "FD_Menu_Process";
+	
 	/** 処理変数種別 */
 	public static final String FD_Param_Type = "FD_Param_Type";
 	public static final String NAME_FD_Param_Type = "処理変数属性";
