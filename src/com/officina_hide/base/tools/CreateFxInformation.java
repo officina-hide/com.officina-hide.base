@@ -119,6 +119,7 @@ public class CreateFxInformation implements I_FD_DB {
 		/*
 		 * 1. 属性関連登録
 		 * 2. 画面情報登録
+		 * 3. メニュー情報登録(シンプル対応)
 		 */
 		//1.
 		FD_Type type = new FD_Type();
@@ -129,9 +130,9 @@ public class CreateFxInformation implements I_FD_DB {
 		//2.
 		FX_View view = new FX_View();
 		long viewId = view.add(env, 0, "V_MainMenu", "総合メニュー", "パッケージの最初に表示されるメニュー画面");
-		
+		//3.
 		FX_Menu menu = new FX_Menu();
-//		menu.add(env, 0, "テーブル関連", 0, FD_Menu_View);
+		menu.add(env, 0, "V_FX_Table", viewId, FD_Menu_View, "テーブル・カラム");
 	}
 	
 }

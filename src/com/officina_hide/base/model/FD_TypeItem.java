@@ -9,7 +9,7 @@ import com.officina_hide.base.common.FD_EnvData;
 
 /**
  * 属性項目情報クラス[Type item information class]<br>
- * @author officine-hide.com
+ * @author officina-hide.com
  * @version 1.00
  * @since 2021/09/22
  */
@@ -17,7 +17,7 @@ public class FD_TypeItem extends FD_DB implements I_FD_TypeItem {
 
 	/**
 	 * 属性項目情報生成[Type item information generate]<br>
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 1.00 2021/09/22
 	 * @param env 環境情報[Environment information]
 	 */
@@ -37,7 +37,7 @@ public class FD_TypeItem extends FD_DB implements I_FD_TypeItem {
 
 	/**
 	 * テーブル毎の登録処理を行う。[Perform registration processing for each table.]<br>
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 1.00 2021/09/22
 	 * @param env 環境情報[Environment information]
 	 * @param tableName テーブル名[Table name]
@@ -71,7 +71,7 @@ public class FD_TypeItem extends FD_DB implements I_FD_TypeItem {
 
 	/**
 	 * 情報保存[save information]
-	 * @param env 環境情報[Enfironment information]
+	 * @param env 環境情報[Environment information]
 	 * @param typeItemID 属性項目情報ID[Type item information ID]
 	 * @param typeItemName 属性項目識別ID[Attribute item identification ID]
 	 * @param typeID 属性情報ID[Type information ID]

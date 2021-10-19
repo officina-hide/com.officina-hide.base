@@ -6,6 +6,7 @@ import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.FD_DataDictionary;
 import com.officina_hide.base.model.FD_Numbering;
 import com.officina_hide.base.model.FD_Table;
+import com.officina_hide.base.model.FD_TypeItem;
 
 /**
  * メニュー情報クラス[Menu information class]<br>
@@ -45,6 +46,30 @@ public class FX_Menu extends FD_DB implements I_FX_Menu {
 		dropTable(env, Table_Name);
 		//テーブル生成
 		createTable(env, Table_Name);
+	}
+
+	/**
+	 * 情報登録[Save data]<br>
+	 * @author officina-hide.net
+	 * @since 2021/10/19 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param menuId メニュー情報ID[Menu information ID]
+	 * @param menuName メニュー名[Menu name]
+	 * @param targetId 遷移先名[Target information ID] 
+	 * @param targetType 遷移先種別[Target type name]
+	 * @param name メニュー表示名[Menu display name]
+	 */
+	public void add(FD_EnvData env, int menuId, String menuName, long targetId, String targetType, String name) {
+		X_FX_Menu menu = new X_FX_Menu(env, 0);
+		menu.setFX_Menu_ID(menuId);
+		menu.setFX_Menu_Name(menuName);
+		menu.setFX_Target_ID(targetId);
+		menu.setFD_Name(name);
+		FD_TypeItem typeItem = new FD_TypeItem();
+		long typeItemId = typeItem.getTypeItemID(env, FD_MENU_Type, targetType);
+		menu.setFD_TypeItem_ID(typeItemId);
+		menu.setFD_Group_ID(env.getActionUserID());
+		menu.save(env);
 	}
 
 }
