@@ -43,7 +43,7 @@ public class CreateFxInformation implements I_FD_DB {
 		 * 5. プロセス情報テーブル構築
 		 * 6-1. メニュー情報テーブル構築
 		 * 7. ログイン画面構成
-		 * 8. 総合メニュー画面構成
+		 * 8. 総合メニュー画面情報登録
 		 */
 		//1.
 		FX_View view = new FX_View();
@@ -89,7 +89,6 @@ public class CreateFxInformation implements I_FD_DB {
 		processId = process.add(env, 0, "FX_Cancel_Entry", "com.officina_hide.fx.process.FX_WindowCancel");
 		pp.add(env, 0, "stage", FD_Param_Object, processId);
 		tp.add(env, 0, tabId, "キャンセル", processId);
-
 		//8.
 		entryMenu(env);
 	}
@@ -119,7 +118,6 @@ public class CreateFxInformation implements I_FD_DB {
 		/*
 		 * 1. 属性関連登録
 		 * 2. 画面情報登録
-		 * 3. メニュー情報登録(シンプル対応)
 		 */
 		//1.
 		FD_Type type = new FD_Type();
@@ -129,10 +127,7 @@ public class CreateFxInformation implements I_FD_DB {
 		typeItem.add(env, 0, FD_Menu_View, typeId, "処理", "遷移先が処理");
 		//2.
 		FX_View view = new FX_View();
-		long viewId = view.add(env, 0, "V_MainMenu", "総合メニュー", "パッケージの最初に表示されるメニュー画面");
-		//3.
-		FX_Menu menu = new FX_Menu();
-		menu.add(env, 0, "V_FX_Table", viewId, FD_Menu_View, "テーブル・カラム");
+		view.add(env, 0, "V_MainMenu", "総合メニュー", "パッケージの最初に表示されるメニュー画面");
 	}
 	
 }

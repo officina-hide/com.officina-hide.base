@@ -1,6 +1,7 @@
 package com.officina_hide.fx.model;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_WhereData;
 import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.FD_DataDictionary;
@@ -61,6 +62,20 @@ public class FX_View extends FD_DB implements I_FX_View {
 		view.setFD_Group_ID(env.getActionUserID());
 		view.save	(env);
 		
+		return view.getFX_View_ID();
+	}
+
+	/**
+	 * 画面情報ID取得[Get screen information ID]<br>
+	 * @author officina-hide.net
+	 * @since 2021/10/20 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param viewName 画面名[Screen name]
+	 * @return 画面情報ID[Screen information ID]
+	 */
+	public long getViewId(FD_EnvData env, String viewName) {
+		FD_WhereData where = new FD_WhereData(COLUMNNAME_FX_View_Name, viewName);
+		X_FX_View view = new X_FX_View(env, where);
 		return view.getFX_View_ID();
 	}
 

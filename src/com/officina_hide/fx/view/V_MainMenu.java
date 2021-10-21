@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
+import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.fx.model.I_FX_Menu;
 import com.officina_hide.fx.model.X_FX_Menu;
 
@@ -15,11 +16,12 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class V_MainMenu extends Application {
+public class V_MainMenu extends Application implements I_FD_DB {
 
 	/** 環境情報[Environment information] */
 	private FD_EnvData env;
@@ -45,7 +47,7 @@ public class V_MainMenu extends Application {
 			Button button = new Button(menu.getFD_Name());
 			button.setFont(new Font("Meiryo UI", 12));
 			button.setOnMouseClicked(event->{
-				System.out.println("clicked!!");
+				buttomSelected(env, event, menu);
 			});
 			root.getChildren().add(button);
 		}
@@ -53,6 +55,27 @@ public class V_MainMenu extends Application {
 		Scene scene = new Scene(root, 300, 500);
 		stage.setScene(scene);
 		stage.showAndWait();
+	}
+
+	/**
+	 * ボタン選択処理[Button selected process]<br>
+	 * @author officina-hide.net
+	 * @since 2021/10/20 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param event イベント情報[Event information]
+	 * @param menu 
+	 */
+	private void buttomSelected(FD_EnvData env, MouseEvent event, X_FX_Menu menu) {
+		switch(menu.getFD_TypeItem(env).getFD_TypeItem_Name()) {
+		case FD_Menu_View:		//標準画面
+			V_View_01 view01 = new V_View_01(env, menu.getFX_Target_ID());
+			try {
+				view01.start(new Stage());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			break;
+		}
 	}
 
 	/**

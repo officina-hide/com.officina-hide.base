@@ -11,7 +11,7 @@ import com.officina_hide.base.model.I_FD_DB;
  * <p>This class is used to call the class that builds the base information of the package.<br>
  * In the future, it will be used as the first process to selectively build the functionality of the package.</p>
  * 
- * @author officine-hide.com
+ * @author officina-hide.com
  * @version 1.00
  * @since 2021/03/31
  */
@@ -34,9 +34,12 @@ public class CreatePackageBase {
 		//基盤情報構築
 		CreateBaseInformation cbi = new CreateBaseInformation(env);
 		cbi.execute();
-		//Fx画面用基盤情報構築
+		//FX画面用基盤情報構築
 		CreateFxInformation cfi = new CreateFxInformation(env);
 		cfi.execute();
+		//システム関連画面群構築
+		CreateFxSystemInformation cfs = new CreateFxSystemInformation(env);
+		cfs.execute();
 		// TODO 終了メッセージ
 	}
 
