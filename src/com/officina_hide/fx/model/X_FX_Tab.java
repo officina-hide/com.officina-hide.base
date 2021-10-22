@@ -14,10 +14,12 @@ public class X_FX_Tab extends FD_DB implements I_FX_Tab {
 	private long FX_View_ID;
 	/** 項目 : テーブル情報ID */
 	private long FD_Table_ID;
+	/** 項目 : タブレベル */
+	private int FX_Tab_Level;
 	
 	/**
 	 * コンストラクタ[Constructor]
-	 * @param env 環境情報[Enfironment information]
+	 * @param env 環境情報[Environment information]
 	 * @param tabId FXタブ情報ID
 	 */
 	public X_FX_Tab(FD_EnvData env, long tabId) {
@@ -29,7 +31,7 @@ public class X_FX_Tab extends FD_DB implements I_FX_Tab {
 
 	/**
 	 * コンストラクタ[Constructor]
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 2021/10/06 Ver. 1.00
 	 * @param env 環境情報[Environment information]
 	 * @param where 抽出条件[Extraction condition]
@@ -45,7 +47,7 @@ public class X_FX_Tab extends FD_DB implements I_FX_Tab {
 	 * 情報登録[Save data]
 	 * @author officina-hide.net
 	 * @since 2021/10/03 Ver. 1.00
-	 * @param env 環境情報[Enfironment information]
+	 * @param env 環境情報[Environment information]
 	 */
 	public void save(FD_EnvData env) {
 		save(env, Table_Name, items);
@@ -78,6 +80,13 @@ public class X_FX_Tab extends FD_DB implements I_FX_Tab {
 	}
 	public void setFD_Table_ID(long tableID) {
 		items.setValue(COLUMNNAME_FD_Table_ID, tableID);
+	}
+	public int getFX_Tab_Level() {
+		FX_Tab_Level = items.getintData(COLUMNNAME_FX_Tab_Level);
+		return FX_Tab_Level;
+	}
+	public void setFX_Tab_Level(int tabLevel) {
+		items.setValue(COLUMNNAME_FX_Tab_Level, tabLevel);
 	}
 
 }

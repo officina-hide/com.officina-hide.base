@@ -29,6 +29,10 @@ public interface I_FX_Tab {
 	public static final String COLUMNNAME_FX_Tab_Name = "FX_Tab_Name";
 	public static final String NAME_FX_Tab_Name = "FXタブ情報識別名";
 	public static final String COMMENT_FX_Tab_Name = "FXタブ情報を識別する為の名称";
+	/** 項目 : FXタブレベル */
+	public static final String COLUMNNAME_FX_Tab_Level = "FX_Tab_Level";
+	public static final String NAME_FX_Tab_Level = "FXタブ表示レベル";
+	public static final String COMMENT_FX_Tab_Level = "画面上でのタブの表示位置。0がメイン画面となる。";
 	/** 項目 : FX画面基盤情報ID */
 	public static final String COLUMNNAME_FX_View_ID = I_FX_View.COLUMNNAME_FX_View_ID;
 	public static final String NAME_FX_View_ID = I_FX_View.NAME_FX_View_ID;

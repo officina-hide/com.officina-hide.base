@@ -75,7 +75,7 @@ public class CreateFxInformation implements I_FD_DB {
 		long viewId = view.add(env, 0, V_FX_Login.FX_View_Name, V_FX_Login.FX_Name, V_FX_Login.FX_Description);
 		//7-2.
 		long tabId = tab.add(env, 0, V_FX_Login.FX_Tab_Name, viewId,
-				I_FD_Login.Table_ID ,V_FX_Login.FX_Tab_Disp_Name, V_FX_Login.FX_Tab_Description);
+				I_FD_Login.Table_ID ,V_FX_Login.FX_Tab_Disp_Name, V_FX_Login.FX_Tab_Description, 0);
 		//7-3.
 		field.add(env, 0, I_FD_Login.COLUMNNAME_FD_User_Name, "ログイン名", tabId, FD_Field_SimpleText);
 		field.add(env, 0, I_FD_Login.COLUMNNAME_FD_Login_Password, "パスワード", tabId, FD_Field_Password);

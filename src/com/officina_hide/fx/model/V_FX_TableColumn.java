@@ -21,7 +21,7 @@ public interface V_FX_TableColumn {
 	public static final String FX_TAB_Table = "V_FX_TAB_Table";
 	public static final String FX_TAB_Table_Name = "テーブル情報";
 	public static final String FX_TAB_Table_Description = "テーブルの基本情報を扱う画面";
-	/** フィールド : テーブル識別名 */
-	public static final String FX_Field_Table_Name = I_FD_Table.COLUMNNAME_FD_Table_Name;
+//	/** フィールド : テーブル識別名 */
+//	public static final String FX_Field_Table_Name = I_FD_Table.COLUMNNAME_FD_Table_Name;
 	
 }
