@@ -27,7 +27,7 @@ public class X_FX_View extends FD_DB implements I_FX_View {
 	 * @param env 環境情報[Environment Information]
 	 * @param viewId 条件情報[Where clouse Information]
 	 */
-	public X_FX_View(FD_EnvData env, int viewId) {
+	public X_FX_View(FD_EnvData env, long viewId) {
 		/** 項目リスト作成 */
 		createItemList(env, Table_Name);
 		if(viewId > 0) {

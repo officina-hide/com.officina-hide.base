@@ -3,6 +3,7 @@ package com.officina_hide.base.tools;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.base.model.I_FD_Table;
+import com.officina_hide.fx.model.FX_Field;
 import com.officina_hide.fx.model.FX_Menu;
 import com.officina_hide.fx.model.FX_Tab;
 import com.officina_hide.fx.model.FX_View;
@@ -47,10 +48,13 @@ public class CreateFxSystemInformation implements I_FD_DB {
 	private void addTableColumn() {
 		FX_View view = new FX_View();
 		FX_Tab tab = new FX_Tab();
+		FX_Field field = new FX_Field();
 		//テーブル・カラム画面登録
 		long viewId = view.add(env, 0, "V_TableColumn", "テーブル・カラム情報", "テーブルに関する情報を登録・更新する画面");
-		tab.add(env, 0, V_FX_TableColumn.FX_TAB_Table, viewId, I_FD_Table.Table_ID,
+		long tabId = tab.add(env, 0, V_FX_TableColumn.FX_TAB_Table, viewId, I_FD_Table.Table_ID,
 				V_FX_TableColumn.FX_TAB_Table_Name, V_FX_TableColumn.FX_TAB_Table_Description, 0);
+		field.add(env, 0, I_FD_Table.COLUMNNAME_FD_Table_Name, I_FD_Table.COLUMNNAME_FD_Name,
+				tabId, FD_Field_SimpleText);
 		
 		//メニュー情報登録
 		FX_Menu menu = new FX_Menu();
