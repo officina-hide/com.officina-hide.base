@@ -19,4 +19,5 @@ public interface V_FX_TableColumn {
 	public static final String FX_TAB_Table = "V_FX_TAB_Table";
 	public static final String FX_TAB_Table_Name = "テーブル情報";
 	public static final String FX_TAB_Table_Description = "テーブルの基本情報を扱う画面";
+	
 }

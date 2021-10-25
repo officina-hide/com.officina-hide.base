@@ -75,6 +75,10 @@ public interface I_FD_Column extends I_FD_DB {
 				+ COMMENT + FD_SQ + NAME_FD_IS_Key + FD_SQ + ","
 			+ COLUMNNAME_FD_Default + VARCHAR_100
 				+ COMMENT + FD_SQ + NAME_FD_Default + FD_SQ + ","
+			+ COLUMNNAME_FD_Name + VARCHAR_100
+				+ COMMENT + FD_SQ + NAME_FD_Name + FD_SQ + ","
+			+ COLUMNNAME_FD_Description + TEXT
+				+ COMMENT + FD_SQ + NAME_FD_Description + FD_SQ + ","
 			+ COMMON_ITEM_CREATE_SQL
 		+") "
 		+"ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=" + FD_SQ + Table_Disp_Name + FD_SQ;

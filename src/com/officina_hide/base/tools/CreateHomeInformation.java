@@ -15,7 +15,7 @@ public class CreateHomeInformation {
 	 * 構築実行[Build execution]
 	 * @author officina-hide.net
 	 * @since 2021/10/02 1.00
-	 * @param env 環境情報[Enfironment information]
+	 * @param env 環境情報[Environment information]
 	 */
 	public void execute(FD_EnvData env) {
 		/*

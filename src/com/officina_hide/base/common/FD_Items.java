@@ -109,7 +109,7 @@ public class FD_Items implements I_FD_DB {
 
 	/**
 	 * 項目情報セット[Item Information Set]<br>
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 1/00 2021/07/15
 	 * @param itemName 項目名[Item Name]
 	 * @param value 項目値[Item Value]

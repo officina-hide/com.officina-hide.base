@@ -79,7 +79,7 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 	 * 情報登録[Save information]<br>
 	 * @author officina-hide.net
 	 * @since 1.00 2021/09/23
-	 * @param env 環境情報[Enfironment information]
+	 * @param env 環境情報[Environment information]
 	 * @param columnID テーブル項目情報ID[Table item information ID]
 	 * @param tableID テーブル情報ID[Table information ID]
 	 * @param columnName テーブル項目名[Table item name]

@@ -14,10 +14,11 @@ import com.officina_hide.base.model.FD_DataDictionary;
 import com.officina_hide.base.model.FD_Numbering;
 import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.FD_TypeItem;
+import com.officina_hide.base.model.X_FD_Column;
 
 /**
  * 画面項目情報クラス[Screen item information class]<br>
- * @author officine-hide.net
+ * @author officina-hide.net
  * @version 1.00 新規作成
  * @since 2021/10/06 Ver. 1.00
  */
@@ -58,18 +59,23 @@ public class FX_Field extends FD_DB implements I_FX_Field {
 	 * 情報登録[Save data]
 	 * @author officina-hide.net
 	 * @since 2021/10/06 Ver. 1.00
-	 * @param env 環境情報[Enfironment information]
+	 * @param env 環境情報[Environment information]
 	 * @param fieldId 画面項目情報ID[Screen item information ID]
 	 * @param fieldName 画面項目名[Screen item name]
 	 * @param name 表示名[Display name]
 	 * @param tabId タブ情報ID[Tab information ID]
 	 * @param fieldTypeName 属性項目名[Attribute item name]
 	 */
-	public void add(FD_EnvData env, int fieldId, String fieldName, String name, long tabId, String fieldTypeName) {
+	public void add(FD_EnvData env, int fieldId, String tableName, String ColumnName, long tabId, String fieldTypeName) {
+		/*
+		 * FX_Field_Nameはテーブル項目情報のテーブル項目名を設定<br>
+		 * FD_Nameはテーブル項目情報のテーブル表示名を設定
+		 */
 		X_FX_Field field = new X_FX_Field(env, 0);
 		field.setFX_Field_ID(fieldId);
-		field.setFx_Field_Name(fieldName);
-		field.setFD_Name(name);
+		X_FD_Column co = new X_FD_Column(env, tableName, ColumnName);
+		field.setFx_Field_Name(ColumnName);
+		field.setFD_Name(co.getFD_DataDictionary().getFD_Name());
 		field.setFX_Tab_ID(tabId);
 		field.setFD_Group_ID(env.getActionUserID());
 		FD_TypeItem typeItem = new FD_TypeItem();		
@@ -79,7 +85,7 @@ public class FX_Field extends FD_DB implements I_FX_Field {
 
 	/**
 	 * 画面項目一覧生成[Screen item list generation]
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 2021/10/07 Ver. 1.00
 	 * @param env 環境情報[Environment information]
 	 * @param where 抽出条件[Extraction condition]

@@ -52,7 +52,7 @@ public class FX_LoginProcess implements I_FD_DB {
 			return;
 		}
 		//3.
-		V_MainMenu menu = new V_MainMenu();
+		V_MainMenu menu = new V_MainMenu(env);
 		try {
 			stage.hide();
 			menu.start(new Stage());

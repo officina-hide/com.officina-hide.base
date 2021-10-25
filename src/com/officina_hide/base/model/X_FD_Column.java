@@ -1,5 +1,9 @@
 package com.officina_hide.base.model;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_Items;
 
@@ -29,7 +33,7 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 	
 	/**
 	 * コンストラクタ[Constructor]<br>
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 1.00 2021/09/05
 	 * @param env 環境情報[Environment Information]
 	 * @param columnID テーブル項目情報ID[Table Item Information ID]
@@ -56,8 +60,46 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 	}
 
 	/**
+	 * コンストラクタ[Constructor]<br>
+	 * @param env 環境情報[Environment information]
+	 * @param tableName テーブル名[Table name]
+	 * @param columnName テーブル項目名[Table item name]
+	 */
+	public X_FD_Column(FD_EnvData env, String tableName, String columnName) {
+		createItemList(env, Table_Name);
+		//テーブル項目情報取得
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT ").append(I_FD_Column.COLUMNNAME_FD_Column_ID)
+				.append(" FROM ").append(Table_Name).append(" c ");
+			sql.append("LEFT JOIN ").append(I_FD_DataDictionary.Table_Name).append(" dd ")
+				.append(" ON ").append("dd.").append(I_FD_DataDictionary.COLUMNNAME_FD_DataDictionary_ID).append(" = ")
+				.append("c.").append(I_FD_Column.COLUMNNAME_FD_DataDictionary_ID).append(" ");
+			sql.append("LEFT JOIN ").append(I_FD_Table.Table_Name).append(" t ")
+				.append(" ON ").append("t.").append(I_FD_Table.COLUMNNAME_FD_Table_ID).append(" = ")
+				.append("c.").append(I_FD_Column.COLUMNNAME_FD_Table_ID).append(" ");
+			sql.append("WHERE ").append("t.").append(I_FD_Table.COLUMNNAME_FD_Table_Name).append(" = ? ");
+			sql.append("AND ").append("dd.").append(I_FD_DataDictionary.COLUMNNAME_FD_DataDictionary_Name).append(" = ? ");
+			connection(env);
+			pstmt = getConn().prepareStatement(sql.toString());
+			pstmt.setString(1, tableName);
+			pstmt.setString(2, columnName);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				load(env, Table_Name, rs.getLong(I_FD_Column.COLUMNNAME_FD_Column_ID), items);
+			} else {
+				System.out.println("Not found !! :"+tableName+" : "+columnName);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
 	 * 情報登録[save information]
-	 * @param env 環境情報[Enfironment information]
+	 * @param env 環境情報[Environment information]
 	 */
 	public void save(FD_EnvData env) {
 		save(env, Table_Name, items);
@@ -146,6 +188,6 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 		return FD_Default;
 	}
 	public void setFD_Default(String valueData) {
-		items.setValue(COLUMNNAME_FD_Value, valueData);
+		items.setValue(COLUMNNAME_FD_Default, valueData);
 	}
 }
