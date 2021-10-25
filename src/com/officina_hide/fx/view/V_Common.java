@@ -8,6 +8,8 @@ import com.officina_hide.fx.model.FX_Field;
 import com.officina_hide.fx.model.I_FX_Field;
 import com.officina_hide.fx.model.X_FX_Field;
 
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 /**
@@ -30,6 +32,14 @@ public class V_Common {
 		FX_Field field = new FX_Field();
 		FD_WhereData where = new FD_WhereData(I_FX_Field.COLUMNNAME_FX_Tab_ID, tabId);
 		List<X_FX_Field> flist = field.getList(env, where);
+		for(X_FX_Field fd : flist) {
+			HBox fbox = new HBox(5);
+			root.getChildren().add(fbox);
+			
+			//ラベルセット
+			Label label = new Label(fd.getFD_Name());
+			fbox.getChildren().add(label);
+		}
 	}
 
 }

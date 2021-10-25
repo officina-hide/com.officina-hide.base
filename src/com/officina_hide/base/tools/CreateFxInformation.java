@@ -77,8 +77,8 @@ public class CreateFxInformation implements I_FD_DB {
 		long tabId = tab.add(env, 0, V_FX_Login.FX_Tab_Name, viewId,
 				I_FD_Login.Table_ID ,V_FX_Login.FX_Tab_Disp_Name, V_FX_Login.FX_Tab_Description, 0);
 		//7-3.
-		field.add(env, 0, I_FD_Login.COLUMNNAME_FD_User_Name, "ログイン名", tabId, FD_Field_SimpleText);
-		field.add(env, 0, I_FD_Login.COLUMNNAME_FD_Login_Password, "パスワード", tabId, FD_Field_Password);
+		field.add(env, 0, I_FD_Login.Table_Name, I_FD_Login.COLUMNNAME_FD_User_Name, tabId, FD_Field_SimpleText);
+		field.add(env, 0, I_FD_Login.Table_Name, I_FD_Login.COLUMNNAME_FD_Login_Password, tabId, FD_Field_Password);
 		//7-4.
 		FD_Process process = new FD_Process();
 		FD_ProcessParam pp = new FD_ProcessParam();
@@ -106,6 +106,7 @@ public class CreateFxInformation implements I_FD_DB {
 		long typeID = type.add(env, 0, FD_Field_Type, "画面項目属性", "画面項目の属性を管理する。");
 		typeItem.add(env, 0, FD_Field_SimpleText, typeID, "1行テキスト", "1行のみのテキスト情報(ClassはString)");
 		typeItem.add(env, 0, FD_Field_Password, typeID, "パスワード", "パスワード情報(ClassはString)");
+		typeItem.add(env, 0, FD_Field_Text, typeID, "複数行テキスト", "複数行のテキスト情報(ClassはString)");
 	}
 
 	/**

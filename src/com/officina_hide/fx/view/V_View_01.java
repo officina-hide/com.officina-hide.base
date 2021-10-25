@@ -7,6 +7,7 @@ import com.officina_hide.fx.model.X_FX_Tab;
 import com.officina_hide.fx.model.X_FX_View;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -26,7 +27,7 @@ public class V_View_01 extends Application {
 	/** 画面情報 */
 	private X_FX_View view;
 	/** 画面共通機能 */
-	private V_Common vc;
+	private V_Common vc = new V_Common();
 	
 	/**
 	 * コンストラクタ[Constructor]<br>
@@ -46,8 +47,11 @@ public class V_View_01 extends Application {
 		FD_WhereData where = new FD_WhereData(I_FX_Tab.COLUMNNAME_FX_View_ID, viewId);
 		where.add("AND", I_FX_Tab.COLUMNNAME_FX_Tab_Level, 0);
 		X_FX_Tab mainTab = new X_FX_Tab(env, where);
+		
 		//フィールド
 		VBox root = new VBox(5);
+		root.setPadding(new Insets(5, 5, 5, 5));
+		root.setStyle("-fx-font-family: Meiryo UI; -fx-font-size: 12");
 		vc.setFIeld(env, root, mainTab.getFX_Tab_ID());
 		
 		Scene scene = new Scene(root);

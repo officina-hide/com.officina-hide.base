@@ -32,6 +32,8 @@ public interface I_FD_DB {
 	public static final String FD_Field_SimpleText = "FD_Field_SimpleText";
 	/** 画面項目種別 : パスワード */
 	public static final String FD_Field_Password = "FD_Field_Password";
+	/** 画面項目種別 : 複数行テキスト */
+	public static final String FD_Field_Text = "FD_Field_Text";
 	
 	/** メニュー種別 : 画面 */
 	public static final String FD_Menu_View = "FD_Menu_View";
