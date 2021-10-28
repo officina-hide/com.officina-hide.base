@@ -45,11 +45,11 @@ public class V_MainMenu extends Application implements I_FD_DB {
 		List<X_FX_Menu> mlist = getMenuList(env);
 		for(X_FX_Menu menu : mlist) {
 			Button button = new Button(menu.getFD_Name());
+			root.getChildren().add(button);
 			button.setFont(new Font("Meiryo UI", 12));
 			button.setOnMouseClicked(event->{
 				buttomSelected(env, event, menu);
 			});
-			root.getChildren().add(button);
 		}
 		
 		Scene scene = new Scene(root, 300, 500);
