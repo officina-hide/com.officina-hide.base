@@ -20,11 +20,15 @@ public class P_FDStart extends Application {
 		//環境情報初期化
 		env.setDbName("FDBASE");
 		
-		//ログイン画面を表示する。
-		V_Login login = new  V_Login(env);
-		//表示項目設定
+//		//ログイン画面を表示する。
+//		V_Login login = new  V_Login(env);
+//		//表示項目設定
+//		login.start(new Stage());
+
+		//メインステージを表示する。（ログインは省略）
+		V_Main_View  vmv = new V_Main_View(env);
+		vmv.start(new Stage());
 		
-		login.start(new Stage());
 		System.out.println("P_FDStart End");
 	}
 
