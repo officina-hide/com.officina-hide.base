@@ -1,5 +1,11 @@
 package com.officina_hide.fx.model;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.FD_DB;
@@ -70,6 +76,35 @@ public class FX_Menu extends FD_DB implements I_FX_Menu {
 		menu.setFD_TypeItem_ID(typeItemId);
 		menu.setFD_Group_ID(env.getActionUserID());
 		menu.save(env);
+	}
+
+	/**
+	 * メニュー情報一覧生成[Menu information list generation]<br>
+	 * @author officina-hide.net
+	 * @since 2021/11/02 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @return メニュー情報一覧[Menu information list]
+	 */
+	public List<X_FX_Menu> getMenuList(FD_EnvData env) {
+		List<X_FX_Menu> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT * FROM ").append(Table_Name);
+			connection(env);
+			pstmt = getConn().prepareStatement(sql.toString());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				list.add(new X_FX_Menu(env, rs.getLong(COLUMNNAME_FX_Menu_ID)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
+		
+		return list;
 	}
 
 }
