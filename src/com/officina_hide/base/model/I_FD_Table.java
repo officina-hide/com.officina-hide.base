@@ -46,4 +46,7 @@ public interface I_FD_Table extends I_FD_DB {
 			+") "
 			+"ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=" + FD_SQ + Table_Disp_Name + FD_SQ;
 	
+	/** 全選択用SQL */
+	public static final String  SQL_SELECT_ALL =
+			"SELECT * FROM " + Table_Name;
  }

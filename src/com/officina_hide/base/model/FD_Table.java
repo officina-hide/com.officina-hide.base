@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -270,5 +272,31 @@ public class FD_Table extends FD_DB implements I_FD_Table {
 		table.save(env);		
 		
 		return table.getFD_Table_ID();
+	}
+
+	/**
+	 * テーブル情報リスト生成[Table information list generation]<br>
+	 * @author officina-hide.net
+	 * @since 2021/11/04 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @return テーブル情報リスト[Table information list]
+	 */
+	public List<X_FD_Table> getList(FD_EnvData env) {
+		List<X_FD_Table> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			connection(env);
+			pstmt = getConn().prepareStatement(SQL_SELECT_ALL);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				list.add(new X_FD_Table(env, rs.getLong(COLUMNNAME_FD_Table_ID)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
+		return null;
 	}
 }

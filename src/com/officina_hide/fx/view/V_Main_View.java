@@ -1,10 +1,13 @@
 package com.officina_hide.fx.view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_WhereData;
+import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.I_FD_DB;
+import com.officina_hide.base.model.X_FD_Table;
 import com.officina_hide.fx.model.FX_Field;
 import com.officina_hide.fx.model.FX_Menu;
 import com.officina_hide.fx.model.I_FX_Field;
@@ -141,26 +144,90 @@ public class V_Main_View extends Application implements I_FD_DB {
 		FX_Field field = new FX_Field();
 		where = new FD_WhereData(I_FX_Field.COLUMNNAME_FX_Tab_ID, tab.getFX_Tab_ID());
 		List<X_FX_Field> flist = field.getList(env, where);
+		FX_FieldCollection fdlist = new FX_FieldCollection();
 		for(X_FX_Field fd : flist) {
+			FX_FieldItem fi = new FX_FieldItem();
+			fdlist.getItems().add(fi);
+			fi.setFieldName(fd.getFx_Field_Name());
+			fi.setFieldType(fd.getFD_TypeItem(env).getFD_TypeItem_Name());
+			
 			HBox fieldBox = new HBox(5);
 			fieldBox.setAlignment(Pos.CENTER_LEFT);
 			tbBox.getChildren().add(fieldBox);
 			
 			Label label = new Label(fd.getFD_Name());
 			fieldBox.getChildren().add(label);
-			switch(fd.getFD_TypeItem(env).getFD_TypeItem_Name()) {
+			switch(fi.getFieldType()) {
 			case FD_Field_SimpleText:
 				TextField textField = new TextField("");
 				fieldBox.getChildren().add(textField);
+				fi.setFieldItem(textField);
 				break;
 			case FD_Field_Text:
 				TextArea textArea = new TextArea("");
 				textArea.setPrefRowCount(3);
 				textArea.setPrefColumnCount(40);
 				fieldBox.getChildren().add(textArea);
+				fi.setFieldItem(textArea);
 				break;
 			}
 		}
+		//テーブル情報の一覧リストを取得する。
+		FD_Table table = new FD_Table();
+		List<X_FD_Table> tlist = table.getList(env);
+		System.out.println(tlist.size());
 	}
 
+	/**
+	 * 画面項目用情報クラス[Information class for screen items]<br>
+	 * TODO 汎用化予定(2021/11/04)
+	 * @author officina-hide.net
+	 * @version 1.00 新規作成
+	 * @since 2021/11/04 Ver. 1.00
+	 */
+	private class FX_FieldCollection {
+		private List<FX_FieldItem> items;
+
+		public List<FX_FieldItem> getItems() {
+			if(items == null) {
+				items = new ArrayList<>();
+			}
+			return items;
+		}
+	}
+	
+	/**
+	 * 画面項目クラス[Screen item class]<br>
+	 * TODO 汎用化予定(2021/11/04)
+	 * @author officina-hide.net
+	 * @version 1.00 新規作成
+	 * @since 2021/11/04 Ver. 1.00
+	 */
+	private class FX_FieldItem {
+		/** 項目名 */
+		private String fieldName;
+		/** 項目 */
+		private Object fieldItem;
+		/** 項目属性 */
+		private String fieldType;
+
+		public String getFieldName() {
+			return fieldName;
+		}
+		public void setFieldName(String fieldName) {
+			this.fieldName = fieldName;
+		}
+		public Object getFieldItem() {
+			return fieldItem;
+		}
+		public void setFieldItem(Object fieldItem) {
+			this.fieldItem = fieldItem;
+		}
+		public String getFieldType() {
+			return fieldType;
+		}
+		public void setFieldType(String fieldType) {
+			this.fieldType = fieldType;
+		}
+	}
 }
