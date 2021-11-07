@@ -37,7 +37,7 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 	/**
 	 * インスタンス時に、指定されたIDを持つ情報を取得する。<br>
 	 * At the time instance, to get the information with the specified ID.<br>
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 1.00 2021/07/13
 	 * @param env 環境情報[Environment Information]
 	 * @param tableID 情報ID[Information ID]
@@ -69,11 +69,12 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 
 	/**
 	 * 情報登録[Information registration]
-	 * @param env 環境情報[Enfironment information]
+	 * @param env 環境情報[Environment information]
 	 */
 	public void save(FD_EnvData env) {
 		save(env, Table_Name, items);
 	}
+
 //
 //	/**
 //	 * テーブル情報テーブル生成[Table information table generation]<br>
@@ -103,9 +104,5 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 	public void setFD_Table_Name(String tableName) {
 		items.setValue(COLUMNNAME_FD_Table_Name, tableName);
 	}
-//
-//	public FD_Items getItems() {
-//		return items;
-//	}
 
 }

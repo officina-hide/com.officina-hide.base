@@ -36,9 +36,9 @@ public class FD_DB implements I_FD_DB {
 
 	/**
 	 * データベース接続[Database connection]<br>
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 1.00 2021/05/25
-	 * @param env 環境情報[Evvironment Information]
+	 * @param env 環境情報[Environment Information]
 	 */
 	public void connection(FD_EnvData env) {
 		if(conn == null) {
@@ -56,7 +56,7 @@ public class FD_DB implements I_FD_DB {
 
 	/**
 	 * 接続情報クローズ[Connection information closed]<br>
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 1.00 2021/08/24
 	 * @param stmt ステートメント情報[Statement Information]
 	 * @param rs 検索結果[search results]
@@ -588,6 +588,9 @@ public class FD_DB implements I_FD_DB {
 		column.add(env, 0, tableId, COLUMNNAME_FD_UpdatedBy, FD_ITEM_ID, 0, true, false, null);
 	}
 	
+	public FD_Items getItems() {
+		return items;
+	}
 	public long getFD_Group_ID() {
 		return items.getlongData(COLUMNNAME_FD_Group_ID);
 	}

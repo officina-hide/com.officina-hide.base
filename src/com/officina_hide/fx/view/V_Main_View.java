@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_Items;
 import com.officina_hide.base.common.FD_WhereData;
 import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.I_FD_DB;
@@ -60,7 +61,7 @@ public class V_Main_View extends Application implements I_FD_DB {
 		
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
-		stage.show();
+		stage.showAndWait();
 	}
 
 	/**
@@ -175,7 +176,35 @@ public class V_Main_View extends Application implements I_FD_DB {
 		//テーブル情報の一覧リストを取得する。
 		FD_Table table = new FD_Table();
 		List<X_FD_Table> tlist = table.getList(env);
-		System.out.println(tlist.size());
+		if(tlist.size() > 0) {
+			//1件目のテーブル情報を画面セット
+			setData(tlist.get(0), fdlist);
+		}
+	}
+
+	/**
+	 * データセット[Data setting]<br>
+	 * @author officina-hide.net
+	 * @since 2021/11/06 Ver. 1.00
+	 * @param table テーブル情報[Table information]
+	 * @param fdlist 画面項目情報[Screen item information]
+	 */
+	private void setData(X_FD_Table table, FX_FieldCollection fdlist) {
+		FD_Items items = table.getItems(); 
+		for(FX_FieldItem item : fdlist.getItems()) {
+			switch(item.getFieldType()) {
+			case FD_Field_SimpleText:
+				TextField textField = (TextField) item.getFieldItem();
+				textField.setText(items.getStringData(item.getFieldName()));
+				break;
+			case FD_Field_Text:
+				TextArea textAres = (TextArea) item.getFieldItem();
+				textAres.setText(items.getStringData(item.getFieldName()));
+				break;
+			}
+		}
+		
+		
 	}
 
 	/**

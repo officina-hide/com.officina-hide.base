@@ -297,6 +297,6 @@ public class FD_Table extends FD_DB implements I_FD_Table {
 		} finally {
 			DBClose(pstmt, rs);
 		}
-		return null;
+		return list;
 	}
 }
