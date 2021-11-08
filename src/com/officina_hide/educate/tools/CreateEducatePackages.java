@@ -3,6 +3,7 @@ package com.officina_hide.educate.tools;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.base.tools.CreateBaseInformation;
+import com.officina_hide.base.tools.CreateFxInformation;
 
 /**
  * 教育用パッケージ生成[Educational package generation]<br>
@@ -30,6 +31,8 @@ public class CreateEducatePackages {
 		if(env.getRunLevel() == 0) {
 			CreateBaseInformation cbi = new CreateBaseInformation(env);
 			cbi.execute();
+			CreateFxInformation cfi = new CreateFxInformation(env);
+			cfi.execute();
 		}
 	}
 
