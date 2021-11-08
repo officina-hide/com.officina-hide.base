@@ -4,3 +4,5 @@ officina
 ueno
 bigint
 hideo
+fdadmin
+homepage
