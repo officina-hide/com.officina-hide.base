@@ -34,6 +34,9 @@ public class CreateEducatePackages {
 			CreateFxInformation cfi = new CreateFxInformation(env);
 			cfi.execute();
 		}
+		if(env.getRunLevel() <= 1) {
+			CreateEdcationBaseInformation ceb = new CreateEdcationBaseInformation(env);
+		}
 	}
 
 }
