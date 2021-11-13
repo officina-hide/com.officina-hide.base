@@ -1,6 +1,7 @@
 package com.officina_hide.base.tools;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_WhereData;
 import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.FD_DataDictionary;
@@ -187,17 +188,20 @@ public class CreateBaseInformation implements I_FD_DB {
 	 */
 	public void reNumber(FD_EnvData env) {
 		//採番情報
-		X_FD_Numbering num = new X_FD_Numbering(env, I_FD_Numbering.Table_ID);
+		FD_WhereData where = new FD_WhereData(I_FD_Numbering.COLUMNNAME_FD_Table_ID, I_FD_Numbering.Table_ID);
+		X_FD_Numbering num = new X_FD_Numbering(env, where);
 		num.setFD_InitialNumber(100001);
 		num.setFD_CurrentNumber(0);
 		num.save(env);
 		//辞書情報
-		X_FD_Numbering num_dd = new X_FD_Numbering(env, I_FD_DataDictionary.Table_ID);
+		where = new FD_WhereData(I_FD_Numbering.COLUMNNAME_FD_Table_ID, I_FD_DataDictionary.Table_ID);
+		X_FD_Numbering num_dd = new X_FD_Numbering(env, where);
 		num_dd.setFD_InitialNumber(100001);
 		num_dd.setFD_CurrentNumber(0);
 		num_dd.save(env);
 		//テーブル項目情報
-		X_FD_Numbering num_column = new X_FD_Numbering(env, I_FD_Column.Table_ID);
+		where = new FD_WhereData(I_FD_Numbering.COLUMNNAME_FD_Table_ID, I_FD_Column.Table_ID);
+		X_FD_Numbering num_column = new X_FD_Numbering(env, where);
 		num_column.setFD_InitialNumber(100001);
 		num_column.setFD_CurrentNumber(0);
 		num_column.save(env);

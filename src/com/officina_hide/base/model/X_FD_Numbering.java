@@ -15,7 +15,7 @@ import com.officina_hide.base.common.FD_WhereData;
 
 /**
  * 採番情報I/Oクラス[Numbering information I/O class]<br>
- * @author officine-hide.net
+ * @author officina-hide.net
  * @version 1.00
  * @since 2021/09/16
  */
@@ -51,7 +51,7 @@ public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 	 * コンストラクタ[Constructor]<br>
 	 * @author officina-hide.net
 	 * @since 1.00 2021/09/17
-	 * @param env 環境情報[Enfironment information]
+	 * @param env 環境情報[Environment information]
 	 * @param where 条件情報[Condition information]
 	 */
 	public X_FD_Numbering(FD_EnvData env, FD_WhereData where) {

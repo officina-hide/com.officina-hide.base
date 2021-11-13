@@ -8,7 +8,7 @@ import com.officina_hide.base.common.FD_WhereData;
 
 /**
  * テーブル項目情報クラス[Table item information class]<br>
- * @author officine-hide.net
+ * @author officina-hide.net
  * @version 1.00
  * @since 2021/09/21
  */
@@ -16,7 +16,7 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 
 	/**
 	 * テーブル項目テーブル生成[Table item table generation]<br>
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 1.00 2021/09/21
 	 * @param env 環境情報[Environment information]
 	 */
@@ -36,7 +36,7 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 
 	/**
 	 * テーブル毎の登録処理を行う。[Perform registration processing for each table.]<br>
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 1.00 2021/09/19
 	 * @param env 環境情報[Environment information]
 	 * @param tableName テーブル名[Table name]
@@ -89,7 +89,7 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 	public void add(FD_EnvData env, int columnID, long tableID, String columnName, String typeName
 			, int size, boolean isnull, boolean isKey, String defaultValue) {
 		X_FD_Column column = new X_FD_Column(env, 0);
-		column.setFD_Column_ID(0);
+		column.setFD_Column_ID(columnID);
 		column.setFD_Table_ID(tableID);
 		FD_DataDictionary dd = new FD_DataDictionary();
 		column.setFD_DataDictionary_ID(dd.getIDByName(env, columnName));
@@ -105,7 +105,7 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 	/**
 	 * テーブル項目用属性項目情報ID取得[Get attribute item information ID for table item]<br>
 	 * @author officina-hide.net
-	 * @param env 環境情報[Enfironment information]
+	 * @param env 環境情報[Environment information]
 	 * @since 1.00 2021/09/23
 	 * @param typeName 属性項目名[Type item name]
 	 * @return 属性項目情報ID[Type item information ID]
