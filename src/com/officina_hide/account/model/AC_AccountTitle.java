@@ -64,7 +64,12 @@ public class AC_AccountTitle extends FD_DB implements I_AC_AccountTitle {
 	 * @param name 勘定科目名
 	 */
 	private void add(FD_EnvData env, int accoutTitleId, String code, String name) {
-		
+		X_AC_AccountTitle aa = new X_AC_AccountTitle(env, 0);
+		aa.setAC_AccountTitle_ID(accoutTitleId);
+		aa.setAC_AccountTitle_Code(code);
+		aa.setFD_Name(name);
+		aa.setFD_Group_ID(SYSTEM_GROUP_ID);
+		aa.save(env);
 	}
 
 }
