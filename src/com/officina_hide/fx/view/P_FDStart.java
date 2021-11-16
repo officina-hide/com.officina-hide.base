@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 /**
  * パッケージ開始処理クラス[Package start processing class]<br>
- * @author officine-hide.net
+ * @author officina-hide.net
  * @version 1.00 新規作成
  * @since 2021/10/05 Ver. 1.00
  */
