@@ -23,7 +23,7 @@ public class FX_Start extends Application {
 		env.setActionUserID(I_FD_DB.SYSTEM_USER_ID);
 		
 		//メイン画面表示
-		FX_Main_View fmv = new FX_Main_View();
+		FX_Main_View fmv = new FX_Main_View(env);
 		fmv.start(new Stage());
 	}
 

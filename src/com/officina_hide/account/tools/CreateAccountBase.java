@@ -2,6 +2,7 @@ package com.officina_hide.account.tools;
 
 import com.officina_hide.account.model.AC_AccountTitle;
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.fx.base.MainFrameSetting;
 
 /**
  * 会計機能基盤生成[Accounting function infrastructure generation]<br>
@@ -32,11 +33,15 @@ public class CreateAccountBase {
 	public void execute() {
 		/*
 		 * 1. 勘定科目情報生成[Generate account information]
+		 * 2. メイン画面関連情報設定
 		 */
 		//1.
 		AC_AccountTitle aat = new AC_AccountTitle();
 		aat.createTable(env);
 		aat.addTitle(env);
+		//2.
+		MainFrameSetting mfs = new MainFrameSetting();
+		mfs.addInformation(env);
 	}
 
 }
