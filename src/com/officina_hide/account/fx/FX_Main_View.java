@@ -6,6 +6,7 @@ import com.officina_hide.fx.base.FX_View_Common;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Separator;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -38,7 +39,11 @@ public class FX_Main_View extends Application {
 		root.setPadding(new Insets(5, 5, 5, 5));
 		//トップエリア設定[Top area setting]
 		com.setTopArea(env, root);
-		
+		//セパレーター
+		root.getChildren().add(new Separator());
+		//メインエリア設定[Main area setting]
+		com.setMainArea(env, root);
+
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.showAndWait();

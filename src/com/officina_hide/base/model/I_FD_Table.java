@@ -49,4 +49,9 @@ public interface I_FD_Table extends I_FD_DB {
 	/** 全選択用SQL */
 	public static final String  SQL_SELECT_ALL =
 			"SELECT * FROM " + Table_Name;
- }
+
+	/** テーブル情報ID取得用SQL */
+	public static final String SQL_GET_TABLE_ID = 
+			"SELECT " + COLUMNNAME_FD_Table_ID + " FROM " + Table_Name + " " +
+			"WHERE " + COLUMNNAME_FD_Table_Name + " = ? ";
+}

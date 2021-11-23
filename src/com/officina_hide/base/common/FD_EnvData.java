@@ -1,5 +1,7 @@
 package com.officina_hide.base.common;
 
+import com.officina_hide.fx.base.FV_MainView;
+
 /**
  * 環境情報クラス[Environmental information class]<br>
  * @author officina-hide.com
@@ -12,6 +14,9 @@ public class FD_EnvData {
 	private String dbName;
 	/** 処理者情報ID 2021/09/18 Addition */
 	private long actionUserID;
+	
+	/** メイン画面構成 */
+	private FV_MainView mainView;
 	
 	
 	
@@ -41,7 +46,7 @@ public class FD_EnvData {
 
 	/**
 	 * 環境情報初期化[Environmental information initialization]<br>
-	 * @author officine-hide.com
+	 * @author officina-hide.com
 	 * @since 1.00 2021/05/24
 	 */
 	public void initialize() {
@@ -60,5 +65,12 @@ public class FD_EnvData {
 	}
 	public void setDbName(String dbName) {
 		this.dbName = dbName;
+	}
+
+	public FV_MainView getMainView() {
+		if(mainView == null) {
+			mainView = new FV_MainView();
+		}
+		return mainView;
 	}
 }

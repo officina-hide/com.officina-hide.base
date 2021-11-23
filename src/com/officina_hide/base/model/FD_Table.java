@@ -299,4 +299,32 @@ public class FD_Table extends FD_DB implements I_FD_Table {
 		}
 		return list;
 	}
+
+	/**
+	 * テーブル情報ID取得[Get table information ID]<br>
+	 * @author officina-hide.net
+	 * @since 2021/11/22 Ver. 1.00
+	 * @param tableName テーブル名[Table name]
+	 * @return テーブル情報ID[Table information ID]
+	 */
+	public long getTableId(String tableName) {
+		long id = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			connection(env);
+			pstmt = getConn().prepareStatement(SQL_GET_TABLE_ID);
+			pstmt.setString(1, tableName);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				id = rs.getLong(COLUMNNAME_FD_Table_ID);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
+		return id;
+	}
+	
 }

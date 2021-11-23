@@ -63,7 +63,7 @@ public class FX_Tab extends FD_DB implements I_FX_Tab {
 	 * @param level FXタブレベル[Tab level]
 	 * @return tabID FXタブ情報ID[FX tab information ID]
 	 */
-	public long add(FD_EnvData env, int tabID, String tabName, long viewId, int tableId, String name, String description,
+	public long add(FD_EnvData env, int tabID, String tabName, long viewId, long tableId, String name, String description,
 			int level) {
 		X_FX_Tab tab = new X_FX_Tab(env, 0);
 		tab.setFX_Tab_ID(0);
