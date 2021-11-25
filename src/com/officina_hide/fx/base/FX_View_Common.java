@@ -154,6 +154,14 @@ public class FX_View_Common implements I_FD_DB {
 		}
 	}
 
+	/**
+	 * テーブルデータ取得[Table data acquisition]<br>
+	 * @author officina-hide.net
+	 * @since 2021/11/25 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param tableId テーブル情報ID[Table information ID]
+	 * @return テーブル情報付テーブル項目リスト[Table item list with table information]
+	 */
 	private List<FD_Items> getDataList(FD_EnvData env, long tableId) {
 		List<FD_Items> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
