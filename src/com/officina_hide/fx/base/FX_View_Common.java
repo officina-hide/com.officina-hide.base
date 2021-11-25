@@ -131,6 +131,7 @@ public class FX_View_Common implements I_FD_DB {
 		}
 		
 		List<FD_Items> dlist = getDataList(env, tab.getFX_Tab_ID());
+		System.out.println(dlist.size());
 	}
 
 	private List<FD_Items> getDataList(FD_EnvData env, long tableId) {
@@ -138,7 +139,6 @@ public class FX_View_Common implements I_FD_DB {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		FD_DB DB = new FD_DB();
-//		DB.createItemList(env, tableId);
 		X_FD_Table table = new X_FD_Table(env, tableId);
 		StringBuffer sql = new StringBuffer();
 		try {
@@ -147,7 +147,8 @@ public class FX_View_Common implements I_FD_DB {
 			pstmt = DB.getConn().prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				//FD_Itemsの初期化
+				FD_Items items = DB.createItems(env, tableId, rs);
+				list.add(items);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

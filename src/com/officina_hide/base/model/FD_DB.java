@@ -277,6 +277,7 @@ public class FD_DB implements I_FD_DB {
 				break;
 			case FD_ITEM_Text:
 				sql.append("text").append(" ");
+				break;
 			}
 			//コメント
 			sql.append("COMMENT ").append(FD_SQ).append("").append(FD_SQ).append(" ");
@@ -354,6 +355,56 @@ public class FD_DB implements I_FD_DB {
 		} finally {
 			DBClose(pstmt, rs);
 		}
+	}
+
+	/**
+	 * テーブル項目リスト生成[Table item list generation]<br>
+	 * <p>テーブル項目情報よりテーブル項目リストを初期化し、検索結果から各情報の値をセットする。<br>
+	 * Initialize the table item list from the table item information and set the value of each information from the search result.</p>
+	 * @author officina-hide.com
+	 * @since 2021/11/25 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param tableId テーブル情報ID[Table information ID]
+	 * @param rs 検索結果[search results]
+	 * @return 
+	 */
+	public FD_Items createItems(FD_EnvData env, long tableId, ResultSet rs) {
+		FD_Items items = new FD_Items();
+		//テーブル情報取得
+		X_FD_Table table = new X_FD_Table(env, tableId);
+		PreparedStatement pstmt = null;
+		ResultSet rs2 = null;
+		try {
+			connection(env);
+			pstmt = getConn().prepareStatement(ITEM_LIST_SQL);
+			pstmt.setString(1, table.getFD_Table_Name());
+			rs2 = pstmt.executeQuery();
+			while(rs2.next()) {
+				FD_Item item = new FD_Item();
+				item.setName(rs2.getString(ITEM_LIST_SQL_Name));
+				item.setType(rs2.getString(ITEM_LIST_SQL_TypeName));
+				switch(item.getType()) {
+				case FD_ITEM_ID:
+					item.setData(rs.getLong(item.getName()));
+					break;
+				case FD_ITEM_String:
+				case FD_ITEM_Text:
+					item.setData(rs.getString(item.getName()));
+					break;
+				case FD_ITEM_Date:
+					item.setData(rs.getDate(item.getName()));
+					break;
+				}
+				items.setTableId(tableId);
+				items.setTableName(table.getFD_Table_Name());
+				items.getItems().add(item);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs2);
+		}
+		return items;
 	}
 
 	/**
