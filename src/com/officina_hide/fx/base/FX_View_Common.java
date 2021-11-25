@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_Item;
 import com.officina_hide.base.common.FD_Items;
 import com.officina_hide.base.common.FD_WhereData;
 import com.officina_hide.base.model.FD_DB;
@@ -117,21 +118,40 @@ public class FX_View_Common implements I_FD_DB {
 		FX_Field field = new FX_Field();
 		where = new FD_WhereData(I_FX_Field.COLUMNNAME_FX_Tab_ID, tab.getFX_Tab_ID());
 		List<X_FX_Field> flist = field.getList(env, where);
+		FX_Fields fields = new FX_Fields();
 		for(X_FX_Field fd : flist) {
+			FX_FieldItem fitem = new FX_FieldItem();
+			fields.getFields().add(fitem);
+			fitem.setField(fd);
+			fitem.setFieldTypeName(fd.getFD_TypeItem(env).getFD_TypeItem_Name());
 			HBox fieldBox = new HBox(5);
 			tabBox.getChildren().add(fieldBox);
 			Label lebel = new Label(fd.getFD_Name());
 			fieldBox.getChildren().add(lebel);
-			switch(fd.getFD_TypeItem(env).getFD_TypeItem_Name()) {
+			switch(fitem.getFieldTypeName()) {
 			case FD_Field_SimpleText:
 				TextField textField = new TextField("");
 				fieldBox.getChildren().add(textField);
+				fitem.setFieldItem(textField);
 				break;
 			}
 		}
 		
-		List<FD_Items> dlist = getDataList(env, tab.getFX_Tab_ID());
-		System.out.println(dlist.size());
+		List<FD_Items> dlist = getDataList(env, tab.getFD_Table_ID());
+		FD_Items dt = dlist.get(0);
+		for(FX_FieldItem fitem : fields.getFields()) {
+			for(FD_Item ditem : dt.getItems()) {
+				if(ditem.getName().equals(fitem.getField().getFx_Field_Name())) {
+					//項目セット
+					switch(fitem.getFieldTypeName()) {
+					case FD_Field_SimpleText:
+						TextField text = (TextField) fitem.getFieldItem();
+						text.setText((String) ditem.getData());
+						break;
+					}
+				}
+			}
+		}
 	}
 
 	private List<FD_Items> getDataList(FD_EnvData env, long tableId) {
