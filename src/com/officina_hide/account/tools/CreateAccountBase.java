@@ -57,6 +57,7 @@ public class CreateAccountBase implements I_FD_DB {
 		long tabId =  tab.add(env, 0, "FV_AccountTitle", viewId, table.getTableId(I_AC_AccountTitle.Table_Name), "勘定科目情報", "", 0);
 		FX_Field field = new FX_Field();
 		field.add(env, 0, I_AC_AccountTitle.Table_Name, I_AC_AccountTitle.COLUMNNAME_AC_AccountTitle_Code, tabId, FD_Field_SimpleText);
+		field.add(env, 0, I_AC_AccountTitle.Table_Name, COLUMNNAME_FD_Name, tabId, FD_Field_SimpleText);
 		//メニュー情報登録
 		FX_Menu menu = new FX_Menu();
 		menu.add(env, 0, I_FV_AccountTitle.VIEWNAME, viewId, FD_Menu_View, "勘定科目");

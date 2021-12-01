@@ -3,6 +3,7 @@ package com.officina_hide.fx.base;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,7 @@ import com.officina_hide.fx.model.X_FX_Tab;
 import com.officina_hide.fx.model.X_FX_View;
 
 import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -115,6 +117,23 @@ public class FX_View_Common implements I_FD_DB {
 		where.add("AND", I_FX_Tab.COLUMNNAME_FX_Tab_Level, 0);
 		X_FX_Tab tab = new X_FX_Tab(env, where);
 		tb.setText(tab.getFD_Name());
+		
+		//対象情報リスト生成
+		List<FD_Items> dlist = getDataList(env, tab.getFD_Table_ID());
+		/*
+		 * 検索結果をタブ右上に表示する。
+		 */
+		HBox headBox = new HBox(5);
+		tabBox.getChildren().add(headBox);
+		HBox nameBox = new HBox(5);
+		HBox countBox = new HBox(5);
+		countBox.setAlignment(Pos.CENTER_RIGHT);
+		countBox.setSpacing(100);
+		headBox.getChildren().addAll(nameBox, countBox);
+		DecimalFormat countFmt = new DecimalFormat("#,##0");
+		Label recordCount = new Label(countFmt.format(dlist.size()));
+		countBox.getChildren().add(recordCount);
+
 		FX_Field field = new FX_Field();
 		where = new FD_WhereData(I_FX_Field.COLUMNNAME_FX_Tab_ID, tab.getFX_Tab_ID());
 		List<X_FX_Field> flist = field.getList(env, where);
@@ -137,7 +156,10 @@ public class FX_View_Common implements I_FD_DB {
 			}
 		}
 		
-		List<FD_Items> dlist = getDataList(env, tab.getFD_Table_ID());
+		/*
+		 * 情報セット
+		 * TODO 個別メソッド化予定(2021/11/30)
+		 */
 		FD_Items dt = dlist.get(0);
 		for(FX_FieldItem fitem : fields.getFields()) {
 			for(FD_Item ditem : dt.getItems()) {
