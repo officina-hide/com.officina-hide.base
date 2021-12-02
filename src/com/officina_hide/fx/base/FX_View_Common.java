@@ -25,6 +25,7 @@ import com.officina_hide.fx.model.X_FX_View;
 
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -133,6 +134,12 @@ public class FX_View_Common implements I_FD_DB {
 		DecimalFormat countFmt = new DecimalFormat("#,##0");
 		Label recordCount = new Label(countFmt.format(dlist.size()));
 		countBox.getChildren().add(recordCount);
+		
+		/*
+		 * ツールバー表示
+		 */
+		HBox toolBox = createToolbarBox(env);
+		tabBox.getChildren().add(toolBox);
 
 		FX_Field field = new FX_Field();
 		where = new FD_WhereData(I_FX_Field.COLUMNNAME_FX_Tab_ID, tab.getFX_Tab_ID());
@@ -174,6 +181,22 @@ public class FX_View_Common implements I_FD_DB {
 				}
 			}
 		}
+	}
+
+	/**
+	 * ツールバー設定[Toolbar settings]<br>
+	 * @author officina-hide.net
+	 * @since 2021/12/02 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @return ツールバー[Toolbar]
+	 */
+	private HBox createToolbarBox(FD_EnvData env) {
+		HBox toolBox = new HBox(5);
+		Button saveButton = new Button("保存");
+		Button createButton = new Button("新規");
+
+		toolBox.getChildren().addAll(saveButton, createButton);
+		return toolBox;
 	}
 
 	/**

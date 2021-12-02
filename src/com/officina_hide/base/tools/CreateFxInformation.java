@@ -11,6 +11,7 @@ import com.officina_hide.fx.model.FX_Field;
 import com.officina_hide.fx.model.FX_Menu;
 import com.officina_hide.fx.model.FX_Tab;
 import com.officina_hide.fx.model.FX_TabProcess;
+import com.officina_hide.fx.model.FX_ToolBar;
 import com.officina_hide.fx.model.FX_View;
 import com.officina_hide.fx.model.V_FX_Login;
 
@@ -42,6 +43,7 @@ public class CreateFxInformation implements I_FD_DB {
 		 * 4. 画面項目情報テーブル構築、関連情報登録
 		 * 5. プロセス情報テーブル構築
 		 * 6-1. メニュー情報テーブル構築
+		 * 6-2. ツールバー情報テーブル構築
 		 * 7. ログイン画面構成
 		 * 8. 総合メニュー画面情報登録
 		 */
@@ -62,6 +64,9 @@ public class CreateFxInformation implements I_FD_DB {
 		//6-1.
 		FX_Menu menu = new FX_Menu();
 		menu.createTable(env);
+		//6-2.
+		FX_ToolBar toolbar = new FX_ToolBar();
+		toolbar.createTable(env);
 		
 		/*
 		 * 7. 

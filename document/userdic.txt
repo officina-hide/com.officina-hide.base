@@ -7,3 +7,4 @@ hideo
 fdadmin
 homepage
 tb
+toolbar
