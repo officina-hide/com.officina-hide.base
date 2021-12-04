@@ -19,5 +19,14 @@ public interface I_FX_ToolBar extends I_FD_DB {
 	public static final String Table_Comment_Eng = "Manage the buttons used on the screen toolbar.";
 	/** テーブル情報ID */
 	public final static long Table_ID = 206;
+	
+	/** 項目 : ツールバー情報 */
+	public final static String COLUMNNAME_FX_ToolBar_ID = Table_Name + "_ID";
+	public final static String NAME_FX_ToolBar_ID = Table_Disp_Name + "ID";
+	public final static String COMMENT_FX_ToolBar_ID = "テーブル情報を識別する為の情報ID";
+	/** 項目 : ツールバー名 */
+	public final static String COLUMNNAME_FX_ToolBar_Name = Table_Name + "_Name";
+	public final static String NAME_FX_ToolBar_Name = "ツールバー名称";
+	public final static String COMMENT_FX_ToolBar_Name = "ツールバーを識別する為の名称";
 
 }
