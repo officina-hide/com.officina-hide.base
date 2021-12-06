@@ -43,7 +43,8 @@ public class CreateFxInformation implements I_FD_DB {
 		 * 4. 画面項目情報テーブル構築、関連情報登録
 		 * 5. プロセス情報テーブル構築
 		 * 6-1. メニュー情報テーブル構築
-		 * 6-2. ツールバー情報テーブル構築
+		 * 6-2-1. ツールバー情報テーブル構築
+		 * 6-2-2. 標準ツールバー登録
 		 * 7. ログイン画面構成
 		 * 8. 総合メニュー画面情報登録
 		 */
@@ -64,9 +65,11 @@ public class CreateFxInformation implements I_FD_DB {
 		//6-1.
 		FX_Menu menu = new FX_Menu();
 		menu.createTable(env);
-		//6-2.
+		//6-2-1.
 		FX_ToolBar toolbar = new FX_ToolBar();
 		toolbar.createTable(env);
+		//6-2-2.
+		
 		
 		/*
 		 * 7. 
