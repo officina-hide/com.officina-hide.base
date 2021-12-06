@@ -69,7 +69,7 @@ public class CreateFxInformation implements I_FD_DB {
 		FX_ToolBar toolbar = new FX_ToolBar();
 		toolbar.createTable(env);
 		//6-2-2.
-		
+		toolbar.addCommonButton(env);
 		
 		/*
 		 * 7. 

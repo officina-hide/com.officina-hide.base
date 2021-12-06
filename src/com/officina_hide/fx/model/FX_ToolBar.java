@@ -45,4 +45,33 @@ public class FX_ToolBar extends FD_DB implements I_FX_ToolBar  {
 		createTable(env, Table_Name);
 	}
 
+	/**
+	 * 標準ツールバー登録[Standard toolbar registration]<br>
+	 * @author officina-hide.net
+	 * @since 2021/12/06 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 */
+	public void addCommonButton(FD_EnvData env) {
+		add(env, 0, "TB_Save","保存", "表示されている情報を保存する。");
+	}
+
+	/**
+	 * 情報登録[Data entry]<br>
+	 * @author officina-hide.net
+	 * @since 2021/12/06 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param toolBarId ツールバー情報ID[Toolbar information ID]
+	 * @param toolbarName ツールバー名[Toolbar name]
+	 * @param name ツールバー表示名[Toolbar display name]
+	 * @param description ツールバー説明[Toolbar description]
+	 */
+	public void add(FD_EnvData env, int toolBarId, String toolbarName, String name, String description) {
+		X_FX_Toolbar toolbar = new X_FX_Toolbar(env, 0);
+		toolbar.setFX_ToolBar_ID(toolBarId);
+		toolbar.setFX_ToolBar_Name(toolbarName);
+		toolbar.setFD_Name(name);
+		toolbar.setFD_Description(description);
+		toolbar.save(env);
+	}
+
 }
