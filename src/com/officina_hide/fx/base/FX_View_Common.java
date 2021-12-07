@@ -16,12 +16,15 @@ import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.base.model.X_FD_Table;
 import com.officina_hide.fx.model.FX_Field;
 import com.officina_hide.fx.model.FX_Menu;
+import com.officina_hide.fx.model.FX_ToolBar;
 import com.officina_hide.fx.model.I_FX_Field;
 import com.officina_hide.fx.model.I_FX_Tab;
 import com.officina_hide.fx.model.X_FX_Field;
 import com.officina_hide.fx.model.X_FX_Menu;
 import com.officina_hide.fx.model.X_FX_Tab;
+import com.officina_hide.fx.model.X_FX_Toolbar;
 import com.officina_hide.fx.model.X_FX_View;
+import com.officina_hide.fx.process.TB_Process;
 
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
@@ -191,11 +194,19 @@ public class FX_View_Common implements I_FD_DB {
 	 * @return ツールバー[Toolbar]
 	 */
 	private HBox createToolbarBox(FD_EnvData env) {
+		//ツールバー領域構築
 		HBox toolBox = new HBox(5);
-		Button saveButton = new Button("保存");
-		Button createButton = new Button("新規");
-
-		toolBox.getChildren().addAll(saveButton, createButton);
+		//ToolBar情報取得
+		FX_ToolBar toolBar = new FX_ToolBar();
+		List<X_FX_Toolbar> tlist = toolBar.getList(env);
+		for(X_FX_Toolbar tb : tlist) {
+			Button button = new Button(tb.getFD_Name());
+			button.setOnAction(event->{
+				TB_Process tp = new TB_Process();
+				tp.execute(env, tb);
+			});
+			toolBox.getChildren().add(button);
+		}
 		return toolBox;
 	}
 

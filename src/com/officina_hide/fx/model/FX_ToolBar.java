@@ -1,5 +1,11 @@
 package com.officina_hide.fx.model;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.FD_DB;
@@ -72,6 +78,34 @@ public class FX_ToolBar extends FD_DB implements I_FX_ToolBar  {
 		toolbar.setFD_Name(name);
 		toolbar.setFD_Description(description);
 		toolbar.save(env);
+	}
+
+	/**
+	 * ツールバー情報一覧取得[Get toolbar information list]<br>
+	 * @author officina-hide.net
+	 * @since 2021/12/07 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @return ツールバー情報一覧[ToolBar information list]
+	 */
+	public List<X_FX_Toolbar> getList(FD_EnvData env) {
+		List<X_FX_Toolbar> list = new ArrayList<>();
+		StringBuffer sql = new StringBuffer();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			sql.append("SELECT * FROM ").append(Table_Name).append(" ");
+			connection(env);
+			pstmt = getConn().prepareStatement(sql.toString());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				list.add(new X_FX_Toolbar(env, rs.getLong(COLUMNNAME_FX_ToolBar_ID)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
+		return list;
 	}
 
 }

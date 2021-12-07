@@ -19,12 +19,12 @@ public class X_FX_Toolbar extends FD_DB implements I_FX_ToolBar {
 	/**
 	 * コンストラクタ[Constructor]<br>
 	 * @param env 環境情報[Environment information]
-	 * @param toolBarID ツールバー情報ID[ToolBar information ID]
+	 * @param toolBarId ツールバー情報ID[ToolBar information ID]
 	 */
-	public X_FX_Toolbar(FD_EnvData env, int toolBarID) {
+	public X_FX_Toolbar(FD_EnvData env, long toolBarId) {
 		createItemList(env, Table_Name);
-		if(toolBarID > 0) {
-			load(env, Table_Name, toolBarID, items);
+		if(toolBarId > 0) {
+			load(env, Table_Name, toolBarId, items);
 		}
 	}
 
