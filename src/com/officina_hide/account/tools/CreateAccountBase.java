@@ -3,6 +3,7 @@ package com.officina_hide.account.tools;
 import com.officina_hide.account.model.AC_AccountTitle;
 import com.officina_hide.account.model.I_AC_AccountTitle;
 import com.officina_hide.account.model.I_FV_AccountTitle;
+import com.officina_hide.account.model.I_FV_JurnalSlip;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.I_FD_DB;
@@ -53,6 +54,7 @@ public class CreateAccountBase implements I_FD_DB {
 		//画面情報登録
 		FX_View view = new FX_View();
 		long viewId = view.add(env, 0, I_FV_AccountTitle.VIEWNAME, "", "");
+		long viewId2 = view.add(env, 0, I_FV_JurnalSlip.VIEWNAME, "", "");
 		FX_Tab tab = new FX_Tab();
 		long tabId =  tab.add(env, 0, "FV_AccountTitle", viewId, table.getTableId(I_AC_AccountTitle.Table_Name), "勘定科目情報", "", 0);
 		FX_Field field = new FX_Field();
@@ -61,6 +63,7 @@ public class CreateAccountBase implements I_FD_DB {
 		//メニュー情報登録
 		FX_Menu menu = new FX_Menu();
 		menu.add(env, 0, I_FV_AccountTitle.VIEWNAME, viewId, FD_Menu_View, "勘定科目");
+		menu.add(env, 0, I_FV_JurnalSlip.VIEWNAME, viewId2, FD_Menu_View, "仕分伝票");
 		//2.
 		MainFrameSetting mfs = new MainFrameSetting();
 		mfs.addInformation(env);
