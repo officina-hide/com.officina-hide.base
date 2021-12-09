@@ -34,6 +34,8 @@ public interface I_FD_DB {
 	public static final String FD_Field_Password = "FD_Field_Password";
 	/** 画面項目種別 : 複数行テキスト */
 	public static final String FD_Field_Text = "FD_Field_Text";
+	/** 画面項目種別 : 日付 */
+	public static final String FD_Field_Date = "FD_Field_Date";
 	
 	/** メニュー種別 : 画面 */
 	public static final String FD_Menu_View = "FD_Menu_View";

@@ -115,6 +115,7 @@ public class CreateFxInformation implements I_FD_DB {
 		typeItem.add(env, 0, FD_Field_SimpleText, typeID, "1行テキスト", "1行のみのテキスト情報(ClassはString)");
 		typeItem.add(env, 0, FD_Field_Password, typeID, "パスワード", "パスワード情報(ClassはString)");
 		typeItem.add(env, 0, FD_Field_Text, typeID, "複数行テキスト", "複数行のテキスト情報(ClassはString)");
+		typeItem.add(env, 0, FD_Field_Date, typeID, "日付", "日付情報(ClassはCalendar)");
 	}
 
 	/**

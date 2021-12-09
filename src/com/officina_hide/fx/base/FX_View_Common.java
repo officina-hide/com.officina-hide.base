@@ -170,16 +170,18 @@ public class FX_View_Common implements I_FD_DB {
 		 * 情報セット
 		 * TODO 個別メソッド化予定(2021/11/30)
 		 */
-		FD_Items dt = dlist.get(0);
-		for(FX_FieldItem fitem : fields.getFields()) {
-			for(FD_Item ditem : dt.getItems()) {
-				if(ditem.getName().equals(fitem.getField().getFx_Field_Name())) {
-					//項目セット
-					switch(fitem.getFieldTypeName()) {
-					case FD_Field_SimpleText:
-						TextField text = (TextField) fitem.getFieldItem();
-						text.setText((String) ditem.getData());
-						break;
+		if(dlist.size() > 0) {
+			FD_Items dt = dlist.get(0);
+			for(FX_FieldItem fitem : fields.getFields()) {
+				for(FD_Item ditem : dt.getItems()) {
+					if(ditem.getName().equals(fitem.getField().getFx_Field_Name())) {
+						//項目セット
+						switch(fitem.getFieldTypeName()) {
+						case FD_Field_SimpleText:
+							TextField text = (TextField) fitem.getFieldItem();
+							text.setText((String) ditem.getData());
+							break;
+						}
 					}
 				}
 			}

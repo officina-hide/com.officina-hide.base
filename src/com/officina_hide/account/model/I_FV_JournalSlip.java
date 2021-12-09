@@ -6,9 +6,9 @@ package com.officina_hide.account.model;
  * @version 1.00 新規作成
  * @since 2021/12/07 Ver. 1.00
  */
-public interface I_FV_JurnalSlip {
+public interface I_FV_JournalSlip {
 	
 	/** 画面名 */
-	public static final String VIEWNAME = "FV_JurnalSlip";
+	public static final String VIEWNAME = "FV_JournalSlip";
 
 }
