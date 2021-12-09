@@ -74,9 +74,9 @@ public class CreateAccountBase implements I_FD_DB {
 		
 		viewId = view.add(env, 0, I_FV_JournalSlip.VIEWNAME, "", "");
 		menu.add(env, 0, I_FV_JournalSlip.VIEWNAME, viewId, FD_Menu_View, "仕分伝票");
-		tab.add(env, 0, I_FV_JournalSlip.VIEWNAME, viewId, table.getTableId(I_AC_JournalSlip.Table_Name),
+		tabId = tab.add(env, 0, I_FV_JournalSlip.VIEWNAME, viewId, table.getTableId(I_AC_JournalSlip.Table_Name),
 				I_AC_JournalSlip.Table_Disp_Name, I_AC_JournalSlip.Table_Comment, 0);
-		field.add(env, 0, I_AC_JournalSlip.Table_Name, I_AC_JournalSlip.COLUMNNAME_AC_IssueDate, viewId, FD_Field_Date);
+		field.add(env, 0, I_AC_JournalSlip.Table_Name, I_AC_JournalSlip.COLUMNNAME_AC_IssueDate, tabId, FD_Field_Date);
 		
 		//3.
 		MainFrameSetting mfs = new MainFrameSetting();

@@ -26,4 +26,8 @@ public interface I_AC_JournalSlip extends I_FD_DB {
 	public static final String COLUMNNAME_AC_IssueDate = "AC_IssueDate";
 	public static final String NAME_AC_IssueDate = "発行日";
 	public static final String COMMENT_AC_IssueDate = "仕訳伝票の発行日";
+	/** 項目 : 貸方勘定科目 */
+	public static final String COLUMNNAME_AC_Credit_AccountTitle_ID = "AC_Credit_AccountTitle_ID";
+	public static final String NAME_AC_Credit_AccountTitle_ID = "貸方勘定科目情報ID";
+	public static final String COMMENT_AC_Credit_AccountTitle_ID = "貸方の勘定科目を識別する為の情報ID（AC_AccountTitle_ID）";
 }

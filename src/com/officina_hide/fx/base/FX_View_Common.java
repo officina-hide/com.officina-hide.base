@@ -29,6 +29,7 @@ import com.officina_hide.fx.process.TB_Process;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -162,6 +163,11 @@ public class FX_View_Common implements I_FD_DB {
 				TextField textField = new TextField("");
 				fieldBox.getChildren().add(textField);
 				fitem.setFieldItem(textField);
+				break;
+			case FD_Field_Date:
+				DatePicker dateField = new DatePicker();
+				fieldBox.getChildren().add(dateField);
+				fitem.setFieldItem(dateField);
 				break;
 			}
 		}
