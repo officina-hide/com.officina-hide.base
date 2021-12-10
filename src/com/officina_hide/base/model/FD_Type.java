@@ -6,7 +6,7 @@ import java.sql.Statement;
 import com.officina_hide.base.common.FD_EnvData;
 
 /**
- * 属性情報クラス[Type infoemation class]<br>
+ * 属性情報クラス[Type information class]<br>
  * @author officina-hide.net
  * @version 1.00
  * @since 2021/09/21

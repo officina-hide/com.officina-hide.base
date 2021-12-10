@@ -9,6 +9,7 @@ import com.officina_hide.base.model.FD_Login;
 import com.officina_hide.base.model.FD_Numbering;
 import com.officina_hide.base.model.FD_Process;
 import com.officina_hide.base.model.FD_ProcessParam;
+import com.officina_hide.base.model.FD_Reference;
 import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.FD_Type;
 import com.officina_hide.base.model.FD_TypeITem_Param;
@@ -65,6 +66,7 @@ public class CreateBaseInformation implements I_FD_DB {
 		 * 9. 処理情報テーブル構築
 		 * 10-1. 処理変数情報テーブル構築
 		 * 10-2. 処理変数用種別登録
+		 * 11. 参照情報テーブル構築
 		 */
 		FD_DB DB = new FD_DB();
 		//1.
@@ -135,6 +137,9 @@ public class CreateBaseInformation implements I_FD_DB {
 		pp.createTable(env);
 		//10-2.
 		addParamTypeInformation(env);
+		//11.
+		FD_Reference rf = new FD_Reference();
+		rf.createTable(env);
 	}
 	/**
 	 * テーブル項目用属性情報登録[Attribute information registration for table items]<br>

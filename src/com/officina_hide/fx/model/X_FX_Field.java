@@ -6,7 +6,7 @@ import com.officina_hide.base.model.X_FD_TypeItem;
 
 /**
  * Fx画面項目情報[Fx screen item information]<br>
- * @author officine-hide.net
+ * @author officina-hide.net
  * @version 1.00
  * @since 2021/08/26 新規作成
  * @since 2021/10/07 機能改訂
@@ -25,6 +25,8 @@ public class X_FX_Field extends FD_DB implements I_FX_Field {
 	private long FD_TypeItem_ID;
 	/** 項目 : 属性項目情報 */
 	private X_FD_TypeItem FD_TypeItem;
+	/** 項目 : 参照情報ID */
+	private long FD_Reference_ID;
 	
 	/**
 	 * コンストラクタ[Constructor]<br>
@@ -119,6 +121,12 @@ public class X_FX_Field extends FD_DB implements I_FX_Field {
 			}
 		}
 		return FD_TypeItem;
+	}
+	public long getFD_Reference_ID() {
+		return FD_Reference_ID;
+	}
+	public void setFD_Reference_ID(long fD_Reference_ID) {
+		FD_Reference_ID = fD_Reference_ID;
 	}
 
 }

@@ -26,7 +26,7 @@ public class FX_Field extends FD_DB implements I_FX_Field {
 
 	/**
 	 * 画面項目テーブル構築[Screen item table construction]<br>
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 2021/10/06 Ver. 1.00
 	 * @param env 環境情報[Environment information]
 	 */

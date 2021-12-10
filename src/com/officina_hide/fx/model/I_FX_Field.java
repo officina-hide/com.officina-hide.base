@@ -35,6 +35,8 @@ public interface I_FX_Field {
 	/** 項目 : FX画面項目属性情報ID */
 	public static final String COLUMNNAME_FD_TypeItem_ID = I_FD_TypeItem.COLUMNNAME_FD_TypeItem_ID;
 	public static final String NAME_FD_TypeItem_ID = I_FD_TypeItem.NAME_FD_TypeItem_ID;
+	/** 項目 : リファレンス情報 */
+	
 	
 	/** テーブル項目情報ID */
 	public final static String COLUMNNAME_FD_Column_ID = I_FD_Column.Table_Name + "_ID";
