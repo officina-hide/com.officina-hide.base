@@ -44,9 +44,9 @@ public class FD_Process extends FD_DB implements I_FD_Process {
 
 	/**
 	 * 情報登録[Save data]<br>
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 2021/10/09 Ver. 1.00
-	 * @param env 環境情報[Environmane information]
+	 * @param env 環境情報[Environment information]
 	 * @param processId 処理情報ID[Process information ID]
 	 * @param processName 処理名[Process name]
 	 * @param processClass 

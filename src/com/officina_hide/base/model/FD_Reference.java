@@ -28,6 +28,23 @@ public class FD_Reference extends FD_DB implements I_FD_Reference {
 		dd.add(env, 0, COLUMNNAME_FD_Reference_ID, NAME_FD_Reference_ID, COMMENT_FD_Reference_ID);
 		dd.add(env, 0, COLUMNNAME_FD_Reference_Name, NAME_FD_Reference_Name, COMMENT_FD_Reference_Name);
 		dd.add(env, 0, COLUMNNAME_FD_ReferenceType_ID, NAME_FD_ReferenceType_ID, COMMENT_FD_ReferenceType_ID);
+		//テーブル項目情報登録
+		FD_Column column = new FD_Column();
+		column.add(env, 0, Table_ID, COLUMNNAME_FD_Reference_ID, FD_ITEM_ID, 0, false, true, "0");
+		column.add(env, 0, Table_ID, COLUMNNAME_FD_Reference_Name, FD_ITEM_String, 100, false, false, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FD_ReferenceType_ID, FD_ITEM_ID, 0, true, false, null);
+		addCommonColumn(env, Table_ID);
+		//テーブル削除
+		dropTable(env, Table_Name);
+		//テーブル生成
+		createTable(env, Table_Name);
+	}
+
+	/**
+	 * @param env
+	 */
+	public void createReferenceType(FD_EnvData env) {
+		
 	}
 
 }

@@ -140,6 +140,7 @@ public class CreateBaseInformation implements I_FD_DB {
 		//11.
 		FD_Reference rf = new FD_Reference();
 		rf.createTable(env);
+		rf.createReferenceType(env);
 	}
 	/**
 	 * テーブル項目用属性情報登録[Attribute information registration for table items]<br>
