@@ -41,10 +41,20 @@ public class FD_Reference extends FD_DB implements I_FD_Reference {
 	}
 
 	/**
-	 * @param env
+	 * 参照情報登録[Reference information registration]<br>
+	 * @author officina-hide.net
+	 * @since 2021/12/13 Ver. 1.00
+	 * @param env 環境情報[Environment information]
 	 */
 	public void createReferenceType(FD_EnvData env) {
-		
+		/*
+		 * 基盤として必要な参照情報を登録する。
+		 * 1. 参照情報用の属性情報を登録
+		 */
+		FD_Type type = new FD_Type();
+		long typeId = type.add(env, 0, FD_Reference_Type, "参照情報", "参照情報で参照方法の種別を管理する。");
+		FD_TypeItem typeItem = new FD_TypeItem();
+		typeItem.add(env, 0, FD_Reference_Table, typeId, NAME_FD_Reference_Table, COMMENT_FD_Reference_Table);
 	}
 
 }

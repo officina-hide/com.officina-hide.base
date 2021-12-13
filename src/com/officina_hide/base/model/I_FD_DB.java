@@ -44,6 +44,14 @@ public interface I_FD_DB {
 	/** メニュー種別 : 処理 */
 	public static final String FD_Menu_Process = "FD_Menu_Process";
 	
+	/** 参照種別 : テーブル */
+	public static final String FD_Reference_Table = "FD_Reference_Table";
+	public static final String NAME_FD_Reference_Table = "テーブル参照";
+	public static final String COMMENT_FD_Reference_Table = "指定されたテーブルからリストを作成し選択できるようにする。";
+	
+	/** テーブル参照変数 : テーブル情報ID */
+	public static final String FD_RefParam_Table = "FD_RefParam_Table";
+	
 	/** 処理変数種別 */
 	public static final String FD_Param_Type = "FD_Param_Type";
 	public static final String NAME_FD_Param_Type = "処理変数属性";
@@ -125,6 +133,7 @@ public interface I_FD_DB {
 	public static final String FD_Column_Type = "FD_Column_Type";	//テーブル項目
 	public static final String FD_Field_Type = "FD_Field_Type";				//画面項目
 	public static final String FD_MENU_Type = "FD_Menu_Type";			//メニュー項目
+	public static final String FD_Reference_Type = "FD_Reference_Type";			//参照項目
 
 	/** テーブル項目一覧用情報抽出SQL文 */
 	public static final String ITEM_LIST_SQL_Name = "name";
