@@ -57,4 +57,17 @@ public class FD_Reference extends FD_DB implements I_FD_Reference {
 		typeItem.add(env, 0, FD_Reference_Table, typeId, NAME_FD_Reference_Table, COMMENT_FD_Reference_Table);
 	}
 
+	/**
+	 * 情報登録[Information entry]<br>
+	 * @author officina-hide.net
+	 * @since 2021/12/14 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param refrenceId 参照情報ID[Reference information ID]
+	 * @param referenceName 参照情報名[Reference information name]
+	 * @param refereceType 参照情報種別[Reference information type]
+	 */
+	public void add(FD_EnvData env, int refrenceId, String referenceName, String refereceType) {
+		
+	}
+
 }

@@ -65,8 +65,9 @@ public class FX_Field extends FD_DB implements I_FX_Field {
 	 * @param name 表示名[Display name]
 	 * @param tabId タブ情報ID[Tab information ID]
 	 * @param fieldTypeName 属性項目名[Attribute item name]
+	 * @return テーブル項目情報[Table item information]
 	 */
-	public void add(FD_EnvData env, int fieldId, String tableName, String ColumnName, long tabId, String fieldTypeName) {
+	public X_FX_Field add(FD_EnvData env, int fieldId, String tableName, String ColumnName, long tabId, String fieldTypeName) {
 		/*
 		 * FX_Field_Nameはテーブル項目情報のテーブル項目名を設定<br>
 		 * FD_Nameはテーブル項目情報のテーブル表示名を設定
@@ -81,6 +82,8 @@ public class FX_Field extends FD_DB implements I_FX_Field {
 		FD_TypeItem typeItem = new FD_TypeItem();		
 		field.setFD_TypeItem_ID(typeItem.getTypeItemID(env, FD_Field_Type, fieldTypeName));
 		field.save(env);
+		
+		return field;
 	}
 
 	/**
