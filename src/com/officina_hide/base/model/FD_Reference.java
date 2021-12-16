@@ -67,7 +67,13 @@ public class FD_Reference extends FD_DB implements I_FD_Reference {
 	 * @param refereceType 参照情報種別[Reference information type]
 	 */
 	public void add(FD_EnvData env, int refrenceId, String referenceName, String refereceType) {
-		
+		X_FD_Reference ref = new X_FD_Reference(env, 0);
+		ref.setFD_Reference_ID(refrenceId);
+		ref.setFD_Reference_Name(referenceName);
+		FD_TypeItem type = new FD_TypeItem();
+		ref.setFD_ReferenceType_ID(type.getTypeItemID(env, FD_Reference_Type, refereceType));
+		ref.setFD_Group_ID(env.getActionUserID());
+		ref.save(env); 
 	}
 
 }
