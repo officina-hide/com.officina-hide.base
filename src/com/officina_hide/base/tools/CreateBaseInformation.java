@@ -68,7 +68,7 @@ public class CreateBaseInformation implements I_FD_DB {
 		 * 10-1. 処理変数情報テーブル構築
 		 * 10-2. 処理変数用種別登録
 		 * 11. 参照情報テーブル構築
-		 * 12. 参照情報変数テーブル構築
+		 * 12. 参照テーブル情報テーブル構築
 		 */
 		FD_DB DB = new FD_DB();
 		//1.

@@ -44,4 +44,16 @@ public class FD_Reference_Param extends FD_DB implements I_FD_Reference_Param {
 		createTable(env, Table_Name);
 	}
 
+	/**
+	 * 情報登録[Data Entry]
+	 * @param env 環境情報[Environment information]
+	 * @param referenceParamId 参照変数情報ID[Reference variable information ID]
+	 * @param referenceId [Reference information ID]
+	 * @param referenceParamType [Reference variable type name]
+	 * @param id [Table ID]
+	 */
+	public void add(FD_EnvData env, int referenceParamId, long referenceId, String referenceParamType, long id) {
+		
+	}
+
 }

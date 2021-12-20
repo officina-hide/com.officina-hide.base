@@ -8,6 +8,7 @@ import com.officina_hide.account.model.I_FV_AccountTitle;
 import com.officina_hide.account.model.I_FV_JournalSlip;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Reference;
+import com.officina_hide.base.model.FD_Reference_Param;
 import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.fx.base.MainFrameSetting;
@@ -82,8 +83,9 @@ public class CreateAccountBase implements I_FD_DB {
 		X_FX_Field fdata = field.add(env, 0, I_AC_JournalSlip.Table_Name,
 				I_AC_JournalSlip.COLUMNNAME_AC_Credit_AccountTitle_ID, tabId, FD_Field_List);
 		FD_Reference ref = new FD_Reference();
-		ref.add(env, 0, "AC_JournalSlip_List", FD_Reference_Table);
-		
+		long refId = ref.add(env, 0, "AC_JournalSlip_List", FD_Reference_Table);
+		FD_Reference_Param refParam = new FD_Reference_Param();
+		refParam.add(env, 0, refId, "FD_ReferenceParamTableID", table.getTableId(I_AC_JournalSlip.Table_Name));
 		
 		//3.
 		MainFrameSetting mfs = new MainFrameSetting();

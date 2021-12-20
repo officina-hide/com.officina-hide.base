@@ -65,8 +65,9 @@ public class FD_Reference extends FD_DB implements I_FD_Reference {
 	 * @param refrenceId 参照情報ID[Reference information ID]
 	 * @param referenceName 参照情報名[Reference information name]
 	 * @param refereceType 参照情報種別[Reference information type]
+	 * @return 参照情報ID[Reference ID]
 	 */
-	public void add(FD_EnvData env, int refrenceId, String referenceName, String refereceType) {
+	public long add(FD_EnvData env, int refrenceId, String referenceName, String refereceType) {
 		X_FD_Reference ref = new X_FD_Reference(env, 0);
 		ref.setFD_Reference_ID(refrenceId);
 		ref.setFD_Reference_Name(referenceName);
@@ -74,6 +75,7 @@ public class FD_Reference extends FD_DB implements I_FD_Reference {
 		ref.setFD_ReferenceType_ID(type.getTypeItemID(env, FD_Reference_Type, refereceType));
 		ref.setFD_Group_ID(env.getActionUserID());
 		ref.save(env); 
+		return ref.getFD_Reference_ID();
 	}
 
 }
