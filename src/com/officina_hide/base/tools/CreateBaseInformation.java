@@ -12,6 +12,7 @@ import com.officina_hide.base.model.FD_ProcessParam;
 import com.officina_hide.base.model.FD_Reference;
 import com.officina_hide.base.model.FD_Reference_Param;
 import com.officina_hide.base.model.FD_Table;
+import com.officina_hide.base.model.FD_TableReference;
 import com.officina_hide.base.model.FD_Type;
 import com.officina_hide.base.model.FD_TypeITem_Param;
 import com.officina_hide.base.model.FD_TypeItem;
@@ -67,8 +68,8 @@ public class CreateBaseInformation implements I_FD_DB {
 		 * 9. 処理情報テーブル構築
 		 * 10-1. 処理変数情報テーブル構築
 		 * 10-2. 処理変数用種別登録
-		 * 11. 参照情報テーブル構築
-		 * 12. 参照テーブル情報テーブル構築
+		 * 11-1. 参照情報テーブル構築
+		 * 11-2. テーブル参照情報テーブル構築
 		 */
 		FD_DB DB = new FD_DB();
 		//1.
@@ -139,13 +140,16 @@ public class CreateBaseInformation implements I_FD_DB {
 		pp.createTable(env);
 		//10-2.
 		addParamTypeInformation(env);
-		//11.
+		//11-1.
 		FD_Reference rf = new FD_Reference();
 		rf.createTable(env);
 		rf.createReferenceType(env);
-		//12.
-		FD_Reference_Param refParam = new FD_Reference_Param();
-		refParam.createTable(env);
+		//11-2.
+		FD_TableReference tr = new FD_TableReference();
+		tr.createTable(env);
+//		//12.
+//		FD_Reference_Param refParam = new FD_Reference_Param();
+//		refParam.createTable(env);
 	}
 	/**
 	 * テーブル項目用属性情報登録[Attribute information registration for table items]<br>

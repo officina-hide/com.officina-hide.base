@@ -48,6 +48,7 @@ public class FX_Field extends FD_DB implements I_FX_Field {
 		column.add(env, 0, Table_ID, COLUMNNAME_FD_Name, FD_ITEM_String, 200, true, false, null);
 		column.add(env, 0, Table_ID, COLUMNNAME_FX_Tab_ID, FD_ITEM_ID, 0, true, false, null);
 		column.add(env, 0, Table_ID, COLUMNNAME_FD_TypeItem_ID, FD_ITEM_ID, 0, true, false, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FD_Reference_ID, FD_ITEM_ID, 0, true, false, null);
 		addCommonColumn(env, Table_ID);
 		//テーブル削除
 		dropTable(env, Table_Name);
@@ -65,9 +66,11 @@ public class FX_Field extends FD_DB implements I_FX_Field {
 	 * @param name 表示名[Display name]
 	 * @param tabId タブ情報ID[Tab information ID]
 	 * @param fieldTypeName 属性項目名[Attribute item name]
+	 * @param referenceId 参照情報ID[Reference  information ID] 
 	 * @return テーブル項目情報[Table item information]
 	 */
-	public X_FX_Field add(FD_EnvData env, int fieldId, String tableName, String ColumnName, long tabId, String fieldTypeName) {
+	public X_FX_Field add(FD_EnvData env, int fieldId, String tableName, String ColumnName, long tabId, String fieldTypeName,
+			long referenceId) {
 		/*
 		 * FX_Field_Nameはテーブル項目情報のテーブル項目名を設定<br>
 		 * FD_Nameはテーブル項目情報のテーブル表示名を設定
@@ -81,6 +84,7 @@ public class FX_Field extends FD_DB implements I_FX_Field {
 		field.setFD_Group_ID(env.getActionUserID());
 		FD_TypeItem typeItem = new FD_TypeItem();		
 		field.setFD_TypeItem_ID(typeItem.getTypeItemID(env, FD_Field_Type, fieldTypeName));
+		field.setFD_Reference_ID(referenceId);
 		field.save(env);
 		
 		return field;

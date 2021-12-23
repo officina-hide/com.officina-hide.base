@@ -53,9 +53,9 @@ public class CreateFxSystemInformation implements I_FD_DB {
 		long viewId = view.add(env, 0, "V_TableColumn", "テーブル・カラム情報", "テーブルに関する情報を登録・更新する画面");
 		long tabId = tab.add(env, 0, V_FX_TableColumn.FX_TAB_Table, viewId, I_FD_Table.Table_ID,
 				V_FX_TableColumn.FX_TAB_Table_Name, V_FX_TableColumn.FX_TAB_Table_Description, 0);
-		field.add(env, 0, I_FD_Table.Table_Name, I_FD_Table.COLUMNNAME_FD_Table_Name,	tabId, FD_Field_SimpleText);
-		field.add(env, 0, I_FD_Table.Table_Name, I_FD_Table.COLUMNNAME_FD_Name, tabId, FD_Field_SimpleText);
-		field.add(env, 0, I_FD_Table.Table_Name, I_FD_Table.COLUMNNAME_FD_Description, tabId, FD_Field_Text);
+		field.add(env, 0, I_FD_Table.Table_Name, I_FD_Table.COLUMNNAME_FD_Table_Name,	tabId, FD_Field_SimpleText, 0);
+		field.add(env, 0, I_FD_Table.Table_Name, I_FD_Table.COLUMNNAME_FD_Name, tabId, FD_Field_SimpleText, 0);
+		field.add(env, 0, I_FD_Table.Table_Name, I_FD_Table.COLUMNNAME_FD_Description, tabId, FD_Field_Text, 0);
 		
 		//メニュー情報登録
 		FX_Menu menu = new FX_Menu();

@@ -5,7 +5,7 @@ import com.officina_hide.base.model.I_FD_Process;
 
 /**
  * タブ処理情報インターフェースクラス[Tab process information interface class]<br>
- * @author officine-hide.net
+ * @author officina-hide.net
  * @version 1.00 新規作成
  * @since 2021/10/09 Ver. 1.00
  */

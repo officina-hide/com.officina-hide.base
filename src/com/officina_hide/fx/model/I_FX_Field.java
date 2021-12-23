@@ -1,6 +1,7 @@
 package com.officina_hide.fx.model;
 
 import com.officina_hide.base.model.I_FD_Column;
+import com.officina_hide.base.model.I_FD_Reference;
 import com.officina_hide.base.model.I_FD_TypeItem;
 
 /**
@@ -35,8 +36,10 @@ public interface I_FX_Field {
 	/** 項目 : FX画面項目属性情報ID */
 	public static final String COLUMNNAME_FD_TypeItem_ID = I_FD_TypeItem.COLUMNNAME_FD_TypeItem_ID;
 	public static final String NAME_FD_TypeItem_ID = I_FD_TypeItem.NAME_FD_TypeItem_ID;
-	/** 項目 : リファレンス情報 */
-	
+	/** 項目 : 参照情報ID */
+	public static final String COLUMNNAME_FD_Reference_ID = I_FD_Reference.COLUMNNAME_FD_Reference_ID;
+	public static final String NAME__FD_Reference_ID = I_FD_Reference.NAME_FD_Reference_ID;
+
 	
 	/** テーブル項目情報ID */
 	public final static String COLUMNNAME_FD_Column_ID = I_FD_Column.Table_Name + "_ID";

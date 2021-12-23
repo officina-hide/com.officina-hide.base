@@ -2,6 +2,7 @@ package com.officina_hide.fx.model;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
+import com.officina_hide.base.model.X_FD_Reference;
 import com.officina_hide.base.model.X_FD_TypeItem;
 
 /**
@@ -27,12 +28,14 @@ public class X_FX_Field extends FD_DB implements I_FX_Field {
 	private X_FD_TypeItem FD_TypeItem;
 	/** 項目 : 参照情報ID */
 	private long FD_Reference_ID;
+	/** 情報 : 参照情報 */
+	private X_FD_Reference FD_Reference;
 	
 	/**
 	 * コンストラクタ[Constructor]<br>
 	 * インスタンス時に指定されたIDを持つ情報を抽出する。<br>
 	 * Extract the information with the ID specified at the time of instance.<br>
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 1.00 2021/08/28
 	 * @since 2021/10/07 Ver. 1.00 機能全面改訂
 	 * @param env 環境情報[Environment Information]
@@ -55,7 +58,7 @@ public class X_FX_Field extends FD_DB implements I_FX_Field {
 
 	/**
 	 * 項目名でデータを返す。[Returns data by column name.]<br>
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 1.00 2021/08/30
 	 * @param columnName 項目名[column name]
 	 * @return 情報[data]
@@ -123,10 +126,25 @@ public class X_FX_Field extends FD_DB implements I_FX_Field {
 		return FD_TypeItem;
 	}
 	public long getFD_Reference_ID() {
+		FD_Reference_ID = items.getlongData(COLUMNNAME_FD_Reference_ID);
 		return FD_Reference_ID;
 	}
-	public void setFD_Reference_ID(long fD_Reference_ID) {
-		FD_Reference_ID = fD_Reference_ID;
+	public void setFD_Reference_ID(long recerenceId) {
+		items.setValue(COLUMNNAME_FD_Reference_ID, recerenceId);
+	}
+	public X_FD_Reference getFD_Reference(FD_EnvData env) {
+		if(FD_Reference == null) {
+			if(getFD_Reference_ID() > 0) {
+				FD_Reference = new X_FD_Reference(env, getFD_Reference_ID());
+			} else {
+				return null;
+			}
+		} else {
+			if(FD_Reference.getFD_Reference_ID() != getFD_Reference_ID()) {
+				FD_Reference = new X_FD_Reference(env, getFD_Reference_ID());
+			}
+		}
+		return FD_Reference;
 	}
 
 }

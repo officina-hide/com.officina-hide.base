@@ -95,6 +95,7 @@ public class FD_DB implements I_FD_DB {
 			//更新用SQL作成
 			sql.append("UPDATE ").append(tableName).append(" ").append(" SET ");
 			sql.append(items.getUpdateItemStrings()).append(" ");
+			// FIXME 大至急、更新系の見直しが必要(2021/12/23 ueno)
 			sql.append("WHERE ").append(I_FD_Numbering.COLUMNNAME_FD_Numbering_ID)
 				.append(" = ").append(id).append(" ");
 		} else {
@@ -167,7 +168,7 @@ public class FD_DB implements I_FD_DB {
 
 	/**
 	 * テーブル削除[Drop Table]<br>
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 1.00 2021/06/03
 	 * @param env 環境情報[Environment Information]
 	 * @param tableName テーブル名[Table Name]

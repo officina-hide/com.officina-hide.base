@@ -169,6 +169,9 @@ public class FX_View_Common implements I_FD_DB {
 				fieldBox.getChildren().add(dateField);
 				fitem.setFieldItem(dateField);
 				break;
+			case FD_Field_List:
+				System.out.println(fd.getFD_Reference(env).getFD_Reference_Name());
+				break;
 			}
 		}
 		
