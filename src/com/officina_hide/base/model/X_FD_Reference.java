@@ -33,6 +33,16 @@ public class X_FD_Reference extends FD_DB implements I_FD_Reference {
 		}
 	}
 
+	/**
+	 * 情報保存[Save data]<br>
+	 * @author officina-hide.net
+	 * @since 2021/12/16 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 */
+	public void save(FD_EnvData env) {
+		save(env, Table_Name, items);
+	}
+
 	public long getFD_Reference_ID() {
 		FD_Reference_ID = items.getlongData(COLUMNNAME_FD_Reference_ID);
 		return FD_Reference_ID;
@@ -55,24 +65,18 @@ public class X_FD_Reference extends FD_DB implements I_FD_Reference {
 		items.setValue(COLUMNNAME_FD_ReferenceType_ID, referenceTypeId);
 	}
 	public X_FD_TypeItem getFD_ReferenceType(FD_EnvData env) {
-		if(getFD_ReferenceType_ID() == 0) {
-			return null;
-		}
-		if(FD_Reference_Type == null ||
-				getFD_ReferenceType_ID() != FD_ReferenceType.getFD_TypeItem_ID()) {
-			FD_ReferenceType = new X_FD_TypeItem(env, getFD_ReferenceType_ID());
+		if(FD_ReferenceType == null) {
+			if(getFD_ReferenceType_ID() == 0) {
+				return null;
+			} else {
+				FD_ReferenceType  = new X_FD_TypeItem(env, getFD_ReferenceType_ID());
+			}
+		} else {
+			if(FD_ReferenceType.getFD_TypeItem_ID() != getFD_ReferenceType_ID()) {
+				FD_ReferenceType  = new X_FD_TypeItem(env, getFD_ReferenceType_ID());
+			}
 		}
 		return FD_ReferenceType;
-	}
-
-	/**
-	 * 情報保存[Save data]<br>
-	 * @author officina-hide.net
-	 * @since 2021/12/16 Ver. 1.00
-	 * @param env 環境情報[Environment information]
-	 */
-	public void save(FD_EnvData env) {
-		save(env, Table_Name, items);
 	}
 
 }

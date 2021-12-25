@@ -83,15 +83,11 @@ public class CreateAccountBase implements I_FD_DB {
 		FD_Reference ref = new FD_Reference();
 		long refId = ref.add(env, 0, "AC_JournalSlip_List", FD_Reference_Table);
 		FD_TableReference tref = new FD_TableReference();
-		tref.add(env, 0, refId, table.getTableId(I_AC_JournalSlip.Table_Name));
+		tref.add(env, 0, refId, table.getTableId(I_AC_AccountTitle.Table_Name));
+		
 		field.add(env, 0, I_AC_JournalSlip.Table_Name,
 				I_AC_JournalSlip.COLUMNNAME_AC_Credit_AccountTitle_ID, tabId, FD_Field_List, refId);
-//		fdata.setFD_Reference_ID(refId);
-//		fdata.save(env);
 		
-		
-//		FD_Reference_Param refParam = new FD_Reference_Param();
-//		refParam.add(env, 0, refId, "FD_ReferenceParamTableID", table.getTableId(I_AC_JournalSlip.Table_Name));
 		
 		//3.
 		MainFrameSetting mfs = new MainFrameSetting();

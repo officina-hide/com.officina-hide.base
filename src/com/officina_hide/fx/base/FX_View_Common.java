@@ -13,7 +13,9 @@ import com.officina_hide.base.common.FD_Items;
 import com.officina_hide.base.common.FD_WhereData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_DB;
+import com.officina_hide.base.model.I_FD_TableReference;
 import com.officina_hide.base.model.X_FD_Table;
+import com.officina_hide.base.model.X_FD_TableReference;
 import com.officina_hide.fx.model.FX_Field;
 import com.officina_hide.fx.model.FX_Menu;
 import com.officina_hide.fx.model.FX_ToolBar;
@@ -29,6 +31,7 @@ import com.officina_hide.fx.process.TB_Process;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
@@ -170,7 +173,32 @@ public class FX_View_Common implements I_FD_DB {
 				fitem.setFieldItem(dateField);
 				break;
 			case FD_Field_List:
-				System.out.println(fd.getFD_Reference(env).getFD_Reference_Name());
+				ComboBox<String> combo = new ComboBox<>();
+				if(fd.getFD_Reference(env).getFD_ReferenceType(env).getFD_TypeItem_Name().equals(FD_Reference_Table)) {
+					//テーブル参照情報取得
+					FD_WhereData trWhere = new FD_WhereData(I_FD_TableReference.COLUMNNAME_FD_Reference_ID, fd.getFD_Reference_ID());
+					X_FD_TableReference tr = new X_FD_TableReference(env, trWhere);
+					//テーブルのFD_NameとIDのMapを生成する。
+					StringBuffer sql = new StringBuffer();
+					sql.append("SELECT * FROM ").append(tr.getFD_Table(env).getFD_Table_Name()).append(" ");
+					FD_DB DB = new FD_DB();
+					PreparedStatement pstmt = null;
+					ResultSet rs = null;
+					try {
+						DB.connection(env);
+						pstmt = DB.getConn().prepareStatement(sql.toString());
+						rs = pstmt.executeQuery();
+						while(rs.next()) {
+							combo.getItems().add(rs.getString("FD_Name"));
+						}
+					} catch (SQLException e) {
+						e.printStackTrace();
+					} finally {
+						DB.DBClose(pstmt, rs);
+					}		
+					fieldBox.getChildren().add(combo);
+					fitem.setFieldItem(combo);
+				}
 				break;
 			}
 		}

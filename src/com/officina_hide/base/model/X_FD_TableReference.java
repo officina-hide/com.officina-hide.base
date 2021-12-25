@@ -1,6 +1,7 @@
 package com.officina_hide.base.model;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_WhereData;
 
 /**
  * テーブル参照情報I/Oクラス[Table reference information I/O class]<br>
@@ -36,6 +37,19 @@ public class X_FD_TableReference extends FD_DB implements I_FD_TableReference {
 	}
 
 	/**
+	 * コンストラクタ[Constructor]
+	 * @author officina-hide.net
+	 * @since 2021/12/25 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param where 抽出条件[Extraction condition]
+	 */
+	public X_FD_TableReference(FD_EnvData env, FD_WhereData where) {
+		createItemList(env, Table_Name);
+		items.setTableName(Table_Name);
+		load(env, items, where);
+	}
+
+	/**
 	 * 情報登録[Data save]<br>
 	 * @author officina-hide.net
 	 * @since 2021/12/21 Ver. 1.00
@@ -67,22 +81,28 @@ public class X_FD_TableReference extends FD_DB implements I_FD_TableReference {
 		items.setValue(COLUMNNAME_FD_Table_ID, tableId);
 	}
 	public X_FD_Reference getFD_Reference(FD_EnvData env) {
-		if(FD_Reference == null ||
-				FD_Reference.getFD_Reference_ID() != getFD_Reference_ID()) {
+		if(FD_Reference == null) {
 			if(getFD_Reference_ID() == 0) {
 				return null;
 			} else {
+				FD_Reference = new X_FD_Reference(env, getFD_Reference_ID());
+			}
+		} else {
+			if(FD_Reference.getFD_Reference_ID() != getFD_Reference_ID()) {
 				FD_Reference = new X_FD_Reference(env, getFD_Reference_ID());
 			}
 		}
 		return FD_Reference;
 	}
 	public X_FD_Table getFD_Table(FD_EnvData env) {
-		if(FD_Table == null ||
-				FD_Table.getFD_Table_ID() != getFD_Table_ID()) {
+		if(FD_Table == null) {
 			if(getFD_Table_ID() == 0) {
 				return null;
 			} else {
+				FD_Table = new X_FD_Table(env, getFD_Table_ID());
+			}
+		} else {
+			if(FD_Table.getFD_Table_ID() != getFD_Table_ID()) {
 				FD_Table = new X_FD_Table(env, getFD_Table_ID());
 			}
 		}

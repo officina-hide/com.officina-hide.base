@@ -461,7 +461,7 @@ public class FD_DB implements I_FD_DB {
 	/**
 	 * 情報抽出[Load information]<br>
 	 * 指定された抽出条件でレコードを抽出する。[Extract records with the specified extraction conditions.]<br>
-	 * @param env 環境情報[Enfironment information]
+	 * @param env 環境情報[Environment information]
 	 * @param items 項目一覧[Item list]
 	 * @param where 抽出条件[extraction conditions]
 	 */

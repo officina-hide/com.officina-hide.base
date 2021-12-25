@@ -17,20 +17,24 @@ import javafx.stage.Stage;
  */
 public class View_Test01 extends Application {
 
+	protected static final int CELL_SIZE = 8;
+	protected static final int MAP_CELL_COUNT = 32;
+	
 	@Override
 	public void start(Stage stage) throws Exception {
 		VBox root = new VBox(5);
 		root.setPadding(new Insets(5, 5, 5, 5));
 
+		int width = CELL_SIZE * MAP_CELL_COUNT;
 		Canvas can = new Canvas();
 		root.getChildren().add(can);
-		can.setHeight(258);
-		can.setWidth(258);
+		can.setHeight(width + 1);
+		can.setWidth(width + 1);
 		
 		GraphicsContext con = can.getGraphicsContext2D();
 		con.setStroke(Color.GRAY);
-		con.setLineWidth(0.1);
-		con.strokeRect(1, 1, 256, 256);
+		con.setLineWidth(0.5);
+		con.strokeRect(0, 0, width, width);
 		con.strokeLine(7, 1, 7, 256);
 		con.strokeLine(1, 7, 256, 7);
 		
