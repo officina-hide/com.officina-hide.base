@@ -107,6 +107,7 @@ public class FX_View_Common implements I_FD_DB {
 	 * @param event イベント情報[Event information]
 	 */
 	private void openView(FD_EnvData env, ActionEvent event) {
+		FX_Fields fields = new FX_Fields();
 		MenuItem item = (MenuItem) event.getTarget();
 		X_FX_Menu mn = (X_FX_Menu) item.getUserData();
 		Tab tb = new Tab();
@@ -145,13 +146,12 @@ public class FX_View_Common implements I_FD_DB {
 		/*
 		 * ツールバー表示
 		 */
-		HBox toolBox = createToolbarBox(env);
+		HBox toolBox = createToolbarBox(env, fields);
 		tabBox.getChildren().add(toolBox);
 
 		FX_Field field = new FX_Field();
 		where = new FD_WhereData(I_FX_Field.COLUMNNAME_FX_Tab_ID, tab.getFX_Tab_ID());
 		List<X_FX_Field> flist = field.getList(env, where);
-		FX_Fields fields = new FX_Fields();
 		for(X_FX_Field fd : flist) {
 			FX_FieldItem fitem = new FX_FieldItem();
 			fields.getFields().add(fitem);
@@ -230,9 +230,10 @@ public class FX_View_Common implements I_FD_DB {
 	 * @author officina-hide.net
 	 * @since 2021/12/02 Ver. 1.00
 	 * @param env 環境情報[Environment information]
+	 * @param fields 画面項目情報[Screen item information]
 	 * @return ツールバー[Toolbar]
 	 */
-	private HBox createToolbarBox(FD_EnvData env) {
+	private HBox createToolbarBox(FD_EnvData env, FX_Fields fields) {
 		//ツールバー領域構築
 		HBox toolBox = new HBox(5);
 		//ToolBar情報取得
@@ -242,7 +243,7 @@ public class FX_View_Common implements I_FD_DB {
 			Button button = new Button(tb.getFD_Name());
 			button.setOnAction(event->{
 				TB_Process tp = new TB_Process();
-				tp.execute(env, tb);
+				tp.execute(env, tb, fields);
 			});
 			toolBox.getChildren().add(button);
 		}

@@ -29,4 +29,7 @@ public interface I_FX_ToolBar extends I_FD_DB {
 	public final static String NAME_FX_ToolBar_Name = "ツールバー名称";
 	public final static String COMMENT_FX_ToolBar_Name = "ツールバーを識別する為の名称";
 
+	/** ボタン名 : 保存 */
+	public final static String TB_Save = "TB_Save";
+	public final static String NAME_TB_Save = "保存";
 }

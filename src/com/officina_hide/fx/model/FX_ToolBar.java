@@ -58,7 +58,7 @@ public class FX_ToolBar extends FD_DB implements I_FX_ToolBar  {
 	 * @param env 環境情報[Environment information]
 	 */
 	public void addCommonButton(FD_EnvData env) {
-		add(env, 0, "TB_Save","保存", "表示されている情報を保存する。");
+		add(env, 0, TB_Save, NAME_TB_Save, "表示されている情報を保存する。");
 	}
 
 	/**
