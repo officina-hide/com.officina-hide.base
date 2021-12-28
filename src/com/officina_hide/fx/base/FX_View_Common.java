@@ -241,7 +241,7 @@ public class FX_View_Common implements I_FD_DB {
 		List<X_FX_Toolbar> tlist = toolBar.getList(env);
 		for(X_FX_Toolbar tb : tlist) {
 			Button button = new Button(tb.getFD_Name());
-			button.setOnAction(event->{
+			button.setOnMouseClicked(event->{
 				TB_Process tp = new TB_Process();
 				tp.execute(env, tb, fields);
 			});

@@ -9,6 +9,7 @@ import com.officina_hide.fx.base.FX_Fields;
 import com.officina_hide.fx.model.I_FX_ToolBar;
 import com.officina_hide.fx.model.X_FX_Toolbar;
 
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 
 /**
@@ -33,9 +34,19 @@ public class TB_Process implements I_FX_ToolBar {
 		 * TODO 別クラス化予定
 		 */
 		if(toolBar.getFD_Name().equals(NAME_TB_Save)) {
-			System.out.println(fields.getFields().get(0).getFieldTypeName());
-			DatePicker dt = (DatePicker) fields.getFields().get(0).getFieldItem();
-			Calendar cal = new GregorianCalendar(new Locale(Locale.JAPAN.getLanguage(), Locale.JAPAN.getCountry()));
+			for(int ix = 0; ix < fields.getFields().size(); ix++) {
+				switch(fields.getFields().get(ix).getFieldTypeName()) {
+				case FD_Field_Date:
+					DatePicker dt = (DatePicker) fields.getFields().get(ix).getFieldItem();
+					Calendar cal = new GregorianCalendar(new Locale(Locale.JAPAN.getLanguage(), Locale.JAPAN.getCountry()));
+					cal.set(dt.getValue().getYear(), dt.getValue().getMonth().getValue(), dt.getValue().getDayOfMonth());
+					break;
+				case FD_Field_List:
+					ComboBox<String> combo = (ComboBox<String>) fields.getFields().get(ix).getFieldItem();
+					break;
+				}
+			}
+			
 		}
 	}
 
