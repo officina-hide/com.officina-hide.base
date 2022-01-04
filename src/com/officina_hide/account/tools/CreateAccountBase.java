@@ -7,6 +7,7 @@ import com.officina_hide.account.model.I_AC_JournalSlip;
 import com.officina_hide.account.model.I_FV_AccountTitle;
 import com.officina_hide.account.model.I_FV_JournalSlip;
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.FD_Reference;
 import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.FD_TableReference;
@@ -62,8 +63,12 @@ public class CreateAccountBase implements I_FD_DB {
 		FX_Tab tab = new FX_Tab();
 		long tabId =  tab.add(env, 0, "FV_AccountTitle", viewId, table.getTableId(I_AC_AccountTitle.Table_Name), "勘定科目情報", "", 0);
 		FX_Field field = new FX_Field();
-		field.add(env, 0, I_AC_AccountTitle.Table_Name, I_AC_AccountTitle.COLUMNNAME_AC_AccountTitle_Code, tabId, FD_Field_SimpleText,0);
-		field.add(env, 0, I_AC_AccountTitle.Table_Name, COLUMNNAME_FD_Name, tabId, FD_Field_SimpleText, 0);
+		FD_Column column = new FD_Column();
+		field.add(env, 0, "勘定科目コード", "勘定科目コード", tabId,
+				column.getColumnID(env, I_AC_AccountTitle.Table_Name, I_AC_AccountTitle.COLUMNNAME_AC_AccountTitle_Code),
+				FD_Field_SimpleText, 0);
+//		field.add(env, 0, I_AC_AccountTitle.Table_Name, I_AC_AccountTitle.COLUMNNAME_AC_AccountTitle_Code, tabId, FD_Field_SimpleText,0);
+//		field.add(env, 0, I_AC_AccountTitle.Table_Name, COLUMNNAME_FD_Name, tabId, FD_Field_SimpleText, 0);
 		
 		//2.
 		AC_JournalSlip ajs = new AC_JournalSlip();
@@ -78,15 +83,15 @@ public class CreateAccountBase implements I_FD_DB {
 		menu.add(env, 0, I_FV_JournalSlip.VIEWNAME, viewId, FD_Menu_View, "仕分伝票");
 		tabId = tab.add(env, 0, I_FV_JournalSlip.VIEWNAME, viewId, table.getTableId(I_AC_JournalSlip.Table_Name),
 				I_AC_JournalSlip.Table_Disp_Name, I_AC_JournalSlip.Table_Comment, 0);
-		field.add(env, 0, I_AC_JournalSlip.Table_Name, I_AC_JournalSlip.COLUMNNAME_AC_IssueDate, tabId, FD_Field_Date, 0);
+//		field.add(env, 0, I_AC_JournalSlip.Table_Name, I_AC_JournalSlip.COLUMNNAME_AC_IssueDate, tabId, FD_Field_Date, 0);
 
 		FD_Reference ref = new FD_Reference();
 		long refId = ref.add(env, 0, "AC_JournalSlip_List", FD_Reference_Table);
 		FD_TableReference tref = new FD_TableReference();
 		tref.add(env, 0, refId, table.getTableId(I_AC_AccountTitle.Table_Name));
 		
-		field.add(env, 0, I_AC_JournalSlip.Table_Name,
-				I_AC_JournalSlip.COLUMNNAME_AC_Credit_AccountTitle_ID, tabId, FD_Field_List, refId);
+//		field.add(env, 0, I_AC_JournalSlip.Table_Name,
+//				I_AC_JournalSlip.COLUMNNAME_AC_Credit_AccountTitle_ID, tabId, FD_Field_List, refId);
 		
 		
 		//3.

@@ -1,5 +1,7 @@
 package com.officina_hide.base.model;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -118,6 +120,48 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 		where.add("AND", I_FD_TypeItem.COLUMNNAME_FD_TypeItem_Name, typeName);
 		X_FD_TypeItem typeItem = new X_FD_TypeItem(env, where);
 		return typeItem.getFD_TypeItem_ID();
+	}
+
+	/**
+	 * テーブル項目情報ID取得[Get table item information ID]<br>
+	 * @author officina-hide.net
+	 * @since 2022/01/04 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param tableName テーブル名[Table name]
+	 * @param columnName テーブル項目名[Table column name]
+	 * @return FD_Column_ID テーブル項目情報ID
+	 */
+	public long getColumnID(FD_EnvData env, String tableName, String columnName) {
+		long id = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT ").append(COLUMNNAME_FD_Column_ID).append(" FROM ").append(Table_Name).append(" C ");
+			sql.append("LEFT JOIN ").append(I_FD_Table.Table_Name).append(" T ON ").append("T.").append(COLUMNNAME_FD_Table_ID)
+				.append(" = ").append("C.").append(COLUMNNAME_FD_Table_ID).append(" ");
+			sql.append("LEFT JOIN ").append(I_FD_DataDictionary.Table_Name).append(" D ON ").append("D.").append(COLUMNNAME_FD_DataDictionary_ID)
+				.append(" = ").append("C.").append(COLUMNNAME_FD_DataDictionary_ID).append(" ");
+			sql.append("WHERE ").append("T.").append(I_FD_Table.COLUMNNAME_FD_Table_Name).append(" = ? ");
+			sql.append("AND " ).append("D.").append(I_FD_DataDictionary.COLUMNNAME_FD_DataDictionary_Name).append(" = ? ");
+			connection(env);
+			pstmt = getConn().prepareStatement(sql.toString());
+			pstmt.setString(1, tableName);
+			pstmt.setString(2, columnName);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				id = rs.getLong(COLUMNNAME_FD_Column_ID);
+			} else {
+				System.out.println("テーブル項目名が見つかりません。["+tableName+"."+columnName+"]");
+				new Exception("テーブル項目名が見つかりません。["+tableName+"."+columnName+"]");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
+		
+		return id;
 	}
 
 }

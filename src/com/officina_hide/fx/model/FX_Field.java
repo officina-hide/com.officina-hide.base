@@ -14,7 +14,6 @@ import com.officina_hide.base.model.FD_DataDictionary;
 import com.officina_hide.base.model.FD_Numbering;
 import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.FD_TypeItem;
-import com.officina_hide.base.model.X_FD_Column;
 
 /**
  * 画面項目情報クラス[Screen item information class]<br>
@@ -49,6 +48,7 @@ public class FX_Field extends FD_DB implements I_FX_Field {
 		column.add(env, 0, Table_ID, COLUMNNAME_FX_Tab_ID, FD_ITEM_ID, 0, true, false, null);
 		column.add(env, 0, Table_ID, COLUMNNAME_FD_TypeItem_ID, FD_ITEM_ID, 0, true, false, null);
 		column.add(env, 0, Table_ID, COLUMNNAME_FD_Reference_ID, FD_ITEM_ID, 0, true, false, null);
+		column.add(env, 0, Table_ID, COLUMNNAME_FD_Column_ID, FD_ITEM_ID, 0, true, false, "0");
 		addCommonColumn(env, Table_ID);
 		//テーブル削除
 		dropTable(env, Table_Name);
@@ -64,12 +64,13 @@ public class FX_Field extends FD_DB implements I_FX_Field {
 	 * @param fieldId 画面項目情報ID[Screen item information ID]
 	 * @param fieldName 画面項目名[Screen item name]
 	 * @param name 表示名[Display name]
+	 * @param columnId テーブル項目情報ID[Table column information ID]
 	 * @param tabId タブ情報ID[Tab information ID]
 	 * @param fieldTypeName 属性項目名[Attribute item name]
 	 * @param referenceId 参照情報ID[Reference  information ID] 
 	 * @return テーブル項目情報[Table item information]
 	 */
-	public X_FX_Field add(FD_EnvData env, int fieldId, String tableName, String ColumnName, long tabId, String fieldTypeName,
+	public X_FX_Field add(FD_EnvData env, int fieldId, String fieldName, String name,  long tabId, long columnId, String fieldTypeName,
 			long referenceId) {
 		/*
 		 * FX_Field_Nameはテーブル項目情報のテーブル項目名を設定<br>
@@ -77,14 +78,15 @@ public class FX_Field extends FD_DB implements I_FX_Field {
 		 */
 		X_FX_Field field = new X_FX_Field(env, 0);
 		field.setFX_Field_ID(fieldId);
-		X_FD_Column co = new X_FD_Column(env, tableName, ColumnName);
-		field.setFx_Field_Name(ColumnName);
-		field.setFD_Name(co.getFD_DataDictionary().getFD_Name());
+//		X_FD_Column co = new X_FD_Column(env, tableName, ColumnName);
+		field.setFx_Field_Name(fieldName);
+		field.setFD_Name(name);
 		field.setFX_Tab_ID(tabId);
 		field.setFD_Group_ID(env.getActionUserID());
 		FD_TypeItem typeItem = new FD_TypeItem();		
 		field.setFD_TypeItem_ID(typeItem.getTypeItemID(env, FD_Field_Type, fieldTypeName));
 		field.setFD_Reference_ID(referenceId);
+		field.setFD_Column_ID(columnId);
 		field.save(env);
 		
 		return field;

@@ -38,11 +38,11 @@ public interface I_FX_Field {
 	public static final String NAME_FD_TypeItem_ID = I_FD_TypeItem.NAME_FD_TypeItem_ID;
 	/** 項目 : 参照情報ID */
 	public static final String COLUMNNAME_FD_Reference_ID = I_FD_Reference.COLUMNNAME_FD_Reference_ID;
-	public static final String NAME__FD_Reference_ID = I_FD_Reference.NAME_FD_Reference_ID;
-
-	
+	public static final String NAME_FD_Reference_ID = I_FD_Reference.NAME_FD_Reference_ID;	
 	/** テーブル項目情報ID */
-	public final static String COLUMNNAME_FD_Column_ID = I_FD_Column.Table_Name + "_ID";
+	public final static String COLUMNNAME_FD_Column_ID = I_FD_Column.COLUMNNAME_FD_Column_ID;
+	public static final String NAME_FD_Column_ID = I_FD_Column.NAME_FD_Column_ID;
+	
 	/** リスト用項目判定 */
 	public final static String COLUMNNAME_Fx_isListField = "FX_isListField";
 	public final static String Fx_isListField_YES = "Y";

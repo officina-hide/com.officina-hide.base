@@ -5,8 +5,10 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.fx.base.FX_FieldItem;
 import com.officina_hide.fx.base.FX_Fields;
 import com.officina_hide.fx.model.I_FX_ToolBar;
+import com.officina_hide.fx.model.X_FX_Field;
 import com.officina_hide.fx.model.X_FX_Toolbar;
 
 import javafx.scene.control.ComboBox;
@@ -35,14 +37,15 @@ public class TB_Process implements I_FX_ToolBar {
 		 */
 		if(toolBar.getFD_Name().equals(NAME_TB_Save)) {
 			for(int ix = 0; ix < fields.getFields().size(); ix++) {
-				switch(fields.getFields().get(ix).getFieldTypeName()) {
+				FX_FieldItem fitem = fields.getFields().get(ix);
+				switch(fitem.getFieldTypeName()) {
 				case FD_Field_Date:
-					DatePicker dt = (DatePicker) fields.getFields().get(ix).getFieldItem();
+					DatePicker dt = (DatePicker) fitem.getFieldItem();
 					Calendar cal = new GregorianCalendar(new Locale(Locale.JAPAN.getLanguage(), Locale.JAPAN.getCountry()));
 					cal.set(dt.getValue().getYear(), dt.getValue().getMonth().getValue(), dt.getValue().getDayOfMonth());
 					break;
 				case FD_Field_List:
-					ComboBox<String> combo = (ComboBox<String>) fields.getFields().get(ix).getFieldItem();
+					ComboBox<String> combo = (ComboBox<String>) fitem.getFieldItem();
 					break;
 				}
 			}

@@ -85,8 +85,8 @@ public class CreateFxInformation implements I_FD_DB {
 		long tabId = tab.add(env, 0, V_FX_Login.FX_Tab_Name, viewId,
 				I_FD_Login.Table_ID ,V_FX_Login.FX_Tab_Disp_Name, V_FX_Login.FX_Tab_Description, 0);
 		//7-3.
-		field.add(env, 0, I_FD_Login.Table_Name, I_FD_Login.COLUMNNAME_FD_User_Name, tabId, FD_Field_SimpleText, 0);
-		field.add(env, 0, I_FD_Login.Table_Name, I_FD_Login.COLUMNNAME_FD_Login_Password, tabId, FD_Field_Password, 0);
+//		field.add(env, 0, I_FD_Login.Table_Name, I_FD_Login.COLUMNNAME_FD_User_Name, tabId, FD_Field_SimpleText, 0);
+//		field.add(env, 0, I_FD_Login.Table_Name, I_FD_Login.COLUMNNAME_FD_Login_Password, tabId, FD_Field_Password, 0);
 		//7-4.
 		FD_Process process = new FD_Process();
 		FD_ProcessParam pp = new FD_ProcessParam();

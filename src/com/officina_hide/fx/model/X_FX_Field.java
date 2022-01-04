@@ -2,6 +2,7 @@ package com.officina_hide.fx.model;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
+import com.officina_hide.base.model.X_FD_Column;
 import com.officina_hide.base.model.X_FD_Reference;
 import com.officina_hide.base.model.X_FD_TypeItem;
 
@@ -30,6 +31,10 @@ public class X_FX_Field extends FD_DB implements I_FX_Field {
 	private long FD_Reference_ID;
 	/** 情報 : 参照情報 */
 	private X_FD_Reference FD_Reference;
+	/** 項目 : テーブル項目情報ID */
+	private long FD_Column_ID;
+	/** 情報 : テーブル項目情報 */
+	private X_FD_Column FD_Column;
 	
 	/**
 	 * コンストラクタ[Constructor]<br>
@@ -145,6 +150,27 @@ public class X_FX_Field extends FD_DB implements I_FX_Field {
 			}
 		}
 		return FD_Reference;
+	}
+	public long getFD_Column_ID() {
+		FD_Column_ID = items.getlongData(COLUMNNAME_FD_Column_ID);
+		return FD_Column_ID;
+	}
+	public void setFD_Column_ID(long columnId) {
+		items.setValue(COLUMNNAME_FD_Column_ID, columnId);
+	}
+	public X_FD_Column getFD_Column(FD_EnvData env) {
+		if(FD_Column == null) {
+			if(getFD_Column_ID() > 0) {
+				FD_Column = new X_FD_Column(env, getFD_Column_ID());
+			} else {
+				return null;
+			}
+		} else {
+			if(FD_Column.getFD_Column_ID() != getFD_Column_ID()) {
+				FD_Column = new X_FD_Column(env, getFD_Column_ID());
+			}
+		}
+		return FD_Column;
 	}
 
 }
