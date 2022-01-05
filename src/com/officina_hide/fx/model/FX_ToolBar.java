@@ -59,6 +59,7 @@ public class FX_ToolBar extends FD_DB implements I_FX_ToolBar  {
 	 */
 	public void addCommonButton(FD_EnvData env) {
 		add(env, 0, TB_Save, NAME_TB_Save, "表示されている情報を保存する。");
+		add(env, 0, TB_New, NAME_TB_New, "新規に登録画面を表示する。");
 	}
 
 	/**

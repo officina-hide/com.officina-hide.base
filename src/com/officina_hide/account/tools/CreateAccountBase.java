@@ -67,8 +67,9 @@ public class CreateAccountBase implements I_FD_DB {
 		field.add(env, 0, "勘定科目コード", "勘定科目コード", tabId,
 				column.getColumnID(env, I_AC_AccountTitle.Table_Name, I_AC_AccountTitle.COLUMNNAME_AC_AccountTitle_Code),
 				FD_Field_SimpleText, 0);
-//		field.add(env, 0, I_AC_AccountTitle.Table_Name, I_AC_AccountTitle.COLUMNNAME_AC_AccountTitle_Code, tabId, FD_Field_SimpleText,0);
-//		field.add(env, 0, I_AC_AccountTitle.Table_Name, COLUMNNAME_FD_Name, tabId, FD_Field_SimpleText, 0);
+		field.add(env, 0, "勘定科目名", "勘定科目名", tabId,
+				column.getColumnID(env, I_AC_AccountTitle.Table_Name, COLUMNNAME_FD_Name),
+				FD_Field_SimpleText, 0);
 		
 		//2.
 		AC_JournalSlip ajs = new AC_JournalSlip();

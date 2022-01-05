@@ -32,4 +32,7 @@ public interface I_FX_ToolBar extends I_FD_DB {
 	/** ボタン名 : 保存 */
 	public final static String TB_Save = "TB_Save";
 	public final static String NAME_TB_Save = "保存";
+	/** ボタン名 : 新規 */
+	public final static String TB_New = "TB_New";
+	public final static String NAME_TB_New = "新規";
 }

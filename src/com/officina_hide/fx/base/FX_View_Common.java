@@ -211,7 +211,8 @@ public class FX_View_Common implements I_FD_DB {
 			FD_Items dt = dlist.get(0);
 			for(FX_FieldItem fitem : fields.getFields()) {
 				for(FD_Item ditem : dt.getItems()) {
-					if(ditem.getName().equals(fitem.getField().getFx_Field_Name())) {
+
+					if(ditem.getName().equals(fitem.getField().getFD_Column(env).getFD_DataDictionary().getFD_DataDictionary_Name())) {
 						//項目セット
 						switch(fitem.getFieldTypeName()) {
 						case FD_Field_SimpleText:

@@ -49,6 +49,12 @@ public class TB_Process implements I_FX_ToolBar {
 					break;
 				}
 			}
+		}
+		
+		/*
+		 * 「新規」ボタンクリック時処理
+		 */
+		if(toolBar.getFD_Name().equals(NAME_TB_New)) {
 			
 		}
 	}
