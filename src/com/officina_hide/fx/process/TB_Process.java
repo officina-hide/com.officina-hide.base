@@ -1,18 +1,12 @@
 package com.officina_hide.fx.process;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.Locale;
-
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.fx.base.FX_FieldItem;
 import com.officina_hide.fx.base.FX_Fields;
 import com.officina_hide.fx.model.I_FX_ToolBar;
-import com.officina_hide.fx.model.X_FX_Field;
 import com.officina_hide.fx.model.X_FX_Toolbar;
 
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 
 /**
  * ツールバー処理[Toolbar processing]<br>
@@ -36,27 +30,45 @@ public class TB_Process implements I_FX_ToolBar {
 		 * TODO 別クラス化予定
 		 */
 		if(toolBar.getFD_Name().equals(NAME_TB_Save)) {
-			for(int ix = 0; ix < fields.getFields().size(); ix++) {
-				FX_FieldItem fitem = fields.getFields().get(ix);
-				switch(fitem.getFieldTypeName()) {
-				case FD_Field_Date:
-					DatePicker dt = (DatePicker) fitem.getFieldItem();
-					Calendar cal = new GregorianCalendar(new Locale(Locale.JAPAN.getLanguage(), Locale.JAPAN.getCountry()));
-					cal.set(dt.getValue().getYear(), dt.getValue().getMonth().getValue(), dt.getValue().getDayOfMonth());
-					break;
-				case FD_Field_List:
-					ComboBox<String> combo = (ComboBox<String>) fitem.getFieldItem();
-					break;
-				}
-			}
+			saveProcess();
+//			for(int ix = 0; ix < fields.getFields().size(); ix++) {
+//				FX_FieldItem fitem = fields.getFields().get(ix);
+//				switch(fitem.getFieldTypeName()) {
+//				case FD_Field_Date:
+//					DatePicker dt = (DatePicker) fitem.getFieldItem();
+//					Calendar cal = new GregorianCalendar(new Locale(Locale.JAPAN.getLanguage(), Locale.JAPAN.getCountry()));
+//					cal.set(dt.getValue().getYear(), dt.getValue().getMonth().getValue(), dt.getValue().getDayOfMonth());
+//					break;
+//				case FD_Field_List:
+//					ComboBox<String> combo = (ComboBox<String>) fitem.getFieldItem();
+//					break;
+//				}
+//			}
 		}
 		
 		/*
 		 * 「新規」ボタンクリック時処理
 		 */
 		if(toolBar.getFD_Name().equals(NAME_TB_New)) {
-			
+			//項目クリア
+			for(FX_FieldItem item : fields.getFields()) {
+				switch(item.getFieldTypeName()) {
+				case FD_Field_SimpleText:
+					TextField text = (TextField) item.getFieldItem();
+					text.clear();
+					break;
+				}
+			}
 		}
+	}
+
+	/**
+	 * ツールバー保管処理[On the toolbar-save process]<br>
+	 * @author officina-hide.net
+	 * @since 2022/01/06 Ver. 1.00
+	 */
+	private void saveProcess() {
+		
 	}
 
 }
