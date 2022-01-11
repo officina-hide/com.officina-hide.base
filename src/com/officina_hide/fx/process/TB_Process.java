@@ -30,7 +30,7 @@ public class TB_Process implements I_FX_ToolBar {
 		 * TODO 別クラス化予定
 		 */
 		if(toolBar.getFD_Name().equals(NAME_TB_Save)) {
-			saveProcess();
+			saveProcess(fields);
 //			for(int ix = 0; ix < fields.getFields().size(); ix++) {
 //				FX_FieldItem fitem = fields.getFields().get(ix);
 //				switch(fitem.getFieldTypeName()) {
@@ -66,8 +66,10 @@ public class TB_Process implements I_FX_ToolBar {
 	 * ツールバー保管処理[On the toolbar-save process]<br>
 	 * @author officina-hide.net
 	 * @since 2022/01/06 Ver. 1.00
+	 * @param fields 画面項目情報[Screen item information]
 	 */
-	private void saveProcess() {
+	private void saveProcess(FX_Fields fields) {
+		// TODO 必須登録等の実装については後で追加する。 2021/01/11 
 		
 	}
 
