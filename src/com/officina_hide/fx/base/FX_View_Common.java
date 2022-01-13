@@ -146,7 +146,7 @@ public class FX_View_Common implements I_FD_DB {
 		/*
 		 * ツールバー表示
 		 */
-		HBox toolBox = createToolbarBox(env, fields);
+		HBox toolBox = createToolbarBox(env, fields, tab);
 		tabBox.getChildren().add(toolBox);
 
 		FX_Field field = new FX_Field();
@@ -232,9 +232,10 @@ public class FX_View_Common implements I_FD_DB {
 	 * @since 2021/12/02 Ver. 1.00
 	 * @param env 環境情報[Environment information]
 	 * @param fields 画面項目情報[Screen item information]
+	 * @param tab タブ情報
 	 * @return ツールバー[Toolbar]
 	 */
-	private HBox createToolbarBox(FD_EnvData env, FX_Fields fields) {
+	private HBox createToolbarBox(FD_EnvData env, FX_Fields fields, X_FX_Tab tab) {
 		//ツールバー領域構築
 		HBox toolBox = new HBox(5);
 		//ToolBar情報取得
@@ -244,7 +245,7 @@ public class FX_View_Common implements I_FD_DB {
 			Button button = new Button(tb.getFD_Name());
 			button.setOnMouseClicked(event->{
 				TB_Process tp = new TB_Process();
-				tp.execute(env, tb, fields);
+				tp.execute(env, tb, fields, tab);
 			});
 			toolBox.getChildren().add(button);
 		}

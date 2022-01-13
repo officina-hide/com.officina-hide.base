@@ -3,6 +3,7 @@ package com.officina_hide.fx.model;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_WhereData;
 import com.officina_hide.base.model.FD_DB;
+import com.officina_hide.base.model.X_FD_Table;
 
 public class X_FX_Tab extends FD_DB implements I_FX_Tab {
 
@@ -14,6 +15,8 @@ public class X_FX_Tab extends FD_DB implements I_FX_Tab {
 	private long FX_View_ID;
 	/** 項目 : テーブル情報ID */
 	private long FD_Table_ID;
+	/** 情報 : テーブル情報 */
+	private X_FD_Table FD_Table;
 	/** 項目 : タブレベル */
 	private int FX_Tab_Level;
 	
@@ -87,6 +90,20 @@ public class X_FX_Tab extends FD_DB implements I_FX_Tab {
 	}
 	public void setFX_Tab_Level(int tabLevel) {
 		items.setValue(COLUMNNAME_FX_Tab_Level, tabLevel);
+	}
+	public X_FD_Table getFD_Table(FD_EnvData env) {
+		if(FD_Table == null) {
+			if(getFD_Table_ID() == 0) {
+				return null;
+			} else {
+				FD_Table = new X_FD_Table(env, getFD_Table_ID());
+			}
+		} else {
+			if(getFD_Table_ID() != FD_Table.getFD_Table_ID()) {
+				FD_Table = new X_FD_Table(env, getFD_Table_ID());
+			}
+		}
+		return FD_Table;
 	}
 
 }
