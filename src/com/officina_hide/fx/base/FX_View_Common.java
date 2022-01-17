@@ -3,7 +3,6 @@ package com.officina_hide.fx.base;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +28,6 @@ import com.officina_hide.fx.model.X_FX_View;
 import com.officina_hide.fx.process.TB_Process;
 
 import javafx.event.ActionEvent;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -129,19 +127,11 @@ public class FX_View_Common implements I_FD_DB {
 		
 		//対象情報リスト生成
 		List<FD_Items> dlist = getDataList(env, tab.getFD_Table_ID());
+		fields.setRecordCount(dlist.size());
 		/*
 		 * 検索結果をタブ右上に表示する。
 		 */
-		HBox headBox = new HBox(5);
-		tabBox.getChildren().add(headBox);
-		HBox nameBox = new HBox(5);
-		HBox countBox = new HBox(5);
-		countBox.setAlignment(Pos.CENTER_RIGHT);
-		countBox.setSpacing(100);
-		headBox.getChildren().addAll(nameBox, countBox);
-		DecimalFormat countFmt = new DecimalFormat("#,##0");
-		Label recordCount = new Label(countFmt.format(dlist.size()));
-		countBox.getChildren().add(recordCount);
+		tabBox.getChildren().add(fields.getHeadBox());
 		
 		/*
 		 * ツールバー表示

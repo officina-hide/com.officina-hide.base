@@ -40,7 +40,10 @@ public class TB_Process implements I_FX_ToolBar {
 		 * TODO 別クラス化予定
 		 */
 		if(toolBar.getFD_Name().equals(NAME_TB_Save)) {
-			saveProcess(env, fields, tab); 
+			//情報の保存
+			saveProcess(env, fields, tab);
+			//検索結果の再表示
+			
 		}
 		
 		/*
