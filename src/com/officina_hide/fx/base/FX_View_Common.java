@@ -3,17 +3,16 @@ package com.officina_hide.fx.base;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_Item;
 import com.officina_hide.base.common.FD_Items;
+import com.officina_hide.base.common.FD_SelectTableData;
 import com.officina_hide.base.common.FD_WhereData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.base.model.I_FD_TableReference;
-import com.officina_hide.base.model.X_FD_Table;
 import com.officina_hide.base.model.X_FD_TableReference;
 import com.officina_hide.fx.model.FX_Field;
 import com.officina_hide.fx.model.FX_Menu;
@@ -126,7 +125,8 @@ public class FX_View_Common implements I_FD_DB {
 		tb.setText(tab.getFD_Name());
 		
 		//対象情報リスト生成
-		List<FD_Items> dlist = getDataList(env, tab.getFD_Table_ID());
+		FD_SelectTableData std = new FD_SelectTableData();
+		List<FD_Items> dlist = std.getDataList(env, tab.getFD_Table_ID());
 		fields.setRecordCount(dlist.size());
 		
 		// ヘッダー情報のセット
@@ -240,37 +240,4 @@ public class FX_View_Common implements I_FD_DB {
 		}
 		return toolBox;
 	}
-
-	/**
-	 * テーブルデータ取得[Table data acquisition]<br>
-	 * @author officina-hide.net
-	 * @since 2021/11/25 Ver. 1.00
-	 * @param env 環境情報[Environment information]
-	 * @param tableId テーブル情報ID[Table information ID]
-	 * @return テーブル情報付テーブル項目リスト[Table item list with table information]
-	 */
-	private List<FD_Items> getDataList(FD_EnvData env, long tableId) {
-		List<FD_Items> list = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		FD_DB DB = new FD_DB();
-		X_FD_Table table = new X_FD_Table(env, tableId);
-		StringBuffer sql = new StringBuffer();
-		try {
-			sql.append("SELECT * FROM ").append(table.getFD_Table_Name()).append(" ");
-			DB.connection(env);
-			pstmt = DB.getConn().prepareStatement(sql.toString());
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				FD_Items items = DB.createItems(env, tableId, rs);
-				list.add(items);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DB.DBClose(pstmt, rs);
-		}
-		return list;
-	}
-
 }

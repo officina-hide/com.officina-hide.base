@@ -23,7 +23,7 @@ public class X_AC_AccountTitle extends FD_DB implements I_AC_AccountTitle {
 	 * @param env 環境情報[Environment information]
 	 * @param accountTitleId 勘定科目情報ID[Account title information ID]
 	 */
-	public X_AC_AccountTitle(FD_EnvData env, int accountTitleId) {
+	public X_AC_AccountTitle(FD_EnvData env, long accountTitleId) {
 		createItemList(env, Table_Name);
 		if(accountTitleId > 0) {
 			load(env, Table_Name, accountTitleId, items);

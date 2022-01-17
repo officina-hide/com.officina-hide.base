@@ -63,6 +63,9 @@ public class TB_Process implements I_FX_ToolBar {
 					TextField text = (TextField) item.getFieldItem();
 					text.clear();
 					break;
+				case FD_Field_Date:
+					
+					break;
 				}
 			}
 		}
@@ -95,11 +98,16 @@ public class TB_Process implements I_FX_ToolBar {
 		try {
 			// TODO パッケージURIについては別途検討 2021/01/13
 			Class<?> IOClazz = Class.forName("com.officina_hide.account.model.X_"+tab.getFD_Table(env).getFD_Table_Name());
-			Constructor<?> constructor = IOClazz.getConstructor(FD_EnvData.class, int.class);
+			Constructor<?> constructor = IOClazz.getConstructor(FD_EnvData.class, long.class);
 			Object IOInstance = constructor.newInstance(env, 0);
 			for(FX_FieldItem item : fields.getFields()) {
 				String columnName = item.getField().getFD_Column(env).getFD_DataDictionary().getFD_DataDictionary_Name();
-				Method setData = IOInstance.getClass().getMethod("set"+columnName, String.class);
+				Method setData = null;
+				switch(item.getFieldTypeName()) {
+				case FD_Field_SimpleText:
+					setData = IOInstance.getClass().getMethod("set"+columnName, String.class);
+					break;
+				}
 				TextField text = (TextField) item.getFieldItem();
 				setData.invoke(IOInstance, text.getText());
 			}

@@ -50,6 +50,7 @@ public class CreateAccountBase implements I_FD_DB {
 		 * 1. 勘定科目情報生成[Generate account information]
 		 * 1-2. 勘定科目情報画面関連登録[Account information screen related registration]
 		 * 2. 仕訳伝票情報生成[Generate Journal Slip information]
+		 * 2-1. 仕分け情報画面関連登録
 		 * 3. メイン画面関連情報設定
 		 */
 		//1.
@@ -64,27 +65,28 @@ public class CreateAccountBase implements I_FD_DB {
 		long tabId =  tab.add(env, 0, "FV_AccountTitle", viewId, table.getTableId(I_AC_AccountTitle.Table_Name), "勘定科目情報", "", 0);
 		FX_Field field = new FX_Field();
 		FD_Column column = new FD_Column();
-		field.add(env, 0, "勘定科目コード", "勘定科目コード", tabId,
+		field.add(env, 0, "AccountTitle", "勘定科目コード", tabId,
 				column.getColumnID(env, I_AC_AccountTitle.Table_Name, I_AC_AccountTitle.COLUMNNAME_AC_AccountTitle_Code),
 				FD_Field_SimpleText, 0);
-		field.add(env, 0, "勘定科目名", "勘定科目名", tabId,
+		field.add(env, 0, "name", "勘定科目名", tabId,
 				column.getColumnID(env, I_AC_AccountTitle.Table_Name, COLUMNNAME_FD_Name),
 				FD_Field_SimpleText, 0);
 		
 		//2.
 		AC_JournalSlip ajs = new AC_JournalSlip();
 		ajs.createTable(env);
-		
+		//2-1.
+		viewId = view.add(env, 0, I_FV_JournalSlip.VIEWNAME, "", "");
+		tabId = tab.add(env, 0, I_FV_JournalSlip.VIEWNAME, viewId, table.getTableId(I_AC_JournalSlip.Table_Name),
+				I_AC_JournalSlip.Table_Disp_Name, I_AC_JournalSlip.Table_Comment, 0);
+		field.add(env, 0, "IssueDate", "発行日", tabId,
+				column.getColumnID(env, I_AC_JournalSlip.Table_Name, I_AC_JournalSlip.COLUMNNAME_AC_IssueDate),
+				FD_Field_Date ,0);		
 		
 		//メニュー情報登録
 		FX_Menu menu = new FX_Menu();
 		menu.add(env, 0, I_FV_AccountTitle.VIEWNAME, viewId, FD_Menu_View, "勘定科目");
-		
-		viewId = view.add(env, 0, I_FV_JournalSlip.VIEWNAME, "", "");
 		menu.add(env, 0, I_FV_JournalSlip.VIEWNAME, viewId, FD_Menu_View, "仕分伝票");
-		tabId = tab.add(env, 0, I_FV_JournalSlip.VIEWNAME, viewId, table.getTableId(I_AC_JournalSlip.Table_Name),
-				I_AC_JournalSlip.Table_Disp_Name, I_AC_JournalSlip.Table_Comment, 0);
-//		field.add(env, 0, I_AC_JournalSlip.Table_Name, I_AC_JournalSlip.COLUMNNAME_AC_IssueDate, tabId, FD_Field_Date, 0);
 
 		FD_Reference ref = new FD_Reference();
 		long refId = ref.add(env, 0, "AC_JournalSlip_List", FD_Reference_Table);
