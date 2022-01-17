@@ -3,9 +3,12 @@ package com.officina_hide.fx.process;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.List;
 import java.util.Optional;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_Items;
+import com.officina_hide.base.common.FD_SelectTableData;
 import com.officina_hide.fx.base.FX_FieldItem;
 import com.officina_hide.fx.base.FX_Fields;
 import com.officina_hide.fx.model.I_FX_ToolBar;
@@ -43,6 +46,9 @@ public class TB_Process implements I_FX_ToolBar {
 			//情報の保存
 			saveProcess(env, fields, tab);
 			//検索結果の再表示
+			FD_SelectTableData std = new FD_SelectTableData();
+			List<FD_Items> dlist = std.getDataList(env, tab.getFD_Table_ID());
+			fields.setRecordCount(dlist.size());
 			
 		}
 		

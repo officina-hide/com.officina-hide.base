@@ -128,9 +128,8 @@ public class FX_View_Common implements I_FD_DB {
 		//対象情報リスト生成
 		List<FD_Items> dlist = getDataList(env, tab.getFD_Table_ID());
 		fields.setRecordCount(dlist.size());
-		/*
-		 * 検索結果をタブ右上に表示する。
-		 */
+		
+		// ヘッダー情報のセット
 		tabBox.getChildren().add(fields.getHeadBox());
 		
 		/*

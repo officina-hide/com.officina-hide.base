@@ -22,6 +22,9 @@ public class FX_Fields {
 	private long recordCount;
 	/** ヘッダー領域 */
 	private HBox headBox;
+	/** 抽出件数表示項目 */
+	private Label item_RecordCount = new Label("");
+	DecimalFormat countFmt = new DecimalFormat("#,##0");
 
 	public List<FX_FieldItem> getFields() {
 		if(fields == null) {
@@ -34,6 +37,7 @@ public class FX_Fields {
 	}
 	public void setRecordCount(long recordCount) {
 		this.recordCount = recordCount;
+		item_RecordCount.setText(countFmt.format(recordCount));
 	}
 	public HBox getHeadBox() {
 		if(headBox == null) {
@@ -44,9 +48,8 @@ public class FX_Fields {
 			countBox.setAlignment(Pos.CENTER_RIGHT);
 			countBox.setSpacing(100);
 			headBox.getChildren().addAll(nameBox, countBox);
-			DecimalFormat countFmt = new DecimalFormat("#,##0");
-			Label recordCount = new Label(countFmt.format(getRecordCount()));
-			countBox.getChildren().add(recordCount);
+			item_RecordCount = new Label(countFmt.format(getRecordCount()));
+			countBox.getChildren().add(item_RecordCount);
 		}
 		return headBox;
 	}
