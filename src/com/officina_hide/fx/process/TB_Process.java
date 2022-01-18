@@ -3,7 +3,10 @@ package com.officina_hide.fx.process;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 import com.officina_hide.base.common.FD_EnvData;
@@ -18,6 +21,7 @@ import com.officina_hide.fx.model.X_FX_Toolbar;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 /**
@@ -106,10 +110,18 @@ public class TB_Process implements I_FX_ToolBar {
 				switch(item.getFieldTypeName()) {
 				case FD_Field_SimpleText:
 					setData = IOInstance.getClass().getMethod("set"+columnName, String.class);
+					TextField text = (TextField) item.getFieldItem();
+					setData.invoke(IOInstance, text.getText());
+					break;
+				case FD_Field_Date:
+					setData = IOInstance.getClass().getMethod("set"+columnName, Calendar.class);
+					DatePicker datePicker = (DatePicker) item.getFieldItem();
+					Calendar selectDate = new GregorianCalendar(new Locale(Locale.JAPAN.getLanguage(), Locale.JAPAN.getCountry()));
+					selectDate.set(datePicker.getValue().getYear(), datePicker.getValue().getMonthValue(),
+							datePicker.getValue().getDayOfMonth(), 0, 0, 0);
+					setData.invoke(IOInstance, selectDate);
 					break;
 				}
-				TextField text = (TextField) item.getFieldItem();
-				setData.invoke(IOInstance, text.getText());
 			}
 			Method saveData = IOInstance.getClass().getMethod("save", FD_EnvData.class);
 			saveData.invoke(IOInstance, env);		

@@ -16,7 +16,6 @@ public class X_AC_JournalSlip extends FD_DB implements I_AC_JournalSlip {
 	/** 項目 : 作成日 */
 	private Calendar AC_IssueDate;
 	
-	
 	/**
 	 * 
 	 * @param env
@@ -27,6 +26,16 @@ public class X_AC_JournalSlip extends FD_DB implements I_AC_JournalSlip {
 		if(journalSlipId > 0) {
 			load(env, Table_Name, journalSlipId, items);
 		}
+	}
+	
+	/**
+	 * 情報保存[Save data]<br>
+	 * @author officina-hide.net
+	 * @since 2022/01/17 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 */
+	public void save(FD_EnvData env) {
+		save(env, Table_Name, items);
 	}
 
 	public Calendar getAC_IssueDate() {
