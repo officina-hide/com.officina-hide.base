@@ -15,6 +15,8 @@ public class X_AC_JournalSlip extends FD_DB implements I_AC_JournalSlip {
 
 	/** 項目 : 作成日 */
 	private Calendar AC_IssueDate;
+	/** 項目 : 貸方勘定科目 */
+	private long AC_Credit_AccountTitle_ID;
 	
 	/**
 	 * 
@@ -44,6 +46,13 @@ public class X_AC_JournalSlip extends FD_DB implements I_AC_JournalSlip {
 	}
 	public void setAC_IssueDate(Calendar issueDate) {
 		items.setValue(COLUMNNAME_AC_IssueDate, issueDate);
+	}
+	public long getAC_Credit_AccountTitle_ID() {
+		AC_Credit_AccountTitle_ID = items.getlongData(COLUMNNAME_AC_Credit_AccountTitle_ID);
+		return AC_Credit_AccountTitle_ID;
+	}
+	public void setAC_Credit_AccountTitle_ID(long creditAccountTitleId) {
+		items.setValue(COLUMNNAME_AC_Credit_AccountTitle_ID, creditAccountTitleId);
 	}
 
 }

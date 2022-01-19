@@ -3,6 +3,7 @@ package com.officina_hide.fx.base;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.officina_hide.base.common.FD_EnvData;
@@ -173,13 +174,19 @@ public class FX_View_Common implements I_FD_DB {
 					FD_DB DB = new FD_DB();
 					PreparedStatement pstmt = null;
 					ResultSet rs = null;
+					List<FD_Item> slist = new ArrayList<>();
 					try {
 						DB.connection(env);
 						pstmt = DB.getConn().prepareStatement(sql.toString());
 						rs = pstmt.executeQuery();
 						while(rs.next()) {
+							FD_Item sitem = new FD_Item();
+							sitem.setData(rs.getLong(tr.getFD_Table(env).getFD_Table_Name()+"_ID"));
+							sitem.setName(rs.getString("FD_Name"));
+							slist.add(sitem);
 							combo.getItems().add(rs.getString("FD_Name"));
 						}
+						combo.setUserData(slist);
 					} catch (SQLException e) {
 						e.printStackTrace();
 					} finally {

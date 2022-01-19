@@ -10,6 +10,7 @@ import java.util.Locale;
 import java.util.Optional;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_Item;
 import com.officina_hide.base.common.FD_Items;
 import com.officina_hide.base.common.FD_SelectTableData;
 import com.officina_hide.fx.base.FX_FieldItem;
@@ -21,6 +22,7 @@ import com.officina_hide.fx.model.X_FX_Toolbar;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
@@ -83,6 +85,7 @@ public class TB_Process implements I_FX_ToolBar {
 	 * @param fields 画面項目情報[Screen item information]
 	 * @param tab タブ情報[Tab information]
 	 */
+	@SuppressWarnings("unchecked")
 	private void saveProcess(FD_EnvData env, FX_Fields fields, X_FX_Tab tab) {
 		// TODO 必須登録等の実装については後で追加する。 2021/01/11 
 		/*
@@ -120,6 +123,13 @@ public class TB_Process implements I_FX_ToolBar {
 					selectDate.set(datePicker.getValue().getYear(), datePicker.getValue().getMonthValue(),
 							datePicker.getValue().getDayOfMonth(), 0, 0, 0);
 					setData.invoke(IOInstance, selectDate);
+					break;
+				case FD_Field_List:
+					setData = IOInstance.getClass().getMethod("set"+columnName, long.class);
+					ComboBox<String> combo = (ComboBox<String>) item.getFieldItem();
+					List<FD_Item> slist = (List<FD_Item>) combo.getUserData();
+					int idx = combo.getSelectionModel().getSelectedIndex();
+					setData.invoke(IOInstance, slist.get(idx).getData());
 					break;
 				}
 			}

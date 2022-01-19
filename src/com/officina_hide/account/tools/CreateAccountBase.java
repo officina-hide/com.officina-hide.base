@@ -79,24 +79,24 @@ public class CreateAccountBase implements I_FD_DB {
 		viewId = view.add(env, 0, I_FV_JournalSlip.VIEWNAME, "", "");
 		tabId = tab.add(env, 0, I_FV_JournalSlip.VIEWNAME, viewId, table.getTableId(I_AC_JournalSlip.Table_Name),
 				I_AC_JournalSlip.Table_Disp_Name, I_AC_JournalSlip.Table_Comment, 0);
+		
 		field.add(env, 0, "IssueDate", "発行日", tabId,
 				column.getColumnID(env, I_AC_JournalSlip.Table_Name, I_AC_JournalSlip.COLUMNNAME_AC_IssueDate),
-				FD_Field_Date ,0);		
+				FD_Field_Date , 0);
+
+		FD_Reference ref = new FD_Reference();
+		long refId = ref.add(env, 0, "AC_JournalSlip_List", FD_Reference_Table);
+		FD_TableReference tref = new FD_TableReference();
+		tref.add(env, 0, refId, table.getTableId(I_AC_AccountTitle.Table_Name));
+		field.add(env, 0, "Credit_AccountTitle", "貸方勘定科目", tabId,
+				column.getColumnID(env, I_AC_JournalSlip.Table_Name, I_AC_JournalSlip.COLUMNNAME_AC_Credit_AccountTitle_ID),
+				FD_Field_List, refId);
 		
 		//メニュー情報登録
 		FX_Menu menu = new FX_Menu();
 		menu.add(env, 0, I_FV_AccountTitle.VIEWNAME, viewId, FD_Menu_View, "勘定科目");
 		menu.add(env, 0, I_FV_JournalSlip.VIEWNAME, viewId, FD_Menu_View, "仕分伝票");
 
-		FD_Reference ref = new FD_Reference();
-		long refId = ref.add(env, 0, "AC_JournalSlip_List", FD_Reference_Table);
-		FD_TableReference tref = new FD_TableReference();
-		tref.add(env, 0, refId, table.getTableId(I_AC_AccountTitle.Table_Name));
-		
-//		field.add(env, 0, I_AC_JournalSlip.Table_Name,
-//				I_AC_JournalSlip.COLUMNNAME_AC_Credit_AccountTitle_ID, tabId, FD_Field_List, refId);
-		
-		
 		//3.
 		MainFrameSetting mfs = new MainFrameSetting();
 		mfs.addInformation(env);
