@@ -33,11 +33,14 @@ public class AC_JournalSlip extends FD_DB implements I_AC_JournalSlip {
 		dd.add(env, 0, COLUMNNAME_AC_JournalSlip_ID, NAME_AC_JournalSlip_ID, COMMENT_AC_JournalSlip_ID);
 		dd.add(env, 0, COLUMNNAME_AC_IssueDate, NAME_AC_IssueDate, COMMENT_AC_IssueDate);
 		dd.add(env, 0, COLUMNNAME_AC_Credit_AccountTitle_ID, NAME_AC_Credit_AccountTitle_ID, COMMENT_AC_Credit_AccountTitle_ID);
+		dd.add(env, 0, COLUMNNAME_AC_Credit_Amount, NAME_AC_Credit_Amount, COMMENT_AC_Credit_Amount);
+		dd.add(env, 0, COLUMNNAME_AC_Credit_Amount, NAME_AC_Credit_Amount, COMMENT_AC_Credit_Amount);
 		//テーブル項目情報登録
 		FD_Column column = new FD_Column();
 		column.add(env, 0, tableId, COLUMNNAME_AC_JournalSlip_ID, FD_ITEM_ID, 0, true, true, null);
 		column.add(env, 0, tableId, COLUMNNAME_AC_IssueDate, FD_ITEM_Date, 0, true, false, null);
 		column.add(env, 0, tableId, COLUMNNAME_AC_Credit_AccountTitle_ID, FD_ITEM_ID, 0, true, false, null);
+		column.add(env, 0, tableId, COLUMNNAME_AC_Credit_Amount, FD_ITEM_Amount, 0, true, false, "0");
 		addCommonColumn(env, tableId);
 		//テーブル削除
 		dropTable(env, Table_Name);

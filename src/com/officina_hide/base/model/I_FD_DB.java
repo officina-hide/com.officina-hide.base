@@ -27,6 +27,8 @@ public interface I_FD_DB {
 	public static final String FD_ITEM_Unsigned_BigInt = "FD_ITEM_Unsigned_BigInt";
 	/** テーブル項目種別 : 判定 */
 	public static final String FD_ITEM_YES_NO = "FD_ITEM_YES_NO";
+	/** テーブル項目種別 : 金額 */
+	public static final String FD_ITEM_Amount = "FD_ITEM_Amount";
 	
 	/** 画面項目種別 : 1行テキスト */
 	public static final String FD_Field_SimpleText = "FD_Field_SimpleText";

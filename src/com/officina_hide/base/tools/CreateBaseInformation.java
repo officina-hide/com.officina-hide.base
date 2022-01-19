@@ -10,7 +10,6 @@ import com.officina_hide.base.model.FD_Numbering;
 import com.officina_hide.base.model.FD_Process;
 import com.officina_hide.base.model.FD_ProcessParam;
 import com.officina_hide.base.model.FD_Reference;
-import com.officina_hide.base.model.FD_Reference_Param;
 import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.FD_TableReference;
 import com.officina_hide.base.model.FD_Type;
@@ -180,6 +179,8 @@ public class CreateBaseInformation implements I_FD_DB {
 		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "int unsigned", null);
 		typeItemID = typeItem.add(env, 0, FD_ITEM_YES_NO, typeID, "正整数", "判定値 Yはtrue、Nはfalse (Classはboolean)");
 		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "enum('Y','N')", null);
+		typeItemID = typeItem.add(env, 0, FD_ITEM_Amount, typeID, "金額", "金額を扱う(ClassはBigdecimal)");
+		typeItemParam.add(env, 0, "SQL_String", typeItemID, "CreateSQL用文字列", "Bigint", null);
 	}
 
 	/**
