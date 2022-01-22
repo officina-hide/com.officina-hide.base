@@ -40,6 +40,8 @@ public interface I_FD_DB {
 	public static final String FD_Field_Date = "FD_Field_Date";
 	/** 画面項目種別 : リスト */
 	public static final String FD_Field_List = "FD_Field_List";
+	/** 画面項目種別 : 金額 */
+	public static final String FD_Field_Amount = "FD_Field_Amount";
 	
 	/** メニュー種別 : 画面 */
 	public static final String FD_Menu_View = "FD_Menu_View";

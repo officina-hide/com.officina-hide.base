@@ -1,5 +1,6 @@
 package com.officina_hide.account.model;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 
 import com.officina_hide.base.common.FD_EnvData;
@@ -17,6 +18,8 @@ public class X_AC_JournalSlip extends FD_DB implements I_AC_JournalSlip {
 	private Calendar AC_IssueDate;
 	/** 項目 : 貸方勘定科目 */
 	private long AC_Credit_AccountTitle_ID;
+	/** 項目 : 貸方金額 */
+	private BigDecimal AC_Credit_Amount;
 	
 	/**
 	 * 
@@ -53,6 +56,14 @@ public class X_AC_JournalSlip extends FD_DB implements I_AC_JournalSlip {
 	}
 	public void setAC_Credit_AccountTitle_ID(long creditAccountTitleId) {
 		items.setValue(COLUMNNAME_AC_Credit_AccountTitle_ID, creditAccountTitleId);
+	}
+	public BigDecimal getAC_Credit_Amount() {
+		AC_Credit_Amount = items.getBigdecimalData(COLUMNNAME_AC_Credit_Amount);
+		return AC_Credit_Amount;
+	}
+
+	public void setAC_Credit_Amount(BigDecimal creditAmout) {
+		items.setValue(COLUMNNAME_AC_Credit_Amount, creditAmout);
 	}
 
 }

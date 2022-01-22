@@ -3,6 +3,7 @@ package com.officina_hide.fx.process;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -130,6 +131,12 @@ public class TB_Process implements I_FX_ToolBar {
 					List<FD_Item> slist = (List<FD_Item>) combo.getUserData();
 					int idx = combo.getSelectionModel().getSelectedIndex();
 					setData.invoke(IOInstance, slist.get(idx).getData());
+					break;
+				case FD_Field_Amount:
+					setData = IOInstance.getClass().getMethod("set"+columnName, BigDecimal.class);
+					TextField amountText = (TextField) item.getFieldItem();
+					BigDecimal amoutData = new BigDecimal(amountText.getText());
+					setData.invoke(IOInstance, amoutData);
 					break;
 				}
 			}

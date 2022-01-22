@@ -58,7 +58,6 @@ public class CreateAccountBase implements I_FD_DB {
 		aat.createTable(env);
 		aat.addTitle(env);
 		//1-2.
-		//画面情報登録
 		FX_View view = new FX_View();
 		long viewId = view.add(env, 0, I_FV_AccountTitle.VIEWNAME, "", "");
 		FX_Tab tab = new FX_Tab();
@@ -91,6 +90,10 @@ public class CreateAccountBase implements I_FD_DB {
 		field.add(env, 0, "Credit_AccountTitle", "貸方勘定科目", tabId,
 				column.getColumnID(env, I_AC_JournalSlip.Table_Name, I_AC_JournalSlip.COLUMNNAME_AC_Credit_AccountTitle_ID),
 				FD_Field_List, refId);
+		
+		field.add(env, 0, "Credit_Amount", "貸方金額", tabId,
+				column.getColumnID(env, I_AC_JournalSlip.Table_Name, I_AC_JournalSlip.COLUMNNAME_AC_Credit_Amount),
+				FD_Field_Amount, 0);
 		
 		//メニュー情報登録
 		FX_Menu menu = new FX_Menu();

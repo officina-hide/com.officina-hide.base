@@ -1,5 +1,6 @@
 package com.officina_hide.base.common;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -154,6 +155,28 @@ public class FD_Items implements I_FD_DB {
 					data = (long) item.getData();
 				} else {
 					data = 0;
+				}
+				break;
+			}
+		}
+		return data;
+	}
+
+	/**
+	 * 数値情報取得(Bigdecimal対応)[Numerical information acquisition (Bigdecimal compatible)]
+	 * @author officina-hide.net
+	 * @since 2022/01/22 Ver. 1.00
+	 * @param itemName 項目名[item name]
+	 * @return 数値情報(Bigdecimal対応)[Numerical information (Bigdecimal compatible)]
+	 */
+	public BigDecimal getBigdecimalData(String itemName) {
+		BigDecimal data = BigDecimal.ZERO;
+		for(FD_Item item : items) {
+			if(item.getName().equals(itemName)) {
+				if(item.getData() != null) {
+					data = (BigDecimal) item.getData();
+				} else {
+					data = BigDecimal.ZERO;
 				}
 				break;
 			}

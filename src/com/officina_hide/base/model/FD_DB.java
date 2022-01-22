@@ -149,6 +149,9 @@ public class FD_DB implements I_FD_DB {
 						pstmt.setString(idx, "N");
 					}
 					break;
+				case FD_ITEM_Amount:
+					pstmt.setBigDecimal(idx, items.getBigdecimalData(item.getName()));
+					break;
 				}
 				idx++;
 			}

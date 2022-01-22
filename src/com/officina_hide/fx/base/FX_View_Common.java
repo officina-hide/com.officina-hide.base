@@ -28,6 +28,7 @@ import com.officina_hide.fx.model.X_FX_View;
 import com.officina_hide.fx.process.TB_Process;
 
 import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -195,6 +196,12 @@ public class FX_View_Common implements I_FD_DB {
 					fieldBox.getChildren().add(combo);
 					fitem.setFieldItem(combo);
 				}
+				break;
+			case FD_Field_Amount:
+				TextField AmountText = new TextField("");
+				AmountText.setAlignment(Pos.CENTER_RIGHT);
+				fieldBox.getChildren().add(AmountText);
+				fitem.setFieldItem(AmountText);
 				break;
 			}
 		}
