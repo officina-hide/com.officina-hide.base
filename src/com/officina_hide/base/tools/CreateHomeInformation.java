@@ -2,6 +2,7 @@ package com.officina_hide.base.tools;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.page.model.FM_Base;
+import com.officina_hide.page.model.FM_Menu;
 
 /**
  * ホームページ用環境設定クラス[Homepage preference class]<br>
@@ -20,10 +21,15 @@ public class CreateHomeInformation {
 	public void execute(FD_EnvData env) {
 		/*
 		 * 1. ページ基本情報構築
+		 * 2. タイトルメニュー情報構築
 		 */
+		//1.
 		FM_Base base = new FM_Base();
 		base.createTable(env);
 		base.add(env, 0, "秀さんの情報工房");
+		//2.
+		FM_Menu menu = new FM_Menu();
+		menu.createTable(env);
 	}
 
 }

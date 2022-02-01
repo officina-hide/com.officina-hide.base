@@ -4,7 +4,7 @@ try{
     $username = 'fdadmin';
     $passworf = 'fdadminqAz*01';
     $options = '';
-    $DB = new PDO($dsn, $username, $password, $options);
+//    $DB = new PDO($dsn, $username, $password, $options);
 } catch (PDOException  $e) {
     header('Content-Type: text/plain; charset=UTF-8', true, 500);
     exit($e->getMessage());

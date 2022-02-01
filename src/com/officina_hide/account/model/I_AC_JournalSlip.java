@@ -38,4 +38,16 @@ public interface I_AC_JournalSlip extends I_FD_DB {
 	public static final String COLUMNNAME_AC_Credit_Memo = "AC_Credit_Memo";
 	public static final String NAME_AC_Credit_Memo = "貸方適用";
 	public static final String COMMENT_AC_Credit_Memo = "貸方の内容を記載";
+	/** 項目 : 借方勘定科目 */
+	public static final String COLUMNNAME_AC_Debit_AccountTitle_ID = "AC_Debit_AccountTitle_ID";
+	public static final String NAME_AC_Debit_AccountTitle_ID = "借方勘定科目情報ID";
+	public static final String COMMENT_AC_Debit_AccountTitle_ID = "借方の勘定科目を識別する為の情報ID（AC_AccountTitle_ID）";
+	/** 項目 : 借方金額 */
+	public static final String COLUMNNAME_AC_Debit_Amount = "AC_Debit_Amount";
+	public static final String NAME_AC_Debit_Amount = "借方金額";
+	public static final String COMMENT_AC_Debit_Amount = "借方の金額";
+	/** 項目 : 借方適用 */
+	public static final String COLUMNNAME_AC_Debit_Memo = "AC_Debit_Memo";
+	public static final String NAME_AC_Debit_Memo = "借方適用";
+	public static final String COMMENT_AC_Debit_Memo = "借方の内容を記載";
 }
