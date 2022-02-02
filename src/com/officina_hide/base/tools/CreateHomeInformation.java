@@ -1,6 +1,7 @@
 package com.officina_hide.base.tools;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.model.FD_Type;
 import com.officina_hide.page.model.FM_Base;
 import com.officina_hide.page.model.FM_Menu;
 
@@ -30,6 +31,8 @@ public class CreateHomeInformation {
 		//2.
 		FM_Menu menu = new FM_Menu();
 		menu.createTable(env);
+		FD_Type type = new FD_Type();
+		type.add(env, 0, "FM_Type_Menu", null, null);
 	}
 
 }

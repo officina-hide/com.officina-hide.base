@@ -3,14 +3,10 @@ package com.officina_hide.account.tools;
 import com.officina_hide.account.model.AC_AccountTitle;
 import com.officina_hide.account.model.AC_JournalSlip;
 import com.officina_hide.account.model.I_AC_AccountTitle;
-import com.officina_hide.account.model.I_AC_JournalSlip;
 import com.officina_hide.account.model.I_FV_AccountTitle;
-import com.officina_hide.account.model.I_FV_JournalSlip;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Column;
-import com.officina_hide.base.model.FD_Reference;
 import com.officina_hide.base.model.FD_Table;
-import com.officina_hide.base.model.FD_TableReference;
 import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.fx.base.MainFrameSetting;
 import com.officina_hide.fx.model.FX_Field;
@@ -50,7 +46,7 @@ public class CreateAccountBase implements I_FD_DB {
 		 * 1. 勘定科目情報生成[Generate account information]
 		 * 1-2. 勘定科目情報画面関連登録[Account information screen related registration]
 		 * 2. 仕訳伝票情報生成[Generate Journal Slip information]
-		 * 2-1. 仕分け情報画面関連登録
+		 * 2-1. 仕分け情報画面関連登録[Registration of information about the sorting information screen]
 		 * 3. メイン画面関連情報設定
 		 */
 		//1.
@@ -70,36 +66,14 @@ public class CreateAccountBase implements I_FD_DB {
 		field.add(env, 0, "name", "勘定科目名", tabId,
 				column.getColumnID(env, I_AC_AccountTitle.Table_Name, COLUMNNAME_FD_Name),
 				FD_Field_SimpleText, 0);
+		FX_Menu menu = new FX_Menu();
+		menu.add(env, 0, I_FV_AccountTitle.VIEWNAME, viewId, FD_Menu_View, "勘定科目");
 		
 		//2.
 		AC_JournalSlip ajs = new AC_JournalSlip();
 		ajs.createTable(env);
 		//2-1.
-		viewId = view.add(env, 0, I_FV_JournalSlip.VIEWNAME, "", "");
-		tabId = tab.add(env, 0, I_FV_JournalSlip.VIEWNAME, viewId, table.getTableId(I_AC_JournalSlip.Table_Name),
-				I_AC_JournalSlip.Table_Disp_Name, I_AC_JournalSlip.Table_Comment, 0);
-		
-		field.add(env, 0, "IssueDate", "発行日", tabId,
-				column.getColumnID(env, I_AC_JournalSlip.Table_Name, I_AC_JournalSlip.COLUMNNAME_AC_IssueDate),
-				FD_Field_Date , 0);
-
-		FD_Reference ref = new FD_Reference();
-		long refId = ref.add(env, 0, "AC_JournalSlip_List", FD_Reference_Table);
-		FD_TableReference tref = new FD_TableReference();
-		tref.add(env, 0, refId, table.getTableId(I_AC_AccountTitle.Table_Name));
-		field.add(env, 0, "Credit_AccountTitle", "貸方勘定科目", tabId,
-				column.getColumnID(env, I_AC_JournalSlip.Table_Name, I_AC_JournalSlip.COLUMNNAME_AC_Credit_AccountTitle_ID),
-				FD_Field_List, refId);
-		
-		field.add(env, 0, "Credit_Amount", "貸方金額", tabId,
-				column.getColumnID(env, I_AC_JournalSlip.Table_Name, I_AC_JournalSlip.COLUMNNAME_AC_Credit_Amount),
-				FD_Field_Amount, 0);
-		
-		//メニュー情報登録
-		FX_Menu menu = new FX_Menu();
-		menu.add(env, 0, I_FV_AccountTitle.VIEWNAME, viewId, FD_Menu_View, "勘定科目");
-		menu.add(env, 0, I_FV_JournalSlip.VIEWNAME, viewId, FD_Menu_View, "仕分伝票");
-
+		ajs.createField(env);
 		//3.
 		MainFrameSetting mfs = new MainFrameSetting();
 		mfs.addInformation(env);
