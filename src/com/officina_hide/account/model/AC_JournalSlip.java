@@ -98,6 +98,18 @@ public class AC_JournalSlip extends FD_DB implements I_AC_JournalSlip {
 		field.add(env, 0, "Credit_Memo", "貸方適用", tabId,
 				column.getColumnID(env, I_AC_JournalSlip.Table_Name, I_AC_JournalSlip.COLUMNNAME_AC_Credit_Memo),
 				FD_Field_SimpleText, 0);
+		//借方勘定科目
+		field.add(env, 0, "Debit_AccountTitle", "借方勘定科目", tabId,
+				column.getColumnID(env, I_AC_JournalSlip.Table_Name, I_AC_JournalSlip.COLUMNNAME_AC_Debit_AccountTitle_ID),
+				FD_Field_List, refId);
+		//借方金額
+		field.add(env, 0, "Debit_Amount", "借方金額", tabId,
+				column.getColumnID(env, I_AC_JournalSlip.Table_Name, I_AC_JournalSlip.COLUMNNAME_AC_Debit_Amount),
+				FD_Field_Amount, 0);
+		//借方適用
+		field.add(env, 0, "Debit_Memo", "借方適用", tabId,
+				column.getColumnID(env, I_AC_JournalSlip.Table_Name, I_AC_JournalSlip.COLUMNNAME_AC_Debit_Memo),
+				FD_Field_SimpleText, 0);
 	
 		//メニュー情報登録
 		FX_Menu menu = new FX_Menu();

@@ -20,6 +20,14 @@ public class X_AC_JournalSlip extends FD_DB implements I_AC_JournalSlip {
 	private long AC_Credit_AccountTitle_ID;
 	/** 項目 : 貸方金額 */
 	private BigDecimal AC_Credit_Amount;
+	/** 項目 : 貸方適用 */
+	private String AC_Credit_Memo;
+	/** 項目 : 借方勘定科目 */
+	private long AC_Debit_AccountTitle_ID;
+	/** 項目 : 借方金額 */
+	private BigDecimal AC_Debit_Amount;
+	/** 項目 : 借方適用 */
+	private String AC_Debit_Memo;
 	
 	/**
 	 * 
@@ -61,9 +69,36 @@ public class X_AC_JournalSlip extends FD_DB implements I_AC_JournalSlip {
 		AC_Credit_Amount = items.getBigdecimalData(COLUMNNAME_AC_Credit_Amount);
 		return AC_Credit_Amount;
 	}
-
 	public void setAC_Credit_Amount(BigDecimal creditAmout) {
 		items.setValue(COLUMNNAME_AC_Credit_Amount, creditAmout);
+	}
+	public String getAC_Credit_Memo() {
+		AC_Credit_Memo = items.getStringData(COLUMNNAME_AC_Credit_Memo);
+		return AC_Credit_Memo;
+	}
+	public void setAC_Credit_Memo(String creditMemo) {
+		items.setValue(COLUMNNAME_AC_Credit_Memo, creditMemo);
+	}
+	public long getAC_Debit_AccountTitle_ID() {
+		AC_Debit_AccountTitle_ID = items.getlongData(COLUMNNAME_AC_Debit_AccountTitle_ID);
+		return AC_Debit_AccountTitle_ID;
+	}
+	public void setAC_Debit_AccountTitle_ID(long debitAmount) {
+		items.setValue(COLUMNNAME_AC_Debit_AccountTitle_ID, debitAmount);
+	}
+	public BigDecimal getAC_Debit_Amount() {
+		AC_Debit_Amount = items.getBigdecimalData(COLUMNNAME_AC_Debit_Amount);
+		return AC_Debit_Amount;
+	}
+	public void setAC_Debit_Amount(BigDecimal debitAmount) {
+		items.setValue(COLUMNNAME_AC_Debit_Amount, debitAmount);
+	}
+	public String getAC_Debit_Memo() {
+		AC_Debit_Memo = items.getStringData(COLUMNNAME_AC_Debit_Memo);
+		return AC_Debit_Memo;
+	}
+	public void setAC_Debit_Memo(String debitMemo) {
+		items.setValue(COLUMNNAME_AC_Debit_Memo, debitMemo);
 	}
 
 }
