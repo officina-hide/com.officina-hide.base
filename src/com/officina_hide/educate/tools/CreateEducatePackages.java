@@ -33,9 +33,12 @@ public class CreateEducatePackages {
 			cbi.execute();
 			CreateFxInformation cfi = new CreateFxInformation(env);
 			cfi.execute();
+			//採番再セット
+			cbi.reNumber(env);
 		}
 		if(env.getRunLevel() <= 1) {
 			CreateEdcationBaseInformation ceb = new CreateEdcationBaseInformation(env);
+			ceb.execute();
 		}
 	}
 

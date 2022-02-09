@@ -23,4 +23,13 @@ public class CreateEdcationBaseInformation {
 		this.env = env;
 	}
 
+	/**
+	 * 生成実行[Run generation]<br>
+	 * @author officina-hide.net
+	 * @since 2022/02/03 Ver. 1.00
+	 */
+	public void execute() {
+		
+	}
+
 }

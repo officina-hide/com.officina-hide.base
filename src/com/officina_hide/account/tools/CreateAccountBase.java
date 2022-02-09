@@ -47,6 +47,7 @@ public class CreateAccountBase implements I_FD_DB {
 		 * 1-2. 勘定科目情報画面関連登録[Account information screen related registration]
 		 * 2. 仕訳伝票情報生成[Generate Journal Slip information]
 		 * 2-1. 仕分け情報画面関連登録[Registration of information about the sorting information screen]
+		 * 3.現金出納情報生成[Cash balance information generation]
 		 * 3. メイン画面関連情報設定
 		 */
 		//1.
