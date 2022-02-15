@@ -29,4 +29,8 @@ public interface I_AC_CashBalance extends I_FD_DB {
 	public static final String COLUMNNAME_AC_CashBalance_Date = "AC_CashBalance_Date";
 	public static final String NAME_AC_CashBalance_Date = "現金出納日";
 	public static final String COMMENT_AC_CashBalance_Date = "現金出納の発生日";
+	/** 項目 : 勘定科目 */
+	public static final String COLUMNNAME_AC_AccountTitle_ID = "AC_AccountTitle_ID";
+	public static final String NAME_AC_AccountTitle_ID = "勘定科目情報ID";
+	public static final String COMMENT_AC_AccountTitle_ID = "出納情報の勘定科目を識別する為の情報ID";
 }

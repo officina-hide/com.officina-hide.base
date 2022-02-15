@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_WhereData;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.model.X_FD_Table;
@@ -150,7 +151,8 @@ public class FxTableInformation extends Application {
 	 */
 	private List<X_FD_Table> getTableList() {
 		List<X_FD_Table> list = new ArrayList<>();
-		List<Integer> ids = DB.getAllId(I_FD_Table.Table_Name, "1 = 1", env);
+		FD_WhereData where = new FD_WhereData("1", 1);
+		List<Integer> ids = DB.getAllId(I_FD_Table.Table_Name, where, env);
 		for(int id: ids) {
 			X_FD_Table table = new X_FD_Table(env, id);
 			list.add(table);

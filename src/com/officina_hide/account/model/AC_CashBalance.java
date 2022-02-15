@@ -7,6 +7,7 @@ import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.FD_DataDictionary;
 import com.officina_hide.base.model.FD_Numbering;
+import com.officina_hide.base.model.FD_Reference;
 import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.fx.model.FX_Field;
 import com.officina_hide.fx.model.FX_Menu;
@@ -38,10 +39,12 @@ public class AC_CashBalance extends FD_DB implements I_AC_CashBalance, I_FV_Cash
 		FD_DataDictionary dd = new FD_DataDictionary();
 		dd.add(env, 0, COLUMNNAME_AC_CashBalance_ID, NAME_AC_CashBalance_ID, COMMENT_AC_CashBalance_ID);
 		dd.add(env, 0, COLUMNNAME_AC_CashBalance_Date, NAME_AC_CashBalance_Date, COMMENT_AC_CashBalance_Date);
+		dd.add(env, 0, COLUMNNAME_AC_AccountTitle_ID, NAME_AC_AccountTitle_ID, COMMENT_AC_AccountTitle_ID);
 		//テーブル項目情報登録
 		FD_Column column = new FD_Column();
 		column.add(env, 0, tableId, COLUMNNAME_AC_CashBalance_ID, FD_ITEM_ID, 0, false, true, "0");
 		column.add(env, 0, tableId, COLUMNNAME_AC_CashBalance_Date, FD_ITEM_Date, 0, true, false, null);
+		column.add(env, 0, tableId, COLUMNNAME_AC_AccountTitle_ID, FD_ITEM_ID, 0, true, false, "0");
 		addCommonColumn(env, tableId);
 		//テーブル削除
 		dropTable(env, Table_Name);
@@ -60,8 +63,8 @@ public class AC_CashBalance extends FD_DB implements I_AC_CashBalance, I_FV_Cash
 	 * @param classpath クラス保管場所[Class storage location]
 	 */
 	private void createIO(FD_EnvData env, String tableName, String classpath) {
-		String path = new File(".").getParentFile().getAbsolutePath();
-		System.out.println(path+":"+classpath);
+		String path = new File(".").getAbsolutePath();
+		System.out.println(path+"\\"+classpath.replaceAll("/", "\\\\"));
 	}
 
 	/**
@@ -85,7 +88,11 @@ public class AC_CashBalance extends FD_DB implements I_AC_CashBalance, I_FV_Cash
 		FX_Field field = new FX_Field();
 		field.add(env, 0, COLUMNNAME_AC_CashBalance_Date, "出納日", tabId,
 				column.getColumnID(env, Table_Name, COLUMNNAME_AC_CashBalance_Date), FD_Field_Date, 0);
-		
+		FD_Reference ref = new FD_Reference();
+		long refId = ref.getIdByName(env,"AC_JournalSlip_List");
+		field.add(env, 0, COLUMNNAME_AC_AccountTitle_ID, "勘定科目", tabId,
+				column.getColumnID(env, Table_Name, COLUMNNAME_AC_AccountTitle_ID), FD_Field_List, refId);
+	
 		//メニュー情報登録
 		FX_Menu menu = new FX_Menu();
 		menu.add(env, 0, VIEWNAME, viewId, FD_Menu_View, "現金出納");

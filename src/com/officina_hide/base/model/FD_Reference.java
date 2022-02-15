@@ -1,6 +1,9 @@
 package com.officina_hide.base.model;
 
+import java.util.List;
+
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_WhereData;
 
 /**
  * 参照情報クラス[Reference information class]<br>
@@ -76,6 +79,26 @@ public class FD_Reference extends FD_DB implements I_FD_Reference {
 		ref.setFD_Group_ID(env.getActionUserID());
 		ref.save(env); 
 		return ref.getFD_Reference_ID();
+	}
+
+	/**
+	 * 情報ID取得[Information ID acquisition]
+	 * 引数の名称を持つ情報IDを抽出する。もし、対象の情報IDが無い時はメッセージを出力して0を返す。<br>
+	 * Extract the information ID with the name of the argument.<br>
+	 * If there is no target information ID, a message is output and 0 is returned.<br>
+	 * @author officina-hide.net
+	 * @since 2022/02/14 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param name 名称(テーブル名+Nameを持つ項目)[Name (item with table name + Name)]
+	 * @return 情報ID[Information ID]
+	 */
+	public long getIdByName(FD_EnvData env, String name) {
+		FD_WhereData where = new FD_WhereData(COLUMNNAME_FD_Reference_Name, name);
+		List<Integer> ids = getAllId(Table_Name, where, env);
+		if(ids.size() == 1) {
+			return ids.get(0);
+		}
+		return 0;
 	}
 
 }

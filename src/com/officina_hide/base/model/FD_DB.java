@@ -420,14 +420,14 @@ public class FD_DB implements I_FD_DB {
 	 * @param env 環境情報[Environment Information]
 	 * @return 情報ID一覧[information ID list]
 	 */
-	public List<Integer> getAllId(String tableName, String where, FD_EnvData env) {
+	public List<Integer> getAllId(String tableName, FD_WhereData where, FD_EnvData env) {
 		List<Integer> list = new ArrayList<>();
 		StringBuffer sql = new StringBuffer();
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
 			sql.append("SELECT ").append(tableName).append("_ID FROM ").append(tableName).append(" ");
-			sql.append("WHERE ").append(where).append(" ");
+			sql.append(where.toString()).append(" ");
 			connection(env);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql.toString());
