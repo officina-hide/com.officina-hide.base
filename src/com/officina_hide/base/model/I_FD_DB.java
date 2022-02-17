@@ -10,6 +10,11 @@ public interface I_FD_DB {
 
 	/** SQL文補助 */
 	public final static String FD_SQ = "'";	//シングルコーテーション
+	public final static String FD_LR = "\n";	//改行
+	public final static String FD_SC = ";";	//セミコロン
+	
+	/** クラス設定用 */
+	public final static String FD_DB_ImportUri = "com.officina_hide.base.model.FD_DB";
 	
 	/** テーブル項目種別 : ID */
 	public static final String FD_ITEM_ID = "FD_Item_ID";

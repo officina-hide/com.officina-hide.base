@@ -1,7 +1,10 @@
 package com.officina_hide.account.model;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
+import com.officina_hide.base.common.FD_CreateXClass;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.FD_DB;
@@ -63,8 +66,28 @@ public class AC_CashBalance extends FD_DB implements I_AC_CashBalance, I_FV_Cash
 	 * @param classpath クラス保管場所[Class storage location]
 	 */
 	private void createIO(FD_EnvData env, String tableName, String classpath) {
-		String path = new File(".").getAbsolutePath();
-		System.out.println(path+"\\"+classpath.replaceAll("/", "\\\\"));
+		String path = new File(".").getAbsolutePath()+"\\"+classpath.replaceAll("/", "\\\\");
+		FD_CreateXClass cx = new FD_CreateXClass();
+		//パッケージ宣言
+		cx.setPackage(packageUri);
+		//クラス宣言
+		cx.setTableName(tableName);
+		cx.setClazz();
+		try {
+			File file = new File(path+"\\X_AC_CashBalance.java");
+			FileOutputStream fo = new FileOutputStream(file);
+			StringBuffer source = new StringBuffer();
+			
+			//インポート宣言
+			source.append("import ").append(FD_DB_ImportUri).append(FD_SC).append(FD_LR);
+			source.append(FD_LR);
+			source.append("}").append(FD_LR);
+			
+			fo.write(cx.getClazzSource().getBytes());
+			fo.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**

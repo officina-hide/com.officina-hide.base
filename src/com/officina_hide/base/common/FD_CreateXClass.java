@@ -1,0 +1,65 @@
+package com.officina_hide.base.common;
+
+import com.officina_hide.base.model.I_FD_DB;
+
+/**
+ * Xクラス生成[X class generation]
+ * @author officina-hide.net
+ * @version 1.00 新規作成
+ * @since 2022/02/17 Ver. 1.00
+ */
+public class FD_CreateXClass implements I_FD_DB {
+
+	/** ソース */
+	private StringBuffer source = new StringBuffer();
+	private StringBuffer clazz_src = new StringBuffer();
+	/** インポート */
+	FD_ImportClazz importClazz = new FD_ImportClazz();
+	/** テーブル名 */
+	private String tableName;
+
+	/**
+	 * パッケージ宣言生成[Package declaration generation]
+	 * @author officina-hide.net
+	 * @since 2022/02/17 Ver. 1.00
+	 * @param packageUri パッケージURI[Package URI]
+	 */
+	public void setPackage(String packageUri) {
+		source.append("package ").append(packageUri).append(FD_SC).append(FD_LR);
+		source.append(FD_LR);
+	}
+
+	/**
+	 * クラス宣言生成[Class declaration generation]
+	 * @author officina-hide.net
+	 * @since 2022/02/17 Ver. 1.00.
+	 */
+	public void setClazz() {
+		clazz_src.append("public class ").append("X_").append(tableName).append(" ")
+			.append("extends FD_DB").append(" ")
+			.append("implements ").append("I_").append(tableName).append(" {").append(FD_LR);
+		
+		clazz_src.append(FD_LR);
+		clazz_src.append("}").append(FD_LR);
+		
+		importClazz.addClazz("FD_DB", FD_DB_ImportUri);
+		
+	}
+
+	/**
+	 * クラス全ソース取得[Get all source for class]
+	 * @author officina-hide.net
+	 * @since 2022/02/17 Ver. 1.00
+	 * @return ソース文字列[Source strings]
+	 */
+	public String getClazzSource() {
+		StringBuffer wk = new StringBuffer();
+		wk.append(source).append(clazz_src);
+		return wk.toString();
+	}
+
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
+	
+}

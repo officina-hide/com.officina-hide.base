@@ -12,6 +12,7 @@ public interface I_AC_CashBalance extends I_FD_DB {
 	
 	/** クラスパス */
 	public final static String classPath = "./src/com/officina_hide/account/model/";
+	public final static String packageUri = "com.officina_hide.account.model";
 	
 	/** テーブル名 */
 	public final static String Table_Name = "AC_CashBalance";

@@ -87,16 +87,16 @@ public class CreateFxInformation implements I_FD_DB {
 		//7-3.
 //		field.add(env, 0, I_FD_Login.Table_Name, I_FD_Login.COLUMNNAME_FD_User_Name, tabId, FD_Field_SimpleText, 0);
 //		field.add(env, 0, I_FD_Login.Table_Name, I_FD_Login.COLUMNNAME_FD_Login_Password, tabId, FD_Field_Password, 0);
-		//7-4.
-		FD_Process process = new FD_Process();
-		FD_ProcessParam pp = new FD_ProcessParam();
-		long processId = process.add(env, 0, "FX_Login_Entry", "com.officina_hide.fx.process.FX_LoginProcess");
-		pp.add(env, 0, "stage", FD_Param_Object, processId);
-		tp.add(env, 0, tabId, "ログイン", processId);
-		//7-5.
-		processId = process.add(env, 0, "FX_Cancel_Entry", "com.officina_hide.fx.process.FX_WindowCancel");
-		pp.add(env, 0, "stage", FD_Param_Object, processId);
-		tp.add(env, 0, tabId, "キャンセル", processId);
+//		//7-4.
+//		FD_Process process = new FD_Process();
+//		FD_ProcessParam pp = new FD_ProcessParam();
+//		long processId = process.add(env, 0, "FX_Login_Entry", "com.officina_hide.fx.process.FX_LoginProcess");
+//		pp.add(env, 0, "stage", FD_Param_Object, processId);
+//		tp.add(env, 0, tabId, "ログイン", processId);
+//		//7-5.
+//		processId = process.add(env, 0, "FX_Cancel_Entry", "com.officina_hide.fx.process.FX_WindowCancel");
+//		pp.add(env, 0, "stage", FD_Param_Object, processId);
+//		tp.add(env, 0, tabId, "キャンセル", processId);
 		//8.
 		entryMenu(env);
 	}
