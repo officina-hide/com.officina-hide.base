@@ -12,6 +12,7 @@ public interface I_FD_DB {
 	public final static String FD_SQ = "'";	//シングルコーテーション
 	public final static String FD_LR = "\n";	//改行
 	public final static String FD_SC = ";";	//セミコロン
+	public final static String FD_TAB = "\t";		//タブ
 	
 	/** クラス設定用 */
 	public final static String FD_DB_ImportUri = "com.officina_hide.base.model.FD_DB";

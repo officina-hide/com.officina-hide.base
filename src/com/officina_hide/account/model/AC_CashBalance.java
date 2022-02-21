@@ -74,15 +74,8 @@ public class AC_CashBalance extends FD_DB implements I_AC_CashBalance, I_FV_Cash
 		cx.setTableName(tableName);
 		cx.setClazz();
 		try {
-			File file = new File(path+"\\X_AC_CashBalance.java");
+			File file = new File(path+"\\X_" + Table_Name +".java");
 			FileOutputStream fo = new FileOutputStream(file);
-			StringBuffer source = new StringBuffer();
-			
-			//インポート宣言
-			source.append("import ").append(FD_DB_ImportUri).append(FD_SC).append(FD_LR);
-			source.append(FD_LR);
-			source.append("}").append(FD_LR);
-			
 			fo.write(cx.getClazzSource().getBytes());
 			fo.close();
 		} catch (IOException e) {
