@@ -68,7 +68,6 @@ public class FD_CreateXClass implements I_FD_DB {
 	 * @author officina-hide.net
 	 * @since 2022/02/21 Ver. 1.00
 	 * @return コンストラクター文字列[Constructor String]
-	 * 
 	 */
 	private String setConstructor() {
 		FD_ClazzUtil cutil = new FD_ClazzUtil();
@@ -77,6 +76,13 @@ public class FD_CreateXClass implements I_FD_DB {
 			.append("FD_EnvData env, long id")
 			.append(")").append(" {").append(FD_LR);
 		importClazz.addClazz("FD_EnvData", "com.officina_hide.base.common.FD_EnvData");
+		
+		conStr.append(cutil.tab(2)).append("createItemList(env, Table_Name)").append(FD_SC).append(FD_LR);
+		
+		conStr.append(cutil.tab(2)).append("if(id > 0) {").append(FD_LR);
+		conStr.append(cutil.tab(3)).append("load(env, Table_Name, id, items)").append(FD_SC).append(FD_LR);
+		conStr.append(cutil.tab(2)).append("}").append(FD_LR);
+		
 		conStr.append(cutil.tab(1)).append("}").append(FD_LR);
 		return conStr.toString();
 	}
