@@ -54,8 +54,19 @@ public class FD_CreateXClass implements I_FD_DB {
 	 */
 	public String getClazzSource() {
 		StringBuffer wk = new StringBuffer();
-		wk.append(source).append(clazz_src);
+		wk.append(source).append(getImportSource()).append(FD_LR).append(clazz_src);
 		return wk.toString();
+	}
+
+	/**
+	 * インポート宣言文字列取得[Get import declaration string]
+	 * @author officina-hide.net
+	 * @since 2022/02/21 Ver. 1.00
+	 * @return インポート宣言文字列[Import declaration string]
+	 */
+	private String getImportSource() {
+		String importStr = importClazz.getImportDeclaration();
+		return importStr;
 	}
 
 	public void setTableName(String tableName) {
