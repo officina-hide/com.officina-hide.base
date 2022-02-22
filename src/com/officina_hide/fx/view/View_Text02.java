@@ -2,23 +2,28 @@ package com.officina_hide.fx.view;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class View_Text02 extends Application {
 
 	/** 標準フォント */
-	private Font font12 = new Font("Meiryo UI", 16);
+	private Font font12 = new Font("Meiryo UI", 14);
 	/** 表サイズ */
 	private long OUTER_WIDTH = 400;
+	/** 項目幅 */
+	private long ITEM_WIDTH = 200;
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -32,17 +37,18 @@ public class View_Text02 extends Application {
 		Pane pane = new Pane();
 		root.getChildren().add(pane);
 		
-		Rectangle outer = new Rectangle(10, 10, OUTER_WIDTH, 200);
+		Rectangle outer = new Rectangle(0, 0, OUTER_WIDTH, 200);
 		outer.setFill(null);
 		outer.setStroke(Color.GREY);
 		outer.setStrokeWidth(2);
 		pane.getChildren().add(outer);
-		pane.getChildren().add(getText(24, 32, "項目Test", font12));
-		pane.getChildren().add(new Line(24, 10, 24, 40));
+		pane.getChildren().add(setText(0, 0, ITEM_WIDTH, TextAlignment.CENTER, "項　目", font12));
+//		pane.getChildren().add(new Line(24, 10, 24, 40));
 		int x = 65;
-		pane.getChildren().add(new Line(24 + x, 10, 24 + x, 40));
-		pane.getChildren().add(new Line(10, 40, OUTER_WIDTH + 10, 40));
-		pane.getChildren().add(new Line(200, 10, 200, 210));
+//		pane.getChildren().add(new Line(24 + x, 10, 24 + x, 40));
+		pane.getChildren().add(new Line(0, 40, OUTER_WIDTH, 40));
+		pane.getChildren().add(new Line(ITEM_WIDTH, 0, ITEM_WIDTH, 200));
+//		pane.getChildren().add(new Line(216, 10, 216, 210));
 		
 		Scene scene = new Scene(root, 500, 400);
 		stage.setScene(scene);
@@ -54,14 +60,19 @@ public class View_Text02 extends Application {
 	 * テキスト設定[Text settings]
 	 * @param x 表示x位置[Display x position]
 	 * @param y 表示y位置[Display y position]
-	 * @param string
-	 * @param font
-	 * @return
+	 * @param itemWidth 項目幅[Item width] 
+	 * @param alignment 表示位置[Display alignment]
+	 * @param text 表示文字列[Display string]
+	 * @param font 表示文字[Display font]
+	 * @return テキストノード[Text node]
 	 */
-	private Node getText(int x, int y, String string, Font font) {
-		Text text = new Text(x, y, string);
+	private Node setText(int x, int y, long itemWidth, TextAlignment alignment, String textStrng, Font font) {
+		Text text = new Text(textStrng);
 		text.setFont(font);
-		System.out.println(text.getLayoutBounds().getWidth());
+		text.setTextOrigin(VPos.TOP);
+		System.out.println(text.getLayoutBounds().getHeight());
+		text.setY(y + 2);
+		text.setX((itemWidth - text.getLayoutBounds().getWidth()) / 2);
 		return text;
 	}
 

@@ -20,7 +20,8 @@ WHERE
 --    table_schema='FDBASE'
 --    table_schema='MYPAGE'  
 --    table_schema='EDUCATE'  
-    table_schema='ACCOUNT'  
+--    table_schema='ACCOUNT'  
+    table_schema='PROJECT'  
 ORDER BY
     (data_length+index_length) DESC;
 
