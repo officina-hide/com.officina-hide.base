@@ -32,6 +32,7 @@ public class CreateProjectPackage {
 		cfi.execute();
 		cbi.reNumber(env);
 		//2.
-		
+		CreateProjectBase cpb = new CreateProjectBase(env);
+		cpb.execute();
 	}
 }

@@ -18,19 +18,20 @@ import javafx.stage.Stage;
 
 public class View_Text02 extends Application {
 
+	/** プロジェクト名 */
+	private String projectName;
 	/** 標準フォント */
 	private Font font12 = new Font("Meiryo UI", 14);
 	/** 表サイズ */
 	private long OUTER_WIDTH = 400;
 	/** 項目幅 */
 	private long ITEM_WIDTH = 200;
-	
-	public static void main(String[] args) {
-		launch(args);
-	}
 
 	@Override
 	public void start(Stage stage) throws Exception {
+		/** 環境設定 */
+		projectName = "テストプロジェクト";
+		
 		VBox root = new VBox(5);
 		root.setPadding(new Insets(5, 5, 5, 5));
 
@@ -74,6 +75,10 @@ public class View_Text02 extends Application {
 		text.setY(y + 2);
 		text.setX((itemWidth - text.getLayoutBounds().getWidth()) / 2);
 		return text;
+	}
+	
+	public static void main(String[] args) {
+		launch(args);
 	}
 
 }

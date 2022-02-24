@@ -1,7 +1,5 @@
 package com.officina_hide.account.tools;
 
-import java.io.File;
-
 import com.officina_hide.account.model.AC_AccountTitle;
 import com.officina_hide.account.model.AC_CashBalance;
 import com.officina_hide.account.model.AC_JournalSlip;
