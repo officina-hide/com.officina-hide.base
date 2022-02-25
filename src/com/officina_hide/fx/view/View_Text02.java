@@ -2,13 +2,16 @@ package com.officina_hide.fx.view;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -34,7 +37,9 @@ public class View_Text02 extends Application {
 		
 		VBox root = new VBox(5);
 		root.setPadding(new Insets(5, 5, 5, 5));
-
+		//タイトル
+		root.getChildren().add(setTitle());
+		//計画表
 		Pane pane = new Pane();
 		root.getChildren().add(pane);
 		
@@ -45,7 +50,7 @@ public class View_Text02 extends Application {
 		pane.getChildren().add(outer);
 		pane.getChildren().add(setText(0, 0, ITEM_WIDTH, TextAlignment.CENTER, "項　目", font12));
 //		pane.getChildren().add(new Line(24, 10, 24, 40));
-		int x = 65;
+//		int x = 65;
 //		pane.getChildren().add(new Line(24 + x, 10, 24 + x, 40));
 		pane.getChildren().add(new Line(0, 40, OUTER_WIDTH, 40));
 		pane.getChildren().add(new Line(ITEM_WIDTH, 0, ITEM_WIDTH, 200));
@@ -55,6 +60,22 @@ public class View_Text02 extends Application {
 		stage.setScene(scene);
 		stage.show();
 		
+	}
+
+	/**
+	 * タイトル設定[Title setting]
+	 * @author officina-hide.net
+	 * @return 
+	 * @since 2022/02/24 Ver. 1.00
+	 */
+	private Node setTitle() {
+		HBox titleBox = new HBox(5);
+		titleBox.setAlignment(Pos.CENTER_LEFT);
+		Label titlelable = new Label("プロジェクト名");
+		TextField titleText = new TextField(projectName);
+		titleText.setDisable(true);
+		titleBox.getChildren().addAll(titlelable, titleText);
+		return titleBox;
 	}
 
 	/**

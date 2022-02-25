@@ -1,5 +1,6 @@
 package com.officina_hide.project.model;
 
+import com.officina_hide.base.common.FD_CreateXClass;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.FD_DB;
@@ -41,6 +42,10 @@ public class FD_Project extends FD_DB implements I_FD_Project {
 		dropTable(env, Table_Name);
 		//テーブル生成
 		createTable(env, Table_Name);
+		//I/Oクラス生成
+		FD_CreateXClass cxc = new FD_CreateXClass();
+		cxc.createIO(env, Table_Name, classPath);
+
 	}
 
 }

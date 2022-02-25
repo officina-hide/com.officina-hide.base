@@ -1,5 +1,9 @@
 package com.officina_hide.base.common;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.base.tools.FD_ClazzUtil;
 
@@ -18,6 +22,31 @@ public class FD_CreateXClass implements I_FD_DB {
 	FD_ImportClazz importClazz = new FD_ImportClazz();
 	/** テーブル名 */
 	private String tableName;
+
+	/**
+	 * I/Oクラス生成[I / O class generation]
+	 * @author officina-hide.net
+	 * @since 2022/02/25 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param tableName テーブル名[Table name]
+	 * @param classpath クラスパス[Class path]
+	 */
+	public void createIO(FD_EnvData env, String tableName, String classpath) {
+		String path = new File(".").getAbsolutePath()+"\\"+classpath.replaceAll("/", "\\\\");
+		//パッケージ宣言
+		setPackage(classpath);
+		//クラス宣言
+		setTableName(tableName);
+		setClazz();
+		try {
+			File file = new File(path+"\\X_" + tableName +".java");
+			FileOutputStream fo = new FileOutputStream(file);
+			fo.write(getClazzSource().getBytes());
+			fo.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * パッケージ宣言生成[Package declaration generation]

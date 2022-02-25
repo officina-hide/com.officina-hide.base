@@ -7,6 +7,9 @@ package com.officina_hide.project.model;
  * @since 2022/02/24 Ver. 1.00
  */
 public interface I_FD_Project {
+	/** クラスパス */
+	public final static String classPath = "./src/com/officina_hide/project/model/";
+	public final static String packageUri = "com.officina_hide.project.model";
 
 	/** テーブル名 */
 	public final static String Table_Name = "FD_Project";
