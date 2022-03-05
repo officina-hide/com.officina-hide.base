@@ -9,7 +9,7 @@ import com.officina_hide.base.model.FD_DB;
 
 /**
  * 汎用項目リスト[General item list]<br>
- * @author officine-hide.com
+ * @author officina-hide.com
  * @version 1.00
  * @since 2021/04/23
  */
@@ -18,7 +18,7 @@ public class FD_ItemCollection {
 
 	/**
 	 * 項目登録[item entry]<br>
-	 * @author officine-hide.com
+	 * @author officina-hide.com
 	 * @since 1.00 2021/04/23
 	 * @param name 項目名[item name]
 	 * @param value 項目値[item value]
@@ -52,7 +52,7 @@ public class FD_ItemCollection {
 
 	/**
 	 * 指定されたインデックスの項目を取得する。[Gets the item at the specified index.]<br>
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 1.00 2021/08/26
 	 * @param index 索引番号[Index number]
 	 * @return 項目情報[item information]

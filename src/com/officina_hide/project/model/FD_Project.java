@@ -1,5 +1,6 @@
 package com.officina_hide.project.model;
 
+import com.officina_hide.base.common.FD_ColumnCollection;
 import com.officina_hide.base.common.FD_CreateXClass;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Column;
@@ -35,6 +36,7 @@ public class FD_Project extends FD_DB implements I_FD_Project {
 		dd.add(env, 0, COLUMNNAME_FD_Project_Name, NAME_FD_Project_Name, COMMENT_FD_Project_Name);
 		//テーブル項目情報登録
 		FD_Column column = new FD_Column();
+		column.add(env, new FD_ColumnCollection(Table_Name, DATA_FD_Project_ID));
 		column.add(env, 0, tableId, COLUMNNAME_FD_Project_ID, FD_ITEM_ID, 0, false, true, "0");
 		column.add(env, 0, tableId, COLUMNNAME_FD_Project_Name, FD_ITEM_Text, 100, true, false, null);
 		addCommonColumn(env, tableId);
@@ -44,7 +46,7 @@ public class FD_Project extends FD_DB implements I_FD_Project {
 		createTable(env, Table_Name);
 		//I/Oクラス生成
 		FD_CreateXClass cxc = new FD_CreateXClass();
-		cxc.createIO(env, Table_Name, classPath);
+		cxc.createIO(env, Table_Name, classPath, packageUri);
 
 	}
 

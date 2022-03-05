@@ -30,6 +30,7 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 	private boolean FD_Is_Null;
 	private boolean FD_Is_Key;
 	private String FD_Default;
+	private Boolean FD_IS_Common;
 	
 	/**
 	 * コンストラクタ[Constructor]<br>
@@ -189,5 +190,12 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 	}
 	public void setFD_Default(String valueData) {
 		items.setValue(COLUMNNAME_FD_Default, valueData);
+	}
+	public Boolean isFD_IS_Common() {
+		FD_IS_Common = items.getBooleanData(COLUMNNAME_FD_IS_Common);
+		return FD_IS_Common;
+	}
+	public void setFD_IS_Common(Boolean isCommon) {
+		items.setValue(COLUMNNAME_FD_IS_Common, isCommon);
 	}
 }

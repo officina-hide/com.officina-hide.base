@@ -30,11 +30,12 @@ public class FD_CreateXClass implements I_FD_DB {
 	 * @param env 環境情報[Environment information]
 	 * @param tableName テーブル名[Table name]
 	 * @param classpath クラスパス[Class path]
+	 * @param packageUri パッケージURI[Package URI]
 	 */
-	public void createIO(FD_EnvData env, String tableName, String classpath) {
+	public void createIO(FD_EnvData env, String tableName, String classpath, String packageuri) {
 		String path = new File(".").getAbsolutePath()+"\\"+classpath.replaceAll("/", "\\\\");
 		//パッケージ宣言
-		setPackage(classpath);
+		setPackage(packageuri);
 		//クラス宣言
 		setTableName(tableName);
 		setClazz();
@@ -77,6 +78,8 @@ public class FD_CreateXClass implements I_FD_DB {
 		clazz_src.append("}").append(FD_LR);
 		
 		importClazz.addClazz("FD_DB", FD_DB_ImportUri);
+		
+		//テーブル項目宣言
 		
 	}
 

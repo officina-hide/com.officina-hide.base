@@ -51,6 +51,12 @@ public interface I_FD_Column extends I_FD_DB {
 	public static final String COLUMNNAME_FD_Default = "FD_Default";
 	public static final String NAME_FD_Default = "初期値";
 	public final static String COMMENT_FD_Default = "入力が無い時にセットする初期値";
+	/** 項目 : 共通項目判定 */
+	public static final String COLUMNNAME_FD_IS_Common = "FD_IS_Common";
+	public static final String NAME_FD_IS_Common = "共通項目判定";
+	public final static String COMMENT_FD_IS_Common = "項目が共通項目でI/Oクラス生成時の項目対象外の判定に使用する。";
+	public final static String FD_IS_Common_YES = "Y";
+	public final static String FD_IS_Common_NO = "N";
 	
 	/** テーブル削除用SQL */
 	public static final String Table_Drop_SQL =

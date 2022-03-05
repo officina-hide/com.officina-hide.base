@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.officina_hide.base.common.FD_ColumnCollection;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_WhereData;
 
@@ -56,6 +57,7 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 			dd.add(env, 0, COLUMNNAME_FD_IS_Null, NAME_FD_IS_Null, COMMENT_FD_IS_Null);
 			dd.add(env, 0, COLUMNNAME_FD_IS_Key, NAME_FD_IS_Key, COMMENT_FD_IS_Key);
 			dd.add(env, 0, COLUMNNAME_FD_Default, NAME_FD_Default, COMMENT_FD_Default);
+			dd.add(env, 0, COLUMNNAME_FD_IS_Common, NAME_FD_IS_Common, COMMENT_FD_IS_Common);
 			break;
 		case I_FD_Table.Table_Name:
 			FD_Table table = new FD_Table();
@@ -72,6 +74,7 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 			add(env, 0, Table_ID, COLUMNNAME_FD_IS_Null, FD_ITEM_YES_NO, 0, true, false, "Y");
 			add(env, 0, Table_ID, COLUMNNAME_FD_IS_Key, FD_ITEM_YES_NO, 0, true, false, "N");
 			add(env, 0, Table_ID, COLUMNNAME_FD_Default, FD_ITEM_String, 100, true, false, null);
+			add(env, 0, Table_ID, COLUMNNAME_FD_IS_Common, FD_ITEM_YES_NO, SYSTEM_GROUP_ID, true, false, null);
 			addCommonColumn(env, Table_ID);
 			break;
 		}
@@ -104,6 +107,17 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 		column.save(env);
 	}
 
+	/**
+	 * 情報登録[Save information]<br>
+	 * @author officina-hide.net
+	 * @since 2022/03/03 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param columnData テーブル項目登録用情報[Information for table item registration]
+	 */
+	public void add(FD_EnvData env, FD_ColumnCollection columnData) {
+		
+	}
+	
 	/**
 	 * テーブル項目用属性項目情報ID取得[Get attribute item information ID for table item]<br>
 	 * @author officina-hide.net
