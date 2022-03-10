@@ -1,7 +1,17 @@
 package com.officina_hide.base.common;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import com.officina_hide.base.model.FD_DB;
+import com.officina_hide.base.model.FD_Table;
+import com.officina_hide.base.model.I_FD_Column;
+import com.officina_hide.base.model.X_FD_Column;
 
 /**
  * テーブル項目集約情報[Table item collection]
@@ -9,7 +19,7 @@ import java.util.List;
  * @version 新規作成
  * @since 2022/03/03 Ver. 1.00
  */
-public class FD_ColumnCollection {
+public class FD_ColumnCollection extends FD_DB {
 
 	/** テーブル項目情報リスト */
 	private List<FD_Collection> list;
@@ -18,21 +28,98 @@ public class FD_ColumnCollection {
 	 * コンストラクター[Constructor]
 	 * @author officina-hide.net
 	 * @since 2022/03/03 Ver. 1.00
+	 * @param env 環境情報[Environment information]
 	 * @param tableName テーブル名[Table name] 
 	 * @param dataList 登録データリスト[Entry data list]
 	 */
-	public FD_ColumnCollection(String tableName, String dataList) {
-		createList(tableName);
+	public FD_ColumnCollection(FD_EnvData env, String tableName, String dataList) {
+		createList(env, tableName);
+		getDataMap(env, dataList);
+//		FD_Collection collect = new FD_Collection();
+//		collect.setName(dmap.get("NAME"));
+//		collect.setValue(dmap.get("DATA"));
+//		list.add(collect);
+	}
+
+	/**
+	 * 登録情報配列取得[Get registration information map]
+	 * @author officina-hide.net
+	 * @since 2022/03/07 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param dataList 登録データリスト[Entry data list]
+	 */
+	private void getDataMap(FD_EnvData env, String dataList) {
+		String[] wk = dataList.split(",");
+		for(String data : wk) {
+			String[] dlist = data.split(":");
+			if(dlist[1].substring(0, 1).equals("@")) {
+				//関数処理
+				switch(dlist[1].substring(1)) {
+				case "getId":
+					long id = getId(env, dlist[2], dlist[3],dlist[4]);
+					break;
+				}
+			}
+		}
+	}
+
+	/**
+	 * 情報ID取得[Information ID acquisition]<br>
+	 * @author officina-hide.net
+	 * @since 2022/03/10 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param tableName テーブル名[Table name]
+	 * @param columnName テーブル項目名[Table item name]
+	 * @param data 比較情報[Comparison information]
+	 * @return 
+	 */
+	private long getId(FD_EnvData env, String tableName, String columnName, String data) {
+		long id = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("select ").append(tableName).append("_ID from ").append(tableName).append(" ");
+			sql.append("where ").append(columnName).append(" = ? ");
+			connection(env);
+			pstmt = getConn().prepareStatement(sql.toString());
+			pstmt.setString(1, data);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				id = rs.getLong(tableName + "_ID");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
+		return id;
 	}
 
 	/**
 	 * テーブル項目情報リスト初期化[Table item information list initialization]
 	 * @author officina-hide.net
 	 * @since 2022/03/04 Ver. 1.00
+	 * @param env 環境情報[Environment information]
 	 * @param tableName テーブル名
 	 */
-	private void createList(String tableName) {
-		
+	private void createList(FD_EnvData env, String tableName) {
+		/*
+		 * テーブル項目情報からリストを取得する。
+		 * 値は初期値とする。
+		 */
+		FD_DB DB = new FD_DB();
+		FD_Table table = new FD_Table(env);
+		long tableId = table.getTableId(tableName);
+		List<Integer> ids = DB.getAllId(tableName, new FD_WhereData(I_FD_Column.COLUMNNAME_FD_Table_ID, tableId), env);
+		for(int id : ids) {
+			X_FD_Column column = new X_FD_Column(env, id);
+			FD_Collection collect = new FD_Collection();
+			collect.setName(column.getFD_DataDictionary().getFD_Name());
+			collect.setTypeName(column.getFD_TypeItem().getFD_Type_Name());
+			collect.setInitialValue(column.getFD_Default());
+			getCollectionList().add(collect);
+		}
 	}
 
 	/**
