@@ -68,7 +68,7 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 			add(env, 0, Table_ID, COLUMNNAME_FD_DataDictionary_ID, FD_ITEM_ID, 0, true, false, null);
 			add(env, 0, Table_ID, COLUMNNAME_FD_Table_ID, FD_ITEM_ID, 0, true, false, null);
 			add(env, 0, Table_ID, COLUMNNAME_FD_TypeItem_ID, FD_ITEM_ID, 0, true, false, null);
-			add(env, 0, Table_ID, COLUMNNAME_FD_Column_Size, FD_ITEM_Unsigned_Int, 0, true, false, null);
+			add(env, 0, Table_ID, COLUMNNAME_FD_Column_Size, FD_ITEM_Unsigned_Int, 0, true, false, "0");
 			add(env, 0, Table_ID, COLUMNNAME_FD_Name, FD_ITEM_String, 100, true, false, null);
 			add(env, 0, Table_ID, COLUMNNAME_FD_Description, FD_ITEM_Text, 0, true, false, null);
 			add(env, 0, Table_ID, COLUMNNAME_FD_IS_Null, FD_ITEM_YES_NO, 0, true, false, "Y");

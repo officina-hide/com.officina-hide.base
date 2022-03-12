@@ -41,4 +41,7 @@ public class FD_Collection {
 	public void setTypeName(String typeName) {
 		this.typeName = typeName;
 	}
+	public void setFD_Item_ID(long id) {
+		this.value = id;
+	}
 }

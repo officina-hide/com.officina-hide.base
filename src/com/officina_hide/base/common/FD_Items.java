@@ -119,6 +119,7 @@ public class FD_Items implements I_FD_DB {
 		for(FD_Item item : getItems()) {
 			if(item.getName().equals(itemName)) {
 				item.setData(value);
+				break;
 			}
 		}
 	}

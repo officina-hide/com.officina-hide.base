@@ -25,7 +25,7 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 	private long FD_Table_ID;
 	private X_FD_Table FD_Table;
 	private long FD_TypeItem_ID;
-	private X_FD_Type FD_TypeItem;
+	private X_FD_TypeItem FD_TypeItem;
 	private int FD_ColumnSize;
 	private boolean FD_Is_Null;
 	private boolean FD_Is_Key;
@@ -154,12 +154,12 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 	public void setFD_TypeItem_ID(long typeItemID) {
 		items.setValue(COLUMNNAME_FD_TypeItem_ID, typeItemID);
 	}
-	public X_FD_Type getFD_TypeItem() {
+	public X_FD_TypeItem getFD_TypeItem() {
 		if(FD_TypeItem == null) {
 			if(getFD_TypeItem_ID() == 0) {
 				return null;
 			}
-			FD_TypeItem = new X_FD_Type(env, getFD_TypeItem_ID());
+			FD_TypeItem = new X_FD_TypeItem(env, getFD_TypeItem_ID());
 		}
 		return FD_TypeItem;
 	}

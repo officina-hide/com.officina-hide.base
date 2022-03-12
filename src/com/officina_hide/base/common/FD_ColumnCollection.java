@@ -4,9 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.officina_hide.base.model.FD_DB;
 import com.officina_hide.base.model.FD_Table;
@@ -35,10 +33,10 @@ public class FD_ColumnCollection extends FD_DB {
 	public FD_ColumnCollection(FD_EnvData env, String tableName, String dataList) {
 		createList(env, tableName);
 		getDataMap(env, dataList);
-//		FD_Collection collect = new FD_Collection();
-//		collect.setName(dmap.get("NAME"));
-//		collect.setValue(dmap.get("DATA"));
-//		list.add(collect);
+		System.out.println("count : "+list.size());
+		for(FD_Collection collect : list) {
+			System.out.println(collect.getName()+":"+collect.getValue());
+		}
 	}
 
 	/**
@@ -52,11 +50,24 @@ public class FD_ColumnCollection extends FD_DB {
 		String[] wk = dataList.split(",");
 		for(String data : wk) {
 			String[] dlist = data.split(":");
+			FD_Collection collect = null;
+			//項目名でコレクション抽出
+			for(FD_Collection chk : list) {
+				if(chk.getName().equals(dlist[0])) {
+					collect = chk;
+					break;
+				}
+			}
+			if(collect == null) {
+				System.out.println("Error!! Column not found : "+dataList);
+				new Exception();
+			}
 			if(dlist[1].substring(0, 1).equals("@")) {
 				//関数処理
 				switch(dlist[1].substring(1)) {
 				case "getId":
 					long id = getId(env, dlist[2], dlist[3],dlist[4]);
+					collect.setFD_Item_ID(id);
 					break;
 				}
 			}
@@ -87,6 +98,8 @@ public class FD_ColumnCollection extends FD_DB {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				id = rs.getLong(tableName + "_ID");
+			} else {
+				System.out.println("Error : data not found : "+tableName+","+columnName+","+data);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -115,8 +128,8 @@ public class FD_ColumnCollection extends FD_DB {
 		for(int id : ids) {
 			X_FD_Column column = new X_FD_Column(env, id);
 			FD_Collection collect = new FD_Collection();
-			collect.setName(column.getFD_DataDictionary().getFD_Name());
-			collect.setTypeName(column.getFD_TypeItem().getFD_Type_Name());
+			collect.setName(column.getFD_DataDictionary().getFD_DataDictionary_Name());
+			collect.setTypeName(column.getFD_TypeItem().getFD_TypeItem_Name());
 			collect.setInitialValue(column.getFD_Default());
 			getCollectionList().add(collect);
 		}

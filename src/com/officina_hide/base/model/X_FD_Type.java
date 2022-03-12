@@ -27,18 +27,21 @@ public class X_FD_Type extends FD_DB implements I_FD_Type {
 	 * コンストラクタ[Constructor]<br>
 	 * @author officina-hide.net
 	 * @since 1.00 2021/09/23
-	 * @param env 環境情報[Enfironment information]
-	 * @param typeID 属性情報ID[Type information ID]
+	 * @param env 環境情報[Environment information]
+	 * @param typeId 属性情報ID[Type information ID]
 	 */
-	public X_FD_Type(FD_EnvData env, long typeID) {
+	public X_FD_Type(FD_EnvData env, long typeId) {
 		createItemList();
+		if(typeId > 0) {
+			load(env, Table_Name, typeId, items);
+		}
 	}
 
 	/**
 	 * コンストラクタ[Constructor]<br>
 	 * @author officina-hide.net
 	 * @since 1.00 2021/09/23
-	 * @param env 環境情報[Enfironment information]
+	 * @param env 環境情報[Environment information]
 	 * @param where 抽出条件[Extraction condition]
 	 */
 	public X_FD_Type(FD_EnvData env, FD_WhereData where) {
