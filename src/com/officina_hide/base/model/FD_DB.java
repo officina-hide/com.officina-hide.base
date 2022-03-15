@@ -574,7 +574,7 @@ public class FD_DB implements I_FD_DB {
 	/**
 	 * 指定されたテーブルに指定された情報IDが存在するかチェックする。<br>
 	 * [Checks if the specified information ID exists in the specified table.]<br>
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 1.00 2021/09/18
 	 * @param env 環境情報[Environment information]
 	 * @param tableName テーブル名[Table name]
@@ -606,7 +606,7 @@ public class FD_DB implements I_FD_DB {
 
 	/**
 	 * 共通項目の辞書情報登録[Registration of dictionary information for common items]<br>
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 1.00 2021/09/18
 	 * @param env 環境情報[Environment information]
 	 * @param tableName 
@@ -631,12 +631,12 @@ public class FD_DB implements I_FD_DB {
 	 * 共通項目をテーブル項目情報に登録[Register common items in table item information]<br>
 	 * @author officina-hide.net
 	 * @since 1.00 2021/09/25
-	 * @param env 環境情報[Enfironment information]
+	 * @param env 環境情報[Environment information]
 	 * @param tableId テーブル情報ID[Table information ID]
 	 */
 	public void addCommonColumn(FD_EnvData env, long tableId) {
 		FD_Column column = new FD_Column();
-		column.add(env, 0, tableId, COLUMNNAME_FD_Group_ID, FD_ITEM_ID, 0, true, false, null);
+		column.add(env, 0, tableId, COLUMNNAME_FD_Group_ID, FD_ITEM_ID, 0, true, false, "0");
 		column.add(env, 0, tableId, COLUMNNAME_FD_Created, FD_ITEM_Date, 0, true, false, null);
 		column.add(env, 0, tableId, COLUMNNAME_FD_CreatedBy, FD_ITEM_ID, 0, true, false, null);
 		column.add(env, 0, tableId, COLUMNNAME_FD_Updated, FD_ITEM_Date, 0, true, false, null);

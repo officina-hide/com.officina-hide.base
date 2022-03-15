@@ -67,7 +67,7 @@ public class FD_ColumnCollection extends FD_DB {
 				switch(dlist[1].substring(1)) {
 				case "getId":
 					long id = getId(env, dlist[2], dlist[3],dlist[4]);
-					collect.setFD_Item_ID(id);
+					collect.setLongValue(id);
 					break;
 				}
 			}
@@ -131,6 +131,19 @@ public class FD_ColumnCollection extends FD_DB {
 			collect.setName(column.getFD_DataDictionary().getFD_DataDictionary_Name());
 			collect.setTypeName(column.getFD_TypeItem().getFD_TypeItem_Name());
 			collect.setInitialValue(column.getFD_Default());
+			if(column.getFD_Default() != null) {
+				switch(collect.getTypeName()) {
+				case FD_ITEM_ID:
+					collect.setLongValue(Long.parseLong(column.getFD_Default()));
+					break;
+				case FD_ITEM_Unsigned_Int:
+					collect.setIntValue(Integer.parseInt(column.getFD_Default()));
+					break;
+				case FD_ITEM_YES_NO:
+					collect.setStringValue(column.getFD_Default());
+					break;
+				}
+			}
 			getCollectionList().add(collect);
 		}
 	}
