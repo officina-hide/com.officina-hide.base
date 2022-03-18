@@ -14,7 +14,7 @@ import com.officina_hide.base.common.FD_WhereData;
  * 採番情報クラス[Numbering information class]<br>
  * <p>本クラスはパッケージ全体の採番を管理する為の処理クラスです。</p>
  * <p>This class is a processing class for managing the numbering of the entire package.</p>
- * @author officine-hide.net
+ * @author officina-hide.net
  * @version 1.00
  * @since 2021/09/15
  */
@@ -24,7 +24,7 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 	 * 採番情報テーブル生成[Numbering information table generation]<br>
 	 * <p>採番情報テーブルは初期の基盤情報のため、生成は個別に行う。</p>
 	 * <p>Since the numbering information table is the initial basic information, it is generated individually.</p>
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 1.00 2021/09/15
 	 * @param env 環境情報[Environment Information]
 	 */
@@ -77,7 +77,7 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 	 * テーブル情報ID指定による採番処理[Numbering process by specifying table information ID]<br>
 	 * @author officina-hide.net
 	 * @since 1.00 2021/09/17
-	 * @param env 環境情報[Enfironment information]
+	 * @param env 環境情報[Environment information]
 	 * @param tableId テーブル情報ID[Table information ID]
 	 * @return no 採番番号[Numbering number]
 	 */

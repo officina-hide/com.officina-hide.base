@@ -2,7 +2,7 @@ package com.officina_hide.base.model;
 
 /**
  * 採番情報インターフェースクラス[Numbering information interface class]<br>
- * @author officine-hide.net
+ * @author officina-hide.net
  * @version 1.00
  * @since 2021/09/15
  */
@@ -17,6 +17,8 @@ public interface I_FD_Numbering extends I_FD_DB {
 	public static final String Table_Comment_Eng = "A table that manages the numbering of various numbers used in the package.";
 	/** テーブル情報ID */
 	public static final int Table_ID = 101;
+	/** システム初期番号 */
+	public static final String Initial_Number = "100001";
 	
 	/** 項目 : 採番情報ID */
 	public static final String COLUMNNAME_FD_Numbering_ID = Table_Name + "_ID";
@@ -31,6 +33,13 @@ public interface I_FD_Numbering extends I_FD_DB {
 	/** 項目 : 採番現在値 */
 	public static final String COLUMNNAME_FD_CurrentNumber = "FD_CurrentNumber";
 	public static final String NAME_FD_CurrentNumber = "採番現在値";
+	
+	/** 採番情報登録用 */
+	public static final String SQL_NUMBER_DATA = 
+			   COLUMNNAME_FD_Numbering_ID + ":0,"
+			+ COLUMNNAME_FD_Table_ID + ":101,"
+			+ COLUMNNAME_FD_InitialNumber + ":" + Initial_Number + ","
+			+ COLUMNNAME_FD_CurrentNumber + ":0,";
 	
 	/** テーブル削除用SQL */
 	public static final String Table_Drop_SQL =

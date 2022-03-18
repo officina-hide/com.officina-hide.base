@@ -33,10 +33,6 @@ public class FD_ColumnCollection extends FD_DB {
 	public FD_ColumnCollection(FD_EnvData env, String tableName, String dataList) {
 		createList(env, tableName);
 		getDataMap(env, dataList);
-		System.out.println("count : "+list.size());
-		for(FD_Collection collect : list) {
-			System.out.println(collect.getName()+":"+collect.getValue());
-		}
 	}
 
 	/**
@@ -68,6 +64,14 @@ public class FD_ColumnCollection extends FD_DB {
 				case "getId":
 					long id = getId(env, dlist[2], dlist[3],dlist[4]);
 					collect.setLongValue(id);
+					break;
+				}
+			} else {
+				//値渡し
+				switch(collect.getTypeName()) {
+				case FD_ITEM_YES_NO:
+				case FD_ITEM_String:
+					collect.setStringValue(dlist[1]);
 					break;
 				}
 			}

@@ -240,7 +240,7 @@ public class FD_Items implements I_FD_DB {
 
 	/**
 	 * 判定情報取得[Get judgment information]<br>
-	 * @author officine-hide.net
+	 * @author officina-hide.net
 	 * @since 1.00 2021/09/30
 	 * @param itemName 項目名[Item name]
 	 * @return 判定情報[Judgment information]

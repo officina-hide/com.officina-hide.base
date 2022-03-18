@@ -2,6 +2,7 @@ package com.officina_hide.project.model;
 
 import com.officina_hide.base.model.I_FD_Column;
 import com.officina_hide.base.model.I_FD_DataDictionary;
+import com.officina_hide.base.model.I_FD_Table;
 import com.officina_hide.base.model.I_FD_TypeItem;
 
 /**
@@ -30,12 +31,16 @@ public interface I_FD_Project {
 	public static final String COLUMNDATA_FD_Project_ID = 
 			I_FD_Column.COLUMNNAME_FD_DataDictionary_ID 
 				+ ":@getId:" + I_FD_DataDictionary.Table_Name + ":" 
-					+ I_FD_DataDictionary.COLUMNNAME_FD_DataDictionary_Name
-					+ ":" + COLUMNNAME_FD_Project_ID
+					+ I_FD_DataDictionary.COLUMNNAME_FD_DataDictionary_Name + ":" + COLUMNNAME_FD_Project_ID
 			+ "," + I_FD_Column.COLUMNNAME_FD_TypeItem_ID
 				+ ":@getId:" + I_FD_TypeItem.Table_Name + ":"
-					+ I_FD_TypeItem.COLUMNNAME_FD_TypeItem_Name 
-					+ ":" + I_FD_TypeItem.FD_ITEM_ID;
+					+ I_FD_TypeItem.COLUMNNAME_FD_TypeItem_Name + ":" + I_FD_TypeItem.FD_ITEM_ID
+			+ "," + I_FD_Column.COLUMNNAME_FD_Table_ID
+				+ ":@getId:" + I_FD_Table.Table_Name + ":"
+					+ I_FD_Table.COLUMNNAME_FD_Table_Name + ":" + Table_Name
+			+ "," + I_FD_Column.COLUMNNAME_FD_IS_Null + ":" + "N"
+			+ "," + I_FD_Column.COLUMNNAME_FD_IS_Key + ":" + "Y"
+			+ "," + I_FD_Column.COLUMNNAME_FD_Default + ":" + "0";
 	/** 項目 : プロジェクト名 */
 	public static final String COLUMNNAME_FD_Project_Name = Table_Name + "_Name";
 	public static final String NAME_FD_Project_Name = "プロジェクト名";

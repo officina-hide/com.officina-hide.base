@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.officina_hide.base.common.FD_Collection;
 import com.officina_hide.base.common.FD_ColumnCollection;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_WhereData;
@@ -115,7 +116,13 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 	 * @param columnData テーブル項目登録用情報[Information for table item registration]
 	 */
 	public void add(FD_EnvData env, FD_ColumnCollection columnData) {
-		
+		X_FD_Column column = new X_FD_Column(env, 0);
+		for(FD_Collection collect : columnData.getCollectionList()) {
+//			System.out.println(collect.getName()+":"+collect.getValue());
+			column.getItems().setValue(collect.getName(), collect.getValue());
+		}
+		column.setFD_Group_ID(env.getActionUserID());
+		column.save(env);
 	}
 	
 	/**

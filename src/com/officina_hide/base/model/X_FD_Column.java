@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_Item;
 import com.officina_hide.base.common.FD_Items;
 
 /**
