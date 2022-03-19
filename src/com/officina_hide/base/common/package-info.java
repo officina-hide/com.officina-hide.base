@@ -1,8 +1,8 @@
-/**
- * Šî”Õî•ñ‚Å‹¤’Ê‚Ég—p‚³‚ê‚éƒNƒ‰ƒX‚ğƒpƒbƒP[ƒW‚·‚éB<br>
+ï»¿/**
+ * åŸºç›¤æƒ…å ±ã§å…±é€šã«ä½¿ç”¨ã•ã‚Œã‚‹ã‚¯ãƒ©ã‚¹ã‚’ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã™ã‚‹ã€‚<br>
  * Package classes that are commonly used in infrastructure information.<br>
  * @author officina-hide.net
- * @version 1.50 V‹Kì¬
+ * @version 1.50 æ–°è¦ä½œæˆ
  * @since 2022/03/19 Ver. 1.50
  */
 package com.officina_hide.base.common;

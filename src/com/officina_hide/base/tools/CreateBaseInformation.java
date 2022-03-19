@@ -1,23 +1,23 @@
-package com.officina_hide.base.tools;
+ï»¿package com.officina_hide.base.tools;
 
 import com.officina_hide.base.common.FD_EnvData;
 
 /**
- * Šî”Õî•ñ¶¬ƒNƒ‰ƒX[Infrastructure information generation class]<br>
+ * åŸºç›¤æƒ…å ±ç”Ÿæˆã‚¯ãƒ©ã‚¹[Infrastructure information generation class]<br>
  * @author officina-hide.net
- * @version 1.50 V‹Kì¬
+ * @version 1.50 æ–°è¦ä½œæˆ
  * @since 2022/03/19 Ver. 1.50
  */
 public class CreateBaseInformation {
 
-	/** €–Ú : ŠÂ‹«î•ñ[Environment information] */
+	/** é …ç›® : ç’°å¢ƒæƒ…å ±[Environment information] */
 	private FD_EnvData env = new FD_EnvData();
 	
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^[Constructor]
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿[Constructor]
 	 * @author officina-hide.net
 	 * @since 2022/03/19 Ver. 1.50
-	 * @param env ŠÂ‹«î•ñ[Environment information]
+	 * @param env ç’°å¢ƒæƒ…å ±[Environment information]
 	 */
 	public CreateBaseInformation(FD_EnvData env) {
 		this.env = env;

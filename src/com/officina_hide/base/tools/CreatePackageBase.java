@@ -3,26 +3,26 @@ package com.officina_hide.base.tools;
 import com.officina_hide.base.common.FD_EnvData;
 
 /**
- * ƒvƒƒWƒFƒNƒg‚ÌŠî”Õî•ñ‚ð\’z‚·‚éB<br>
+ * ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã®åŸºç›¤æƒ…å ±ã‚’æ§‹ç¯‰ã™ã‚‹ã€‚<br>
  * Build basic information for the project.<br>
- * ˆø” : 1-ˆ—ƒŒƒxƒ‹<br>
+ * å¼•æ•° : 1-å‡¦ç†ãƒ¬ãƒ™ãƒ«<br>
  * @author officina-hide.net
- * @version 1.50 V‹Kì¬
+ * @version 1.50 æ–°è¦ä½œæˆ
  * @since 2022/03/19 Ver. 1.50
  */
 public class CreatePackageBase {
 
-	/** ŠÂ‹«î•ñ[Environment information] */
+	/** ç’°å¢ƒæƒ…å ±[Environment information] */
 	private static FD_EnvData env;
 	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		//ˆ—ƒŒƒxƒ‹‚ðˆø”‚©‚çŽæ“¾‚·‚éB
+		//å‡¦ç†ãƒ¬ãƒ™ãƒ«ã‚’å¼•æ•°ã‹ã‚‰å–å¾—ã™ã‚‹ã€‚
 		env.setRunLevel(args[0]);
 		
-		//Šî”Õî•ñ¶¬
+		//åŸºç›¤æƒ…å ±ç”Ÿæˆ
 		CreateBaseInformation cbi = new CreateBaseInformation(env);
 	}
 

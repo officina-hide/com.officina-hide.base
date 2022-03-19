@@ -1,14 +1,14 @@
-package com.officina_hide.base.common;
+ï»¿package com.officina_hide.base.common;
 
 /**
- * ŠÂ‹«î•ñ[Environment information]
+ * ç’°å¢ƒæƒ…å ±[Environment information]
  * @author officina-hide.net
- * @version 1.50 V‹Kì¬
+ * @version 1.50 æ–°è¦ä½œæˆ
  * @since 2022/03/19 Ver. 1.50
  */
 public class FD_EnvData {
 
-	/** €–Ú : ˆ—ƒŒƒxƒ‹[Run level] */
+	/** é …ç›® : å‡¦ç†ãƒ¬ãƒ™ãƒ«[Run level] */
 	private String runLevel;
 
 	public String getRunLevel() {
