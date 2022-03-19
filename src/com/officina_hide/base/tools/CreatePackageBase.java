@@ -13,7 +13,7 @@ import com.officina_hide.base.common.FD_EnvData;
 public class CreatePackageBase {
 
 	/** 環境情報[Environment information] */
-	private static FD_EnvData env;
+	private static FD_EnvData env = new FD_EnvData();
 	
 	/**
 	 * @param args
@@ -24,6 +24,7 @@ public class CreatePackageBase {
 		
 		//基盤情報生成
 		CreateBaseInformation cbi = new CreateBaseInformation(env);
+		cbi.execute();
 	}
 
 }
