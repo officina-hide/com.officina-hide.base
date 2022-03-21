@@ -22,7 +22,7 @@ public class FD_EnvData {
 	private final static String DBPORT = "DBPort";
 	private String DBPort;
 	/** 項目 : データベース名[Database name] */
-	private final static String DBNAME = "DDBName";
+	private final static String DBNAME = "DBName";
 	private String DBName;
 	/** 項目 : データベースログインユーザー名[Database login user name] */
 	private final static String DBUSER = "DBUser";
@@ -44,7 +44,7 @@ public class FD_EnvData {
 			File pfile = new File(".\\document\\"+fileName);
 			Properties prop = new Properties();
 			prop.load(new FileInputStream(pfile));
-			setDBPass(prop.getProperty(DBPATH, "localhost"));
+			setDBPath(prop.getProperty(DBPATH, "localhost"));
 			setDBPort(prop.getProperty(DBPORT, "3306"));
 			setDBName(prop.getProperty(DBNAME, "Base"));
 			setDBUser(prop.getProperty(DBUSER, "admin"));

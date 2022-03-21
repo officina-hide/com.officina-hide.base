@@ -19,7 +19,7 @@ public class FD_Numbering extends FD_DB {
 	 * @param env 環境情報[Environment information]
 	 */
 	public void createTable(FD_EnvData env) {
-		
+		connection(env);
 	}
 
 }
