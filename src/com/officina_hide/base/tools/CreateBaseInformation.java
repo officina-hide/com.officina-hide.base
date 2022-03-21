@@ -12,7 +12,7 @@ import com.officina_hide.base.model.FD_Numbering;
 public class CreateBaseInformation {
 
 	/** 項目 : 環境情報[Environment information] */
-	private FD_EnvData env = new FD_EnvData();
+	private FD_EnvData env;
 	
 	/**
 	 * コンストラクタ[Constructor]

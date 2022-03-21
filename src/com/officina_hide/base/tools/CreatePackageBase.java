@@ -13,12 +13,34 @@ import com.officina_hide.base.common.FD_EnvData;
 public class CreatePackageBase {
 
 	/** 環境情報[Environment information] */
-	private static FD_EnvData env = new FD_EnvData();
+	private static FD_EnvData env;
 	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		//環境情報取得[Environmental information acquisition]
+		env = new FD_EnvData("FD_Project.prop");
+//		try {
+//			//暗号Key作成
+//			KeyGenerator keyGen = KeyGenerator.getInstance("AES");
+//			keyGen.init(128);
+//			SecretKey key = keyGen.generateKey();
+//			Cipher cipher = Cipher.getInstance("AES");
+//			cipher.init(Cipher.ENCRYPT_MODE, key);
+//			String text = "DBPassword,fdadminqAz*01";
+//			byte[] btext = text.getBytes();
+//			byte[] eText = cipher.doFinal(btext);
+//			System.out.println(new String(eText));
+//			
+//			cipher.init(Cipher.DECRYPT_MODE, key);
+//			byte[] dText = cipher.doFinal(eText);
+//			System.out.println(new String(dText));
+//			
+//		} catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
+//			e.printStackTrace();
+//		}
+		
 		//処理レベルを引数から取得する。
 		env.setRunLevel(args[0]);
 		
