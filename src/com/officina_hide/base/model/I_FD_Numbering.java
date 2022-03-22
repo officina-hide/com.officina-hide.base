@@ -31,6 +31,10 @@ public interface I_FD_Numbering extends I_FD_DB {
 	/** 項目 : 採番現在値 */
 	public static final String COLUMNNAME_FD_CurrentNumber = "FD_CurrentNumber";
 	public static final String NAME_FD_CurrentNumber = "採番現在値";
+
+	/** 採番情報登録用 */
+	public static final String FD_NUMBERING_ENTRY_DATA =
+			"FD_Numbering_ID:101,FD_Table_ID:101,FD_NumberingInitial:100001";
 	
 	/** テーブル削除用SQL */
 	public static final String Table_Drop_SQL =
@@ -51,3 +55,4 @@ public interface I_FD_Numbering extends I_FD_DB {
 				+ COMMON_ITEM_CREATE_SQL
 			+") "
 			+"ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=" + FD_SQ + Table_Disp_Name + FD_SQ;}
+
