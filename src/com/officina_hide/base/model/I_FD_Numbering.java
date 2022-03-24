@@ -33,7 +33,7 @@ public interface I_FD_Numbering extends I_FD_DB {
 	public static final String NAME_FD_CurrentNumber = "採番現在値";
 
 	/** 採番情報登録用 */
-	public static final String FD_NUMBERING_ENTRY_DATA =
+	public final String FD_NUMBERING_ENTRY_DATA =
 			"FD_Numbering_ID:101,FD_Table_ID:101,FD_NumberingInitial:100001";
 	
 	/** テーブル削除用SQL */

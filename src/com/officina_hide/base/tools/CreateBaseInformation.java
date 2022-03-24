@@ -2,6 +2,7 @@
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Numbering;
+import com.officina_hide.base.model.I_FD_Numbering;
 
 /**
  * 基盤情報生成クラス[Infrastructure information generation class]<br>
@@ -34,6 +35,7 @@ public class CreateBaseInformation {
 		//1.
 		FD_Numbering num = new FD_Numbering();
 		num.createTable(env);
+		num.add(I_FD_Numbering.FD_NUMBERING_ENTRY_DATA);
 	}
 
 }

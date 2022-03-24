@@ -6,7 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 
+import com.officina_hide.base.common.FD_ColumnDataCollection;
 import com.officina_hide.base.common.FD_EnvData;
 
 /**
@@ -17,6 +19,9 @@ import com.officina_hide.base.common.FD_EnvData;
  */
 public class FD_DB implements I_FD_DB {
 
+	/** テーブル項目リスト */
+	private FD_ColumnDataCollection columnCollection;
+	
 	/** データベース接続情報[Database connection information] */
 	private static Connection conn;
 	
