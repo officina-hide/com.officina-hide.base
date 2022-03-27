@@ -37,4 +37,17 @@ public class FD_Collections {
 			list.add(collect);
 		}
 	}
+	
+	/**
+	 * 収蔵リスト取得[Getting collection list]
+	 * @author officina-hide.net
+	 * @since 2022/03/26 Ver. 1.50 
+	 * @return 収蔵リスト[Collection list]
+	 */
+	public List<FD_Collect> getList() {
+		if(list == null) {
+			list = new ArrayList<>();
+		}
+		return list;
+	}
 }

@@ -3,6 +3,7 @@ package com.officina_hide.base.model;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import com.officina_hide.base.common.FD_Collect;
 import com.officina_hide.base.common.FD_Collections;
 import com.officina_hide.base.common.FD_EnvData;
 
@@ -46,7 +47,10 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 	 */
 	public void add(String entryData) {
 		FD_Collections entry = new FD_Collections(entryData);
-		X_FD_Numbering xnum = new X_FD_Numbering();
+		X_FD_Numbering xnum = new X_FD_Numbering(entry);
+		for(FD_Collect en : entry.getList()) {
+			
+		}
 	}
 
 }

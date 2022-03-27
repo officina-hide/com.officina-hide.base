@@ -42,6 +42,9 @@ public interface I_FD_DB {
 	public static final String NAME_FD_UpdatedBy = "更新者情報ID";
 	public static final String COMMENT_FD_UpdatedBy = "情報の最終更新者の情報ID（環境情報の処理者情報IDがセットされる。）";
 
+	/** テーブル型 : ID */
+	public static final String FD_Item_ID = "FD_Item_ID";
+	
 	/** 共通項目生成用SQL */
 	public static final String COMMON_ITEM_CREATE_SQL = 
 			   COLUMNNAME_FD_Group_ID + ID_TYPE + COMMENT + FD_SQ + NAME_FD_Group_ID + FD_SQ + ","
