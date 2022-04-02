@@ -3,9 +3,6 @@ package com.officina_hide.project_ad.tools;
 import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
-import com.officina_hide.project_ad.fx.FX_Task;
-
-import javafx.stage.Stage;
 
 /**
  * プロジェクト管理構成クラス[Project management configuration class]<br>
@@ -23,13 +20,6 @@ public class CreateProjectAD {
 		System.out.println("プロジェクト管理構成 開始 : "+new Date());
 		//環境情報取得[Environmental information acquisition]
 		env = new FD_EnvData("Project_AD.prop");
-		try {
-			//タスク情報画面表示
-			FX_Task ft = new FX_Task();
-			ft.start(new Stage());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 }
