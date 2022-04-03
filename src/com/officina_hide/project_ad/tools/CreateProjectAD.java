@@ -3,6 +3,7 @@ package com.officina_hide.project_ad.tools;
 import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.project_ad.model.FD_Project;
 
 /**
  * プロジェクト管理構成クラス[Project management configuration class]<br>
@@ -20,6 +21,8 @@ public class CreateProjectAD {
 		System.out.println("プロジェクト管理構成 開始 : "+new Date());
 		//環境情報取得[Environmental information acquisition]
 		env = new FD_EnvData("Project_AD.prop");
+		//プロジェクト情報生成
+		FD_Project project = new FD_Project(env);
 	}
 
 }
