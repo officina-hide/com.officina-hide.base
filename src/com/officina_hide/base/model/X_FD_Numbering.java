@@ -41,4 +41,16 @@ public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 		columnCollection.add(COLUMNNAME_FD_Numbering_ID, FD_Item_ID);
 	}
 
+	/**
+	 * 項目情報設定[Setting item value]
+	 * TODO 本処理はFD_DBに移行予定 2022/03/31
+	 * @author officina-hide.net
+	 * @since 2022/03/31 Ver. 1.50
+	 * @param columnName テーブル項目名[Table item name]
+	 * @param value 項目値[Item value]
+	 */
+	public void setValue(String columnName, Object value) {
+		System.out.println();
+	}
+
 }

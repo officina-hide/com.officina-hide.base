@@ -49,7 +49,7 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 		FD_Collections entry = new FD_Collections(entryData);
 		X_FD_Numbering xnum = new X_FD_Numbering(entry);
 		for(FD_Collect en : entry.getList()) {
-			
+			xnum.setValue(en.getName(), en.getValue());
 		}
 	}
 
