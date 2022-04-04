@@ -54,5 +54,6 @@ public interface I_FD_Numbering extends I_FD_DB {
 					+ COMMENT + FD_SQ + NAME_FD_CurrentNumber + FD_SQ + ","
 				+ COMMON_ITEM_CREATE_SQL
 			+") "
-			+"ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=" + FD_SQ + Table_Disp_Name + FD_SQ;}
+			+"ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=" + FD_SQ + Table_Disp_Name + FD_SQ;
+	}
 

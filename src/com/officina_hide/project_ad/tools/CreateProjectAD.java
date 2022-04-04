@@ -23,6 +23,7 @@ public class CreateProjectAD {
 		env = new FD_EnvData("Project_AD.prop");
 		//プロジェクト情報生成
 		FD_Project project = new FD_Project(env);
+		project.createTable();
 	}
 
 }
