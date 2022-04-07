@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.project_ad.model.FD_Project;
+import com.officina_hide.ui.model.FX_View;
 
 /**
  * プロジェクト管理構成クラス[Project management configuration class]<br>
@@ -24,6 +25,9 @@ public class CreateProjectAD {
 		//プロジェクト情報生成
 		FD_Project project = new FD_Project(env);
 		project.createTable();
+		//画面情報生成
+		FX_View view = new FX_View(env);
+		view.createTable();
 	}
 
 }

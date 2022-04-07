@@ -22,7 +22,7 @@ public class FD_DB implements I_FD_DB {
 	public FD_ColumnDataCollection columnCollection;
 	
 	/** データベース接続情報[Database connection information] */
-	private static Connection conn;
+	private static Connection conn = null;
 	
 	/**
 	 * データベース接続[Database connection]
@@ -31,15 +31,17 @@ public class FD_DB implements I_FD_DB {
 	 * @param env 環境情報[Environment information]
 	 */
 	public void connection(FD_EnvData env) {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			StringBuffer url = new StringBuffer();
-			url.append("jdbc:mysql:")
-				.append(env.getDBPath()).append(":").append(env.getDBPort()).append("/").append(env.getDBName());
-			conn = DriverManager.getConnection(url.toString(), env.getDBUser(), env.getDBPass());
-			System.out.println(new Date() + " : "+"Database Connected.");
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
+		if(conn == null) {
+			try {
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				StringBuffer url = new StringBuffer();
+				url.append("jdbc:mysql:")
+					.append(env.getDBPath()).append(":").append(env.getDBPort()).append("/").append(env.getDBName());
+				conn = DriverManager.getConnection(url.toString(), env.getDBUser(), env.getDBPass());
+				System.out.println(new Date() + " : "+"Database Connected.");
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
