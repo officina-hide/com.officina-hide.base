@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Date;
 
+import com.officina_hide.base.common.FD_Collections;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_DB;
 
@@ -49,6 +50,18 @@ public class FX_View extends FD_DB implements I_FX_View {
 			DBClose(pstmt, null);
 		}
 	
+	}
+
+	/**
+	 * 画面情報登録[Screen information registration]<br>
+	 * @author officina-hide.net
+	 * @since 2022/04/08 Ver. 1.00
+	 * @param entryData 登録情報[Entry data]
+	 */
+	public void entry(String entryData) {
+		FD_Collections dataList = new FD_Collections(entryData);
+		X_FX_View view = new X_FX_View(env, dataList);
+		
 	}
 
 }

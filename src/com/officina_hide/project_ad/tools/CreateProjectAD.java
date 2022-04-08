@@ -3,6 +3,7 @@ package com.officina_hide.project_ad.tools;
 import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.project_ad.fx.I_FX_Project;
 import com.officina_hide.project_ad.model.FD_Project;
 import com.officina_hide.ui.model.FX_View;
 
@@ -28,6 +29,7 @@ public class CreateProjectAD {
 		//画面情報生成
 		FX_View view = new FX_View(env);
 		view.createTable();
+		view.entry(I_FX_Project.FV_View_Data);
 	}
 
 }

@@ -11,7 +11,7 @@ public class FD_Collect {
 	/** 項目 : 情報名[Information name] */
 	private String name;
 	/** 項目 : 情報値[Information data] */
-	private Object value;
+	private String value;
 	
 	public String getName() {
 		return name;
@@ -19,10 +19,10 @@ public class FD_Collect {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Object getValue() {
+	public String getValue() {
 		return value;
 	}
-	public void setValue(Object value) {
+	public void setValue(String value) {
 		this.value = value;
 	}
 }

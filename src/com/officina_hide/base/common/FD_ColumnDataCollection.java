@@ -16,14 +16,42 @@ public class FD_ColumnDataCollection {
 	
 	/**
 	 * テーブル項目追加[Table item entry]
-	 * @param columnName
-	 * @param typeName 
+	 * @param columnName テーブル項目名[Table item name]
+	 * @param typeName 属性名[Table item type name]
 	 */
 	public void add(String columnName, String typeName) {
 		FD_ColumnData cd = new FD_ColumnData();
 		cd.setColumnName(columnName);
 		cd.setColumnType(typeName);
 		list.add(cd);
+	}
+
+	/**
+	 * テーブル項目抽出[Table item extraction]<br>
+	 * @author officina-hide.net
+	 * @since 2022/04/08 Ver. 1.00
+	 * @param dataName 登録情報名[Entry information name]<br>
+	 * @return テーブル項目情報[Table item information]
+	 */
+	public FD_ColumnData getItem(String dataName) {
+		for(FD_ColumnData cd : list) {
+			if(cd.getColumnName().equals(dataName)) {
+				return cd;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * テーブル情報ID取得[Table information ID getting]<br>
+	 * @author officina-hide.net
+	 * @since 2022/04/08 Ver. 1.00
+	 * @param tableName テーブル名[Table name]
+	 * @return テーブル情報ID[Table information ID]
+	 */
+	public long getTableId(String tableName) {
+		FD_ColumnData idcd = getItem(tableName+"_ID");
+		return (long) idcd.getColumnData();
 	}
 
 }

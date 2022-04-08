@@ -5,7 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Fx_Project extends Application {
+public class FX_Project extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
