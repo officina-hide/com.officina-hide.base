@@ -45,7 +45,7 @@ public class X_FX_View extends FD_DB implements I_FX_View {
 			columnCollection = new FD_ColumnDataCollection();
 		}
 		columnCollection.add(COLUMNNAME_FX_View_ID, FD_Item_ID);
-		columnCollection.add(COLUMNNAME_FX_View_Name, FD_Item_String);
+		columnCollection.add(COLUMNNAME_FX_View_Code, FD_Item_String);
 		columnCollection.add(COLUMNNAME_FD_Name, FD_Item_String);
 	}
 
@@ -83,7 +83,10 @@ public class X_FX_View extends FD_DB implements I_FX_View {
 			connection(env);
 			pstmt = getConn().prepareStatement(sql);
 			int cnt = pstmt.executeUpdate();
-			System.out.println(cnt);
+			if(cnt != 1) {
+				System.out.println("Table Insert Error!!");
+				new SQLException();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

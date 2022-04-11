@@ -11,8 +11,12 @@ import com.officina_hide.ui.model.I_FX_View;
  */
 public interface I_FX_Project extends I_FD_Project {
 
+	/** 画面コード */
+	public final String FX_View_Code = "FX_Project";
+	
+	/** 画面情報登録用 */
 	public final String FV_View_Data = 
 			I_FX_View.COLUMNNAME_FX_View_ID + ":" + "101" + ","
-			+ I_FX_View.COLUMNNAME_FX_View_Name + ":" + "FX_Projext" + ","
+			+ I_FX_View.COLUMNNAME_FX_View_Code + ":" + FX_View_Code + ","
 			+ I_FX_View.COLUMNNAME_FD_Name + ":" + "画面情報";
 }

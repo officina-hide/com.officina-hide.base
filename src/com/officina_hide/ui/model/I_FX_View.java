@@ -18,11 +18,11 @@ public interface I_FX_View extends I_FD_DB {
 	/** 項目 : 画面情報ID */
 	public static final String COLUMNNAME_FX_View_ID = Table_Name + "_ID";
 	public static final String NAME_Fx_VIew_ID = Table_Disp_Name + "ID";
-	/** 項目 : 画面識別名 */
-	public static final String COLUMNNAME_FX_View_Name = "FX_View_Name";
-	public static final String NAME_FX_View_Name = "画面識別名";
-	public static final String COMMENT_FX_View_Name = "画面を識別する為の名称";
-	public static final int SIZE_FX_View_Name = 20;
+	/** 項目 : 画面コード */
+	public static final String COLUMNNAME_FX_View_Code = "FX_View_Code";
+	public static final String NAME_FX_View_Code = "画面コード";
+	public static final String COMMENT_FX_View_Code = "画面を識別する為のコード";
+	public static final int SIZE_FX_View_Name = 100;
 	
 	/** テーブル削除用SQL */
 	public static final String Table_Drop_SQL =
@@ -34,8 +34,9 @@ public interface I_FX_View extends I_FD_DB {
 			+" ("
 				+ COLUMNNAME_FX_View_ID + ID_KEY_TYPE
 					+ COMMENT + FD_SQ + NAME_Fx_VIew_ID + FD_SQ + ","
-				+ COLUMNNAME_FX_View_Name + VARCHAR.replaceAll("n", Integer.toString(SIZE_FX_View_Name)) + UNIQUE
-					+ COMMENT + FD_SQ + NAME_FX_View_Name + FD_SQ + ","
+				+ COLUMNNAME_FX_View_Code + VARCHAR.replaceAll("n", Integer.toString(SIZE_FX_View_Name))
+					+ UNIQUE + NOT_NULL
+					+ COMMENT + FD_SQ + NAME_FX_View_Code + FD_SQ + ","
 				+ COLUMNNAME_FD_Name + VARCHAR.replaceAll("n", Integer.toString(SIZE_FD_Name))
 					+ COMMENT + FD_SQ + NAME_FD_Name + FD_SQ + ""
 			+") "

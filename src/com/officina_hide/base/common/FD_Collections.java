@@ -38,6 +38,9 @@ public class FD_Collections {
 		}
 	}
 	
+	public FD_Collections() {
+	}
+
 	/**
 	 * 収蔵リスト取得[Getting collection list]
 	 * @author officina-hide.net
