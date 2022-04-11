@@ -3,6 +3,8 @@ package com.officina_hide.project_ad.tools;
 import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.model.FD_Column;
+import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.project_ad.fx.I_FX_Project;
 import com.officina_hide.project_ad.model.FD_Project;
 import com.officina_hide.ui.model.FX_View;
@@ -23,6 +25,18 @@ public class CreateProjectAD {
 		System.out.println("プロジェクト管理構成 開始 : "+new Date());
 		//環境情報取得[Environmental information acquisition]
 		env = new FD_EnvData("Project_AD.prop");
+		/*
+		 * 基本環境設定[Basic environment setting]<br>
+		 * 1.　テーブル情報生成
+		 * 2. テーブル項目
+		 */
+		//1.
+		FD_Table table = new FD_Table(env);
+		table.createTable();
+		//2.
+		FD_Column column = new FD_Column(env);
+		column.createTable();
+		
 		//プロジェクト情報生成
 		FD_Project project = new FD_Project(env);
 		project.createTable();

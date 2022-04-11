@@ -23,6 +23,7 @@ public interface I_FD_DB {
 	public static final String VARCHAR = " varchar(n) ";
 	public static final String TEXT = " text ";
 	public static final String UNIQUE = " unique ";
+	public static final String NOT_NULL = " not null ";
 	
 	/** 共通項目 : グルーブ情報ID */
 	public static final String COLUMNNAME_FD_Group_ID = I_FD_Group.COLUMNNAME_FD_Group_ID;
@@ -48,12 +49,14 @@ public interface I_FD_DB {
 	/** 汎用項目 : 名前 */
 	public static final String COLUMNNAME_FD_Name = "FD_Name";
 	public static final String NAME_FD_Name = "名前";
-	public static final String COMMENT_FD_Name = "対象の情報を表示する為の文字列情報";
+	public static final String COMMENT_FD_Name = "対象の情報を表示する為の文字列情報<br>"
+			+ "名前は翻訳機能と連携して言語により変換される。";
 	public static final int SIZE_FD_Name = 100;
 	/** 汎用項目 : 説明 */
 	public static final String COLUMNNAME_FD_Description = "FD_Description";
 	public static final String NAME_FD_Description = "説明";
-	public static final String COMMENT_FD_Description = "対象の情報の内容を説明する為の項目";
+	public static final String COMMENT_FD_Description = "対象の情報の内容を説明する<br>"
+			+ "説明は翻訳機能と連携して言語により変換される。";
 	
 	/** テーブル型 : ID */
 	public static final String FD_Item_ID = "FD_Item_ID";

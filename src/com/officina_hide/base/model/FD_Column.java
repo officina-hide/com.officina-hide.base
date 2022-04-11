@@ -1,0 +1,35 @@
+package com.officina_hide.base.model;
+
+import com.officina_hide.base.common.FD_EnvData;
+
+/**
+ * テーブル項目情報クラス[Table column information class]<br>
+ * @author officina-hide.net
+ * @version 1.50 新規作成[New create]
+ * @since 2022/04/11 Ver. 1.50
+ */
+public class FD_Column extends FD_DB {
+	
+	/** 環境情報[Environment information] */
+	private FD_EnvData env;
+
+	/**
+	 * コンストラクター[Constructor]<br>
+	 * @author officina-hide.com
+	 * @since 2022/04/11 Ver. 1.50.
+	 * @param env 環境情報[Environment information]
+	 */
+	public FD_Column(FD_EnvData env) {
+		this.env = env;
+	}
+
+	/**
+	 * テーブル項目情報テーブル生成[Table column information table generation]<br>
+	 * @author officina-hide.net
+	 * @since 2022/04/11 Ver. 1.50
+	 */
+	public void createTable() {
+		
+	}
+
+}

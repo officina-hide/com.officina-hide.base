@@ -3,13 +3,15 @@ package com.officina_hide.base.common;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.officina_hide.base.model.I_FD_DB;
+
 /**
  * テーブル項目コレクション[Table item collection]<br>
  * @author officina-hide.net
  * @version 1.50 新規作成
  * @since 2022/03/24 Ver. 1.50
  */
-public class FD_ColumnDataCollection {
+public class FD_ColumnDataCollection implements I_FD_DB {
 
 	/** 情報リスト */
 	List<FD_ColumnData> list = new ArrayList<>();
@@ -52,6 +54,35 @@ public class FD_ColumnDataCollection {
 	public long getTableId(String tableName) {
 		FD_ColumnData idcd = getItem(tableName+"_ID");
 		return (long) idcd.getColumnData();
+	}
+
+	/**
+	 * 新規登録用SQL生成
+	 * @param tableName 
+	 * @return 
+	 */
+	public String getInsertSQL(String tableName) {
+		StringBuffer sql = new StringBuffer();
+		sql.append("INSERT INTO ").append(tableName).append(" ");
+		StringBuffer column = new StringBuffer();
+		StringBuffer value = new StringBuffer();
+		for(FD_ColumnData cd : list) {
+			if(column.length() > 0) {
+				column.append(",");
+				value.append(",");
+			}
+			column.append(cd.getColumnName());
+			switch(cd.getColumnType()) {
+			case FD_Item_ID:
+				value.append(cd.getColumnData());
+				break;
+			case FD_Item_String:
+				value.append(FD_SQ).append(cd.getColumnData().toString()).append(FD_SQ);
+				break;
+			}
+		}
+		sql.append("(").append(column).append(") VALUES (").append(value).append(")");
+		return sql.toString();
 	}
 
 }

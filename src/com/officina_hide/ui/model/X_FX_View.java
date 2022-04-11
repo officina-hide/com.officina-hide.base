@@ -1,5 +1,8 @@
 package com.officina_hide.ui.model;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import com.officina_hide.base.common.FD_Collect;
 import com.officina_hide.base.common.FD_Collections;
 import com.officina_hide.base.common.FD_ColumnData;
@@ -63,6 +66,28 @@ public class X_FX_View extends FD_DB implements I_FX_View {
 				cd.setColumnData(data.getValue());
 				break;
 			}
+		}
+	}
+
+	/**
+	 * 情報保存[Save data]<br>
+	 * @author officina-hide.net
+	 * @param tableName テーブル名[Table name]
+	 * @param env 環境情報[Environment information]
+	 * @since 2022/04/11 Ver. 1.50
+	 */
+	public void save(FD_EnvData env) {
+		PreparedStatement pstmt = null;
+		String sql = columnCollection.getInsertSQL(Table_Name);
+		try {
+			connection(env);
+			pstmt = getConn().prepareStatement(sql);
+			int cnt = pstmt.executeUpdate();
+			System.out.println(cnt);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, null);
 		}
 	}
 

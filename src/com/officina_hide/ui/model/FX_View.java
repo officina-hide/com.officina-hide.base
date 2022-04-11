@@ -43,7 +43,7 @@ public class FX_View extends FD_DB implements I_FX_View {
 			pstmt.close();
 			pstmt = getConn().prepareStatement(Table_Create_SQL);
 			pstmt.executeUpdate();
-			System.out.println("画面情報テーブル生成 : " + new Date());
+			System.out.println(Table_Disp_Name+"テーブル生成 : " + new Date());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -59,9 +59,10 @@ public class FX_View extends FD_DB implements I_FX_View {
 	 * @param entryData 登録情報[Entry data]
 	 */
 	public void entry(String entryData) {
+		//とりあえず新規作成のみ対応 2022/04/11
 		FD_Collections dataList = new FD_Collections(entryData);
 		X_FX_View view = new X_FX_View(env, dataList);
-		
+		view.save(env);
 	}
 
 }
