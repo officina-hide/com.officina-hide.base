@@ -60,6 +60,7 @@ public interface I_FD_DB {
 	
 	/** テーブル型 : ID */
 	public static final String FD_Item_ID = "FD_Item_ID";
+	/** テーブル型 : 文字列 */
 	public static final String FD_Item_String = "FD_Item_String";
 	
 	/** 共通項目生成用SQL */

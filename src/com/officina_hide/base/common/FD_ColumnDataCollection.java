@@ -14,7 +14,7 @@ import com.officina_hide.base.model.I_FD_DB;
 public class FD_ColumnDataCollection implements I_FD_DB {
 
 	/** 情報リスト */
-	List<FD_ColumnData> list = new ArrayList<>();
+	private List<FD_ColumnData> list = new ArrayList<>();
 	
 	/**
 	 * テーブル項目追加[Table item entry]
@@ -83,6 +83,16 @@ public class FD_ColumnDataCollection implements I_FD_DB {
 		}
 		sql.append("(").append(column).append(") VALUES (").append(value).append(")");
 		return sql.toString();
+	}
+
+	/**
+	 * 情報リストを返す[Returns a list of information]<br>
+	 * @author officina-hide.net
+	 * @since 2022/04/12 Ver. 1.00
+	 * @return 情報リスト[Information list]
+	 */
+	public List<FD_ColumnData> getList() {
+		return list;
 	}
 
 }

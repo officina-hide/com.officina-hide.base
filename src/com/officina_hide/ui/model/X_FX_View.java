@@ -1,6 +1,7 @@
 package com.officina_hide.ui.model;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.officina_hide.base.common.FD_Collect;
@@ -8,6 +9,7 @@ import com.officina_hide.base.common.FD_Collections;
 import com.officina_hide.base.common.FD_ColumnData;
 import com.officina_hide.base.common.FD_ColumnDataCollection;
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_WhereData;
 import com.officina_hide.base.model.FD_DB;
 
 /**
@@ -32,6 +34,43 @@ public class X_FX_View extends FD_DB implements I_FX_View {
 		if(id > 0) {
 			//load機能の追加(登録済の情報を抽出しテーブル項目リストにセットする。
 			//テーブル情報ID以外のすべての項目をセットする。
+		}
+	}
+
+	/**
+	 * コンストラクター[Constructor]<br>
+	 * @author officina-hide.net
+	 * @since 2022/04/12 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param where 条件句[Conditional clause]
+	 */
+	public X_FX_View(FD_EnvData env, FD_WhereData where) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		// TODO FD_DBでの汎用化予定
+		try {
+			connection(env);
+			StringBuffer sql = new StringBuffer();
+			sql.append("SELECT * FROM ").append(Table_Name).append(" ");
+			sql.append("WHERE ").append(where.toString()).append(" ");
+			pstmt = getConn().prepareStatement(sql.toString());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				for(FD_ColumnData cd :  columnCollection.getList()) {
+					switch(cd.getColumnType()) {
+					case FD_Item_String:
+						cd.setColumnData(rs.getString(cd.getColumnName()));
+						break;
+					case FD_Item_ID:
+						cd.setColumnData(rs.getLong(cd.getColumnName()));
+						break;
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
 		}
 	}
 
@@ -92,6 +131,18 @@ public class X_FX_View extends FD_DB implements I_FX_View {
 		} finally {
 			DBClose(pstmt, null);
 		}
+	}
+
+	/**
+	 * 文字列情報取得[Getting string information]<br>
+	 * @author officina-hide.net
+	 * @since 2022/04/12 Ver. 1.00
+	 * @param columnName テーブル項目名[Table column name]
+	 * @return 文字列情報[String information]
+	 */
+	public String getStringValue(String columnName) {
+		FD_ColumnData cd = columnCollection.getItem(columnName);
+		return (String) cd.getColumnData();
 	}
 
 }
