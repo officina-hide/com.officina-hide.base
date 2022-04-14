@@ -17,7 +17,7 @@ public interface I_FX_View extends I_FD_DB {
 	
 	/** 項目 : 画面情報ID */
 	public static final String COLUMNNAME_FX_View_ID = Table_Name + "_ID";
-	public static final String NAME_Fx_VIew_ID = Table_Disp_Name + "ID";
+	public static final String NAME_FX_View_ID = Table_Disp_Name + "ID";
 	/** 項目 : 画面コード */
 	public static final String COLUMNNAME_FX_View_Code = "FX_View_Code";
 	public static final String NAME_FX_View_Code = "画面コード";
@@ -33,7 +33,7 @@ public interface I_FX_View extends I_FD_DB {
 			"CREATE TABLE IF NOT EXISTS " + Table_Name
 			+" ("
 				+ COLUMNNAME_FX_View_ID + ID_KEY_TYPE
-					+ COMMENT + FD_SQ + NAME_Fx_VIew_ID + FD_SQ + ","
+					+ COMMENT + FD_SQ + NAME_FX_View_ID + FD_SQ + ","
 				+ COLUMNNAME_FX_View_Code + VARCHAR.replaceAll("n", Integer.toString(SIZE_FX_View_Name))
 					+ UNIQUE + NOT_NULL
 					+ COMMENT + FD_SQ + NAME_FX_View_Code + FD_SQ + ","

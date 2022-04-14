@@ -7,6 +7,7 @@ import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.project_ad.fx.I_FX_Project;
 import com.officina_hide.project_ad.model.FD_Project;
+import com.officina_hide.ui.model.FX_Field;
 import com.officina_hide.ui.model.FX_View;
 
 /**
@@ -43,6 +44,11 @@ public class CreateProjectAD {
 		//画面情報生成
 		FX_View view = new FX_View(env);
 		view.createTable();
+		//画面項目情報生成
+		FX_Field field = new FX_Field(env);
+		field.createTable();
+		
+		//情報登録
 		view.entry(I_FX_Project.FV_View_Data);
 	}
 

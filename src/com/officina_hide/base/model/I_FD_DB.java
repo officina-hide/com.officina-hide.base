@@ -63,6 +63,9 @@ public interface I_FD_DB {
 	/** テーブル型 : 文字列 */
 	public static final String FD_Item_String = "FD_Item_String";
 	
+	/** 参照グルーブ : 画面項目属性 */
+	public static final String FD_Reference_Group_Field = "View_Field";
+	
 	/** 共通項目生成用SQL */
 	public static final String COMMON_ITEM_CREATE_SQL = 
 			   COLUMNNAME_FD_Group_ID + ID_TYPE + COMMENT + FD_SQ + NAME_FD_Group_ID + FD_SQ + ","

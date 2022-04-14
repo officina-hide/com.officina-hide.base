@@ -45,6 +45,7 @@ public class X_FX_View extends FD_DB implements I_FX_View {
 	 * @param where 条件句[Conditional clause]
 	 */
 	public X_FX_View(FD_EnvData env, FD_WhereData where) {
+		createColumnList();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		// TODO FD_DBでの汎用化予定

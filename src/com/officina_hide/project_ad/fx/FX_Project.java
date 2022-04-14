@@ -21,11 +21,11 @@ public class FX_Project extends Application implements I_FX_Project {
 		//画面情報取得
 		FD_WhereData where = new FD_WhereData(I_FX_View.COLUMNNAME_FX_View_Code, FX_View_Code);
 		X_FX_View view = new X_FX_View(env, where);
-		System.out.println(view.getStringValue(I_FX_View.COLUMNNAME_FD_Name));
 		
 		VBox root = new VBox(5);
 		setItem(root);
 		Scene scene = new Scene(root, 600, 400);
+		stage.setTitle(view.getStringValue(I_FX_View.COLUMNNAME_FD_Name));
 		stage.setScene(scene);
 		stage.show();
 	}
