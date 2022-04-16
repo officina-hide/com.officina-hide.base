@@ -6,9 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 
 import com.officina_hide.base.common.FD_ColumnDataCollection;
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_WhereData;
 
 /**
  * DB処理クラス[DB processing class]
@@ -67,5 +69,22 @@ public class FD_DB implements I_FD_DB {
 
 	public static Connection getConn() {
 		return conn;
+	}
+
+	/**
+	 * 情報IDリスト生成[Information list generation]<br>
+	 * @author officina-hide.net
+	 * @since 2022/04/15 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param tableName テーブル名[Table name]
+	 * @param where 条件句[Where clause]
+	 * @return 情報IDリスト[Information list]
+	 */
+	public List<Integer> getAllId(FD_EnvData env, String tableName, FD_WhereData where) {
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT ").append(tableName).append("_ID FROM ").append(tableName).append(" ");
+		sql.append("WHERE ").append(where.toString()).append(" ");
+		System.out.println(sql.toString());
+		return null;
 	}
 }

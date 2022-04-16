@@ -146,4 +146,9 @@ public class X_FX_View extends FD_DB implements I_FX_View {
 		return (String) cd.getColumnData();
 	}
 
+	public long getLongValue(String columnName) {
+		FD_ColumnData cd = columnCollection.getItem(columnName);
+		return (long) cd.getColumnData();
+	}
+
 }

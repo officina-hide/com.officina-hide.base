@@ -30,6 +30,9 @@ public class FD_Collect {
 		case I_FD_DB.FD_Item_String:
 			where.append(I_FD_DB.FD_SQ).append(value).append(I_FD_DB.FD_SQ).append(" ");
 			break;
+		case I_FD_DB.FD_Item_Long:
+			where.append(value).append(" ");
+			break;
 		}
 		return where.toString();
 	}
@@ -46,10 +49,14 @@ public class FD_Collect {
 	public void setValue(String value) {
 		this.value = value;
 	}
+	public void setValue(long value) {
+		this.value = Long.toString(value);
+	}
 	public String getType() {
 		return type;
 	}
 	public void setType(String type) {
 		this.type = type;
 	}
+
 }

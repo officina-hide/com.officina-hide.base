@@ -62,6 +62,8 @@ public interface I_FD_DB {
 	public static final String FD_Item_ID = "FD_Item_ID";
 	/** テーブル型 : 文字列 */
 	public static final String FD_Item_String = "FD_Item_String";
+	/** テーブル型 : Long列 */
+	public static final String FD_Item_Long = "FD_Item_Long";
 	
 	/** 参照グルーブ : 画面項目属性 */
 	public static final String FD_Reference_Group_Field = "View_Field";
