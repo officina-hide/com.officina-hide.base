@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 public class FX_Picture01 extends Application {
 
 	@Override
-	public void start(Stage stage) throws Exception {
+	public void start(Stage s) throws Exception {
 
 	}
 
