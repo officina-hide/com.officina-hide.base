@@ -5,11 +5,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 
-import com.drew.imaging.ImageMetadataReader;
-import com.drew.imaging.ImageProcessingException;
-import com.drew.metadata.Directory;
-import com.drew.metadata.Metadata;
-import com.drew.metadata.Tag;
+import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.model.I_FD_File;
+import com.officina_hide.base.model.X_FD_File;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -30,6 +28,7 @@ import javafx.stage.Stage;
  * 【メモ】
  * ファイル情報(FD_File)
  * ファイル属性情報(FD_FileAttribute)
+ * ファイル実体(FD_FileEntity)
  * 画像情報(FD_Picture)
  * 画像属性情報(FD_PictureAttribute)
  * @author officina-hide.net
@@ -38,6 +37,8 @@ import javafx.stage.Stage;
  */
 public class FX_Picture01 extends Application {
 
+	/** 環境情報[Environment information] */
+	private FD_EnvData env;
 	/** 選択ファイル */
 	private File selectFile;
 	/** 画面項目 : ファイル名 */
@@ -47,6 +48,9 @@ public class FX_Picture01 extends Application {
 	
 	@Override
 	public void start(Stage stage) throws Exception {
+		//環境情報取得[Environmental information acquisition]
+		env = new FD_EnvData("Picture.prop");
+		
 		VBox root = new VBox(5);
 		root.setPadding(new Insets(5, 5, 5, 5));
 		
@@ -58,19 +62,13 @@ public class FX_Picture01 extends Application {
 		Button fileSelectButton = new Button("選択");
 		fileSelectButton.setOnAction(event->{
 			selectFileButton(stage);
-			fileName.setText(selectFile.getName());
 			try {
-				Metadata  metadata = ImageMetadataReader.readMetadata(selectFile);
-				for (Directory directory : metadata.getDirectories()) {
-					for (Tag tag : directory.getTags()) {
-						System.out.println(tag.getTagName()+":"+tag.getDirectoryName()+":"+tag.getDescription());
-					}
-				}
+				fileName.setText(selectFile.getName());
 				System.out.println(Files.readAttributes(selectFile.toPath(), "*"));
 				System.out.println(Files.readAttributes(selectFile.toPath(), "lastAccessTime").get("lastAccessTime").toString());
 				Image image = new Image(new FileInputStream(selectFile));
 				iv.setImage(image);
-			} catch (IOException | ImageProcessingException e) {
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		});
@@ -84,9 +82,38 @@ public class FX_Picture01 extends Application {
 		iv.setFitHeight(100);
 		picBox.getChildren().add(iv);
 		
+		//ボタン領域
+		HBox buttonBox = new HBox(5);
+		buttonBox.setAlignment(Pos.CENTER_RIGHT);
+		root.getChildren().add(buttonBox);
+		//登録ボタン
+		Button entryButton = new Button("登録");
+		entryButton.setOnAction(evnet->{
+			entryData(env);
+		});
+		buttonBox.getChildren().add(entryButton);
+		
 		Scene scene = new Scene(root, 400, 200);
 		stage.setScene(scene);
 		stage.show();
+	}
+
+	/**
+	 * データ登録[Data entry]<br>
+	 * @author officina-hide.net
+	 * @param env2 
+	 * @since 2022/04/18 Ver. 1.00
+	 */
+	private void entryData(FD_EnvData env2) {
+		//ファイル情報保存[Save file information]
+		X_FD_File file = new X_FD_File(env, 0);
+		/*
+		 * TODO 採番情報から採番する。(2022/04/18)<br>
+		 * FD_File、FD_FileCode、"FILE":"_":5:1
+		 */
+		file.setValue(I_FD_File.COLUMNNAME_FD_File_Code, "FILE_00001");
+		file.setValue(I_FD_File.COLUMNNAME_FD_Name, selectFile.getName());
+		file.save(env);
 	}
 
 	/**

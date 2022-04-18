@@ -14,6 +14,19 @@ import com.officina_hide.base.common.FD_EnvData;
  * @since 2022/03/19 Ver. 1.50
  */
 public class FD_Numbering extends FD_DB implements I_FD_Numbering {
+	
+	/** 環境情報[Environment information] */
+	private FD_EnvData env;
+
+	/**
+	 * コンストラクター[Constructor]<br>
+	 * @author officina-hide.net
+	 * @since 2022/04/18 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 */
+	public FD_Numbering(FD_EnvData env) {
+		this.env = env;
+	}
 
 	/**
 	 * 採番情報テーブル構築[Numbering information table construction]<br>
@@ -21,9 +34,8 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 	 * Since the numbering information table is initially constructed, it is generated outside the standard.<br>
 	 * @author officina-hide.net
 	 * @since 2022/03/19 Ver. 1.50
-	 * @param env 環境情報[Environment information]
 	 */
-	public void createTable(FD_EnvData env) {
+	public void createTable() {
 		PreparedStatement pstmt = null;
 		try {
 			connection(env);

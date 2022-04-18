@@ -95,4 +95,18 @@ public class FD_ColumnDataCollection implements I_FD_DB {
 		return list;
 	}
 
+	/**
+	 * @param columnnameFdFileId
+	 * @return
+	 */
+	public Object getValue(String columnName) {
+		FD_ColumnData cd = getItem(columnName);
+		return cd.getColumnData();
+	}
+
+	public void setValue(String columnName, long data) {
+		FD_ColumnData cd = getItem(columnName);
+		cd.setColumnData(data);
+	}
+
 }

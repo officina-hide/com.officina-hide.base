@@ -1,11 +1,9 @@
-package com.officina_hide.ui.tools;
+package com.officina_hide.base.model;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import com.officina_hide.base.common.FD_EnvData;
-import com.officina_hide.base.model.FD_DB;
-import com.officina_hide.base.model.I_FD_File;
 
 /**
  * ファイル情報クラス[File information class]<br>
@@ -40,6 +38,8 @@ public class FD_File extends FD_DB implements I_FD_File {
 			pstmt = getConn().prepareStatement(Table_Drop_SQL);
 			pstmt.executeUpdate();
 			pstmt.close();
+			pstmt = getConn().prepareStatement(Table_Create_SQL);
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

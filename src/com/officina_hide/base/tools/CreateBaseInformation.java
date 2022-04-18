@@ -33,8 +33,8 @@ public class CreateBaseInformation {
 	 */
 	public void execute() {
 		//1.
-		FD_Numbering num = new FD_Numbering();
-		num.createTable(env);
+		FD_Numbering num = new FD_Numbering(env);
+		num.createTable();
 		num.add(I_FD_Numbering.FD_NUMBERING_ENTRY_DATA);
 	}
 
