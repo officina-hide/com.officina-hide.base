@@ -2,6 +2,7 @@ package com.officina_hide.base.model;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Date;
 
 import com.officina_hide.base.common.FD_Collect;
 import com.officina_hide.base.common.FD_Collections;
@@ -44,6 +45,7 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 			pstmt.close();
 			pstmt = getConn().prepareStatement(Table_Create_SQL);
 			pstmt.executeUpdate();
+			System.out.println("採番情報テーブル構築完了 : " + new Date());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -59,10 +61,17 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 	 */
 	public void add(String entryData) {
 		FD_Collections entry = new FD_Collections(entryData);
-		X_FD_Numbering xnum = new X_FD_Numbering(entry);
-		for(FD_Collect en : entry.getList()) {
-			
-		}
 	}
 
+	/**
+	 * 新規採番[Create numbering]<br>
+	 * @author officina-hide.net
+	 * @since 2022/04/19 Ver. 1.50
+	 * @param tableName テーブル名[Table name]
+	 * @param columnName テーブル項目名[Column name]
+	 * @return 採番結果[Numbering result]
+	 */
+	public String getNewNumber(String tableName, String columnName) {
+		return null;
+	}
 }

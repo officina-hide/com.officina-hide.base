@@ -21,10 +21,18 @@ public interface I_FD_Numbering extends I_FD_DB {
 	/** 項目 : 採番情報ID */
 	public static final String COLUMNNAME_FD_Numbering_ID = Table_Name + "_ID";
 	public static final String NAME_FD_Numbering_ID = Table_Disp_Name+"ID";
-	/** 項目 : 採番情報ID */
+	/** 項目 : テーブル情報ID */
 	public static final String COLUMNNAME_FD_Table_ID = I_FD_Table.COLUMNNAME_FD_Table_ID;
 	public static final String NAME_FD_Table_ID = I_FD_Table.NAME_FD_Table_ID;
 	public static final String COMMENT_FD_Table_ID = I_FD_Table.COMMENT_FD_Table_ID;
+	/** 項目 : テーブル項目情報ID */
+	public static final String COLUMNNAME_FD_Column_ID = I_FD_Column.COLUMNNAME_FD_Column_ID;
+	public static final String NAME_FD_Column_ID = I_FD_Column.NAME_FD_Column_ID;
+	/** 項目 : 採番書式 */
+	public static final String COLUMNNAME_FD_NumberFormat = "FD_NumberFormat";
+	public static final String NAME_FD_NumberFormat = "採番書式";
+	public static final String COMMENT_FD_NumberFormat = "採番結果として出力する書式";
+	public static final int SIZE_FD_NumberFormat = 100;
 	/** 項目 : 採番初期値 */
 	public static final String COLUMNNAME_FD_InitialNumber = "FD_InitialNumber";
 	public static final String NAME_FD_InitialNumber = "採番初期値";
@@ -34,7 +42,7 @@ public interface I_FD_Numbering extends I_FD_DB {
 
 	/** 採番情報登録用 */
 	public final String FD_NUMBERING_ENTRY_DATA =
-			"FD_Numbering_ID:101,FD_Table_ID:101,FD_NumberingInitial:100001";
+			"FD_Numbering_ID:101,FD_Table_ID:101,FD_InitialNumber:100001";
 	
 	/** テーブル削除用SQL */
 	public static final String Table_Drop_SQL =
@@ -48,6 +56,10 @@ public interface I_FD_Numbering extends I_FD_DB {
 					+ COMMENT + FD_SQ + NAME_FD_Numbering_ID + FD_SQ + ","
 				+ COLUMNNAME_FD_Table_ID + ID_TYPE 
 					+ COMMENT + FD_SQ + NAME_FD_Table_ID + FD_SQ + ","
+				+ COLUMNNAME_FD_Column_ID + ID_TYPE
+					+ COMMENT + FD_SQ + NAME_FD_Column_ID + FD_SQ + ","
+				+ COLUMNNAME_FD_NumberFormat + VARCHAR.replaceAll("n", Integer.toString(SIZE_FD_NumberFormat))
+					+ COMMENT + FD_SQ + NAME_FD_NumberFormat + FD_SQ + ","
 				+ COLUMNNAME_FD_InitialNumber + UNSIGNED_BIGINT
 					+ COMMENT + FD_SQ + NAME_FD_InitialNumber + FD_SQ + ","
 				+ COLUMNNAME_FD_CurrentNumber + UNSIGNED_BIGINT

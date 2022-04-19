@@ -41,7 +41,7 @@ public class FD_Table extends FD_DB implements I_FD_Table {
 			pstmt.close();
 			pstmt = getConn().prepareStatement(Table_Create_SQL);
 			pstmt.executeUpdate();
-			System.out.println(Table_Disp_Name+"テーブル生成 : " + new Date());
+			System.out.println(Table_Disp_Name+"テーブル構築完了 : " + new Date());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
