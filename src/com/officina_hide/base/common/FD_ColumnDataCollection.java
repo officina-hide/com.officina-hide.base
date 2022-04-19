@@ -74,10 +74,15 @@ public class FD_ColumnDataCollection implements I_FD_DB {
 			column.append(cd.getColumnName());
 			switch(cd.getColumnType()) {
 			case FD_Item_ID:
+			case FD_Item_Long:
 				value.append(cd.getColumnData());
 				break;
 			case FD_Item_String:
-				value.append(FD_SQ).append(cd.getColumnData().toString()).append(FD_SQ);
+				if(cd.getColumnData() != null) {
+					value.append(FD_SQ).append(cd.getColumnData().toString()).append(FD_SQ);
+				} else {
+					value.append(FD_SQ).append(FD_SQ);
+				}
 				break;
 			}
 		}
@@ -93,6 +98,28 @@ public class FD_ColumnDataCollection implements I_FD_DB {
 	 */
 	public List<FD_ColumnData> getList() {
 		return list;
+	}
+
+	/**
+	 * 情報リスト設定[Information list setting]
+	 * @author officina-hide.net
+	 * @since 2022/04/19 Ver. 1.50
+	 * @param entry 登録情報[Entry data]
+	 */
+	public void setData(FD_Collections entry) {
+		for(FD_Collect co : entry.getList()) {
+			FD_ColumnData cl = getItem(co.getName());
+			cl.setColumnData(co.getValue());
+			switch(cl.getColumnType()) {
+			case FD_Item_ID:
+			case FD_Item_Long:
+				cl.setColumnData(Long.parseLong(co.getValue()));
+				break;
+			case FD_Item_String:
+				cl.setColumnData(co.getValue());
+				break;
+			}
+		}
 	}
 
 	/**

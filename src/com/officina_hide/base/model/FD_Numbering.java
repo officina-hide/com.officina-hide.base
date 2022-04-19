@@ -61,6 +61,9 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 	 */
 	public void add(String entryData) {
 		FD_Collections entry = new FD_Collections(entryData);
+		X_FD_Numbering num = new X_FD_Numbering(entry);
+		//TODO 新規登録のみ(2022/04/19)
+		num.save(env);
 	}
 
 	/**

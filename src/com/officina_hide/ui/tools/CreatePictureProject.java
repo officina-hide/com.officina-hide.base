@@ -3,6 +3,7 @@ package com.officina_hide.ui.tools;
 import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.FD_File;
 import com.officina_hide.base.model.FD_Numbering;
 import com.officina_hide.base.model.FD_Table;
@@ -32,6 +33,9 @@ public class CreatePictureProject {
 		//テーブル情報生成
 		FD_Table table = new FD_Table(env);
 		table.createTable();
+		//テーブル項目情報生成
+		FD_Column column = new FD_Column(env);
+		column.createTable();
 
 		//プロジェクト情報生成
 		//ファイル情報生成

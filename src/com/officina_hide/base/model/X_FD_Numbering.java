@@ -1,9 +1,11 @@
 package com.officina_hide.base.model;
 
-import com.officina_hide.base.common.FD_Collect;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import com.officina_hide.base.common.FD_Collections;
-import com.officina_hide.base.common.FD_ColumnData;
 import com.officina_hide.base.common.FD_ColumnDataCollection;
+import com.officina_hide.base.common.FD_EnvData;
 
 /**
  * 採番情報I/Oクラス[Numbering information I/O class]<br>
@@ -30,9 +32,7 @@ public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 	 */
 	public X_FD_Numbering(FD_Collections entry) {
 		createColumnList();
-		for(FD_ColumnData cd : columnCollection.getList()) {
-			
-		}
+		columnCollection.setData(entry);
 	}
 
 	/**
@@ -48,6 +48,31 @@ public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 		columnCollection.add(COLUMNNAME_FD_NumberFormat, FD_Item_String);
 		columnCollection.add(COLUMNNAME_FD_InitialNumber, FD_Item_Long);
 		columnCollection.add(COLUMNNAME_FD_CurrentNumber, FD_Item_Long);
+	}
+
+	/**
+	 * 情報登録[Save information]<br>
+	 * TODO 汎用化予定
+	 * @author officina-hide.net
+	 * @since 2022/04/19 Ver. 1.50 
+	 * @param env 環境情報[Environment information]
+	 */
+	public void save(FD_EnvData env) {
+		PreparedStatement pstmt = null;
+		try {
+			connection(env);
+			pstmt = getConn().prepareStatement(columnCollection.getInsertSQL(Table_Name));
+			int rs = pstmt.executeUpdate();
+			if(rs != 1) {
+				System.out.println("Save Error!!");
+			} else {
+				System.out.println(Table_Disp_Name+"登録完了["+columnCollection.getTableId(Table_Name)+"]");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, null);
+		}
 	}
 
 }
