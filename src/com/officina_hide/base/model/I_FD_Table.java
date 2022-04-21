@@ -16,7 +16,7 @@ public interface I_FD_Table extends I_FD_DB {
 	public static final String Table_Comment = "パッケージで使用するテーブルを管理する。";
 	public static final String Table_Comment_Eng = "Manage the tables used in the package.";
 	/** テーブルID */
-	public static final int Table_ID = 103;
+	public static final int Table_ID = 101;
 
 	/** 項目 : テーブル情報ID */
 	public static final String COLUMNNAME_FD_Table_ID = Table_Name+"_ID";
@@ -47,4 +47,10 @@ public interface I_FD_Table extends I_FD_DB {
 				+ COMMENT + FD_SQ + NAME_FD_Description + FD_SQ + ""
 		+") "
 		+"ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=" + FD_SQ + Table_Disp_Name + FD_SQ;
+	
+	/** 登録用情報 : 採番情報 */
+	public final String Entry_FD_Number = 
+			I_FD_Numbering.COLUMNNAME_FD_Numbering_ID+":"+Table_ID+","
+			+ I_FD_Numbering.COLUMNNAME_FD_Table_ID+":"+Table_ID + ","
+			+ I_FD_Numbering.COLUMNNAME_FD_InitialNumber+":"+"10001";
 }

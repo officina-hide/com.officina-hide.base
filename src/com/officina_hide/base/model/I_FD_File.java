@@ -37,4 +37,8 @@ public interface I_FD_File extends I_FD_DB {
 				+ COLUMNNAME_FD_Name + VARCHAR.replaceAll("n", Integer.toString(SIZE_FD_Name)) + ""
 			+") "
 			+"ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=" + FD_SQ + Table_Disp_Name + FD_SQ;
+	
+	/** 登録用情報 : テーブル情報 */ 
+	public static final String Entry_FD_Table = 
+			I_FD_Table.COLUMNNAME_FD_Table_Code+":"+Table_Name;
 }

@@ -1,5 +1,8 @@
 package com.officina_hide.base.model;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import com.officina_hide.base.common.FD_EnvData;
 
 /**
@@ -8,7 +11,7 @@ import com.officina_hide.base.common.FD_EnvData;
  * @version 1.50 新規作成[New create]
  * @since 2022/04/11 Ver. 1.50
  */
-public class FD_Column extends FD_DB {
+public class FD_Column extends FD_DB implements I_FD_Column {
 	
 	/** 環境情報[Environment information] */
 	private FD_EnvData env;
@@ -29,7 +32,19 @@ public class FD_Column extends FD_DB {
 	 * @since 2022/04/11 Ver. 1.50
 	 */
 	public void createTable() {
-		
+		PreparedStatement pstmt = null;
+		try {
+			connection(env);
+			pstmt = getConn().prepareStatement(Table_Drop_SQL);
+			pstmt.executeUpdate();
+			pstmt.close();
+			pstmt = getConn().prepareStatement(Table_Create_SQL);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, null);
+		}
 	}
 
 }

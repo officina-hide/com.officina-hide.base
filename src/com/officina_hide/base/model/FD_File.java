@@ -2,6 +2,7 @@ package com.officina_hide.base.model;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
 
@@ -40,6 +41,7 @@ public class FD_File extends FD_DB implements I_FD_File {
 			pstmt.close();
 			pstmt = getConn().prepareStatement(Table_Create_SQL);
 			pstmt.executeUpdate();
+			System.out.println("採番情報テーブル構築完了 : " + new Date());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

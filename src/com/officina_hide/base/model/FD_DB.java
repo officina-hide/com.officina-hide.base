@@ -21,7 +21,7 @@ import com.officina_hide.base.common.FD_WhereData;
 public class FD_DB implements I_FD_DB {
 
 	/** テーブル項目リスト */
-	public FD_ColumnDataCollection columnCollection;
+	public FD_ColumnDataCollection columnCollection = new FD_ColumnDataCollection();
 	
 	/** データベース接続情報[Database connection information] */
 	private static Connection conn = null;

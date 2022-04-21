@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Date;
 
+import com.officina_hide.base.common.FD_Collections;
 import com.officina_hide.base.common.FD_EnvData;
 
 /**
@@ -47,6 +48,19 @@ public class FD_Table extends FD_DB implements I_FD_Table {
 		} finally {
 			DBClose(pstmt, null);
 		}
+	}
+
+	/**
+	 * テーブル情報登録[Table information Entry]<br>
+	 * @author officina-hide.net
+	 * @since 2022/04/21 Ver. 1.00
+	 * @param entryData 登録情報[Entry data]
+	 */
+	public void add(String entryData) {
+		FD_Collections entry = new FD_Collections(entryData);
+		X_FD_Table table = new X_FD_Table(entry);
+		//新規登録のみ
+		table.save(env);
 	}
 
 }

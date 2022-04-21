@@ -29,6 +29,22 @@ public class FD_ColumnDataCollection implements I_FD_DB {
 	}
 
 	/**
+	 * テーブル項目追加[Table item entry]
+	 * @param columnName テーブル項目名[Table item name]
+	 * @param typeName 属性名[Table item type name]
+	 * @param data 値[Table item data]
+	 */
+	public void add(String columnName, String typeName, Object data) {
+		FD_ColumnData cd = new FD_ColumnData();
+		cd.setColumnName(columnName);
+		cd.setColumnType(typeName);
+		if(data != null) {
+			cd.setColumnData(data);
+		}
+		list.add(cd);
+	}
+
+	/**
 	 * テーブル項目抽出[Table item extraction]<br>
 	 * @author officina-hide.net
 	 * @since 2022/04/08 Ver. 1.00
@@ -134,6 +150,15 @@ public class FD_ColumnDataCollection implements I_FD_DB {
 	public void setValue(String columnName, long data) {
 		FD_ColumnData cd = getItem(columnName);
 		cd.setColumnData(data);
+	}
+
+	/**
+	 * 一覧クリア[List clear]<br>
+	 * @author officina-hide.net
+	 * @since 2022/04/21 Ver. 1.00
+	 */
+	public void clear() {
+		list = new ArrayList<>();
 	}
 
 }
