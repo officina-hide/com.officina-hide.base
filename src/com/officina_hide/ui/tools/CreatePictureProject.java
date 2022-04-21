@@ -9,7 +9,6 @@ import com.officina_hide.base.model.FD_Numbering;
 import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.I_FD_Column;
 import com.officina_hide.base.model.I_FD_File;
-import com.officina_hide.base.model.I_FD_Numbering;
 import com.officina_hide.base.model.I_FD_Table;
 
 /**

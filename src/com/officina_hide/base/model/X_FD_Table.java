@@ -1,5 +1,8 @@
 package com.officina_hide.base.model;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import com.officina_hide.base.common.FD_Collections;
 import com.officina_hide.base.common.FD_EnvData;
 
@@ -11,6 +14,9 @@ import com.officina_hide.base.common.FD_EnvData;
  */
 public class X_FD_Table extends FD_DB implements I_FD_Table {
 
+	/** 項目 : テーブル情報ID */
+	private long FD_Table_ID;
+	
 	/**
 	 * コンストラクター[Constructor]<br>
 	 * @author officina-hide.net
@@ -19,6 +25,7 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 	 */
 	public X_FD_Table(FD_Collections entry) {
 		createColumnList();
+		columnCollection.setData(entry);
 	}
 
 	/**
@@ -42,7 +49,34 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 	 * @param env 環境情報[Environment information]
 	 */
 	public void save(FD_EnvData env) {
-		
+		PreparedStatement pstmt = null;
+		//テーブル情報IDが0の時は新規に採番する。
+		if(getFD_Table_ID() == 0) {
+			FD_Numbering num = new FD_Numbering(env);
+			setFD_Table_ID(num.getNewId(Table_ID));
+		}
+		try {
+			connection(env);
+			pstmt = getConn().prepareStatement(columnCollection.getInsertSQL(Table_Name));
+			int rs = pstmt.executeUpdate();
+			if(rs != 1) {
+				System.out.println("Error FD_Table Save Error!!");
+			} else {
+				System.out.println(Table_Disp_Name+"登録完了["+getFD_Table_ID()+"]");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, null);
+		}		
+	}
+
+	public long getFD_Table_ID() {
+		FD_Table_ID = (long) columnCollection.getValue(COLUMNNAME_FD_Table_ID);
+		return FD_Table_ID;
+	}
+	public void setFD_Table_ID(long tableId) {
+		columnCollection.setValue(COLUMNNAME_FD_Table_ID, tableId);
 	}
 
 }

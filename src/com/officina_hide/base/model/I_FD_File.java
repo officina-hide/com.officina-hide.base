@@ -40,5 +40,6 @@ public interface I_FD_File extends I_FD_DB {
 	
 	/** 登録用情報 : テーブル情報 */ 
 	public static final String Entry_FD_Table = 
-			I_FD_Table.COLUMNNAME_FD_Table_Code+":"+Table_Name;
+			I_FD_Table.COLUMNNAME_FD_Table_Code+":"+Table_Name+","
+			+ I_FD_Table.COLUMNNAME_FD_Name+":"+Table_Disp_Name;
 }

@@ -1,6 +1,7 @@
 package com.officina_hide.base.model;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
@@ -76,4 +77,56 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 	public String getNewNumber(String tableName, String columnName) {
 		return null;
 	}
+
+	/**
+	 * 新規ID採番[New ID numbering]<br>
+	 * @author officina-hide.net
+	 * @since 2022/04/22 Ver. 1.50
+	 * @param tableId テーブル情報ID
+	 * @return 新規ID[New ID]
+	 */
+	public long getNewId(int tableId) {
+		long id = 0;
+		PreparedStatement pstmt =null;
+		ResultSet rs = null;
+		try {
+			connection(env);
+			pstmt = getConn().prepareStatement(GET_DATA);
+			pstmt.setLong(1, tableId);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getLong(COLUMNNAME_FD_CurrentNumber) == 0) {
+					id = rs.getLong(COLUMNNAME_FD_InitialNumber);
+				} else {
+					id = rs.getLong(COLUMNNAME_FD_CurrentNumber) + 1;
+				}
+				//現在値更新
+				pstmt.close();
+				pstmt = getConn().prepareStatement(UPDATE_DATA);
+				pstmt.setLong(1, id);
+				pstmt.setLong(2, tableId);
+				int cnt = pstmt.executeUpdate();
+				if(cnt != 1) {
+					System.out.println("Error Update FD_Numbering!!");
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
+		return id;
+	}
+	
+	/** 採番情報取得（テーブルに対する情報ID用） */
+	private final String GET_DATA = 
+			"SELECT * FROM "+I_FD_Numbering.Table_Name + " "
+			+ "WHERE "+I_FD_Numbering.COLUMNNAME_FD_Table_ID+" = ? "
+			+ "AND "+I_FD_Numbering.COLUMNNAME_FD_Column_ID+" IS NULL ";
+	
+	/** 採番情報更新（現在値更新:情報ID用） */
+	private final String UPDATE_DATA =
+			"UPDATE "+Table_Name+" SET "
+			+ COLUMNNAME_FD_CurrentNumber+" = ? "
+			+ "WHERE "+COLUMNNAME_FD_Table_ID+" = ? ";
 }

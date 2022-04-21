@@ -94,6 +94,7 @@ public class FD_ColumnDataCollection implements I_FD_DB {
 				value.append(cd.getColumnData());
 				break;
 			case FD_Item_String:
+			case FD_Item_Text:
 				if(cd.getColumnData() != null) {
 					value.append(FD_SQ).append(cd.getColumnData().toString()).append(FD_SQ);
 				} else {
