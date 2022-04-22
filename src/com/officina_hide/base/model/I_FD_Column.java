@@ -39,7 +39,9 @@ public interface I_FD_Column extends I_FD_DB {
 			+ COLUMNNAME_FD_Table_ID + ID_TYPE
 				+ COMMENT + FD_SQ + NAME_FD_Table_ID + FD_SQ + ","
 			+ COLUMNNAME_FD_Column_Code + VARCHAR.replaceAll("n", Integer.toString(SIZE_FD_Column_Code))
-				+ COMMENT + FD_SQ + NAME_FD_Column_Code + FD_SQ + ""
+				+ COMMENT + FD_SQ + NAME_FD_Column_Code + FD_SQ + ","
+			+ COLUMNNAME_FD_Name + VARCHAR.replaceAll("n", Integer.toString(SIZE_FD_Name))
+				+ COMMENT + FD_SQ + NAME_FD_Name + FD_SQ + ""
 		+") "
 		+"ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=" + FD_SQ + Table_Disp_Name + FD_SQ;
 	

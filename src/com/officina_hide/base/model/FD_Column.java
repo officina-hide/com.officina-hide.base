@@ -3,6 +3,7 @@ package com.officina_hide.base.model;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import com.officina_hide.base.common.FD_Collections;
 import com.officina_hide.base.common.FD_EnvData;
 
 /**
@@ -45,6 +46,18 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 		} finally {
 			DBClose(pstmt, null);
 		}
+	}
+
+	/**
+	 * テーブル項目情報登録[Table column information entry]<br>
+	 * @author officina-hide.net
+	 * @since 2022/04/22 Ver. 1.50
+	 * @param entryData 登録情報[Entry data]
+	 */
+	public void add(String entryData) {
+		FD_Collections entry = new FD_Collections(env, entryData);
+		X_FD_Column column = new X_FD_Column(entry);
+		column.save(env);
 	}
 
 }

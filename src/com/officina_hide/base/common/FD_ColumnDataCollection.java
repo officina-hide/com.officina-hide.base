@@ -133,6 +133,7 @@ public class FD_ColumnDataCollection implements I_FD_DB {
 				cl.setColumnData(Long.parseLong(co.getValue()));
 				break;
 			case FD_Item_String:
+			case FD_Item_Text:
 				cl.setColumnData(co.getValue());
 				break;
 			}

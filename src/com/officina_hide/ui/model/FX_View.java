@@ -60,7 +60,7 @@ public class FX_View extends FD_DB implements I_FX_View {
 	 */
 	public void entry(String entryData) {
 		//とりあえず新規作成のみ対応 2022/04/11
-		FD_Collections dataList = new FD_Collections(entryData);
+		FD_Collections dataList = new FD_Collections(env, entryData);
 		X_FX_View view = new X_FX_View(env, dataList);
 		view.save(env);
 	}

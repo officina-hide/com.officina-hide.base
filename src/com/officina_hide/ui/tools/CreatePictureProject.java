@@ -53,6 +53,7 @@ public class CreatePictureProject {
 		FD_File file = new FD_File(env);
 		file.createTable();
 		table.add(I_FD_File.Entry_FD_Table);
+		column.add(I_FD_File.Entry_FD_Column_FD_File_ID);
 	}
 
 }

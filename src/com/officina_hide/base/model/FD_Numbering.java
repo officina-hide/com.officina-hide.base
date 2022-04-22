@@ -60,7 +60,7 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 	 * @param entryData 登録情報[Entry data]
 	 */
 	public void add(String entryData) {
-		FD_Collections entry = new FD_Collections(entryData);
+		FD_Collections entry = new FD_Collections(env, entryData);
 		X_FD_Numbering num = new X_FD_Numbering(entry);
 		//TODO 新規登録のみ(2022/04/19)
 		num.save(env);
