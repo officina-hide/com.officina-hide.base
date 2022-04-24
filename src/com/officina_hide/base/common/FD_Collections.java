@@ -3,6 +3,7 @@ package com.officina_hide.base.common;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.FD_Table;
 
 /**
@@ -41,6 +42,11 @@ public class FD_Collections {
 				if(dt[1].equals("@getID")) {
 					//引数[2]のテーブル名でテーブル情報IDを取得しValueにセットする。
 					collect.setValue(getID(env, dt[2]));
+				}
+				if(dt[1].equals("@getColumnID")) {
+					FD_Column column = new FD_Column(env);
+					System.out.println(dt[2]+":"+dt[3]);
+					collect.setValue(column.getColumnID(dt[2], dt[3]));
 				}
 			}
 			list.add(collect);

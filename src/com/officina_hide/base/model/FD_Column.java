@@ -60,4 +60,14 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 		column.save(env);
 	}
 
+	/**
+	 * テーブル項目情報ID取得[Getting table column information ID]
+	 * @param tableName テーブル名[Table name]
+	 * @param columnName テーブル項目名[Table column name]
+	 * @return テーブル項目情報ID[Table column information ID]
+	 */
+	public String getColumnID(String tableName, String columnName) {
+		return null;
+	}
+
 }

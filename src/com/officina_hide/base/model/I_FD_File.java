@@ -51,8 +51,16 @@ public interface I_FD_File extends I_FD_DB {
 			I_FD_Column.COLUMNNAME_FD_Column_Code+":"+COLUMNNAME_FD_File_ID+","
 			+ I_FD_Column.COLUMNNAME_FD_Table_ID+":@getID:"+Table_Name+","
 			+ I_FD_Column.COLUMNNAME_FD_Name+":"+NAME_FD_File_ID;
+	/** 登録用情報 : テーブル項目情報 : ファイル管理コード  */
 	public final String Entry_FD_Column_FD_File_Code =
 			I_FD_Column.COLUMNNAME_FD_Column_Code+":"+COLUMNNAME_FD_File_Code+","
 			+ I_FD_Column.COLUMNNAME_FD_Table_ID+":@getID:"+Table_Name+","
 			+ I_FD_Column.COLUMNNAME_FD_Name+":"+NAME_FD_File_Code;
+	/** 登録用情報 : 採番情報 : ファイル管理コード  */
+	public final String Entry_FD_Number_FD_File_Code =
+			I_FD_Numbering.COLUMNNAME_FD_Table_ID+":@getID:"+Table_Name+","
+			+ I_FD_Numbering.COLUMNNAME_FD_Column_ID+":@getColumnID:"+Table_Name+":"+COLUMNNAME_FD_File_Code+","
+			+ I_FD_Numbering.COLUMNNAME_FD_NumberFormat+":FILE_$n05"+","
+			+ I_FD_Numbering.COLUMNNAME_FD_InitialNumber+":"+"10001";
+	
 }

@@ -58,6 +58,7 @@ public class CreatePictureProject {
 		num.add(I_FD_File.Entry_FD_Number);
 		column.add(I_FD_File.Entry_FD_Column_FD_File_ID);
 		column.add(I_FD_File.Entry_FD_Column_FD_File_Code);
+		num.add(I_FD_File.Entry_FD_Number_FD_File_Code);
 	}
 
 }
