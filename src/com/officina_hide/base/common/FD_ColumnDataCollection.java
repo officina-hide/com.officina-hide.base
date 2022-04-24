@@ -149,7 +149,7 @@ public class FD_ColumnDataCollection implements I_FD_DB {
 		return cd.getColumnData();
 	}
 
-	public void setValue(String columnName, long data) {
+	public void setValue(String columnName, Object data) {
 		FD_ColumnData cd = getItem(columnName);
 		cd.setColumnData(data);
 	}

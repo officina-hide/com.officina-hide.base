@@ -8,6 +8,9 @@ package com.officina_hide.base.model;
  */
 public interface I_FD_DB {
 	
+	/** 汎用定数 */
+	public final long ID_ZERO = 0;
+	
 	/** SQL文補助 */
 	public final static String FD_SQ = "'";	//シングルコーテーション
 

@@ -9,6 +9,7 @@ import com.officina_hide.base.model.FD_Numbering;
 import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.I_FD_Column;
 import com.officina_hide.base.model.I_FD_File;
+import com.officina_hide.base.model.I_FD_Numbering;
 import com.officina_hide.base.model.I_FD_Table;
 
 /**
@@ -47,13 +48,16 @@ public class CreatePictureProject {
 		 */
 		num.add(I_FD_Table.Entry_FD_Number);
 		num.add(I_FD_Column.Entry_FD_Number);
+		num.add(I_FD_Numbering.Entry_FD_Number);
 
 		//プロジェクト情報生成
 		//ファイル情報生成
 		FD_File file = new FD_File(env);
 		file.createTable();
 		table.add(I_FD_File.Entry_FD_Table);
+		num.add(I_FD_File.Entry_FD_Number);
 		column.add(I_FD_File.Entry_FD_Column_FD_File_ID);
+		column.add(I_FD_File.Entry_FD_Column_FD_File_Code);
 	}
 
 }

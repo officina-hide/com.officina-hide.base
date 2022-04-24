@@ -41,7 +41,7 @@ public class FD_File extends FD_DB implements I_FD_File {
 			pstmt.close();
 			pstmt = getConn().prepareStatement(Table_Create_SQL);
 			pstmt.executeUpdate();
-			System.out.println("採番情報テーブル構築完了 : " + new Date());
+			System.out.println(Table_Disp_Name+"テーブル構築完了 : " + new Date());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

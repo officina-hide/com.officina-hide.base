@@ -16,7 +16,7 @@ public interface I_FD_Numbering extends I_FD_DB {
 	public static final String Table_Comment = "パッケージで使用する各種番号の採番を管理するテーブル";
 	public static final String Table_Comment_Eng = "A table that manages the numbering of various numbers used in the package.";
 	/** テーブル情報ID */
-	public static final int Table_ID = 101;
+	public static final int Table_ID = 103;
 	
 	/** 項目 : 採番情報ID */
 	public static final String COLUMNNAME_FD_Numbering_ID = Table_Name + "_ID";
@@ -67,5 +67,11 @@ public interface I_FD_Numbering extends I_FD_DB {
 				+ COMMON_ITEM_CREATE_SQL
 			+") "
 			+"ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=" + FD_SQ + Table_Disp_Name + FD_SQ;
+	
+	/** 登録用情報 : 採番情報 */
+	public final String Entry_FD_Number = 
+			I_FD_Numbering.COLUMNNAME_FD_Numbering_ID+":"+Table_ID+","
+			+ I_FD_Numbering.COLUMNNAME_FD_Table_ID+":"+Table_ID + ","
+			+ I_FD_Numbering.COLUMNNAME_FD_InitialNumber+":"+"1000001";
 	}
 

@@ -15,6 +15,9 @@ import com.officina_hide.base.common.FD_EnvData;
  */
 public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 
+	/** 項目 : 採番情報ID */
+	private long FD_Numbering_ID;
+	
 	/**
 	 * コンストラクター[Constructor]<br>
 	 * @author officina-hide.net
@@ -42,7 +45,7 @@ public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 	 */
 	private void createColumnList() {
 		columnCollection = new FD_ColumnDataCollection();
-		columnCollection.add(COLUMNNAME_FD_Numbering_ID, FD_Item_ID);
+		columnCollection.add(COLUMNNAME_FD_Numbering_ID, FD_Item_ID, ID_ZERO);
 		columnCollection.add(COLUMNNAME_FD_Table_ID, FD_Item_ID);
 		columnCollection.add(COLUMNNAME_FD_Column_ID, FD_Item_ID);
 		columnCollection.add(COLUMNNAME_FD_NumberFormat, FD_Item_String);
@@ -58,6 +61,11 @@ public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 	 * @param env 環境情報[Environment information]
 	 */
 	public void save(FD_EnvData env) {
+		if(getFD_Numbering_ID() == 0) {
+			//新規情報ID採番
+			FD_Numbering num = new FD_Numbering(env);
+			setFD_Numbering_ID(num.getNewId(Table_ID));
+		}
 		PreparedStatement pstmt = null;
 		try {
 			connection(env);
@@ -73,6 +81,14 @@ public class X_FD_Numbering extends FD_DB implements I_FD_Numbering {
 		} finally {
 			DBClose(pstmt, null);
 		}
+	}
+
+	public long getFD_Numbering_ID() {
+		FD_Numbering_ID = (long) columnCollection.getValue(COLUMNNAME_FD_Numbering_ID);
+		return FD_Numbering_ID;
+	}
+	public void setFD_Numbering_ID(long numberingId) {
+		columnCollection.setValue(COLUMNNAME_FD_Numbering_ID, numberingId);
 	}
 
 }

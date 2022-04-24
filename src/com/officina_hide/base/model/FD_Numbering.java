@@ -109,6 +109,8 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 				if(cnt != 1) {
 					System.out.println("Error Update FD_Numbering!!");
 				}
+			} else {
+				System.out.println("Error Numbering Data not found["+tableId+"]");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

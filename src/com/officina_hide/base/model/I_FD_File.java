@@ -39,12 +39,20 @@ public interface I_FD_File extends I_FD_DB {
 			+"ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=" + FD_SQ + Table_Disp_Name + FD_SQ;
 	
 	/** 登録用情報 : テーブル情報 */ 
-	public static final String Entry_FD_Table = 
+	public final String Entry_FD_Table = 
 			I_FD_Table.COLUMNNAME_FD_Table_Code+":"+Table_Name+","
 			+ I_FD_Table.COLUMNNAME_FD_Name+":"+Table_Disp_Name;
+	/** 登録用情報 : 採番情報 */
+	public final String Entry_FD_Number =
+			I_FD_Numbering.COLUMNNAME_FD_Table_ID+":@getID:"+Table_Name + ","
+			+ I_FD_Numbering.COLUMNNAME_FD_InitialNumber+":"+"1000001";			
 	/** 登録用情報 : テーブル項目情報 : ファイル情報ID */
 	public final String Entry_FD_Column_FD_File_ID =
 			I_FD_Column.COLUMNNAME_FD_Column_Code+":"+COLUMNNAME_FD_File_ID+","
 			+ I_FD_Column.COLUMNNAME_FD_Table_ID+":@getID:"+Table_Name+","
 			+ I_FD_Column.COLUMNNAME_FD_Name+":"+NAME_FD_File_ID;
+	public final String Entry_FD_Column_FD_File_Code =
+			I_FD_Column.COLUMNNAME_FD_Column_Code+":"+COLUMNNAME_FD_File_Code+","
+			+ I_FD_Column.COLUMNNAME_FD_Table_ID+":@getID:"+Table_Name+","
+			+ I_FD_Column.COLUMNNAME_FD_Name+":"+NAME_FD_File_Code;
 }
