@@ -1,6 +1,7 @@
 package com.officina_hide.base.model;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.officina_hide.base.common.FD_Collections;
@@ -66,8 +67,34 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 	 * @param columnName テーブル項目名[Table column name]
 	 * @return テーブル項目情報ID[Table column information ID]
 	 */
-	public String getColumnID(String tableName, String columnName) {
-		return null;
+	public long getColumnID(String tableName, String columnName) {
+		long id = 0;
+		PreparedStatement pstmt =null;
+		ResultSet rs = null;
+		try {
+			connection(env);
+			pstmt = getConn().prepareStatement(SQL_GET_COLUMN_ID);
+			pstmt.setString(1, tableName);
+			pstmt.setString(2, columnName);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				id = rs.getLong(COLUMNNAME_FD_Column_ID);
+			} else {
+				System.out.println("Error Column not found!!["+tableName+":"+columnName+"]");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
+		return id;
 	}
 
+	private final String SQL_GET_COLUMN_ID =
+			"SELECT "+COLUMNNAME_FD_Column_ID+" FROM "+Table_Name+" c "
+			+ "LEFT JOIN "+I_FD_Table.Table_Name+" t ON t."+I_FD_Table.COLUMNNAME_FD_Table_ID
+				+" = c."+I_FD_Column.COLUMNNAME_FD_Table_ID+" "
+			+ "WHERE t."+I_FD_Table.COLUMNNAME_FD_Table_Code+" = ? "
+			+ "AND c."+COLUMNNAME_FD_Column_Code+" = ? ";
+			
 }

@@ -45,7 +45,6 @@ public class FD_Collections {
 				}
 				if(dt[1].equals("@getColumnID")) {
 					FD_Column column = new FD_Column(env);
-					System.out.println(dt[2]+":"+dt[3]);
 					collect.setValue(column.getColumnID(dt[2], dt[3]));
 				}
 			}
