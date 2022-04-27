@@ -3,6 +3,7 @@ package com.officina_hide.base.model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.Date;
 
 import com.officina_hide.base.common.FD_Collections;
@@ -75,7 +76,34 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 	 * @return 採番結果[Numbering result]
 	 */
 	public String getNewNumber(String tableName, String columnName) {
-		return null;
+		String nm = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			connection(env);
+			pstmt = getConn().prepareStatement(GET_DATA_By_Column);
+			pstmt.setString(1, tableName);
+			pstmt.setString(2, columnName);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				String fmt = rs.getString(I_FD_Numbering.COLUMNNAME_FD_NumberFormat);
+				if(fmt.indexOf("$n") >= 0) {
+					int cnt = Integer.parseInt(fmt.substring(fmt.indexOf("$n")+2, fmt.indexOf("$n")+4));
+					String fmtStr = "";
+					for(int ix = 0; ix < cnt; ix++) {
+						fmtStr = fmtStr + "0";
+					}
+					DecimalFormat df = new DecimalFormat(fmtStr);
+				}
+			} else {
+				System.out.println("Error Numbering data ["+tableName+":"+columnName+"]");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
+		return nm;
 	}
 
 	/**
@@ -131,4 +159,14 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 			"UPDATE "+Table_Name+" SET "
 			+ COLUMNNAME_FD_CurrentNumber+" = ? "
 			+ "WHERE "+COLUMNNAME_FD_Table_ID+" = ? ";
+	
+	/** 採番情報取得(テーブル名、テーブル項目名) */
+	private final String GET_DATA_By_Column =
+			"SELECT * FROM "+I_FD_Numbering.Table_Name+" n "
+			+ "LEFT JOIN "+I_FD_Table.Table_Name+" t ON t."+I_FD_Table.COLUMNNAME_FD_Table_ID+" = "
+				+ " n."+I_FD_Numbering.COLUMNNAME_FD_Table_ID+" "
+			+ "LEFT JOIN "+I_FD_Column.Table_Name+" c ON c."+I_FD_Column.COLUMNNAME_FD_Column_ID+" = "
+				+ "n."+I_FD_Numbering.COLUMNNAME_FD_Column_ID+" "
+			+ "WHERE t."+I_FD_Table.COLUMNNAME_FD_Table_Code+" = ? "
+			+ "AND c."+I_FD_Column.COLUMNNAME_FD_Column_Code+" = ? ";
 }

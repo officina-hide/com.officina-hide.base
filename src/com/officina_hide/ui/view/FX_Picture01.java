@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.model.FD_Numbering;
 import com.officina_hide.base.model.I_FD_File;
 import com.officina_hide.base.model.X_FD_File;
 
@@ -89,7 +90,7 @@ public class FX_Picture01 extends Application {
 		//登録ボタン
 		Button entryButton = new Button("登録");
 		entryButton.setOnAction(evnet->{
-			entryData(env);
+			entryData();
 		});
 		buttonBox.getChildren().add(entryButton);
 		
@@ -104,16 +105,19 @@ public class FX_Picture01 extends Application {
 	 * @param env2 
 	 * @since 2022/04/18 Ver. 1.00
 	 */
-	private void entryData(FD_EnvData env2) {
+	private void entryData() {
 		//ファイル情報保存[Save file information]
 		X_FD_File file = new X_FD_File(env, 0);
 		/*
 		 * TODO 採番情報から採番する。(2022/04/18)<br>
 		 * FD_File、FD_FileCode、"FILE":"_":5:1
 		 */
-		file.setValue(I_FD_File.COLUMNNAME_FD_File_Code, "FILE_00001");
-		file.setValue(I_FD_File.COLUMNNAME_FD_Name, selectFile.getName());
-		file.save(env);
+		FD_Numbering num = new FD_Numbering(env);
+		String fno = num.getNewNumber(I_FD_File.Table_Name, I_FD_File.COLUMNNAME_FD_File_Code);
+		System.out.println(fno);
+//		file.setValue(I_FD_File.COLUMNNAME_FD_File_Code, "FILE_00001");
+//		file.setValue(I_FD_File.COLUMNNAME_FD_Name, selectFile.getName());
+//		file.save(env);
 	}
 
 	/**
