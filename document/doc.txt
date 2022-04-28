@@ -3,3 +3,4 @@ officina
 ver
 fdadmin
 ueno
+exif

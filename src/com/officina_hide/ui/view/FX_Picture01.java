@@ -5,6 +5,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 
+import com.drew.imaging.ImageMetadataReader;
+import com.drew.imaging.ImageProcessingException;
+import com.drew.metadata.Directory;
+import com.drew.metadata.Metadata;
+import com.drew.metadata.Tag;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Numbering;
 import com.officina_hide.base.model.I_FD_File;
@@ -69,7 +74,14 @@ public class FX_Picture01 extends Application {
 				System.out.println(Files.readAttributes(selectFile.toPath(), "lastAccessTime").get("lastAccessTime").toString());
 				Image image = new Image(new FileInputStream(selectFile));
 				iv.setImage(image);
-			} catch (IOException e) {
+				//Exif取得
+				Metadata meta = ImageMetadataReader.readMetadata(selectFile);
+				for (Directory directory : meta.getDirectories()) {
+					for (Tag tag : directory.getTags()) {
+						System.out.println(tag);
+					}
+				}
+			} catch (IOException | ImageProcessingException e) {
 				e.printStackTrace();
 			}
 		});
@@ -108,12 +120,10 @@ public class FX_Picture01 extends Application {
 	private void entryData() {
 		//ファイル情報保存[Save file information]
 		X_FD_File file = new X_FD_File(env, 0);
-		/*
-		 * TODO 採番情報から採番する。(2022/04/18)<br>
-		 * FD_File、FD_FileCode、"FILE":"_":5:1
-		 */
+		//ファイルコード採番
 		FD_Numbering num = new FD_Numbering(env);
 		String fno = num.getNewNumber(I_FD_File.Table_Name, I_FD_File.COLUMNNAME_FD_File_Code);
+		//ファイル情報保存
 		file.setValue(I_FD_File.COLUMNNAME_FD_File_Code, fno);
 		file.setValue(I_FD_File.COLUMNNAME_FD_Name, selectFile.getName());
 		file.save(env);

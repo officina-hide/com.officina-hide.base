@@ -24,6 +24,7 @@ public interface I_FD_DB {
 	public static final String DEFAULT = " DEFAULT ";	
 	public static final String DATETIME = " datetime ";
 	public static final String VARCHAR = " varchar(n) ";
+	public final String LONGBLOB = " longblob ";
 	public static final String TEXT = " text ";
 	public static final String UNIQUE = " unique ";
 	public static final String NOT_NULL = " not null ";

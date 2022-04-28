@@ -20,6 +20,9 @@ public interface I_FD_File extends I_FD_DB {
 	public static final String NAME_FD_File_Code = "ファイル管理コード";
 	public static final int SIZE_FD_File_Code = 10;
 	/** 項目 : 名前(FD_Name) */
+	/** 項目 : ファイルデータ */
+	public final String COLUMNNAME_FD_File_Data = "FD_File_Data";
+	public final String NAME_FD_File_Data = "ファイルデータ";
 	
 	/** テーブル削除用SQL */
 	public static final String Table_Drop_SQL =
@@ -34,7 +37,10 @@ public interface I_FD_File extends I_FD_DB {
 				+ COLUMNNAME_FD_File_Code + VARCHAR.replaceAll("n", Integer.toString(SIZE_FD_File_Code))
 					+ UNIQUE + NOT_NULL
 					+ COMMENT + FD_SQ + NAME_FD_File_Code + FD_SQ + ","
-				+ COLUMNNAME_FD_Name + VARCHAR.replaceAll("n", Integer.toString(SIZE_FD_Name)) + ""
+				+ COLUMNNAME_FD_Name + VARCHAR.replaceAll("n", Integer.toString(SIZE_FD_Name))
+					+ COMMENT + FD_SQ + NAME_FD_Name + FD_SQ + ","
+				+ COLUMNNAME_FD_File_Data + LONGBLOB
+					+ COMMENT + FD_SQ + NAME_FD_File_Data + FD_SQ + ""
 			+") "
 			+"ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=" + FD_SQ + Table_Disp_Name + FD_SQ;
 	

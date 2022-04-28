@@ -1,6 +1,6 @@
 /**
  * パッケージを運用していく上で共通に使われる機能クラスを管理する。<br>
- * @author officine-hide.com
+ * @author officina-hide.com
  * @version 1.00
  * @since 20/10/06
  */
