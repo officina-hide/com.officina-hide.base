@@ -86,15 +86,26 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 			pstmt.setString(2, columnName);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
+				//新規番号
+				long no = 0;
+				if(rs.getLong(COLUMNNAME_FD_CurrentNumber) == 0) {
+					no = rs.getLong(COLUMNNAME_FD_InitialNumber);
+				} else {
+					no = rs.getLong(COLUMNNAME_FD_CurrentNumber) + 1;
+				}
 				String fmt = rs.getString(I_FD_Numbering.COLUMNNAME_FD_NumberFormat);
-				if(fmt.indexOf("$n") >= 0) {
-					int cnt = Integer.parseInt(fmt.substring(fmt.indexOf("$n")+2, fmt.indexOf("$n")+4));
+				if(fmt.indexOf("@n") >= 0) {
+					String fStr = fmt.substring(fmt.indexOf("@n"), fmt.indexOf("@n")+4);
+					int cnt = Integer.parseInt(fStr.substring(2, 4));
 					String fmtStr = "";
 					for(int ix = 0; ix < cnt; ix++) {
 						fmtStr = fmtStr + "0";
 					}
 					DecimalFormat df = new DecimalFormat(fmtStr);
+					nm = fmt.replaceAll(fStr, df.format(no));
 				}
+				//採番情報更新
+				updateCurrentNo(no, rs.getLong(COLUMNNAME_FD_Table_ID), rs.getLong(COLUMNNAME_FD_Column_ID));
 			} else {
 				System.out.println("Error Numbering data ["+tableName+":"+columnName+"]");
 			}
@@ -104,6 +115,33 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 			DBClose(pstmt, rs);
 		}
 		return nm;
+	}
+
+	/**
+	 * 採番情報現在値更新[Numbering information Current value update]<br>
+	 * @author officina-hide.net
+	 * @param currentNo 現在値
+	 * @param tableId テーブル情報ID[Table information ID]
+	 * @param columnId テーブル項目情報ID[Table column information ID]
+	 * @since 2022/04/28 Ver. 1.00
+	 */
+	private void updateCurrentNo(long currentNo, long tableId, long columnId) {
+		PreparedStatement pstmt = null;
+		try {
+			connection(env);
+			pstmt = getConn().prepareStatement(UPDATE_DATA_COLUMN);
+			pstmt.setLong(1, currentNo);
+			pstmt.setLong(2, tableId);
+			pstmt.setLong(3, columnId);
+			int rs = pstmt.executeUpdate();
+			if(rs != 1) {
+				System.out.println("Error Current Number not Update!!");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, null);
+		}
 	}
 
 	/**
@@ -128,7 +166,7 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 				} else {
 					id = rs.getLong(COLUMNNAME_FD_CurrentNumber) + 1;
 				}
-				//現在値更新
+				//現在値更新 TODO 別メソッドに移行予定 2022/04/28,
 				pstmt.close();
 				pstmt = getConn().prepareStatement(UPDATE_DATA);
 				pstmt.setLong(1, id);
@@ -159,6 +197,13 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 			"UPDATE "+Table_Name+" SET "
 			+ COLUMNNAME_FD_CurrentNumber+" = ? "
 			+ "WHERE "+COLUMNNAME_FD_Table_ID+" = ? ";
+	
+	/** 採番情報更新（現在値更新:テーブル情報ID,テーブル項目情報ID） */
+	private final String UPDATE_DATA_COLUMN =
+			"UPDATE "+Table_Name+" SET "
+			+ COLUMNNAME_FD_CurrentNumber+" = ? "
+			+ "WHERE "+COLUMNNAME_FD_Table_ID+" = ? "
+			+ "AND "+COLUMNNAME_FD_Column_ID+ " = ? ";
 	
 	/** 採番情報取得(テーブル名、テーブル項目名) */
 	private final String GET_DATA_By_Column =

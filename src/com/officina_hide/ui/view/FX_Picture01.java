@@ -114,10 +114,9 @@ public class FX_Picture01 extends Application {
 		 */
 		FD_Numbering num = new FD_Numbering(env);
 		String fno = num.getNewNumber(I_FD_File.Table_Name, I_FD_File.COLUMNNAME_FD_File_Code);
-		System.out.println(fno);
-//		file.setValue(I_FD_File.COLUMNNAME_FD_File_Code, "FILE_00001");
-//		file.setValue(I_FD_File.COLUMNNAME_FD_Name, selectFile.getName());
-//		file.save(env);
+		file.setValue(I_FD_File.COLUMNNAME_FD_File_Code, fno);
+		file.setValue(I_FD_File.COLUMNNAME_FD_Name, selectFile.getName());
+		file.save(env);
 	}
 
 	/**

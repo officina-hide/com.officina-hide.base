@@ -60,7 +60,7 @@ public interface I_FD_File extends I_FD_DB {
 	public final String Entry_FD_Number_FD_File_Code =
 			I_FD_Numbering.COLUMNNAME_FD_Table_ID+":@getID:"+Table_Name+","
 			+ I_FD_Numbering.COLUMNNAME_FD_Column_ID+":@getColumnID:"+Table_Name+":"+COLUMNNAME_FD_File_Code+","
-			+ I_FD_Numbering.COLUMNNAME_FD_NumberFormat+":FILE_$n05"+","
+			+ I_FD_Numbering.COLUMNNAME_FD_NumberFormat+":FILE_@n05"+","
 			+ I_FD_Numbering.COLUMNNAME_FD_InitialNumber+":"+"10001";
 	
 }
