@@ -1,8 +1,12 @@
 ﻿package com.officina_hide.base.tools;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.FD_Numbering;
+import com.officina_hide.base.model.FD_Table;
+import com.officina_hide.base.model.I_FD_Column;
 import com.officina_hide.base.model.I_FD_Numbering;
+import com.officina_hide.base.model.I_FD_Table;
 
 /**
  * 基盤情報生成クラス[Infrastructure information generation class]<br>
@@ -32,10 +36,26 @@ public class CreateBaseInformation {
 	 * @since 2022/03/19 Ver. 1.50
 	 */
 	public void execute() {
-		//1.
+		/*
+		 * テーブルをインターフェースクラス内のSQL文で生成する。
+		 * 採番情報の登録（採番情報IDは固定値を使用）→基本情報テーブルの固定値は一覧で管理する。
+		 */
+		//採番情報生成
 		FD_Numbering num = new FD_Numbering(env);
 		num.createTable();
-		num.add(I_FD_Numbering.FD_NUMBERING_ENTRY_DATA);
+		//テーブル情報生成
+		FD_Table table = new FD_Table(env);
+		table.createTable();
+		//テーブル項目情報生成
+		FD_Column column = new FD_Column(env);
+		column.createTable();
+		/*
+		 * 採番情報を登録する。
+		 * 採番情報IDは基本情報の場合、テーブル情報IDと同様とする。
+		 */
+		num.add(I_FD_Table.Entry_FD_Number);
+		num.add(I_FD_Column.Entry_FD_Number);
+		num.add(I_FD_Numbering.Entry_FD_Number);
 	}
 
 }
