@@ -56,6 +56,7 @@ public class CreateBaseInformation {
 		num.add(I_FD_Table.Entry_FD_Number);
 		num.add(I_FD_Column.Entry_FD_Number);
 		num.add(I_FD_Numbering.Entry_FD_Number);
+		table.add(I_FD_Table.Entry_FD_Table);
 	}
 
 }

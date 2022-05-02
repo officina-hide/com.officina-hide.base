@@ -53,4 +53,10 @@ public interface I_FD_Table extends I_FD_DB {
 			I_FD_Numbering.COLUMNNAME_FD_Numbering_ID+":"+Table_ID+","
 			+ I_FD_Numbering.COLUMNNAME_FD_Table_ID+":"+Table_ID + ","
 			+ I_FD_Numbering.COLUMNNAME_FD_InitialNumber+":"+"10001";
+	/** 登録用情報 : テーブル情報 */
+	public final String Entry_FD_Table = 
+			COLUMNNAME_FD_Table_ID+":"+Table_ID+","
+			+ COLUMNNAME_FD_Table_Code+":"+Table_Name+","
+			+ COLUMNNAME_FD_Name+":"+Table_Disp_Name+","
+			+ COLUMNNAME_FD_Description+":"+Table_Comment+"";
 }
