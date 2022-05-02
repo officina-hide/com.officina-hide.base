@@ -23,6 +23,7 @@ public interface I_FD_DB {
 	public static final String COMMENT = " COMMENT ";	
 	public static final String DEFAULT = " DEFAULT ";	
 	public static final String DATETIME = " datetime ";
+	public final String DETAULT_CURRENT_DATE = " default (current_date) ";
 	public static final String VARCHAR = " varchar(n) ";
 	public final String LONGBLOB = " longblob ";
 	public static final String TEXT = " text ";
