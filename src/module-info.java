@@ -6,4 +6,5 @@ module com.officina_hide {
 
 	opens com.officina_hide.project_ad.fx;
 	opens com.officina_hide.ui.view;
+	opens com.officina_hide.medical.ui;
 }
