@@ -28,6 +28,7 @@ public class CreateMedicalProject {
 
 		//医療情報生成
 		CreateMedicalInformation cmi = new CreateMedicalInformation(env);
+		cmi.execute();
 		
 		//開始メッセージ[End message]
 		System.out.println("医療情報管理構成 終了 : "+new Date());
