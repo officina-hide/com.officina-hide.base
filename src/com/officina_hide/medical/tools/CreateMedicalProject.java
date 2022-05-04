@@ -1,10 +1,9 @@
-package com.officina_hide.ui.tools;
+package com.officina_hide.medical.tools;
 
 import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.tools.CreateBaseInformation;
-import com.officina_hide.medical.tools.CreateMedicalInformation;
 
 /**
  * 医療情報プロジェクト生成[Medical information project generation]<br>

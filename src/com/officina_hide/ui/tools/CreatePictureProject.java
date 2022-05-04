@@ -5,6 +5,7 @@ import java.util.Date;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.FD_File;
+import com.officina_hide.base.model.FD_FileData;
 import com.officina_hide.base.model.FD_Numbering;
 import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.I_FD_File;
@@ -38,6 +39,10 @@ public class CreatePictureProject {
 		//ファイル情報生成
 		FD_File file = new FD_File(env);
 		file.createTable();
+		//ファイルデータ情報生成
+		FD_FileData fld = new FD_FileData(env);
+		fld.createTable();
+		
 		table.add(I_FD_File.Entry_FD_Table);
 		num.add(I_FD_File.Entry_FD_Number);
 		column.add(I_FD_File.Entry_FD_Column_FD_File_ID);
