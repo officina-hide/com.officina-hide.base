@@ -151,7 +151,7 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 	 * @param tableId テーブル情報ID
 	 * @return 新規ID[New ID]
 	 */
-	public long getNewId(int tableId) {
+	public long getNewId(long tableId) {
 		long id = 0;
 		PreparedStatement pstmt =null;
 		ResultSet rs = null;
@@ -196,7 +196,8 @@ public class FD_Numbering extends FD_DB implements I_FD_Numbering {
 	private final String UPDATE_DATA =
 			"UPDATE "+Table_Name+" SET "
 			+ COLUMNNAME_FD_CurrentNumber+" = ? "
-			+ "WHERE "+COLUMNNAME_FD_Table_ID+" = ? ";
+			+ "WHERE "+COLUMNNAME_FD_Table_ID+" = ? "
+			+ "AND "+COLUMNNAME_FD_Column_ID+" IS NULL ";
 	
 	/** 採番情報更新（現在値更新:テーブル情報ID,テーブル項目情報ID） */
 	private final String UPDATE_DATA_COLUMN =

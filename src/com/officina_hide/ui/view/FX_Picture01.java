@@ -1,5 +1,6 @@
 package com.officina_hide.ui.view;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -12,8 +13,10 @@ import com.drew.metadata.Metadata;
 import com.drew.metadata.Tag;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Numbering;
+import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.base.model.I_FD_File;
 import com.officina_hide.base.model.X_FD_File;
+import com.officina_hide.base.model.X_FD_FileData;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -41,7 +44,7 @@ import javafx.stage.Stage;
  * @version 1.00 新規作成[Create new]
  * @since 2022/04/16 Ver. 1.00
  */
-public class FX_Picture01 extends Application {
+public class FX_Picture01 extends Application implements I_FD_DB {
 
 	/** 環境情報[Environment information] */
 	private FD_EnvData env;
@@ -51,6 +54,8 @@ public class FX_Picture01 extends Application {
 	private TextField fileName;
 	/** 画面項目 : 画像表示 */
 	private ImageView iv;
+	/** 画像データ */
+	private byte[] fileData;
 	
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -72,7 +77,10 @@ public class FX_Picture01 extends Application {
 				fileName.setText(selectFile.getName());
 				System.out.println(Files.readAttributes(selectFile.toPath(), "*"));
 				System.out.println(Files.readAttributes(selectFile.toPath(), "lastAccessTime").get("lastAccessTime").toString());
-				Image image = new Image(new FileInputStream(selectFile));
+				FileInputStream is = new FileInputStream(selectFile);
+				fileData = is.readAllBytes();
+				is.close();
+				Image image = new Image(new ByteArrayInputStream(fileData));
 				iv.setImage(image);
 				//Exif取得
 				Metadata meta = ImageMetadataReader.readMetadata(selectFile);
@@ -119,7 +127,7 @@ public class FX_Picture01 extends Application {
 	 */
 	private void entryData() {
 		//ファイル情報保存[Save file information]
-		X_FD_File file = new X_FD_File(env, 0);
+		X_FD_File file = new X_FD_File(env, ID_ZERO);
 		//ファイルコード採番
 		FD_Numbering num = new FD_Numbering(env);
 		String fno = num.getNewNumber(I_FD_File.Table_Name, I_FD_File.COLUMNNAME_FD_File_Code);
@@ -127,6 +135,12 @@ public class FX_Picture01 extends Application {
 		file.setValue(I_FD_File.COLUMNNAME_FD_File_Code, fno);
 		file.setValue(I_FD_File.COLUMNNAME_FD_Name, selectFile.getName());
 		file.save(env);
+		//ファイルデータ情報
+		X_FD_FileData fd = new X_FD_FileData(env, ID_ZERO);
+		fd.setFD_File_ID(file.getFD_File_ID());
+		fd.setFD_FileData(fileData);
+		System.out.println(fd.getFD_FileData().toString());
+		fd.save(env);
 	}
 
 	/**

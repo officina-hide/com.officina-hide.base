@@ -71,6 +71,8 @@ public interface I_FD_DB {
 	public static final String FD_Item_Long = "FD_Item_Long";
 	/** テーブル型 : テキスト列 */
 	public static final String FD_Item_Text = "FD_Item_Text";
+	/** テーブル型 : 大容量項目 */
+	public final String FD_Item_LongBlob = "FD_Item_LongBlob";
 	
 	/** 参照グルーブ : 画面項目属性 */
 	public static final String FD_Reference_Group_Field = "View_Field";

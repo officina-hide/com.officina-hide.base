@@ -41,4 +41,13 @@ public interface I_FD_FileData extends I_FD_DB {
 			+") "
 			+"ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=" + FD_SQ + Table_Disp_Name + FD_SQ;
 
+	/** 登録用情報 : テーブル情報 */ 
+	public final String Entry_FD_Table = 
+			I_FD_Table.COLUMNNAME_FD_Table_Code+":"+Table_Name+","
+			+ I_FD_Table.COLUMNNAME_FD_Name+":"+Table_Disp_Name;
+
+	/** 登録用情報 : 採番情報 */
+	public final String Entry_FD_Number =
+			I_FD_Numbering.COLUMNNAME_FD_Table_ID+":@getID:"+Table_Name + ","
+			+ I_FD_Numbering.COLUMNNAME_FD_InitialNumber+":"+"1000001";			
 }
