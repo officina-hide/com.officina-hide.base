@@ -2,6 +2,7 @@ package com.officina_hide.medical.tools;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.medical.model.FM_InspectionData;
+import com.officina_hide.medical.model.FM_InspectionItem;
 
 /**
  * 医療情報生成処理[Medical information generation processing]<br>
@@ -30,6 +31,11 @@ public class CreateMedicalInformation {
 	 * @since 2022/05/02 Ver. 1.00
 	 */
 	public void execute() {
+		//検査項目情報生成
+		FM_InspectionItem item = new FM_InspectionItem(env);
+		item.createTable();
+		
+		
 		FM_InspectionData ind = new FM_InspectionData(env);
 		ind.createTable();
 	}

@@ -26,9 +26,9 @@ public interface I_FM_InspectionData extends I_FD_DB {
 	public final String NAME_FM_Inspection_Title = "検査タイトル";
 	public final int SIZE_FM_Inspection_Title = 200;
 
-	/** テーブル削除用SQL */
-	public static final String Table_Drop_SQL =
-			"DROP TABLE IF EXISTS " + Table_Name;
+//	/** テーブル削除用SQL */
+//	public static final String Table_Drop_SQL =
+//			"DROP TABLE IF EXISTS " + Table_Name;
 
 	/** テーブル生成用SQL */
 	public static final String Table_Create_SQL = 
