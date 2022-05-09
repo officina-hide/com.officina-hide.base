@@ -64,7 +64,7 @@ public interface I_FD_DB {
 			+ "説明は翻訳機能と連携して言語により変換される。";
 	
 	/** テーブル型 : ID */
-	public static final String FD_Item_ID = "FD_Item_ID";
+	public static final String FD_Item_ID = "FD_Item_ID"; 
 	/** テーブル型 : 文字列 */
 	public static final String FD_Item_String = "FD_Item_String";
 	/** テーブル型 : Long列 */
@@ -82,4 +82,8 @@ public interface I_FD_DB {
 			+ COLUMNNAME_FD_CreatedBy + ID_TYPE + COMMENT + FD_SQ + NAME_FD_CreatedBy + FD_SQ + ","
 			+ COLUMNNAME_FD_Updated + DATETIME + COMMENT + FD_SQ + NAME_FD_Updated + FD_SQ + ","
 			+ COLUMNNAME_FD_UpdatedBy + ID_TYPE + COMMENT + FD_SQ + NAME_FD_UpdatedBy + FD_SQ;
+
+	/** テーブル削除用SQL */
+	public static final String SQL_Table_Drop =
+			"DROP TABLE IF EXISTS ? ";
 }

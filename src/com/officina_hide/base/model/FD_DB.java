@@ -80,11 +80,53 @@ public class FD_DB implements I_FD_DB {
 	 * @param where 条件句[Where clause]
 	 * @return 情報IDリスト[Information list]
 	 */
-	public List<Integer> getAllId(FD_EnvData env, String tableName, FD_WhereData where) {
+	public List<Integer> getAllId(FD_EnvData env, long tableName, FD_WhereData where) {
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT ").append(tableName).append("_ID FROM ").append(tableName).append(" ");
 		sql.append("WHERE ").append(where.toString()).append(" ");
 		System.out.println(sql.toString());
 		return null;
+	}
+
+	/**
+	 * テーブル削除[Delete table]<br>
+	 * @author officina-hide.net
+	 * @since 2022/05/09 Ver. 1.50
+	 * @param env 環境情報[Environment information]
+	 * @param tableName テーブル名[Table name]
+	 */
+	public void deleteTable(FD_EnvData env, String tableName) {
+		PreparedStatement pstmt = null;
+		try {
+			connection(env);
+			pstmt = getConn().prepareStatement(SQL_Table_Drop.replace("?", tableName));
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, null);
+		}
+	}
+	
+	/**
+	 * テーブル生成[Generate table]<br>
+	 * @author officina-hide.net
+	 * @since 2022/05/09 Ver. 1.50
+	 * @param env 環境情報[Environment information]
+	 * @param tableName テーブル名[Table name]
+	 * @param tableDispName テーブル表示名[Table comment name]
+	 */
+	public void createTable(FD_EnvData env, String tableName, String tableDispName) {
+		StringBuffer sql = new StringBuffer("CREATE TABLE IF NOT EXISTS ").append("(");
+		sql.append(" ? ");
+		sql.append(")");
+		sql.append("ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT="+ FD_SQ + tableDispName + FD_SQ);
+		
+		//テーブル情報ID取得
+		FD_Table table = new FD_Table(env);
+		long tableId = table.getTableID(tableName);
+		//テーブル項目情報からテーブル項目の一覧を作成する。
+		FD_Column column = new FD_Column(env);
+		String createColumnString = column.getCreateColumnString(tableName);
 	}
 }

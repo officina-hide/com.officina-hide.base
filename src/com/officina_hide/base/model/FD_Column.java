@@ -90,6 +90,19 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 		return id;
 	}
 
+	/**
+	 * テーブル項目登録用SQL文字列生成[SQL string generation for table item registration]<br>
+	 * @author officina-hide.net
+	 * @since 2022/05/09 Ver. 1.00
+	 * @param tableName テーブル名[Table name]
+	 * @return テーブル項目登録用SQL文字列[SQL string generation for table item]
+	 */
+	public String getCreateColumnString(String tableName) {
+		StringBuffer sql = new StringBuffer();
+		//汎用化予定
+		return sql.toString();
+	}
+
 	private final String SQL_GET_COLUMN_ID =
 			"SELECT "+COLUMNNAME_FD_Column_ID+" FROM "+Table_Name+" c "
 			+ "LEFT JOIN "+I_FD_Table.Table_Name+" t ON t."+I_FD_Table.COLUMNNAME_FD_Table_ID
@@ -97,4 +110,7 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 			+ "WHERE t."+I_FD_Table.COLUMNNAME_FD_Table_Code+" = ? "
 			+ "AND c."+COLUMNNAME_FD_Column_Code+" = ? ";
 			
+	private final String SQL_GET_COLUMN_LIST = 
+			"SELECT * FROM @TableName@ "
+			+ "";
 }
