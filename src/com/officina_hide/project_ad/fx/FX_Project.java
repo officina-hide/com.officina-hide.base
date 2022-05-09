@@ -46,7 +46,7 @@ public class FX_Project extends Application implements I_FX_Project {
 		FD_DB db = new FD_DB();
 		FD_WhereData where = new FD_WhereData(I_FX_Field.COLUMNNAME_FX_View_ID,
 				view.getLongValue(I_FX_View.COLUMNNAME_FX_View_ID));
-//		List<Integer> flist = db.getAllId(env, I_FX_Field.Table_Name, where);
+		List<Integer> flist = db.getAllId(env, I_FX_Field.Table_Name, where);
 	}
 
 	public static void main(String[] args) {

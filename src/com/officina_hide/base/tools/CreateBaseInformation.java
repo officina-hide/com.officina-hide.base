@@ -49,8 +49,6 @@ public class CreateBaseInformation {
 		//テーブル項目情報生成
 		FD_Column column = new FD_Column(env);
 		column.createTable();
-		//参照情報生成
-		
 		/*
 		 * 採番情報を登録する。
 		 * 採番情報IDは基本情報の場合、テーブル情報IDと同様とする。

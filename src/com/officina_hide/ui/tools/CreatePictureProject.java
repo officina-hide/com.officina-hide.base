@@ -4,7 +4,6 @@ import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Column;
-import com.officina_hide.base.model.FD_ExtensionType;
 import com.officina_hide.base.model.FD_File;
 import com.officina_hide.base.model.FD_FileData;
 import com.officina_hide.base.model.FD_Numbering;
@@ -38,9 +37,6 @@ public class CreatePictureProject {
 		FD_Column column = new FD_Column(env);
 
 		//プロジェクト情報生成
-		//ファイル拡張子情報
-		FD_ExtensionType et = new FD_ExtensionType(env);
-		et.createTable();
 		//ファイル情報生成
 		FD_File file = new FD_File(env);
 		file.createTable();
@@ -54,9 +50,6 @@ public class CreatePictureProject {
 		fld.createTable();
 		table.add(I_FD_FileData.Entry_FD_Table);
 		num.add(I_FD_FileData.Entry_FD_Number);
-		
-		//開始メッセージ[Start message]
-		System.out.println("画像管理構成 終了 : "+new Date());
 	}
 
 }
