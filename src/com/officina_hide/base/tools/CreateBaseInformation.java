@@ -3,6 +3,8 @@
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.FD_Numbering;
+import com.officina_hide.base.model.FD_Reference;
+import com.officina_hide.base.model.FD_ReferenceGroup;
 import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.I_FD_Column;
 import com.officina_hide.base.model.I_FD_Numbering;
@@ -49,6 +51,11 @@ public class CreateBaseInformation {
 		//テーブル項目情報生成
 		FD_Column column = new FD_Column(env);
 		column.createTable();
+		//参照情報生成
+		FD_Reference ref = new FD_Reference(env);
+		ref.createTable();
+		//参照グループ情報生成
+		FD_ReferenceGroup rfg = new FD_ReferenceGroup(env);
 		/*
 		 * 採番情報を登録する。
 		 * 採番情報IDは基本情報の場合、テーブル情報IDと同様とする。
