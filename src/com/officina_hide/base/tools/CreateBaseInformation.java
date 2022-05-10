@@ -56,6 +56,7 @@ public class CreateBaseInformation {
 		ref.createTable();
 		//参照グループ情報生成
 		FD_ReferenceGroup rfg = new FD_ReferenceGroup(env);
+		rfg.createTable();
 		/*
 		 * 採番情報を登録する。
 		 * 採番情報IDは基本情報の場合、テーブル情報IDと同様とする。
