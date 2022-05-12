@@ -8,6 +8,7 @@ import com.officina_hide.base.model.FD_ReferenceGroup;
 import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.I_FD_Column;
 import com.officina_hide.base.model.I_FD_Numbering;
+import com.officina_hide.base.model.I_FD_Reference;
 import com.officina_hide.base.model.I_FD_ReferenceGroup;
 import com.officina_hide.base.model.I_FD_Table;
 
@@ -60,6 +61,9 @@ public class CreateBaseInformation {
 		rfg.createTable();
 		//参照グループ情報 : テーブル項目グループ登録
 		long rfg_Id = rfg.add(I_FD_ReferenceGroup.Entry_FD_ReferenceGroup_ColumnType);
+		//参照情報 : テーブル項目
+		ref.add(I_FD_Reference.Entry_FD_Reference_FD_Item_ID);
+		
 		/*
 		 * 採番情報を登録する。
 		 * 採番情報IDは基本情報の場合、テーブル情報IDと同様とする。

@@ -36,6 +36,11 @@ public interface I_FD_ReferenceGroup extends I_FD_DB {
 		+") "
 		+"ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=" + FD_SQ + Table_Disp_Name + FD_SQ;
 	
+	/** 情報ID取得用SQL */
+	public final String GET_Reference_ID_SQL =
+			"SELECT "+COLUMNNAME_FD_ReferenceGroup_ID+" FROM "+Table_Name+ " "
+			+ "WHERE "+COLUMNNAME_FD_ReferenceGroup_Code+" = ? ";
+	
 	/** 登録用情報 : テーブル情報 */ 
 	public final String Entry_FD_Table = 
 			I_FD_Table.COLUMNNAME_FD_Table_Code+":"+Table_Name+","

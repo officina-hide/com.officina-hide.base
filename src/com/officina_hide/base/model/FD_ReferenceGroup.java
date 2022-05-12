@@ -1,6 +1,7 @@
 package com.officina_hide.base.model;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
@@ -67,6 +68,34 @@ public class FD_ReferenceGroup extends FD_DB implements I_FD_ReferenceGroup {
 		rfg.save(env);
 		//新規登録のみ
 		return rfg.getFD_ReferenceGroup_ID();
+	}
+
+	/**
+	 * 参照グループ情報ID取得[Getting reference group information ID]<br>
+	 * @author officina-hide.net
+	 * @since 2022/05/12 Ver. 1.50
+	 * @param refGroupName 参照グループ名[Reference group name(code)]
+	 */
+	public long getID(String refGroupName) {
+		long id = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			connection(env);
+			pstmt = getConn().prepareStatement(GET_Reference_ID_SQL);
+			pstmt.setString(1, refGroupName);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				id = rs.getLong(COLUMNNAME_FD_ReferenceGroup_ID);
+			} else {
+				System.out.println("Error!! Reference Group Code not Found!! ["+refGroupName+"]");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
+		return id;
 	}
 
 }

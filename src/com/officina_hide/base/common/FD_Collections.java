@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.officina_hide.base.model.FD_Column;
+import com.officina_hide.base.model.FD_ReferenceGroup;
 import com.officina_hide.base.model.FD_Table;
 
 /**
@@ -39,13 +40,19 @@ public class FD_Collections {
 				break;
 			default:
 				collect.setName(dt[0]);
-				if(dt[1].equals("@getID")) {
+				switch(dt[1]) {
+				case "@getID":
 					//引数[2]のテーブル名でテーブル情報IDを取得しValueにセットする。
 					collect.setValue(getID(env, dt[2]));
-				}
-				if(dt[1].equals("@getColumnID")) {
+					break;
+				case "@getColumnID":
 					FD_Column column = new FD_Column(env);
 					collect.setValue(column.getColumnID(dt[2], dt[3]));
+					break;
+				case "@getRefGroupId":
+					FD_ReferenceGroup refGroup = new FD_ReferenceGroup(env);
+					collect.setValue(refGroup.getID(dt[2]));
+					break;
 				}
 			}
 			list.add(collect);

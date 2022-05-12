@@ -52,4 +52,10 @@ public interface I_FD_Reference extends I_FD_DB {
 			I_FD_Numbering.COLUMNNAME_FD_Numbering_ID+":"+Table_ID+","
 			+ I_FD_Numbering.COLUMNNAME_FD_Table_ID+":"+Table_ID + ","
 			+ I_FD_Numbering.COLUMNNAME_FD_InitialNumber+":"+"100001";
+	
+	/** 登録用情報 : 参照情報（共通）: FD_Item_ID */
+	public final String Entry_FD_Reference_FD_Item_ID =
+			COLUMNNAME_FD_ReferenceGroup_ID+":"+"@getRefGroupId:"+FD_REFGROUP_COLUMN+","
+			+ COLUMNNAME_FD_Reference_Code+":"+FD_Item_ID;
+	
 }
