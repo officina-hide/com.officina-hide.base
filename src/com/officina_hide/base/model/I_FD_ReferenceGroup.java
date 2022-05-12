@@ -31,7 +31,8 @@ public interface I_FD_ReferenceGroup extends I_FD_DB {
 				+ COMMENT + FD_SQ + NAME_FD_ReferenceGroup_ID + FD_SQ + ","
 			+ COLUMNNAME_FD_ReferenceGroup_Code + VARCHAR.replaceAll("n", Integer.toString(SIZE_FD_ReferenceGroup_Code))
 				+ NOT_NULL
-				+ COMMENT + FD_SQ + NAME_FD_ReferenceGroup_Code + FD_SQ + ""
+				+ COMMENT + FD_SQ + NAME_FD_ReferenceGroup_Code + FD_SQ + ","
+			+ COLUMNNAME_FD_Name + VARCHAR.replaceAll("n", Integer.toString(SIZE_FD_Name)) + ""
 		+") "
 		+"ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=" + FD_SQ + Table_Disp_Name + FD_SQ;
 	
@@ -47,4 +48,8 @@ public interface I_FD_ReferenceGroup extends I_FD_DB {
 			+ I_FD_Numbering.COLUMNNAME_FD_Table_ID+":"+Table_ID + ","
 			+ I_FD_Numbering.COLUMNNAME_FD_InitialNumber+":"+"100001";
 
+	/** 登録用情報 : 参照グループ情報（共通）: テーブル項目 */
+	public final String Entry_FD_ReferenceGroup_ColumnType =
+			COLUMNNAME_FD_ReferenceGroup_Code+":"+FD_REFGROUP_COLUMN+","
+			+ COLUMNNAME_FD_Name+":"+"テーブル項目";
 }

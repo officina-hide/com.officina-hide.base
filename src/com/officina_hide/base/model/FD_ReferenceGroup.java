@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Date;
 
+import com.officina_hide.base.common.FD_Collections;
 import com.officina_hide.base.common.FD_EnvData;
 
 /**
@@ -51,6 +52,21 @@ public class FD_ReferenceGroup extends FD_DB implements I_FD_ReferenceGroup {
 		} finally {
 			DBClose(pstmt, null);
 		}
+	}
+
+	/**
+	 * 参照グループ情報登録[Reference group information entry]<br>
+	 * @author officina-hide.net
+	 * @since 2022/05/12 Ver. 1.50
+	 * @param entryData 登録情報[Entry data]
+	 * @return 参照グループ情報ID [Reference group information ID]
+	 */
+	public long add(String entryData) {
+		FD_Collections entry = new FD_Collections(env, entryData);
+		X_FD_ReferenceGroup rfg = new X_FD_ReferenceGroup(env, entry);
+		rfg.save(env);
+		//新規登録のみ
+		return rfg.getFD_ReferenceGroup_ID();
 	}
 
 }

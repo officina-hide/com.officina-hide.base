@@ -64,15 +64,18 @@ public interface I_FD_DB {
 			+ "説明は翻訳機能と連携して言語により変換される。";
 	
 	/** テーブル型 : ID */
-	public static final String FD_Item_ID = "FD_Item_ID"; 
+	public final String FD_Item_ID = "FD_Item_ID"; 
 	/** テーブル型 : 文字列 */
-	public static final String FD_Item_String = "FD_Item_String";
+	public final String FD_Item_String = "FD_Item_String";
 	/** テーブル型 : Long列 */
-	public static final String FD_Item_Long = "FD_Item_Long";
+	public final String FD_Item_Long = "FD_Item_Long";
 	/** テーブル型 : テキスト列 */
-	public static final String FD_Item_Text = "FD_Item_Text";
+	public final String FD_Item_Text = "FD_Item_Text";
 	/** テーブル型 : 大容量項目 */
 	public final String FD_Item_LongBlob = "FD_Item_LongBlob";
+	
+	/** 参照グループ情報（テーブル項目） */
+	public final String FD_REFGROUP_COLUMN = "FD_RefGroup_Column";
 	
 	/** 参照グルーブ : 画面項目属性 */
 	public static final String FD_Reference_Group_Field = "View_Field";
