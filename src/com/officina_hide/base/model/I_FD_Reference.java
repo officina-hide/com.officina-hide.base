@@ -37,7 +37,9 @@ public interface I_FD_Reference extends I_FD_DB {
 				+ COMMENT  + FD_SQ + NAME_FD_ReferenceGroup_ID + FD_SQ + ","
 			+ COLUMNNAME_FD_Reference_Code + VARCHAR.replaceAll("n", Integer.toString(SIZE_FD_Reference_Code))
 				+ NOT_NULL
-				+ COMMENT + FD_SQ + NAME_FD_Reference_Code + FD_SQ + ""
+				+ COMMENT + FD_SQ + NAME_FD_Reference_Code + FD_SQ + ","
+			+ COLUMNNAME_FD_Name + VARCHAR.replaceAll("n", Integer.toString(SIZE_FD_Name))
+				+ COMMENT + FD_SQ + NAME_FD_Name + FD_SQ + ""
 		+") "
 		+"ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=" + FD_SQ + Table_Disp_Name + FD_SQ;
 	
@@ -56,6 +58,7 @@ public interface I_FD_Reference extends I_FD_DB {
 	/** 登録用情報 : 参照情報（共通）: FD_Item_ID */
 	public final String Entry_FD_Reference_FD_Item_ID =
 			COLUMNNAME_FD_ReferenceGroup_ID+":"+"@getRefGroupId:"+FD_REFGROUP_COLUMN+","
-			+ COLUMNNAME_FD_Reference_Code+":"+FD_Item_ID;
+			+ COLUMNNAME_FD_Reference_Code+":"+FD_Item_ID+","
+			+ COLUMNNAME_FD_Name+":"+"情報ID";
 	
 }

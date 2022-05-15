@@ -61,6 +61,7 @@ public class FD_Reference extends FD_DB implements I_FD_Reference {
 	public void add(String entryData) {
 		FD_Collections entry = new FD_Collections(env, entryData);
 		X_FD_Reference ref = new X_FD_Reference(env, entry);
+		ref.save(env);
 	}
 
 }
