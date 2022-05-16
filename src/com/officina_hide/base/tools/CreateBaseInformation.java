@@ -60,9 +60,10 @@ public class CreateBaseInformation {
 		FD_ReferenceGroup rfg = new FD_ReferenceGroup(env);
 		rfg.createTable();
 		//参照グループ情報 : テーブル項目グループ登録
-		long rfg_Id = rfg.add(I_FD_ReferenceGroup.Entry_FD_ReferenceGroup_ColumnType);
+		rfg.add(I_FD_ReferenceGroup.Entry_FD_ReferenceGroup_ColumnType);
 		//参照情報 : テーブル項目
 		ref.add(I_FD_Reference.Entry_FD_Reference_FD_Item_ID);
+		ref.add(I_FD_Reference.Entry_FD_Reference_FD_Item_String);
 		
 		/*
 		 * 採番情報を登録する。
