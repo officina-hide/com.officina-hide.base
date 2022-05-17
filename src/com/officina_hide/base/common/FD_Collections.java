@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.officina_hide.base.model.FD_Column;
+import com.officina_hide.base.model.FD_Reference;
 import com.officina_hide.base.model.FD_ReferenceGroup;
 import com.officina_hide.base.model.FD_Table;
+import com.officina_hide.base.model.I_FD_DB;
 
 /**
  * データ保管クラス[Data collection class]<br>
@@ -52,6 +54,10 @@ public class FD_Collections {
 				case "@getRefGroupId":
 					FD_ReferenceGroup refGroup = new FD_ReferenceGroup(env);
 					collect.setValue(refGroup.getID(dt[2]));
+					break;
+				case "@getItemID":
+					FD_Reference ref = new FD_Reference(env);
+					collect.setValue(ref.getID(I_FD_DB.FD_REFGROUP_COLUMN, I_FD_DB.FD_Item_ID));
 					break;
 				}
 			}

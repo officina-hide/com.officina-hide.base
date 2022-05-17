@@ -1,6 +1,7 @@
 package com.officina_hide.medical.model;
 
 import com.officina_hide.base.model.I_FD_Column;
+import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.base.model.I_FD_Table;
 
 /**
@@ -9,7 +10,7 @@ import com.officina_hide.base.model.I_FD_Table;
  * @version 1.00 新規作成[New create]
  * @since 2022/05/09 Ver. 1.00
  */
-public interface I_FM_InspectionItem {
+public interface I_FM_InspectionItem extends I_FD_DB {
 	
 	/** テーブル名 */
 	public static final String Table_Name = "FM_InspectionItem";
@@ -28,5 +29,6 @@ public interface I_FM_InspectionItem {
 	public final String Entry_FD_Column_FM_InspectionItem_ID =
 			I_FD_Column.COLUMNNAME_FD_Column_Code+":"+COLUMNNAME_FM_InspectionItem_ID+","
 			+ I_FD_Column.COLUMNNAME_FD_Table_ID+":@getID:"+Table_Name+","
-			+ I_FD_Column.COLUMNNAME_FD_Name+":"+NAME_FM_InspectionItem_ID;
+			+ I_FD_Column.COLUMNNAME_FD_Name+":"+NAME_FM_InspectionItem_ID+","
+			+ I_FD_Column.COLUMNNAME_FD_ColumnType_ID+":@getItemID:"+FD_Item_ID;
 }

@@ -38,9 +38,6 @@ public class FM_InspectionData extends FD_DB implements I_FM_InspectionData {
 		deleteTable(env, Table_Name);
 		try {
 			connection(env);
-//			pstmt = getConn().prepareStatement(Table_Drop_SQL);
-//			pstmt.executeUpdate();
-//			pstmt.close();
 			pstmt = getConn().prepareStatement(Table_Create_SQL);
 			pstmt.executeUpdate();
 			System.out.println(Table_Disp_Name+"テーブル構築完了 : " + new Date());

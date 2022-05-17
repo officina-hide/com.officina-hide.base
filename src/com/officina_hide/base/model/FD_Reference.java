@@ -1,6 +1,7 @@
 package com.officina_hide.base.model;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
@@ -64,4 +65,41 @@ public class FD_Reference extends FD_DB implements I_FD_Reference {
 		ref.save(env);
 	}
 
+	/**
+	 * 参照情報ID取得[Getting reference information ID]<br>
+	 * @author officina-hide.net
+	 * @since 2022/05/17 Ver. 1.50
+	 * @param refGroupName 参照グループ名[Reference Group name]
+	 * @param refName 参照名[Reference name]
+	 * @return 参照情報ID[Reference information ID]
+	 */
+	public long getID(String refGroupName, String refName) {
+		long id = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			connection(env);
+			pstmt = getConn().prepareStatement(SQL_Get_ReferenceID);
+			pstmt.setString(1, refGroupName);
+			pstmt.setString(2, refName);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				id = rs.getLong(COLUMNNAME_FD_Reference_ID);
+			} else {
+				System.out.println("参照情報 not Found : "+refGroupName+"、"+refName);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
+		return id;
+	}
+
+	private final String SQL_Get_ReferenceID =
+			"SELECT " + COLUMNNAME_FD_Reference_ID + " FROM " + Table_Name + " r "
+			+ "LEFT JOIN " + I_FD_ReferenceGroup.Table_Name + " rg ON rg." + I_FD_ReferenceGroup.COLUMNNAME_FD_ReferenceGroup_ID
+				+ " = r." + COLUMNNAME_FD_ReferenceGroup_ID + " "
+			+ "WHERE " + "rg."+I_FD_ReferenceGroup.COLUMNNAME_FD_ReferenceGroup_Code + " = ? "
+			+ "AND " + "r."+COLUMNNAME_FD_Reference_Code + " = ? ";
 }

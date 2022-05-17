@@ -16,15 +16,18 @@ public interface I_FD_Column extends I_FD_DB {
 	public final int Table_ID = 102;
 	
 	/** 項目 : テーブル項目情報ID */
-	public static final String COLUMNNAME_FD_Column_ID = Table_Name + "_ID";
-	public static final String NAME_FD_Column_ID = Table_Disp_Name + "ID";
+	public final String COLUMNNAME_FD_Column_ID = Table_Name + "_ID";
+	public final String NAME_FD_Column_ID = Table_Disp_Name + "ID";
 	/** 項目 : テーブル情報ID */
-	public static final String COLUMNNAME_FD_Table_ID = I_FD_Table.COLUMNNAME_FD_Table_ID;
-	public static final String NAME_FD_Table_ID = I_FD_Table.NAME_FD_Table_ID;
+	public final String COLUMNNAME_FD_Table_ID = I_FD_Table.COLUMNNAME_FD_Table_ID;
+	public final String NAME_FD_Table_ID = I_FD_Table.NAME_FD_Table_ID;
 	/** 項目 : テーブル項目コード */
-	public static final String COLUMNNAME_FD_Column_Code = "FD_Column_Code";
-	public static final String NAME_FD_Column_Code = "テーブル項目コード";
-	public static final int SIZE_FD_Column_Code = 100;
+	public final String COLUMNNAME_FD_Column_Code = "FD_Column_Code";
+	public final String NAME_FD_Column_Code = "テーブル項目コード";
+	public final int SIZE_FD_Column_Code = 100;
+	/** 項目 : テーブル項目種別ID（参照情報ID） */
+	public final String COLUMNNAME_FD_ColumnType_ID = "FD_ColumnType_ID";
+	public final String NAME_FD_ColumnType_ID = "テーブル項目種別ID";
 	
 	/** テーブル削除用SQL */
 	public static final String Table_Drop_SQL =
@@ -41,7 +44,10 @@ public interface I_FD_Column extends I_FD_DB {
 			+ COLUMNNAME_FD_Column_Code + VARCHAR.replaceAll("n", Integer.toString(SIZE_FD_Column_Code))
 				+ COMMENT + FD_SQ + NAME_FD_Column_Code + FD_SQ + ","
 			+ COLUMNNAME_FD_Name + VARCHAR.replaceAll("n", Integer.toString(SIZE_FD_Name))
-				+ COMMENT + FD_SQ + NAME_FD_Name + FD_SQ + ""
+				+ COMMENT + FD_SQ + NAME_FD_Name + FD_SQ + ","
+			+ COLUMNNAME_FD_ColumnType_ID + ID_TYPE
+				+ DEFAULT + ID_ZERO + NOT_NULL
+				+ COMMENT + FD_SQ + NAME_FD_ColumnType_ID + FD_SQ + ""
 		+") "
 		+"ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=" + FD_SQ + Table_Disp_Name + FD_SQ;
 	

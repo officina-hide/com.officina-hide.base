@@ -36,10 +36,11 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 	 */
 	private void createColumnList() {
 		columnCollection.clear();
-		columnCollection.add(COLUMNNAME_FD_Column_ID, FD_Item_ID, (long) 0);
+		columnCollection.add(COLUMNNAME_FD_Column_ID, FD_Item_ID, ID_ZERO);
 		columnCollection.add(COLUMNNAME_FD_Column_Code, FD_Item_String);
-		columnCollection.add(COLUMNNAME_FD_Table_ID, FD_Item_ID, (long) 0);
+		columnCollection.add(COLUMNNAME_FD_Table_ID, FD_Item_ID, ID_ZERO);
 		columnCollection.add(COLUMNNAME_FD_Name, FD_Item_String);
+		columnCollection.add(COLUMNNAME_FD_ColumnType_ID, FD_Item_ID, ID_ZERO);
 	}
 
 	/**
