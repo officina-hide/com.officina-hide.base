@@ -117,10 +117,14 @@ public class FD_DB implements I_FD_DB {
 	 * @param tableDispName テーブル表示名[Table comment name]
 	 */
 	public void createTable(FD_EnvData env, String tableName, String tableDispName) {
-		StringBuffer sql = new StringBuffer("CREATE TABLE IF NOT EXISTS ").append("(");
-		sql.append(" ? ");
-		sql.append(")");
-		sql.append("ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT="+ FD_SQ + tableDispName + FD_SQ);
+		StringBuffer sql = new StringBuffer("CREATE TABLE IF NOT EXISTS ").append(tableName)
+				.append("( @columnEntry@ )")
+				.append("ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT="+ FD_SQ + tableDispName + FD_SQ);
+		
+		//ここからは汎用化予定
+		
+		
+		
 		
 		//テーブル情報ID取得
 		FD_Table table = new FD_Table(env);

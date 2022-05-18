@@ -35,11 +35,9 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 	 */
 	public void createTable() {
 		PreparedStatement pstmt = null;
+		deleteTable(env, Table_Name);
 		try {
 			connection(env);
-			pstmt = getConn().prepareStatement(Table_Drop_SQL);
-			pstmt.executeUpdate();
-			pstmt.close();
 			pstmt = getConn().prepareStatement(Table_Create_SQL);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
