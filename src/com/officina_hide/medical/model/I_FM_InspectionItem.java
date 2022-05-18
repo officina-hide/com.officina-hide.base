@@ -20,6 +20,7 @@ public interface I_FM_InspectionItem extends I_FD_DB {
 	/** 項目 : 検査項目情報ID */
 	public final String COLUMNNAME_FM_InspectionItem_ID = Table_Name + "_ID";
 	public final String NAME_FM_InspectionItem_ID = Table_Disp_Name + "ID";
+	public final String COMMENT_FM_InspectionItem_ID = "検査項目を識別する為の情報ID";
 	
 	/** 登録用SQL : テーブル情報 */
 	public final String Entry_FD_Table = 
