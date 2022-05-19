@@ -21,6 +21,11 @@ public interface I_FM_InspectionItem extends I_FD_DB {
 	public final String COLUMNNAME_FM_InspectionItem_ID = Table_Name + "_ID";
 	public final String NAME_FM_InspectionItem_ID = Table_Disp_Name + "ID";
 	public final String COMMENT_FM_InspectionItem_ID = "検査項目を識別する為の情報ID";
+	/** 項目 : 検査項目コード */
+	public final String COLUMNNAME_FM_InspectionItem_Code = "FM_InspectionItem_Code";
+	public final String NAME_FM_InspectionItem_Code = "検査項目コード";
+	public final String COMMENT_FM_InspectionItem_Code = "検査項目を識別する為のコード";
+	public final int SIZE_FM_InspectionItem_Code = 100;
 	
 	/** 登録用SQL : テーブル情報 */
 	public final String Entry_FD_Table = 
@@ -32,4 +37,9 @@ public interface I_FM_InspectionItem extends I_FD_DB {
 			+ I_FD_Column.COLUMNNAME_FD_Table_ID+":@getID:"+Table_Name+","
 			+ I_FD_Column.COLUMNNAME_FD_Name+":"+NAME_FM_InspectionItem_ID+","
 			+ I_FD_Column.COLUMNNAME_FD_ColumnType_ID+":@getItemID:"+FD_Item_ID;
+	public final String Entry_FD_Column_FM_InspectionItem_Code =
+			I_FD_Column.COLUMNNAME_FD_Column_Code+":"+COLUMNNAME_FM_InspectionItem_Code+","
+			+ I_FD_Column.COLUMNNAME_FD_Table_ID+":@getID:"+Table_Name+","
+			+ I_FD_Column.COLUMNNAME_FD_Name+":"+NAME_FM_InspectionItem_Code+","
+			+ I_FD_Column.COLUMNNAME_FD_ColumnType_ID+":@getItemID:"+FD_Item_String;
 }

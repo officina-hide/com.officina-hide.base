@@ -152,23 +152,14 @@ public class FD_DB implements I_FD_DB {
 			pstmt = getConn().prepareStatement(sql.toString().replaceAll("@columnEntry@", columndata.toString()));
 			pstmt.executeUpdate();
 			System.out.println(tableDispName+"テーブル構築完了 : " + new Date());
-//			String sqlStr = sql.toString().replaceAll("@columnEntry@", columndata.toString());
-//			System.out.println(sqlStr);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DBClose(pstmt, rs);
 		}
-		
-		
-//		//テーブル情報ID取得
-//		FD_Table table = new FD_Table(env);
-//		long tableId = table.getTableID(tableName);
-//		//テーブル項目情報からテーブル項目の一覧を作成する。
-//		FD_Column column = new FD_Column(env);
-//		String createColumnString = column.getCreateColumnString(tableName);
 	}
 	
+	/** テーブル項目情報抽出用SQL文 */
 	private final String SQL_Get_ColumnData =
 			"SELECT * FROM " + I_FD_Column.Table_Name + " c "
 			+ "LEFT JOIN " + I_FD_Table.Table_Name + " t ON t." + I_FD_Table.COLUMNNAME_FD_Table_ID + " = "
