@@ -10,6 +10,7 @@ public interface I_FD_DB {
 	
 	/** 汎用定数 */
 	public final long ID_ZERO = 0;
+	public final int INT_ZERO = 0;
 	
 	/** SQL文補助 */
 	public final static String FD_SQ = "'";	//シングルコーテーション
@@ -69,6 +70,8 @@ public interface I_FD_DB {
 	public final String FD_Item_String = "FD_Item_String";
 	/** テーブル型 : Long列 */
 	public final String FD_Item_Long = "FD_Item_Long";
+	/** テーブル型 : int列 */
+	public final String FD_Item_Int = "FD_Item_Int";
 	/** テーブル型 : テキスト列 */
 	public final String FD_Item_Text = "FD_Item_Text";
 	/** テーブル型 : 大容量項目 */

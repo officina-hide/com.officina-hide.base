@@ -91,6 +91,7 @@ public class FD_ColumnDataCollection implements I_FD_DB {
 			switch(cd.getColumnType()) {
 			case FD_Item_ID:
 			case FD_Item_Long:
+			case FD_Item_Int:
 				value.append(cd.getColumnData());
 				break;
 			case FD_Item_String:
@@ -131,6 +132,9 @@ public class FD_ColumnDataCollection implements I_FD_DB {
 			case FD_Item_ID:
 			case FD_Item_Long:
 				cl.setColumnData(Long.parseLong(co.getValue()));
+				break;
+			case FD_Item_Int:
+				cl.setColumnData(Integer.parseInt(co.getValue()));
 				break;
 			case FD_Item_String:
 			case FD_Item_Text:

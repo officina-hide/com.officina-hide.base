@@ -36,6 +36,7 @@ public class FM_InspectionItem extends FD_DB implements I_FM_InspectionItem {
 		table.add(Entry_FD_Table);
 		FD_Column column = new FD_Column(env);
 		column.add(Entry_FD_Column_FM_InspectionItem_ID);
+		column.add(Entry_FD_Column_FM_InspectionItem_Code);
 		
 		deleteTable(env, Table_Name);
 		createTable(env, Table_Name, Table_Disp_Name);
