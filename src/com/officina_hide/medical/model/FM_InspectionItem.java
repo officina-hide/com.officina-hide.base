@@ -37,9 +37,20 @@ public class FM_InspectionItem extends FD_DB implements I_FM_InspectionItem {
 		FD_Column column = new FD_Column(env);
 		column.add(Entry_FD_Column_FM_InspectionItem_ID);
 		column.add(Entry_FD_Column_FM_InspectionItem_Code);
+		column.add(Entry_FD_Column_FD_Name);
 		
 		deleteTable(env, Table_Name);
 		createTable(env, Table_Name, Table_Disp_Name);
 	}
+
+	/**
+	 * 情報登録[Data entry]<br>
+	 * @author officina-hide.net
+	 * @since 2022/05/23 Ver. 1.00
+	 * @param entryData 登録情報
+	 */
+	public void add(String entryData) {
+		X_FM_InspectionItem item = new X_FM_InspectionItem(env, entryData);
+ 	}
 
 }

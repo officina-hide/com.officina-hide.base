@@ -153,7 +153,6 @@ public class FD_DB implements I_FD_DB {
 			}
 			pstmt.close();
 			pstmt = getConn().prepareStatement(sql.toString().replaceAll("@columnEntry@", columndata.toString()));
-			System.out.println(pstmt.toString());
 			pstmt.executeUpdate();
 			System.out.println(tableDispName+"テーブル構築完了 : " + new Date());
 		} catch (SQLException e) {

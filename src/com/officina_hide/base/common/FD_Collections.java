@@ -57,7 +57,7 @@ public class FD_Collections {
 					break;
 				case "@getItemID":
 					FD_Reference ref = new FD_Reference(env);
-					collect.setValue(ref.getID(I_FD_DB.FD_REFGROUP_COLUMN, I_FD_DB.FD_Item_ID));
+					collect.setValue(ref.getID(I_FD_DB.FD_REFGROUP_COLUMN, dt[2]));
 					break;
 				}
 			}
