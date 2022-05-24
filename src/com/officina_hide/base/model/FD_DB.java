@@ -161,13 +161,13 @@ public class FD_DB implements I_FD_DB {
 			DBClose(pstmt, rs);
 		}
 	}
-	
-	/** テーブル項目情報抽出用SQL文 */
-	private final String SQL_Get_ColumnData =
-			"SELECT * FROM " + I_FD_Column.Table_Name + " c "
-			+ "LEFT JOIN " + I_FD_Table.Table_Name + " t ON t." + I_FD_Table.COLUMNNAME_FD_Table_ID + " = "
-				+ "c." + I_FD_Column.COLUMNNAME_FD_Table_ID + " "
-			+ "LEFT JOIN " + I_FD_Reference.Table_Name + " r ON r." + I_FD_Reference.COLUMNNAME_FD_Reference_ID + " = "
-				+ "c." + I_FD_Column.COLUMNNAME_FD_ColumnType_ID + " "
-			+ "WHERE t." + I_FD_Table.COLUMNNAME_FD_Table_Code + " = ? ";
+//	
+//	/** テーブル項目情報抽出用SQL文 */
+//	private final String SQL_Get_ColumnData =
+//			"SELECT * FROM " + I_FD_Column.Table_Name + " c "
+//			+ "LEFT JOIN " + I_FD_Table.Table_Name + " t ON t." + I_FD_Table.COLUMNNAME_FD_Table_ID + " = "
+//				+ "c." + I_FD_Column.COLUMNNAME_FD_Table_ID + " "
+//			+ "LEFT JOIN " + I_FD_Reference.Table_Name + " r ON r." + I_FD_Reference.COLUMNNAME_FD_Reference_ID + " = "
+//				+ "c." + I_FD_Column.COLUMNNAME_FD_ColumnType_ID + " "
+//			+ "WHERE t." + I_FD_Table.COLUMNNAME_FD_Table_Code + " = ? ";
 }

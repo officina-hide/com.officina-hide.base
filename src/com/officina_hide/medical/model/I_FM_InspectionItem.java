@@ -49,7 +49,7 @@ public interface I_FM_InspectionItem extends I_FD_DB {
 	public final String Entry_FD_Column_FD_Name =
 			I_FD_Column.COLUMNNAME_FD_Column_Code+":"+COLUMNNAME_FD_Name+","
 			+ I_FD_Column.COLUMNNAME_FD_Table_ID+":@getID:"+Table_Name+","
-			+ I_FD_Column.COLUMNNAME_FD_Name+":"+NAME_FM_InspectionItem_Code+","
+			+ I_FD_Column.COLUMNNAME_FD_Name+":"+NAME_FD_Name+","
 			+ I_FD_Column.COLUMNNAME_FD_ColumnType_ID+":@getItemID:"+FD_Item_String+","
 			+ I_FD_Column.COLUMNNAME_FD_Column_Size+":"+I_FM_InspectionItem.SIZE_FD_Name+"";
 	

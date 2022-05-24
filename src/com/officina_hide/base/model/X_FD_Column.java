@@ -1,9 +1,11 @@
 package com.officina_hide.base.model;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.officina_hide.base.common.FD_Collections;
+import com.officina_hide.base.common.FD_ColumnData;
 import com.officina_hide.base.common.FD_EnvData;
 
 /**
@@ -16,6 +18,16 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 
 	/** 項目 : テーブル項目情報ID */
 	private long FD_Column_ID;
+	/** 項目 : テーブル項目コード */
+	private String FD_Column_Code;
+	/** 項目 : テーブル項目種別 */
+	private long FD_ColumnType_ID;
+	/** 情報 : テーブル項目種別（参照情報） */
+	private X_FD_Reference FD_ColumnType;
+	/** 情報 : テーブル項目名 */
+	private String FD_Name;
+	/** 情報 : テーブル項目サイズ */
+	private int FD_Column_Size;
 	
 	/**
 	 * コンストラクター[Constructor]<br>
@@ -26,6 +38,57 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 	public X_FD_Column(FD_Collections entry) {
 		createColumnList();
 		columnCollection.setData(entry);
+	}
+
+	/**
+	 * コンストラクター[Constructor]<br>
+	 * @author officina-hide.net
+	 * @since 2022/05/24 Ver. 1.50
+	 * @param env 環境情報[Environment information]
+	 * @param id テーブル項目情報ID[Table item information ID]
+	 */
+	public X_FD_Column(FD_EnvData env, long id) {
+		createColumnList();
+		if(id > 0) {
+			load(env, id);
+		}
+	}
+
+	/**
+	 * 情報取得[Load data]<br>
+	 * TODO 汎用化予定(2021/05/24)
+	 * @author officina-hide.net
+	 * @since 2022/05/24 Ver. 1.50
+	 * @param env 環境情報[Environment information]
+	 * @param columnId テーブル項目情報ID[Table item information ID]
+	 */
+	private void load(FD_EnvData env, long columnId) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			connection(env);
+			pstmt = getConn().prepareStatement(SQL_Get_ColumnData);
+			pstmt.setLong(1, columnId);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				for(FD_ColumnData cd : columnCollection.getList()) {
+					switch(cd.getColumnType()) {
+					case FD_Item_ID:
+						cd.setColumnData(rs.getLong(cd.getColumnName()));
+						break;
+					case FD_Item_String:
+						cd.setColumnData(rs.getString(cd.getColumnName()));
+						break;
+					}
+				}
+			} else {
+				System.out.println("Errot!! FD_Column ID not found : ["+columnId+"]");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
 	}
 
 	/**
@@ -73,6 +136,23 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 		}
 	}
 
+	/**
+	 * 値取得[Getting value by column name]<br>
+	 * @author officina-hide.net
+	 * @since 2022/05/24 Ver. 1.50
+	 * @param columnName テーブル項目名[Column name]
+	 * @return 値[Value]
+	 */
+	public Object getValue(String columnName) {
+		for(FD_ColumnData cd : columnCollection.getList()) {
+			if(cd.getColumnName().equals(columnName)) {
+				return cd.getColumnData();
+			}
+		}
+		System.out.println("Error!! Column not found ["+columnName+"]");
+		return null;
+	}
+
 	public long getFD_Column_ID() {
 		FD_Column_ID = (long) columnCollection.getValue(COLUMNNAME_FD_Column_ID);
 		return FD_Column_ID;
@@ -80,5 +160,44 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 	public void setFD_Column_ID(long columnId) {
 		columnCollection.setValue(COLUMNNAME_FD_Column_ID, columnId);
 	}
+	public String getFD_Column_Code() {
+		FD_Column_Code = (String) columnCollection.getValue(COLUMNNAME_FD_Column_Code);
+		return FD_Column_Code;
+	}
+	public void setFD_Column_Code(String columnCode) {
+		columnCollection.setValue(COLUMNNAME_FD_Column_Code, columnCode);
+	}
+	public long getFD_ColumnType_ID() {
+		FD_ColumnType_ID = (long) columnCollection.getValue(COLUMNNAME_FD_ColumnType_ID);
+		return FD_ColumnType_ID;
+	}
+	public void setFD_ColumnType_ID(long columnTypeId) {
+		columnCollection.setValue(COLUMNNAME_FD_ColumnType_ID, columnTypeId);
+	}
+	public String getFD_Name() {
+		FD_Name = (String) columnCollection.getValue(COLUMNNAME_FD_Name);
+		return FD_Name;
+	}
+	public void setFD_Name(String name) {
+		columnCollection.setValue(COLUMNNAME_FD_Name, name);
+	}
+	public int getFD_Column_Size() {
+		FD_Column_Size = (int) columnCollection.getValue(COLUMNNAME_FD_Column_Size);
+		return FD_Column_Size;
+	}
+	public void setFD_Column_Size(int columnSize) {
+		columnCollection.setValue(COLUMNNAME_FD_Column_Size, columnSize);
+	}
+	public X_FD_Reference getFD_ColumnType(FD_EnvData env) {
+		X_FD_Reference ref = null;
+		if(getFD_ColumnType_ID() > 0) {
+			ref = new X_FD_Reference(env, getFD_ColumnType_ID());
+		}
+		return ref;
+	}
 
+	/** テーブル項目情報抽出（情報ID） */
+	private final String SQL_Get_ColumnData =
+			"SELECT * FROM " + Table_Name + " "
+			+ "WHERE " + COLUMNNAME_FD_Column_ID + " = ? ";
 }

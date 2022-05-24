@@ -29,6 +29,31 @@ public class X_FD_Reference extends FD_DB implements I_FD_Reference {
 	}
 
 	/**
+	 * コンストラクター[Constructor]<br>
+	 * @author officina-hide.net
+	 * @since 2022/05/24 Ver. 1.50
+	 * @param env 環境情報[Environment information]
+	 * @param referenceId 参照情報ID[Reference information ID]
+	 */
+	public X_FD_Reference(FD_EnvData env, long referenceId) {
+		createColumnList();
+		if(referenceId > 0) {
+			load(env, referenceId);
+		}
+	}
+
+	/**
+	 * 情報取得[Data load]<br>
+	 * @author officina-hide.net
+	 * @since 2022/05/24 Ver. 1.50
+	 * @param env 環境情報[Environment information]
+	 * @param referenceId 参照情報ID[Reference information ID]
+	 */
+	private void load(FD_EnvData env, long referenceId) {
+		
+	}
+
+	/**
 	 * 参照情報テーブル項目リスト生成[Reference information table Item list generation]<br>
 	 * @author officina-hide.net
 	 * @since 2022/05/13 Ver. 1.50
