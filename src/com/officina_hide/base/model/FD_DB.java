@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
+import com.officina_hide.base.common.FD_ColumnData;
 import com.officina_hide.base.common.FD_ColumnDataCollection;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_WhereData;
@@ -161,13 +162,50 @@ public class FD_DB implements I_FD_DB {
 			DBClose(pstmt, rs);
 		}
 	}
-//	
-//	/** テーブル項目情報抽出用SQL文 */
-//	private final String SQL_Get_ColumnData =
-//			"SELECT * FROM " + I_FD_Column.Table_Name + " c "
-//			+ "LEFT JOIN " + I_FD_Table.Table_Name + " t ON t." + I_FD_Table.COLUMNNAME_FD_Table_ID + " = "
-//				+ "c." + I_FD_Column.COLUMNNAME_FD_Table_ID + " "
-//			+ "LEFT JOIN " + I_FD_Reference.Table_Name + " r ON r." + I_FD_Reference.COLUMNNAME_FD_Reference_ID + " = "
-//				+ "c." + I_FD_Column.COLUMNNAME_FD_ColumnType_ID + " "
-//			+ "WHERE t." + I_FD_Table.COLUMNNAME_FD_Table_Code + " = ? ";
+	
+	/**
+	 * 情報取得[Getting data]<br>
+	 * @author officina-hide.net
+	 * @since 2022/05/25 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param id 情報ID[Information ID]
+	 * @param tableName テーブル名[Table name]
+	 * @return
+	 */
+	public boolean load(FD_EnvData env, long id, String tableName) {
+		boolean chk = false;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		try {
+			sql.append("SELECT * FROM ").append(tableName).append(" ");
+			sql.append("WHERE ").append(tableName).append("_ID = ? ");
+			connection(env);
+			pstmt = getConn().prepareStatement(sql.toString());
+			pstmt.setLong(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				for(FD_ColumnData cd : columnCollection.getList()) {
+					switch(cd.getColumnType()) {
+					case FD_Item_ID:
+						cd.setColumnData(rs.getLong(cd.getColumnName()));
+						break;
+					case FD_Item_String:
+						cd.setColumnData(rs.getString(cd.getColumnName()));
+						break;
+					default:
+						System.out.println("Error Type Not Exception ["+cd.getColumnType()+"]");
+					}
+				}
+			} else {
+				System.out.println("Error!! Data Not Found ["+id+"]");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
+		
+		return  chk;
+	}
 }

@@ -50,7 +50,7 @@ public class X_FD_Reference extends FD_DB implements I_FD_Reference {
 	 * @param referenceId 参照情報ID[Reference information ID]
 	 */
 	private void load(FD_EnvData env, long referenceId) {
-		
+		load(env, referenceId, Table_Name);
 	}
 
 	/**
