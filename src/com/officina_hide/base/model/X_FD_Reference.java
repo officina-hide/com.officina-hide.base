@@ -15,6 +15,8 @@ public class X_FD_Reference extends FD_DB implements I_FD_Reference {
 
 	/** 項目 : 参照情報ID */
 	private long FD_Reference_ID;
+	/** 項目 : 参照コード */
+	private String FD_Reference_Code;
 	
 	/**
 	 * コンストラクター[Constructor]<br>
@@ -104,6 +106,13 @@ public class X_FD_Reference extends FD_DB implements I_FD_Reference {
 	}
 	public void setFD_Reference_ID(long referenceId) {
 		columnCollection.setValue(COLUMNNAME_FD_Reference_ID, referenceId);
+	}
+	public String getFD_Reference_Code() {
+		FD_Reference_Code = (String) columnCollection.getValue(COLUMNNAME_FD_Reference_Code);
+		return FD_Reference_Code;
+	}
+	public void setFD_Reference_Code(String referenceCode) {
+		columnCollection.setValue(COLUMNNAME_FD_Reference_Code, referenceCode);
 	}
 
 }

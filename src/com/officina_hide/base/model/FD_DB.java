@@ -23,6 +23,8 @@ public class FD_DB implements I_FD_DB {
 
 	/** テーブル項目リスト */
 	public FD_ColumnDataCollection columnCollection = new FD_ColumnDataCollection();
+	/** 共通項目 : 名前 */
+	private String FD_Name;
 	
 	/** データベース接続情報[Database connection information] */
 	private static Connection conn = null;
@@ -200,6 +202,8 @@ public class FD_DB implements I_FD_DB {
 			} else {
 				System.out.println("Error!! Data Not Found ["+id+"]");
 			}
+			//取得成功
+			chk = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -207,5 +211,29 @@ public class FD_DB implements I_FD_DB {
 		}
 		
 		return  chk;
+	}
+
+	/**
+	 * 情報登録[Data save]<br>
+	 * @author officina-hide.net
+	 * @since 2022/05/26 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param tableName テーブル名[Table name]
+	 * @return success - true, error - false;
+	 */
+	public boolean save(FD_EnvData env, String tableName) {
+		boolean chk = false;
+		long id = (long) columnCollection.getItem(tableName+"_ID").getColumnData();
+		System.out.println(id);
+		return chk;
+	}
+	
+	/** 項目Setter,Getter */
+	public String getFD_Name() {
+		FD_Name = (String) columnCollection.getValue(COLUMNNAME_FD_Name);
+		return FD_Name;
+	}
+	public void setFD_Name(String fdName) {
+		columnCollection.setValue(COLUMNNAME_FD_Name, fdName);
 	}
 }

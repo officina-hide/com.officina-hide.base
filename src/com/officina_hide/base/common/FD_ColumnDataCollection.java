@@ -57,6 +57,7 @@ public class FD_ColumnDataCollection implements I_FD_DB {
 				return cd;
 			}
 		}
+		System.out.println("Error!! Item Not Found ["+dataName+"]");
 		return null;
 	}
 
@@ -140,6 +141,8 @@ public class FD_ColumnDataCollection implements I_FD_DB {
 			case FD_Item_Text:
 				cl.setColumnData(co.getValue());
 				break;
+			default:
+				System.out.println("Error column type not found ["+cl.getColumnType()+"]");
 			}
 		}
 	}

@@ -189,11 +189,11 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 		columnCollection.setValue(COLUMNNAME_FD_Column_Size, columnSize);
 	}
 	public X_FD_Reference getFD_ColumnType(FD_EnvData env) {
-		X_FD_Reference ref = null;
+		FD_ColumnType = null;
 		if(getFD_ColumnType_ID() > 0) {
-			ref = new X_FD_Reference(env, getFD_ColumnType_ID());
+			FD_ColumnType = new X_FD_Reference(env, getFD_ColumnType_ID());
 		}
-		return ref;
+		return FD_ColumnType;
 	}
 
 	/** テーブル項目情報抽出（情報ID） */

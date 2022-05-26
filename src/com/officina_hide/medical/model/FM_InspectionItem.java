@@ -1,5 +1,6 @@
 package com.officina_hide.medical.model;
 
+import com.officina_hide.base.common.FD_Collections;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.FD_DB;
@@ -50,7 +51,10 @@ public class FM_InspectionItem extends FD_DB implements I_FM_InspectionItem {
 	 * @param entryData 登録情報
 	 */
 	public void add(String entryData) {
-		X_FM_InspectionItem item = new X_FM_InspectionItem(env, entryData);
+		FD_Collections entry = new FD_Collections(env, entryData);
+		X_FM_InspectionItem item = new X_FM_InspectionItem(env, entry);
+		//新規追加のみ
+		item.save(env);
  	}
 
 }

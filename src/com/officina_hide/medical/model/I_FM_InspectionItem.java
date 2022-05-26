@@ -55,6 +55,6 @@ public interface I_FM_InspectionItem extends I_FD_DB {
 	
 	/** 検査項目 : 最高血圧 */
 	public final String Entry_MaxBloodPressure =
-			COLUMNNAME_FM_InspectionItem_Code+":"+"9A751000000099501"
+			COLUMNNAME_FM_InspectionItem_Code+":"+"9A751000000099501"+","
 			+ COLUMNNAME_FD_Name+":"+"収縮期血圧";
 }
