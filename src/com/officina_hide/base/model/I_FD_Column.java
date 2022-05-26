@@ -31,6 +31,11 @@ public interface I_FD_Column extends I_FD_DB {
 	/** 項目 : 項目桁数 */
 	public final String COLUMNNAME_FD_Column_Size = "FD_Column_Size";
 	public final String NAME_FD_Column_Size = "項目桁数";
+	/** 項目 : 初期値 */
+	public final String COLUMNNAME_FD_Column_DefaultValue = "FD_Column_DefaultValue";
+	public final String NAME_FD_Column_DefaultValue = "テーブル項目初期値";
+	public final String COMMENT_FD_Column_DefaultValue = "項目に初期設定される値（文字列で登録し各項目の属性で設定される）";
+	public final int SIZE_FD_Column_DefaultValue = 100;
 	
 	/** テーブル削除用SQL */
 	public static final String Table_Drop_SQL =
@@ -53,7 +58,9 @@ public interface I_FD_Column extends I_FD_DB {
 				+ COMMENT + FD_SQ + NAME_FD_ColumnType_ID + FD_SQ + ","
 			+ COLUMNNAME_FD_Column_Size + UNSIGNED_INT
 				+ DEFAULT + ID_ZERO
-				+ COMMENT + FD_SQ + NAME_FD_Column_Size + FD_SQ + ""
+				+ COMMENT + FD_SQ + NAME_FD_Column_Size + FD_SQ + ","
+			+ COLUMNNAME_FD_Column_DefaultValue + VARCHAR.replaceAll("n", Integer.toString(SIZE_FD_Column_DefaultValue))
+				+ COMMENT + FD_SQ + NAME_FD_Column_DefaultValue + FD_SQ + ""
 		+") "
 		+"ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=" + FD_SQ + Table_Disp_Name + FD_SQ;
 	

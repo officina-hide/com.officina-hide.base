@@ -24,10 +24,10 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 	private long FD_ColumnType_ID;
 	/** 情報 : テーブル項目種別（参照情報） */
 	private X_FD_Reference FD_ColumnType;
-	/** 情報 : テーブル項目名 */
-	private String FD_Name;
-	/** 情報 : テーブル項目サイズ */
+	/** 項目 : テーブル項目サイズ */
 	private int FD_Column_Size;
+	/** 項目 : テーブル項目初期値 */
+	private String FD_Column_DefaultValue;
 	
 	/**
 	 * コンストラクター[Constructor]<br>
@@ -105,6 +105,7 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 		columnCollection.add(COLUMNNAME_FD_Name, FD_Item_String);
 		columnCollection.add(COLUMNNAME_FD_ColumnType_ID, FD_Item_ID, ID_ZERO);
 		columnCollection.add(COLUMNNAME_FD_Column_Size, FD_Item_Int, INT_ZERO);
+		columnCollection.add(COLUMNNAME_FD_Column_DefaultValue, FD_Item_String);
 	}
 
 	/**
@@ -174,13 +175,6 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 	public void setFD_ColumnType_ID(long columnTypeId) {
 		columnCollection.setValue(COLUMNNAME_FD_ColumnType_ID, columnTypeId);
 	}
-	public String getFD_Name() {
-		FD_Name = (String) columnCollection.getValue(COLUMNNAME_FD_Name);
-		return FD_Name;
-	}
-	public void setFD_Name(String name) {
-		columnCollection.setValue(COLUMNNAME_FD_Name, name);
-	}
 	public int getFD_Column_Size() {
 		FD_Column_Size = (int) columnCollection.getValue(COLUMNNAME_FD_Column_Size);
 		return FD_Column_Size;
@@ -194,6 +188,13 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 			FD_ColumnType = new X_FD_Reference(env, getFD_ColumnType_ID());
 		}
 		return FD_ColumnType;
+	}
+	public String getFD_Column_DefaultValue() {
+		FD_Column_DefaultValue = (String) columnCollection.getValue(COLUMNNAME_FD_Column_DefaultValue);
+		return FD_Column_DefaultValue;
+	}
+	public void setFD_Column_DefaultValue(String defaultValue) {
+		columnCollection.setValue(COLUMNNAME_FD_Column_DefaultValue, defaultValue);
 	}
 
 	/** テーブル項目情報抽出（情報ID） */

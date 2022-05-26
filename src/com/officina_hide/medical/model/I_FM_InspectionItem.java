@@ -37,7 +37,8 @@ public interface I_FM_InspectionItem extends I_FD_DB {
 			I_FD_Column.COLUMNNAME_FD_Column_Code+":"+COLUMNNAME_FM_InspectionItem_ID+","
 			+ I_FD_Column.COLUMNNAME_FD_Table_ID+":@getID:"+Table_Name+","
 			+ I_FD_Column.COLUMNNAME_FD_Name+":"+NAME_FM_InspectionItem_ID+","
-			+ I_FD_Column.COLUMNNAME_FD_ColumnType_ID+":@getItemID:"+FD_Item_ID;
+			+ I_FD_Column.COLUMNNAME_FD_ColumnType_ID+":@getItemID:"+FD_Item_ID+","
+			+ I_FD_Column.COLUMNNAME_FD_Column_DefaultValue+":"+ID_ZERO+"";
 	/** 登録用情報 : テーブル項目情報 : 検査項目コード */
 	public final String Entry_FD_Column_FM_InspectionItem_Code =
 			I_FD_Column.COLUMNNAME_FD_Column_Code+":"+COLUMNNAME_FM_InspectionItem_Code+","

@@ -223,8 +223,8 @@ public class FD_DB implements I_FD_DB {
 	 */
 	public boolean save(FD_EnvData env, String tableName) {
 		boolean chk = false;
-		long id = (long) columnCollection.getItem(tableName+"_ID").getColumnData();
-		System.out.println(id);
+//		long id = (long) columnCollection.getItem(tableName+"_ID").getColumnData();
+//		System.out.println(id);
 		return chk;
 	}
 	
