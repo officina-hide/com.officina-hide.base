@@ -4,6 +4,7 @@ import com.officina_hide.base.common.FD_Collections;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.FD_DB;
+import com.officina_hide.base.model.FD_Numbering;
 import com.officina_hide.base.model.FD_Table;
 
 /**
@@ -42,6 +43,9 @@ public class FM_InspectionItem extends FD_DB implements I_FM_InspectionItem {
 		
 		deleteTable(env, Table_Name);
 		createTable(env, Table_Name, Table_Disp_Name);
+		//採番情報登録
+		FD_Numbering num = new FD_Numbering(env);
+		num.add(Entry_FD_Number);
 	}
 
 	/**

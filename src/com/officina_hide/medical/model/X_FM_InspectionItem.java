@@ -57,7 +57,22 @@ public class X_FM_InspectionItem extends FD_DB implements I_FM_InspectionItem {
 			while(rs.next()) {
 				long id = rs.getLong(I_FD_Column.COLUMNNAME_FD_Column_ID);
 				X_FD_Column column = new X_FD_Column(env, id);
-				columnCollection.add(column.getFD_Column_Code(), column.getFD_ColumnType(env).getFD_Reference_Code());
+				if(column.getFD_Column_DefaultValue() != null && column.getFD_Column_DefaultValue().length() > 0) {
+					switch(column.getFD_ColumnType(env).getFD_Reference_Code()) {
+					case FD_Item_ID:
+						columnCollection.add(column.getFD_Column_Code(), column.getFD_ColumnType(env).getFD_Reference_Code(),
+								Long.parseLong(column.getFD_Column_DefaultValue()));
+						break;
+					case FD_Item_String:
+						columnCollection.add(column.getFD_Column_Code(), column.getFD_ColumnType(env).getFD_Reference_Code(),
+								column.getFD_Column_DefaultValue());
+						break;
+						default:
+							System.out.println("Error Default Value Type Name ["+column.getFD_ColumnType(env).getFD_Reference_Code()+"]");
+					}
+				} else {
+					columnCollection.add(column.getFD_Column_Code(), column.getFD_ColumnType(env).getFD_Reference_Code());
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

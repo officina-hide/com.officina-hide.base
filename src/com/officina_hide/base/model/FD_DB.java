@@ -223,8 +223,14 @@ public class FD_DB implements I_FD_DB {
 	 */
 	public boolean save(FD_EnvData env, String tableName) {
 		boolean chk = false;
-//		long id = (long) columnCollection.getItem(tableName+"_ID").getColumnData();
-//		System.out.println(id);
+		long id = (long) columnCollection.getItem(tableName+"_ID").getColumnData();
+		if(id == 0) {
+			//新規採番
+			FD_Numbering num = new FD_Numbering(env);
+			FD_Table table = new FD_Table(env);
+			id = num.getNewId(table.getTableID(tableName));
+			System.out.println(id);
+		}
 		return chk;
 	}
 	
