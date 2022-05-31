@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+#menu{
+float:left;
+width: 200px;
+}
+
+#main{
+float:right;
+width: 400px;
+}
