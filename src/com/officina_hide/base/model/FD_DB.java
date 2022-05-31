@@ -139,12 +139,13 @@ public class FD_DB implements I_FD_DB {
 				}
 				columndata.append(rs.getString(I_FD_Column.COLUMNNAME_FD_Column_Code));
 				String idType = rs.getString(I_FD_Reference.COLUMNNAME_FD_Reference_Code);
+				int size = rs.getInt(I_FD_Column.COLUMNNAME_FD_Column_Size);
 				switch(idType) {
 				case FD_Item_ID:
 					columndata.append(ID_KEY_TYPE);
 					break;
 				case FD_Item_String:
-					columndata.append(UNSIGNED_INT);
+					columndata.append(VARCHAR.replaceAll("n", Integer.toString(size)));
 					break;
 				default:
 					System.out.println("Error!! Column Data not Found!! ["+idType+"]");
@@ -229,8 +230,26 @@ public class FD_DB implements I_FD_DB {
 			FD_Numbering num = new FD_Numbering(env);
 			FD_Table table = new FD_Table(env);
 			id = num.getNewId(table.getTableID(tableName));
-			System.out.println(id);
+			columnCollection.getItem(tableName+"_ID").setColumnData(id);
 		}
+		//新規登録のみ
+		PreparedStatement pstmt = null;
+		try {
+			connection(env);
+			pstmt  = getConn().prepareStatement(columnCollection.getInsertSQL(tableName));
+			int rs = pstmt.executeUpdate();
+			if(rs == 0) {
+				System.out.println("Error!! Save Error ["+tableName+"]");
+			} else {
+				chk = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, null);
+		}
+		System.out.println(tableName+"登録完了["+id+"]");
+		
 		return chk;
 	}
 	
