@@ -11,6 +11,7 @@ import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.I_FD_File;
 import com.officina_hide.base.model.I_FD_FileData;
 import com.officina_hide.base.tools.CreateBaseInformation;
+import com.officina_hide.ui.model.FP_Album;
 
 /**
  * 写真保存用プロジェクト生成[Generate a project for saving photos]<br>
@@ -36,21 +37,35 @@ public class CreatePictureProject {
 		FD_Table table = new FD_Table(env);
 		FD_Column column = new FD_Column(env);
 
+		/**
+		 * @since 2022/06/01
+		 * 写真集
+		 * ・写真一覧（アルバム）→単一階層（複数階層化は別途検討）
+		 * ・写真閲覧（写真、タイトル、撮影情報、メモ、タグ）
+		 * FP_Album → 登録用 FV_Album_Entry、一覧用 FXL_Album_List
+		 * FP_Picture
+		 * FP_MediaData
+		 */
 		//プロジェクト情報生成
-		//ファイル情報生成
-		FD_File file = new FD_File(env);
-		file.createTable();
-		table.add(I_FD_File.Entry_FD_Table);
-		num.add(I_FD_File.Entry_FD_Number);
-		column.add(I_FD_File.Entry_FD_Column_FD_File_ID);
-		column.add(I_FD_File.Entry_FD_Column_FD_File_Code);
-		num.add(I_FD_File.Entry_FD_Number_FD_File_Code);
-		//ファイルデータ情報生成
-		FD_FileData fld = new FD_FileData(env);
-		fld.createTable();
-		table.add(I_FD_FileData.Entry_FD_Table);
-		num.add(I_FD_FileData.Entry_FD_Number);
+		FP_Album pic = new FP_Album(env);
+		pic.createTable();
 		
+//		//ファイル情報生成
+//		FD_File file = new FD_File(env);
+//		file.createTable();
+//		table.add(I_FD_File.Entry_FD_Table);
+//		num.add(I_FD_File.Entry_FD_Number);
+//		column.add(I_FD_File.Entry_FD_Column_FD_File_ID);
+//		column.add(I_FD_File.Entry_FD_Column_FD_File_Code);
+//		num.add(I_FD_File.Entry_FD_Number_FD_File_Code);
+//		//ファイルデータ情報生成
+//		FD_FileData fld = new FD_FileData(env);
+//		fld.createTable();
+//		table.add(I_FD_FileData.Entry_FD_Table);
+//		num.add(I_FD_FileData.Entry_FD_Number);
+		
+		//終了メッセージ[End message]
+		System.out.println("画像管理構成 終了 : "+new Date());
 	}
 
 }

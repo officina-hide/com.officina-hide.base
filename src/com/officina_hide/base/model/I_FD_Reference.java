@@ -65,5 +65,10 @@ public interface I_FD_Reference extends I_FD_DB {
 			COLUMNNAME_FD_ReferenceGroup_ID+":"+"@getRefGroupId:"+FD_REFGROUP_COLUMN+","
 			+ COLUMNNAME_FD_Reference_Code+":"+FD_Item_String+","
 			+ COLUMNNAME_FD_Name+":"+"文字列";
+	/** 登録用情報 : 参照情報（共通）: FD_Item_Date */
+	public final String Entry_FD_Reference_FD_Item_Date =
+			COLUMNNAME_FD_ReferenceGroup_ID+":"+"@getRefGroupId:"+FD_REFGROUP_COLUMN+","
+			+ COLUMNNAME_FD_Reference_Code+":"+FD_Item_Date+","
+			+ COLUMNNAME_FD_Name+":"+"日付";
 	
 }

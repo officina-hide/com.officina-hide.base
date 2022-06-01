@@ -147,6 +147,9 @@ public class FD_DB implements I_FD_DB {
 				case FD_Item_String:
 					columndata.append(VARCHAR.replaceAll("n", Integer.toString(size)));
 					break;
+				case FD_Item_Date:
+					columndata.append(DATETIME);
+					break;
 				default:
 					System.out.println("Error!! Column Data not Found!! ["+idType+"]");
 				}
@@ -195,6 +198,9 @@ public class FD_DB implements I_FD_DB {
 						break;
 					case FD_Item_String:
 						cd.setColumnData(rs.getString(cd.getColumnName()));
+						break;
+					case FD_Item_Date:
+						cd.setColumnData(rs.getDate(cd.getColumnName()));
 						break;
 					default:
 						System.out.println("Error Type Not Exception ["+cd.getColumnType()+"]");

@@ -76,6 +76,8 @@ public interface I_FD_DB {
 	public final String FD_Item_Text = "FD_Item_Text";
 	/** テーブル型 : 大容量項目 */
 	public final String FD_Item_LongBlob = "FD_Item_LongBlob";
+	/** テーブル型 : 日付 */
+	public final String FD_Item_Date = "FD_Item_Date";
 	
 	/** 参照グループ情報（テーブル項目） */
 	public final String FD_REFGROUP_COLUMN = "FD_RefGroup_Column";

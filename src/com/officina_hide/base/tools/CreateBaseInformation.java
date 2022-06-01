@@ -64,6 +64,7 @@ public class CreateBaseInformation {
 		//参照情報 : テーブル項目
 		ref.add(I_FD_Reference.Entry_FD_Reference_FD_Item_ID);
 		ref.add(I_FD_Reference.Entry_FD_Reference_FD_Item_String);
+		ref.add(I_FD_Reference.Entry_FD_Reference_FD_Item_Date);
 		
 		/*
 		 * 採番情報を登録する。
