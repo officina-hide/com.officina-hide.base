@@ -3,14 +3,8 @@ package com.officina_hide.ui.tools;
 import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
-import com.officina_hide.base.model.FD_Column;
-import com.officina_hide.base.model.FD_File;
-import com.officina_hide.base.model.FD_FileData;
-import com.officina_hide.base.model.FD_Numbering;
-import com.officina_hide.base.model.FD_Table;
-import com.officina_hide.base.model.I_FD_File;
-import com.officina_hide.base.model.I_FD_FileData;
 import com.officina_hide.base.tools.CreateBaseInformation;
+import com.officina_hide.base.tools.CreateScreenInformation;
 import com.officina_hide.ui.model.FP_Album;
 
 /**
@@ -32,10 +26,9 @@ public class CreatePictureProject {
 		//基本情報生成
 		CreateBaseInformation cbi = new CreateBaseInformation(env);
 		cbi.execute();
-
-		FD_Numbering num = new FD_Numbering(env);
-		FD_Table table = new FD_Table(env);
-		FD_Column column = new FD_Column(env);
+		//画面情報生成
+		CreateScreenInformation csi = new CreateScreenInformation(env);
+		csi.execute();
 
 		/**
 		 * @since 2022/06/01
@@ -49,6 +42,12 @@ public class CreatePictureProject {
 		//プロジェクト情報生成
 		FP_Album pic = new FP_Album(env);
 		pic.createTable();
+		
+		/**
+		 * @since 2022/06/02
+		 * 各種画面情報の構築
+		 * 
+		 */
 		
 //		//ファイル情報生成
 //		FD_File file = new FD_File(env);

@@ -1,12 +1,10 @@
 package com.officina_hide.ui.model;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.Date;
-
 import com.officina_hide.base.common.FD_Collections;
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.FD_DB;
+import com.officina_hide.base.model.FD_Table;
 
 /**
  * 画面情報クラス[View information class]<br>
@@ -35,20 +33,32 @@ public class FX_View extends FD_DB implements I_FX_View {
 	 * @since 2022/04/07 Ver. 1.00
 	 */
 	public void createTable() {
-		PreparedStatement pstmt = null;
-		try {
-			connection(env);
-			pstmt = getConn().prepareStatement(Table_Drop_SQL);
-			pstmt.executeUpdate();
-			pstmt.close();
-			pstmt = getConn().prepareStatement(Table_Create_SQL);
-			pstmt.executeUpdate();
-			System.out.println(Table_Disp_Name+"テーブル生成 : " + new Date());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBClose(pstmt, null);
-		}
+		//テーブル情報登録
+		FD_Table table = new FD_Table(env);
+		table.add(Entry_FD_Table);
+		//テーブル項目情報登録
+		FD_Column column = new FD_Column(env);
+		column.add(Entry_FD_Column_FV_View_ID);
+		column.add(Entry_FD_Column_FV_View_Code);
+		column.add(Entry_FD_Column_FD_Name);
+		//テーブル構築
+		deleteTable(env, Table_Name);
+		createTable(env, Table_Name, Table_Disp_Name);
+		
+//		PreparedStatement pstmt = null;
+//		try {
+//			connection(env);
+//			pstmt = getConn().prepareStatement(Table_Drop_SQL);
+//			pstmt.executeUpdate();
+//			pstmt.close();
+//			pstmt = getConn().prepareStatement(Table_Create_SQL);
+//			pstmt.executeUpdate();
+//			System.out.println(Table_Disp_Name+"テーブル生成 : " + new Date());
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			DBClose(pstmt, null);
+//		}
 	
 	}
 
