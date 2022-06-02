@@ -36,6 +36,10 @@ public interface I_FD_Column extends I_FD_DB {
 	public final String NAME_FD_Column_DefaultValue = "テーブル項目初期値";
 	public final String COMMENT_FD_Column_DefaultValue = "項目に初期設定される値（文字列で登録し各項目の属性で設定される）";
 	public final int SIZE_FD_Column_DefaultValue = 100;
+	/** 項目 : 単体重複制約 */
+	public final String COLUMNNAME_FD_IS_Unoque = "FD_IS_Unoque";
+	public final String NAME_FD_IS_Unoque = "単体重複制約";
+	public final String COMMENT_FD_IS_Unoque = "YESの時、当該テーブル項目の重複を制約する。";
 	
 	/** テーブル削除用SQL */
 	public static final String Table_Drop_SQL =
@@ -60,7 +64,10 @@ public interface I_FD_Column extends I_FD_DB {
 				+ DEFAULT + ID_ZERO
 				+ COMMENT + FD_SQ + NAME_FD_Column_Size + FD_SQ + ","
 			+ COLUMNNAME_FD_Column_DefaultValue + VARCHAR.replaceAll("n", Integer.toString(SIZE_FD_Column_DefaultValue))
-				+ COMMENT + FD_SQ + NAME_FD_Column_DefaultValue + FD_SQ + ""
+				+ COMMENT + FD_SQ + NAME_FD_Column_DefaultValue + FD_SQ + ","
+			+ COLUMNNAME_FD_IS_Unoque+YES_NO
+				+ DEFAULT + FD_SQ + FD_YES + FD_SQ
+				+ COMMENT + FD_SQ + NAME_FD_IS_Unoque + FD_SQ + ""
 		+") "
 		+"ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=" + FD_SQ + Table_Disp_Name + FD_SQ;
 	

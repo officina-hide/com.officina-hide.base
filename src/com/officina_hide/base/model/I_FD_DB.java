@@ -11,25 +11,27 @@ public interface I_FD_DB {
 	/** 汎用定数 */
 	public final long ID_ZERO = 0;
 	public final int INT_ZERO = 0;
+	public final String FD_YES = "Y";
+	public final String FD_NO = "N";
 	
 	/** SQL文補助 */
 	public final static String FD_SQ = "'";	//シングルコーテーション
 
 	/** SQL用共通定数 */
-	public static final String ID_KEY_TYPE = " bigint unsigned NOT NULL PRIMARY KEY ";
-	public static final String ID_TYPE = " bigint unsigned ";
-	public static final String UNSIGNED_BIGINT = " bigint unsigned ";
-	public static final String UNSIGNED_INT = " int unsigned ";
-	public static final String YES_NO = " enum('Y','N') ";
-	public static final String COMMENT = " COMMENT ";	
-	public static final String DEFAULT = " DEFAULT ";	
-	public static final String DATETIME = " datetime ";
+	public final String ID_KEY_TYPE = " bigint unsigned NOT NULL PRIMARY KEY ";
+	public final String ID_TYPE = " bigint unsigned ";
+	public final String UNSIGNED_BIGINT = " bigint unsigned ";
+	public final String UNSIGNED_INT = " int unsigned ";
+	public final String YES_NO = " enum('Y','N') ";
+	public final String COMMENT = " COMMENT ";	
+	public final String DEFAULT = " DEFAULT ";	
+	public final String DATETIME = " datetime ";
 	public final String DETAULT_CURRENT_DATE = " default (current_date) ";
-	public static final String VARCHAR = " varchar(n) ";
+	public final String VARCHAR = " varchar(n) ";
 	public final String LONGBLOB = " longblob ";
-	public static final String TEXT = " text ";
-	public static final String UNIQUE = " unique ";
-	public static final String NOT_NULL = " not null ";
+	public final String TEXT = " text ";
+	public final String UNIQUE = " unique ";
+	public final String NOT_NULL = " not null ";
 	
 	/** 共通項目 : グルーブ情報ID */
 	public static final String COLUMNNAME_FD_Group_ID = I_FD_Group.COLUMNNAME_FD_Group_ID;
@@ -78,6 +80,8 @@ public interface I_FD_DB {
 	public final String FD_Item_LongBlob = "FD_Item_LongBlob";
 	/** テーブル型 : 日付 */
 	public final String FD_Item_Date = "FD_Item_Date";
+	/** テーブル型 : YES_NO */
+	public final String FD_Item_YesNo = "FD_Item_YesNo";
 	
 	/** 参照グループ情報（テーブル項目） */
 	public final String FD_REFGROUP_COLUMN = "FD_RefGroup_Column";

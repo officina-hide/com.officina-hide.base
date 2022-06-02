@@ -106,6 +106,7 @@ public class X_FD_Column extends FD_DB implements I_FD_Column {
 		columnCollection.add(COLUMNNAME_FD_ColumnType_ID, FD_Item_ID, ID_ZERO);
 		columnCollection.add(COLUMNNAME_FD_Column_Size, FD_Item_Int, INT_ZERO);
 		columnCollection.add(COLUMNNAME_FD_Column_DefaultValue, FD_Item_String);
+		columnCollection.add(COLUMNNAME_FD_IS_Unoque, FD_Item_YesNo);
 	}
 
 	/**

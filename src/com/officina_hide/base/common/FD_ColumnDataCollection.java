@@ -103,6 +103,13 @@ public class FD_ColumnDataCollection implements I_FD_DB {
 					value.append(FD_SQ).append(FD_SQ);
 				}
 				break;
+			case FD_Item_YesNo:
+				if(cd.getColumnData() == null || cd.getColumnData().equals("")) {
+					value.append(FD_SQ).append(FD_NO).append(FD_SQ);
+				} else {
+					value.append(FD_SQ).append(cd.getColumnData().toString()).append(FD_SQ);
+				}
+				break;
 			}
 		}
 		sql.append("(").append(column).append(") VALUES (").append(value).append(")");
@@ -128,7 +135,7 @@ public class FD_ColumnDataCollection implements I_FD_DB {
 	public void setData(FD_Collections entry) {
 		for(FD_Collect co : entry.getList()) {
 			FD_ColumnData cl = getItem(co.getName());
-			cl.setColumnData(co.getValue());
+//			cl.setColumnData(co.getValue());
 			switch(cl.getColumnType()) {
 			case FD_Item_ID:
 			case FD_Item_Long:
@@ -139,6 +146,7 @@ public class FD_ColumnDataCollection implements I_FD_DB {
 				break;
 			case FD_Item_String:
 			case FD_Item_Text:
+			case FD_Item_YesNo:
 				cl.setColumnData(co.getValue());
 				break;
 			default:

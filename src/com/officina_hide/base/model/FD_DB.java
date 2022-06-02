@@ -140,6 +140,8 @@ public class FD_DB implements I_FD_DB {
 				columndata.append(rs.getString(I_FD_Column.COLUMNNAME_FD_Column_Code));
 				String idType = rs.getString(I_FD_Reference.COLUMNNAME_FD_Reference_Code);
 				int size = rs.getInt(I_FD_Column.COLUMNNAME_FD_Column_Size);
+				String isUnique = rs.getString(I_FD_Column.COLUMNNAME_FD_IS_Unoque);
+				//項目設定
 				switch(idType) {
 				case FD_Item_ID:
 					columndata.append(ID_KEY_TYPE);
@@ -153,6 +155,11 @@ public class FD_DB implements I_FD_DB {
 				default:
 					System.out.println("Error!! Column Data not Found!! ["+idType+"]");
 				}
+				//重複制約判定
+				if(isUnique.equals(FD_YES)) {
+					columndata.append(UNIQUE);
+				}
+				//項目コメント
 				if(rs.getString(I_FD_Column.COLUMNNAME_FD_Name) != null) {
 					columndata.append(COMMENT).append(FD_SQ)
 					.append(rs.getString(I_FD_Column.COLUMNNAME_FD_Name)).append(FD_SQ);
