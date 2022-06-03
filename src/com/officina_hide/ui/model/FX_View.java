@@ -75,4 +75,15 @@ public class FX_View extends FD_DB implements I_FX_View {
 		view.save(env);
 	}
 
+	/**
+	 * 情報登録[Entry data]<br>
+	 * @author officina-hide.net
+	 * @since 2022/06/03 Ver. 1.00
+	 * @param entryData 登録情報[Entry data]
+	 */
+	public void add(String entryData) {
+		FD_Collections entry = new FD_Collections(env, entryData);
+		X_FX_View view = new X_FX_View(env, entry);
+	}
+
 }

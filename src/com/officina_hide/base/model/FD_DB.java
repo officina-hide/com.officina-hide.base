@@ -265,6 +265,50 @@ public class FD_DB implements I_FD_DB {
 		
 		return chk;
 	}
+
+	/**
+	 * テーブル項目リスト初期化[Table item list initialization]<br>
+	 * @author officina-hide.net
+	 * @since 2022/05/23 Ver. 1.00
+	 * @param tableName テーブル名[Table name]
+	 * @param env 環境情報[Environment information]
+	 */
+	public void createColumnList(FD_EnvData env, String tableName) {
+		columnCollection.clear();
+		//テーブル項目リスト取得
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			connection(env);
+			pstmt = getConn().prepareStatement(SQL_Get_ColumnData);
+			pstmt.setString(1, tableName);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				long id = rs.getLong(I_FD_Column.COLUMNNAME_FD_Column_ID);
+				X_FD_Column column = new X_FD_Column(env, id);
+				if(column.getFD_Column_DefaultValue() != null && column.getFD_Column_DefaultValue().length() > 0) {
+					switch(column.getFD_ColumnType(env).getFD_Reference_Code()) {
+					case FD_Item_ID:
+						columnCollection.add(column.getFD_Column_Code(), column.getFD_ColumnType(env).getFD_Reference_Code(),
+								Long.parseLong(column.getFD_Column_DefaultValue()));
+						break;
+					case FD_Item_String:
+						columnCollection.add(column.getFD_Column_Code(), column.getFD_ColumnType(env).getFD_Reference_Code(),
+								column.getFD_Column_DefaultValue());
+						break;
+					default:
+						System.out.println("Error Default Value Type Name ["+column.getFD_ColumnType(env).getFD_Reference_Code()+"]");
+					}
+				} else {
+					columnCollection.add(column.getFD_Column_Code(), column.getFD_ColumnType(env).getFD_Reference_Code());
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
+	}
 	
 	/** 項目Setter,Getter */
 	public String getFD_Name() {

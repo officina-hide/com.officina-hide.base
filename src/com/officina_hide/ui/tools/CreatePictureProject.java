@@ -6,6 +6,8 @@ import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.tools.CreateBaseInformation;
 import com.officina_hide.base.tools.CreateScreenInformation;
 import com.officina_hide.ui.model.FP_Album;
+import com.officina_hide.ui.model.FX_View;
+import com.officina_hide.ui.model.I_FP_Album;
 
 /**
  * 写真保存用プロジェクト生成[Generate a project for saving photos]<br>
@@ -43,11 +45,12 @@ public class CreatePictureProject {
 		FP_Album pic = new FP_Album(env);
 		pic.createTable();
 		
-		/**
-		 * @since 2022/06/02
-		 * 各種画面情報の構築
-		 * 
-		 */
+
+		//FV_Album_Entry用画面情報構築
+		FX_View view = new FX_View(env);
+		view.add(I_FP_Album.Entry_FX_View_FV_Album_Entry);
+		
+		
 		
 //		//ファイル情報生成
 //		FD_File file = new FD_File(env);

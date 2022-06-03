@@ -7,7 +7,7 @@ import com.officina_hide.ui.model.FX_View;
 
 /**
  * 画面情報生成[Screen information generation]<br>
- * 画面の構築に必要な情報群を構築する。
+ * 画面の構築に;:必要な情報群を構築する。
  * ・画面情報 FX_View 画面タイトルやサイズ等の全体表示に関する情報
  * @author officina-hide.net
  * @version 1.00 新規作成[New create]

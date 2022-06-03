@@ -25,16 +25,17 @@ public class X_FX_View extends FD_DB implements I_FX_View {
 	 * @author officina-hide.net
 	 * @since 2022/04/08 Ver. 1.00
 	 * @param env 環境情報[Environment information]
-	 * @param dataList 登録情報リスト[Entry data list]
+	 * @param entry 登録情報リスト[Entry data list]
 	 */
-	public X_FX_View(FD_EnvData env, FD_Collections dataList) {
-		createColumnList();
-		setColumnData(dataList);
-		long id = columnCollection.getTableId(Table_Name);
-		if(id > 0) {
-			//load機能の追加(登録済の情報を抽出しテーブル項目リストにセットする。
-			//テーブル情報ID以外のすべての項目をセットする。
-		}
+	public X_FX_View(FD_EnvData env, FD_Collections entry) {
+		createColumnList(env, Table_Name);
+//		createColumnList();
+//		setColumnData(dataList);
+//		long id = columnCollection.getTableId(Table_Name);
+//		if(id > 0) {
+//			//load機能の追加(登録済の情報を抽出しテーブル項目リストにセットする。
+//			//テーブル情報ID以外のすべての項目をセットする。
+//		}
 	}
 
 	/**
