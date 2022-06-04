@@ -135,7 +135,6 @@ public class FD_ColumnDataCollection implements I_FD_DB {
 	public void setData(FD_Collections entry) {
 		for(FD_Collect co : entry.getList()) {
 			FD_ColumnData cl = getItem(co.getName());
-//			cl.setColumnData(co.getValue());
 			switch(cl.getColumnType()) {
 			case FD_Item_ID:
 			case FD_Item_Long:

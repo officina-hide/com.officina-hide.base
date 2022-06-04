@@ -4,6 +4,7 @@ import com.officina_hide.base.common.FD_Collections;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.FD_DB;
+import com.officina_hide.base.model.FD_Numbering;
 import com.officina_hide.base.model.FD_Table;
 
 /**
@@ -41,25 +42,13 @@ public class FX_View extends FD_DB implements I_FX_View {
 		column.add(Entry_FD_Column_FV_View_ID);
 		column.add(Entry_FD_Column_FV_View_Code);
 		column.add(Entry_FD_Column_FD_Name);
+		//採番情報登録
+		FD_Numbering num = new FD_Numbering(env);
+		num.add(Entry_FD_Number);
+		
 		//テーブル構築
 		deleteTable(env, Table_Name);
-		createTable(env, Table_Name, Table_Disp_Name);
-		
-//		PreparedStatement pstmt = null;
-//		try {
-//			connection(env);
-//			pstmt = getConn().prepareStatement(Table_Drop_SQL);
-//			pstmt.executeUpdate();
-//			pstmt.close();
-//			pstmt = getConn().prepareStatement(Table_Create_SQL);
-//			pstmt.executeUpdate();
-//			System.out.println(Table_Disp_Name+"テーブル生成 : " + new Date());
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			DBClose(pstmt, null);
-//		}
-	
+		createTable(env, Table_Name, Table_Disp_Name);	
 	}
 
 	/**
@@ -84,6 +73,8 @@ public class FX_View extends FD_DB implements I_FX_View {
 	public void add(String entryData) {
 		FD_Collections entry = new FD_Collections(env, entryData);
 		X_FX_View view = new X_FX_View(env, entry);
+		// TODO 新規追加のみ 2022/06/04
+		view.save(env);
 	}
 
 }
