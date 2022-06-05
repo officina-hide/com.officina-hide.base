@@ -61,6 +61,10 @@ public interface I_FX_View extends I_FD_DB {
 			+ I_FD_Column.COLUMNNAME_FD_ColumnType_ID+":@getItemID:"+FD_Item_String+","
 			+ I_FD_Column.COLUMNNAME_FD_Column_Size+":"+ SIZE_FD_Name+"";
 	
+	/** 情報ID取得SQL(by FD_View_Code) */
+	public final String SQL_GetID_ByCode = 
+			"SELECT " + COLUMNNAME_FX_View_ID + " FROM " + Table_Name + " "
+			+ "WHERE " + COLUMNNAME_FX_View_Code + " = ? ";
 //	
 //	/** テーブル削除用SQL */
 //	public static final String Table_Drop_SQL =

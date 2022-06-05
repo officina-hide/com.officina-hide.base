@@ -69,6 +69,10 @@ public class X_FX_View extends FD_DB implements I_FX_View {
 		}
 	}
 
+	public X_FX_View(FD_EnvData env, long vewId) {
+		
+	}
+
 	/**
 	 * テーブル項目一覧生成[Table item list generate]<br>
 	 * @author officina-hide.net

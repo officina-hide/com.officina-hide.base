@@ -1,5 +1,9 @@
 package com.officina_hide.ui.model;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import com.officina_hide.base.common.FD_Collections;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Column;
@@ -75,6 +79,36 @@ public class FX_View extends FD_DB implements I_FX_View {
 		X_FX_View view = new X_FX_View(env, entry);
 		// TODO 新規追加のみ 2022/06/04
 		view.save(env);
+	}
+
+	/**
+	 * 画面情報ID取得[Getting screen information ID]<br>
+	 * @author officina-hide.net
+	 * @since 2022/06/05 Ver. 1.00
+	 * @param viewCode 画面コード[Screen code]
+	 * @return 画面情報ID[Screen information ID]
+	 */
+	public long getIDbyCode(String viewCode) {
+		long id = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			connection(env);
+			pstmt = getConn().prepareStatement(SQL_GetID_ByCode);
+			pstmt.setString(1, viewCode);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				id = rs.getLong(COLUMNNAME_FX_View_ID);
+			} else {
+				System.out.println("Error!! View Data not found! ["+viewCode+"]");
+			}
+			System.out.println(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
+		return id;
 	}
 
 }

@@ -11,9 +11,9 @@ import com.officina_hide.base.model.I_FD_DB;
 public interface I_FX_Field extends I_FD_DB {
 	
 	/** テーブル名 */
-	public static final String Table_Name = "FX_Field";
+	public final String Table_Name = "FX_Field";
 	/** テーブル表示名 */
-	public static final String Table_Disp_Name = "画面項目情報";
+	public final String Table_Disp_Name = "画面項目情報";
 	
 	/** 項目 : 画面項目情報ID */
 	public static final String COLUMNNAME_FX_Field_ID = Table_Name + "_ID";
@@ -60,4 +60,4 @@ public interface I_FX_Field extends I_FD_DB {
 					+ COMMENT + FD_SQ + NAME_FX_Field_RowNo + FD_SQ + ""
 			+") "
 			+"ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=" + FD_SQ + Table_Disp_Name + FD_SQ;
-}
+} 
