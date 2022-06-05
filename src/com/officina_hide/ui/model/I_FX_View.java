@@ -65,23 +65,10 @@ public interface I_FX_View extends I_FD_DB {
 	public final String SQL_GetID_ByCode = 
 			"SELECT " + COLUMNNAME_FX_View_ID + " FROM " + Table_Name + " "
 			+ "WHERE " + COLUMNNAME_FX_View_Code + " = ? ";
-//	
-//	/** テーブル削除用SQL */
-//	public static final String Table_Drop_SQL =
-//			"DROP TABLE IF EXISTS " + Table_Name;
-//
-//	/** テーブル生成用SQL */
-//	public static final String Table_Create_SQL = 
-//			"CREATE TABLE IF NOT EXISTS " + Table_Name
-//			+" ("
-//				+ COLUMNNAME_FX_View_ID + ID_KEY_TYPE
-//					+ COMMENT + FD_SQ + NAME_FX_View_ID + FD_SQ + ","
-//				+ COLUMNNAME_FX_View_Code + VARCHAR.replaceAll("n", Integer.toString(SIZE_FX_View_Name))
-//					+ UNIQUE + NOT_NULL
-//					+ COMMENT + FD_SQ + NAME_FX_View_Code + FD_SQ + ","
-//				+ COLUMNNAME_FD_Name + VARCHAR.replaceAll("n", Integer.toString(SIZE_FD_Name))
-//					+ COMMENT + FD_SQ + NAME_FD_Name + FD_SQ + ""
-//			+") "
-//			+"ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=" + FD_SQ + Table_Disp_Name + FD_SQ;
-
+	
+	/** 情報取得SQL */
+	public final String SQL_GetData = 
+			"SELECT * FROM " + Table_Name + " "
+			+ "WHERE " + COLUMNNAME_FX_View_ID + " = ? ";
+			
 }

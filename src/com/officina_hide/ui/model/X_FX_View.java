@@ -19,6 +19,11 @@ import com.officina_hide.base.model.FD_DB;
  */
 public class X_FX_View extends FD_DB implements I_FX_View {
 
+	/** 項目 : 画面情報ID */
+	private long FD_View_ID;
+	/** 項目 : 画面コード */
+	private String FD_View_Code;
+	
 	/**
 	 * コンストラクター[Constructor]<br>
 	 * @author officina-hide.net
@@ -69,8 +74,43 @@ public class X_FX_View extends FD_DB implements I_FX_View {
 		}
 	}
 
-	public X_FX_View(FD_EnvData env, long vewId) {
-		
+	/**
+	 * コンストラクター[Constructor]<br>
+	 * @author officina-hide.net
+	 * @since 2022/06/06 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param viewId 画面情報ID
+	 */
+	public X_FX_View(FD_EnvData env, long viewId) {
+		createColumnList();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			connection(env);
+			pstmt = getConn().prepareStatement(SQL_GetData);
+			pstmt.setLong(1, viewId);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				for(FD_ColumnData cd  : columnCollection.getList()) {
+					switch(cd.getColumnType()) {
+					case FD_Item_ID:
+						cd.setColumnData(rs.getLong(cd.getColumnName()));
+						break;
+					case FD_Item_String:
+						cd.setColumnData(rs.getString(cd.getColumnName()));
+						break;
+					default:
+						System.out.println("Error!! Data Type not found(X_FX_View) ["+cd.getColumnType()+"]");
+					}
+				}
+			} else {
+				System.out.println("Error!! View Data not found! ["+viewId+"]");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
 	}
 
 	/**
@@ -104,15 +144,37 @@ public class X_FX_View extends FD_DB implements I_FX_View {
 	 * @since 2022/04/12 Ver. 1.00
 	 * @param columnName テーブル項目名[Table column name]
 	 * @return 文字列情報[String information]
+	 * @deprecated
 	 */
 	public String getStringValue(String columnName) {
 		FD_ColumnData cd = columnCollection.getItem(columnName);
 		return (String) cd.getColumnData();
 	}
 
+	/**
+	 * @param columnName
+	 * @return
+	 * @deprecated
+	 */
 	public long getLongValue(String columnName) {
 		FD_ColumnData cd = columnCollection.getItem(columnName);
 		return (long) cd.getColumnData();
+	}
+	
+	
+	public long getFD_View_ID() {
+		FD_View_ID = (long) columnCollection.getValue(COLUMNNAME_FX_View_ID);
+		return FD_View_ID;
+	}
+	public void setFD_View_ID(long viewId) {
+		columnCollection.setValue(COLUMNNAME_FX_View_ID, viewId);
+	}
+	public String getFD_View_Code() {
+		FD_View_Code = (String) columnCollection.getValue(COLUMNNAME_FX_View_Code);
+		return FD_View_Code;
+	}
+	public void setFD_View_Code(String viewCode) {
+		columnCollection.setValue(COLUMNNAME_FX_View_Code, viewCode);
 	}
 
 }

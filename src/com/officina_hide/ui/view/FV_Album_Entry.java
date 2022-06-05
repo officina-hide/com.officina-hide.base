@@ -21,7 +21,13 @@ public class FV_Album_Entry extends Application implements I_FV_Album_Entry {
 		FX_View view = new FX_View(env);
 		X_FX_View xview = new X_FX_View(env, view.getIDbyCode(VIEW_CODE));
 		
+		/**
+		 * @since 2022/06/06
+		 * アルバム情報の項目を設定する。
+		 */
 		
+		
+		stage.setTitle(xview.getFD_Name());
 		stage.show();
 	}
 

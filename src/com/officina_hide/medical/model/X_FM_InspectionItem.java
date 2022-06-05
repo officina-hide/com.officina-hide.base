@@ -28,50 +28,6 @@ public class X_FM_InspectionItem extends FD_DB implements I_FM_InspectionItem {
 		createColumnList(env, Table_Name);
 		columnCollection.setData(entry);
 	}
-//
-//	/**
-//	 * テーブル項目リスト初期化[Table item list initialization]<br>
-//	 * @author officina-hide.net
-//	 * @since 2022/05/23 Ver. 1.00
-//	 * @param tableName テーブル名[Table name]
-//	 * @param env 環境情報[Environment information]
-//	 */
-//	private void createColumnList(FD_EnvData env, String tableName) {
-//		columnCollection.clear();
-//		//テーブル項目リスト取得
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//		try {
-//			connection(env);
-//			pstmt = getConn().prepareStatement(SQL_Get_ColumnData);
-//			pstmt.setString(1, tableName);
-//			rs = pstmt.executeQuery();
-//			while(rs.next()) {
-//				long id = rs.getLong(I_FD_Column.COLUMNNAME_FD_Column_ID);
-//				X_FD_Column column = new X_FD_Column(env, id);
-//				if(column.getFD_Column_DefaultValue() != null && column.getFD_Column_DefaultValue().length() > 0) {
-//					switch(column.getFD_ColumnType(env).getFD_Reference_Code()) {
-//					case FD_Item_ID:
-//						columnCollection.add(column.getFD_Column_Code(), column.getFD_ColumnType(env).getFD_Reference_Code(),
-//								Long.parseLong(column.getFD_Column_DefaultValue()));
-//						break;
-//					case FD_Item_String:
-//						columnCollection.add(column.getFD_Column_Code(), column.getFD_ColumnType(env).getFD_Reference_Code(),
-//								column.getFD_Column_DefaultValue());
-//						break;
-//						default:
-//							System.out.println("Error Default Value Type Name ["+column.getFD_ColumnType(env).getFD_Reference_Code()+"]");
-//					}
-//				} else {
-//					columnCollection.add(column.getFD_Column_Code(), column.getFD_ColumnType(env).getFD_Reference_Code());
-//				}
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			DBClose(pstmt, rs);
-//		}
-//	}
 
 	/**
 	 * 情報登録[Data save]<br>
@@ -82,12 +38,6 @@ public class X_FM_InspectionItem extends FD_DB implements I_FM_InspectionItem {
 	public void save(FD_EnvData env) {
 		save(env, Table_Name);
 	}
-//
-//	private final String SQL_Get_ColumnData =
-//			"SELECT "+I_FD_Column.COLUMNNAME_FD_Column_ID+" FROM "+I_FD_Column.Table_Name+" c "
-//			+ "LEFT JOIN " + FD_Table.Table_Name + " t ON t." + I_FD_Table.COLUMNNAME_FD_Table_ID + " = "
-//				+ "c." + I_FD_Column.COLUMNNAME_FD_Table_ID + " "
-//			+"WHERE " + I_FD_Table.COLUMNNAME_FD_Table_Code + " = ? ";
 
 	public long getFM_InspectionItem_ID() {
 		FM_InspectionItem_ID = (long) columnCollection.getValue(COLUMNNAME_FM_InspectionItem_ID);
