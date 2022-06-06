@@ -138,13 +138,18 @@ public class FD_DB implements I_FD_DB {
 					columndata.append(", ");
 				}
 				columndata.append(rs.getString(I_FD_Column.COLUMNNAME_FD_Column_Code));
+				String name = rs.getString(I_FD_Column.COLUMNNAME_FD_Column_Code);
 				String idType = rs.getString(I_FD_Reference.COLUMNNAME_FD_Reference_Code);
 				int size = rs.getInt(I_FD_Column.COLUMNNAME_FD_Column_Size);
 				String isUnique = rs.getString(I_FD_Column.COLUMNNAME_FD_IS_Unoque);
 				//項目設定
 				switch(idType) {
 				case FD_Item_ID:
-					columndata.append(ID_KEY_TYPE);
+					if(name.equals(tableName+"_ID")) {
+						columndata.append(ID_KEY_TYPE);
+					} else {
+						columndata.append(ID_TYPE);
+					}
 					break;
 				case FD_Item_String:
 					columndata.append(VARCHAR.replaceAll("n", Integer.toString(size)));

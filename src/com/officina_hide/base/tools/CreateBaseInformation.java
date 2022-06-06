@@ -1,5 +1,7 @@
 ﻿package com.officina_hide.base.tools;
 
+import java.util.Date;
+
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.FD_Numbering;
@@ -40,6 +42,9 @@ public class CreateBaseInformation {
 	 * @since 2022/03/19 Ver. 1.50
 	 */
 	public void execute() {
+		//開始メッセージ[Start message]
+		System.out.println("基盤情報構成 開始 : "+new Date());
+
 		/*
 		 * テーブルをインターフェースクラス内のSQL文で生成する。
 		 * 採番情報の登録（採番情報IDは固定値を使用）→基本情報テーブルの固定値は一覧で管理する。
@@ -74,6 +79,9 @@ public class CreateBaseInformation {
 		num.add(I_FD_Column.Entry_FD_Number);
 		num.add(I_FD_Numbering.Entry_FD_Number);
 		table.add(I_FD_Table.Entry_FD_Table);
+
+		//完了メッセージ[Complete message]
+		System.out.println("基盤情報構成 完了 : "+new Date());
 	}
 
 }

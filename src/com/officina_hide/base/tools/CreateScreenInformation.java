@@ -3,6 +3,7 @@ package com.officina_hide.base.tools;
 import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.ui.model.FX_Field;
 import com.officina_hide.ui.model.FX_View;
 
 /**
@@ -39,6 +40,9 @@ public class CreateScreenInformation {
 		//画面情報
 		FX_View view = new FX_View(env);
 		view.createTable();
+		//画面項目情報
+		FX_Field field = new FX_Field(env);
+		field.createTable();
 	
 		//完了メッセージ[Complete message]
 		System.out.println("画面情報構成 完了 : "+new Date());
