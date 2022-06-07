@@ -6,8 +6,10 @@ import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.tools.CreateBaseInformation;
 import com.officina_hide.base.tools.CreateScreenInformation;
 import com.officina_hide.ui.model.FP_Album;
+import com.officina_hide.ui.model.FX_Field;
 import com.officina_hide.ui.model.FX_View;
 import com.officina_hide.ui.model.I_FP_Album;
+import com.officina_hide.ui.view.I_FV_Album_Entry;
 
 /**
  * 写真保存用プロジェクト生成[Generate a project for saving photos]<br>
@@ -46,9 +48,12 @@ public class CreatePictureProject {
 		pic.createTable();
 		
 
-		//FV_Album_Entry用画面情報構築
+		// FV_Album_Entry用画面情報構築
 		FX_View view = new FX_View(env);
 		view.add(I_FP_Album.Entry_FX_View_FV_Album_Entry);
+		// FV_Album_Entry用画面項目構築
+		FX_Field field = new FX_Field(env);
+		field.add(I_FV_Album_Entry.Entry_Field_FP_Album_Code);
 		
 		
 		

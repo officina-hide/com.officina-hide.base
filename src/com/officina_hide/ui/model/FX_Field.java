@@ -1,5 +1,6 @@
 package com.officina_hide.ui.model;
 
+import com.officina_hide.base.common.FD_Collections;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.FD_DB;
@@ -58,6 +59,16 @@ public class FX_Field extends FD_DB implements I_FX_Field {
 //		} finally {
 //			DBClose(pstmt, null);
 //		}
+	}
+
+	/**
+	 * 情報登録[Data entry]
+	 * @author officina-hide.net
+	 * @since 2022/06/07 Ver. 1.00
+	 * @param entryData 登録情報
+	 */
+	public void add(String entryData) {
+		FD_Collections entry = new FD_Collections(env, entryData);
 	}
 
 }
