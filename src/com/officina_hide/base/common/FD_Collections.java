@@ -8,6 +8,7 @@ import com.officina_hide.base.model.FD_Reference;
 import com.officina_hide.base.model.FD_ReferenceGroup;
 import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.I_FD_DB;
+import com.officina_hide.ui.model.FX_View;
 
 /**
  * データ保管クラス[Data collection class]<br>
@@ -59,6 +60,12 @@ public class FD_Collections {
 					FD_Reference ref = new FD_Reference(env);
 					collect.setValue(ref.getID(I_FD_DB.FD_REFGROUP_COLUMN, dt[2]));
 					break;
+				case "@getViewId":
+					FX_View view = new FX_View(env);
+					collect.setValue(view.getIDbyCode(dt[2]));
+					break;
+				default:
+					System.out.println("Error!! FD_Collections method not found ["+dt[1]+"]");
 				}
 			}
 			list.add(collect);

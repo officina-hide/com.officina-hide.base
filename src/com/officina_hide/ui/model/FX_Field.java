@@ -4,6 +4,7 @@ import com.officina_hide.base.common.FD_Collections;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.FD_DB;
+import com.officina_hide.base.model.FD_Numbering;
 import com.officina_hide.base.model.FD_Table;
 
 /**
@@ -40,25 +41,15 @@ public class FX_Field extends FD_DB implements I_FX_Field {
 		column.add(Entry_FD_Column_FX_Field_ID);
 		column.add(Entry_FD_Column_FX_Field_Code);
 		column.add(Entry_FD_Column_FX_View_ID);
+		column.add(Entry_FD_Column_FD_Name);
+		//採番情報登録[Numbering information registration]
+		FD_Numbering num = new FD_Numbering(env);
+		num.add(Entry_FD_Number);
 		
 		//テーブル削除
 		deleteTable(env, Table_Name);
 		//テーブル生成
 		createTable(env, Table_Name, Table_Disp_Name);
-		
-//		PreparedStatement pstmt = null;
-//		try {
-//			connection(env);
-//			pstmt = getConn().prepareStatement(Table_Drop_SQL);
-//			pstmt.executeUpdate();
-//			pstmt.close();
-//			pstmt = getConn().prepareStatement(Table_Create_SQL);
-//			pstmt.executeUpdate();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			DBClose(pstmt, null);
-//		}
 	}
 
 	/**
@@ -69,6 +60,8 @@ public class FX_Field extends FD_DB implements I_FX_Field {
 	 */
 	public void add(String entryData) {
 		FD_Collections entry = new FD_Collections(env, entryData);
+		X_FX_Field field = new X_FX_Field(env, entry);
+		field.save(env);
 	}
 
 }
