@@ -4,16 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.ui.model.FX_Field;
 import com.officina_hide.ui.model.FX_View;
 import com.officina_hide.ui.model.X_FX_Field;
 import com.officina_hide.ui.model.X_FX_View;
 
 import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class FV_Album_Entry extends Application implements I_FV_Album_Entry {
+public class FV_Album_Entry extends Application implements I_FV_Album_Entry, I_FD_DB {
 
 	/** 環境情報[Environment information] */
 	private FD_EnvData env;
@@ -37,6 +42,8 @@ public class FV_Album_Entry extends Application implements I_FV_Album_Entry {
 		VBox root = new VBox(5);
 		setItem(root);
 		
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
 		stage.setTitle(xview.getFD_Name());
 		stage.show();
 	}
@@ -52,6 +59,20 @@ public class FV_Album_Entry extends Application implements I_FV_Album_Entry {
 	private void setItem(VBox root) {
 		FX_Field field = new FX_Field(env);
 		List<X_FX_Field> flist = field.getList(env, xview.getFX_View_ID());
+		for(X_FX_Field fd : flist) {
+			HBox fieldBox = new HBox(5);
+			//ラベル
+			Label label = new Label(fd.getFD_Name());
+			fieldBox.getChildren().add(label);
+			switch(fd.getFX_Field_Type(env).getFD_Reference_Code()) {
+			case FD_Item_String:
+				TextField text = new TextField("");
+				fieldBox.getChildren().add(text);
+				break;
+			}
+			System.out.println(fd.getFX_Field_Type(env).getFD_Reference_Code());
+			root.getChildren().add(fieldBox);
+		}
 	}
 
 	public static void main(String[] args) {

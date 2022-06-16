@@ -48,6 +48,7 @@ public class FX_Field extends FD_DB implements I_FX_Field {
 		column.add(Entry_FD_Column_FX_Field_Code);
 		column.add(Entry_FD_Column_FX_View_ID);
 		column.add(Entry_FD_Column_FD_Name);
+		column.add(Entry_FD_Column_FX_Field_Type_ID);
 		//採番情報登録[Numbering information registration]
 		FD_Numbering num = new FD_Numbering(env);
 		num.add(Entry_FD_Number);
@@ -88,7 +89,7 @@ public class FX_Field extends FD_DB implements I_FX_Field {
 			pstmt.setLong(1, viewId);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				X_FX_Field field = new X_FX_Field(env, rs.getLong(COLUMNNAME_FX_Field_ID));
+				list.add(new X_FX_Field(env, rs.getLong(COLUMNNAME_FX_Field_ID)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

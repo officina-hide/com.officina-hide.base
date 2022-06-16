@@ -79,6 +79,13 @@ public interface I_FX_Field extends I_FD_DB {
 			+ I_FD_Column.COLUMNNAME_FD_Name+":"+NAME_FD_Name+","
 			+ I_FD_Column.COLUMNNAME_FD_ColumnType_ID+":@getItemID:"+FD_Item_String+","
 			+ I_FD_Column.COLUMNNAME_FD_Column_Size + ":" + SIZE_FD_Name + "";
+	/** 登録用情報 : テーブル項目情報 : 画面項目種別(ID) */
+	public final String Entry_FD_Column_FX_Field_Type_ID =
+			I_FD_Column.COLUMNNAME_FD_Column_Code+":"+ COLUMNNAME_FX_Field_Type_ID+","
+			+ I_FD_Column.COLUMNNAME_FD_Table_ID+":@getID:"+Table_Name+","
+			+ I_FD_Column.COLUMNNAME_FD_Name+":"+ NAME_FX_Field_Type_ID +","
+			+ I_FD_Column.COLUMNNAME_FD_ColumnType_ID+":@getItemID:"+FD_Item_ID+","
+			+ I_FD_Column.COLUMNNAME_FD_Column_DefaultValue+":"+ID_ZERO+"";
 	
 	/** 画面項目リスト抽出用SQL文 */
 	public final String SQL_GET_FIELD_LIST =
