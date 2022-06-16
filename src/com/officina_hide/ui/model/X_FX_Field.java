@@ -25,6 +25,17 @@ public class X_FX_Field extends FD_DB implements I_FX_Field {
 	}
 
 	/**
+	 * コンストラクター[Constructor]<br>
+	 * @author officina-hide.net
+	 * @since 2022/06/11 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param fieldId 画面項目情報ID[Screen item information ID]
+	 */
+	public X_FX_Field(FD_EnvData env, long fieldId) {
+		createColumnList(env, Table_Name);
+	}
+
+	/**
 	 * 情報登録[Data entry]<br>
 	 * @author officina-hide.net
 	 * @since 2022/06/09 Ver. 1.00

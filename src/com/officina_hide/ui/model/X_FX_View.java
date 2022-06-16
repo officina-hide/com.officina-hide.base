@@ -20,9 +20,9 @@ import com.officina_hide.base.model.FD_DB;
 public class X_FX_View extends FD_DB implements I_FX_View {
 
 	/** 項目 : 画面情報ID */
-	private long FD_View_ID;
+	private long FX_View_ID;
 	/** 項目 : 画面コード */
-	private String FD_View_Code;
+	private String FX_View_Code;
 	
 	/**
 	 * コンストラクター[Constructor]<br>
@@ -162,18 +162,18 @@ public class X_FX_View extends FD_DB implements I_FX_View {
 	}
 	
 	
-	public long getFD_View_ID() {
-		FD_View_ID = (long) columnCollection.getValue(COLUMNNAME_FX_View_ID);
-		return FD_View_ID;
+	public long getFX_View_ID() {
+		FX_View_ID = (long) columnCollection.getValue(COLUMNNAME_FX_View_ID);
+		return FX_View_ID;
 	}
-	public void setFD_View_ID(long viewId) {
+	public void setFX_View_ID(long viewId) {
 		columnCollection.setValue(COLUMNNAME_FX_View_ID, viewId);
 	}
-	public String getFD_View_Code() {
-		FD_View_Code = (String) columnCollection.getValue(COLUMNNAME_FX_View_Code);
-		return FD_View_Code;
+	public String getFX_View_Code() {
+		FX_View_Code = (String) columnCollection.getValue(COLUMNNAME_FX_View_Code);
+		return FX_View_Code;
 	}
-	public void setFD_View_Code(String viewCode) {
+	public void setFX_View_Code(String viewCode) {
 		columnCollection.setValue(COLUMNNAME_FX_View_Code, viewCode);
 	}
 

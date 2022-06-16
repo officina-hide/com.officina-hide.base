@@ -1,5 +1,11 @@
 package com.officina_hide.ui.model;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.officina_hide.base.common.FD_Collections;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.model.FD_Column;
@@ -62,6 +68,34 @@ public class FX_Field extends FD_DB implements I_FX_Field {
 		FD_Collections entry = new FD_Collections(env, entryData);
 		X_FX_Field field = new X_FX_Field(env, entry);
 		field.save(env);
+	}
+
+	/**
+	 * 画面項目リスト取得[Getting screen item list]<br>
+	 * @author officina-hide.net
+	 * @since 2022/06/11 Ver 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param viewId 画面情報ID[Screen information ID]
+	 * @return 画面項目リスト[Screen item list]
+	 */
+	public List<X_FX_Field> getList(FD_EnvData env, long viewId) {
+		List<X_FX_Field> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			connection(env);
+			pstmt = getConn().prepareStatement(SQL_GET_FIELD_LIST);
+			pstmt.setLong(1, viewId);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				X_FX_Field field = new X_FX_Field(env, rs.getLong(COLUMNNAME_FX_Field_ID));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
+		return list;
 	}
 
 }

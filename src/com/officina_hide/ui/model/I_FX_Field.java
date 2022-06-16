@@ -80,6 +80,12 @@ public interface I_FX_Field extends I_FD_DB {
 			+ I_FD_Column.COLUMNNAME_FD_ColumnType_ID+":@getItemID:"+FD_Item_String+","
 			+ I_FD_Column.COLUMNNAME_FD_Column_Size + ":" + SIZE_FD_Name + "";
 	
+	/** 画面項目リスト抽出用SQL文 */
+	public final String SQL_GET_FIELD_LIST =
+			"SELECT * FROM " + Table_Name + " "
+			+ "WHERE " + COLUMNNAME_FX_View_ID + " = ? ";
+	
+	
 //
 //	/** テーブル生成用SQL */
 //	public static final String Table_Create_SQL = 
