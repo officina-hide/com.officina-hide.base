@@ -54,7 +54,7 @@ public class CreatePictureProject {
 		// FV_Album_Entry用画面項目構築
 		FX_Field field = new FX_Field(env);
 		field.add(I_FV_Album_Entry.Entry_Field_FP_Album_Code);
-		
+		field.add(I_FV_Album_Entry.Entry_Field_FD_Name);
 		
 		
 //		//ファイル情報生成

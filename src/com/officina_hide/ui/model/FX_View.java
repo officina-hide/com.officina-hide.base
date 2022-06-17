@@ -102,7 +102,6 @@ public class FX_View extends FD_DB implements I_FX_View {
 			} else {
 				System.out.println("Error!! View Data not found! ["+viewCode+"]");
 			}
-			System.out.println(id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
