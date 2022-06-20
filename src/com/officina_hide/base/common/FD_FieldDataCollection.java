@@ -1,11 +1,15 @@
 package com.officina_hide.base.common;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.officina_hide.ui.model.FX_Field;
 import com.officina_hide.ui.model.FX_View;
 import com.officina_hide.ui.model.X_FX_Field;
 import com.officina_hide.ui.model.X_FX_View;
+
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 
 /**
  * 画面項目コレクション[Screen item collection]<br>
@@ -29,10 +33,21 @@ public class FD_FieldDataCollection {
 		FX_View view = new FX_View(env);
 		X_FX_View xview = new X_FX_View(env, view.getIDbyCode(viewCode));
 		FX_Field field = new FX_Field(env);
+		fieldDataList = new ArrayList<>();
 		List<X_FX_Field> flist = field.getList(env, xview.getFX_View_ID());
 		for(X_FX_Field fd : flist) {
-			
+			FD_FIeldData fieldData = new FD_FIeldData();
+			fieldData.setFieldData(fd);
+			fieldData.setFieldLabel(new Label(fd.getFD_Name()));
+			fieldData.getFieldLabel().setFont(env.getFieldFont());
+			fieldData.getFieldLabel().setAlignment(Pos.CENTER_RIGHT);
+			fieldData.getFieldLabel().setPrefWidth(env.getLavelWidth());
+			fieldDataList.add(fieldData);
 		}
+	}
+
+	public List<FD_FIeldData> getFieldDataList() {
+		return fieldDataList;
 	}
 
 }

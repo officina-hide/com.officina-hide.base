@@ -1,13 +1,10 @@
 package com.officina_hide.ui.view;
 
-import java.util.List;
-
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.common.FD_FIeldData;
 import com.officina_hide.base.common.FD_FieldDataCollection;
 import com.officina_hide.base.model.I_FD_DB;
-import com.officina_hide.ui.model.FX_Field;
 import com.officina_hide.ui.model.FX_View;
-import com.officina_hide.ui.model.X_FX_Field;
 import com.officina_hide.ui.model.X_FX_View;
 
 import javafx.application.Application;
@@ -15,8 +12,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -88,29 +83,14 @@ public class FV_Album_Entry extends Application implements I_FV_Album_Entry, I_F
 	 * @param root ルート[root]
 	 */
 	private void setItem(VBox root) {
-		FX_Field field = new FX_Field(env);
-		List<X_FX_Field> flist = field.getList(env, xview.getFX_View_ID());
 		FD_FieldDataCollection fdc = new FD_FieldDataCollection();
 		fdc.initialize(env, VIEW_CODE);
-		for(X_FX_Field fd : flist) {
-			
-			
+		for(FD_FIeldData fd : fdc.getFieldDataList()) {
 			HBox fieldBox = new HBox(5);
 			fieldBox.setAlignment(Pos.CENTER_LEFT);
 			//ラベル
-			Label label = new Label(fd.getFD_Name());
-			label.setPrefWidth(100);
-			label.setAlignment(Pos.CENTER_RIGHT);
-			label.setFont(new Font("Meiryo UI", 14));
-			fieldBox.getChildren().add(label);
-			switch(fd.getFX_Field_Type(env).getFD_Reference_Code()) {
-			case FD_Item_String:
-				TextField text = new TextField("");
-				text.setFont(new Font("Meiryo UI", 12));
-				fieldBox.getChildren().add(text);
-				break;
-			}
-			System.out.println(fd.getFX_Field_Type(env).getFD_Reference_Code());
+			root.getChildren().add(fd.getFieldLabel());
+			
 			root.getChildren().add(fieldBox);
 		}
 	}

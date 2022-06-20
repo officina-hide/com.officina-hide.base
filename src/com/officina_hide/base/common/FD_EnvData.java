@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+import javafx.scene.text.Font;
+
 /**
  * 環境情報[Environment information]
  * @author officina-hide.net
@@ -16,20 +18,25 @@ public class FD_EnvData {
 	/** 項目 : 処理レベル[Run level] */
 	private String runLevel;
 	/** 項目 : データベースPath[Database path] */
-	private final static String DBPATH = "DBPath";
+	private final String DBPATH = "DBPath";
 	private String DBPath;
 	/** 項目 : データベースポート[Database port] */
-	private final static String DBPORT = "DBPort";
+	private final String DBPORT = "DBPort";
 	private String DBPort;
 	/** 項目 : データベース名[Database name] */
-	private final static String DBNAME = "DBName";
+	private final String DBNAME = "DBName";
 	private String DBName;
 	/** 項目 : データベースログインユーザー名[Database login user name] */
-	private final static String DBUSER = "DBUser";
+	private final String DBUSER = "DBUser";
 	private String DBUser;
 	/** 項目 : データベースパスワード[Database password] */
-	private final static String DBPASS = "DBPass";
+	private final String DBPASS = "DBPass";
 	private String DBPass;
+	
+	/** 画面用 : 画面フォント */
+	private Font fieldFont;
+	/** 画面用 : ラベル幅 */
+	private int lavelWidth;
 
 	/**
 	 * コンストラクタ[Constructor]
@@ -49,6 +56,10 @@ public class FD_EnvData {
 			setDBName(prop.getProperty(DBNAME, "Base"));
 			setDBUser(prop.getProperty(DBUSER, "admin"));
 			setDBPass(prop.getProperty(DBPASS, null));
+			//画面用情報
+			// TODO 要property化
+			fieldFont = new Font("Meiryo UI", 14);
+			lavelWidth = 100;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -90,5 +101,17 @@ public class FD_EnvData {
 	}
 	public void setDBPass(String dBPass) {
 		DBPass = dBPass;
+	}
+	public void setFieldFont(Font fieldFont) {
+		this.fieldFont = fieldFont;
+	}
+	public Font getFieldFont() {
+		return fieldFont;
+	}
+	public int getLavelWidth() {
+		return lavelWidth;
+	}
+	public void setLavelWidth(int lavelWidth) {
+		this.lavelWidth = lavelWidth;
 	}
 }
