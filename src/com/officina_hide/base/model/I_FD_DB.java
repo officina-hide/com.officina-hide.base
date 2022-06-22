@@ -66,6 +66,11 @@ public interface I_FD_DB {
 	public static final String COMMENT_FD_Description = "対象の情報の内容を説明する<br>"
 			+ "説明は翻訳機能と連携して言語により変換される。";
 	
+	/** 参照グループ情報（テーブル項目） */
+	public final String FD_REFGROUP_COLUMN = "FD_RefGroup_Column";
+	/** 参照グループ情報（画面項目） */
+	public final String FD_REFGROUP_FIELD = "FD_RefGroup_Field";
+
 	/** テーブル型 : ID */
 	public final String FD_Item_ID = "FD_Item_ID"; 
 	/** テーブル型 : 文字列 */
@@ -83,11 +88,11 @@ public interface I_FD_DB {
 	/** テーブル型 : YES_NO */
 	public final String FD_Item_YesNo = "FD_Item_YesNo";
 	
-	/** 参照グループ情報（テーブル項目） */
-	public final String FD_REFGROUP_COLUMN = "FD_RefGroup_Column";
+	/** 画面項目型 : 一行テキスト */
+	public final String FD_Field_SingleText = "FD_Field_SingleText ";
 	
 	/** 参照グルーブ : 画面項目属性 */
-	public static final String FD_Reference_Group_Field = "View_Field";
+//	public static final String FD_Reference_Group_Field = "View_Field";
 	
 	/** 共通項目生成用SQL */
 	public static final String COMMON_ITEM_CREATE_SQL = 

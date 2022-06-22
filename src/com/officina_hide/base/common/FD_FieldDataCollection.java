@@ -3,6 +3,7 @@ package com.officina_hide.base.common;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.ui.model.FX_Field;
 import com.officina_hide.ui.model.FX_View;
 import com.officina_hide.ui.model.X_FX_Field;
@@ -17,7 +18,7 @@ import javafx.scene.control.Label;
  * @version 1.00 新規作成[New create]
  * @since 2022/06/17 Ver. 1.00
  */
-public class FD_FieldDataCollection {
+public class FD_FieldDataCollection implements I_FD_DB {
 
 	/** 画面項目情報リスト */
 	private List<FD_FIeldData> fieldDataList;
@@ -42,6 +43,9 @@ public class FD_FieldDataCollection {
 			fieldData.getFieldLabel().setFont(env.getFieldFont());
 			fieldData.getFieldLabel().setAlignment(Pos.CENTER_RIGHT);
 			fieldData.getFieldLabel().setPrefWidth(env.getLavelWidth());
+			switch(fd.getFX_Field_Type(env).getFD_Reference_Code()) {
+			case FD_Item_ID:
+			}
 			fieldDataList.add(fieldData);
 		}
 	}

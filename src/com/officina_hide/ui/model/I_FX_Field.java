@@ -34,7 +34,7 @@ public interface I_FX_Field extends I_FD_DB {
 	public static final String COLUMNNAME_FX_Field_Type_ID = "FX_Field_Type_ID";
 	public static final String NAME_FX_Field_Type_ID = "画面項目種別(ID)";
 	public static final String COMMENT_FX_Field_Type_ID = "画面項目の種類を識別する為の情報ID<br>"
-			+ "リファレンス情報のグループ("+FD_Reference_Group_Field+")で設定する。";
+			+ "リファレンス情報のグループ("+FD_REFGROUP_FIELD+")で設定する。";
 	/** 項目 : 画面項目行番号 */
 	public static final String COLUMNNAME_FX_Field_RowNo = "FX_Field_RowNo";
 	public static final String NAME_FX_Field_RowNo = "画面項目行番号";
