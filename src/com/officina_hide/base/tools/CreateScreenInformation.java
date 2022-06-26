@@ -3,6 +3,7 @@ package com.officina_hide.base.tools;
 import java.util.Date;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.model.FD_Reference;
 import com.officina_hide.base.model.FD_ReferenceGroup;
 import com.officina_hide.ui.model.FX_Field;
 import com.officina_hide.ui.model.FX_View;
@@ -42,6 +43,8 @@ public class CreateScreenInformation implements I_CreateScreenInformation {
 		//参照情報に画面項目に関する情報を登録する。
 		FD_ReferenceGroup rg = new FD_ReferenceGroup(env);
 		rg.add(Entry_FD_ReferenceGroup_FieldType);
+		FD_Reference ref = new FD_Reference(env);
+		ref.add(Entry_FD_Reference_FD_Field_SingleText);
 		
 		//画面情報
 		FX_View view = new FX_View(env);
