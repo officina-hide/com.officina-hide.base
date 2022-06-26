@@ -30,6 +30,7 @@ public class FD_Collections {
 	 */
 	public FD_Collections(FD_EnvData env, String collectData) {
 		String[] sentence = collectData.split(",");
+		FD_Reference ref = new FD_Reference(env);
 		for(String wk : sentence) {
 			String[] dt = wk.split(":");
 			FD_Collect collect = new FD_Collect();
@@ -57,8 +58,10 @@ public class FD_Collections {
 					collect.setValue(refGroup.getID(dt[2]));
 					break;
 				case "@getItemID":
-					FD_Reference ref = new FD_Reference(env);
 					collect.setValue(ref.getID(I_FD_DB.FD_REFGROUP_COLUMN, dt[2]));
+					break;
+				case "@getFieldID":
+					collect.setValue(ref.getID(I_FD_DB.FD_REFGROUP_FIELD, dt[2]));
 					break;
 				case "@getViewId":
 					FX_View view = new FX_View(env);

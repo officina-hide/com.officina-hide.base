@@ -12,6 +12,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -89,7 +90,8 @@ public class FV_Album_Entry extends Application implements I_FV_Album_Entry, I_F
 			HBox fieldBox = new HBox(5);
 			fieldBox.setAlignment(Pos.CENTER_LEFT);
 			//ラベル
-			root.getChildren().add(fd.getFieldLabel());
+			fieldBox.getChildren().add(fd.getFieldLabel());
+			fieldBox.getChildren().add((TextField)fd.getFieldItem());
 			
 			root.getChildren().add(fieldBox);
 		}

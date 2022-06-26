@@ -11,6 +11,7 @@ import com.officina_hide.ui.model.X_FX_View;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 /**
  * 画面項目コレクション[Screen item collection]<br>
@@ -44,7 +45,11 @@ public class FD_FieldDataCollection implements I_FD_DB {
 			fieldData.getFieldLabel().setAlignment(Pos.CENTER_RIGHT);
 			fieldData.getFieldLabel().setPrefWidth(env.getLavelWidth());
 			switch(fd.getFX_Field_Type(env).getFD_Reference_Code()) {
-			case FD_Item_ID:
+			case FD_Field_SingleText:
+				TextField text = new TextField();
+				fieldData.setFieldItem(text);
+				fieldData.setFieldType(fd.getFX_Field_Type(env).getFD_Reference_Code());
+				break;
 			}
 			fieldDataList.add(fieldData);
 		}

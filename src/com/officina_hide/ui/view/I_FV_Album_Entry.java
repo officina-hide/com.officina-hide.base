@@ -23,12 +23,12 @@ public interface I_FV_Album_Entry extends I_FD_DB {
 			+ I_FX_Field.COLUMNNAME_FX_View_ID + ":@getViewId:" + VIEW_CODE + ","
 			+ I_FX_Field.COLUMNNAME_FD_Name + ":" + I_FP_Album.NAME_FP_Album_Code + ","
 			+ I_FX_Field.COLUMNNAME_FX_Field_Type_ID 
-				+ ":@getItemID:"  + FD_Item_String + "";
+				+ ":@getFieldID:"  + FD_Field_SingleText + "";
 	/** 画面項目登録 : アルバム名 */
 	public final String Entry_Field_FD_Name = 
 			I_FX_Field.COLUMNNAME_FX_Field_Code + ":" + I_FP_Album.COLUMNNAME_FD_Name + ","
 			+ I_FX_Field.COLUMNNAME_FX_View_ID + ":@getViewId:" + VIEW_CODE + ","
 			+ I_FX_Field.COLUMNNAME_FD_Name + ":" + I_FP_Album.NAME_FD_Name + ","
 			+ I_FX_Field.COLUMNNAME_FX_Field_Type_ID 
-				+ ":@getItemID:"  + FD_Item_String + "";
+				+ ":@getFieldID:"  + FD_Field_SingleText + "";
 }

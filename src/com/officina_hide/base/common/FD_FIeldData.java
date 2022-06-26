@@ -16,7 +16,23 @@ public class FD_FIeldData {
 	private X_FX_Field fieldData;
 	/** 項目 : ラベル */
 	private Label fieldLabel;
+	/** 項目 : 情報 */
+	private Object fieldItem;
+	/** 項目 : 情報種別 */
+	private String fieldType;
 
+	public Object getFieldItem() {
+		return fieldItem;
+	}
+	public void setFieldItem(Object fieldItem) {
+		this.fieldItem = fieldItem;
+	}
+	public String getFieldType() {
+		return fieldType;
+	}
+	public void setFieldType(String fieldType) {
+		this.fieldType = fieldType;
+	}
 	public X_FX_Field getFieldData() {
 		return fieldData;
 	}
