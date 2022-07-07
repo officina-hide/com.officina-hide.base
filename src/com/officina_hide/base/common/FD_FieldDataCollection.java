@@ -23,6 +23,8 @@ public class FD_FieldDataCollection implements I_FD_DB {
 
 	/** 画面項目情報リスト */
 	private List<FD_FIeldData> fieldDataList;
+	/** テーブル情報ID */
+	private long tableId;
 	
 	/**
 	 * 初期化[Initialize]
@@ -57,6 +59,12 @@ public class FD_FieldDataCollection implements I_FD_DB {
 
 	public List<FD_FIeldData> getFieldDataList() {
 		return fieldDataList;
+	}
+	public long getTableId() {
+		return tableId;
+	}
+	public void setTableId(long tableId) {
+		this.tableId = tableId;
 	}
 
 }

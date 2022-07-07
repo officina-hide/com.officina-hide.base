@@ -46,6 +46,7 @@ public class FX_View extends FD_DB implements I_FX_View {
 		column.add(Entry_FD_Column_FV_View_ID);
 		column.add(Entry_FD_Column_FV_View_Code);
 		column.add(Entry_FD_Column_FD_Name);
+		column.add(Entry_FD_Column_FD_Table_ID);
 		//採番情報登録
 		FD_Numbering num = new FD_Numbering(env);
 		num.add(Entry_FD_Number);

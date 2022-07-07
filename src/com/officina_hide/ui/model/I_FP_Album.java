@@ -70,5 +70,6 @@ public interface I_FP_Album extends I_FD_DB {
 	/** 画面用情報 : FV_Album_Entry 画面情報 */
 	public final String Entry_FX_View_FV_Album_Entry = 
 			I_FX_View.COLUMNNAME_FX_View_Code+":FV_Album_Entry"+","
-			+ I_FX_View.COLUMNNAME_FD_Name+":アルバム情報画面"+"";
+			+ I_FX_View.COLUMNNAME_FD_Name+":アルバム情報画面"+","
+			+ I_FX_View.COLUMNNAME_FD_Table_ID+":@getID:"+I_FP_Album.Table_Name+" ";
 }

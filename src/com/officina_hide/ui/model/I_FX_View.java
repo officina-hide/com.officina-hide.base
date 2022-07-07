@@ -14,19 +14,22 @@ import com.officina_hide.base.model.I_FD_Table;
 public interface I_FX_View extends I_FD_DB {
 	
 	/** テーブル名 */
-	public static final String Table_Name = "FX_View";
+	public final String Table_Name = "FX_View";
 	/** テーブル表示名 */
-	public static final String Table_Disp_Name = "画面情報";
+	public final String Table_Disp_Name = "画面情報";
 	
 	/** 項目 : 画面情報ID */
-	public static final String COLUMNNAME_FX_View_ID = Table_Name + "_ID";
-	public static final String NAME_FX_View_ID = Table_Disp_Name + "ID";
+	public final String COLUMNNAME_FX_View_ID = Table_Name + "_ID";
+	public final String NAME_FX_View_ID = Table_Disp_Name + "ID";
 	/** 項目 : 画面コード */
-	public static final String COLUMNNAME_FX_View_Code = "FX_View_Code";
-	public static final String NAME_FX_View_Code = "画面コード";
-	public static final String COMMENT_FX_View_Code = "画面を識別する為のコード";
-	public static final int SIZE_FX_View_Name = 100;
+	public final String COLUMNNAME_FX_View_Code = "FX_View_Code";
+	public final String NAME_FX_View_Code = "画面コード";
+	public final String COMMENT_FX_View_Code = "画面を識別する為のコード";
+	public final int SIZE_FX_View_Name = 100;
 	/** 項目 : 名前（FD_Nameを使用） */
+	/** 項目 : テーブル情報ID */
+	public final String COLUMNNAME_FD_Table_ID = I_FD_Table.COLUMNNAME_FD_Table_ID;
+	public final String NAME_FD_Table_ID = I_FD_Table.NAME_FD_Table_ID;
 	
 	/** 登録用SQL : テーブル情報 */
 	public final String Entry_FD_Table = 
@@ -60,6 +63,13 @@ public interface I_FX_View extends I_FD_DB {
 			+ I_FD_Column.COLUMNNAME_FD_Name+":"+NAME_FD_Name+","
 			+ I_FD_Column.COLUMNNAME_FD_ColumnType_ID+":@getItemID:"+FD_Item_String+","
 			+ I_FD_Column.COLUMNNAME_FD_Column_Size+":"+ SIZE_FD_Name+"";
+	/** 登録用情報 : テーブル項目情報 : テーブル情報ID */
+	public final String Entry_FD_Column_FD_Table_ID =
+			I_FD_Column.COLUMNNAME_FD_Column_Code+":"+COLUMNNAME_FD_Table_ID+","
+			+ I_FD_Column.COLUMNNAME_FD_Table_ID+":@getID:"+Table_Name+","
+			+ I_FD_Column.COLUMNNAME_FD_Name+":"+NAME_FD_Table_ID+","
+			+ I_FD_Column.COLUMNNAME_FD_ColumnType_ID+":@getItemID:"+FD_Item_ID+","
+			+ I_FD_Column.COLUMNNAME_FD_Column_DefaultValue+":"+ID_ZERO+"";
 	
 	/** 情報ID取得SQL(by FD_View_Code) */
 	public final String SQL_GetID_ByCode = 
