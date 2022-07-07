@@ -19,26 +19,29 @@ public interface I_FX_Field extends I_FD_DB {
 	public final String Table_Disp_Name = "画面項目情報";
 	
 	/** 項目 : 画面項目情報ID */
-	public static final String COLUMNNAME_FX_Field_ID = Table_Name + "_ID";
-	public static final String NAME_FX_Field_ID = Table_Disp_Name + "ID";
-	public static final String COMMENT_FX_Field_ID = "画面項目を識別する為の情報ID";
+	public final String COLUMNNAME_FX_Field_ID = Table_Name + "_ID";
+	public final String NAME_FX_Field_ID = Table_Disp_Name + "ID";
+	public final String COMMENT_FX_Field_ID = "画面項目を識別する為の情報ID";
 	/** 項目 : 画面項目コード */
-	public static final String COLUMNNAME_FX_Field_Code = "FX_Field_Code";
-	public static final String NAME_FX_Field_Code = "画面項目コード";
-	public static final String COMMENT_FX_Field_Code = "画面項目を一意に扱う為のコード";
-	public static final int SIZE_FX_Field_Code = 20;
+	public final String COLUMNNAME_FX_Field_Code = "FX_Field_Code";
+	public final String NAME_FX_Field_Code = "画面項目コード";
+	public final String COMMENT_FX_Field_Code = "画面項目を一意に扱う為のコード";
+	public final int SIZE_FX_Field_Code = 20;
 	/** 項目 : 画面情報ID */
-	public static final String COLUMNNAME_FX_View_ID = I_FX_View.COLUMNNAME_FX_View_ID;
+	public final String COLUMNNAME_FX_View_ID = I_FX_View.COLUMNNAME_FX_View_ID;
 	/** 項目 : 名前(共通) */
 	/** 項目 : 画面項目種別(ID) */
-	public static final String COLUMNNAME_FX_Field_Type_ID = "FX_Field_Type_ID";
-	public static final String NAME_FX_Field_Type_ID = "画面項目種別(ID)";
-	public static final String COMMENT_FX_Field_Type_ID = "画面項目の種類を識別する為の情報ID<br>"
+	public final String COLUMNNAME_FX_Field_Type_ID = "FX_Field_Type_ID";
+	public final String NAME_FX_Field_Type_ID = "画面項目種別(ID)";
+	public final String COMMENT_FX_Field_Type_ID = "画面項目の種類を識別する為の情報ID<br>"
 			+ "リファレンス情報のグループ("+FD_REFGROUP_FIELD+")で設定する。";
 	/** 項目 : 画面項目行番号 */
-	public static final String COLUMNNAME_FX_Field_RowNo = "FX_Field_RowNo";
-	public static final String NAME_FX_Field_RowNo = "画面項目行番号";
-	public static final String COMMENT_FX_Field_RowNo = "画面項目の画面上の行位置";
+	public final String COLUMNNAME_FX_Field_RowNo = "FX_Field_RowNo";
+	public final String NAME_FX_Field_RowNo = "画面項目行番号";
+	public final String COMMENT_FX_Field_RowNo = "画面項目の画面上の行位置";
+	/** 項目 : テーブル項目情報 */
+	public final String COLUMNNAME_FD_Column_ID = I_FD_Column.COLUMNNAME_FD_Column_ID;
+	public final String NAME_FD_Column_ID = I_FD_Column.NAME_FD_Column_ID;
 	
 	/** 登録用SQL : テーブル情報 */
 	public final String Entry_FD_Table = 
@@ -86,31 +89,17 @@ public interface I_FX_Field extends I_FD_DB {
 			+ I_FD_Column.COLUMNNAME_FD_Name+":"+ NAME_FX_Field_Type_ID +","
 			+ I_FD_Column.COLUMNNAME_FD_ColumnType_ID+":@getItemID:"+FD_Item_ID+","
 			+ I_FD_Column.COLUMNNAME_FD_Column_DefaultValue+":"+ID_ZERO+"";
+	/** 登録用情報 : テーブル項目情報 : テーブル項目情報ID */
+	public final String Entry_FD_Column_FD_Column_ID =
+			I_FD_Column.COLUMNNAME_FD_Column_Code+":"+ COLUMNNAME_FD_Column_ID+","
+			+ I_FD_Column.COLUMNNAME_FD_Table_ID+":@getID:"+Table_Name+","
+			+ I_FD_Column.COLUMNNAME_FD_Name+":"+ NAME_FD_Column_ID +","
+			+ I_FD_Column.COLUMNNAME_FD_ColumnType_ID+":@getItemID:"+FD_Item_ID+","
+			+ I_FD_Column.COLUMNNAME_FD_Column_DefaultValue+":"+ID_ZERO+"";
 	
 	/** 画面項目リスト抽出用SQL文 */
 	public final String SQL_GET_FIELD_LIST =
 			"SELECT * FROM " + Table_Name + " "
 			+ "WHERE " + COLUMNNAME_FX_View_ID + " = ? ";
 	
-	
-//
-//	/** テーブル生成用SQL */
-//	public static final String Table_Create_SQL = 
-//			"CREATE TABLE IF NOT EXISTS " + Table_Name
-//			+" ("
-//				+ COLUMNNAME_FX_Field_ID + ID_KEY_TYPE
-//					+ COMMENT + FD_SQ + NAME_FX_Field_ID + FD_SQ + ","
-//				+ COLUMNNAME_FX_Field_Code + VARCHAR.replaceFirst("n", Integer.toString(SIZE_FX_Field_Code))
-//					+ UNIQUE + NOT_NULL
-//					+ COMMENT + FD_SQ + NAME_FX_Field_Code + FD_SQ + ","
-//				+ COLUMNNAME_FX_View_ID + ID_TYPE
-//					+ COMMENT + FD_SQ + I_FX_View.NAME_FX_View_ID + FD_SQ + ","
-//				+ COLUMNNAME_FD_Name + VARCHAR.replaceAll("n", Integer.toString(SIZE_FD_Name))
-//					+ COMMENT + FD_SQ + NAME_FD_Name + FD_SQ + ","
-//				+ COLUMNNAME_FX_Field_Type_ID + ID_TYPE
-//					+ COMMENT + FD_SQ + NAME_FX_Field_Type_ID + FD_SQ + ","
-//				+ COLUMNNAME_FX_Field_RowNo + UNSIGNED_INT
-//					+ COMMENT + FD_SQ + NAME_FX_Field_RowNo + FD_SQ + ""
-//			+") "
-//			+"ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=" + FD_SQ + Table_Disp_Name + FD_SQ;
 } 

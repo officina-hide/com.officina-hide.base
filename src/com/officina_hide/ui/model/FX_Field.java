@@ -49,6 +49,7 @@ public class FX_Field extends FD_DB implements I_FX_Field {
 		column.add(Entry_FD_Column_FX_View_ID);
 		column.add(Entry_FD_Column_FD_Name);
 		column.add(Entry_FD_Column_FX_Field_Type_ID);
+		column.add(Entry_FD_Column_FD_Column_ID);
 		//採番情報登録[Numbering information registration]
 		FD_Numbering num = new FD_Numbering(env);
 		num.add(Entry_FD_Number);
