@@ -30,6 +30,19 @@ public class FD_Table extends FD_DB implements I_FD_Table {
 	}
 
 	/**
+	 * コンストラクター[Constructor]<br>
+	 * <p>テーブル情報IDを指定してインスタンス時にデータも取得する。<br></p>
+	 * <p>Specify the table information ID and get the data at the time of instance.</p>
+	 * @author officina-hide.net
+	 * @since 2022/07/07 Ver. 1.00
+	 * @param env 環境情報[Environment information]
+	 * @param tableId テーブル情報ID
+	 */
+	public FD_Table(FD_EnvData env, long tableId) {
+		load(env, tableId, Table_Name);
+	}
+
+	/**
 	 * テーブル情報テーブル生成[Table information Table generation]<br>
 	 * @author officina-hide.net
 	 * @since 2022/04/11 Ver. 1.50

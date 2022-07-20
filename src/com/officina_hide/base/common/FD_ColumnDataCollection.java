@@ -1,9 +1,16 @@
 package com.officina_hide.base.common;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 
+import com.officina_hide.base.model.FD_Column;
 import com.officina_hide.base.model.I_FD_DB;
+import com.officina_hide.base.model.X_FD_Column;
 
 /**
  * テーブル項目コレクション[Table item collection]<br>
@@ -110,6 +117,14 @@ public class FD_ColumnDataCollection implements I_FD_DB {
 					value.append(FD_SQ).append(cd.getColumnData().toString()).append(FD_SQ);
 				}
 				break;
+			case FD_Item_Date:
+				SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+				Calendar cal = new GregorianCalendar(new Locale(Locale.JAPAN.getLanguage(), Locale.JAPAN.getCountry()));
+				cal.setTime((Date) cd.getColumnData());
+				value.append(FD_SQ).append(df.format(cal.getTime())).append(FD_SQ);
+				break;
+			default:
+				System.out.println("Error column type not found ["+cd.getColumnType()+"]");
 			}
 		}
 		sql.append("(").append(column).append(") VALUES (").append(value).append(")");
@@ -177,4 +192,16 @@ public class FD_ColumnDataCollection implements I_FD_DB {
 		list = new ArrayList<>();
 	}
 
+	/**
+	 * @param env
+	 * @param tableId
+	 */
+	public void initialize(FD_EnvData env, long tableId) {
+		FD_Column column = new FD_Column(env);
+		List<X_FD_Column> clist = column.getList(tableId);
+		for(X_FD_Column fc : clist) {
+			add(fc.getFD_Column_Code(), fc.getFD_ColumnType(env).getFD_Reference_Code());
+		}
+	}
+	
 }

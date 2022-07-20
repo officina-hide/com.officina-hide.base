@@ -16,6 +16,8 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 
 	/** 項目 : テーブル情報ID */
 	private long FD_Table_ID;
+	/** 項目 : テーブルコード */
+	private String FD_Table_Code;
 	
 	/**
 	 * コンストラクター[Constructor]<br>
@@ -26,6 +28,15 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 	public X_FD_Table(FD_Collections entry) {
 		createColumnList();
 		columnCollection.setData(entry);
+	}
+
+	/**
+	 * @param env
+	 * @param tableId
+	 */
+	public X_FD_Table(FD_EnvData env, long tableId) {
+		createColumnList();
+		load(env, tableId, Table_Name);
 	}
 
 	/**
@@ -77,6 +88,13 @@ public class X_FD_Table extends FD_DB implements I_FD_Table {
 	}
 	public void setFD_Table_ID(long tableId) {
 		columnCollection.setValue(COLUMNNAME_FD_Table_ID, tableId);
+	}
+	public String getFD_Table_Code() {
+		FD_Table_Code = (String) columnCollection.getValue(COLUMNNAME_FD_Table_Code);
+		return FD_Table_Code;
+	}
+	public void setFD_Table_Code(String tableCode) {
+		columnCollection.setValue(COLUMNNAME_FD_Table_Code, tableCode);
 	}
 
 }

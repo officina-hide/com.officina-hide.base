@@ -209,6 +209,7 @@ public class FD_DB implements I_FD_DB {
 						cd.setColumnData(rs.getLong(cd.getColumnName()));
 						break;
 					case FD_Item_String:
+					case FD_Item_Text:
 						cd.setColumnData(rs.getString(cd.getColumnName()));
 						break;
 					case FD_Item_Date:

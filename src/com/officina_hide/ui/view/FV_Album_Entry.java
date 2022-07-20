@@ -3,8 +3,10 @@ package com.officina_hide.ui.view;
 import com.officina_hide.base.common.FD_EnvData;
 import com.officina_hide.base.common.FD_FIeldData;
 import com.officina_hide.base.common.FD_FieldDataCollection;
+import com.officina_hide.base.model.FD_Table;
 import com.officina_hide.base.model.I_FD_DB;
 import com.officina_hide.ui.model.FX_View;
+import com.officina_hide.ui.model.I_FP_Album;
 import com.officina_hide.ui.model.X_FX_View;
 
 import javafx.application.Application;
@@ -26,11 +28,15 @@ public class FV_Album_Entry extends Application implements I_FV_Album_Entry, I_F
 	/** 画面情報 */
 	private FX_View view;
 	private X_FX_View xview;
+	private FD_FieldDataCollection fdc;
+	/** テーブル情報 */
+	private FD_Table table;
 	
 	@Override
 	public void start(Stage stage) throws Exception {
 		//環境情報取得
 		env = new FD_EnvData("Picture.prop");
+		table = new FD_Table(env);
 
 		//情報取得
 		view = new FX_View(env);
@@ -69,7 +75,7 @@ public class FV_Album_Entry extends Application implements I_FV_Album_Entry, I_F
 		saveButton.setFont(new Font("Meiryo UI", 12));
 		saveButton.setOnAction(event->{
 			AC_Save save = new AC_Save();
-			save.execute(env, event);
+			save.execute(env, event, fdc);
 		});
 		toolBar.getItems().addAll(saveButton);
 		
@@ -84,8 +90,10 @@ public class FV_Album_Entry extends Application implements I_FV_Album_Entry, I_F
 	 * @param root ルート[root]
 	 */
 	private void setItem(VBox root) {
-		FD_FieldDataCollection fdc = new FD_FieldDataCollection();
+		
+		fdc = new FD_FieldDataCollection();
 		fdc.initialize(env, VIEW_CODE);
+		fdc.setTableId(table.getTableID(I_FP_Album.Table_Name));
 		for(FD_FIeldData fd : fdc.getFieldDataList()) {
 			HBox fieldBox = new HBox(5);
 			fieldBox.setAlignment(Pos.CENTER_LEFT);

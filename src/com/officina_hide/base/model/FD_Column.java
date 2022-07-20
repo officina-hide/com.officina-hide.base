@@ -3,6 +3,8 @@ package com.officina_hide.base.model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.officina_hide.base.common.FD_Collections;
 import com.officina_hide.base.common.FD_EnvData;
@@ -107,8 +109,33 @@ public class FD_Column extends FD_DB implements I_FD_Column {
 				+" = c."+I_FD_Column.COLUMNNAME_FD_Table_ID+" "
 			+ "WHERE t."+I_FD_Table.COLUMNNAME_FD_Table_Code+" = ? "
 			+ "AND c."+COLUMNNAME_FD_Column_Code+" = ? ";
-			
-	private final String SQL_GET_COLUMN_LIST = 
-			"SELECT * FROM @TableName@ "
-			+ "";
+
+	/**
+	 * テーブル項目情報リスト生成[Table item list generation]<br>
+	 * @param tableId テーブル情報ID[Table information ID]
+	 * @return テーブル項目情報リスト[Table item information list]
+	 */
+	public List<X_FD_Column> getList(long tableId) {
+		List<X_FD_Column> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			connection(env);
+			pstmt = getConn().prepareStatement(SQL_GET_COLUMNDATA);
+			pstmt.setLong(1, tableId);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				list.add(new X_FD_Column(env, rs.getLong(COLUMNNAME_FD_Column_ID)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose(pstmt, rs);
+		}
+		return list;
+	}
+
+	private final String SQL_GET_COLUMNDATA = 
+			"SELECT * FROM " + I_FD_Column.Table_Name + " "
+			+ "WHERE " + I_FD_Column.COLUMNNAME_FD_Table_ID + " = ? ";
 }
