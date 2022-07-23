@@ -77,6 +77,8 @@ public class AC_Save extends FD_DB {
 		}
 		
 		//完了メッセージ
+		alert = new Alert(AlertType.INFORMATION, "正常に登録しました。");
+		alert.showAndWait();
 	}
 
 }
