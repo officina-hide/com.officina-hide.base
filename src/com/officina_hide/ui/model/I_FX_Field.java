@@ -66,8 +66,8 @@ public interface I_FX_Field extends I_FD_DB {
 			+ I_FD_Column.COLUMNNAME_FD_Table_ID+":@getID:"+Table_Name+","
 			+ I_FD_Column.COLUMNNAME_FD_Name+":"+NAME_FX_Field_Code+","
 			+ I_FD_Column.COLUMNNAME_FD_ColumnType_ID+":@getItemID:"+FD_Item_String+","
-			+ I_FD_Column.COLUMNNAME_FD_Column_Size + ":" + SIZE_FX_Field_Code + ","
-			+ I_FD_Column.COLUMNNAME_FD_IS_Unoque + ":" + FD_YES + "";
+			+ I_FD_Column.COLUMNNAME_FD_Column_Size + ":" + SIZE_FX_Field_Code + "";
+//			+ I_FD_Column.COLUMNNAME_FD_IS_Unoque + ":" + FD_YES + "";
 	/** 登録用情報 : テーブル項目情報 : 画面情報ID */
 	public final String Entry_FD_Column_FX_View_ID =
 			I_FD_Column.COLUMNNAME_FD_Column_Code+":"+I_FX_View.COLUMNNAME_FX_View_ID+","

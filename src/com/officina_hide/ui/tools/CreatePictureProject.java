@@ -9,6 +9,7 @@ import com.officina_hide.ui.model.FP_Album;
 import com.officina_hide.ui.model.FX_Field;
 import com.officina_hide.ui.model.FX_View;
 import com.officina_hide.ui.model.I_FP_Album;
+import com.officina_hide.ui.model.I_FV_Album_List;
 import com.officina_hide.ui.view.I_FV_Album_Entry;
 
 /**
@@ -55,6 +56,11 @@ public class CreatePictureProject {
 		FX_Field field = new FX_Field(env);
 		field.add(I_FV_Album_Entry.Entry_Field_FP_Album_Code);
 		field.add(I_FV_Album_Entry.Entry_Field_FD_Name);
+		// FV_Album_List用画面情報構築
+		view.add(I_FV_Album_List.Entry_Fx_View);
+		// FV_Album_List用画面項目構築
+		field.add(I_FV_Album_List.Entry_Field_FP_Album_Code);
+		field.add(I_FV_Album_List.Entry_Field_FD_Name);
 		
 		
 //		//ファイル情報生成
