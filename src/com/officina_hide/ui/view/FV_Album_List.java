@@ -7,6 +7,7 @@ import com.officina_hide.ui.model.X_FX_View;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -35,8 +36,21 @@ public class FV_Album_List extends Application implements I_FV_Album_List {
 		
 		VBox root = new VBox(5);
 		root.setPadding(new Insets(5, 5, 5, 5));
+		//項目セット
+		setItem(root);
+		
 		
 		stage.show();
+	}
+
+	/**
+	 * リスト表示画面用項目セット[Item set for list display screen]<br>
+	 * @author officina-hide.net
+	 * @since 2022/07/28 Ver. 1.00
+	 * @param root ルート[Root]
+	 */
+	private void setItem(VBox root) {
+		
 	}
 
 	public static void main(String[] args) {
