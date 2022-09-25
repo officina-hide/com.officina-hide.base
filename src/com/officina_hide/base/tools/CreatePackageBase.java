@@ -1,6 +1,7 @@
 package com.officina_hide.base.tools;
 
 import com.officina_hide.base.common.FD_EnvData;
+import com.officina_hide.base.model.FD_Project;
 
 /**
  * プロジェクトの基盤情報を構築する。<br>
@@ -41,12 +42,23 @@ public class CreatePackageBase {
 //			e.printStackTrace();
 //		}
 		
-		//処理レベルを引数から取得する。
-		env.setRunLevel(args[0]);
+//		//処理レベルを引数から取得する。
+//		env.setRunLevel(args[0]);
+		
+		/*
+		 * パッケージが利用機能の単位となる。原則は疎結合
+		 * 複数のパッケージで構成される。
+		 * パッケージは階層構造を持つが、１機能１パッケージが最低単位となる。
+		 * パッケージの作成・更新から維持運用・廃止までのライフサイクルを管理するのがプロジェクト
+		 * パッケージは独立して機能する事を原則とする。
+		 * ●プロジェクトがすべての起点となる。
+		 */
+		FD_Project project = new FD_Project(env);
+		project.getCommand("");
 		
 		//基盤情報生成
-		CreateBaseInformation cbi = new CreateBaseInformation(env);
-		cbi.execute();
+//		CreateBaseInformation cbi = new CreateBaseInformation(env);
+//		cbi.execute();
 	}
 
 }

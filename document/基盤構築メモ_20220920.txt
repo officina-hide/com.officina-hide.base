@@ -1,0 +1,31 @@
+FDプロジェクト
+
+・プロジェクト基盤構成
+	・テーブル情報 FD_Table
+	・テーブル項目情報 FD_Column
+	・採番情報 FD_Number
+	・項目辞書情報 FD_Dictionary
+	・参照情報 FD_Reference
+	・ログ情報 FD_Log
+	・ユーザー情報 FD_User
+	・メッセージ情報 FD_Message
+	・コンフィグ情報 FD_Config
+	・起動情報 FD_Environment_Properties(設定ファイル)
+・共通テーブル項目
+	・登録日、登録者ID
+	・更新日、更新者ID
+	・情報ID
+	・論理削除フラグ
+	・管理グループ
+	・管理バージョン
+	・情報UUID
+・基盤環境生成方法
+	・生成用SQLの起動
+		01. 採番情報テーブルCreate
+		02. テーブル情報Create
+		03. テーブル情報-テーブル情報登録 ID = 101
+
+"CreateTable":"SQL文"
+"InsertData":"SQL文"
+"AlterTable":"SQL文"
+
